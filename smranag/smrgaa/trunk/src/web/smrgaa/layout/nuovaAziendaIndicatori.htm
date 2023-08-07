@@ -1,0 +1,389 @@
+$$head
+  <script type="text/javascript" src="../js/checktext.js"></script>
+  <script type="text/javascript" src="../js/messaggistica.js"></script>
+  <script type="text/javascript">
+    function scegliOTE(mypage, myname, w, h, scroll, codice, descrizione, form) {
+      if(codice == '' && descrizione == '') {
+        alert('Valorizzare il codice e/o la descrizione per effettuare la ricerca');
+      }
+      else {
+        newWindow(mypage, myname, w, h, scroll, form);
+      }
+    }
+
+    function scegliATECO(mypage, myname, w, h, scroll, codice, descrizione, form) {
+      if(codice == '' && descrizione == '') {
+        alert('Valorizzare il codice e/o la descrizione per effettuare la ricerca');
+      }
+      else {
+        newWindow(mypage, myname, w, h, scroll, form);
+      }
+    }
+
+    function newWindow(mypage, myname, w, h, scroll,form) {
+      var winl = (screen.width - w) / 2;
+      var wint = (screen.height - h) / 2;
+      winprops =    'height='+h+',width='+w+',top='+wint+',left='+winl+',scrollbars='+scroll+',resizable'
+      win = window.open('', myname, winprops);
+      if (parseInt(navigator.appVersion) >= 4) {
+        win.window.focus();
+      }
+      var target1 = form.target;
+      var action1 = form.action;
+      form.target = myname;
+      form.action = mypage;
+      form.submit();
+      form.target = target1;
+      form.action = action1;
+    }
+    
+    function pulisciDescrizioneOTE() {
+      document.form1.descrizioneOTE.value = '';
+    }
+
+    function pulisciDescrizioneATECO() {
+      document.form1.descrizioneATECO.value = '';
+    }
+
+    function scegliATECOSec(mypage, myname, w, h, scroll, codice, descrizione, form) {
+      if(codice == '' && descrizione == '') 
+      {
+        alert('Valorizzare il codice e/o la descrizione per effettuare la ricerca');
+      }
+      else 
+      {
+        form.obiettivo.value = 'modificaAzienda';
+        newWindow(mypage, myname, w, h, scroll, form);
+      }
+    }
+    
+    function setHiddenOperazione(form, operazione, obj) {
+      obj.onclick = '';
+      form.operazione.value = operazione;
+      form.submit();
+    }
+    
+    function setHiddenOperazioneInsAteco(form, operazione, obj) {
+      obj.onclick = '';
+      form.operazione.value = operazione;
+      form.insAtecoSec.value = 'insAtecoSec';
+      form.submit();
+    }
+  
+  </script>
+</head>
+<body id="homeIndice" onLoad="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+  <div id="pagina" class="colonnaUnica">
+    <!-- INTESTAZIONE -->
+    <div id="intestazione##pathProvincia">
+      $$header
+      <!-- menu di navigazione-->
+      <div id="titoloEmenu">
+        <h2>
+          <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+        </h2>
+        <div id="menuDiNavigazione" title="Menu di navigazione">
+          <ul class="menuTendina" id="menu-2">
+            <li>  <a href="../layout/index.htm" title="Torna alla pagina principale">home</a>  </li>
+            <li class="attivo">gestione anagrafe aziende</li>
+            <li>  <a href="#" title="contatti">contatti</a>  </li>
+            <li>  <a href="#" title="help">help</a>  </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <hr/>
+    <div style="clear:left">  </div>
+    <!-- CORPO -->
+    <div id="corpo">
+      <div id="Utente">
+        <div id="datiUtente">
+          <strong>utente:</strong>
+          $$utente
+          &nbsp;&nbsp;
+          <strong>ente:</strong>
+          $$ente
+        </div>
+        <div id="chiudisessione">
+          <a href="javascript: logout();">chiudi sessione</a>
+        </div>
+      </div>
+      <hr/>
+      <!--PRIMA COLONNA -->
+      <h3>      Inserimento azienda
+        <span class="helpFuori">
+          <a href="#">
+            <span class="alt">[help]</span>
+          </a>
+        </span>
+      </h3>
+      <hr/>
+      <div class="box">
+        <div class="menuSX1">
+          <ul>
+            <!-- @@blkElencoAziendeRapLegale -->
+                <li><a href="../layout/elencoAziendeRapLegale.htm">Elenco Aziende</a></li>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <!-- @@blkRicercaAzienda-->
+              <li><a href="../layout/ricerca.htm">Ricerche</a></li>
+            <!-- @@blkRicercaAzienda-->
+            <!-- @@blkNuova -->
+            <li>  <a href="../layout/nuovaAziendaAnagrafica.htm" class="on">Nuova Azienda</a>  </li>
+            <!-- @@blkNuova -->
+            <!-- @@blkNuovaIscrizione -->
+            <li>
+              <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+            </li>
+            <!-- @@blkNuovaIscrizione -->
+          </ul>
+        </div>
+      </div>
+      <hr/>
+      <!-- SECONDA COLONNA -->
+      <div id="contenuto">
+        <hr/>
+        <div id="indice">
+          <span class="voce">
+            <a href="#">anagrafica</a>
+          </span>
+          <span class="bugFix">&nbsp;|&nbsp;</span>
+          <span class="voce">
+            <a href="#">titolare/rappr.legale</a>
+          </span>
+          <span class="bugFix">&nbsp;|&nbsp;</span>
+          <span class="voce">
+            <a href="#">sede legale</a>
+          </span>
+          <span class="bugFix">&nbsp;|&nbsp;</span>
+          <span class="evidenza">altri indicatori</span>
+          <span class="bugFix">&nbsp;|&nbsp;</span>
+        </div>
+        <hr/>
+		    <form name="form1" method="post" action="../layout/nuovaAziendaIndicatori.htm">
+      		<input type="hidden" name="radiobuttonAzienda" value="$$radiobuttonAzienda"/>
+      		<input type="hidden" name="cuaaProvenienza" value="$$cuaaProvenienza"/>
+      		<input type="hidden" id="operazione" name="operazione" value="$$operazione" />
+      		<input type="hidden" id="regimeNuovaAziendaIndicatori" name="regimeNuovaAziendaIndicatori" value="regimeNuovaAziendaIndicatori" />
+      		<input type="hidden" id="obiettivo" name="obiettivo" value="" />
+      		<h4>Iscrizione CCIAA</h4>
+          <table cellspacing="3" summary="Questa tabella è costituita da righe">
+            <col width="30%"/>
+            <col width="70%"/>
+            <tr>
+              <th>
+                <label for="CCIAAprovREA">Provincia
+                  <acronym title="repertorio Economico Amministrativo">REA</acronym>
+                </label>
+              </th>
+              <td colspan="2">
+                <input type="text" id="CCIAAprovREA" name="CCIAAprovREA" class="textbreve" maxlength="2" value="$$CCIAAprovREA" />
+                $$err_CCIAAprovREA
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="strCCIAAnumeroREA">Numero
+                  <acronym title="repertorio Economico Amministrativo">REA</acronym>
+                </label>
+              </th>
+              <td colspan="2">
+                <input type="text" id="strCCIAAnumeroREA" name="strCCIAAnumeroREA" class="textmediolungo" maxlength="9" value="$$strCCIAAnumeroREA" />
+                $$err_strCCIAAnumeroREA
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="CCIAAannoIscrizione">Anno di iscrizione Registro Imprese</label>
+              </th>
+              <td colspan="2">
+                <input type="text" id="CCIAAannoIscrizione" name="CCIAAannoIscrizione" class="textbreve" maxlength="4" value="$$CCIAAannoIscrizione" />
+                $$err_CCIAAannoIscrizione
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="CCIAAnumRegImprese">Numero Registro Imprese</label>
+              </th>
+              <td colspan="2">
+                <input type="text" id="CCIAAnumRegImprese" name="CCIAAnumRegImprese" class="textmediolungo" maxlength="21" value="$$CCIAAnumRegImprese" />
+                $$err_CCIAAnumRegImprese
+              </td>
+            </tr>
+          </table>
+          
+          
+          
+          <!-- @@blkCCSpeciale -->
+          <h4>Conto corrente a contabilit&agrave; speciale</h4>
+          <table cellspacing="3" summary="Questa tabella contiene i dati del rapporto">
+            <tr>
+              <th scope="row">Esonero conto corrente a contabilit&agrave; speciale</th>
+              <td><nobr><input type="radio" id="esoneroPagamentoGf"
+                    name="esoneroPagamentoGf" value="S" $$checkedEsoneroPagamentoGfS />
+                  SI $$err_esoneroPagamentoGfS
+                  <input type="radio" id="esoneroPagamentoGf"
+                    name="esoneroPagamentoGf" value="N" $$checkedEsoneroPagamentoGfN />
+                  NO $$err_esoneroPagamentoGfN </nobr>    
+              </td>
+            </tr>
+          </table>
+          <!-- @@blkCCSpeciale -->
+          
+          
+          
+          
+          <h4>Indicatori aziendali</h4>
+          <table cellspacing="3" summary="Questa tabella contiene i dati del rapporto">
+            <tr>
+              <th>Attivit&agrave; prevalente
+                <br/>
+                (codice<acronym title="Orientamento Tecnico Economico"> OTE</acronym>)
+              </th>
+              <td>cod.
+                <input type="hidden" id="idAttivitaOTE" name="idAttivitaOTE" maxlength="9" value="$$idAttivitaOTE"/>
+                <label for="codiceOTE" class="alt">codice OTE</label>
+                <input type="text" id="codiceOTE" name="codiceOTE" class="textbreve" maxlength="9" value="$$codiceOTE" onChange="javascript: pulisciDescrizioneOTE()"/>
+                <label for="descrizioneOTE" class="alt">descrizione OTE</label>
+                <input type="text" id="descrizioneOTE" name="descrizioneOTE" class="text" maxlength="200" value="$$descrizioneOTE" />
+
+              </td>
+              <td> <div class="azioni">
+                  <a href="javascript: scegliOTE('../layout/scegliOTE.htm','scegli_ote','600','300','yes',document.form1.codiceOTE.value,document.form1.descrizioneOTE.value, document.form1);">cerca</a>
+                </div>
+                $$err_codiceOTE</td>
+            </tr>          
+          </table>
+          
+          <table cellspacing="3" summary="Questa tabella contiene i dati del rapporto">
+            <colgroup>
+              <col width="16%" />
+              <col width="84%" />
+            </colgroup>
+            <tr>
+              <th scope="row">Dimensione azienda</th>
+              <td colspan="2">
+                <select id="idDimensioneAzienda" name="idDimensioneAzienda" class="textmediolungo">
+                  <option value=""></option>
+                  <!-- @@cmbDimAzienda -->
+                  <option value="$$idDimensioneAzienda" $$selected>
+                    $$descDimensioneAzienda
+                  </option>
+                  <!-- @@cmbDimAzienda -->
+                </select>
+              </td>
+            </tr>
+          </table>
+          
+          
+          <table>
+	          <tr>
+	            <th>Attivit&agrave; prevalente
+	              <br/>
+	              (codice<acronym title="codice ISTAT delle attività economiche"> ATECO</acronym>)
+	            </th>
+	            <td>cod.
+	              <input type="hidden" id="idAttivitaATECO" name="idAttivitaATECO" maxlength="9" value="$$idAttivitaATECO"/>
+	              <label for="codiceATECO" class="alt">codice ATECO</label>
+	              <input type="text" id="codiceATECO" name="codiceATECO" class="textbreve" maxlength="9" value="$$codiceATECO" onChange="javascript: pulisciDescrizioneATECO()" />
+	              <label for="descrizioneATECO" class="alt">descrizione ATECO</label>
+	              <input type="text" id="descrizioneATECO" name="descrizioneATECO" class="text" maxlength="200" value="$$descrizioneATECO" />
+	
+	            </td>
+	            <td><div class="azioni">
+	                <a href="javascript: scegliATECO('../layout/scegliATECO.htm','scegli_ateco','600','300','yes',document.form1.codiceATECO.value,document.form1.descrizioneATECO.value, document.form1);">cerca</a>
+	              </div>
+	              $$err_codiceATECO</td>
+	          </tr>
+          </table>
+          
+          
+          <table cellspacing="3"
+            summary="Questa tabella contiene i dati del rapporto">
+            <tr>
+              <th scope="row">
+                  Elenco Attivit&agrave; Economiche secondarie (ATECO)
+              </th>
+              <td><label for="codiceAttSecondarie">cod.</label></td>
+              <td>
+                <label for="descrizioneAttSecondarie" class="alt">descrizioneAttivit&agrave;Secondarie</label>
+                <input type="hidden" id="idAttivitaATECOSec"
+                  name="idAttivitaATECOSec" maxlength="9"
+                  value="$$idAttivitaATECOSec" />
+                <input type="text" id="codiceATECOSec" name="codiceATECOSec"
+                  maxlength="9" class="textbreve" value="$$codiceATECOSec" />
+                $$err_codiceATECOSec
+              </td>
+              <td>
+                <input type="text" id="descrizioneATECOSec"
+                  name="descrizioneATECOSec" maxlength="500" class="longText"
+                  value="$$descrizioneATECOSec" />
+                $$err_descrizioneATECOSec
+              </td>
+              <td>
+                <div class="azioni"> 
+                  <a href="javascript: scegliATECOSec('../layout/scegliATECO.htm','scegli_ateco','600','300','yes',document.form1.codiceATECOSec.value,document.form1.descrizioneATECOSec.value, document.forms[0]);">cerca</a>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="5">
+                <div class="azioni">
+                  <a href="#" name="inserisciATECOSec" class="highlighted" id="inserisciATECOSec" onClick="javascript:setHiddenOperazioneInsAteco(document.forms[0],'inserisciATECOSec',this);return false;" >inserisci</a>
+                </div>
+                $$err_inserisciATECOSec
+              </td>
+            </tr>
+          </table>
+          <!-- @@blkAttivitaATECOSec -->
+          <table>
+            <tr>
+              <th class="radio"></th>
+              <th class="center">
+                Codice
+              </th>
+              <th class="center">
+                Attivit&agrave; ATECO
+              </th>
+            </tr>
+            <!-- @@blkElencoAttivitaATECOSec -->
+            <tr>
+              <td class="radio">
+                <input type="checkbox" name="chkAttivitaAtecoSec" id="chkAttivitaAtecoSec" value="$$chkAttivitaAtecoSec" $$chkAttivitaAtecoSec  />
+                <input name="idAttivitaATECOElenco" type="hidden" value="$$idAttivitaATECOElenco" id="idAttivitaATECOElenco" />
+              </td>
+              <td>
+                $$codiceATECOSecElenco
+              </td>
+              <td>
+                $$descrizioneATECOSecElenco
+              </td>
+            </tr>
+            <!-- @@blkElencoAttivitaATECOSec -->
+            <tr>
+              <td colspan="4">
+                <div class="azioni">
+                  <a href="#" id="eliminaATECOSec" name="eliminaATECOSec" onClick="setHiddenOperazione(document.forms[0],'eliminaATECOSec', this);return false;" >elimina</a>
+                </div>
+                ##err_eliminaATECOSec
+              </td>
+            </tr>
+          </table>
+          <!-- @@blkAttivitaATECOSec -->
+              
+              
+              
+          <p id="nota">I campi contrassegnati con * sono obbligatori</p>
+	        <div class="pulsanti"><div class="sin">
+	          <input name="indietro" id="indietro" class="inputPulsante" type="submit" value="indietro"/>
+	        </div>
+	        <div class="des">
+	          <input name="salva" id="salva" class="inputPulsante highlighted" type="submit" value="salva"/>
+	        </div></div>  
+	      </form>
+       </div>
+     </div>
+    <hr/>
+    <!-- PIE' DI PAGINA -->
+    $$footer
+
+

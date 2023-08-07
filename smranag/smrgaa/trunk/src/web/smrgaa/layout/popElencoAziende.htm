@@ -1,0 +1,103 @@
+$$head
+  <script type="text/javascript" src="../js/checktext.js"></script>
+  
+  <!-- @@blkAbilitaScript -->
+  <script type="text/javascript">
+  
+    function confermaAziendaHidden() 
+    {                    
+      opener.document.form1.cuaa.value = $$cuaaInserito;
+      opener.document.form1.partitaIva.value = $$partitaIvaInserito;
+      opener.document.form1.denominazione.value = $$denominazioneInserito;
+      opener.document.form1.submit();
+      return;         
+    }
+  
+    confermaAziendaHidden();
+  </script>  
+  <!-- @@blkAbilitaScript -->
+  
+  
+</head>
+<body id="popup" >
+  <form name="sceltaAzienda" id="sceltaAzienda" method="post" action="../layout/popElencoAziende.htm">
+    <input type="hidden" id="paginaCorrente" name="paginaCorrente" value="$$currPage"/>
+    <input type="hidden" id="totalePagine" name="totalePagine" value="$$totPage"/>
+    <input type="hidden" id="numeroRecord" name="numeroRecord" value="$$numeroRecord"/>
+    <input type="hidden" id="operazione" name="operazione" value="$$operazione"/>
+    <input type="hidden" id="provenienza" name="provenienza" value="$$provenienza"/>
+    <!-- CORPO -->
+    <!-- @@blkNoErrore -->
+    <div id="contenutopop">
+    <h3>Elenco aziende</h3>
+    <hr/>
+      <div class="pulsanti">
+        <div class="sin">
+          <a href="javascript:confermaAzienda('$$provenienza');" title="conferma">conferma</a>
+        </div>
+        <div class="des">
+          <a href="javascript:window.close();" title="chiudi">chiudi</a>
+        </div>
+      </div>
+      <hr />
+  	  <p class="allineaDx">Aziende estratte : $$numeroRecord
+        <span>
+          <!--@@bottoneIndietro-->
+            <a href="javascript: goToOperazione('../layout/popElencoAziende.htm', document.sceltaAzienda, 'indietro');">indietro</a>
+          <!--@@bottoneIndietro-->
+          pagina $$currPage di $$totPage
+          <!--@@bottoneAvanti-->
+            <a href="javascript: goToOperazione('../layout/popElencoAziende.htm', document.sceltaAzienda, 'avanti');">avanti</a>
+          <!--@@bottoneAvanti-->
+        </span>
+      </p>
+      <table border="0" cellspacing="3">
+  		  <tr>
+  		    <th rowspan="2" class="radio"></th>
+  		    <th rowspan="2" class="center" scope="col">Denominazione</th>
+  		    <th rowspan="2" class="center" scope="col">CUAA(cod.fisc.)</th>
+  		    <th rowspan="2" class="center" scope="col">Partita IVA</th>
+  		    <th colspan="3" class="center" scope="col">Sede Legale</th>
+  		  </tr>
+  		  <tr>
+  		    <th class="center" scope="col">Comune (pv)</th>
+  		    <th class="center" scope="col">Indirizzo</th>
+  		    <th class="center" scope="col">CAP</th>
+  		  </tr>
+        <!--@@rigaAnagrafica-->
+  		  <tr>
+  		    <th scope="row" class="radio">
+            <input type="radio" id="idAzienda" name="idAzienda" value="$$idAzienda" $$checked/>
+          </th>
+  		    <td>$$denominazione</td>
+  		    <td>$$cuaa</td>
+    		  <td>$$partitaIVA</td>
+    		  <td>$$comune</td>
+  		    <td>$$indirizzo</td>
+    		  <td>$$cap
+            <input type="hidden" id="denominazione" name="denominazione" value="$$denominazione"/>
+            <input type="hidden" id="cuaa" name="cuaa" value="$$cuaa"/>
+            <input type="hidden" id="partitaIva" name="partitaIva" value="$$partitaIVA"/>
+          </td>
+  		  </tr>
+        <!--@@rigaAnagrafica-->
+  		</table>
+      
+      <hr />
+      <div class="pulsanti">
+        <div class="sin">
+          <a href="javascript:confermaAzienda('$$provenienza');" title="conferma">conferma</a>
+        </div>
+        <div class="des"><a href="javascript:window.close();" title="chiudi">chiudi</a></div>
+      </div>
+      
+      <!-- @@blkNoErrore -->
+      <!-- @@blkErrore -->
+        <p class="errore">
+        $$messaggioErrore
+        </p>
+      <!-- @@blkErrore -->
+    </div>  
+  </form>
+</body>
+</html>

@@ -1,0 +1,47 @@
+$$head
+	<script src="../js/checkdata.js" type="text/javascript"></script>
+  <script src="../js/checktext.js" type="text/javascript"></script>
+</head>
+<body id="popup">
+	<form id="form1" name="form1" method="post" action=" ">
+<!-- CORPO -->
+<div id="contenutopop"> 
+   <table cellspacing="3" summary="Questa tabella contiene i dati del rapporto">
+    <tr>
+        <th class="center" scope="col">Comune (Prov.)</th>
+        <th class="center" scope="col">Sez.</th>
+        <th class="center" scope="col">Foglio</th>
+        <th class="center" scope="col">Part.</th>
+        <th class="center" scope="col">Sub.</th>
+        <th class="center" scope="col">Sup. catastale (ha)</th>
+        <th class="center" scope="col">Sup.condotta(ha)</th>
+    </tr>
+    <tr>
+        <td></td>
+        <td>$$sezione</td>
+        <td>$$foglio</td>
+        <td>$$particella</td>
+        <td>$$subalterno</td>
+        <td>$$supCatastale</td>
+        <td></td>
+    </tr>
+    </table>
+    <table cellspacing="3" summary="Questa tabella contiene i dati del rapporto">
+    <tr>
+    	<th scope="col">Controllo</th>
+						<th scope="col">Descrizione</th>
+						<th scope="col"></th>
+    </tr>
+    <tr>
+        <td>$$tipologia</td>
+        <td>$$descrizione</td>
+								<td>$$descImmagine</td>
+    </tr>
+    </table>
+    <div class="pulsanti">
+    <div class="des"><a href="javascript:window.close();">chiudi</a></div>
+</div>
+</div>
+</form>
+</body>
+</html>

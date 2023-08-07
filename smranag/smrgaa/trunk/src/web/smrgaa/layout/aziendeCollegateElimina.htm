@@ -1,0 +1,285 @@
+$$head
+
+<!--ex menu' flottante-->
+
+
+<script type="text/javascript" src="../js/checkdata.js"></script>
+<script type="text/javascript" src="../js/checktext.js"></script>
+<script type="text/javascript" src="../js/messaggistica.js"></script>
+<script type="text/javascript">
+    
+    function setHiddenOperazione(form, operazione) {
+      form.operazione.value = operazione;
+      form.submit();
+    }
+    
+    function setBlocked(form, obj) {
+      obj.onclick = '';
+      form.annulla.onclick = '';
+    }
+    
+  </script>
+</head>
+<body id="homeIndice" onLoad="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+
+      <div id="pagina" class="colonnaUnica">
+      
+      
+    <form name="form1" id="form1" method="post"  action="../layout/aziendeCollegateElimina.htm">
+    <input type="hidden" name="operazione" id="operazione" value="" />
+    
+      
+        <div id="intestazione##pathProvincia">
+          $$header
+          <!-- menu di navigazione-->
+          <div id="titoloEmenu">
+            <h2>
+              <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+            </h2>
+            <div id="menuDiNavigazione" title="Menu di navigazione">
+              <ul class="menuTendina" id="menu-2">
+                <li>
+                  <a href="../layout/index.htm"
+                    title="Torna alla pagina principale">home</a>
+                </li>
+                <li class="attivo">
+                  gestione anagrafe aziende
+                </li>
+                <li>
+                  <a href="#" title="contatti">contatti</a>
+                </li>
+                <li>
+                  <a href="#" title="help">help</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <hr />
+        <div style="clear: left"></div>
+        <div id="corpo">
+          <div id="Utente">
+            <div id="datiUtente">
+              <strong>utente:</strong> $$utente &nbsp;&nbsp;
+              <strong>ente:</strong> $$ente
+            </div>
+            <div id="chiudisessione">
+              <a href="javascript:logout();">chiudi sessione</a>
+            </div>
+          </div>
+          <hr />
+          <h3>
+            Gestione Anagrafe Aziende > ##aziendeCollegateArianna >
+            Elimina
+            <span class="helpFuori"> <a href="#"> <span
+                class="alt"> [help]</span> </a> </span>
+          </h3>
+          
+<div class="box">
+      <div class="menuSX1">
+        <ul>
+          <!-- @@blkElencoAziendeRapLegale -->
+          <li>
+            <a href="../layout/elencoAziendeRapLegale.htm">Elenco
+              Aziende</a>
+          </li>
+          <!-- @@blkElencoAziendeRapLegale -->
+          <!-- @@blkRicercaAzienda-->
+          <li>
+            <a href="../layout/ricerca.htm">Ricerche</a>
+          </li>
+          <!-- @@blkRicercaAzienda-->
+          <!-- @@blkNuova -->
+          <li>
+            <a href="../layout/nuovaAziendaAnagrafica.htm">Nuova
+              Azienda</a>
+          </li>
+          <!-- @@blkNuova -->
+          <!-- @@blkNuovaIscrizione -->
+          <li>
+            <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+          </li>
+          <!-- @@blkNuovaIscrizione -->
+        </ul>
+      </div>
+      <div class="menuSX">
+        <ul>
+          <li>
+            <a href="../layout/anagrafica.htm">Anagrafica</a>
+          </li>
+          <!-- @@blkAziendeCollegate -->
+          <li>
+            <a href="../layout/aziendeCollegate.htm" class="on">$$aziendeCollegateLabel</a>
+            <ul>
+              <li>
+                <a href="#" class="etichetta">elimina</a>
+              </li>
+            </ul>
+          </li>
+          <!-- @@blkAziendeCollegate -->
+          <!-- @@blkSincronizzaFascicolo -->
+          <li>
+           	<a href="../layout/sincronizzaFascicolo.htm">Sincronizza fascicolo</a>
+          </li>
+          <!-- @@blkSincronizzaFascicolo -->
+          <!-- @@blkSoggettiCollegati -->
+          <li>
+            <a href="../layout/contitolari.htm">Soggetti collegati</a>
+          </li>
+          <!-- @@blkSoggettiCollegati -->
+          <!-- @@blkUnitaProduttive -->
+          <li>
+            <a href="../layout/sedi.htm">Unit&agrave; produttive</a>
+          </li>
+          <!-- @@blkUnitaProduttive -->
+          <!-- @@blkTerreni -->
+          <li>
+            <!-- @@blkLinkElenco -->
+            <a href="../layout/terreniParticellareElenco.htm">Terreni</a>
+            <!-- @@blkLinkElenco -->
+            <!-- @@blkLinkRiepiloghi -->
+            <a href="../layout/riepiloghi.htm">Terreni</a>
+            <!-- @@blkLinkRiepiloghi -->
+          </li>
+          <!-- @@blkTerreni -->
+          <!-- @@blkUnitaVitate -->
+          <li>
+            <!-- @@blkLinkElenco -->
+            <a href="../layout/terreniUnitaArboreeElenco.htm">Unit&agrave; Vitate</a>
+            <!-- @@blkLinkElenco -->
+            <!-- @@blkLinkRiepiloghi -->
+              <a href="../layout/riepiloghiUnitaArboree.htm">Unit&agrave; Vitate</a>
+              <!-- @@blkLinkRiepiloghi -->
+          </li>
+          <!-- @@blkUnitaVitate -->
+        </ul>
+      </div>
+    </div>          
+          
+          <hr />
+          <div id="contenuto">
+            <div id="intesta">
+              <p class="$$aziendaIntestazione" title="$$tooltipIntestazione" >
+                $$CUAAIntestazione  $$denominazioneIntestazione
+              </p>
+            </div>
+            <!-- @@blkNotifica -->
+            <p class="$$immagine">
+              $$messaggioNotifica
+            </p>
+            <!-- @@blkINNotifica -->
+	          <div class="notifica">$$notifica</div>
+	          <!-- @@blkINNotifica -->
+            <!-- @@blkNotifica -->
+
+
+            <br />
+
+
+
+
+
+
+
+
+
+
+            <p>
+              Dopo tale operazione i dati non potranno pi&ugrave; essere
+              reperiti. Sei sicuro di proseguire con l'eliminazione?
+            </p>
+
+
+            <!-- @@blkErrore -->
+            <p class="errore">
+              $$messaggioErrore
+            </p>
+            <!-- @@blkErrore -->
+
+
+            <!-- @@blkAziende -->
+            <h4>
+              $$aziendeCollegateLabel da eliminare:
+            </h4>
+            <div class="scroll">
+              <table cellspacing="3"
+                summary="Questa tabella contiene i dati del rapporto">
+                <thead>
+                  <tr>
+                    <th rowspan="2" class="center" scope="col">
+                      CUAA
+                    </th>
+                    <th rowspan="2" class="center" scope="col">
+                      Partita IVA
+                    </th>
+                    <th rowspan="2" class="center" scope="col">
+                      Denominazione
+                    </th>
+                    <th colspan="3" class="center" scope="col">
+                      Sede legale
+                    </th>
+                    <th rowspan="2" class="center" scope="col">
+                      Data ingresso
+                    </th>
+                  </tr>
+                  <tr>
+                    <th class="center" scope="col">
+                      Comune (Pv)
+                    </th>
+                    <th class="center" scope="col">
+                      Indirizzo
+                    </th>
+                    <th class="center" scope="col">
+                      CAP
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- @@blkElencoAziende -->
+                  <tr>
+                    <td>
+                      $$cuaa
+                    </td>
+                    <td>
+                      $$partitaIva
+                    </td>
+                    <td>
+                      $$nomeAzienda
+                    </td>
+                    <td>
+                      $$comune
+                    </td>
+                    <td>
+                      $$indirizzo
+                    </td>
+                    <td>
+                      $$cap
+                    </td>
+                    <td>
+                      $$dataIngresso
+                    </td>
+                  </tr>
+                  <!-- @@blkElencoAziende -->
+                </tbody>
+              </table>
+            </div>
+            <div class="pulsanti">
+              <div class="sin">
+                <input type="button" id="conferma" value="conferma"
+                  name="conferma" class="inputPulsante highlighted"
+                  onclick="javascript:setBlocked(document.forms[0], this);goToOperazione('../layout/aziendeCollegateElimina.htm', document.form1, 'attenderePrego');" />
+              </div>
+              <div class="des">
+                <input type="button" value="annulla" name="annulla"
+                  class="inputPulsante"
+                  onclick="javascript:goTo('../layout/aziendeCollegate.htm',document.forms[0]);" />
+              </div>
+            </div>
+            <!-- @@blkAziende -->
+
+          </div>
+        </div>
+        <hr />
+  </form>
+  <!-- PIE' DI PAGINA -->
+  $$footer

@@ -1,0 +1,51 @@
+    <!-- @@blkSelectInsTer -->
+    <select name="idTipoPeriodoSemina" onchange="javascript: modificaSezioneDateSemina('$$indice');">
+    <!-- @@blkSelectInsTer -->
+    
+    <!-- @@blkVariabiliMod -->
+    <input name="supEleggibileTmp" id="supEleggibileTmp$$indice" type="hidden" value="$$supEleggibile" />
+    <input name="supEleggibileNettaTmp" id="supEleggibileNettaTmp$$indice" type="hidden" value="$$supEleggibileNetta" />
+    <input name="coefficienteRiduzione" id="coefficienteRiduzione$$indice" type="hidden"  value="$$coefficienteRiduzione" />
+    <select name="idTipoPeriodoSemina" id="idTipoPeriodoSemina$$indice" onchange="javascript: modificaSezioneDateSemina($$indice);" >
+    <!-- @@blkVariabiliMod -->
+    
+    <!-- @@blkSelectPopMod -->
+    <select name="idTipoPeriodoSemina" onchange="javascript: modificaSezioneDateSemina('$$indice');">
+    <!-- @@blkSelectPopMod -->  
+      
+      <!-- @@blkTipoPeriodoSemina -->
+      <option value="$$idTipoPeriodoSemina" $$selected>
+        $$descrizione
+      </option>
+      <!-- @@blkTipoPeriodoSemina -->
+      <!-- @@blkNoTipoPeriodoSemina -->
+      <option value="" ></option>
+      <!-- @@blkNoTipoPeriodoSemina -->
+    </select>
+    $$err_idTipoPeriodoSemina
+    <br>
+    <select name="idTipoSemina" >
+      <!-- @@blkTipoSemina -->
+      <option value="$$idTipoSemina" $$selected>
+        $$descrizione
+      </option>
+      <!-- @@blkTipoSemina -->
+      <!-- @@blkNoTipoSemina -->
+      <option value="" ></option>
+      <!-- @@blkNoTipoSemina -->
+    </select>
+    $$err_idTipoSemina
+    <br>
+    
+    
+    
+      
+      
+    <!-- @@blkNoElenco -->
+    <p class="errore">
+      $$messaggioErrore
+    </p>
+    <!-- @@blkNoElenco -->
+       
+          
+          

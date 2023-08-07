@@ -1,0 +1,163 @@
+<porta-delegata name="ReportDin">
+  <services>
+    <service name="ReportDin" public-interface-class="it.csi.smrcomms.reportdin.interfacecsi.ReportDinCSIInterface">
+     <operations>
+        <operation name="getElencoCategorieReportByProcedimentoAndRuolo" type="synch-call" >
+          <param-list>
+            <param name="idProcedimento" type="java.lang.Long" />
+            <param name="ruolo" type="java.lang.String" />
+          </param-list>
+          <ret-val type="it.csi.smrcomms.reportdin.dto.MacroCategoriaReportOutput[]"/>
+        </operation>
+        <operation name="getElencoTipologieReportByIdMacroCategoria" type="synch-call" >
+          <param-list>
+            <param name="idMacroCategoria" type="java.lang.Long" />
+          </param-list>
+          <ret-val type="it.csi.smrcomms.reportdin.dto.TipologiaReportOutput[]"/>
+        </operation>
+        <operation name="getElencoVariabiliAndValoriByIdTipologia" type="synch-call" >
+          <param-list>
+            <param name="idTipologia" type="java.lang.Long" />
+            <param name="parametriFissiHtmpl" type="java.util.HashMap" />
+            <param name="userClient" type="it.csi.smrcomms.reportdin.client.IReportDinUserClient" />
+          </param-list>
+          <ret-val type="it.csi.smrcomms.reportdin.dto.TipologiaReportVO"/>
+        </operation>
+        <operation name="insertLogUtilizzo" type="synch-call" >
+          <param-list>
+            <param name="tipologiaReportVO" type="it.csi.smrcomms.reportdin.dto.TipologiaReportVO" />
+            <param name="ruoloUtenza" type="it.csi.solmr.dto.profile.RuoloUtenza" />
+          </param-list>
+          <ret-val type="java.lang.Void"/>
+        </operation>
+        <operation name="insertLogUtilizzoReportDin" type="synch-call" >
+          <param-list>
+            <param name="tipologiaReportVO" type="it.csi.smrcomms.reportdin.dto.TipologiaReportVO" />
+            <param name="idUtente" type="java.lang.Long" />
+          </param-list>
+          <ret-val type="java.lang.Void"/>
+        </operation>
+        <operation name="findTipologiaReportByIdTipologia" type="synch-call" >
+          <param-list>
+            <param name="idTipologia" type="java.lang.Long" />
+          </param-list>
+          <ret-val type="it.csi.smrcomms.reportdin.dto.TipologiaReportVO"/>
+        </operation>
+        <operation name="getElencoVariabiliByIdTipologia" type="synch-call" >
+          <param-list>
+            <param name="idTipologia" type="java.lang.Long" />
+          </param-list>
+          <ret-val type="it.csi.smrcomms.reportdin.dto.VariabileReportOutput[]"/>
+        </operation>
+        <operation name="getElencoValoriVariabileByIdVariabile" type="synch-call" >
+          <param-list>
+            <param name="idVariabile" type="java.lang.Long" />
+          </param-list>
+          <ret-val type="it.csi.smrcomms.reportdin.dto.ValoriVariabileOutput[]"/>
+        </operation>
+        <operation name="getElencoColonneRisultatoByIdTipologia" type="synch-call" >
+          <param-list>
+            <param name="idTipologia" type="java.lang.Long" />
+          </param-list>
+          <ret-val type="it.csi.smrcomms.reportdin.dto.ColonneRisultatoOutput[]"/>
+        </operation>
+        <operation name="serviceFindAmmCompetenzaByCodiceAmm" type="synch-call" >
+         <param-list>
+            <param name="codiceAmministrazione" type="java.lang.String" />
+         </param-list>
+         <ret-val type="it.csi.solmr.dto.comune.AmmCompetenzaVO"/>
+        </operation>
+        <operation name="serviceFindIntermediarioByCodiceFiscale" type="synch-call" >
+        <param-list>
+          <param name="codiceFiscale" type="java.lang.String" />
+        </param-list>
+        <ret-val type="it.csi.solmr.dto.comune.IntermediarioVO"/>
+       </operation>
+       <operation name="serviceFindIntermediarioReportDinByCodiceFiscale" type="synch-call" >
+        <param-list>
+          <param name="codiceFiscale" type="java.lang.String" />
+        </param-list>
+        <ret-val type="it.csi.smrcomms.reportdin.dto.IntermediarioReportDinVO"/>
+       </operation>  
+       <operation name="serviceFindAmmCompetenzaReportDinByCodiceAmm" type="synch-call" >
+         <param-list>
+            <param name="codiceAmministrazione" type="java.lang.String" />
+         </param-list>
+         <ret-val type="it.csi.smrcomms.reportdin.dto.AmmCompetenzaReportDinVO"/>
+        </operation>
+     </operations>
+    </service>
+  </services> 
+  <config>
+    <url-pa>**not used**</url-pa>
+    <pluggable-pd-list chooser-class="it.csi.csi.porte.FixedDelegateChooser">
+	<pluggable-pd name="business" class="it.csi.csi.porte.jaxrpc.PortaDelegataWS" url-pa="***" url-qm="">      
+      <properties>
+         <property name="csi.wrapper.wsinterf.class" value="it.csi.smrcomms.reportdin.dto.axisgen.ReportdinReportDin_PortType" />
+		 <property name="csi.http.transport.type" value="commons-http" />
+          <property name="csi.http.timeout" value="10000" />          
+          <property name="class" value="it.csi.smrcomms.reportdin.dto.axisgen.ReportdinReportDinServiceLocator" />
+          <!-- l'url dell'endpoint del servizio-->
+ 	      <property name="javax.xml.rpc.service.endpoint.address" value="@REPORTDIN_SERVICE_ENDPOINT_URL@" />         
+        </properties>
+      </pluggable-pd>
+    </pluggable-pd-list>	
+    <queue-manager url=""/>
+	<pre-function-handler-list>
+      <pluggable-fh name="isoint_pre" class="it.csi.csi.porte.jaxrpc.pfh.IsoIntTransformer">
+        <properties>
+          <property name="source.interface" value="it.csi.smrcomms.reportdin.interfacecsi.ReportDinCSIInterface" />
+          <property name="target.interface" value="it.csi.smrcomms.reportdin.dto.axisgen.ReportdinReportDin_PortType" />
+          <property name="pkg-map-1" value="it.csi.smrcomms.reportdin.interfacecsi=it.csi.smrcomms.reportdin.dto.axisgen" />      
+          <property name="class-map-2" value="it.csi.smrcomms.reportdin.util.AbstractValueObject=it.csi.smrcomms.reportdin.dto.axisgen.AbstractValueObject" />
+		  <property name="class-map-3" value="it.csi.solmr.dto.comune.AmmCompetenzaVO=it.csi.smrcomms.reportdin.dto.axisgen.AmmCompetenzaVO" />
+		  <property name="class-map-4" value="it.csi.solmr.dto.comune.IntermediarioVO=it.csi.smrcomms.reportdin.dto.axisgen.IntermediarioVO" />
+		  <property name="class-map-5" value="it.csi.smrcomms.reportdin.dto.MacroCategoriaReportOutput=it.csi.smrcomms.reportdin.dto.axisgen.MacroCategoriaReportOutput" />
+		  <property name="class-map-6" value="it.csi.smrcomms.reportdin.dto.MacroCategoriaReportVO=it.csi.smrcomms.reportdin.dto.axisgen.MacroCategoriaReportVO" />
+		  <property name="class-map-7" value="it.csi.solmr.dto.profile.RuoloUtenza=it.csi.smrcomms.reportdin.dto.axisgen.RuoloUtenza" />
+		  <property name="class-map-8" value="it.csi.smrcomms.reportdin.dto.TipologiaReportOutput=it.csi.smrcomms.reportdin.dto.axisgen.TipologiaReportOutput" />
+          <property name="class-map-9" value="it.csi.smrcomms.reportdin.dto.TipologiaReportVO=it.csi.smrcomms.reportdin.dto.axisgen.TipologiaReportVO" />
+		  <property name="class-map-10" value="it.csi.solmr.dto.UfficioZonaIntermediarioVO=it.csi.smrcomms.reportdin.dto.axisgen.UfficioZonaIntermediarioVO" />
+		  <property name="class-map-11" value="it.csi.smrcomms.reportdin.dto.AmmCompetenzaReportDinVO=it.csi.smrcomms.reportdin.dto.axisgen.AmmCompetenzaReportDinVO" />
+		  <property name="class-map-12" value="it.csi.smrcomms.reportdin.dto.IntermediarioReportDinVO=it.csi.smrcomms.reportdin.dto.axisgen.IntermediarioReportDinVO" />
+		  <property name="class-map-13" value="it.csi.smrcomms.reportdin.dto.UfficioZonaIntermediarioReportDinVO=it.csi.smrcomms.reportdin.dto.axisgen.UfficioZonaIntermediarioReportDinVO" />
+		  <property name="class-map-14" value="it.csi.smrcomms.reportdin.dto.ColonneRisultatoOutput=it.csi.smrcomms.reportdin.dto.axisgen.ColonneRisultatoOutput" />
+		  <property name="class-map-15" value="it.csi.smrcomms.reportdin.dto.VariabileReportOutput=it.csi.smrcomms.reportdin.dto.axisgen.VariabileReportOutput" />
+		  <property name="class-map-16" value="it.csi.smrcomms.reportdin.dto.VariabileReportVO=it.csi.smrcomms.reportdin.dto.axisgen.VariabileReportVO" />
+		  <property name="class-map-17" value="it.csi.smrcomms.reportdin.dto.ValoriVariabileOutput=it.csi.smrcomms.reportdin.dto.axisgen.ValoriVariabileOutput" />
+		  <property name="class-map-18" value="it.csi.smrcomms.reportdin.dto.ValoriVariabileVO=it.csi.smrcomms.reportdin.dto.axisgen.ValoriVariabileVO" />
+		  <property name="class-map-19" value="it.csi.smrcomms.reportdin.dto.ColonneRisultatoVO=it.csi.smrcomms.reportdin.dto.axisgen.ColonneRisultatoVO" />
+        </properties>
+      </pluggable-fh>
+    </pre-function-handler-list>
+    <post-function-handler-list>
+      <pluggable-fh name="isoint_pre" class="it.csi.csi.porte.jaxrpc.pfh.IsoIntTransformer">
+        <properties>
+          <property name="source.interface" value="it.csi.smrcomms.reportdin.interfacecsi.ReportDinCSIInterface" />
+          <property name="target.interface" value="it.csi.smrcomms.reportdin.dto.axisgen.ReportdinReportDin_PortType" />
+          <property name="pkg-map-1" value="it.csi.smrcomms.reportdin.interfacecsi=it.csi.smrcomms.reportdin.dto.axisgen" />      
+          <property name="class-map-2" value="it.csi.smrcomms.reportdin.util.AbstractValueObject=it.csi.smrcomms.reportdin.dto.axisgen.AbstractValueObject" />
+		  <property name="class-map-3" value="it.csi.solmr.dto.comune.AmmCompetenzaVO=it.csi.smrcomms.reportdin.dto.axisgen.AmmCompetenzaVO" />
+		  <property name="class-map-4" value="it.csi.solmr.dto.comune.IntermediarioVO=it.csi.smrcomms.reportdin.dto.axisgen.IntermediarioVO" />
+		  <property name="class-map-5" value="it.csi.smrcomms.reportdin.dto.MacroCategoriaReportOutput=it.csi.smrcomms.reportdin.dto.axisgen.MacroCategoriaReportOutput" />
+		  <property name="class-map-6" value="it.csi.smrcomms.reportdin.dto.MacroCategoriaReportVO=it.csi.smrcomms.reportdin.dto.axisgen.MacroCategoriaReportVO" />
+		  <property name="class-map-7" value="it.csi.solmr.dto.profile.RuoloUtenza=it.csi.smrcomms.reportdin.dto.axisgen.RuoloUtenza" />
+		  <property name="class-map-8" value="it.csi.smrcomms.reportdin.dto.TipologiaReportOutput=it.csi.smrcomms.reportdin.dto.axisgen.TipologiaReportOutput" />
+          <property name="class-map-9" value="it.csi.smrcomms.reportdin.dto.TipologiaReportVO=it.csi.smrcomms.reportdin.dto.axisgen.TipologiaReportVO" />
+		  <property name="class-map-10" value="it.csi.solmr.dto.UfficioZonaIntermediarioVO=it.csi.smrcomms.reportdin.dto.axisgen.UfficioZonaIntermediarioVO" />   
+		  <property name="class-map-11" value="it.csi.solmr.exception.services.InvalidParameterException=it.csi.smrcomms.reportdin.dto.axisgen.InvalidParameterException" />             
+		  <property name="class-map-12" value="it.csi.smrcomms.reportdin.exception.ReportDinException=it.csi.smrcomms.reportdin.dto.axisgen.ReportDinException" />
+		  <property name="class-map-13" value="it.csi.smrcomms.reportdin.dto.AmmCompetenzaReportDinVO=it.csi.smrcomms.reportdin.dto.axisgen.AmmCompetenzaReportDinVO" />
+		  <property name="class-map-14" value="it.csi.smrcomms.reportdin.dto.IntermediarioReportDinVO=it.csi.smrcomms.reportdin.dto.axisgen.IntermediarioReportDinVO" />
+		  <property name="class-map-15" value="it.csi.smrcomms.reportdin.dto.UfficioZonaIntermediarioReportDinVO=it.csi.smrcomms.reportdin.dto.axisgen.UfficioZonaIntermediarioReportDinVO" />
+		  <property name="class-map-16" value="it.csi.smrcomms.reportdin.dto.ColonneRisultatoOutput=it.csi.smrcomms.reportdin.dto.axisgen.ColonneRisultatoOutput" />	  
+		  <property name="class-map-17" value="it.csi.smrcomms.reportdin.dto.VariabileReportOutput=it.csi.smrcomms.reportdin.dto.axisgen.VariabileReportOutput" />
+		  <property name="class-map-18" value="it.csi.smrcomms.reportdin.dto.VariabileReportVO=it.csi.smrcomms.reportdin.dto.axisgen.VariabileReportVO" />
+		  <property name="class-map-19" value="it.csi.smrcomms.reportdin.dto.ValoriVariabileOutput=it.csi.smrcomms.reportdin.dto.axisgen.ValoriVariabileOutput" />
+		  <property name="class-map-20" value="it.csi.smrcomms.reportdin.dto.ValoriVariabileVO=it.csi.smrcomms.reportdin.dto.axisgen.ValoriVariabileVO" />
+		  <property name="class-map-21" value="it.csi.smrcomms.reportdin.dto.ColonneRisultatoVO=it.csi.smrcomms.reportdin.dto.axisgen.ColonneRisultatoVO" />
+        </properties>
+      </pluggable-fh>
+    </post-function-handler-list>
+  </config>  
+</porta-delegata>

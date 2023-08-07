@@ -1,0 +1,79 @@
+$$head
+  <script src="../js/checktext.js" type="text/javascript"></script>
+  <script type="text/javascript">
+
+    function confermaBanca() {
+      var abi=document.getElementsByName("abi");
+      var denominazione=document.getElementsByName("denominazione");
+      var bic=document.getElementsByName("bic");
+      var indice=document.getElementsByName("indice");
+      for (var i=0;i<indice.length;i++) {
+        if (indice[i].checked) {
+          window.opener.popolaBanca(abi[i].innerHTML,denominazione[i].innerHTML,bic[i].innerHTML);
+          window.close();
+          return;
+        }
+      }
+    }
+
+  </script>
+</head>
+<body id="popup">
+  <form id="banca" name="banca" method="post" action=" ">
+    <!-- CORPO -->
+    <div id="contenutopop">
+      <!-- @@blkConferma -->
+        <div class="pulsanti">
+          <div class="des">
+            <a href="javascript:window.close();">chiudi</a>
+            <span class="alt">&nbsp;/&nbsp;</span>
+          </div>
+          <div class="sin">
+            <a href="javascript:confermaBanca()">conferma</a>
+          </div>
+        </div>
+      <!-- @@blkConferma -->
+      <table cellspacing="3" summary="Questa tabella contiene i dati del rapporto">
+        <col width="5%"/>
+        <col width="45%"/>
+        <col width="50%"/>
+        <tr>
+          <th class="radio" scope="col">&nbsp;</th>
+          <th class="center" scope="col">ABI</th>
+          <th class="center" scope="col">Denominazione</th>
+          <th class="center" scope="col">BIC/SWIFT</th>
+        </tr>
+        <!-- @@elencoBanche -->
+          <tr>
+            <td class="radio" scope="row">
+              <input type="radio" id="indice" name="indice" value="$$indice" $$checked/>
+              <label class="alt" for="indice">indice</label>
+            </td>
+            <td id="abi" name="abi">$$abi</td>
+            <td id="denominazione" name="denominazione">$$denominazione</td>
+            <td id="bic" name="bic">$$bic</td>
+          </tr>
+        <!-- @@elencoBanche -->
+      </table>
+      <p>$$errorMsg</p>
+      <!-- @@blkConferma -->
+        <div class="pulsanti">
+          <div class="des">
+            <a href="javascript:window.close();">chiudi</a>
+            <span class="alt">&nbsp;/&nbsp;</span>
+          </div>
+          <div class="sin">
+            <a href="javascript:confermaBanca()">conferma</a>
+            <span class="alt">&nbsp;/&nbsp;</span>
+          </div>
+        </div>
+      <!-- @@blkConferma -->
+      <!-- @@blkChiudi -->
+        <div class="pulsanti"><div class="des">
+          <a href="javascript:window.close();">chiudi</a>
+        </div></div>
+      <!-- @@blkChiudi -->
+    </div>
+    </div></form>
+    </body>
+    </html>

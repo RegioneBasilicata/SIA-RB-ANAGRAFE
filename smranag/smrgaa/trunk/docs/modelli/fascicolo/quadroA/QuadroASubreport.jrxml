@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 4.1.3  -->
+<!-- 2016-10-08T14:59:18 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="QuadroASubreport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="fascicoloDS" class="java.util.List"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="dichiarazioni" class="it.csi.smranag.smrgaa.dto.jaxb.fascicolo.Dichiarazioni">
+		<fieldDescription><![CDATA[dichiarazioni]]></fieldDescription>
+	</field>
+	<field name="quadroSoggetti" class="it.csi.smranag.smrgaa.dto.jaxb.fascicolo.QuadroSoggetti">
+		<fieldDescription><![CDATA[quadroSoggetti]]></fieldDescription>
+	</field>
+	<field name="quadroMotori" class="it.csi.smranag.smrgaa.dto.jaxb.fascicolo.QuadroMotori">
+		<fieldDescription><![CDATA[quadroMotori]]></fieldDescription>
+	</field>
+	<field name="quadroVariazioneMotori" class="it.csi.smranag.smrgaa.dto.jaxb.fascicolo.QuadroVariazioneMotori">
+		<fieldDescription><![CDATA[quadroVariazioneMotori]]></fieldDescription>
+	</field>
+	<field name="quadroDocumenti" class="it.csi.smranag.smrgaa.dto.jaxb.fascicolo.QuadroDocumenti">
+		<fieldDescription><![CDATA[quadroDocumenti]]></fieldDescription>
+	</field>
+	<field name="introRichVar" class="it.csi.smranag.smrgaa.dto.jaxb.fascicolo.IntroRichVar">
+		<fieldDescription><![CDATA[introRichVar]]></fieldDescription>
+	</field>
+	<field name="allegati" class="it.csi.smranag.smrgaa.dto.jaxb.fascicolo.Allegati">
+		<fieldDescription><![CDATA[allegati]]></fieldDescription>
+	</field>
+	<field name="quadroA" class="it.csi.smranag.smrgaa.dto.jaxb.fascicolo.QuadroA">
+		<fieldDescription><![CDATA[quadroA]]></fieldDescription>
+	</field>
+	<field name="quadroTerreni" class="it.csi.smranag.smrgaa.dto.jaxb.fascicolo.QuadroTerreni">
+		<fieldDescription><![CDATA[quadroTerreni]]></fieldDescription>
+	</field>
+	<field name="quadroFabbricati" class="it.csi.smranag.smrgaa.dto.jaxb.fascicolo.QuadroFabbricati">
+		<fieldDescription><![CDATA[quadroFabbricati]]></fieldDescription>
+	</field>
+	<field name="quadroUnitaVitate" class="it.csi.smranag.smrgaa.dto.jaxb.fascicolo.QuadroUnitaVitate">
+		<fieldDescription><![CDATA[quadroUnitaVitate]]></fieldDescription>
+	</field>
+	<field name="header" class="it.csi.smranag.smrgaa.dto.jaxb.fascicolo.Header">
+		<fieldDescription><![CDATA[header]]></fieldDescription>
+	</field>
+	<field name="headerLandscape" class="it.csi.smranag.smrgaa.dto.jaxb.fascicolo.HeaderLandscape">
+		<fieldDescription><![CDATA[headerLandscape]]></fieldDescription>
+	</field>
+	<field name="quadroAllevamenti" class="it.csi.smranag.smrgaa.dto.jaxb.fascicolo.QuadroAllevamenti">
+		<fieldDescription><![CDATA[quadroAllevamenti]]></fieldDescription>
+	</field>
+	<field name="quadroAssociazioni" class="it.csi.smranag.smrgaa.dto.jaxb.fascicolo.QuadroAssociazioni">
+		<fieldDescription><![CDATA[quadroAssociazioni]]></fieldDescription>
+	</field>
+	<field name="quadroUte" class="it.csi.smranag.smrgaa.dto.jaxb.fascicolo.QuadroUte">
+		<fieldDescription><![CDATA[quadroUte]]></fieldDescription>
+	</field>
+	<field name="headerAllegati" class="it.csi.smranag.smrgaa.dto.jaxb.fascicolo.HeaderAllegati">
+		<fieldDescription><![CDATA[headerAllegati]]></fieldDescription>
+	</field>
+	<field name="quadroManodopera" class="it.csi.smranag.smrgaa.dto.jaxb.fascicolo.QuadroManodopera">
+		<fieldDescription><![CDATA[quadroManodopera]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="50">
+			<rectangle radius="10">
+				<reportElement x="0" y="0" width="555" height="50" forecolor="#000000" backcolor="#99CCFF"/>
+				<graphicElement>
+					<pen lineColor="#44C2FC"/>
+				</graphicElement>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToTallestObject" x="9" y="0" width="534" height="19"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{quadroA}.getSezioneAnagrafica().getTitolo1SezAnagrafica()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToTallestObject" x="10" y="24" width="534" height="19"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{quadroA}.getSezioneAnagrafica().getTitolo2SezAnagrafica()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="307" splitType="Stretch">
+			<frame>
+				<reportElement key="sezI_II_III" x="0" y="0" width="555" height="290">
+					<printWhenExpression><![CDATA[$F{quadroA}.getSezioneAnagrafica() != null &&
+$F{quadroA}.getSezioneAnagrafica().isVisibility()]]></printWhenExpression>
+				</reportElement>
+				<frame>
+					<reportElement key="SEZI" stretchType="RelativeToTallestObject" x="0" y="0" width="555" height="280" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true">
+						<printWhenExpression><![CDATA[$F{quadroA}.getSezioneAnagrafica()!= null && $F{quadroA}.getSezioneAnagrafica().isVisibility()]]></printWhenExpression>
+					</reportElement>
+					<staticText>
+						<reportElement x="20" y="9" width="50" height="20"/>
+						<textElement>
+							<font fontName="SansSerif" size="11" isBold="true"/>
+						</textElement>
+						<text><![CDATA[CUAA]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="280" y="9" width="80" height="20"/>
+						<textElement>
+							<font fontName="SansSerif" size="11" isBold="true"/>
+						</textElement>
+						<text><![CDATA[Partita IVA]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="20" y="64" width="160" height="20"/>
+						<textElement>
+							<font fontName="SansSerif" size="11" isBold="true"/>
+						</textElement>
+						<text><![CDATA[Indirizzo sede legale]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="20" y="92" width="50" height="20"/>
+						<textElement>
+							<font fontName="SansSerif" size="11" isBold="true"/>
+						</textElement>
+						<text><![CDATA[PEC]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="20" y="37" width="110" height="20"/>
+						<textElement>
+							<font fontName="SansSerif" size="11" isBold="true"/>
+						</textElement>
+						<text><![CDATA[Denominazione]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="20" y="149" width="160" height="20"/>
+						<textElement>
+							<font fontName="SansSerif" size="11" isBold="true"/>
+						</textElement>
+						<text><![CDATA[Attività prevalente (ATECO)]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="260" y="92" width="50" height="20"/>
+						<textElement>
+							<font fontName="SansSerif" size="11" isBold="true"/>
+						</textElement>
+						<text><![CDATA[Telefono]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="20" y="119" width="50" height="20"/>
+						<textElement>
+							<font fontName="SansSerif" size="11" isBold="true"/>
+						</textElement>
+						<text><![CDATA[Mail]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="20" y="179" width="120" height="20"/>
+						<textElement>
+							<font fontName="SansSerif" size="11" isBold="true"/>
+						</textElement>
+						<text><![CDATA[Registro imprese]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="310" y="175" width="100" height="20"/>
+						<textElement>
+							<font fontName="SansSerif" size="11" isBold="true"/>
+						</textElement>
+						<text><![CDATA[Anno iscrizione]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="20" y="209" width="120" height="20"/>
+						<textElement>
+							<font fontName="SansSerif" size="11" isBold="true"/>
+						</textElement>
+						<text><![CDATA[Forma di conduzione]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="20" y="239" width="120" height="20"/>
+						<textElement>
+							<font fontName="SansSerif" size="11" isBold="true"/>
+						</textElement>
+						<text><![CDATA[Altre informazioni]]></text>
+					</staticText>
+					<textField isBlankWhenNull="true">
+						<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToTallestObject" x="70" y="10" width="199" height="19"/>
+						<textElement>
+							<font size="10" isBold="false"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{quadroA}.getSezioneAnagrafica().getCuaa()]]></textFieldExpression>
+					</textField>
+					<textField isBlankWhenNull="true">
+						<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToTallestObject" x="370" y="9" width="174" height="19"/>
+						<textElement>
+							<font size="10" isBold="false"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{quadroA}.getSezioneAnagrafica().getPartitaIva()]]></textFieldExpression>
+					</textField>
+					<textField isBlankWhenNull="true">
+						<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToTallestObject" x="136" y="38" width="406" height="19"/>
+						<textElement>
+							<font size="10" isBold="false"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{quadroA}.getSezioneAnagrafica().getDenominazione()]]></textFieldExpression>
+					</textField>
+					<textField isBlankWhenNull="true">
+						<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToTallestObject" x="190" y="65" width="351" height="19"/>
+						<textElement>
+							<font size="10" isBold="false"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{quadroA}.getSezioneAnagrafica().getIndirizzoSedeLeg()]]></textFieldExpression>
+					</textField>
+					<textField isBlankWhenNull="true">
+						<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToTallestObject" x="80" y="93" width="170" height="19"/>
+						<textElement>
+							<font size="10" isBold="false"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{quadroA}.getSezioneAnagrafica().getPec()]]></textFieldExpression>
+					</textField>
+					<textField isBlankWhenNull="true">
+						<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToTallestObject" x="320" y="93" width="170" height="19"/>
+						<textElement>
+							<font size="10" isBold="false"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{quadroA}.getSezioneAnagrafica().getTel()]]></textFieldExpression>
+					</textField>
+					<textField isBlankWhenNull="true">
+						<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToTallestObject" x="80" y="119" width="460" height="19"/>
+						<textElement>
+							<font size="10" isBold="false"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{quadroA}.getSezioneAnagrafica().getEmail()]]></textFieldExpression>
+					</textField>
+					<textField isBlankWhenNull="true">
+						<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToTallestObject" x="190" y="149" width="352" height="19"/>
+						<textElement>
+							<font size="10" isBold="false"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{quadroA}.getSezioneAnagrafica().getAteco()]]></textFieldExpression>
+					</textField>
+					<textField isBlankWhenNull="true">
+						<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToTallestObject" x="145" y="179" width="155" height="19"/>
+						<textElement>
+							<font size="10" isBold="false"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{quadroA}.getSezioneAnagrafica().getRegistro()]]></textFieldExpression>
+					</textField>
+					<textField isBlankWhenNull="true">
+						<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToTallestObject" x="420" y="176" width="123" height="19"/>
+						<textElement>
+							<font size="10" isBold="false"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{quadroA}.getSezioneAnagrafica().getAnno()]]></textFieldExpression>
+					</textField>
+					<textField isBlankWhenNull="true">
+						<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToTallestObject" x="145" y="210" width="396" height="19"/>
+						<textElement>
+							<font size="10" isBold="false"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{quadroA}.getSezioneAnagrafica().getFormaConduzione()]]></textFieldExpression>
+					</textField>
+					<textField isBlankWhenNull="true">
+						<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToTallestObject" x="148" y="239" width="396" height="19"/>
+						<textElement>
+							<font size="10" isBold="false"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{quadroA}.getSezioneAnagrafica().getAltreInfo()]]></textFieldExpression>
+					</textField>
+				</frame>
+			</frame>
+		</band>
+	</detail>
+</jasperReport>

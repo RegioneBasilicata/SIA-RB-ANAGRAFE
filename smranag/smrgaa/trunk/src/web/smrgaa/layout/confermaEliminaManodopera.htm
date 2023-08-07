@@ -1,0 +1,55 @@
+$$head
+  <script type="text/javascript">
+  
+  function goTo(url) 
+  {
+    document.form1.operazione.value = 'indietro';
+    document.form1.action = url;
+    document.form1.submit();
+  }
+  
+  </script>
+  <script type="text/javascript" src="../js/checktext.js"></script>
+</head>
+<body id="homeIndice">
+  <form id="form1" name="form1" action="../layout/confermaEliminaManodopera.htm" method="post">
+    <div id="pagina" class="colonnaUnica">
+      <input type="hidden" id="pageFrom" name="pageFrom" value="$$pageFrom"/>
+      <input type="hidden" id="operazione" name="operazione" value=""/>
+      <input type="hidden" id="idManodopera" name="idManodopera" value="$$idManodopera"/>
+      <!-- INTESTAZIONE -->
+      <div id="intestazione##pathProvincia">
+        $$header
+        <!-- menu di navigazione-->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+        </div>
+      </div>
+      <hr/>
+      <div style="clear:left">  </div>
+      <!-- CORPO -->
+      <div id="corpo">
+        <hr/>
+        <!-- PRIMA COLONNA -->
+        <div id="content">
+          <p class="errore">Attenzione</p>
+          <p>Eliminare le informazioni solo se sono state inserite erroneamente. Dopo tale operazione i dati non potranno pi&ugrave; essere reperiti. Sei sicuro di proseguire con l'eliminazione?</p>
+          
+           <div class="pulsanti">
+          <div class="sin">
+            <input type="submit" value="conferma" name="conferma.x" class="inputPulsante highlighted"/>
+          </div>
+          <div class="des">
+            <input type="button" value="annulla" name="annulla.x" class="inputPulsante" onClick="javascript: goTo('../layout/confermaEliminaManodopera.htm')" />
+          </div>
+          </div>
+          
+        </div>
+        <!-- SECONDA COLONNA -->
+      </div>
+      <hr/>
+    </form>
+    <!-- PIE' DI PAGINA -->
+    $$footer

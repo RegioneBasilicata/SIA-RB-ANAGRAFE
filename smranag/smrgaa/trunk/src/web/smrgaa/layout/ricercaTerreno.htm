@@ -1,0 +1,341 @@
+$$head
+<script src="../js/checktext.js" type="text/javascript"></script>
+<script type="text/javascript" src="../js/messaggistica.js"></script>
+<script language="javascript1.2">
+  function popupFoglio()
+  {
+    document.form1.foglio.value=document.form1.strFoglioRicerca.value;
+    newWindowFoglio('../layout/sceltaFoglio.htm','scegliFoglio','600','300','yes',document.form1.descComuneParticella.value,document.form1.siglaProvinciaParticella.value, document.form1.descStatoEsteroParticella.value);  
+  }        
+  function popupParticella()
+  {
+    document.form1.strParticella.value=document.form1.strParticella.value;
+    document.form1.foglio.value=document.form1.strFoglioRicerca.value;
+    newWindowParticella('../layout/sceltaParticella.htm','scegliParticella','600','300','yes',document.form1.descComuneParticella.value,document.form1.siglaProvinciaParticella.value, document.form1.descStatoEsteroParticella.value,document.form1.strFoglio.value);  
+  }
+  
+  
+  </script>
+</head>
+<body id="homeIndice" onLoad="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+  <form name="form1" method="post" action="../layout/ricercaTerreno.htm">
+    <div id="pagina" class="colonnaUnica">
+      <input type="hidden" id="provincia" name="provincia"
+        value="$$provincia" />
+      <br>
+      <input type="hidden" id="comune" name="comune" value="$$comune" />
+      <input type="hidden" id="obiettivo" name="obiettivo"
+        value="$$obiettivo" />
+      <input type="hidden" id="provenienza" name="provenienza"
+        value="$$provenienza" />
+      <input type="hidden" id="stato" name="stato" value="$$stato" />
+      <input type="hidden" id="foglio" name="foglio" value="$$foglio" />
+      <input type="hidden" id="particella" name="particella"
+        value="$$particella" />
+      <!-- INTESTAZIONE -->
+      <div id="intestazione##pathProvincia">
+        $$header
+        <!-- menu di navigazione-->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li>
+                <a href="../layout/index.htm"
+                  title="Torna alla pagina principale">home</a>
+              </li>
+              <li class="attivo">
+                gestione anagrafe aziende
+              </li>
+              <li>
+                <a href="#" title="contatti">contatti</a>
+              </li>
+              <li>
+                <a href="#" title="help">help</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div style="clear: left"></div>
+      <!-- CORPO -->
+      <div id="corpo">
+        <div id="Utente">
+          <div id="datiUtente">
+            <strong>utente:</strong>$$utente&nbsp;&nbsp;
+            <strong>ente:</strong>$$ente
+          </div>
+          <div id="chiudisessione">
+            <a href="javascript: logout();">chiudi sessione</a>
+          </div>
+        </div>
+        <hr />
+        <!--PRIMA COLONNA -->
+        <h3>
+          Ricerca terreno
+          <span class="helpFuori"> <a href="#"> <span
+              class="alt">[help]</span> </a> </span>
+        </h3>
+        <hr />
+        <div class="box">
+          <div class="menuSX1">
+            <ul>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <li>
+                <a href="../layout/elencoAziendeRapLegale.htm">Elenco
+                  Aziende</a>
+              </li>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <!-- @@blkRicercaAzienda-->
+              <li>
+                <a href="../layout/ricerca.htm">Ricerca Azienda</a>
+              </li>
+              <!-- @@blkRicercaAzienda-->
+              <li>
+                <a href="#" class="on">Ricerca Terreno</a>
+              </li>
+              <!--@@blkRicercaPersona-->
+              <li>
+                <a href="../layout/ricercaPersona.htm">Ricerca
+                  Persona</a>
+              </li>
+              <!--@@blkRicercaPersona-->
+              <!--@@blkRicercaNotifica-->
+              <li>
+                <a href="../layout/ricercaNotifica.htm">Ricerca
+                  Notifiche</a>
+              </li>
+              <!--@@blkRicercaNotifica-->
+              <!--@@blkVariazioniAzienda-->
+              <li>
+                <a href="../layout/ricercaVariazioni.htm">Ricerca
+                  Variazioni</a>
+              </li>
+              <!--@@blkVariazioniAzienda-->
+              <!--@@blkRicercaRichiesta-->
+                <li><a href="../layout/ricercaRichiesta.htm">Ricerca richiesta azienda</a></li>
+              <!--@@blkRicercaRichiesta-->
+              <!-- @@blkNuova -->
+              <li>
+                <a href="../layout/nuovaAziendaAnagrafica.htm">Nuova
+                  Azienda</a>
+              </li>
+              <!-- @@blkNuova -->
+              <!-- @@blkNuovaIscrizione -->
+              <li>
+                <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+              </li>
+              <!-- @@blkNuovaIscrizione -->
+              <!--@@blkServizi-->
+              <li>
+                <a href="../layout/servizi.htm">Servizi</a>
+              </li>
+              <!--@@blkServizi-->
+              <!--@@blkReportistica-->
+              <li>
+                <a href="../layout/elencoRicerche.htm">Reportistica</a>
+              </li>
+              <!--@@blkReportistica-->
+              <!--@@blkEstrazioneDati-->
+              <li>
+                <a href="../layout/macroCategoriaReport.htm">Estrazione
+                  dati</a>
+              </li>
+              <!--@@blkEstrazioneDati-->
+              <li><a href="../layout/elencoManuali.htm">Scarico Documentazione Tecnica</a></li>
+            </ul>
+
+          </div>
+          <!--@@blkInserisciTerreno-->
+          <div class="menuSX">
+            <ul>
+              <li>
+                <a href="#" class="on">Terreno</a>
+                <ul>
+                  <li>
+                    <a href="../layout/inserisciTerreno.htm">inserisci</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <!--@@blkInserisciTerreno-->
+        </div>
+        <hr />
+        <!-- SECONDA COLONNA -->
+        <div id="contenuto">
+          <table cellspacing="3"
+            summary="Questa tabella contiene i dati del rapporto">
+            <col width="30%" />
+            <col width="70%" />
+            <tr>
+              <th scope="row">
+                Provincia*
+              </th>
+              <td>
+                <input type="text" id="siglaProvinciaParticella"
+                  name="siglaProvinciaParticella" size="4" maxlength="2"
+                  class="due" value="$$siglaProvinciaParticella" />
+                <label for="siglaProvinciaParticella" class="alt">
+                  siglaProvinciaParticella
+                </label>
+                $$err_siglaProvinciaParticella
+              </td>
+              <th>
+                <label for="comune">
+                  Comune*
+                </label>
+              </th>
+              <td>
+                <input type="text" id="descComuneParticella"
+                  name="descComuneParticella" size="30" maxlength="100"
+                  class="text" value="$$descComuneParticella" />
+
+                <label for="descComuneParticella" class="alt">
+                  descComuneParticella
+                </label>
+                $$err_descComuneParticella
+              </td>
+              <td>
+                <div class="azioni">
+                  <a
+                    href="javascript: newWindowComuneAttivoTerreni('../layout/sceltaComune.htm','scegliComune','600','300','yes',document.form1.descComuneParticella.value,document.form1.siglaProvinciaParticella.value);">cerca</a>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">
+                Stato
+              </th>
+              <td colspan="3">
+                <input type="text" id="descStatoEsteroParticella"
+                  name="descStatoEsteroParticella" size="30"
+                  maxlength="100" class="text"
+                  value="$$descStatoEsteroParticella" />
+
+                <label for="descStatoEsteroParticella" class="alt">
+                  descStatoEsteroParticella
+                </label>
+                $$err_descStatoEsteroParticella
+              </td>
+              <td>
+                <div class="azioni">
+                  <a
+                    href="javascript: newWindowStatoTerreni('../layout/sceltaStato.htm','scegliStato','600','300','yes',document.form1.descStatoEsteroParticella.value);">cerca</a>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">
+                Sezione
+              </th>
+              <td colspan="3">
+                <input type="text" id="sezione" name="sezione" size="1"
+                  maxlength="3" class="textmedio" value="$$sezione" />
+
+                <label for="sezione" class="alt">
+                  sezione
+                </label>
+                $$err_sezione
+              </td>
+              <td>
+                <div class="azioni">
+                  <a
+                    href="javascript: newWindowSezione('../layout/sceltaSezione.htm','scegliSezione','600','300','yes',document.form1.descComuneParticella.value,document.form1.siglaProvinciaParticella.value, document.form1.descStatoEsteroParticella.value);">cerca</a>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">
+                Foglio*
+              </th>
+              <td colspan="3">
+                <input type="text" id="strFoglio"
+                  name="strFoglioRicerca" size="4" maxlength="4"
+                  class="textmedio" value="$$strFoglio" />
+
+                <label for="strFoglio" class="alt">
+                  strFoglio
+                </label>
+                $$err_foglio
+              </td>
+              <td>
+                <div class="azioni">
+                  <a href="javascript:popupFoglio() ">cerca</a>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">
+                Particella
+              </th>
+              <td>
+                <input type="text" id="strParticella"
+                  name="strParticella" size="5" maxlength="5"
+                  class="textmedio" value="$$strParticella" />
+
+                <label for="strParticella" class="alt">
+                  strParticella
+                </label>
+                $$err_particella
+              </td>
+              <th scope="row">
+                Particella provvisoria
+              </th>
+              <td colspan="1">
+                <input type="checkbox" id="particellaProvvisoria"
+                  name="particellaProvvisoria"
+                  value="$$particellaProvvisoria" $$checkedProvvisoria />
+                <label for="particellaProvvisoria" class="alt">
+                  particellaProvvisoria
+                </label>
+              </td>
+              <td>
+                <div class="azioni">
+                  <a href="javascript: popupParticella()">cerca</a>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">
+                Subalterno
+              </th>
+              <td colspan="4">
+                <input type="text" id="subalterno" name="subalterno"
+                  size="5" maxlength="5" class="textmedio"
+                  value="$$subalterno" />
+                <label for="subalterno" class="alt">
+                  subalterno
+                </label>
+                $$err_subalterno
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">
+                Particella attiva
+              </th>
+              <td colspan="4">
+                <input type="checkbox" id="isParticellaAttiva"
+                  name="isParticellaAttiva" value="$$isParticellaAttiva"
+                  $$checkedAttiva />
+                <label for="isParticellaAttiva" class="alt">
+                  isParticellaAttiva
+                </label>
+              </td>
+            </tr>
+          </table>
+          <p id="nota">
+            I campi contrassegnati con * sono obbligatori
+          </p>
+          <div class="pulsanti"><div class="sin">
+            <input name="ricerca" class="inputPulsante"
+              type="submit" value="ricerca" />
+          </div></div>
+        </div>
+      </div>
+      <hr />
+      <!-- PIE' DI PAGINA -->
+      $$footer

@@ -1,0 +1,289 @@
+$$head
+  <script type="text/javascript" src="../js/checktext.js"></script>
+  <script type="text/javascript" src="../js/gestioneUtiliti.js"></script>
+  <script type="text/javascript" src="../js/messaggistica.js"></script>
+  <script type="text/javascript">
+  
+  function onChangeCombo() {
+    document.form1.operazione.value = "cambioIntermediario";
+    document.form1.submit();
+  }
+  
+  </script>
+</head>
+<body id="homeIndice" onload="javascript:duplicaNumPagina('originale');$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+  <div id="pagina" class="colonnaUnica">
+  
+    <form action="../layout/trasferimentoUfficio.htm" method="post" name="form1" id="form1">
+      <input type="hidden" name="pagina" value="$$pagina">
+      <input type="hidden" name="numeroTotale" value="$$numeroTotale">
+      <input type="hidden" name="operazione" value="$$operazione" id="operazione" />
+      <!-- INTESTAZIONE -->
+      <div id="intestazione##pathProvincia">	<!--intestazione-->
+       $$header
+        <!-- menu di navigazione-->
+  	  <div id="titoloEmenu">
+  	    <h2><span class="alt">Anagrafe agricola della Regione TOBECONFIG</span></h2>
+   	    <div id="menuDiNavigazione" title="Menu di navigazione">
+   	      <ul class="menuTendina" id="menu-2">
+   	        <li>
+   	          <a href="index.htm" title="Torna alla pagina principale">home</a>
+            </li>
+   	        <li class="attivo">gestione anagrafe aziende</li>
+   	        <li>
+   	          <a href="#" title="contatti">contatti</a>
+            </li>
+   	        <li>
+   	          <a href="#" title="help">help</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <hr />
+    <div style="clear:left"></div>
+    <!-- CORPO -->
+      <div id="corpo">
+        <div id="Utente">
+          <div id="datiUtente">
+            <strong>utente: </strong> $$utente &nbsp; &nbsp;
+            <strong>ente: </strong> $$ente
+          </div>
+          <div id="chiudisessione">
+            <a href="javascript: logout();">chiudi sessione</a>
+          </div>
+        </div>
+        <hr />
+        <!--PRIMA COLONNA -->
+        <h3>Servizi&nbsp;&gt;&nbsp;Trasferimento ad altro Ufficio
+          <span class="helpFuori">
+            <a href="#">
+              <span class="alt"> [help]</span>
+            </a>
+          </span>
+        </h3>
+        <hr />
+        <div class="box">
+          <div class="menuSX1">
+            <ul>
+              <!-- @@blkRicercaAzienda-->
+              <li>
+                <a href="../layout/ricerca.htm">Ricerca Azienda</a>
+              </li>
+              <!-- @@blkRicercaAzienda-->
+              <!--@@blkRicercaPersona-->
+              <li>
+                <a href="../layout/ricercaPersona.htm">Ricerca Persona</a>
+              </li>
+              <!--@@blkRicercaPersona-->
+              <!--@@blkRicercaTerreno-->
+              <li>
+                <a href="../layout/ricercaTerreno.htm">Ricerca Terreno</a>
+              </li>
+              <!--@@blkRicercaTerreno-->
+				      <!--@@blkRicercaNotifica-->
+              <li>
+                <a href="../layout/ricercaNotifica.htm">Ricerca Notifiche</a>
+              </li>
+              <!--@@blkRicercaNotifica-->
+              <!--@@blkVariazioniAzienda-->
+                <li><a href="../layout/ricercaVariazioni.htm" >Ricerca Variazioni</a></li>
+              <!--@@blkVariazioniAzienda-->
+              <!--@@blkRicercaRichiesta-->
+                <li><a href="../layout/ricercaRichiesta.htm">Ricerca richiesta azienda</a></li>
+              <!--@@blkRicercaRichiesta-->
+              <!-- @@blkNuova -->
+              <li>
+                <a href="../layout/nuovaAziendaAnagrafica.htm">Nuova Azienda</a>
+              </li>
+              <!-- @@blkNuova -->
+              <!-- @@blkNuovaIscrizione -->
+              <li>
+                <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+              </li>
+              <!-- @@blkNuovaIscrizione -->
+              <!--@@blkNuovaParticella-->
+              <li>
+                <a href="../layout/inserisciTerreno.htm">Nuova Particella</a>
+              </li>
+              <!--@@blkNuovaParticella-->
+              <!--@@blkServizi-->
+              <li>
+                <a href="../layout/servizi.htm" class="on" >Servizi</a>
+              </li>
+              <!--@@blkServizi-->
+              <!--@@blkReportistica-->
+              <li>
+                <a href="../layout/elencoRicerche.htm">Reportistica</a>
+              </li>
+              <!--@@blkReportistica-->
+              <!--@@blkEstrazioneDati-->
+              <li><a href="../layout/macroCategoriaReport.htm">Estrazione dati</a></li>
+              <!--@@blkEstrazioneDati-->
+              <li><a href="../layout/elencoManuali.htm">Scarico Documentazione Tecnica</a></li> 			  
+            </ul>
+          </div>
+        </div>
+        <hr />
+        <!-- SECONDA COLONNA -->
+        <div id="contenuto">
+          <table cellspacing="3" summary="Tabella ">
+          <caption>Trasferimento ad altro ufficio</caption>
+					  <tr>
+  					  <th scope="row"><label for="idDaufficio_1">Da ufficio di zona</label></th>
+  						<td>              
+                <select id="idIntermediario_1" name="idIntermediario_1" onchange="onChangeCombo()" >
+                  <option value=""></option>
+                  <!-- @@blkElencoCAA_1 -->
+                  <option value="$$codice_1" $$selected_1>$$descrizione_1</option>
+                  <!-- @@blkElencoCAA_1 -->
+                </select>
+                $$err_idIntermediario_1
+              </td>
+  						<th scope="row"><label for="idAufficio_2">A ufficio di zona</label></th>
+						  <td>
+								<select id="idIntermediario_2" name="idIntermediario_2" >
+                  <option value=""></option>
+                  <!-- @@blkElencoCAA_2 -->
+                  <option value="$$codice_2" $$selected_2>$$descrizione_2</option>
+                  <!-- @@blkElencoCAA_2 -->
+                </select>
+                $$err_idIntermediario_2
+              </td>
+						</tr>	
+						<tr>
+							<th scope="row"><label for="cuaa">CUAA</label></th>
+							<td colspan="3" >
+                <input type="text" id="cuaa" name="cuaa" maxlength="16" value="$$txtCuaa" class="textmediolungo" />
+                <label for="sub">$$err_cuaa</label>
+              </td>
+						</tr>
+			    </table>
+          <div class="pulsanti"><div class="sin"> 
+            <input name="ricerca" type="submit" value="ricerca" onclick="javscript:setHiddenOperazione(document.forms[0], 'ricerca');" class="inputPulsante" />
+				  </div></div>
+          
+          <!-- @@blkErrore -->
+            <p class="errore">$$messaggioErrore</p>
+          <!-- @@blkErrore -->  
+		  
+          <!-- @@blkAziende -->
+			    <div class="pulsanti">
+  				  <div class="sin">
+	   				  <input id="seleziona" name="seleziona" type="button" value="seleziona" onclick="javascript:selectAllKeys();" class="inputPulsante" />
+					  </div>
+				    <div class="des">
+			  		  <input id="deseleziona" name="deseleziona" type="button" value="deseleziona" onclick="javascript:deselectAllKeys();" class="inputPulsante" />
+					  </div>
+          </div>
+          
+          <div class="paginazione">
+            <span class="sx">$$numeroTotRecords risultati trovati</span>
+            <div class="dx">
+              <label for="numsub1">pagina</label> 
+              <input type="text" name="paginaCorrente" value="$$paginaCorrente" maxlength="4" id="paginaCorrente" onKeyUp="javascript:duplicaNumPagina('originale');" onkeypress="javascript: simulateButtonViaByInvio(document, document.forms[0].vai, event);" />$$err_paginaCorrente di $$numeroTotale 
+              <span class="vai"> 
+                <input type="submit" name="vai" value="vai" class="vaiInput" /> 
+              </span> 
+              <!--@@blkGruppoPagine-->
+              <a href="javascript:{go_page(document.forms[0].pagina,'$$nextPage', 'paginazione')}" title="$$descPagina">
+              <!--@@blkPaginaCorrente-->
+                
+                  <!--@@blkPaginaCorrente--> 
+                    <!--@@blkGruppoSuccessivo-->
+                    <u>
+                    <!--@@blkGruppoSuccessivo--> 
+                      $$pagina 
+                    <!--@@blkGruppoSuccessivo-->
+                    </u>
+                    <!--@@blkGruppoSuccessivo--> 
+                  <!--@@blkPaginaCorrente-->
+                
+              <!--@@blkPaginaCorrente-->
+              </a>
+              <span class="bugFix">&nbsp;|&nbsp;</span>
+              <!--@@blkGruppoPagine--> 
+              <!--@@indietro--> 
+              <a href="javascript:{go_page(document.forms[0].pagina,parseInt(document.forms[0].pagina.value)-1), 'paginazione'}" title="vai alla pagina precedente">&lt;&lt; prec</a> 
+              <!--@@indietro--> 
+              <!--@@avanti--> 
+              <a href="javascript:{go_page(document.forms[0].pagina,parseInt(document.forms[0].pagina.value)+1), 'paginazione'}" title="vai alla pagina successiva">succ &gt;&gt;</a>
+              <span class="bugFix">&nbsp;|&nbsp;</span> 
+              <!--@@avanti-->  
+            </div>
+          </div> 
+			
+          <table cellspacing="3" summary="Tabella contenente i risultati della ricerca particelle">
+        	  <tr>
+        	    <th class="radio" scope="col"></th>
+        	    <th class="center" scope="col">CUAA</th>
+              <th class="center" scope="col">Partita IVA</th>
+        		  <th class="center" scope="col">Denominazione</th>
+        		  <th class="center" scope="col">Sede Legale </th>
+        		</tr>
+            <!-- @@blkElencoAziende -->
+            <tr>
+              <td class="radio" scope="row" >
+                <input type="checkbox" name="idUtilizzo" value="$$idAzienda"  $$checked />
+              </td>
+              <td class="allineaSx" >$$cuaa</td>
+              <td class="allineaSx" >$$partitaIva</td>
+              <td class="allineaSx" >$$nomeAzienda</td>
+              <td class="allineaSx" >$$sedeLegale</td>
+            </tr>
+            <!-- @@blkElencoAziende -->
+          </table>
+          <div class="paginazione">
+            <span class="sx">$$numeroTotRecords risultati trovati</span>
+            <div class="dx">
+              <label for="numsub1">pagina</label>
+              <input type="text" name="paginaCorrenteDup" value="$$paginaCorrenteDup" maxlength="4" id="paginaCorrenteDup" onKeyUp="javascript:duplicaNumPagina('duplicato');" onkeypress="javascript: simulateButtonViaByInvio(document, document.forms[0].vai, event);" />$$err_paginaCorrente di $$numeroTotale 
+              <span class="vai"> 
+                <input type="submit" name="vai" value="vai" class="vaiInput" /> 
+              </span>
+              <!--@@blkGruppoPagine-->
+              <a href="javascript:{go_page(document.forms[0].pagina,'$$nextPage', 'paginazione')}" title="$$descPagina">
+                <!--@@blkPaginaCorrente-->
+                
+                <!--@@blkPaginaCorrente--> 
+                <!--@@blkGruppoSuccessivo-->
+                <u>
+                <!--@@blkGruppoSuccessivo--> 
+                  $$pagina 
+                <!--@@blkGruppoSuccessivo-->
+                </u>
+                <!--@@blkGruppoSuccessivo--> 
+                <!--@@blkPaginaCorrente-->
+                
+                <!--@@blkPaginaCorrente-->
+              </a>
+              <span class="bugFix">&nbsp;|&nbsp;</span>
+              <!--@@blkGruppoPagine--> 
+              <!--@@indietro--> 
+              <a href="javascript:{go_page(document.forms[0].pagina,parseInt(document.forms[0].pagina.value)-1), 'paginazione'}" title="vai alla pagina precedente">&lt;&lt; prec</a> 
+              <!--@@indietro--> 
+              <!--@@avanti--> 
+              <a href="javascript:{go_page(document.forms[0].pagina,parseInt(document.forms[0].pagina.value)+1), 'paginazione'}" title="vai alla pagina successiva">succ &gt;&gt;</a>
+              <span class="bugFix">&nbsp;|&nbsp;</span> 
+              <!--@@avanti-->  
+            </div>
+          </div>
+              
+				  <div class="pulsanti">
+        	  <div class="sin">
+        		  <input id="seleziona" name="seleziona" type="button" value="seleziona" onclick="javascript: selectAllKeys();" class="inputPulsante" />
+        	  </div>
+            <div class="des">
+        		  <input id="deseleziona" name="deseleziona" type="button" value="deseleziona" onclick="javascript: deselectAllKeys();" class="inputPulsante" />
+            </div>
+			    </div>					
+						
+          <div class="pulsanti"><div class="sin"> 
+            <input id="trasferisci" name="trasferisci" type="submit" value="trasferisci" onclick="javscript:setHiddenOperazione(document.forms[0], 'trasferisci');" class="inputPulsante" /></div>
+			    </div>
+          <!-- @@blkAziende -->																			
+        </div>
+      </div>
+      <hr />
+    </form>
+$$footer

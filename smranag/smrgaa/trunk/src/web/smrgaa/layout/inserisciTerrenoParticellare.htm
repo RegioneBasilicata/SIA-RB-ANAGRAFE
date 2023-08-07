@@ -1,0 +1,497 @@
+$$head
+<script src="../js/checktext.js" type="text/javascript"></script>
+<script type="text/javascript" src="../js/messaggistica.js"></script>
+<script type="text/javascript">
+    
+    // Funzione per la gestione corretta dei valori relativi al flag irrigata
+    // e alla combo tipo irrigazione
+    function gestioneIrrigabile() {
+      if(document.forms[0].flagIrrigabile.checked == true) {
+        document.forms[0].idIrrigazione.disabled = false;
+      }
+      else {
+        document.forms[0].idIrrigazione.value = null;
+        document.forms[0].idIrrigazione.disabled = true;
+      }
+    }
+    
+
+    
+    // Metodo per aprire una pop-up ed effettuare su di essa il submit del form
+    function newWindowSubmit(mypage, myname, w, h, scroll, type, indice) 
+    {
+      var winl = (screen.width - w) / 2;
+      var wint = (screen.height - h) / 2;
+      winprops =    'height='+h+',width='+w+',top='+wint+',left='+winl+',scrollbars='+scroll+',resizable';
+      win = window.open('', myname, winprops);
+
+      if (parseInt(navigator.appVersion) >= 4) {
+        win.window.focus();
+      } 
+      var target1 = document.forms[0].target;
+      var action1 = document.forms[0].action;
+      document.forms[0].target = myname;
+      document.forms[0].action = mypage;
+      document.forms[0].type.value = type;
+      document.forms[0].indice.value = indice;
+      document.forms[0].submit();
+      document.forms[0].target = target1;
+      document.forms[0].action = action1;
+    }
+    
+    function invia(operazione)
+    {
+      document.forms[0].operazionePart.value=operazione;
+      document.forms[0].submit();
+    }
+  
+  function conferma() 
+  {
+    document.forms[0].confermo.value = 'confermo';
+    document.forms[0].submit();
+  }  
+  // Funzione che apre una richiesta di conferma in merito alla congruenza
+  // tra la somma delle superfici utilizzate e la sup condotta
+  function confirmSuperfici() 
+  {
+    if(document.forms[0].confermaSupCatFraz.value != '') 
+    {
+      if(confirm('Attenzione: la superficie catastale risulta maggiore della superficie della/e particella/e frazionate. Vuoi proseguire? ')) {
+        conferma();
+      }
+      else 
+      {
+        document.forms[0].confermaSupCatFraz.value = '';
+      }
+    }
+    
+    if(document.forms[0].confermaSupCatAcc.value != '') 
+    {
+      if(confirm('Attenzione: la superficie catastale risulta maggiore della superficie della/e particella/e accorpate. Vuoi proseguire ?')) {
+        conferma();
+      }
+      else 
+      {
+        document.forms[0].confermaSupCatAcc.value = '';
+      }
+    }
+  }
+    
+  </script>
+</head>
+<body id="homeIndice"
+  onload="javascript:gestioneIrrigabile();confirmSuperfici();$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+  <form name="form1" method="post" action="../layout/inserisciTerrenoParticellare.htm">
+    <input type="hidden" name="inserimento" value="inserimento" />
+    <input type="hidden" name="provvisoria" value="$$provvisoria" />
+    <input type="hidden" name="idEvento" value="$$idEvento" />
+    <input type="hidden" name="confermo" id="confermo" value="$$confermo" />
+    <input type="hidden" name="operazione" value="$$operazione" />
+    <input type="hidden" name="type" value="$$type" />
+    <input type="hidden" name="indice" value="$$indice" />
+    <input type="hidden" name="abaco" value="abaco" id="abaco" />
+    <input type="hidden" name="confermaSupCatFraz" value="$$confermaSupCatFraz"
+      id="confermaSupCatFraz" />
+    <input type="hidden" name="confermaSupCatAcc" value="$$confermaSupCatAcc"
+      id="confermaSupCatAcc" />
+    <input type="hidden" name="operazionePart">
+    <input type="hidden" name="regimeInserisciTerrenoParticellare" id="regimeInserisciTerrenoParticellare" value="true" />
+    <div id="pagina" class="colonnaUnica">
+      <div id="intestazione##pathProvincia">
+        $$header
+        <!-- menu di navigazione-->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li>
+                <a href="index.htm" title="Torna alla pagina principale">home</a>
+              </li>
+              <li class="attivo">
+                gestione anagrafe aziende
+              </li>
+              <li>
+                <a href="#" title="contatti">contatti</a>
+              </li>
+              <li>
+                <a href="#" title="help">help</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div style="clear: left"></div>
+      <!-- CORPO -->
+      <div id="corpo">
+        <div id="Utente">
+          <div id="datiUtente">
+            <strong>utente:</strong>$$utente&nbsp;&nbsp;
+            <strong>ente:</strong>$$ente
+          </div>
+          <div id="chiudisessione">
+            <a href="javascript: logout();">chiudi sessione</a>
+          </div>
+        </div>
+        <hr />
+        <!--PRIMA COLONNA -->
+        <h3>
+          Ricerca terreno &nbsp;&gt;&nbsp; inserisci
+          <span class="helpFuori"> <a href="#"> <span
+              class="alt">[help]</span> </a> </span>
+        </h3>
+        <hr />
+        <div class="box">
+          <div class="menuSX1">
+            <ul>
+              <!-- @@blkRicercaAzienda-->
+              <li>
+                <a href="../layout/ricerca.htm">Ricerca Azienda</a>
+              </li>
+              <!-- @@blkRicercaAzienda-->
+              <!--@@blkRicercaPersona-->
+              <li>
+                <a href="../layout/ricercaPersona.htm">Ricerca
+                  Persona</a>
+              </li>
+              <!--@@blkRicercaPersona-->
+              <!--@@blkRicercaTerreno-->
+              <li>
+                <a href="../layout/ricercaTerreno.htm" class="on">Ricerca
+                  Terreno</a>
+              </li>
+              <!--@@blkRicercaTerreno-->
+              <!--@@blkRicercaNotifica-->
+              <li>
+                <a href="../layout/ricercaNotifica.htm">Ricerca
+                  Notifiche</a>
+              </li>
+              <!--@@blkRicercaNotifica-->
+              <!--@@blkVariazioniAzienda-->
+              <li>
+                <a href="../layout/ricercaVariazioni.htm">Ricerca
+                  Variazioni</a>
+              </li>
+              <!--@@blkVariazioniAzienda-->
+              <!--@@blkRicercaRichiesta-->
+                <li><a href="../layout/ricercaRichiesta.htm">Ricerca richiesta azienda</a></li>
+              <!--@@blkRicercaRichiesta-->
+              <!-- @@blkNuova -->
+              <li>
+                <a href="../layout/nuovaAziendaAnagrafica.htm">Nuova
+                  Azienda</a>
+              </li>
+              <!-- @@blkNuova -->
+              <!-- @@blkNuovaIscrizione -->
+              <li>
+                <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+              </li>
+              <!-- @@blkNuovaIscrizione -->
+              <!--@@blkNuovaParticella-->
+              <li>
+                <a href="../layout/inserisciTerreno.htm" class="on">Nuova
+                  Particella</a>
+              </li>
+              <!--@@blkNuovaParticella-->
+              <!--@@blkServizi-->
+              <li>
+                <a href="../layout/servizi.htm">Servizi</a>
+              </li>
+              <!--@@blkServizi-->
+              <!--@@blkReportistica-->
+              <li>
+                <a href="../layout/elencoRicerche.htm">Reportistica</a>
+              </li>
+              <!--@@blkReportistica-->
+              <!--@@blkEstrazioneDati-->
+              <li><a href="../layout/macroCategoriaReport.htm">Estrazione dati</a></li>
+              <!--@@blkEstrazioneDati-->
+              <li><a href="../layout/elencoManuali.htm">Scarico Documentazione Tecnica</a></li> 
+            </ul>
+
+          </div>
+          <div class="menuSX">
+            <ul>
+              <li>
+                <a href="#" class="on">Terreno</a>
+                <ul>
+                  <li>
+                    <a href="#">inserisci</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <hr />
+        <!-- SECONDA COLONNA -->
+        <div id="contenuto">
+          <table cellspacing="3"
+            summary="Questa tabella è costituita da righe">
+            <caption>
+              Particella
+            </caption>
+            <tr>
+              <!-- @@blkAbacoGis -->
+              <th scope="col" class="center"></th>
+              <!-- @@blkAbacoGis -->
+              <th scope="col" class="center">
+                Comune
+              </th>
+              <th scope="col" class="center">
+                Sezione
+              </th>
+              <th scope="col" class="center">
+                Foglio
+              </th>
+              <th scope="col" class="center">
+                Particella
+              </th>
+              <th scope="col" class="center">
+                Sub
+              </th>
+            </tr>
+            <tr>
+              <!-- @@blkAbacoGis -->
+              <td class="radio">
+                <a
+                  href="javascript: newWindowDoForm('../layout/abacoGis.htm?idStoricoParticellaRicTerr=$$idStoricoParticella', 'abaco', '1000','700','yes', 'GIS');"
+                  title="GIS - Attenzione: questo link si apre in una nuova finestra"
+                  class="gis"></a>
+              </td>
+              <!-- @@blkAbacoGis -->
+              <td>
+                $$descComuneParticella $$siglaProvinciaParticella
+              </td>
+              <td>
+                $$sezione
+              </td>
+              <td class="numeridx">
+                $$foglio
+              </td>
+              <td class="numeridx">
+                $$particella
+              </td>
+              <td>
+                $$subalterno
+              </td>
+            </tr>
+          </table>
+
+          <table>
+            <caption>
+              Dati catastali
+            </caption>
+            <tr>
+              <th>
+                <label for="supcat">
+                  Superficie catastale
+                </label>
+              </th>
+              <td>
+                <input name="supCatastale" id="supCatastale"
+                  class="textmedio" type="text" value="$$supCatastale"
+                  maxlength="10" $$readSupCatastale />
+                $$err_supCatastale
+              </td>
+              <th>
+                <label for="supcat">
+                  Superficie grafica
+                </label>
+              </th>
+              <td>
+                $$superficieGrafica
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="Casi">
+                  Casi particolari *
+                </label>
+              </th>
+              <td>
+                <select name="idCasoParticolare" id="idCasoParticolare">
+                  <option value="" ></option>
+                  <!-- @@blkTipiCasoParticolare -->
+                  <option value="$$idCasoParticolare" $$selected>
+                    $$descrizione
+                  </option>
+                  <!-- @@blkTipiCasoParticolare -->
+                </select>
+                $$err_idCasoParticolare
+              </td>
+              <th>
+                Zona Altimetrica
+              </th>
+              <td>
+                $$descZonaAltimetrica
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">
+                Pendenza
+              </th>
+              <td>
+                $$descPendenzaMedia
+              </td>
+              <th>
+                Altitudine
+              </th>
+              <td>
+                $$descAltitudineMedia
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="Irrigabile">
+                  Irrigabile
+                </label>
+              </th>
+              <td>
+                <input name="flagIrrigabile" type="checkbox" value="S"
+                  id="flagIrrigabile" $$checkedIrrigabile
+                  onclick="javascript:gestioneIrrigabile();" />
+                $$err_flagIrrigabile
+              </td>
+              <th>
+                <label for="Consorzio">
+                  Tipo irrigazione
+                </label>
+              </th>
+              <td>
+                <select name="idIrrigazione" id="idIrrigazione">
+                  <option></option>
+                  <!-- @@blkTipiIrrigazione -->
+                  <option value="$$idIrrigazione" $$selected>
+                    $$descrizione
+                  </option>
+                  <!-- @@blkTipiIrrigazione -->
+                </select>
+                $$err_idIrrigazione
+              </td>
+            </tr>
+            
+            <tr>
+              <th>
+                <label for="Consorzio">
+                   Metodo irrigazione
+                </label>
+              </th>
+              <td>
+                <select name="idMetodoIrriguo" id="idMetodoIrriguo">
+                  <option value="" ></option>
+                  <!-- @@blkTipiMetodoIrriguo -->
+                  <option value="$$idMetodoIrriguo" $$selected>
+                    $$descrizione
+                  </option>
+                  <!-- @@blkTipiMetodoIrriguo -->
+                </select>
+                $$err_idMetodoIrriguo
+              </td>
+              <th>
+                <label for="uso">
+                  Zona di captazione acque e pozzi
+                </label>
+              </th>
+              <td>
+                <input name="flagCaptazionePozzi" type="checkbox" value="S" id="flagCaptazionePozzi" $$checkedCaptazionePozzi />
+                $$err_flagCaptazionePozzi
+              </td>
+            </tr>
+            
+            <tr>
+              <th>
+                <label for="Terrazzamenti">
+                  Presenza Terrazzamenti *
+                </label>
+              </th>
+              <td>
+                <select name="idTerrazzamento" id="idTerrazzamento">
+                  <option value="-1"></option>
+                  <!-- @@blkTipiTerrazzamenti -->
+                  <option value="$$idTerrazzamento" $$selected>
+                    $$descrizione
+                  </option>
+                  <!-- @@blkTipiTerrazzamenti -->
+                </select>
+                $$err_idTerrazzamento
+              </td>
+              <th>
+                <label for="Rotazione colturale">
+                  Rotazione colturale *
+                </label>
+              </th>
+              <td>
+                <select name="idRotazioneColturale" id="idRotazioneColturale">
+                  <option value="-1"></option>
+                  <!-- @@blkTipiRotazioneColturale -->
+                  <option value="$$idRotazioneColturale" $$selected>
+                    $$descrizione
+                  </option>
+                  <!-- @@blkTipiRotazioneColturale -->
+                </select>
+                $$err_idRotazioneColturale
+              </td>
+            </tr>
+            <!-- @@blkRiga -->
+            <tr>
+              <th>
+                $$desc1
+              </th>
+              <td>
+                <input type="hidden" name="flagEsclusivoFoglio1" value="$$flagEsclusivoFoglio1" />
+                <input type="hidden" name="idTipoArea1" value="$$idTipoArea1" />
+                <select name="valoreArea1" $$disabledValore1>
+                  <!-- @@blkTipiValoreArea1 -->
+                  <option value="$$valoreArea1" $$selected >
+                    $$descrizione
+                  </option>
+                  <!-- @@blkTipiValoreArea1 -->
+                </select>
+                $$err_valoreArea1
+                <!-- @@blkHiddenValoreArea1 -->
+                <input type="hidden" name="valoreArea1" value="$$valoreArea1" />
+                <!-- @@blkHiddenValoreArea1 -->
+              </td>
+              <th>
+                $$desc2
+              </th>
+              <td>
+                <input type="hidden" name="flagEsclusivoFoglio2" value="$$flagEsclusivoFoglio2" />
+                <input type="hidden" name="idTipoArea2" value="$$idTipoArea2" />
+                <select name="valoreArea2" $$disabledValore2>
+                  <!-- @@blkTipiValoreArea2 -->
+                  <option value="$$valoreArea2" $$selected>
+                    $$descrizione
+                  </option>
+                  <!-- @@blkTipiValoreArea2 -->
+                </select>
+                $$err_valoreArea2
+                <!-- @@blkHiddenValoreArea2 -->
+                <input type="hidden" name="valoreArea2" value="$$valoreArea2" />
+                 <!-- @@blkHiddenValoreArea2 -->
+              </td>
+            </tr>           
+            <!-- @@blkRiga -->
+          </table>
+
+
+
+          <p class="nota">
+            I campi contrassegnati con * sono obbligatori.
+            <br />
+            La superficie catastale &egrave; espressa in ettari (ha).
+          </p>
+          <div class="pulsanti">
+            <div class="sin">
+              <a href="javascript:invia('indietro');">indietro</a>
+            </div>
+            <div class="des">
+              <a href="javascript:invia('salva');" title="annulla" class="inputPulsante highlighted">salva</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      $$footer

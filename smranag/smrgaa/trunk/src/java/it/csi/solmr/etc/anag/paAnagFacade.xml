@@ -1,0 +1,13 @@
+<porta-applicativa name="Anag" public-interface-class="it.csi.solmr.interfaceCSI.anag.AnagCSIInterface">
+  <listener
+    class="it.csi.csi.porte.ejb20.PortaApplicativaBean"
+    listening-url="java:protocol-AnagServiceForUma"
+  />
+  <adapter  class="it.csi.csi.wrapper.StatelessEJBAdapter">
+   <properties>
+     <property name="jndi-name" value="java:comp/env/AnagFacadeUma"/>
+     <property name="home-class" value="it.csi.solmr.business.anag.AnagFacadeUmaLocalHome" />
+     <property name="local-class" value="it.csi.solmr.business.anag.AnagFacadeUmaLocal" />
+   </properties>
+  </adapter>
+</porta-applicativa>

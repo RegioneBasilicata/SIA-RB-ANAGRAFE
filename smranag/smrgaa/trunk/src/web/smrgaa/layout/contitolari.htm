@@ -1,0 +1,362 @@
+$$head
+    <script src="../js/checktext.js" type="text/javascript"></script>
+    <script type="text/javascript" src="../js/messaggistica.js"></script>
+    <script type="text/javascript">
+      function alertMessage(msg) {
+        if(msg != '') {
+        alert(msg);
+        }
+      }
+
+      function submitForm(tipoOperazione) {
+        if(tipoOperazione != 'nuovo' && tipoOperazione != 'aggiorna') {
+          var elencoSoggetti = document.form1.radiobutton;
+          if(!elencoSoggetti) {
+            alert("Non sono presenti soggetti collegati all''azienda");
+            return;
+          }
+          if(!elencoSoggetti.length) {
+            if(elencoSoggetti.checked)
+            {
+              if(tipoOperazione == 'anagrafeTributaria')
+              {
+                var cuaa=document.form1.CUAA.value;
+                if (cuaa=='')
+                {
+                  alert('Impossibile richiamare il servizio Anagrafe Tributaria in quanto il soggetto è privo di codice fiscale');
+                  return;
+                }
+                document.form1.CUAAselezionato.value = cuaa;
+                goToOperazione('../layout/contitolariAT.htm', document.form1, 'attenderePrego');
+                return;
+              }
+              else
+              {
+                document.form1.action = '../layout/contitolari.htm';
+                document.form1.operazione.value = tipoOperazione;
+                document.form1.submit();
+                return;
+              }
+            }
+          }
+          else {
+            for(i=0; i<elencoSoggetti.length; i++) {
+              if (elencoSoggetti[i].checked)
+              {
+                if(tipoOperazione == 'anagrafeTributaria')
+                {
+                  var cuaa=document.form1.CUAA[i].value;
+                  if (cuaa=='')
+                  {
+                    alert('Impossibile richiamare il servizio Anagrafe Tributaria in quanto il soggetto è privo di codice fiscale');
+                    return;
+                  }
+                  document.form1.CUAAselezionato.value = cuaa;
+                  goToOperazione('../layout/contitolariAT.htm', document.form1, 'attenderePrego');
+                  return;
+                }
+                else
+                {
+                  document.form1.action = '../layout/contitolari.htm';
+                  document.form1.operazione.value = tipoOperazione;
+                  document.form1.submit();
+                  return;
+                }
+              }
+            }
+          }
+          alert("Selezionare una voce dal riepilogo");
+        }
+        else {
+          document.form1.action = '../layout/contitolari.htm';
+          document.form1.operazione.value = tipoOperazione;
+          document.form1.submit();
+        }
+      }
+    </script>
+  </head>
+  <body id="homeIndice" onLoad="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+    <form name="form1" id="form1" method="post" action="../layout/contitolari.htm">
+      <div id="pagina" class="colonnaUnica">
+        <input type="hidden" name="operazione" id="operazione" value="" />
+        <input type="hidden" name="CUAAselezionato" value="" />
+        <!-- INTESTAZIONE -->
+        <div id="intestazione##pathProvincia">
+          <!--#include virtual="/ris/include/smrgaaweb/header.html" -->
+          <div id="titoloEmenu">
+              <h2>
+                <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+              </h2>
+	 	    <div id="menuDiNavigazione" title="Menu di navigazione">
+	 	      <ul class="menuTendina" id="menu-2">
+	 	        <li>
+	 	          <a href="../layout/index.htm" title="Torna alla pagina principale">home</a>
+	 	        </li>
+	 	        <li class="attivo">gestione anagrafe aziende</li>
+	 	        <li>
+	 	          <a href="#" title="contatti">contatti</a>
+	 	        </li>
+	 	        <li>
+	 	          <a href="#" title="help">help</a>
+	 	        </li>
+	 	      </ul>
+	 	    </div>
+          </div><!-- menu di navigazione-->
+	    
+        </div>
+        <hr />
+        <div style="clear:left"></div>
+          <!-- CORPO -->
+          <div id="corpo">
+            <div id="Utente">
+              <div id="datiUtente">
+                <strong>utente:</strong> $$utente &nbsp; &nbsp;
+                <strong>ente:</strong> $$ente
+              </div>
+              <div id="chiudisessione">
+                <a href="javascript: logout();">chiudi sessione</a>
+              </div>
+            </div>
+            <hr />
+            <!--PRIMA COLONNA -->
+            <h3>Gestione Anagrafe Aziende > Soggetti Collegati
+              <span class="helpFuori">
+                <a href="#">
+                  <span class="alt"> [help]</span>
+                </a>
+              </span>
+            </h3>
+            <hr />
+            <div class="box">
+              <div class="menuSX1">
+                <ul>
+                  <!-- @@blkElencoAziendeRapLegale -->
+                <li><a href="../layout/elencoAziendeRapLegale.htm">Elenco Aziende</a></li>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <!-- @@blkRicercaAzienda-->
+                    <li><a href="../layout/ricerca.htm">Ricerche</a></li>
+                  <!-- @@blkRicercaAzienda-->
+                  <!-- @@blkNuova -->
+	                <li>
+	                  <a href="../layout/nuovaAziendaAnagrafica.htm">Nuova Azienda</a>
+	                </li>
+                  <!-- @@blkNuova -->
+                  <!-- @@blkNuovaIscrizione -->
+				          <li>
+				            <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+				          </li>
+				          <!-- @@blkNuovaIscrizione -->
+                </ul>
+              </div>
+              <div class="menuSX">
+                <ul>
+                  <li>
+                    <a href="../layout/anagrafica.htm">Anagrafica</a>
+                  </li>
+                  <!-- @@blkAziendeCollegate -->
+	              			<li>
+	              					<a href="../layout/aziendeCollegate.htm">$$aziendeCollegateLabel</a>
+	              			</li>
+	              	<!-- @@blkAziendeCollegate -->
+	              <!-- @@blkSincronizzaFascicolo -->
+               	  <li>
+               		<a href="../layout/sincronizzaFascicolo.htm">Sincronizza fascicolo</a>
+                  </li>
+                  <!-- @@blkSincronizzaFascicolo -->
+                  <!-- @@blkSoggettiCollegati -->
+                    <li>
+                      <a href="../layout/contitolari.htm" class="on">Soggetti collegati</a>
+                      <ul>
+                        <!--@@blkDettaglio-->
+	                      <li>
+	                        <a href="javascript:submitForm('dettaglio');">dettaglio</a>
+	                      </li>
+                        <!--@@blkDettaglio-->
+                        <!--@@blkModifica-->
+                          <li>
+                            <a href="javascript:submitForm('modifica');">modifica</a>
+                          </li>
+                        <!--@@blkModifica-->
+                        <!--@@blkElimina-->
+	                      <li>
+	                        <a href="javascript:submitForm('elimina');">elimina</a>
+	                      </li>
+                        <!--@@blkElimina-->
+                        <!--@@blkInserisci-->
+                          <li>
+                            <a href="javascript:submitForm('nuovo');">inserisci</a>
+                          </li>
+                        <!--@@blkInserisci-->
+                        <!--@@blkFontiCertificate-->
+                        <li>
+                          <a href="javascript: goToOperazione('../layout/contitolariAAEP.htm', document.form1, 'attenderePrego');">Infocamere</a>
+                        </li>
+                        <!--@@blkFontiCertificate-->
+                        <!--@@linkSianAnagrafeTributaria-->
+                        <li>
+                          <a href="javascript:submitForm('anagrafeTributaria');">anagrafe tributaria</a>
+                        </li>
+                        <!--@@linkSianAnagrafeTributaria-->
+                      </ul>
+                    </li>
+                  <!-- @@blkSoggettiCollegati -->
+                  <!-- @@blkContiCorrenti -->
+                  <li><a href="../layout/conti_correnti.htm">Conti Correnti</a></li>
+                  <!-- @@blkContiCorrenti -->
+                  <!-- @@blkUnitaProduttive -->
+                    <li>
+                      <a href="../layout/sedi.htm">Unit&agrave;  produttive</a>
+                    </li>
+                  <!-- @@blkUnitaProduttive -->
+                  <!-- @@blkTerreni -->
+				          <li>
+				            <!-- @@blkLinkElenco -->
+				            <a href="../layout/terreniParticellareElenco.htm">Terreni</a>
+				            <!-- @@blkLinkElenco -->
+				            <!-- @@blkLinkRiepiloghi -->
+				            <a href="../layout/riepiloghi.htm">Terreni</a>
+				            <!-- @@blkLinkRiepiloghi -->
+				          </li>
+				          <!-- @@blkTerreni -->
+				          <!-- @@blkUnitaVitate -->
+				          <li>
+				            <!-- @@blkLinkElenco -->
+				            <a href="../layout/terreniUnitaArboreeElenco.htm">Unit&agrave; Vitate</a>
+				            <!-- @@blkLinkElenco -->
+				            <!-- @@blkLinkRiepiloghi -->
+				              <a href="../layout/riepiloghiUnitaArboree.htm">Unit&agrave; Vitate</a>
+				              <!-- @@blkLinkRiepiloghi -->
+				          </li>
+				          <!-- @@blkUnitaVitate -->
+                  <!-- @@blkFabbricati -->
+                    <li>
+                      <a href="../layout/fabbricati.htm">Fabbricati e Strutture</a>
+                    </li>
+                  <!-- @@blkFabbricati -->
+                  <!-- @@blkAllevamenti -->
+                    <li>
+                      <a href="../layout/allevamenti.htm">Allevamenti</a>
+                    </li>
+                  <!-- @@blkAllevamenti -->
+                  <!-- @@blkManodopera -->
+                    <li>
+                      <a href="../layout/manodopera.htm">Manodopera</a>
+                    </li>
+                  <!-- @@blkManodopera -->
+                  <!-- @@blkMotoriAgricoli -->
+                    <li>
+                      <a href="../layout/motori_agricoli_incarico.htm">Macchine agricole</a>
+                    </li>
+                  <!-- @@blkMotoriAgricoli -->
+                  <!-- @@blkDiritti -->
+                    <li><a href="../layout/diritti.htm">Diritti di produzione</a></li>
+                  <!-- @@blkDiritti -->
+                  <!-- @@blkAttestazioni -->
+                  	<li><a href="../layout/attestazioniDettaglio.htm">Dichiarazioni</a></li>
+              	  <!-- @@blkAttestazioni -->
+                  <!-- @@blkDichiarazioniConsistenza -->
+                  <li><a href="../layout/dichiarazioneConsistenza.htm">Validazioni</a></li>
+                  <!-- @@blkDichiarazioniConsistenza -->
+                  <!-- @@blkDocumenti -->
+                  <li><a href="../layout/documentiElenco.htm">Documenti</a></li>
+                  <!-- @@blkDocumenti -->
+                  <!-- @@blkFascicoloDematerializzato -->
+				          <li>
+				            <a href="../layout/fascicoloDematerializzato.htm">Fascicolo<br>elettronico</a>
+				          </li>
+				          <!-- @@blkFascicoloDematerializzato --> 
+                  <!-- @@blkGestioneNotifiche -->
+                  <li><a href="../layout/notifiche.htm">Notifiche</a></li>
+                  <!-- @@blkGestioneNotifiche -->
+                  <!-- @@blkComunicazione10R -->
+                    <li>
+                      <a href="../layout/comunicazione10R_dettaglio.htm">Comunicazione 10/R</a>
+                    </li>
+                  <!-- @@blkComunicazione10R -->
+                  <!-- @@blkPratiche -->
+                  <li><a href="../layout/pratiche.htm">Pratiche</a></li>
+                  <!-- @@blkPratiche -->
+                  <!-- @@blkStampaFascicolo -->
+                  <li><a href="../layout/scelta_stampa.htm">Stampe</a></li>
+                  <!-- @@blkStampaFascicolo -->
+				  <li><a href="../layout/strumenti.htm">Strumenti</a></li>
+                </ul>
+              </div>
+            </div>
+            <hr />
+            <!-- SECONDA COLONNA -->
+            <div id="contenuto">
+              <div id="intesta">
+	              <p class="$$aziendaIntestazione" title="$$tooltipIntestazione" >
+	                $$CUAAIntestazione  $$denominazioneIntestazione
+	              </p>
+	            </div>
+	            <!-- @@blkNotifica -->
+              <p class="$$immagine">$$messaggioNotifica</p>
+              <!-- @@blkINNotifica -->
+              <div class="notifica">$$notifica</div>
+             <!-- @@blkINNotifica -->
+              <!-- @@blkNotifica -->
+			  <br />
+              <table cellspacing="3" summary="Questa tabella è costituita da righe" class="detailTable">
+			   <col width="30%" />
+			   <col width="70%" />
+               <tr>
+                 <td>
+                   <label for="storico" class="checkbox">Visualizza storico</label>
+                   <input type="checkbox" name="storico" id="storico" value="si" $$checkedStorico />
+                 </td>
+                 <td>
+		  		   <div class="azioni">
+		  		     <a href="javascript:submitForm('aggiorna');">aggiorna</a>
+		  		   </div>
+                 </td>
+               </tr>
+             </table>
+             <!--@@blkNoErr-->
+               <table cellspacing="3" summary="Questa tabella contiene i dati del rapporto">
+			   	 <thead>
+                   <tr>
+                     <th class="radio" scope="col">&nbsp;</th>
+                     <th class="center" scope="col">&nbsp;</th>
+                     <th class="center" scope="col">Ruolo</th>
+                     <th class="center" scope="col">Cognome</th>
+                     <th class="center" scope="col">Nome</th>
+                     <th class="center" scope="col">Codice fiscale</th>
+                     <th class="center" scope="col">Data inizio validit&agrave;</th>
+                     <th class="center" scope="col">Data fine validit&agrave;</th>              
+                     <th class="center" scope="col">Data inizio ruolo</th>
+                     <th class="center" scope="col">Data fine ruolo</th>              
+                   </tr>
+				 </thead>
+                 <!--@@blkRiga-->
+				   <tbody>
+                     <tr class="evidence">
+                       <th class="radio" scope="row">
+                         <input type="radio" name="radiobutton" id="radiobutton" value="$$idContitolare" $$checked />
+                         <input type="hidden" name="CUAA" value="$$codiceFiscale"/>
+                         <label for="radiobutton" class="alt">Soggetto</label>
+                       </th>
+                       <td class="telefono">
+                       <!--@@blkCellulare-->
+					   <a href="#" title="numero di telefono" class="telefono"></a>
+                       <!--@@blkCellulare-->
+                       </td>
+                       <td>$$ruolo</td>
+                       <td>$$cognome</td>
+                       <td>$$nome</td>
+                       <td>$$codiceFiscale</td>
+                       <td>$$dataInizioRuolo</td>
+                       <td>$$dataFineRuolo</td>
+                       <td>$$dataInizioRuoloMod</td>
+                       <td>$$dataFineRuoloMod</td>
+                     </tr>
+				   </tbody>
+                 <!--@@blkRiga-->                             
+               </table>
+             <!--@@blkNoErr-->
+           </div>
+         </div>
+         <hr />
+         <!-- PIE' DI PAGINA -->
+         $$footer

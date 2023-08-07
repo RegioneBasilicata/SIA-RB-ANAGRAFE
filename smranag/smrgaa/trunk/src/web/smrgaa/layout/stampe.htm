@@ -1,0 +1,349 @@
+$$head
+<script language="javascript1.2" src="../js/stampaMod.js" type="text/javascript"></script>
+<script language="javascript1.2" src="../js/getRadioValue.js" type="text/javascript"></script>
+<script language="javascript1.2" src="../js/checktext.js" type="text/javascript"></script>
+<script type="text/javascript" src="../js/messaggistica.js"></script>
+<script language="javascript1.2">
+
+  function controlloCheckbox() 
+  {
+    var count = 0;
+    var array = document.forms[0].codiceStampa;
+    var arrayObbligatorio = document.forms[0].obbligatorio;
+    if(array != null) 
+    {
+      if(array.length) 
+      {
+        for(var i = 0; i < array.length; i++) 
+        {
+          if(array[i].checked == true) 
+          {
+            count++;
+          }
+        }
+      }
+      else 
+      {
+        if(array.checked == true) 
+        {
+          count++;
+        }
+      }
+    }
+  
+    if(count == 0)
+    {
+      alert("Non è stata selezionata nessuna voce");
+    }
+    else
+    {
+      //Se sono nella dichiarazione di consistenza devo settare 
+      //i quadri obbligatori disabilitati 
+      for(var i = 0; i < arrayObbligatorio.length; i++) 
+      {
+        if(arrayObbligatorio[i].value == 'S')
+        {
+          array[i].disabled = false;
+          array[i].cheched = 'true';
+        }
+      }
+      stampaMod(document.forms[0]);
+      
+      for(var i = 0; i < arrayObbligatorio.length; i++) 
+      {
+        if(arrayObbligatorio[i].value == 'S')
+        {
+          array[i].disabled = true;
+          //array[i].cheched = 'true';
+        }
+      }
+    }
+  }
+
+
+  function selectAllKeys() 
+  {
+    var array = document.forms[0].codiceStampa;
+    if(array != null) 
+    {
+      if(array.length) 
+      {
+        for(var i = 0; i < array.length; i++) 
+        {
+          if(array[i].disabled == false) 
+          {
+            array[i].checked = true;
+          }
+        }
+      }
+      else 
+      {
+        if(array.disabled == false) 
+        {
+          array.checked = true;
+        }
+      }
+    }
+  }
+  
+  
+  // Funzione per deselezionare tutti i checkbox dell'elenco più la chiave nascosta
+  // relativa all'id_utilizzo_particella
+  function deselectAllKeys() 
+  {
+    var array = document.forms[0].codiceStampa;
+    if(array != null) 
+    {
+      if(array.length) 
+      {
+        for(var i = 0; i < array.length; i++) 
+        {
+          if(array[i].disabled == false) 
+          {
+            array[i].checked = false;
+          }
+        }
+      }
+      else 
+      {
+        if(array[i].disabled == false) 
+        {
+          array.checked = false;
+        }
+      }
+    }
+  }
+    	
+    	
+
+  </script>
+</head>
+<body id="homeIndice" onLoad="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+  <form name="stampe" method="post" action="../layout/stampe.htm">
+    <input type="hidden" name="stampaPdf" value="stampaPdf">
+    <input type="hidden" name="tipoStampa" value="$$tipoStampa">
+    <input type="hidden" name="idDichiarazioneConsistenza" value="$$idDichiarazioneConsistenza">
+    <input type="hidden" name="labelPianoLavorazione" value="$$labelPianoLavorazione">
+    <div id="pagina" class="colonnaUnica">
+      <!-- INTESTAZIONE -->
+      <div id="intestazione##pathProvincia">
+        $$header
+        <!-- menu di navigazione-->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li>
+                <a href="../layout/index.htm" title="Torna alla pagina principale">home</a>
+              </li>
+              <li class="attivo">gestione anagrafe aziende</li>
+              <li>
+                <a href="#" title="contatti">contatti</a>
+              </li>
+              <li>
+                <a href="#" title="help">help</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr/>
+      <div style="clear:left"></div>
+      <!-- CORPO -->
+      <div id="corpo">
+        <div id="Utente">
+          <div id="datiUtente">
+            <strong>utente:</strong>$$utente&nbsp;&nbsp;
+            <strong>ente:</strong>$$ente
+          </div>
+          <div id="chiudisessione">
+            <a href="javascript: logout();">chiudi sessione</a>
+          </div>
+        </div>
+        <hr/>
+        <!--PRIMA COLONNA -->
+        <h3>Gestione Anagrafe Aziende&nbsp;&gt;&nbsp;Stampe
+          <span class="helpFuori">
+            <a href="#">
+              <span class="alt">[help]</span>
+            </a>
+          </span>
+        </h3>
+        <hr/>
+        <div class="box">
+          <div class="menuSX1">
+            <ul>
+              <!-- @@blkElencoAziendeRapLegale -->
+                <li><a href="../layout/elencoAziendeRapLegale.htm">Elenco Aziende</a></li>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <!-- @@blkRicercaAzienda-->
+                <li><a href="../layout/ricerca.htm">Ricerche</a></li>
+              <!-- @@blkRicercaAzienda-->
+              <!-- @@blkNuova -->
+                <li>
+                  <a href="../layout/nuovaAziendaAnagrafica.htm">Nuova Azienda</a>
+                </li>
+              <!-- @@blkNuova -->
+              <!-- @@blkNuovaIscrizione -->
+              <li>
+                <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+              </li>
+              <!-- @@blkNuovaIscrizione -->
+            </ul>
+          </div>
+          <div class="menuSX">
+            <ul>
+              <li>
+                <a href="../layout/anagrafica.htm">Anagrafica</a>
+              </li>
+              <!-- @@blkAziendeCollegate -->
+	          			<li>
+	          					<a href="../layout/aziendeCollegate.htm">$$aziendeCollegateLabel</a>
+	          			</li>
+	          	<!-- @@blkAziendeCollegate -->
+	          <!-- @@blkSincronizzaFascicolo -->
+               <li>
+               	<a href="../layout/sincronizzaFascicolo.htm">Sincronizza fascicolo</a>
+               </li>
+              <!-- @@blkSincronizzaFascicolo -->	
+              <!-- @@blkSoggettiCollegati -->
+                <li>
+                  <a href="../layout/contitolari.htm">Soggetti collegati</a>
+                </li>
+              <!-- @@blkSoggettiCollegati -->
+              <!-- @@blkContiCorrenti -->
+                <li>
+                  <a href="../layout/conti_correnti.htm">Conti Correnti</a>
+                </li>
+              <!-- @@blkContiCorrenti -->
+              <!-- @@blkUnitaProduttive -->
+                <li>
+                  <a href="../layout/sedi.htm">Unit&agrave; produttive</a>
+                </li>
+              <!-- @@blkUnitaProduttive -->
+              <!-- @@blkTerreni -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniParticellareElenco.htm">Terreni</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		            <a href="../layout/riepiloghi.htm">Terreni</a>
+		            <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkTerreni -->
+		          <!-- @@blkUnitaVitate -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniUnitaArboreeElenco.htm">Unit&agrave; Vitate</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		              <a href="../layout/riepiloghiUnitaArboree.htm">Unit&agrave; Vitate</a>
+		              <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkUnitaVitate -->
+              <!-- @@blkFabbricati -->
+                <li>
+                  <a href="../layout/fabbricati.htm">Fabbricati e Strutture</a>
+                </li>
+              <!-- @@blkFabbricati -->
+              <!-- @@blkAllevamenti -->
+                <li>
+                  <a href="../layout/allevamenti.htm">Allevamenti</a>
+                </li>
+              <!-- @@blkAllevamenti -->
+              <!-- @@blkManodopera -->
+                <li>
+                  <a href="../layout/manodopera.htm">Manodopera</a>
+                </li>
+              <!-- @@blkManodopera -->
+              <!-- @@blkMotoriAgricoli -->
+                <li>
+                  <a href="../layout/motori_agricoli_incarico.htm">Macchine agricole</a>
+                </li>
+              <!-- @@blkMotoriAgricoli -->
+              <!-- @@blkDiritti -->
+                <li><a href="../layout/diritti.htm">Diritti di produzione</a></li>
+              <!-- @@blkDiritti -->
+              <!-- @@blkAttestazioni -->
+              	<li><a href="../layout/attestazioniDettaglio.htm">Dichiarazioni</a></li>
+              <!-- @@blkAttestazioni -->
+              <!-- @@blkDichiarazioniConsistenza -->
+                <li>
+                  <a href="../layout/dichiarazioneConsistenza.htm">Validazioni</a>
+                </li>
+              <!-- @@blkDichiarazioniConsistenza -->
+              <!-- @@blkDocumenti -->
+              <li><a href="../layout/documentiElenco.htm">Documenti</a></li>
+              <!-- @@blkDocumenti -->
+              <!-- @@blkFascicoloDematerializzato -->
+              <li>
+                <a href="../layout/fascicoloDematerializzato.htm">Fascicolo<br>elettronico</a>
+              </li>
+              <!-- @@blkFascicoloDematerializzato -->
+              <!-- @@blkGestioneNotifiche -->
+                <li>
+                  <a href = "../layout/notifiche.htm">Notifiche</a>
+                </li>
+              <!-- @@blkGestioneNotifiche -->
+              <!-- @@blkComunicazione10R -->
+                <li>
+                  <a href="../layout/comunicazione10R_dettaglio.htm">Comunicazione 10/R</a>
+                </li>
+              <!-- @@blkComunicazione10R -->
+              <!-- @@blkPratiche -->
+                <li><a href="../layout/pratiche.htm">Pratiche</a></li>
+              <!-- @@blkPratiche -->
+              <!-- @@blkStampaFascicolo -->
+                <li>
+                  <a href="../layout/scelta_stampa.htm" class="on">Stampe</a>
+                </li>
+              <!-- @@blkStampaFascicolo -->
+			 <li>
+                <a href="../layout/strumenti.htm">Strumenti</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <hr/>
+        <!-- SECONDA COLONNA -->
+        <div id="contenuto">
+          <div id="intesta">
+            <p class="$$aziendaIntestazione" title="$$tooltipIntestazione" >
+              $$CUAAIntestazione  $$denominazioneIntestazione
+            </p>
+          </div>
+          <!-- @@blkNotifica -->
+            <p class="$$immagine">$$messaggioNotifica</p>
+            <p class="notifica">$$notifica</p>
+          <!-- @@blkNotifica -->
+          <br/>
+          <table cellspacing="3">
+            <caption>Stampa $$descrizioneReport $$descrizionePianoLavorazione</caption>
+            <!-- @@blkQuadri -->
+            <tr>
+              <th class="radio" scope="row">
+                <input type="checkbox" name="codiceStampa" value="$$codice" $$checkedQuadro $$disableQuadro />
+                <input type="hidden" name="obbligatorio" value="$$obbligatorio" />
+              </th>
+              <td colspan="3">
+                $$descrizioneSelezione
+              </td>
+            </tr>
+            <!-- @@blkQuadri -->
+          </table>
+          <div class="pulsanti"><div class="sin">
+            <input type="button" class="inputPulsante" value="Seleziona" name="Seleziona" id="Seleziona" onclick="selectAllKeys()"/>
+            <input type="button" class="inputPulsante" value="Deseleziona" name="Deseleziona" id="Deseleziona" onclick="deselectAllKeys()"/>
+          </div>
+          <div class="des">
+            <input type="button" class="inputPulsante" value="Stampa" name="salva" id="salva" onclick="javascript:controlloCheckbox()"/>
+          </div></div>  
+        </div>
+      </div>
+      <hr/>
+    </form>
+    <!-- PIE' DI PAGINA -->
+    $$footer
+

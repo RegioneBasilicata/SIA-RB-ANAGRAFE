@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 4.1.3  -->
+<!-- 2016-09-28T16:28:04 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DichCheckSubReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="0" bottomMargin="0">
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<parameter name="check_uncheked" class="java.lang.String"/>
+	<parameter name="check_cheked" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="valoreCheck" class="java.math.BigInteger"/>
+	<field name="valoreDich" class="java.lang.String"/>
+	<detail>
+		<band height="52" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="19" width="16" height="16">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<printWhenExpression><![CDATA[$F{valoreCheck} != null && $F{valoreCheck}.longValue() == 1]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA[$P{check_cheked}]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="-1" y="17" width="16" height="16">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<printWhenExpression><![CDATA[$F{valoreCheck} != null && $F{valoreCheck}.longValue() == 0]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA[$P{check_uncheked}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="27" y="9" width="510" height="30"/>
+				<textFieldExpression><![CDATA[$F{valoreDich}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

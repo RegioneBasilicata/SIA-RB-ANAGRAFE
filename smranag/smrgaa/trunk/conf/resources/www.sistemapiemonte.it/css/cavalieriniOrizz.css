@@ -1,0 +1,143 @@
+/*
+* versione v.2.2.2003.11.26.10.44
+* CSS2.0 per la gestione dei cavalierini delle pagine per la gestione tributi e visure di TOBECONFIG
+*/
+.menuTendinaOrizz li{
+	list-style:none !important;
+}
+/* M */
+.menuTendinaOrizz {
+	margin		: 0;
+	padding		: 0;
+	list-style	: none;
+}
+.menuTendinaOrizz li {
+	list-style	: none;
+	float		: left;
+	padding		: 0;
+	margin		: 0 0 0 0;
+	background	: transparent url(im/cav/right.gif) no-repeat right top;
+	color		: #4f4f4c;
+	position	: relative;
+}
+.menuTendinaOrizz a,
+.menuTendinaOrizz a:link,
+.menuTendinaOrizz a:visited {
+	float		: left;
+	display		: block;
+	background	: transparent url(im/cav/left.gif) no-repeat left top;
+	color		: #4f4f4c;
+	padding		: 0 12px;
+	text-decoration	: none;
+	font-weight	: bold;
+	position	: relative;
+/*	white-space: nowrap;*/
+}
+.menuTendinaOrizz a:hover,
+.menuTendinaOrizz a:active {
+	color		: #000;
+	background	: transparent url(im/cav/left.gif) no-repeat left top;
+}
+/*_________________________________________*/
+
+
+/* la seguente regola rimuove l'angolo sx al primo cavalierino del menu di servizio */
+
+li#menuDiServizio-primo a {
+	background-image: none;
+}
+
+/*________________________________________*/
+
+/* Backslash Hack per nascondere la regola a IE5-Mac \*/
+.menuTendinaOrizz a:link,
+.menuTendinaOrizz a:visited {
+	float		: none;
+	position	: static;
+}
+/* fine hack */
+
+.menuTendinaOrizz li:hover a{
+	background	:   url(im/cav/left_on.gif) 0 0 no-repeat ;
+	color		: #000;
+}
+.menuTendinaOrizz li:hover a{
+	background: url(im/cav/right_on.gif) 100% 0 no-repeat;
+	color		: #000;
+}
+/*
+.menuTendinaOrizz li a:hover {
+	background	:   url(im/cav/left_on.gif) no-repeat left top;
+	color		: #000;
+}*/
+
+.menuTendinaOrizz li.attivo {
+	background	:   url(im/cav/right_on.gif) no-repeat right top;
+	color		: #4f4f4c;
+}
+.menuTendinaOrizz .attivo a:link,
+.menuTendinaOrizz .attivo a:visited {
+	background	:   url(im/cav/left_on.gif) no-repeat left top;
+	color		: #4f4f4c;
+}
+/* gestione dei cavalierini differenti per il menu di navigazione */
+#menuDiNavigazione .menuTendinaOrizz li {
+	list-style:none;	
+	background	: #fff;
+	color		: #4f4f4c;
+	float:left;
+}
+#menuDiNavigazione .menuTendinaOrizz li:hover {
+	background	:#bfbfbf;
+	color		: #4f4f4c;
+}
+#menuDiNavigazione .menuTendinaOrizz li:hover a {
+	background	:#bfbfbf;
+	color		: #4f4f4c;
+}
+#menuDiNavigazione .menuTendinaOrizz a:link,
+#menuDiNavigazione .menuTendinaOrizz a:visited {
+	background	: #d9d9d9;
+	color		: #4f4f4c;
+	border:1px solid #4f4f4c;
+}
+#menuDiNavigazione .menuTendinaOrizz a:hover,
+#menuDiNavigazione .menuTendinaOrizz a:active {
+	border:1px solid #4f4f4c;
+	color		: #4f4f4c;
+}
+#menuDiNavigazione .menuTendinaOrizz li.attivo {
+	font-weight:bold;	
+	background	: #fff;
+	color		: #4f4f4c;
+	border-bottom:1px solid #fff;
+	/*padding		: 0 14px;*/
+}
+#menuDiNavigazione li.attivo a:link,
+#menuDiNavigazione li.attivo a:visited {
+	background	:#fff;
+	color		: #4f4f4c;
+	padding		: 0 14px;
+	border-bottom:1px solid #fff;
+}
+#menuDiNavigazione li.attivo a:hover,
+#menuDiNavigazione li.attivo a:active {
+	color		: #4f4f4c;
+	background	: #fff;
+	padding		: 0 14px;
+	border-bottom:1px solid #fff;
+}
+li.on{	
+	padding		: 0 14px;
+	font-weight:bold;	
+	background	: #fff;
+	color		: #4f4f4c;
+	border:1px solid #4f4f4c;
+	border-bottom:1px solid #fff;
+}
+li.evidenza{	
+	padding		: 0 6px;
+	color: #fff;
+	background-color: #005191;
+	font-weight: bold;
+}

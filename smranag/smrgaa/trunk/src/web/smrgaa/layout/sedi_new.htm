@@ -1,0 +1,537 @@
+$$head
+  <script src="../js/checktext.js" type="text/javascript"></script>
+  <script type="text/javascript" src="../js/messaggistica.js"></script>
+  <script type="text/javascript">
+
+    function caricaAttivita(codice, descrizione, mypage, myname, w, h, scroll, form){
+      if(codice=='' && descrizione=='')
+        alert('Inserire almeno un parametro di ricerca');
+      else{
+        for(i=0;i<descrizione.length;i++){
+          if(descrizione.charAt(0)=='%')
+            descrizione=descrizione.substr(1,descrizione.length);
+          else break;
+        }
+        newWindow(mypage, myname, w, h, scroll, form);
+      }
+    }
+
+    function scegliComune(mypage, myname, w, h, scroll,provincia,comune) {
+      var winl = (screen.width - w) / 2;
+      var wint = (screen.height - h) / 2;
+      var provenienza = 'nonEstinto';
+      if(provincia ==  '' && comune == '') {
+        alert('Inserire una provincia o un comune');
+      }
+      else if(!mappaOggetti(provincia) || !mappaOggetti(comune)) {
+      }
+      else {
+        winprops =    'height='+h+',width='+w+',top='+wint+',left='+winl+',scrollbars='+scroll+',resizable';
+        win = window.open(mypage+'?provincia='+provincia+'&comune='+comune+'&provenienza='+provenienza, myname, winprops);
+        if (parseInt(navigator.appVersion) >= 4) {
+          win.window.focus();
+        }
+      }
+    }
+
+
+    function scegliOTE(mypage, myname, w, h, scroll, codice, descrizione, form) {
+      if(codice == '' && descrizione == '') {
+        alert('Valorizzare il codice e/o la descrizione per effettuare la ricerca');
+      }
+      else {
+        document.form1.obiettivo.value = "sedi_new";
+        document.form1.codiceOTE.value = codice;
+        document.form1.descrizioneOTE.value = descrizione;
+        newWindow(mypage, myname, w, h, scroll, form);
+      }
+    }
+
+    function scegliATECO(mypage, myname, w, h, scroll, codice, descrizione, form) {
+      if(codice == '' && descrizione == '') {
+        alert('Valorizzare il codice e/o la descrizione per effettuare la ricerca');
+      }
+      else {
+        document.form1.obiettivo.value = "sedi_new";
+        document.form1.codiceATECO.value = codice;
+        document.form1.descrizioneATECO.value = descrizione;
+        newWindow(mypage, myname, w, h, scroll, form);
+      }
+    }
+
+    function newWindow(mypage, myname, w, h, scroll,form) {
+      var winl = (screen.width - w) / 2;
+      var wint = (screen.height - h) / 2;
+      winprops =    'height='+h+',width='+w+',top='+wint+',left='+winl+',scrollbars='+scroll+',resizable'
+      win = window.open('', myname, winprops);
+      if (parseInt(navigator.appVersion) >= 4) {
+        win.window.focus();
+      }
+      var target1 = form.target;
+      var action1 = form.action;
+      form.target = myname;
+      form.action = mypage;
+      form.submit();
+      form.target = target1;
+      form.action = action1;
+    }
+
+    function richiestaConfermaInserimento() {
+      if(document.form1.confermaOperazione.value != '') {
+        if(confirm("Attenzione: e' gia' presente un'unita' produttiva attiva nel comune dichiarato. Sicuro di voler proseguire?")) {
+          document.form1.operazioneIns.value = 'ok';
+          document.form1.submit();
+        }
+      }
+    }
+    
+  function scegliATECOSec(mypage, myname, w, h, scroll, codice, descrizione, form) 
+  {
+    if(codice == '' && descrizione == '') 
+    {
+      alert('Valorizzare il codice e/o la descrizione per effettuare la ricerca');
+    }
+    else 
+    {
+      form.obiettivo.value = 'modificaUte';
+      newWindow(mypage, myname, w, h, scroll, form);
+    }
+  }
+  
+  function scegliATECOAeepSec(mypage, myname, w, h, scroll, form) 
+  {
+    form.obiettivo.value = 'modificaUte';
+    newWindow(mypage, myname, w, h, scroll, form);
+  }
+
+  </script>
+</head>
+<!--
+   $$err_eliminaATECOSec
+   $$err_inserisciATECOSec
+ -->
+<body id="homeIndice" onLoad="javascript: richiestaConfermaInserimento();$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+  <form name="form1" method="post" action="../layout/sedi_new.htm">
+    <div id="pagina" class="colonnaUnica">
+      <input type="hidden" name="obiettivo" value="$$obiettivo">
+      <input type="hidden" name="operazioneIns" value="##operazioneIns">
+      <input type="hidden" name="confermaOperazione" value="##confermaOperazione">
+      <input type="hidden" id="operazione" name="operazione" value="$$operazione" />
+      <input type="hidden" id="regimeSediNew" name="regimeSediNew" value="regimeSediNew" />
+      <!-- INTESTAZIONE -->
+      <div id="intestazione##pathProvincia">
+        <!--intestazione-->
+	      $$header
+        <!-- menu di navigazione-->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li>
+                <a href="../layout/index.htm" title="Torna alla pagina principale">home</a>
+              </li>
+              <li class="attivo">gestione anagrafe aziende</li>
+              <li>
+                <a href="#" title="contatti">contatti</a>
+              </li>
+              <li>
+                <a href="#" title="help">help</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div style="clear:left"></div>
+      <!-- CORPO -->
+        <div id="corpo">
+          <div id="Utente">
+            <div id="datiUtente">
+              <strong>utente:</strong> $$utente &nbsp; &nbsp;
+              <strong>ente:</strong> $$ente
+            </div>
+            <div id="chiudisessione">
+              <a href="javascript: logout();">chiudi sessione</a>
+            </div>
+          </div>
+          <hr />
+          <!--PRIMA COLONNA -->
+          <h3>Gestione Anagrafe Aziende&nbsp;&gt;&nbsp;Unit&agrave; produttive&nbsp;&gt;&nbsp;Inserisci
+            <span class="helpFuori">
+              <a href="#">
+                <span class="alt"> [help]</span>
+              </a>
+            </span>
+          </h3>
+          <hr />
+          <div class="box">
+            <div class="menuSX1">
+              <ul>
+	              <!-- @@blkElencoAziendeRapLegale -->
+                <li><a href="../layout/elencoAziendeRapLegale.htm">Elenco Aziende</a></li>
+                <!-- @@blkElencoAziendeRapLegale -->
+                <!-- @@blkRicercaAzienda-->
+                <li><a href="../layout/ricerca.htm">Ricerche</a></li>
+                <!-- @@blkRicercaAzienda-->
+                <!-- @@blkNuova -->
+	              <li>
+                  <a href="../layout/nuovaAziendaAnagrafica.htm">Nuova Azienda</a>
+                </li>
+                <!-- @@blkNuova -->
+                <!-- @@blkNuovaIscrizione -->
+	              <li>
+	                <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+	              </li>
+	              <!-- @@blkNuovaIscrizione -->
+              </ul>
+            </div>
+            <div class="menuSX">
+              <ul>
+                <li>
+                  <a href="../layout/anagrafica.htm">Anagrafica</a>
+                </li>
+                <!-- @@blkAziendeCollegate -->
+		          			<li>
+		          					<a href="../layout/aziendeCollegate.htm">$$aziendeCollegateLabel</a>
+		          			</li>
+		          	<!-- @@blkAziendeCollegate -->
+		        <!-- @@blkSincronizzaFascicolo -->
+                <li>
+               	  <a href="../layout/sincronizzaFascicolo.htm">Sincronizza fascicolo</a>
+                </li>
+                <!-- @@blkSincronizzaFascicolo -->  	
+                <!-- @@blkSoggettiCollegati -->
+                  <li>
+                    <a href="../layout/contitolari.htm">Soggetti collegati</a>
+                  </li>
+                <!-- @@blkSoggettiCollegati -->
+                <!-- @@blkContiCorrenti -->
+                  <li>
+                    <a href="../layout/conti_correnti.htm">Conti Correnti</a>
+                  </li>
+                <!-- @@blkContiCorrenti -->
+                <!-- @@blkUnitaProduttive -->
+                  <li>
+                    <a href="../layout/sedi.htm" class="on">Unit&agrave;  produttive</a>
+                    <ul>
+                      <li>
+                        <a href="#">inserisci</a>
+                      </li>
+                    </ul>
+                  </li>
+                <!-- @@blkUnitaProduttive -->
+                <!-- @@blkTerreni -->
+			          <li>
+			            <!-- @@blkLinkElenco -->
+			            <a href="../layout/terreniParticellareElenco.htm">Terreni</a>
+			            <!-- @@blkLinkElenco -->
+			            <!-- @@blkLinkRiepiloghi -->
+			            <a href="../layout/riepiloghi.htm">Terreni</a>
+			            <!-- @@blkLinkRiepiloghi -->
+			          </li>
+			          <!-- @@blkTerreni -->
+			          <!-- @@blkUnitaVitate -->
+			          <li>
+			            <!-- @@blkLinkElenco -->
+			            <a href="../layout/terreniUnitaArboreeElenco.htm">Unit&agrave; Vitate</a>
+			            <!-- @@blkLinkElenco -->
+			            <!-- @@blkLinkRiepiloghi -->
+			              <a href="../layout/riepiloghiUnitaArboree.htm">Unit&agrave; Vitate</a>
+			              <!-- @@blkLinkRiepiloghi -->
+			          </li>
+			          <!-- @@blkUnitaVitate -->
+                <!-- @@blkFabbricati -->
+                  <li>
+                    <a href="../layout/fabbricati.htm">Fabbricati e Strutture</a>
+                  </li>
+                <!-- @@blkFabbricati -->
+                <!-- @@blkAllevamenti -->
+                  <li>
+                    <a href="../layout/allevamenti.htm">Allevamenti</a>
+                  </li>
+                <!-- @@blkAllevamenti -->
+                <!-- @@blkManodopera -->
+                  <li>
+                    <a href="../layout/manodopera.htm">Manodopera</a>
+                  </li>
+                <!-- @@blkManodopera -->
+                <!-- @@blkMotoriAgricoli -->
+                  <li>
+                    <a href="../layout/motori_agricoli_incarico.htm">Macchine agricole</a>
+                  </li>
+                <!-- @@blkMotoriAgricoli -->
+                <!-- @@blkDiritti -->
+                  <li><a href="../layout/diritti.htm">Diritti di produzione</a></li>
+                <!-- @@blkDiritti -->
+                <!-- @@blkAttestazioni -->
+                	<li><a href="../layout/attestazioniDettaglio.htm">Dichiarazioni</a></li>
+              	<!-- @@blkAttestazioni -->
+                <!-- @@blkDichiarazioniConsistenza -->
+                  <li>
+                    <a href="../layout/dichiarazioneConsistenza.htm">Validazioni</a>
+                  </li>
+                <!-- @@blkDichiarazioniConsistenza -->
+                <!-- @@blkDocumenti -->
+                <li><a href="../layout/documentiElenco.htm">Documenti</a></li>
+                <!-- @@blkDocumenti -->
+                <!-- @@blkFascicoloDematerializzato -->
+	              <li>
+	                <a href="../layout/fascicoloDematerializzato.htm">Fascicolo<br>elettronico</a>
+	              </li>
+	              <!-- @@blkFascicoloDematerializzato -->
+                <!-- @@blkGestioneNotifiche -->
+                  <li>
+                    <a href = "../layout/notifiche.htm">Notifiche</a>
+                  </li>
+                <!-- @@blkGestioneNotifiche -->
+                <!-- @@blkComunicazione10R -->
+                  <li>
+                    <a href="../layout/comunicazione10R_dettaglio.htm">Comunicazione 10/R</a>
+                  </li>
+                <!-- @@blkComunicazione10R -->
+                <!-- @@blkPratiche -->
+                  <li><a href="../layout/pratiche.htm">Pratiche</a></li>
+                <!-- @@blkPratiche -->
+                <!-- @@blkStampaFascicolo -->
+                  <li>
+                    <a href="../layout/scelta_stampa.htm">Stampe</a>
+                  </li>
+                <!-- @@blkStampaFascicolo -->
+				<li>
+                <a href="../layout/strumenti.htm">Strumenti</a>
+              </li>
+              </ul>
+            </div>
+          </div>
+          <hr />
+          <!-- SECONDA COLONNA -->
+          <div id="contenuto">
+            <div id="intesta">
+	            <p class="$$aziendaIntestazione" title="$$tooltipIntestazione" >
+	              $$CUAAIntestazione  $$denominazioneIntestazione
+	            </p>
+	          </div>
+            <table cellspacing="3" summary="Questa tabella contiene i dati del rapporto">
+              <tr>
+                <th>
+                  <label for="indirizzo">Indirizzo*</label>
+                </th>
+                <td colspan="2">
+                  <input type="text" name="indirizzo" id="indirizzo" class="text" value="$$indirizzo" maxlength="100" /> $$err_indirizzo </td>
+                </tr>
+                <tr>
+                  <th>
+                    <label for="provincia">Provincia*</label>
+                  </th>
+                  <td colspan="2">
+                    <input type="text" name="provincia" id="provincia" maxlength="2" class="due" value="$$provincia" />
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    <label for="comune">Comune*</label>
+                  </th>
+                  <td>
+                    <input type="text" name="comune" id="comune" value="$$comune" class="text" />
+
+                    <input type="hidden" name="istatComune" maxlength="2" value="$$istatComune" />
+                    <input type="hidden" name="idAzienda" maxlength="2" value="$$idAzienda" />
+                    $$err_comune
+                  </td>
+                  <td>  <div class="azioni"><a href="javascript: scegliComune('../view/sceltaComuneView.jsp','scegli_comune','600','300','yes',document.form1.provincia.value,document.form1.comune.value);">cerca</a></div></td>
+                </tr>
+                <tr>
+                  <th>
+                    <label for="cap">C.A.P.*</label>
+                  </th>
+                  <td colspan="2">
+                    <input type="text" name="cap" id="cap" maxlength="5" value="$$cap" class="textbreve" /> $$err_cap
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    <label for="denominazione">Denominazione</label>
+                  </th>
+                  <td colspan="2">
+                    <input type="text" name="denominazione" id="denominazione" value="$$denominazione" class="text" maxlength="100" /> $$err_denominazione
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    <label for="telefono">Telefono</label>
+                  </th>
+                  <td colspan="2">
+                    <input type="text" name="telefono" id="telefono" maxlength="15" value="$$telefono" class="quindici" /> $$err_telefono
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    <label for="fax">Fax</label>
+                  </th>
+                  <td colspan="2">
+                    <input type="text" name="fax" id="fax" maxlength="15" value="$$fax" class="quindici" /> $$err_fax
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    <label>Zona altimetrica*
+                           <br />(dell'ubicazione dell'unit&agrave; produttiva)
+                    </label>
+                  </th>
+                  <td colspan="2">
+                  	<select name="idZonaAltimetrica" id="idZonaAltimetrica">
+										  <option value=""></option>
+										  <!-- @@blkTipiZonaAltimetrica -->
+											<option value="$$idZonaAltimetrica" $$selected>$$descrizione</option>
+										  <!-- @@blkTipiZonaAltimetrica -->
+									  </select>
+									  $$err_idZonaAltimetrica
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    <label>Attivit&agrave; (codice <acronym title="Orientamento Tecnico Economico"> OTE</acronym>)</label>
+                  </th>
+                  <td>
+                    <abbr title="codice" lang="it">cod.</abbr>
+                     <input type="hidden" name="codiceOTE" maxlength="9" value="$$codiceOTE" />
+                     <input type="hidden" name="descrizioneOTE" maxlength="9" value="$$descrizioneOTE" />
+                     <label class="alt" for="codeOte">Codice OTE</label>
+                     <input type="text" name="codeOte" id="codeOte" value="$$codeOte" class="textbreve" />
+                     <label class="alt" for="descOte">Descrizione</label>
+                     <input type="text" name="descOte" id="descOte" value="$$descOte" class="text" /> $$err_codeOte
+
+                  </td>
+                  <td>  <div class="azioni"><a href="javascript: scegliOTE('../layout/scegliOTE.htm','scegli_ote','600','300','yes',document.form1.codeOte.value,document.form1.descOte.value, document.form1);">cerca</a></div></td>
+                </tr>
+                <tr>
+                  <th>
+                    <label><acronym title="Codice Istat delle attività economiche">ATECO</acronym>
+                     principale
+                    </label>
+                  </th>
+                  <td>
+                    <abbr title="codice" lang="it">cod.</abbr>
+                    <input type="hidden" name="codiceATECO" maxlength="9" value="$$codiceATECO" />
+                    <input type="hidden" name="descrizioneATECO" maxlength="9" value="$$descrizioneATECO" />
+                    <label for="codeAteco" class="alt">Codice ATECO</label>
+                    <input type="text" name="codeAteco" id="codeAteco" value="$$codeAteco" class="textbreve" />
+                    <label for="descAteco" class="alt">Descrizione ATECO</label>
+                    <input type="text" name="descAteco" id="descAteco" value="$$descAteco" class="text" /> $$err_codeAteco
+
+                  </td>
+                  <td><div class="azioni"><a href="javascript: scegliATECO('../layout/scegliATECO.htm','scegli_ateco','600','300','yes',document.form1.codeAteco.value,document.form1.descAteco.value, document.form1);">cerca</a></div></td>
+                </tr>
+                <tr>
+		              <td colspan="4">
+		                <table>
+		                  <tr>
+		                    <th scope="row">
+		                      <acronym  title="Codice Istat delle attività economiche">ATECO</acronym> secondari
+		                    </th>
+		                    <td colspan="2">
+		                      <abbr title="codice" lang="it">cod.</abbr>
+		                      <label for="descrizioneAttSecondarie" class="alt">descrizioneAttivit&agrave;Secondarie</label>
+		                      <input type="hidden" id="idAttivitaATECOSec" name="idAttivitaATECOSec" maxlength="9" value="$$idAttivitaATECOSec" />
+		                      <input type="text" id="codiceATECOSec" name="codiceATECOSec" maxlength="9" class="textbreve" value="$$codiceATECOSec" />
+		                      $$err_codiceATECOSec
+		                      <input type="text" id="descrizioneATECOSec" name="descrizioneATECOSec" maxlength="500" class="longText" value="$$descrizioneATECOSec" />
+		                      $$err_descrizioneATECOSec
+		                    </td>
+		                    <td>
+		                      <div class="azioni"> 
+		                        <a href="javascript: scegliATECOSec('../layout/scegliATECO.htm','scegli_ateco','600','300','yes',document.form1.codiceATECOSec.value,document.form1.descrizioneATECOSec.value, document.forms[0]);">cerca</a>
+		                      </div>
+		                      <div class="azioni"> 
+		                        <a href="javascript: scegliATECOAeepSec('../layout/scegliATECOAeep.htm','scegli_ateco_aeep','600','300','yes',document.forms[0]);">allinea aaep</a>
+		                      </div>
+		                    </td>
+		                  </tr>
+		                  <tr>
+		                    <td colspan="4">
+		                      <div class="azioni">
+		                        <a href="#" id="inserisciATECOSec" name="inserisciATECOSec" onClick="javascript:setHiddenOperazioneInsAteco(document.forms[0],'inserisciATECOSec',this);return false;" class="inputPulsante highlighted">inserisci</a>
+		                      </div>
+		                      ##err_inserisciATECOSec
+		                    </td>
+		                  </tr>
+		                </table>
+		              </td>
+		            </tr>
+		            <!-- @@blkATECOSec -->
+		            <tr>
+		              <td colspan="4">
+		                <!-- @@blkAttivitaATECOSec -->
+		                <table>
+		                  <tr>
+		                    <th class="radio"></th>
+		                    <th class="center">
+		                      Codice
+		                    </th>
+		                    <th class="center">
+		                      Attivit&agrave; ATECO
+		                    </th>
+		                  </tr>
+		                  <!-- @@blkElencoAttivitaATECOSec -->
+		                  <tr>
+		                    <td class="radio">
+		                      <input type="checkbox" name="chkAttivitaAtecoSec" id="chkAttivitaAtecoSec" value="$$chkAttivitaAtecoSec" $$chkAttivitaAtecoSec  />
+		                      <input name="idAttivitaATECOElenco" type="hidden" value="$$idAttivitaATECOElenco" id="idAttivitaATECOElenco" />
+		                    </td>
+		                    <td>
+		                      $$codiceATECOSecElenco
+		                    </td>
+		                    <td>
+		                      $$descrizioneATECOSecElenco
+		                    </td>
+		                  </tr>
+		                  <!-- @@blkElencoAttivitaATECOSec -->
+		                  <tr>
+		                    <td colspan="4">
+		                      <div class="azioni">
+		                        <a href="#" id="eliminaATECOSec" name="eliminaATECOSec" onClick="setHiddenOperazione(document.forms[0],'eliminaATECOSec', this);return false;" >elimina</a>
+		                      </div>
+		                      ##err_eliminaATECOSec
+		                    </td>
+		                  </tr>
+		                </table>
+		                <!-- @@blkAttivitaATECOSec -->
+		              </td>
+		            </tr>
+		            <!-- @@blkATECOSec -->
+                <tr>
+                  <th>
+                    <label for="dataInizioAttivitaStr">Data inizio attivit&agrave;*</label>
+                  </th>
+                  <td colspan="2">
+                    <input type="text" name="dataInizioAttivitaStr" id="dataInizioAttivitaStr"  maxlength="10" value="$$dataInizioAttivitaStr" class="textmedio" />
+                    <label>(gg/mm/aaaa)</label>
+                    $$err_dataInizioAttivitaStr
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    <label for="note">Note</label>
+                  </th>
+                  <td colspan="2">
+                    <textarea name="note" id="note" cols="85" rows="4">$$note</textarea>
+                    $$err_note
+                  </td>
+                </tr>
+              </table>
+              <p id="nota"> I campi contrassegnati con * sono obbligatori</p>
+              <div class="pulsanti">
+               <div class="sin">
+              <input name="salva"  type="submit" value="salva" class="inputPulsante highlighted" />
+              </div>
+               <div class="des">
+              <input name="annulla"  type="submit" value="annulla" class="inputPulsante annulla" />
+              </div>
+            </div>
+          </div>
+          </div>
+          <hr />
+          </form>
+          $$footer

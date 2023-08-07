@@ -1,0 +1,119 @@
+<html>
+<head>
+<title>SOLMR GUMA - Fake IRIDE</title>
+<link rel="stylesheet" type="text/css" href="rupar/css/stile.css">
+<link rel="stylesheet" type="text/css" href="rupar/css/stilebase.css">
+<script language="JavaScript">
+/*function provChanged() {
+  var luid = document.fakeForm.LUID.value;
+  var tuid = getSelectedProfile();
+  if (isProvinciale(tuid))
+    document.fakeForm.FUID.value = luid;
+  else if (isRegionale(tuid))
+    document.fakeForm.FUID.value = "";
+}*/
+
+function profChanged() {
+  var tuid = getSelectedProfile();
+  var lasttuid = document.fakeForm.lastTUID.value;
+  if (isIntermediario(lasttuid)&&
+      (isProvinciale(tuid)||isRegionale(tuid))) {
+    document.fakeForm.iFUID.value = document.fakeForm.FUID.value;
+    //provChanged();
+  } else if ((isProvinciale(lasttuid)||isRegionale(lasttuid))&&
+	     isIntermediario(tuid)) {
+    document.fakeForm.FUID.value = document.fakeForm.iFUID.value;
+  }
+  document.fakeForm.lastTUID.value = tuid;
+}
+
+function getSelectedProfile() {
+  var tuid;
+  for (i=0; i< document.fakeForm.TUID.length; i++) {
+    if (document.fakeForm.TUID[i].checked)
+      tuid = document.fakeForm.TUID[i].value;
+  }
+  return tuid;
+}
+
+function isProvinciale(tuid) {
+  if (tuid=="APA1"||tuid=="APA2"||tuid=="PARW"||
+      tuid=="PARN"||tuid=="PAWR"||tuid=="PAWN")
+    return true;
+  else
+    return false;
+}
+
+function isIntermediario(tuid) {
+  if (tuid=="ASP1"||tuid=="ASP2"||tuid=="SPRW"||
+      tuid=="SPNW"||tuid=="SPNR")
+    return true;
+  else
+    return false;
+}
+
+function isRegionale(tuid) {
+  if (tuid=="RERR")
+    return true;
+  else
+    return false;
+}
+</script>
+</head>
+<body>
+<div align="center">
+<br>
+<table cellpadding="0" cellspacing="0" width="725">
+<tr><td id="banner2" width="725"><img alt="image" src="rupar/im/banner.jpg" width="725" height="29"></td></tr>
+<tr><td align=center><table><tr><td><h1>EMULATORE DI IRIDE</h1></td></tr></table></td></tr>
+<tr align=center><td align=center>
+<form name="fakeForm" action="fakeIride.jsp" method="POST">
+<table class="data" width="725" bgcolor="#DFDFDF" text="#000000">
+<tr><td align=right>UserID:<br>(USERID)</td>
+<td><input type=text name="USERID" value=" LOREDANA MARTINO"/></td>
+<td align=right>Codice fiscale:<br>(UID)</td>
+<td><input type=text name="UID" value="MRTLDN76H55B594O"/></td></tr>
+<tr><td align=right>E-mail:<br>(SUID)</td>
+<td colspan=3><input type=text name="SUID" value="loredana.martino@coldiretticuneo.org"/></td>
+<!--td align=right>Provincia principale:<br>(LUID)</td>
+<td><select name="LUID" onChange="provChanged()">
+      <option value=""></option>
+      <option value="006">ALESSANDRIA</option>
+      <option value="005">ASTI</option>
+      <option value="096">BIELLA</option>
+      <option value="004">CUNEO</option>
+      <option value="003">NOVARA</option>
+      <option value="001">TORINO</option>
+      <option value="103">VERBANO CUSIO OSSOLA</option>
+      <option value="002">VERCELLI</option>
+    </select>
+</td--></tr>
+<tr><td align=right>Profilo:<br>(TUID)</td>
+<td colspan="4">
+<table cellpadding="5" cellspacing="2">
+<tr><td><input type="radio" name="TUID" value="APA1" onClick="profChanged()">Utente provinciale <br> RW su Anag e su UMA</td>
+    <td><input type="radio" name="TUID" value="APA2" onClick="profChanged()">Utente provinciale <br> RO su Anag e su UMA</td>
+<tr><td><input type="radio" name="TUID" value="ASP1" checked onClick="profChanged()">Utente intermediario <br> RW su Anag e su UMA</td>
+    <td><input type="radio" name="TUID" value="ASP2" onClick="profChanged()">Utente intermediario <br> RO su Anag e su UMA</td>
+<tr><td><input type="radio" name="TUID" value="REWN" onClick="profChanged()">Utente regionale <br> RW su Anagrafe</td>
+    <td><input type="radio" name="TUID" value="RERR" onClick="profChanged()">Utente regionale <br> RO su Anag e RO su UMA</td>
+</tr>
+</table>
+<input type=hidden name="lastTUID" value="APA1">
+</td></tr>
+<tr><td align=right valign=middle>
+Cod.Fiscale Intermediario/Istat Provincia<br>(FUID)
+</td>
+<td colspan=3>
+<input type=text name="FUID" value="05390270014">
+<input type=hidden name="iFUID">
+</td></tr>
+</table>
+</td></tr>
+<tr><td align=center class="bottone"><input type=submit value="Conferma"/></td></tr>
+<tr><td id="piede" align=left><img alt="image" src="rupar/im/banner_inf.jpg" width="725" height="29"></td></tr>
+</form>
+</table>
+</div>
+</body>
+</html>

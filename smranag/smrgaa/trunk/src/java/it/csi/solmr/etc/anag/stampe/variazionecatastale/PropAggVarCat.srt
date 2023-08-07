@@ -1,0 +1,1343 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report Type="TabularSheet" Top="0.4" Left="0.05" Bottom="0.4" Right="0.05" HeaderFromEdge="0.05" FooterFromEdge="0.4" PageNumbering="0" HorizontalWrap="true" PaperSize="8.267716x11.692913" Orientation="1" TabStops="0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5,6.0,6.5,7.0,7.5,8.0"
+ Prompting="true"><Version>9.5</Version>
+<ReportProperty Name="report.modified">
+<![CDATA[2013-10-25 10:33:46]]>
+</ReportProperty>
+<ReportProperty Name="TextMode">
+<![CDATA[false]]>
+</ReportProperty>
+<ReportProperty Name="live.edit">
+<![CDATA[false]]>
+</ReportProperty>
+<ReportProperty Name="edit.layout">
+<![CDATA[false]]>
+</ReportProperty>
+<ReportProperty Name="report.created">
+<![CDATA[2010-07-12 16:24:34]]>
+</ReportProperty>
+<Parameters>
+</Parameters>
+<ParameterSheets>
+</ParameterSheets>
+<RunningTotals>
+</RunningTotals>
+<dataViews>
+</dataViews>
+<reportAssetRepository>
+</reportAssetRepository>
+<Shapes>
+</Shapes>
+<Grid Rows="2" Cols="1">
+<GR Height="10">
+<GD Borders="0,0,0,0" RowSpan="1" ColSpan="1" Width="588.0" Repeat="false" CellFitPage="true">
+<Background  BackgroundLayout="1"  Color="-1"/>
+<TextElement ID="lblQuadro" Alignment="65" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-BOLD-10" Foreground="-16777216" FillStyle="0" TabStops="0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5,6.0,6.5,7.0,7.5,8.0" Justify="false" Orphan="false" TextAdvance="3">
+<![CDATA[QUADRO A - AZIENDA]]>
+</TextElement>
+<NewlineElement ID="nl1" Alignment="2" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-PLAIN-10" Foreground="-16777216" Count="1" Break="false">
+</NewlineElement>
+<TextElement ID="lblSezione" Alignment="65" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-BOLD-10" Foreground="-16777216" FillStyle="0" TabStops="0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5,6.0,6.5,7.0,7.5,8.0" Justify="false" Orphan="false" TextAdvance="3">
+<![CDATA[SEZ I - Dati anagrafici dell'azienda]]>
+</TextElement>
+</GD>
+</GR>
+<GR Height="193">
+<GD Borders="0,0,0,0" RowSpan="1" ColSpan="1" Width="588.0" Repeat="false" CellFitPage="true">
+<NewlineElement ID="Newline19" Alignment="2" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-PLAIN-4" Foreground="-16777216" Count="1" Break="false">
+</NewlineElement>
+<TableElement ID="tblAttestazioni" Alignment="1" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-PLAIN-10" Foreground="-16777216" TableWidth="0.0" AdhocEnabled="true" Layout="0" TableAdvance="1" MaxColWidth="0.0" OrphanControl="false" FillPage="false" MultiColumn="0" KeepSpanTogether="false" KeepGroupTogether="false" Padding="0,1,0,1" EmbedWidth="false" Embedded="true">
+<property><name><![CDATA[grow]]></name><value><![CDATA[true]]></value></property>
+<Table Rows="1" Cols="1" HeaderRow="0" HeaderCol="0" TrailerRow="0" TrailerCol="0">
+<TR>
+<TD Type="null"><![CDATA[null]]></TD></TR>
+</Table>
+</TableElement>
+<NewlineElement ID="Newline392" Alignment="1" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-PLAIN-10" Foreground="-16777216" Count="1" Break="false">
+</NewlineElement>
+<TableElement ID="tblPropAgg" Alignment="1" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-PLAIN-10" Foreground="-16777216" TableWidth="0.0" AdhocEnabled="true" FixedWidths="39,116,430"  Layout="0" TableAdvance="1" MaxColWidth="0.0" OrphanControl="false" FillPage="false" MultiColumn="0" KeepSpanTogether="false" KeepGroupTogether="false" Padding="0,1,0,1" EmbedWidth="true" Embedded="true">
+<property><name><![CDATA[grow]]></name><value><![CDATA[true]]></value></property>
+<tableDataAttr>
+<tableFormatAttr>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [18,2]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-PLAIN-10" alignment="17" topBorder="0" leftBorder="4097" bottomBorder="4097" rightBorder="4097" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [23,0]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-PLAIN-10" alignment="18" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [12,1]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-ITALIC-10" alignment="17" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [19,2]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-BOLD-10" alignment="17" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [13,1]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-ITALIC-10" alignment="17" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [24,0]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-PLAIN-10" alignment="18" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [25,0]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-PLAIN-10" alignment="18" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [14,1]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-ITALIC-10" alignment="17" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [15,1]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-ITALIC-10" alignment="17" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [26,0]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-PLAIN-10" alignment="18" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [16,1]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-ITALIC-10" alignment="17" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [10,0]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-PLAIN-10" alignment="18" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [17,1]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-ITALIC-10" alignment="17" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [11,0]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-PLAIN-10" alignment="18" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [18,1]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-ITALIC-10" alignment="17" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [12,0]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-PLAIN-10" alignment="18" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [19,1]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-ITALIC-10" alignment="17" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [13,0]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-PLAIN-10" alignment="18" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [14,0]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-PLAIN-10" alignment="18" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [15,0]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-PLAIN-10" alignment="18" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [16,0]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-PLAIN-10" alignment="18" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [17,0]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-PLAIN-10" alignment="18" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [18,0]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-PLAIN-10" alignment="18" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [19,0]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-PLAIN-10" alignment="18" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [0,2]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-BOLD-10" alignment="18" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [1,2]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-BOLD-10" alignment="18" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [2,2]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-ITALIC-10" alignment="18" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [3,2]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-BOLD-10" alignment="17" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [4,2]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-PLAIN-10" alignment="17" topBorder="0" leftBorder="4097" bottomBorder="4097" rightBorder="4097" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [5,2]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-BOLD-10" alignment="17" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [6,2]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-PLAIN-10" alignment="17" topBorder="0" leftBorder="4097" bottomBorder="4097" rightBorder="4097" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [0,1]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-BOLD-10" alignment="18" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [7,2]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-BOLD-10" alignment="17" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [1,1]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-BOLD-10" alignment="18" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [8,2]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-PLAIN-10" alignment="17" topBorder="0" leftBorder="4097" bottomBorder="4097" rightBorder="4097" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [2,1]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-ITALIC-10" alignment="18" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [20,2]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-PLAIN-10" alignment="17" topBorder="0" leftBorder="4097" bottomBorder="4097" rightBorder="4097" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [9,2]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-BOLD-10" alignment="17" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [3,1]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-ITALIC-10" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [21,2]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-BOLD-10" alignment="17" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [4,1]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-ITALIC-10" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [22,2]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-PLAIN-10" alignment="17" topBorder="0" leftBorder="4097" bottomBorder="4097" rightBorder="4097" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [5,1]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-ITALIC-10" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [23,2]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-BOLD-10" alignment="17" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [6,1]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-ITALIC-10" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [0,0]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-BOLD-10" alignment="18" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [24,2]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-PLAIN-10" alignment="17" topBorder="0" leftBorder="4097" bottomBorder="4097" rightBorder="4097" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [7,1]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-ITALIC-10" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [1,0]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-BOLD-10" alignment="18" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [25,2]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-BOLD-10" alignment="17" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [8,1]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-ITALIC-10" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [2,0]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-ITALIC-10" alignment="18" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [26,2]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-PLAIN-10" alignment="17" topBorder="0" leftBorder="4097" bottomBorder="4097" rightBorder="4097" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [20,1]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-ITALIC-10" alignment="17" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [9,1]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-ITALIC-10" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [3,0]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-PLAIN-10" alignment="18" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [21,1]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-ITALIC-10" alignment="17" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [10,2]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-PLAIN-10" alignment="17" topBorder="0" leftBorder="4097" bottomBorder="4097" rightBorder="4097" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [4,0]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-PLAIN-10" alignment="18" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [11,2]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-BOLD-10" alignment="17" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [22,1]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-ITALIC-10" alignment="17" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [5,0]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-PLAIN-10" alignment="18" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [23,1]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-ITALIC-10" alignment="17" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [12,2]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-PLAIN-10" alignment="17" topBorder="0" leftBorder="4097" bottomBorder="4097" rightBorder="4097" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [6,0]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-PLAIN-10" alignment="18" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [24,1]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-ITALIC-10" alignment="17" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [13,2]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-BOLD-10" alignment="17" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [7,0]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-PLAIN-10" alignment="18" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [14,2]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-PLAIN-10" alignment="17" topBorder="0" leftBorder="4097" bottomBorder="4097" rightBorder="4097" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [25,1]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-ITALIC-10" alignment="17" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [8,0]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-PLAIN-10" alignment="18" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [15,2]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-BOLD-10" alignment="17" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [26,1]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-ITALIC-10" alignment="17" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [20,0]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-PLAIN-10" alignment="18" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [9,0]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-PLAIN-10" alignment="18" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [16,2]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-PLAIN-10" alignment="17" topBorder="0" leftBorder="4097" bottomBorder="4097" rightBorder="4097" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [21,0]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-PLAIN-10" alignment="18" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [10,1]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-ITALIC-10" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [17,2]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-BOLD-10" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [22,0]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-PLAIN-10" alignment="18" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+<aTableFormat>
+<tableDataPath>
+<level>-1</level>
+<index>0</index>
+<col>false</col>
+<row>false</row>
+<type>512</type>
+<dtype>string</dtype>
+<path>
+<aPath><![CDATA[Cell [11,1]]]></aPath>
+</path>
+</tableDataPath>
+<tableFormat  font="Serif-ITALIC-10" alignment="17" linewrap="true" suppressIfZero="false" suppressIfDuplicate="false" pageBefore="false" pageAfter="false">
+</tableFormat>
+</aTableFormat>
+</tableFormatAttr>
+</tableDataAttr>
+<Table Rows="27" Cols="3" HeaderRow="0" HeaderCol="0" TrailerRow="0" TrailerCol="0">
+<TR>
+<TD Span="3x1" Type="string"><![CDATA[Tabella 1 - Corrispondenza tra l'uso del suolo e le possibili qualità colturali catastali da dichiarare]]></TD><TD Type="null"><![CDATA[null]]></TD><TD Type="null"><![CDATA[null]]></TD></TR>
+<TR>
+<TD Span="2x1" Type="string"><![CDATA[Uso del suolo dichiarato]]></TD><TD Type="null"><![CDATA[null]]></TD><TD Type="string"><![CDATA[Qualità colturale catastale corrispondente]]></TD></TR>
+<TR>
+<TD Type="string"><![CDATA[Codice]]></TD><TD Type="string"><![CDATA[Denominazione Agea]]></TD><TD Type="string"><![CDATA[Denominazione Agenzia (codice identificativo qualità)]]></TD></TR>
+<TR>
+<TD Span="1x8" Type="string"><![CDATA[60]]></TD><TD Span="1x8" Type="string"><![CDATA[Colture pluriennali]]></TD><TD Type="string"><![CDATA[Coltura asciutta]]></TD></TR>
+<TR>
+<TD Type="string"><![CDATA[80]]></TD><TD Type="null"><![CDATA[null]]></TD><TD Type="string"><![CDATA[seminativo (1) - seminativi (131) - semin. arbor. (3)]]></TD></TR>
+<TR>
+<TD Type="string"><![CDATA[120]]></TD><TD Type="null"><![CDATA[null]]></TD><TD Type="string"><![CDATA[Coltura con disponibilità di risorse irrigue]]></TD></TR>
+<TR>
+<TD Type="string"><![CDATA[400]]></TD><TD Type="null"><![CDATA[null]]></TD><TD Type="string"><![CDATA[semin. irriguo (2) - sem. arborato irrig. (4)]]></TD></TR>
+<TR>
+<TD Type="string"><![CDATA[440]]></TD><TD Type="null"><![CDATA[null]]></TD><TD Type="string"><![CDATA[Coltura asciutta - ciclo colturale ortivo]]></TD></TR>
+<TR>
+<TD Type="null"><![CDATA[null]]></TD><TD Type="null"><![CDATA[null]]></TD><TD Type="string"><![CDATA[orto (17) - orti (133) - orto arbor. (19) - orto frutt. (21) - orto pez. fos. (22) - orto fiori (23) - orto viv. flo. (25)]]></TD></TR>
+<TR>
+<TD Type="null"><![CDATA[null]]></TD><TD Type="null"><![CDATA[null]]></TD><TD Type="string"><![CDATA[Coltura con disponibilità di risorse irrigue - ciclo colturale ortivo]]></TD></TR>
+<TR>
+<TD Type="null"><![CDATA[null]]></TD><TD Type="null"><![CDATA[null]]></TD><TD Type="string"><![CDATA[orto irrig. (18) - orto arb. irrig. (20) - orto irrig. fi. (24) - orto irrig. arb. (102)]]></TD></TR>
+<TR Height="15">
+<TD Span="1x4" Type="string"><![CDATA[80]]></TD><TD Span="1x4" Type="string"><![CDATA[Prati e pascoli seminabili - esclusi i pascoli magri (superficie non avvicendata per almeno 5 anni)]]></TD><TD Type="string"><![CDATA[Coltura asciutta ]]></TD></TR>
+<TR>
+<TD Type="null"><![CDATA[null]]></TD><TD Type="null"><![CDATA[null]]></TD><TD Type="string"><![CDATA[prato (8) - prati (132) - seminativo (1) - semin. arbor. (3) - prato arbor. (10) - prato marc. (12) - prato mar. arbor. (13) - pascolo (91)]]></TD></TR>
+<TR>
+<TD Type="null"><![CDATA[null]]></TD><TD Type="null"><![CDATA[null]]></TD><TD Type="string"><![CDATA[Coltura con disponibilità di risorse irrigue]]></TD></TR>
+<TR>
+<TD Type="null"><![CDATA[null]]></TD><TD Type="null"><![CDATA[null]]></TD><TD Type="string"><![CDATA[prato irrig. (9) - prato irrig. arbor. (11) - semin. irrig. (2) - sem. arbor. irrig. (4) - sem. irrig. arbor. (5) - sem. car. irrig. (104)]]></TD></TR>
+<TR>
+<TD Span="1x4" Type="string"><![CDATA[120]]></TD><TD Span="1x4" Type="string"><![CDATA[Frutta a guscio]]></TD><TD Type="string"><![CDATA[Coltura asciutta ]]></TD></TR>
+<TR>
+<TD Type="null"><![CDATA[null]]></TD><TD Type="null"><![CDATA[null]]></TD><TD Type="string"><![CDATA[mandorleto (69) - mandor. fich. (70) - mandor. fico (71) - noceto (73) - noccioleto (74) - nocc. vigneto (75) - castagneto (58) - cast. frutto (59) - cast. frassino (60) - pistacchi (79)]]></TD></TR>
+<TR>
+<TD Type="null"><![CDATA[null]]></TD><TD Type="null"><![CDATA[null]]></TD><TD Type="string"><![CDATA[Coltura con disponibilità di risorse irrigue]]></TD></TR>
+<TR>
+<TD Type="null"><![CDATA[null]]></TD><TD Type="null"><![CDATA[null]]></TD><TD Type="string"><![CDATA[frutt. irrig. (48) - nocciol. irrig (103)]]></TD></TR>
+<TR Height="18">
+<TD Span="1x2" Type="string"><![CDATA[400]]></TD><TD Span="1x2" Type="string"><![CDATA[Pioppeti ed altre coltivazioni arboree da legno]]></TD><TD Type="string"><![CDATA[Coltura asciutta]]></TD></TR>
+<TR Height="24">
+<TD Type="null"><![CDATA[null]]></TD><TD Type="null"><![CDATA[null]]></TD><TD Type="string"><![CDATA[pioppeto (78) - frassineto (66) - querceto (81) - saliceto (84) - salceto (85) - sughereto (90)]]></TD></TR>
+<TR>
+<TD Span="1x6" Type="string"><![CDATA[440]]></TD><TD Span="1x6" Type="string"><![CDATA[Altre colture permanenti]]></TD><TD Type="string"><![CDATA[Coltura asciutta]]></TD></TR>
+<TR>
+<TD Type="null"><![CDATA[null]]></TD><TD Type="null"><![CDATA[null]]></TD><TD Type="string"><![CDATA[vivaio (26) - serra (126) - funghicoltura (127) - viv. orn. flor. (27) - roseto (83) - frutteto (47) - gelseto (67)]]></TD></TR>
+<TR>
+<TD Type="null"><![CDATA[null]]></TD><TD Type="null"><![CDATA[null]]></TD><TD Type="string"><![CDATA[Coltura asciutta - ciclo colturale ortivo]]></TD></TR>
+<TR>
+<TD Type="null"><![CDATA[null]]></TD><TD Type="null"><![CDATA[null]]></TD><TD Type="string"><![CDATA[orto (17) - orto arbor. (19) - orto frutt. (21) - orto pez. fos. (22) - orto fiori (23) - orto viv. flo. (25)]]></TD></TR>
+<TR>
+<TD Type="null"><![CDATA[null]]></TD><TD Type="null"><![CDATA[null]]></TD><TD Type="string"><![CDATA[Coltura con disponibilità di risorse irrigue - ciclo colturale ortivo]]></TD></TR>
+<TR>
+<TD Type="null"><![CDATA[null]]></TD><TD Type="null"><![CDATA[null]]></TD><TD Type="string"><![CDATA[orto irrig. (18) - orto arb. irrig. (20) - orto irrig. fi. (24) - orto irrig. arb. (102)]]></TD></TR>
+</Table>
+</TableElement>
+<SpaceElement ID="Space12" Alignment="0" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-PLAIN-10" Foreground="-16777216" Space="20">
+</SpaceElement>
+<NewlineElement ID="Newline391" Alignment="1" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-PLAIN-10" Foreground="-16777216" Count="1" Break="false">
+</NewlineElement>
+</GD>
+</GR>
+</Grid>
+</Report>

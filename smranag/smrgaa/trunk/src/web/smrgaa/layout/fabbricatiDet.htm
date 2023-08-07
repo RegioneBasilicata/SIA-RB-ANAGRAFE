@@ -1,0 +1,557 @@
+$$head
+<script type="text/javascript" src="../js/checktext.js"></script>
+<script type="text/javascript" src="../js/messaggistica.js"></script>
+<script type="text/javascript">
+
+    	function operazioneFabbricato(url) {
+      		document.form1.action = url;
+      		document.form1.submit();
+    	}
+
+  	</script>
+</head>
+<body id="homeIndice" onload="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+  <form name="form1" method="post" action="../layout/fabbricatiDet.htm">
+    <div id="pagina" class="colonnaUnica">
+      <div id="intestazione##pathProvincia">
+        <!--#include virtual="/ris/include/smrgaaweb/header.html" -->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li>
+                <a href="../layout/index.htm"
+                  title="Torna alla pagina principale">home</a>
+              </li>
+              <li class="attivo">
+                gestione anagrafe aziende
+              </li>
+              <li>
+                <a href="#" title="contatti">contatti</a>
+              </li>
+              <li>
+                <a href="#" title="help">help</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div style="clear: left"></div>
+      <div id="corpo">
+        <div id="Utente">
+          <div id="datiUtente">
+            <strong>utente:</strong>$$utente&nbsp;&nbsp;
+            <strong>ente:</strong>$$ente
+          </div>
+          <div id="chiudisessione">
+            <a href="javascript: logout();">chiudi sessione</a>
+          </div>
+        </div>
+        <hr />
+        <h3>
+          Gestione Anagrafe
+          Aziende&nbsp;&gt;&nbsp;Fabbricati&nbsp;&gt;&nbsp;Dettaglio
+          <span class="helpFuori"> <a href="#"> <span
+              class="alt">[help]</span> </a> </span>
+        </h3>
+        <hr />
+        <div class="box">
+          <div class="menuSX1">
+            <ul>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <li>
+                <a href="../layout/elencoAziendeRapLegale.htm">Elenco
+                  Aziende</a>
+              </li>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <!-- @@blkRicercaAzienda-->
+              <li>
+                <a href="../layout/ricerca.htm">Ricerche</a>
+              </li>
+              <!-- @@blkRicercaAzienda-->
+              <!-- @@blkNuova -->
+              <li>
+                <a href="../layout/nuovaAziendaAnagrafica.htm">Nuova
+                  Azienda</a>
+              </li>
+              <!-- @@blkNuova -->
+              <!-- @@blkNuovaIscrizione -->
+		          <li>
+		            <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+		          </li>
+		          <!-- @@blkNuovaIscrizione -->
+            </ul>
+          </div>
+          <div class="menuSX">
+            <ul>
+              <li>
+                <a href="../layout/anagrafica.htm">Anagrafica</a>
+              </li>
+              <!-- @@blkAziendeCollegate -->
+              <li>
+                <a href="../layout/aziendeCollegate.htm">$$aziendeCollegateLabel</a>
+              </li>
+              <!-- @@blkAziendeCollegate -->
+              <!-- @@blkSincronizzaFascicolo -->
+               <li>
+               	<a href="../layout/sincronizzaFascicolo.htm">Sincronizza fascicolo</a>
+               </li>
+              <!-- @@blkSincronizzaFascicolo -->
+              <!-- @@blkSoggettiCollegati -->
+              <li>
+                <a href="../layout/contitolari.htm">Soggetti
+                  collegati</a>
+              </li>
+              <!-- @@blkSoggettiCollegati -->
+              <!-- @@blkContiCorrenti -->
+              <li>
+                <a href="../layout/conti_correnti.htm">Conti
+                  Correnti</a>
+              </li>
+              <!-- @@blkContiCorrenti -->
+              <!-- @@blkUnitaProduttive -->
+              <li>
+                <a href="../layout/sedi.htm">Unit&agrave; produttive</a>
+              </li>
+              <!-- @@blkUnitaProduttive -->
+              <!-- @@blkTerreni -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniParticellareElenco.htm">Terreni</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		            <a href="../layout/riepiloghi.htm">Terreni</a>
+		            <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkTerreni -->
+		          <!-- @@blkUnitaVitate -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniUnitaArboreeElenco.htm">Unit&agrave; Vitate</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		              <a href="../layout/riepiloghiUnitaArboree.htm">Unit&agrave; Vitate</a>
+		              <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkUnitaVitate -->
+              <!-- @@blkFabbricati -->
+              <li>
+                <a href="../layout/fabbricati.htm" class="on">Fabbricati
+                  e Strutture</a>
+                <ul>
+                  <li>
+                    <a href="#" class="etichetta">dettaglio</a>
+                  </li>
+                  <!--@@blkModifica-->
+                  <li>
+                    <a
+                      href="javascript: operazioneFabbricato('../layout/fabbricatiModCaratteristiche.htm');">modifica</a>
+                  </li>
+                  <!--@@blkModifica-->
+                  <!--@@blkElimina-->
+                  <li>
+                    <a
+                      href="javascript: operazioneFabbricato('../layout/confermaEliminaFabbricato.htm');">elimina</a>
+                  </li>
+                  <!--@@blkElimina-->
+                </ul>
+              </li>
+              <!-- @@blkFabbricati -->
+              <!-- @@blkAllevamenti -->
+              <li>
+                <a href="../layout/allevamenti.htm">Allevamenti</a>
+              </li>
+              <!-- @@blkAllevamenti -->
+              <!-- @@blkManodopera -->
+              <li>
+                <a href="../layout/manodopera.htm">Manodopera</a>
+              </li>
+              <!-- @@blkManodopera -->
+              <!-- @@blkMotoriAgricoli -->
+              <li>
+                <a href="../layout/motori_agricoli_incarico.htm">Macchine agricole</a>
+              </li>
+              <!-- @@blkMotoriAgricoli -->
+              <!-- @@blkDiritti -->
+              <li>
+                <a href="../layout/diritti.htm">Diritti di
+                  produzione</a>
+              </li>
+              <!-- @@blkDiritti -->
+              <!-- @@blkAttestazioni -->
+              <li>
+                <a href="../layout/attestazioniDettaglio.htm">Dichiarazioni</a>
+              </li>
+              <!-- @@blkAttestazioni -->
+              <!-- @@blkDichiarazioniConsistenza -->
+              <li>
+                <a href="../layout/dichiarazioneConsistenza.htm">Validazioni</a>
+              </li>
+              <!-- @@blkDichiarazioniConsistenza -->
+              <!-- @@blkDocumenti -->
+              <li>
+                <a href="../layout/documentiElenco.htm">Documenti</a>
+              </li>
+              <!-- @@blkDocumenti -->
+              <!-- @@blkFascicoloDematerializzato -->
+		          <li>
+		            <a href="../layout/fascicoloDematerializzato.htm">Fascicolo<br>elettronico</a>
+		          </li>
+		          <!-- @@blkFascicoloDematerializzato --> 
+              <!-- @@blkGestioneNotifiche -->
+              <li>
+                <a href="../layout/notifiche.htm">Notifiche</a>
+              </li>
+              <!-- @@blkGestioneNotifiche -->
+              <!-- @@blkComunicazione10R -->
+              <li>
+                <a href="../layout/comunicazione10R_dettaglio.htm">Comunicazione
+                  10/R</a>
+              </li>
+              <!-- @@blkComunicazione10R -->
+              <!-- @@blkPratiche -->
+              <li>
+                <a href="../layout/pratiche.htm">Pratiche</a>
+              </li>
+              <!-- @@blkPratiche -->
+              <!-- @@blkStampaFascicolo -->
+              <li>
+                <a href="../layout/scelta_stampa.htm">Stampe</a>
+              </li>
+              <!-- @@blkStampaFascicolo -->
+			  <li><a href="../layout/strumenti.htm">Strumenti</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr />
+        <div id="contenuto">
+          <input type="hidden" id="idFabbricato" name="idFabbricato"
+            value="$$idFabbricato" />
+          <input type="hidden" id="pagina" name="pagina"
+            value="dettaglio" />
+	        <div id="intesta">
+	          <p class="$$aziendaIntestazione" title="$$tooltipIntestazione" >
+	            $$CUAAIntestazione  $$denominazioneIntestazione
+	          </p>
+	        </div>
+          <table cellspacing="3" class="detailTable"
+            summary="Questa tabella è costituita dal dettaglio del fabbricato">
+            <tr>
+              <th>
+                Unit&agrave; produttiva
+              </th>
+              <td colspan="5">
+                $$descComuneUte&nbsp;$$indirizzoUte
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Tipo fabbricato
+              </th>
+              <td colspan="5">
+                $$descrizioneTipoFabbricato
+              </td>
+            </tr>
+            <!-- @@cmbForma -->
+            <tr>
+              <th>
+                Tipologia
+              </th>
+              <td colspan="5">
+                $$descrizioneTipoFormaFabbricato
+              </td>
+            </tr>
+            <!-- @@cmbForma -->
+            <!-- @@cmbSerra -->
+            <tr>
+              <th>
+                Tipologia coltura serra
+              </th>
+              <td colspan="5">
+                $$descrizioneTipologiaColturaSerra
+              </td>
+            </tr>
+            <!-- @@cmbSerra -->
+            <tr>
+              <th>
+                Denominazione
+              </th>
+              <td colspan="5">
+                $$denominazioneFabbricato
+              </td>
+            </tr>
+            <!-- @@tipologiaFabbricatoDimensioniA -->
+            <tr>
+              <th>
+                $$larghezzaFabbricatoLabel
+              </th>
+              <td colspan="2">
+                $$larghezzaFabbricato
+              </td>
+              <th class="thIn">
+                $$lunghezzaFabbricatoLabel              </th>
+              <td colspan="2">
+                $$lunghezzaFabbricato
+              </td>
+            </tr>
+            <!-- @@tipologiaFabbricatoDimensioniA -->
+            <!-- @@tipologiaFabbricatoDimensioniB -->
+            <tr>
+              <th>
+                $$larghezzaFabbricatoLabel
+              </th>
+              <td>
+                $$larghezzaFabbricato
+              </td>
+              <th class="thIn">
+                $$lunghezzaFabbricatoLabel              </th>
+              <td>
+                $$lunghezzaFabbricato
+              </td>
+              <th class="thIn">
+                $$altezzaFabbricatoLabel              </th>
+              <td>
+                $$altezzaFabbricato
+              </td>
+            </tr>
+            <!-- @@tipologiaFabbricatoDimensioniB -->
+            <tr>
+              <th>
+                Superficie (m
+                <sup>
+                  2
+                </sup>
+                )
+              </th>
+              <td colspan="$$dimcolspan">
+                $$superficieFabbricato
+              </td>
+              <th class="thIn">
+                Dimensione $$unitaMisura              </th>
+              <td colspan="$$dimcolspan">
+                $$dimensioneFabbricato
+              </td>
+              <!-- @@blkFlagStoccaggio -->
+              <th class="thIn">
+                Volume utile presunto (m
+                <sup>
+                  3                </sup>
+                )              </th>
+              <td>
+                $$volumeUtilePresunto
+              </td>
+              <!-- @@blkFlagStoccaggio -->
+            </tr>
+            <tr>
+              <th>
+                Superficie coperta (m
+                <sup>
+                  2
+                </sup>
+                )
+              </th>
+              <td colspan="2">
+                $$superficieCopertaFabbricato
+              </td>
+              <th  class="thIn">
+                Superficie scoperta (m
+                <sup>
+                  2                </sup>
+                )              </th>
+              <td colspan="2">
+                $$superficieScopertaFabbricato
+              </td>
+            </tr>
+            <!-- @@cmbSerra -->
+            <tr>
+              <th>
+                Mesi di riscaldamento serra
+              </th>
+              <td colspan="2">
+                $$mesiRiscSerra
+              </td>
+              <th class="thIn">
+                Ore annuali di riscaldamento serra              </th>
+              <td colspan="2">
+                $$oreRisc
+              </td>
+            </tr>
+            <!-- @@cmbSerra -->
+            <tr>
+              <th>
+                Anno di costruzione o di riattamento
+              </th>
+              <td colspan="$$dimcolspanAnno">
+                $$annoCostruzioneFabbricato
+              </td>
+              <!-- @@blkFlagStoccaggio -->
+              <th class="thIn">
+                Altre superfici scoperte impermeabilizzate che
+                convogliano acque di pioggia nella struttura (m
+                <sup>
+                  2                </sup>
+                )              </th>
+              <td colspan="2">
+                $$superficieScopertaExtraFabbricato
+              </td>
+              <!-- @@blkFlagStoccaggio -->
+            </tr>
+            <tr>
+              <th>
+                Coordinate U.T.M.
+              </th>
+              <td colspan="2">
+                X:$$utmx
+              </td>
+              <td colspan="3">
+                Y:$$utmy
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Note
+              </th>
+              <td colspan="5">
+                $$noteFabbricato
+              </td>
+            </tr>
+          </table>
+
+
+          <table cellspacing="3" class="detailTable"
+            summary="Questa tabella è costituita da righe">
+            <caption>
+              Metodo biologico - Fonte ABIO $$dataAggiornamentoAbio
+            </caption>
+            <!--@@blkDatiAbio-->
+            <tr>
+              <th class="center">
+                Dimensioni di cui convenzionale (m3)
+              </th>
+              <th class="center">
+                Dimensione di cui biologico (m3)
+              </th>
+            </tr>
+            <tr>
+              <td class="numeridx">
+                $$dimensioneConvenzionale
+              </td>
+              <td class="numeridx">
+                $$dimensioneBiologica
+              </td>
+            </tr>
+            <!--@@blkDatiAbio-->
+            <!--@@blkNoDatiAbio-->
+            <tr>
+              <td>
+                $$nessunDato
+              </td>
+            </tr>
+            <!--@@blkNoDatiAbio-->
+          </table>
+
+          <table cellspacing="3" class="detailTable"
+            summary="Questa tabella contiene i dati del rapporto">
+            <col width="30%" />
+            <col width="70%" />
+            <caption>
+              Validit&agrave;:
+            </caption>
+            <tr>
+              <th>
+                Data fine validit&agrave;
+              </th>
+              <td colspan="5">
+                $$dataFineValiditaFabbricato
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Ultima modifica fabbricati e strutture
+              </th>
+              <td colspan="5">
+                $$ultimaModificaVw
+              </td>
+            </tr>
+          </table>
+
+
+
+          <!--@@blkParticelleFabbricato-->
+          <div class="scroll">
+            <table  class="evidence" cellspacing="3" 
+              summary="Questa tabella contiene la descrizione delle particelle su cui insiste il fabbricato">
+              <caption>
+                Particelle su cui insiste il fabbricato:
+              </caption>
+              <thead>
+                <tr>
+                  <th class="center">
+                    Comune
+                    <acronym title="Provincia">(Prov.)</acronym>
+                  </th>
+                  <th class="center">
+                    <acronym title="Sezione">Sz.</acronym>
+                  </th>
+                  <th class="center">
+                    <acronym title="Foglio">Fgl.</acronym>
+                  </th>
+                  <th class="center">
+                    <acronym title="Particella">Part.</acronym>
+                  </th>
+                  <th class="center">
+                    <acronym title="Subalterno">Sub.</acronym>
+                  </th>
+                  <th class="center">
+                    <acronym title="Superficie catastale">Sup.cat.
+                      (ha)</acronym>
+                  </th>
+                  <th class="center">
+                    Data fine validit&agrave;
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <!--@@blkElenco-->
+                <tr>
+                  <td>
+                    $$descComuneParticellaFabbricato ($$siglaProv)
+                  </td>
+                  <td>
+                    $$sezioneParticellaFabbricato
+                  </td>
+                  <td class="numeridx">
+                    $$foglioParticellaFabbricato
+                  </td>
+                  <td class="numeridx">
+                    $$particellaFabbricato
+                  </td>
+                  <td>
+                    $$subalternoParticellaFabbricato
+                  </td>
+                  <td class="numeridx">
+                    $$superficieCatastaleParticellaFabbricato
+                  </td>
+                  <td>
+                    $$dataFineValidita
+                  </td>
+                </tr>
+                <!--@@blkElenco-->
+              </tbody>
+            </table>
+          </div>
+          <!--@@blkParticelleFabbricato-->
+          <!--@@blkNoParticelleFabbricato-->
+          <p class="errore">
+            Non sono state indicate le particelle su cui insiste il
+            fabbricato
+          </p>
+          <!--@@blkNoParticelleFabbricato-->
+        </div>
+      </div>
+      <hr />
+  </form>
+  $$footer

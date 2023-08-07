@@ -1,0 +1,712 @@
+$$head
+<script src="../js/checktext.js" type="text/javascript"></script>
+<script  type="text/javascript" src="../js/messaggistica.js"></script>
+<script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../js/jquery-ui-1.8.21.custom/jquery-ui-1.8.21.custom.min.js"></script>
+
+<script language="javascript1.2">  
+  function hideColumn(cssColumn, label)
+  {
+    //Nasconde la colonna
+    $('.'  + cssColumn).hide();
+    
+    var html=$('#tdColDisp').html();
+    if (html=='')
+    {
+      $('#tdColDisp').show();
+      html="Colonne disponibili: ";
+    }
+    html+="<a href=\"javascript:showColumn('"+cssColumn+"')\" id='id_"+cssColumn+"'>"+label+"</a><span id='span_"+cssColumn+"'> | </span> <input type='hidden' name='hidden_"+cssColumn+"' id='hidden_"+cssColumn+"' value='"+cssColumn+"' />";
+    $('#tdColDisp').html(html);
+  }
+
+  function showColumn(cssColumn)
+  {
+    
+    $('#id_'  + cssColumn).remove();
+    $('#span_'  + cssColumn).remove();
+    $('#hidden_'  + cssColumn).remove();
+    $('.'  + cssColumn).show();
+    if($('#tdColDisp').html().indexOf('<a')<0)
+    {
+      $('#tdColDisp').hide();
+      $('#tdColDisp').html('');
+    }
+    
+  }
+  
+  
+  function caricaColonne(primoIngresso)
+  { 
+    var usoSecondario = '$$usoSecondario';
+    var mantenimento = '$$mantenimento';
+    var faseAllevamento = '$$faseAllevamento';
+    var impianto = '$$impianto';
+    var pianteCons = '$$pianteCons';
+    var elemCaratPaes = '$$elemCaratPaes';
+      
+                   
+    if(primoIngresso == 'true')
+    {
+      hideColumn("nascondibile_3", "Elementi caratteristici del paesaggio");
+      hideColumn("nascondibile_4", "Mantenimento");
+      hideColumn("nascondibile_5", "Fase allevamento");      
+    }
+    else
+    {
+      if(usoSecondario != null && usoSecondario != '')
+      {
+        hideColumn("nascondibile_0", "Uso secondario");
+      }
+      if(impianto != null && impianto != '')
+      {
+        hideColumn("nascondibile_1", "Impianto");
+      }
+      if(pianteCons != null && pianteCons != '')
+      {
+        hideColumn("nascondibile_2", "N&deg; piante consociate");
+      }
+      if(elemCaratPaes != null && elemCaratPaes != '')
+      {
+        hideColumn("nascondibile_3", "Elementi caratteristici del paesaggio");
+      }
+      if(mantenimento != null && mantenimento != '')
+      {
+        hideColumn("nascondibile_4", "Mantenimento");
+      }
+      if(faseAllevamento != null && faseAllevamento != '')
+      {
+        hideColumn("nascondibile_5", "Fase allevamento");
+      }
+      
+    }
+  }
+  
+  
+      
+  </script>
+</head>
+<body id="homeIndice" onLoad="systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');caricaColonne('$$primoIngressso');">
+  <form id="form1" name="form1" method="post"
+    action="../layout/terreniParticellareDettaglioConduzione.htm">
+    <input type="hidden" name="abaco" value="abaco" id="abaco" />
+    <input type="hidden" name="idParticella" value="$$idParticella"
+      id="idParticella" />
+    <input type="hidden" name="operazione" value="$$operazione"
+      id="operazione" />
+    <input type="hidden" name="idConduzione" value="$$idConduzione"
+      id="idConduzione" />
+    <input type="hidden" name="regimePartDettCondTerreni" value="true"
+      id="regimePartDettCondTerreni" />
+    <div id="pagina" class="colonnaUnica">
+      <!-- INTESTAZIONE -->
+      <div id="intestazione##pathProvincia">
+        <!--#include virtual="/ris/include/smrgaaweb/header.html" -->
+        <!-- menu di navigazione-->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li>
+                <a href="../layout/index.htm"
+                  title="Torna alla pagina principale">home</a>
+              </li>
+              <li class="attivo">
+                gestione anagrafe aziende
+              </li>
+              <li>
+                <a href="#" title="contatti">contatti</a>
+              </li>
+              <li>
+                <a href="#" title="help">help</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div style="clear: left"></div>
+      <!-- CORPO -->
+      <div id="corpo">
+        <div id="Utente">
+          <div id="datiUtente">
+            <strong>utente:</strong> $$utente &nbsp; &nbsp;
+            <strong>ente:</strong> $$ente
+          </div>
+          <div id="chiudisessione">
+            <a href="javascript:logout();">chiudi sessione</a>
+          </div>
+        </div>
+        <hr />
+        <!--PRIMA COLONNA -->
+        <h3>
+          Gestione Anagrafe
+          Aziende&nbsp;&gt;&nbsp;Terreni&nbsp;&gt;&nbsp;Dettaglio
+          <span class="helpFuori"> <a href="#"> <span
+              class="alt">[help]</span> </a> </span>
+        </h3>
+        <hr />
+        <div class="box">
+          <div class="menuSX1">
+            <ul>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <li>
+                <a href="../layout/elencoAziendeRapLegale.htm">Elenco
+                  Aziende</a>
+              </li>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <!-- @@blkRicercaAzienda-->
+              <li>
+                <a href="../layout/ricerca.htm">Ricerche</a>
+              </li>
+              <!-- @@blkRicercaAzienda-->
+              <!-- @@blkNuova -->
+              <li>
+                <a href="../layout/nuovaAziendaAnagrafica.htm">Nuova
+                  Azienda</a>
+              </li>
+              <!-- @@blkNuova -->
+              <!-- @@blkNuovaIscrizione -->
+              <li>
+                <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+              </li>
+              <!-- @@blkNuovaIscrizione -->
+            </ul>
+          </div>
+          <div class="menuSX">
+            <ul>
+              <li>
+                <a href="../layout/anagrafica.htm">Anagrafica</a>
+              </li>
+              <!-- @@blkAziendeCollegate -->
+              <li>
+                <a href="../layout/aziendeCollegate.htm">$$aziendeCollegateLabel</a>
+              </li>
+              <!-- @@blkAziendeCollegate -->
+              <!-- @@blkSincronizzaFascicolo -->
+               <li>
+               	<a href="../layout/sincronizzaFascicolo.htm">Sincronizza fascicolo</a>
+               </li>
+              <!-- @@blkSincronizzaFascicolo -->
+              <!-- @@blkSoggettiCollegati -->
+              <li>
+                <a href="../layout/contitolari.htm">Soggetti
+                  collegati</a>
+              </li>
+              <!-- @@blkSoggettiCollegati -->
+              <!-- @@blkContiCorrenti -->
+              <li>
+                <a href="../layout/conti_correnti.htm">Conti
+                  Correnti</a>
+              </li>
+              <!-- @@blkContiCorrenti -->
+              <!-- @@blkUnitaProduttive -->
+              <li>
+                <a href="../layout/sedi.htm">Unit&agrave; produttive</a>
+              </li>
+              <!-- @@blkUnitaProduttive -->
+              <!-- @@blkTerreni -->
+              <li>
+                <!-- @@blkLinkElenco -->
+                <a href="../layout/terreniParticellareElenco.htm"
+                  class="on">Terreni</a>
+                <ul>
+                  <li>
+                    <a href="../layout/riepiloghi.htm">riepiloghi</a>
+                  </li>
+                <!-- @@blkLinkElenco -->
+                <!-- @@blkLinkRiepiloghi -->
+                <a href="../layout/riepiloghi.htm"
+                  class="on">Terreni</a>
+                <ul>
+                  <li>
+                    <a href="../layout/terreniParticellareElenco.htm">elenco</a>
+                  </li>
+                <!-- @@blkLinkRiepiloghi -->
+                  <li>
+                    <a href="#" class="etichetta">dettaglio</a>
+                  </li>
+                  <!--@@blkInserisci-->
+                  <li>
+                    <a href="../layout/terreniParticellareInserisci.htm">inserisci</a>
+                  </li>
+                  <!--@@blkInserisci-->
+                  <!-- @@blkImportaParticelle -->
+                  <li>
+                    <a href="../layout/importaTerreniGenerico.htm">importa</a>
+                  </li>
+                  <!-- @@blkImportaParticelle -->
+                  <!-- @@blkVerifiche -->
+                  <li>
+                    <a href="../layout/terreniVerifica.htm">controlli</a>
+                  </li>
+                  <!-- @@blkVerifiche -->
+                </ul>
+              </li>
+              <!-- @@blkTerreni -->
+              <!-- @@blkUnitaVitate -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniUnitaArboreeElenco.htm">Unit&agrave; Vitate</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		              <a href="../layout/riepiloghiUnitaArboree.htm">Unit&agrave; Vitate</a>
+		              <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkUnitaVitate -->
+              <!-- @@blkFabbricati -->
+              <li>
+                <a href="../layout/fabbricati.htm">Fabbricati e
+                  Strutture</a>
+              </li>
+              <!-- @@blkFabbricati -->
+              <!-- @@blkAllevamenti -->
+              <li>
+                <a href="../layout/allevamenti.htm">Allevamenti</a>
+              </li>
+              <!-- @@blkAllevamenti -->
+              <!-- @@blkManodopera -->
+              <li>
+                <a href="../layout/manodopera.htm">Manodopera</a>
+              </li>
+              <!-- @@blkManodopera -->
+              <!-- @@blkMotoriAgricoli -->
+              <li>
+                <a href="../layout/motori_agricoli_incarico.htm">Macchine agricole</a>
+              </li>
+              <!-- @@blkMotoriAgricoli -->
+              <!-- @@blkDiritti -->
+              <li>
+                <a href="../layout/diritti.htm">Diritti di
+                  produzione</a>
+              </li>
+              <!-- @@blkDiritti -->
+              <!-- @@blkAttestazioni -->
+              <li>
+                <a href="../layout/attestazioniDettaglio.htm">Dichiarazioni</a>
+              </li>
+              <!-- @@blkAttestazioni -->
+              <!-- @@blkDichiarazioniConsistenza -->
+              <li>
+                <a href="../layout/dichiarazioneConsistenza.htm">Validazioni</a>
+              </li>
+              <!-- @@blkDichiarazioniConsistenza -->
+              <!-- @@blkDocumenti -->
+              <li>
+                <a href="../layout/documentiElenco.htm">Documenti</a>
+              </li>
+              <!-- @@blkDocumenti -->
+              <!-- @@blkFascicoloDematerializzato -->
+              <li>
+                <a href="../layout/fascicoloDematerializzato.htm">Fascicolo<br>elettronico</a>
+              </li>
+              <!-- @@blkFascicoloDematerializzato -->
+              <!-- @@blkGestioneNotifiche -->
+              <li>
+                <a href="../layout/notifiche.htm">Notifiche</a>
+              </li>
+              <!-- @@blkGestioneNotifiche -->
+              <!-- @@blkComunicazione10R -->
+              <li>
+                <a href="../layout/comunicazione10R_dettaglio.htm">Comunicazione
+                  10/R</a>
+              </li>
+              <!-- @@blkComunicazione10R -->
+              <!-- @@blkPratiche -->
+              <li>
+                <a href="../layout/pratiche.htm">Pratiche</a>
+              </li>
+              <!-- @@blkPratiche -->
+              <!-- @@blkStampaFascicolo -->
+              <li>
+                <a href="../layout/scelta_stampa.htm">Stampe</a>
+              </li>
+              <!-- @@blkStampaFascicolo -->
+			  <li><a href="../layout/strumenti.htm">Strumenti</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr />
+        <!-- SECONDA COLONNA -->
+        <div id="contenuto">
+          <div id="intesta">
+            <p class="$$aziendaIntestazione" title="$$tooltipIntestazione" >
+              $$CUAAIntestazione  $$denominazioneIntestazione
+            </p>
+          </div>
+          <!-- @@blkDati -->
+          <table cellspacing="3"
+            summary="Questa tabella contiene i dati catastali della particella">
+            <tr>
+              <th scope="col" class="center"></th>
+              <th scope="col" class="center">
+                Comune
+              </th>
+              <th scope="col" class="center">
+                <acronym title="Sezione">Sz.</acronym>
+              </th>
+              <th scope="col" class="center">
+                <acronym title="Foglio">Fgl.</acronym>
+              </th>
+              <th scope="col" class="center">
+                <acronym title="Particella">Part.</acronym>
+              </th>
+              <th scope="col" class="center">
+                <acronym title="Subalterno">Sub.</acronym>
+              </th>
+              <th scope="col" class="center">
+                <acronym title="Superficie Catastale">Sup.
+                  cat.</acronym>
+              </th>
+              <th scope="col" class="center">
+                <acronym title="Superficie Grafica">Sup.
+                  grafica</acronym>
+              </th>
+              <th scope="col" class="center">&nbsp;
+                
+              </th>
+            </tr>
+            <tr>
+              <td class="radio">
+                <a
+                  href="javascript: newWindowDoForm('$$urlRSDI?idConduzione=$$idConduzione&idAzienda=$$idAzienda', 'abaco', '1000','700','yes', 'GIS');"
+                  title="$$controlliP" class="$$immaginiControlliP">
+                </a>
+              </td>
+              <td>
+                $$descComune $$siglaProvincia
+              </td>
+              <td>
+                $$sezione
+              </td>
+              <td>
+                $$foglio
+              </td>
+              <td>
+                $$particella
+              </td>
+              <td>
+                $$subalterno
+              </td>
+              <td class="numeridx">
+                $$supCatastale
+              </td>
+              <td class="numeridx">
+                $$superficieGrafica
+              </td>
+              <td class="piccola">
+                <div class="azioni">
+                  <a
+                    href="javascript:newWindowDoForm('../layout/popupVariazioniParticella.htm', 'storico', '800', '400', 'yes');"
+                    title="Visualizza storico - Attenzione: questo link si apre in una nuova finestra">visualizza
+                    storico</a>
+                </div>
+              </td>
+            </tr>
+          </table>
+          <div id="indice">
+            <span class="evidenza">conduzione e uso</span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+            <span class="voce"> <a
+              href="javascript:goTo('../layout/terreniParticellareDettaglio.htm', document.forms[0]);">particella</a>
+            </span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+            <span class="voce"> <a
+              href="javascript:goTo('../layout/terreniParticellareDettaglioPratiche.htm', document.forms[0]);">pratiche</a>
+            </span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+            <span class="voce"> <a
+              href="javascript:goTo('../layout/terreniParticellareDettaglioRegistri.htm', document.forms[0]);">registri e vincoli</a>
+            </span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+          </div>
+          <table cellspacing="3"
+            summary="Questa tabella contiene i dati relativi alla conduzione della particella">
+            <caption>
+              Dati conduzione
+            </caption>
+            <tr>
+              <th>
+                Titolo di possesso
+              </th>
+              <td>
+                $$descTitoloPossesso
+              </td>
+              <th>
+                % conduzione
+              </th>
+              <td>
+                $$percentualePossesso
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Superficie agronomica
+              </th>
+              <td colspan="3">
+                $$superficieAgronomica
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Data inizio conduzione
+              </th>
+              <td>
+                $$dataInizioConduzione
+              </td>
+              <th>
+                Data fine conduzione
+              </th>
+              <td>
+                $$dataFineConduzione
+              </td>
+            </tr>
+            <tr>
+              <th>
+                UTE
+              </th>
+              <td colspan="3">
+                $$descComuneUte $$siglaProvUte $$indirizzoUte
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Note
+              </th>
+              <td colspan="3">
+                $$note
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Ultima modifica conduzione
+              </th>
+              <td colspan="3">
+                $$ultimaModificaVw
+              </td>
+            </tr>
+          </table>
+          <table cellspacing="3"
+            summary="Questa tabella è costituita da righe">
+            <caption>
+              Dati uso del suolo
+            </caption>
+            <tr>
+              <th scope="row">
+                <label for="Piano">
+                  Piano di riferimento
+                </label>
+              </th>
+              <td>
+                <select name="idDichiarazioneConsistenza"
+                  id="idDichiarazioneConsistenza"
+                  onchange="javascript:goToOperazione(document.forms[0].action, document.forms[0], 'changePlane');">
+                  <!-- @@blkPianoRiferimento -->
+                  <option value="$$idDichiarazioneConsistenza" $$selected>
+                    $$descDichiarazioneConsistenza
+                  </option>
+                  <!-- @@blkPianoRiferimento -->
+                </select>
+                $$err_idDichiarazioneConsistenza
+              </td>
+            </tr>
+          </table>
+          <!-- @@blkUtilizzo -->
+          <div class="scroll">
+            <table class="evidence"  cellspacing="3" summary="Questa tabella è costituita da righe">
+              <tr>
+                <td id="tdColDisp" colspan="23" ></td>
+              </tr>
+              <tr>
+                <th colspan="7" class="center" scope="col">
+                  Uso primario
+                </th>
+                <th colspan="7" class="center nascondibile_0" scope="col">
+                  <a href="javascript:hideColumn('nascondibile_0','Uso secondario');">
+                    Uso secondario
+                  </a>
+                </th>
+                <th rowspan="2" class="center nascondibile_4" scope="col">
+                  <a href="javascript:hideColumn('nascondibile_4','Mantenimento');">
+                    Mantenimento
+                  </a>
+                </th>
+                <th rowspan="2" class="center nascondibile_5" scope="col">
+                  <a href="javascript:hideColumn('nascondibile_5','Fase allevamento');">
+                    Fase allevamento
+                  </a>
+                </th>
+                <th colspan="5" class="center nascondibile_1" scope="col">
+                  <a href="javascript:hideColumn('nascondibile_1','Impianto');">
+                    Impianto
+                  </a>
+                </th>
+                <!-- @@blkTitoloPianteConsociate -->
+                <th colspan="$$colspan" class="center nascondibile_2" scope="col">
+                  <a href="javascript:hideColumn('nascondibile_2','N&deg; piante consociate');">
+                    N&deg; piante consociate
+                  </a>
+                </th>
+                <!-- @@blkTitoloPianteConsociate -->
+                <th colspan="5" class="center nascondibile_3" scope="col">
+                  <a href="javascript:hideColumn('nascondibile_3','Elementi caratteristici del paesaggio');">
+                    Elementi caratteristici del paesaggio                      
+                  </a>
+                </th>
+              </tr>
+              <tr>
+                <th class="center" scope="col">
+                  Occupazione suolo                
+                </th>
+                <th class="center" scope="col">
+                  Destinazione                 
+                </th>
+                <th class="center" scope="col">
+                  Uso                 
+                </th>
+                <th class="center" scope="col">
+                  Qualit&agrave;                 
+                </th>
+                <th class="center" scope="col">
+                  Variet&agrave;                 
+                </th>
+                <th class="center" scope="col">
+                  Semina                 
+                </th>
+                <th class="center" scope="col">
+                  <acronym title="Superficie Utilizzata">Sup.</acronym>
+                </th>
+                <th class="center nascondibile_0" scope="col">
+                  Occupazione suolo                 
+                </th>
+                <th class="center nascondibile_0" scope="col">
+                  Destinazione                 
+                </th>
+                <th class="center nascondibile_0" scope="col">
+                  Uso                 
+                </th>
+                <th class="center nascondibile_0" scope="col">
+                  Qualit&agrave;                 
+                </th>
+                <th class="center nascondibile_0" scope="col">
+                  Variet&agrave;                 
+                </th>
+                <th class="center nascondibile_0" scope="col">
+                  Semina                 
+                </th>
+                <th class="center nascondibile_0" scope="col">
+                  <acronym title="Superficie Utilizzata Secondaria">Sup.</acronym>
+                </th>
+                <th class="center nascondibile_1" scope="col">
+                  Anno
+                </th>
+                <th class="center nascondibile_1" scope="col">
+                  Tipo
+                </th>
+                <th class="center nascondibile_1" scope="col">
+                  Sesto su file
+                </th>
+                <th class="center nascondibile_1" scope="col">
+                  Sesto tra file
+                </th>
+                <th class="center nascondibile_1" scope="col">
+                  N&deg; piante / Ceppi
+                </th>
+                <!-- @@blkEtichettaPianteConsociate -->
+                <th class="center nascondibile_2" scope="col">
+                  $$descPianteConsociate
+                </th>
+                <!-- @@blkEtichettaPianteConsociate -->
+                <th class="center nascondibile_3" scope="col">
+                  <span class="TitOrd">Tipo</span>                     
+                </th>
+                <th class="center nascondibile_3" scope="col">
+                  <span class="TitOrd">Valore</span>                     
+                </th>
+                <th class="center nascondibile_3" scope="col">
+                  <span class="TitOrd">Unit&agrave; di misura</span>                     
+                </th>
+                <th class="center nascondibile_3" scope="col">
+                  <span class="TitOrd">Valore in ettari</span>                     
+                </th>
+                <th class="center nascondibile_3" scope="col">
+                  <span class="TitOrd">Valore valido per il controllo</span>                     
+                </th>
+              </tr>
+              <!-- @@blkElencoUtilizzi -->
+              <tr>
+                <td>$$descUsoPrimario</td>
+                <td>$$descTipoDestinazionePrimario</td>
+                <td>$$descTipoDettUsoPrimario</td>
+                <td>$$descTipoQualitaUsoPrimario</td>
+                <td>$$descVarietaPrimario</td>
+                <td>$$descTipoSeminaPrimario</td>
+                <td class="numeridx">
+                  $$supUtilizzata
+                </td>
+                <td class="nascondibile_0" >$$descUsoSecondario</td>
+                <td class="nascondibile_0" >$$descTipoDestinazioneSecondario</td>
+                <td class="nascondibile_0" >$$descTipoDettUsoSecondario</td>
+                <td class="nascondibile_0" >$$descTipoQualitaUsoSecondario</td>
+                <td class="nascondibile_0" >$$descVarietaSecondaria</td>
+                <td class="nascondibile_0" >$$descTipoSeminaSecondario</td>
+                <td class="numeridx nascondibile_0">
+                  $$supUtilizzataSecondaria
+                </td>
+                <td class="nascondibile_4">
+                  $$descTipoPraticaMantenimento
+                </td>
+                <td class="nascondibile_5">
+                  $$descTipoFaseAllevamento
+                </td>
+                <td class="data nascondibile_1">
+                  $$annoImpianto
+                </td>
+                <td class="nascondibile_1">
+                  $$descImpianto
+                </td>
+                <td class="numeridx nascondibile_1">
+                  $$sestoSuFile
+                </td>
+                <td class="numeridx nascondibile_1">
+                  $$sestoTraFile
+                </td>
+                <td class="numeridx nascondibile_1">
+                  $$numPianteCeppi
+                </td>
+                <!-- @@blkElencoPianteConsociate -->
+                <td class="numeridx nascondibile_2">
+                  $$numeroPianteConsociate
+                </td>
+                <!-- @@blkElencoPianteConsociate -->
+                <td class="nascondibile_3" >$$descTipoEfa</td>
+                <td class="numeridx nascondibile_3">$$valoreOriginale</td>
+                <td class="nascondibile_3" >$$descUnitaMisura</td>
+                <td class="numeridx nascondibile_3">$$valoreDopoConversione</td>
+                <td class="numeridx nascondibile_3">$$valoreDopoPonderazione</td>
+              </tr>
+              <!-- @@blkElencoUtilizzi -->
+            </table>
+          </div>
+          <!-- @@blkUtilizzo -->
+          <!-- @@blkErrore -->
+          <p class="errore">
+            $$messaggioErrore
+          </p>
+          <!-- @@blkErrore -->
+          <p id="nota">
+            Tutte le superfici sono espresse in ettari (ha).
+          </p>
+          <!-- @@blkDati -->
+          <!-- @@blkErrore -->
+          <p class="errore">
+            $$messaggioErrore
+          </p>
+          <!-- @@blkErrore -->
+        </div>
+      </div>
+  </form>
+  </hr>
+  $$footer

@@ -1,0 +1,137 @@
+$$head
+  <script type="text/javascript" src="../js/checktext.js"></script>
+  <script type="text/javascript" src="../js/messaggistica.js"></script>
+</head>
+<body id="homeIndice" onLoad="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+  <form action="../layout/servizi.htm" method="post" name="form1" id="form1">
+    <div id="pagina" class="colonnaUnica">
+      <!-- INTESTAZIONE --><div id="intestazione##pathProvincia">
+	  	<!--intestazione-->
+	$$header
+	        <!-- menu di navigazione-->
+	  <div id="titoloEmenu">
+	    <h2>
+              <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+            </h2>
+ 	    <div id="menuDiNavigazione" title="Menu di navigazione">
+ 	      <ul class="menuTendina" id="menu-2">
+ 	        <li>
+ 	          <a href="index.htm" title="Torna alla pagina principale">home</a>
+                </li>
+ 	        <li class="attivo">gestione anagrafe aziende</li>
+ 	        <li>
+ 	          <a href="#" title="contatti">contatti</a>
+                </li>
+ 	        <li>
+ 	          <a href="#" title="help">help</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <hr />
+        <div style="clear:left"></div>
+          <!-- CORPO -->
+          <div id="corpo">
+            <div id="Utente">
+              <div id="datiUtente">
+                <strong>utente: </strong> $$utente &nbsp; &nbsp;
+                <strong>ente: </strong> $$ente
+              </div>
+              <div id="chiudisessione">
+                <a href="javascript: logout();">chiudi sessione</a>
+              </div>
+            </div>
+            <hr />
+            <!--PRIMA COLONNA -->
+            <h3>Servizi
+              <span class="helpFuori">
+                <a href="#">
+                  <span class="alt"> [help]</span>
+                </a>
+              </span>
+            </h3>
+            <hr />
+            <div class="box">
+              <div class="menuSX1">
+                <ul>
+                  <!-- @@blkRicercaAzienda-->
+                  <li>
+                    <a href="../layout/ricerca.htm">Ricerca Azienda</a>
+                  </li>
+                  <!-- @@blkRicercaAzienda-->
+                  <!--@@blkRicercaPersona-->
+                    <li>
+                      <a href="../layout/ricercaPersona.htm">Ricerca Persona</a>
+                    </li>
+                  <!--@@blkRicercaPersona-->
+                  <!--@@blkRicercaTerreno-->
+                  <li>
+                    <a href="../layout/ricercaTerreno.htm">Ricerca Terreno</a>
+                  </li>
+                  <!--@@blkRicercaTerreno-->
+				          <!--@@blkRicercaNotifica-->
+                  <li>
+                    <a href="../layout/ricercaNotifica.htm">Ricerca Notifiche</a>
+                  </li>
+                  <!--@@blkRicercaNotifica-->
+                  <!--@@blkVariazioniAzienda-->
+                   <li><a href="../layout/ricercaVariazioni.htm" >Ricerca Variazioni</a></li>
+                  <!--@@blkVariazioniAzienda-->
+                  <!--@@blkRicercaRichiesta-->
+                    <li><a href="../layout/ricercaRichiesta.htm">Ricerca richiesta azienda</a></li>
+                  <!--@@blkRicercaRichiesta-->
+                  <!-- @@blkNuova -->
+                  <li>
+                    <a href="../layout/nuovaAziendaAnagrafica.htm">Nuova Azienda</a>
+                  </li>
+                  <!-- @@blkNuova -->
+                  <!-- @@blkNuovaIscrizione -->
+		              <li>
+		                <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+		              </li>
+		              <!-- @@blkNuovaIscrizione -->
+                  <!--@@blkNuovaParticella-->
+                  <li>
+                    <a href="../layout/inserisciTerreno.htm">Nuova Particella</a>
+                  </li>
+                  <!--@@blkNuovaParticella-->
+                  <!--@@blkServizi-->
+                    <li>
+                      <a href="../layout/servizi.htm" class="on" >Servizi</a>
+                    </li>
+                  <!--@@blkServizi-->
+									<!--@@blkReportistica-->
+                  <li>
+                    <a href="../layout/elencoRicerche.htm">Reportistica</a>
+                  </li>
+                  <!--@@blkReportistica-->
+                  <!--@@blkEstrazioneDati-->
+	                <li><a href="../layout/macroCategoriaReport.htm">Estrazione dati</a></li>
+	                <!--@@blkEstrazioneDati-->
+	                <li><a href="../layout/elencoManuali.htm">Scarico Documentazione Tecnica</a></li>
+				  
+                </ul>
+              </div>
+            </div>
+            <hr />
+            <!-- SECONDA COLONNA -->
+            <div id="contenuto">
+              <table cellspacing="3" summary="Questa tabella è costituita da righe">
+                <!--@@blkTipoServizioTrasferimento-->
+                <tr>
+                  <th class="radio"><input name="tipoServizio" type="radio" value="T" $$checkedT /></th>
+                  <td>trasferimento ad altro ufficio</td>
+                </tr>
+                <!--@@blkTipoServizioTrasferimento-->
+              </table>
+              <div class="pulsanti">
+              <div class="sin">
+                <label for="ricercaPuntuale" class="alt">conferma</label>
+                <input type="submit" name="conferma" value="conferma" alt="ricerca puntuale" class="inputPulsante highlighted" />
+              </div></div>
+
+            </div>
+          </div>
+          <hr />
+$$footer

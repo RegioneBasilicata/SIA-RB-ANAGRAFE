@@ -1,0 +1,428 @@
+$$head
+  <script src="../js/checktext.js" type="text/javascript"></script>
+  <script type="text/javascript" src="../js/messaggistica.js"></script>
+  <script type="text/javascript">
+
+    function goTo(url) {
+      document.form1.action = url;
+      document.form1.submit();
+    }
+
+
+    function operazioneSingolaAnomalia(url) {
+      if (document.form1.idDichiarazioneSegnalazione!=null)
+      {
+        var coll = document.form1.idDichiarazioneSegnalazione;
+        var count = 0;
+        if(coll.length) {
+          for(i=0; i < coll.length; i++) {
+            if(coll[i].checked) {
+              count++;
+            }
+          }
+        }
+        else {
+          if(coll.checked) {
+            count++;
+          }
+        }
+        if(count > 1) {
+          alert("Selezionare un solo controllo dall'elenco");
+        }
+        else if(count == 0) {
+          alert("Selezionare un controllo risolvibile dall'elenco");
+        }
+        else {
+          goTo(url);
+        }
+      }
+      else alert("Selezionare un controllo risolvibile dall'elenco");
+    }
+
+    function operazioneMultiplaAnomalia(url) {
+      if (document.form1.idDichiarazioneSegnalazione!=null)
+      {
+        var coll = document.form1.idDichiarazioneSegnalazione;
+        var count = 0;
+        if(coll.length) {
+          for(i=0; i < coll.length; i++) {
+            if(coll[i].checked) {
+              count++;
+            }
+          }
+        }
+        else {
+          if(coll.checked) {
+            count++;
+          }
+        }
+        if(count == 0) {
+          alert("Selezionare un controllo risolvibile dall'elenco");
+        }
+        else {
+          goTo(url);
+        }
+      }
+      else alert("Selezionare un controllo risolvibile dall'elenco");
+    }
+
+    function selezionaTutto() {
+      if(document.form1.idDichiarazioneSegnalazione.length) {
+        for(var i = 0; i < document.form1.idDichiarazioneSegnalazione.length; i++) {
+          document.form1.idDichiarazioneSegnalazione[i].checked = true;
+        }
+      }
+      else {
+        document.form1.idDichiarazioneSegnalazione.checked = true;
+      }
+    }
+
+    function deselezionaTutto() {
+      if(document.form1.idDichiarazioneSegnalazione.length) {
+        for(var i = 0; i < document.form1.idDichiarazioneSegnalazione.length; i++) {
+          document.form1.idDichiarazioneSegnalazione[i].checked = false;
+        }
+      }
+      else {
+        document.form1.idDichiarazioneSegnalazione.checked = false;
+      }
+    }
+    
+    
+  
+    function setHiddenOperazioneBlock(form, operazione) 
+    {
+      form.operazione.value = operazione;
+      form.salva.disabled = 'true';
+      form.submit();
+    }
+    
+  </script>
+</head>
+<!-- $$err_motivo -->
+<!-- $$err_note -->
+<!-- $$err_flagProtocollo -->
+<body id="homeIndice" onLoad="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+  <form id="form1" name="form1" method="post" action="../layout/dichiarazioneAnomalia.htm">
+    <div id="pagina" class="colonnaUnica">
+      <input type="hidden" id="anno" name="anno" value="##anno"/>
+      <input type="hidden" id="operazione" name="operazione" value=""/> 
+      <!-- INTESTAZIONE -->
+      <div id="intestazione##pathProvincia">
+        $$header
+        <!-- menu di navigazione-->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li>
+                <a href="../layout/index.htm" title="Torna alla pagina principale">home</a>
+              </li>
+              <li class="attivo">gestione anagrafe aziende</li>
+              <li>
+                <a href="#" title="contatti">contatti</a>
+              </li>
+              <li>
+                <a href="#" title="help">help</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr/>
+      <div style="clear:left"></div>
+      <!-- CORPO -->
+      <div id="corpo">
+        <div id="Utente">
+          <div id="datiUtente">
+            <strong>utente:</strong>$$utente&nbsp;&nbsp;
+            <strong>ente:</strong>$$ente
+          </div>
+          <div id="chiudisessione">
+            <a href="javascript: logout();">chiudi sessione</a>
+          </div>
+        </div>
+        <hr/>
+        <!--PRIMA COLONNA -->
+        <h3>Gestione Anagrafe Aziende&nbsp;&gt;&nbsp;Validazioni&nbsp;&gt;&nbsp;Nuova validazione
+          <span class="helpFuori">
+            <a href="#">
+              <span class="alt">[help]</span>
+            </a>
+          </span>
+        </h3>
+        <hr/>
+        <div class="box">
+          <div class="menuSX1">
+            <ul>
+              <!-- @@blkElencoAziendeRapLegale -->
+                <li><a href="../layout/elencoAziendeRapLegale.htm">Elenco Aziende</a></li>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <!-- @@blkRicercaAzienda-->
+                <li><a href="../layout/ricerca.htm">Ricerche</a></li>
+              <!-- @@blkRicercaAzienda-->
+              <!-- @@blkNuova -->
+                <li>
+                  <a href="../layout/nuovaAziendaAnagrafica.htm">Nuova Azienda</a>
+                </li>
+              <!-- @@blkNuova -->
+              <!-- @@blkNuovaIscrizione -->
+		          <li>
+		            <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+		          </li>
+		          <!-- @@blkNuovaIscrizione -->
+            </ul>
+          </div>
+          <div class="menuSX">
+            <ul>
+              <li>
+                <a href="../layout/anagrafica.htm">Anagrafica</a>
+              </li>
+              <!-- @@blkAziendeCollegate -->
+	          			<li>
+	          					<a href="../layout/aziendeCollegate.htm">$$aziendeCollegateLabel</a>
+	          			</li>
+	          	<!-- @@blkAziendeCollegate -->
+	          <!-- @@blkSincronizzaFascicolo -->
+               <li>
+               	<a href="../layout/sincronizzaFascicolo.htm">Sincronizza fascicolo</a>
+               </li>
+              <!-- @@blkSincronizzaFascicolo -->	
+              <!-- @@blkSoggettiCollegati -->
+                <li>
+                  <a href="../layout/contitolari.htm">Soggetti collegati</a>
+                </li>
+              <!-- @@blkSoggettiCollegati -->
+              <!-- @@blkContiCorrenti -->
+                <li>
+                  <a href="../layout/conti_correnti.htm">Conti Correnti</a>
+                </li>
+              <!-- @@blkContiCorrenti -->
+              <!-- @@blkUnitaProduttive -->
+                <li>
+                  <a href="../layout/sedi.htm">Unit&agrave; produttive</a>
+                </li>
+              <!-- @@blkUnitaProduttive -->
+              <!-- @@blkTerreni -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniParticellareElenco.htm">Terreni</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		            <a href="../layout/riepiloghi.htm">Terreni</a>
+		            <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkTerreni -->
+		          <!-- @@blkUnitaVitate -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniUnitaArboreeElenco.htm">Unit&agrave; Vitate</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		              <a href="../layout/riepiloghiUnitaArboree.htm">Unit&agrave; Vitate</a>
+		              <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkUnitaVitate -->
+              <!-- @@blkFabbricati -->
+                <li>
+                  <a href="../layout/fabbricati.htm">Fabbricati e Strutture</a>
+                </li>
+              <!-- @@blkFabbricati -->
+              <!-- @@blkAllevamenti -->
+                <li>
+                  <a href="../layout/allevamenti.htm">Allevamenti</a>
+                </li>
+              <!-- @@blkAllevamenti -->
+              <!-- @@blkManodopera -->
+                <li>
+                  <a href="../layout/manodopera.htm">Manodopera</a>
+                </li>
+              <!-- @@blkManodopera -->
+              <!-- @@blkMotoriAgricoli -->
+                <li>
+                  <a href="../layout/motori_agricoli_incarico.htm">Macchine agricole</a>
+                </li>
+              <!-- @@blkMotoriAgricoli -->
+              <!-- @@blkDiritti -->
+                <li><a href="../layout/diritti.htm">Diritti di produzione</a></li>
+              <!-- @@blkDiritti -->
+              <!-- @@blkAttestazioni -->
+              	<li><a href="../layout/attestazioniDettaglio.htm">Dichiarazioni</a></li>
+              <!-- @@blkAttestazioni -->
+              <!-- @@blkDichiarazioniConsistenza -->
+                <li>
+                  <a href="../layout/dichiarazioneConsistenza.htm" class="on">Validazioni</a>
+                  <ul>
+                    <li>
+                      <a href="#" class="etichetta">nuova validazione</a>
+                      <ul>
+                        <li>
+                          <a href="javascript: operazioneMultiplaAnomalia('../layout/correzioneAnomalia.htm');">correggi</a>
+                        </li>
+                        <li>
+                          <a href="javascript: operazioneSingolaAnomalia('../layout/dettaglioAnomalia.htm');">dettaglio</a>
+                        </li>
+                        <li>
+                          <a href="javascript: operazioneMultiplaAnomalia('../layout/eliminaCorrezione.htm');">elimina correzione</a>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              <!-- @@blkDichiarazioniConsistenza -->
+              <!-- @@blkDocumenti -->
+              <li><a href="../layout/documentiElenco.htm">Documenti</a></li>
+              <!-- @@blkDocumenti -->
+              <!-- @@blkFascicoloDematerializzato -->
+		          <li>
+		            <a href="../layout/fascicoloDematerializzato.htm">Fascicolo<br>elettronico</a>
+		          </li>
+		          <!-- @@blkFascicoloDematerializzato --> 
+              <!-- @@blkGestioneNotifiche -->
+                <li>
+                  <a href="../layout/notifiche.htm">Notifiche</a>
+                </li>
+              <!-- @@blkGestioneNotifiche -->
+              <!-- @@blkComunicazione10R -->
+                <li>
+                  <a href="../layout/comunicazione10R_dettaglio.htm">Comunicazione 10/R</a>
+                </li>
+              <!-- @@blkComunicazione10R -->
+              <!-- @@blkPratiche -->
+              <li><a href="../layout/pratiche.htm">Pratiche</a></li>
+              <!-- @@blkPratiche -->
+              <!-- @@blkStampaFascicolo -->
+                <li>
+                  <a href="../layout/scelta_stampa.htm">Stampe</a>
+                </li>
+              <!-- @@blkStampaFascicolo -->
+			  <li><a href="../layout/strumenti.htm">Strumenti</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr/>
+        <!-- SECONDA COLONNA -->
+        <div id="contenuto">
+          <div id="intesta">
+            <p class="$$aziendaIntestazione" title="$$tooltipIntestazione" >
+              $$CUAAIntestazione  $$denominazioneIntestazione
+            </p>
+          </div>
+        <!-- @@blkAnomaliaBloc -->
+        <p class="errore">$$anomaliaBloc</p>
+        <!-- @@blkAnomaliaBloc -->
+
+        <!-- @@blkPulsantiSeleziona -->
+         <div class="pulsanti">
+			<div class="sin">
+			  <input id="deseleziona" name="deseleziona" type="button" value="deseleziona" onClick="javascript:deselezionaTutto();" onKeyPress="javascript:deselezionaTutto();" class="inputPulsante" />
+			</div>
+			<div class="des">
+			  <input id="seleziona" name="seleziona" type="button" value="seleziona" onClick="javascript:selezionaTutto();" onKeyPress="javascript:selezionaTutto();" class="inputPulsante" />
+			</div>
+		  </div>
+        <!-- @@blkPulsantiSeleziona -->
+
+
+          <!-- @@blkTabAnomalia -->
+
+            <table cellspacing="3" summary="Questa tabella contiene i dati del rapporto">
+              <caption>$$descrizioneAnomalia</caption>
+              <tr>
+                <th colspan="3" class="center" scope="col">Controllo</th>
+                <th class="center" scope="col">Esito</th>
+                <th colspan="2" class="center" scope="col">Risoluzione</th>
+              </tr>
+              <!-- @@blkAnomalia -->
+                <tr>
+                  <!-- @@blkCheck -->
+                  <td class="radio"><input id="idDichiarazioneSegnalazione" name="idDichiarazioneSegnalazione" value="$$idDichiarazioneSegnalazione" type="checkbox"/></td>
+                  <!-- @@blkCheck -->
+                  <!-- @@blkNoCheck -->
+                  <td class="radio">&nbsp;</td>
+                  <!-- @@blkNoCheck -->
+                  <td>$$tipologia</td>
+                  <td>$$descrizione</td>
+                  <td>
+                    <img src="$$immagine" onClick="alert('$$descImmagine')" alt="$$descImmagine"/>
+                  </td>
+                  <td>$$ris1</td>
+                  <td>$$ris2</td>
+                </tr>
+              <!-- @@blkAnomalia -->
+            </table>
+          <!-- @@blkTabAnomalia -->
+
+          <!-- @@blkPulsantiSeleziona -->
+          <div class="pulsanti">
+			<div class="sin">
+			  <input id="deseleziona" name="deseleziona" type="button" value="deseleziona" onClick="javascript:deselezionaTutto();" onKeyPress="javascript:deselezionaTutto();" class="inputPulsante" />
+			</div>
+			<div class="des">
+			  <input id="seleziona" name="seleziona" type="button" value="seleziona" onClick="javascript:selezionaTutto();" onKeyPress="javascript:selezionaTutto();" class="inputPulsante" />
+			</div>
+		  </div>
+          <!-- @@blkPulsantiSeleziona -->
+
+          <!-- @@blkNoAnomaliaBloc -->
+          <!-- @@blkMess -->
+          	<p>Si ricorda che le anomalie sopra elencate saranno parte integrante della dichiarazione di consistenza</p>
+          <!-- @@blkMess -->
+          <table cellspacing="3" summary="Questa tabella contiene i dati del rapporto">
+            <!-- @@blkDichiarazioneProtocollo -->
+            <tr>
+                <th>Repertoriazione *</th>
+                <td colspan="2">
+                  <label for="flagProtocollo_si" class="alt">flagProtocollo_si</label>
+                  <input type="radio" id="flagProtocollo_si" name="flagProtocollo" value="S" $$checkedSi/>
+                  si
+                  <label for="flagProtocollo_no" class="alt">flagProtocollo_no</label>
+                  <input type="radio" id="flagProtocollo_no" name="flagProtocollo" value="N" $$checkedNo/>
+                  no
+                  &nbsp;&nbsp;
+                  ##err_flagProtocollo
+                </td>
+             </tr>
+             <!-- @@blkDichiarazioneProtocollo -->
+             <!-- @@blkMail -->
+             <tr>
+                <th>Invio mail</th>
+                <td colspan="2">
+                  <label for="flagInvioMail_si" class="alt">flagInvioMail_si</label>
+                  <input type="radio" id="flagInvioMail_si" name="flagInvioMail" value="S" $$checkedSi  $$disabled />
+                  si
+                  <label for="flagInvioMail_no" class="alt">flagInvioMail_no</label>
+                  <input type="radio" id="flagInvioMail_no" name="flagInvioMail" value="N" $$checkedNo  $$disabled />
+                  no
+                  &nbsp;&nbsp;
+                </td>
+             </tr>
+             <!-- @@blkMail -->
+             <tr>
+              <th scope="row">
+                <label for="note">Note</label>
+              </th>
+              <td>
+                <textarea id="note" name="note" cols="60" rows="4">##note</textarea>
+                ##err_note
+              </td>
+            </tr>
+          </table>
+          <p id="nota">I campi contrassegnati con * sono obbligatori</p>
+          <!-- @@blkNoAnomaliaBloc --><div class="pulsanti">
+          <div class="sin">
+            <!-- @@blkNoAnomaliaBloc -->
+            <input id="salva" name="salva" type="button" value="salva"
+                onclick="javascript:setHiddenOperazioneBlock(document.forms[0],'salva');"
+                class="inputPulsante" />            
+            <!-- @@blkNoAnomaliaBloc -->
+            <!-- @@blkAnomaliaBloc -->
+            <input type="button" id="stampa" name="stampa" value="stampa" class="inputPulsante" onClick="window.print();"/>
+            </div>  <!-- @@blkAnomaliaBloc -->
+          </div>
+        </div>
+      </div>
+      <hr/>
+$$footer

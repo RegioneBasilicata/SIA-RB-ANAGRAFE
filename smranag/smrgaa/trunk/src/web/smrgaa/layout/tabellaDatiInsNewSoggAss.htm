@@ -1,0 +1,90 @@
+    <table cellspacing="3"summary="Questa tabella contiene i dati del rapporto">
+      <input type="hidden" id="erroreIns" name="erroreIns" value="$$erroreIns"/>
+      <tr>
+        <th scope="row">
+          CUAA
+        </th>
+        <td>
+          <input type="text" id="cuaa" name="cuaa" maxlength="16" class="textmediolungo" value="$$cuaaIns" />
+          $$err_cuaa
+        </td>
+        <td rowspan="3">
+          <div class="azioni">
+            <a href="javascript: scegliAzienda('../ctrl/popElencoAziendeAjaxCtrl.jsp','scegli_azienda','800','400','yes',document.form1.cuaa.value,document.form1.partitaIva.value, document.form1.denominazione.value,'newInserimentoAzAss');">cerca</a>
+          </div>
+          <input type="hidden" id="idAzienda" name="idAzienda" value="$$idAzienda" />
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">
+          Partita Iva
+        </th>
+        <td>
+          <input type="text" name="partitaIva" id="partitaIva" maxlength="11" value="$$partitaIvaIns" class="textmediolungo" />
+          $$err_partitaIvaIns
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">                  
+          Denominazione                 
+        </th>
+        <td>
+          <input type="text" id="denominazione" name="denominazione" class="text" value="$$denominazioneIns" />
+          $$err_denominazione
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">
+          Indirizzo
+        </th>
+        <td colspan="2">
+          <input name="indirizzoIns" id="indirizzoIns" value="$$indirizzoIns" class="longText" type="text"
+            $$disabledIndirizzo />
+          $$err_indirizzoIns
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">
+          Comune
+        </th>
+        <td>
+          <input name="provinciaIns" id="provinciaIns" value="$$provinciaIns" maxlength="2" class="textbreve" type="text" $$disabledProvincia />
+          $$err_provinciaIns
+          <input name="comuneIns" id="comuneIns" value="$$comuneIns" class="text" type="text" $$disabledComune />
+          $$err_comuneIns
+        </td>
+        <td>
+          <div class="azioni">
+            <a id="scegliComune" name="scegliComune" href="$$disabledCerca"
+              title="[Attenzione: questo link si apre in una nuova finestra]">cerca</a>
+          </div>
+          <input type="hidden" name="istatComuneIns" value="$$istatComuneIns" />
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">
+            CAP
+        </th>
+        <td colspan="2">
+          <input name="capIns" value="$$capIns" id="capIns" maxlength="5" class="textbreve" type="text" $$disabledCAP />
+          $$err_capIns
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3">
+          <div class="azioni">
+            <a href="javascript:modificaDatiIns();" name="inserisciAzienda" class="highlighted" id="inserisciAzienda">inserisci</a>
+          </div>
+          $$err_inserisciAzienda
+        </td>
+      </tr>
+    </table>
+    
+    <!-- @@blkNoElenco -->
+    <p class="errore">
+      $$messaggioErrore
+    </p>
+    <!-- @@blkNoElenco -->
+       
+          
+          

@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report Type="TabularSheet" Top="0.4" Left="0.05" Bottom="0.4" Right="0.05" HeaderFromEdge="0.05" FooterFromEdge="0.4" PageNumbering="0" HorizontalWrap="true" PaperSize="8.267716x11.692913" Orientation="1" TabStops="0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5,6.0,6.5,7.0,7.5,8.0"
+ Prompting="true"><Version>9.5</Version>
+<ReportProperty Name="report.modified">
+<![CDATA[2013-10-21 09:22:37]]>
+</ReportProperty>
+<ReportProperty Name="TextMode">
+<![CDATA[false]]>
+</ReportProperty>
+<ReportProperty Name="live.edit">
+<![CDATA[false]]>
+</ReportProperty>
+<ReportProperty Name="edit.layout">
+<![CDATA[false]]>
+</ReportProperty>
+<ReportProperty Name="report.created">
+<![CDATA[2010-07-22 10:44:45]]>
+</ReportProperty>
+<Parameters>
+</Parameters>
+<ParameterSheets>
+</ParameterSheets>
+<RunningTotals>
+</RunningTotals>
+<dataViews>
+</dataViews>
+<reportAssetRepository>
+</reportAssetRepository>
+<Shapes>
+</Shapes>
+<Grid Rows="4" Cols="3">
+<GR Height="0">
+<GD RowSpan="1" ColSpan="3" Width="283.44446" Repeat="false" CellFitPage="true">
+<ImageElement ID="imgRegione" Alignment="66" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Serif-PLAIN-10" Foreground="-4144960" PathType="1" Embedded="true" Layout="0" Wrapping="3" Rotation="0" Size="2.0x0.65" Margin="1,1,1,1">
+<![CDATA[C:\logoregione.gif]]>
+<Image Width="254" Height="77">
+<![CDATA[GhVOj/Tg;@%iu]1*$$"M*$$"=*5-<qY]R*gYdDc]d'Rb2E:h!X%d&\tW)Zg=Q@I>ipT;d3C"B,@A,FZG
+Aa/OHX7;ZRZfs!RY#0VO9qTduYM-1ErXYX7]=sSH\`C'PDYpj/K_=a_@)o<mElkic,P9<6qr;uSHMRO<
+X`Db;IJfGT(\2q9`-(L+YD:bR-MlY#\hWQDX40Z<HL9em_Q*FF6Mr#]#LE:Nj8=_jIr0PhgTU,Ws6`EQ
+c`Mu2*38>rL!g$=gK3TK\@SiS/&./)q![+T.aIO%n,4O1_hrm?YEqDe#;!<Ns1WbpI]D#Qi:$-ha(Ds_
+9XH,@@sZMqpLf`i5-k15#d*Y<%?T07bKEQMqYJpY]tFk)ILi&Ihr!=\cd0q?IXchpo0_^H[KiF,iE>g%
+=r3)c12hp9kOWt?F*",-fkf6uN/eX#0,==9E/j<O`t\Oq)^G2Apc\#nmHs<!DqD-890:JGcUWEDrNYWH
+FIo^"5*pA_[CPD6iG/JG)h.POnKHh>L]-%4J#JDKErEJLI^Ml1pV,Z&W%4ANpHZ2G4jWkLIX`p5Y?%\6
+bHTh`#5EM..f@kLH_;*mn"2gop2/^Ch0%?ER8S$q=UR?]\+0+_e:#)<YIcY^h\Z-Bo>u!5mg?f5qBPYT
+gOfIc(rZiB%36O`\+'@6_o&/Gqtp7RIF@=#4;Z"/)Sa>5a!CTeg4H^VXcqje\UR,>BBZh3L+I+4RqKN"
+Q,?,PR1)U"jnEJ42*\;W9S*)c!;FBV`bYLJlOGH7%)<%j-aWo(o6XjSVV&k:IX[=.!n_6r?F:.4PN0M0
+015d'HAC[!"gCBL#1&F'`SVK'_:Q%/;fEht"H9VZ4MW#nK7/E`Z,dPs5OY3i[oqjS^8n&^i-is9I3-b?
+clD(.;jiT)rP>)?X.!j2(]Q(IN,lYNq`ER8mlq-H+*u_G#P*VXDCPQF9pY5IhuE[7\.@^8el<(Wi3^D%
+0>RJShh6)]kSNf"i)S@FBj_>[-r1tVi:70@';mX./7Hdrj1sh.-MR--P/c9LS+s;jIlQmO>GO1'0fk3<
+TYL;3qtDBRq0[I)hHq)Dr,(;<][!!8>N,GWmCiIIGPqPl^V2WKb>#<JqlYCLG'1?=h;=j*c2JX]:]K;/
+dsf&FgOaUBiq%?FmsX$j]kmSMV`f7gmrl@)pR@.4NCVA'12SK./HpC-KiV#6TDAsEPj_gm:6PU?1(Kt$
+=:=;gM!Y`ojDn;d1O6_e\lQp8UJ>g5k9"[3$ZQ,o5AOU*Ho/2*VKqOoc.odXqtA`&GAY%XlDD,L?i/ub
+^ZT%1l0c+N/)Gd%^:WjfhR,@J_!a5<G;mD;pKcOCY5S0*h>GLfAJn(bO't7aSj4[KS_'%tJ@n.R96'q=
+T.&Guq&?a+e]'b\%<O@,0;,hJI>kQWfcks$V!]+\M0g4lSEJW(If8oegqC<0O+:Z;2iA\?%iFrpG;oI`
+:B\T)2odKK*q9]3?(GmpHEkNf@TW$pH_EcQ1\*c?hnQnuR%Is]HTqSHfC$-93L/MdA7OeIKaRH$G:sEl
+aVIRInp;i>!GqnO,.2?ZIu!_W1d/!Pr%6rtMgK00Fo=M+I^Cjfip4.mh@A!jK'VTkf6?,]1]jn?G^Yrt
+#4u>YfZ3k<4Wo!aa61]kncD#DT$WC$)m*F#?Y7%ppGo1/8#49)I]to)!r$(U[dq76?7+p80cO4EmQ'1L
+p!L&.l]V1_pJIaV/EQWSqC%cpEdn&8m;G5(Y<%'e;)s'0_qWW[H0u1*cTTUh,CKNJkQX!,pF*X<c2IXU
+kDu4;oJ-JqGMBV*1dB?NRlS<5Hgg9JSaE%'-GPmd0A3\O_S)5df4Z,WJ2J.[V?Q^aO4EG=as1$9/f5OO
+oF[b/5@g6J-,0uTGGVeS)?6RtX*8eUSdUq?Zng7bbB#1D^N?+&\!OP;2XBJ1gG`9;2_ABXh<3e(f>i5@
+iIH.(rbm#<]"b_dDL]ELl.bSi^Y@)bgO&P?roRWagY'!HI=>&e(3B-FHFT=0O3*j$lQO7Y24YWZ\Om4]
+bGkM4%dn'2@DBF?*eO7i'Z65VfBiCc0csW7Q`b,fpL(nRms-DJj=$Y(L`LoA=$JNK[u]AE]jlNb/(aCk
+Sr_drAc,7Ys(&kAi(r^jbf=C@]mP+[gBSen2M>AjX80fM0AgDOce%Rqq3'i'#Nm/j?#+p@?D$4EC6eBN
+:4\Jfau3.E0g:TkJF8$dNk"i"jb5/Y4nK-G[C!DE@aG(gIr+OW?%#1Qr.@c3S+jm:O0<Ka[fbsAp#gle
+5-Q7%rSes__ro3P]qZ6YI@qBoIFRuBrJhA1q?4&@TH"#R^qm043u`X0qtP9XL%^^&f)rYfnB*KYad@Lk
+-LONLH`auCN'j3D<V#=ZfOi1bpOFc]B0IrEr-m,;ef`/JQF=@"ii$bPGB,n1XkV-.n)+EQB7^m@T.QVd
+eN\J9lT'@$I+fV:l`H6Ej(D/IH[kL#GYgWZ]';LEToHLQd%>@W4qE_.\tjdTa=kQg`rhkhKI=kX2qO?S
+(;HbfGtn/<e^LM4TB8WgdI%]5W\O<4oH3<ZI=;Y(?IP1U%tApRajUJZ>oo?M0u$s`Wo'H'QZ,/.puT<E
++8kQ1l7ZCOc]=^:NQi.-$1>-d.^,_r(Fm=<qZUpLpE<!JoFbBBofanoW?5<$^N$2khu-B@d_):b,b<,?
+>a<4qA$uWVk9,ak9n0hu"oCLbghZ(nnU08G(:a;\i@s\\p&,f:[QS!hkJd$;\[!Zk'D!kI9S_uq]^OE7
+EQs7sKf3%Q:MkCn4.N-\r_l]Z20pmG]85/5XSa-s;k%F2Y/#Mul$I:G5'H(3?Z1]:*1Y4Ba1Rt`lIa)<
+E<1N,i9.S1`V]Ber:P"=E8AsU?^uV1"*40blqAJc&L%/Sl'tjJdE\mtCmS2X94skhMpu['?'!GqktGN&
+rEbt+S6r'(;t,.%pHFtij\VB&Z0sR*O&^8\Co*Ya`3Z*oCf,:;;#\8V`J&,/g^hZp6cAY94@@7AfG@0S
+nYCU)dZS(kd,[0boZRuo$1*RBZohF)O3r.k(S&+KqRso?B0i.l0Ap/s_<LT5H3F!"[p6@d0_DK#hl#f7
+d_&ESeabMSl.7>=LA'#?Rt0DOrW+[iGI?'GXF<5WB,\e,4Y8'pa(0r>INP>)[!e0EVW%8(h"uXCn!Fk-
+EM&tH9VC:lF-_2ZQ`er)[cfa"OBkY>*KXdWK5:J#r6/lXS6rSbTTp5I+_IpCk!lY;f!OW#F((Y[*ll[s
+B4fh'e*m6ch`HthVoe`F,KT\DIt"tXO5nQ3Jb?*YY5L&]^LNO/C=+AmnOr[@a@W;VmrS:f'TDFqD&V1F
+:ilZ.[LMgZNSh1&\)US\Xmt^2hMsP6Y+AD'T,m/;-2VpPMl",Dh#6[]Im&_sVYslM*D?+f;rW+WE)1a.
+4[W:ccc:4>:!C1u+)7.Oaa([hIQJCqMq]85j6Ot0Mm#QcqA\G'P8_>f)Vhs@37YehO%[UT2N/5l"5Ae1
+lXA[cg!"3i^'5?Np-^2E3<f.\5NuFnm$oBj$MHn*5KQE)U[%Raeb/k/rVlaF3=!ilr4bFd4l<erI_$^$
+0,1Um-LPAta.Q"\#B4G5F+:)kEf"Ab4b`@q[a@&"'^+pF^YebTpK[/35?;#P=jHb5q0%/$XuH>DT'Q:_
+CA[23QtnU`Z/]Z>g?3g.WH!.&P4NDHnGu8YQo^P4j,Ge<3*dDcheQf5O68unWsLQ"[Ypcm2!2>X[)!c!
+&cMq,#h2f2\Xqp+WARJ!Da!d+CWUmqrcNU,))4S+R%5228%F;m'$ng`_u9ODna]T'4_n]6cn@@8-DflM
+H*$0]mafu$pRCk^2pY<5rF]Pe,+i^X5Kt+uIWfbG2t212@up2+[JV*"KX3Z5N%qK/^RRdD`-o_H2`C(Q
+IK8-0827\soT1eI?gIZeo5l-?fG(q=rKQCA;oRLB2IN+2#.KZUY05-UH.6GUp6PR8VWGl;o),ca@_2Q/
+5K*G<,KAEr52@YBibGQA=:8":X-@ZT;rF7erQOp`QMP9ONLN#d;G=eZj69HF"nN-X5#`Dp5!TADoAR8k
+gj3Bnhk(DQ[(jm$n)%@;LUi84YGoVKGcXp![WL)Ce)q$!(Oe#G.<RihI0%]ucuM#geW*7MC/0V4C>26=
+L>2;YJe-\FDN<!R=_qUtk@:KPLSh,lp61SM=Q4"jaK%Gk*:6h/Dj"uVb&N3B.$ZGB]A>e[AS6$@=qSns
+&itpnop*g"C8#.;jTZ%a0dg!]ol6Z&r\X<*THu<U/k2J@\7b^u1fb:d?H-rV_LKqQ4VgBtm*.?lTCs8]
+5:O>UXE!Y+.K,1d&E2LIQDhP1fHMm!TP%N:rNsrLVXD3PBOPTC9p04lcb_J3W'AH&rj9<okLr^S*RO7(
+&&]HLWUiOR<p1N78?RJ'[B'P#""0<LP3.GZ1^7qOnL#kM4srL///<&0_n9Crh4rltr3mhpS]fbYb@7ab
+QS25kcfKSBB8PL7Z./LIA'a3,4:T(*GNA[/AY)^njh@l[Sqa[S@/ipkPND>4@1N,4F\5tFM_?./j5]ZF
+BteB^4*Y,XUG,0A7OL$>[hPU#b7%PnJ1:I;Ud`p#Mr+sBQKR4jg:-&`r?=W+p[Ggt54;=ECI.RDo@Id,
+[:Il^a[$rAeWMMD<_;1$WA-Ra($Q-CW.rUf9"Jf:=tg.j#W?rWr]mWIUnr"/H#]gu*e,8k#,YE>kEj>V
+=$Brnhc!gh7`k<daaHq,Zfo)Q):6G"q*O"8n3%eU;nS/j?n[i:99;q9IeP/[OcrRs`\\cYN;0rR!P^i(
+*Voi?9BWqLg6ns7d8.q,_S7qI[H:"@It-S;Fnko;r:Sk7)m[HG[Zr(Yr)^*a#5/RV\k_dZo7^3=]gLZ@
+M7kJ5qGao9JZnSB*:@t*?-?fF:<rUAI.R?VH;(qUL;2HM>g(gZ5.^Gn6/=5$=goG]F,a*Uhq]gJYN:q*
+,j3eQDg)e">-b>TMCP/+\B=X!nh9!O/0<Wdpo&/'c?hdTg`NkF8Tq"nY=XSQ-?ftQf05d9:R?N?h%u:K
+7q)E/I#+):5'8pK(8'Gg4/)B9oPa08./hG;Y!H8rYrRfW+4]iA4;BsTg^[sWf+J&<$?Th&8os^so6>Y)
+l'^(h58Es-K`#OOD,FXS.$>*HW_XEq"2rOC;P2VTgP-DL-ks^[iZA(pI86UY0sNOHg:L!4kX7VVcMpH7
+8Pi<4\7-0[p#31<b6[4r62fZfZgI1BMln%h_fe/INOpZfh@8HFf=prN5*&MHq,p:1,5LZs>[#k7I(E?5
+#J8N9Mm"@^DfGa'deHQMDI`M?pc(OO.d@ftq(%52/@]&EH'Kkg^q8OWdF\WPmp>Q$jC8bm.HGLZa$'DR
+rLVnnK_mphf?Ip8l=q+;O&l$>pU^CZXZd[7c[_HV=,o!'bPGbZLAl)arB86t4Gl$[CB9.7!C('crV*.2
+_f<J?iBjh1V\9hk=2LRFq\.Os.*kWs1EdW'_`uCWJM^99QcB/eaiVm^`?rqAb<'+NGXOZl#lG4r<Q]=(
+a$J-`cjuS;X-W;\`8lE:H^2eMp$uSGEbcY6P\@\,Hhd"cnc&R^q/UjL^7<gn97BZmhf/B7[Qftu_iR)c
+hF5;^Pt1E:[9Do<g,A*FK6o3BL7d;"ZrhZn8u&5M6SUVKkn^PZiKcJjm.2sjn]t,09(`qA7o+kdO=(ZX
+Bh,U$k=usl2^'9G-'enYW5LV?]VP$rCPh.uj17P!=Tn+3Be7;(%Ln%WoC9fZQ%a8F=jQM/EC$Z\\7>?;
+Zn]^[RslXGO,j*Ir'O^`?bpn>>s;LT^Sb^,[56@,HnQrHhTAK9$,u5gkM`,<QFP8h>35SCXRD;2)pNAR
+YluBm9(-ASpGL`1kbrWa300qY0aIGpN_dR]V>0kejLmP!m<Xufq^.6Yo=9[ra@bFc\[W0@+%:#8o=l^X
+c^A"h/<="5@Qt:[R-N'5qc7uLbL7JiH^)D9[G9H7@mfu`-KY!@qg#+&pGMVjM;LjNHXlSmX+$)]T_9OC
++!S(1:A^6D;h2p_cIjl#$LUu'bQEf<C6eO7F./E_O-KX8np>k$I\5_c42g$Uq>I/l^COaV_YkqYI;!IB
+D;oEQGT+&`@6TcTs*4Gl/RQ!KRB\Z#VVulp%2%JlZaX0Pm^<"Ve+3A9mXm7e8:4e5pHJE%o)#;?ht))J
+TtTeIom=&+LN$&b4hSCmf2X?2[r1RTQgo.qKIes;dPUqBGgBJ#]1]q&joQBi_n??ShTL1!-e7[8MsU6g
+\W:LsHbME\j8!d]M77E^`I(H3ej%CaVZ[rB4)"MhIPG$]g.UN$FH39ZpEBK!FKPB:?A:TbG^@FYLAH>K
+Yij'dAb(4cQ@1K6+87^X@d2o1n.j5-A+*=T.hM7`ZFlYPK8'"#0,=3tVr+,34oa,mH`<[Q==jGo0#*bN
+@W:`iG=i51WS[uhIqsE,E5/bER>Ukrq)t'U[,5UY^o,18csSG[+fnToTBZ1<hoGN*jK!Y,qE=KlM8aeL
+gAY"%HgIh!._j#:KR@:.4G33bUt_^'[3R\4$GXW0:%#'(NjuR:$^RA=.DIO_n#*YXg[oj,+3"!A@X4_@
+om9f)["A<AO+3XOHYWH/g;(#rS6)9qmNm=C1lCH&O`Cf"K:FU>03%/M7b];uk@a)Sk@)\4gV;oRKDC>b
+VAd@DcYYa(\ApCBPc!sfoMiTfGTC#6:U-=&r1<)Pf6!I&fC/7BJf%;XWo'Gu5<kEOS\gt:h7pGeP9K?K
+5L.dT]ljTNe*e_LpmKj:4b!P3rbUrsq0kE)\0$Xd>PIY5g]QGtqLre54o\?M\(H-t%GZa*(`H,DL!';j
+>i6perpo^Ybs/[e5:+(B34Hho$"8HM$iTVbHR],2kDuIVD$RUsLe@%0Tg$ph?%UrDcLGK6h]Mdh0$QW<
+P&p.mr'%L%@qXB"B5sD"Se'Gu[`%5=If;5_:C4`;h.tO2o>UJfNX>-#nec"@s84VEH[hplq3T@p6hn-"
+K?'I6hf?KeSGpo_^`Jp_j+Fh7aUBp&Seg`aM!#F)&bfquT7:kSr-\JBh"X&4D$o_,oC0D0./p*?IjMh?
+.,.pSDpe#"hZG?$>S?JPQg3T&qm3Qjs8E]0SmiAYY"J6B@b:[m(Q[Gj3mVa/+-.^ZbuH>Y"*;_Qnp;cI
+[b[e=*q0Yg<0sH=:[bKrR6\Ll?OVgmZ.9'I!QcE@L3l%p:A+N]r-,8mgqJ;$+54[iAMMnm^'3(Bi9,,3
+"as`tD_D:geif"W3O\!)T[/>^\Q&P,der]0@a7X:;l0.>nO[SYNrKl.MmiV)SQk-n`TWiB^Hd[CALWq4
+r"?b?Youf_mrMtei]=ZPrHj$+nTNo6Q2>mg@\:\m$JFILSLnBMa$O:_CA^(-@fuE#&3dY,*pH?HLCW+#
+@u,O=je8A\ksFr(QRPhqLY<8Zq)r((epKV@F%h()Oo+n0T=o_<QSW'!F8)=V^CBGQ39T);"SfJR#6Ldd
+Gl_d\iqa)Jm*qpj[,1=ufVShA>i*m!:uV4>TF[``gGIMJCA_lsVbekX#9QG34toJeI";3&_`ZkH`\PMQ
+l#8lFT<lp"o[VNpq],%I-eS!pYG\*nhm]q0s1n<RG:ZN*c0<)T:NAZQ3l`E?N;%)MX+7tEI)?r@g=((H
+V;u-\Ekh6!Y\*DG30/W7Pi?W^I=_B;)a2^Z@bBZ9$Tngo_JP1(r+")\GV:MD&a`(^=/Puoe6aY8"+e1$
+@fUNV4Ib%X\XuT04iAh:'k,?0%gC\Q=3G3^?4QS^<2a*jS^hA.pT7ZMbEKF3*48,JTtam)4HeSpiq5!k
+:goBW!e7#<:hfiaQs>B\iK^j,Ft@H6qb="uHi3^33P7s>2Qg3)c=V>D97aKCjWA51KK6?j\=a:JNad"9
+Gl'aU/O#5oj5;_hZ%_YW>_qe,*1,6-h[[h2kB^J#/*;oKo5/uu\S9[aVose[PapC@q`1qEGI?XRWVL"=
+(2KMrgjH2h[S$C`1;:0mPHmuQg=P'Wiph1S>MicVM(c!O\93)phRSj4^%TV%!,BhEeJba?#+c>d<ccmO
+=R.]LrR*gfg6ec"V]OmSa"5=#h5L+b4YSflcMAITI,0;g>g'N[EqqrNc64P
+]]>
+</Image>
+</ImageElement>
+</GD>
+<GD Width="135.33331" CellFitPage="true">
+</GD>
+<GD Width="168.33334" CellFitPage="true">
+</GD>
+</GR>
+<GR Height="0">
+<GD RowSpan="1" ColSpan="3" Width="283.44446" Repeat="false" CellFitPage="true">
+<TextElement ID="Text4" Alignment="66" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Serif-BOLD-18" Foreground="-16777216" FillStyle="0" TabStops="0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5,6.0,6.5,7.0,7.5,8.0" Justify="false" Orphan="false" TextAdvance="3">
+<![CDATA[Anagrafe Agricola Unica del Piemonte]]>
+</TextElement>
+<NewlineElement ID="Newline2" Alignment="2" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Serif-PLAIN-10" Foreground="-16777216" Count="1" Break="false">
+</NewlineElement>
+<NewlineElement ID="Newline187" Alignment="1" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-PLAIN-5" Foreground="-16777216" Count="1" Break="false">
+</NewlineElement>
+</GD>
+<GD Width="135.33331" CellFitPage="true">
+</GD>
+<GD Width="168.33334" CellFitPage="true">
+</GD>
+</GR>
+<GR Height="95">
+<GD RowSpan="1" ColSpan="3" Width="283.44446" Repeat="false" CellFitPage="true">
+<TextElement ID="Text17" Alignment="2" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Serif-BOLD-16" Foreground="-16777216" FillStyle="0" TabStops="0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5,6.0,6.5,7.0,7.5,8.0" Justify="false" Orphan="false" TextAdvance="3">
+<![CDATA[Dichiarazione relativa all'uso del suolo finalizzata all'aggiornamento degli atti catastali]]>
+</TextElement>
+<NewlineElement ID="Newline204" Alignment="2" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-PLAIN-10" Foreground="-16777216" Count="1" Break="false">
+</NewlineElement>
+<TextElement ID="Text18" Alignment="66" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Serif-BOLD-13" Foreground="-16777216" FillStyle="0" TabStops="0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5,6.0,6.5,7.0,7.5,8.0" Justify="false" Orphan="false" TextAdvance="3">
+<![CDATA[resa da soggetto interessato ai sensi dell'art.2, comma 33, del decreto legge n.262 del 03/10/2006, convertito con modificazioni della legge n.286 del 24/11/2006, e ss.mm.ii]]>
+</TextElement>
+<NewlineElement ID="Newline206" Alignment="2" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-PLAIN-10" Foreground="-16777216" Count="1" Break="false">
+</NewlineElement>
+<TextElement ID="Text21" Alignment="66" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Serif-PLAIN-12" Foreground="-16777216" FillStyle="0" TabStops="0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5,6.0,6.5,7.0,7.5,8.0" Justify="false" Orphan="false" TextAdvance="3">
+<![CDATA[Fonte dati: Anagrafe Agricola Unica del Piemonte - Dichiarazione di consistenza aziendale]]>
+</TextElement>
+<NewlineElement ID="Newline213" Alignment="1" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-PLAIN-10" Foreground="-16777216" Count="1" Break="false">
+</NewlineElement>
+<TextElement ID="txtProtocolloTest" Alignment="66" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Serif-PLAIN-12" Foreground="-16777216" FillStyle="0" TabStops="0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5,6.0,6.5,7.0,7.5,8.0" Justify="false" Orphan="false" TextAdvance="3">
+<![CDATA[]]>
+</TextElement>
+</GD>
+<GD Width="135.33331" CellFitPage="true">
+</GD>
+<GD Width="168.33334" CellFitPage="true">
+</GD>
+</GR>
+<GR Height="70">
+<GD Borders="4097,4097,4097,4097" BorderColor="-16777216" RowSpan="1" ColSpan="1" Width="283.44446" Repeat="false" CellFitPage="true">
+<TextElement ID="txtProtocollo" Alignment="66" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Serif-PLAIN-9" Foreground="-16777216" FillStyle="0" TabStops="0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5,6.0,6.5,7.0,7.5,8.0" Justify="false" Orphan="false" TextAdvance="3">
+<![CDATA[SPAZIO RISERVATO AL PROTOCOLLO]]>
+</TextElement>
+<NewlineElement ID="Newline4" Alignment="2" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Serif-PLAIN-10" Foreground="-16777216" Count="1" Break="false">
+</NewlineElement>
+<NewlineElement ID="Newline5" Alignment="2" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Serif-PLAIN-10" Foreground="-16777216" Count="1" Break="false">
+</NewlineElement>
+</GD>
+<GD Borders="4097,4097,4097,4097" BorderColor="-16777216" RowSpan="1" ColSpan="2" Width="135.33331" Repeat="false" CellFitPage="true">
+<TextElement ID="Text9" Alignment="2" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Serif-PLAIN-9" Foreground="-16777216" FillStyle="0" TabStops="0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5,6.0,6.5,7.0,7.5,8.0" Justify="false" Orphan="false" TextAdvance="3">
+<![CDATA[ENTE DETENTORE DEL FASCICOLO]]>
+</TextElement>
+<NewlineElement ID="Newline8" Alignment="2" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Serif-PLAIN-10" Foreground="-16777216" Count="1" Break="false">
+</NewlineElement>
+<TextElement ID="txtDetentoreFascicolo" Alignment="66" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Serif-BOLD-12" Foreground="-16777216" FillStyle="0" TabStops="0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5,6.0,6.5,7.0,7.5,8.0" Justify="false" Orphan="false" TextAdvance="3">
+<![CDATA[txtDetentoreFascicolo]]>
+</TextElement>
+<SpaceElement ID="Space7" Alignment="2" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-PLAIN-10" Foreground="-16777216" Space="6">
+</SpaceElement>
+<NewlineElement ID="Newline9" Alignment="2" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Serif-PLAIN-10" Foreground="-16777216" Count="1" Break="false">
+</NewlineElement>
+<TextElement ID="txtIndirizzoFascicolo1" Alignment="66" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Serif-BOLD-9" Foreground="-16777216" FillStyle="0" TabStops="0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5,6.0,6.5,7.0,7.5,8.0" Justify="false" Orphan="false" TextAdvance="3">
+<![CDATA[txtIndirizzoFascicolo1]]>
+</TextElement>
+<SpaceElement ID="Space8" Alignment="2" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-PLAIN-10" Foreground="-16777216" Space="6">
+</SpaceElement>
+<NewlineElement ID="Newline189" Alignment="1" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Serif-PLAIN-10" Foreground="-16777216" Count="1" Break="false">
+</NewlineElement>
+<TextElement ID="txtIndirizzoFascicolo2" Alignment="66" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Serif-BOLD-9" Foreground="-16777216" FillStyle="0" TabStops="0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5,6.0,6.5,7.0,7.5,8.0" Justify="false" Orphan="false" TextAdvance="3">
+<![CDATA[txtIndirizzoFascicolo2]]>
+</TextElement>
+<SpaceElement ID="Space9" Alignment="2" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-PLAIN-10" Foreground="-16777216" Space="6">
+</SpaceElement>
+<NewlineElement ID="Newline207" Alignment="2" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-PLAIN-10" Foreground="-16777216" Count="1" Break="false">
+</NewlineElement>
+</GD>
+<GD Width="168.33334" CellFitPage="true">
+</GD>
+</GR>
+</Grid>
+</Report>

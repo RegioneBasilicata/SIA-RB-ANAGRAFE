@@ -1,0 +1,263 @@
+$$head
+  <script type="text/javascript" src="../js/checktext.js"></script>
+  <script  type="text/javascript" src="../js/messaggistica.js"></script>
+  <script type="text/javascript">
+
+    function submitForm(valorePulsante){
+      document.form1.action = '../layout/elencoAziende.htm';
+      document.form1.target = '';
+      document.form1.valorePulsante.value = valorePulsante;
+      document.form1.submit();
+    }
+
+    function funzionalita(funz) {
+      var operazione = funz;
+      document.form1.funzionalitaSelezionata.value = operazione;
+      document.form1.target = '';
+      document.form1.submit();
+    }
+
+    function mandato() {
+      var oldAction = document.form1.action;
+      document.form1.action = "../layout/registrazioneDelega.htm";
+      document.form1.submit();
+      document.form1.target = '';
+      document.form1.action = oldAction;
+    }
+    
+    function revocaMandato() {
+      var oldAction = document.form1.action;
+      document.form1.action = "../layout/revocaDelega.htm?noAzienda=true";
+      document.form1.submit();
+      document.form1.target = '';
+      document.form1.action = oldAction;
+    }
+    
+  function funzionalitaRich()
+  {
+    if (document.form1.idAzienda!=null)
+    {
+      var coll = document.form1.idAzienda;
+      var count = 0;
+      if(coll.length) {
+        for(i=0; i < coll.length; i++) {
+          if(coll[i].checked) {
+            count++;
+          }
+        }
+      }
+      else {
+        if(coll.checked) {
+          count++;
+        }
+      }
+      if(count == 0) {
+        alert("Selezionare un'azienda");
+        return;
+      }
+    }
+    else
+    {
+      alert("Selezionare un'azienda");
+      return;
+    }
+    document.form1.operazione.value='';
+    document.form1.action='elencoRicercaRichiesta.htm?arrivo=elenco';
+    
+    document.form1.submit();
+  }
+
+  </script>
+</head>
+<body id="homeIndice" onload="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+  <form name="form1" method="post" action="../layout/elenco.htm">
+    <input type="hidden" name="funzionalitaSelezionata" value="$$funzionalitaSelezionata"/>
+    <input type="hidden" name="operazione" value="$$operazione"/>
+    <div id="pagina" class="colonnaUnica">
+    <!-- INTESTAZIONE -->
+      <div id="intestazione##pathProvincia">
+        $$header
+        <!-- menu di navigazione-->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li>
+                <a href="../layout/index.htm" title="Torna alla pagina principale">home</a>
+              </li>
+              <li class="attivo">gestione anagrafe aziende</li>
+              <li>
+                <a href="#" title="contatti">contatti</a>
+              </li>
+              <li>
+                <a href="#" title="help">help</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr/>
+      <div style="clear:left"></div>
+      <!-- CORPO -->
+        <div id="corpo">
+          <div id="Utente">
+            <div id="datiUtente">
+              <strong>utente: </strong>$$utente&nbsp;&nbsp;
+              <strong>ente: </strong>$$ente
+            </div>
+          <div id="chiudisessione">
+          <a href="javascript: logout();">chiudi sessione</a>
+        </div>
+      </div>
+      <hr/>
+      <!--PRIMA COLONNA -->
+      <h3>Ricerca Azienda&nbsp;&gt;&nbsp;Elenco Aziende
+        <span class="helpFuori">
+          <a href="#">
+            <span class="alt">[help]</span>
+          </a>
+        </span>
+      </h3>
+      <hr/>
+      <div class="box">
+        <div class="menuSX1">
+          <ul>
+            <!-- @@blkElencoAziendeRapLegale -->
+                <li><a href="../layout/elencoAziendeRapLegale.htm">Elenco Aziende</a></li>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <!-- @@blkRicercaAzienda-->
+              <li><a href="../layout/ricerca.htm">Ricerca Azienda</a></li>
+            <!-- @@blkRicercaAzienda-->
+            <!--@@blkRicercaTerreno-->
+              <li>
+                <a href="../layout/ricercaTerreno.htm">Ricerca Terreno</a>
+              </li>
+            <!--@@blkRicercaTerreno-->
+            <!--@@blkRicercaPersona-->
+              <li><a href="../layout/ricercaPersona.htm">Ricerca Persona</a></li>
+            <!--@@blkRicercaPersona-->
+            <!--@@blkRicercaNotifica-->
+              <li>
+                <a href="../layout/ricercaNotifica.htm">Ricerca Notifiche</a>
+              </li>
+            <!--@@blkRicercaNotifica-->
+            <!--@@blkVariazioniAzienda-->
+              <li><a href="../layout/ricercaVariazioni.htm" >Ricerca Variazioni</a></li>
+            <!--@@blkVariazioniAzienda-->
+            <!--@@blkRicercaRichiesta-->
+              <li><a href="../layout/ricercaRichiesta.htm">Ricerca richiesta azienda</a></li>
+            <!--@@blkRicercaRichiesta-->
+            <!--@@blkNuova-->
+              <li>
+                <a href="../layout/nuovaAziendaAnagrafica.htm">Nuova Azienda</a>
+              </li>
+            <!--@@blkNuova-->
+            <!-- @@blkNuovaIscrizione -->
+	          <li>
+	            <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+	          </li>
+	          <!-- @@blkNuovaIscrizione -->
+             <!--@@blkNuovaParticella-->
+            <li>
+              <a href="../layout/inserisciTerreno.htm">Nuova Particella</a>
+            </li>
+            <!--@@blkNuovaParticella-->
+            <!--@@blkServizi-->
+              <li><a href="../layout/servizi.htm" >Servizi</a></li>
+            <!--@@blkServizi-->
+            <!--@@blkReportistica-->
+              <li><a href="elencoRicerche.htm">Reportistica</a></li>
+            <!--@@blkReportistica-->
+            <!--@@blkEstrazioneDati-->
+              <li><a href="../layout/macroCategoriaReport.htm">Estrazione dati</a></li>
+            <!--@@blkEstrazioneDati-->
+            <li><a href="../layout/elencoManuali.htm">Scarico Documentazione Tecnica</a></li>        
+          </ul>
+        </div>
+        <div class="menuSX">
+          <ul>
+            <li>
+              <a href="#" class="on">Azienda</a>
+              <ul>
+                <li>
+                  <a href="javascript: funzionalita()">dettaglio</a>
+                </li>
+                <!--@@blkBiologico-->
+                  <li>
+                    <a href="javascript: funzionalita('biologico')">biologico</a>
+                  </li>
+                <!--@@blkBiologico-->
+                <!--@@blkRegistrazioneMandato-->
+                  <li>
+                    <a href="javascript: mandato()">registrazione mandato</a>
+                  </li>
+                <!--@@blkRegistrazioneMandato-->
+                <!--@@blkRevocaMandato-->
+                  <li>
+                    <a href="javascript: revocaMandato()">revoca mandato</a>
+                  </li>
+                <!--@@blkRevocaMandato-->
+                <!--@@blkElencoRichiesteAzienda-->
+                <li>
+                  <a href="javascript:funzionalitaRich()"">richieste azienda</a>
+                </li>
+                <!--@@blkElencoRichiesteAzienda-->
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <hr/>
+      <!-- SECONDA COLONNA -->
+        <div id="contenuto">
+          <input type="hidden" name="paginaCorrente" value="$$currPage"/>
+          <input type="hidden" name="totalePagine" value="$$totPage"/>
+          <input type="hidden" name="numeroRecord" value="$$numeroRecord"/>
+          <p class="allineaDx">Aziende estratte : $$numeroRecord
+            <span>
+              <!--@@bottoneIndietro-->
+                <a href="javascript: goToOperazione('../layout/elenco.htm', document.form1, 'indietro');">indietro</a>
+              <!--@@bottoneIndietro-->
+              pagina $$currPage di $$totPage
+              <!--@@bottoneAvanti-->
+                <a href="javascript: goToOperazione('../layout/elenco.htm', document.form1, 'avanti');">avanti</a>
+              <!--@@bottoneAvanti-->
+            </span>
+          </p>
+          <table cellspacing="3" summary="Questa tabella è costituita da righe">
+            <tr>
+              <th class="radio" scope="col"></th>
+              <th class="center" scope="col">Denominazione</th>
+              <th class="center" scope="col">CUAA (cod.fisc.)</th>
+              <th class="center" scope="col">Partita IVA</th>
+              <th class="center" scope="col">Sede Legale</th>
+              <th class="center" scope="col">Fine validit&agrave;</th>
+            </tr>
+            <!--@@rigaAnagrafica-->
+              <tr>
+              <th class="radio" scope="row">
+                <input type="radio" id="idAzienda" name="idAzienda" value="$$idAzienda" $$checked/>
+              </th>
+              <td>
+                <label for="idAzienda">$$denominazione</label>
+              </td>
+              <td>$$cuaa</td>
+              <td>$$partitaIVA</td>
+              <td>$$comune
+                  <br>
+                  $$prov
+                  <br>
+                  $$indirizzo
+              </td>
+              <td>$$fineVal</td>
+            </tr>
+          <!--@@rigaAnagrafica-->
+        </table>
+        <br/>
+      </div>
+    </div>
+    <hr/>
+    <!-- PIE' DI PAGINA -->
+    $$footer

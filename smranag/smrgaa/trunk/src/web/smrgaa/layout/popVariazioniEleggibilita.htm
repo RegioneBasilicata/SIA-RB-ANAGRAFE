@@ -1,0 +1,104 @@
+$$head
+	<script src="../js/checktext.js" type="text/javascript"></script>
+</head>
+<body id="popup">
+	<form id="form1" name="form1" method="post" action="../layout/popVariazioniEleggibilita.htm">
+    <div><!-- id="corpo"-->
+      <div id="contenutopop">
+      	<div class="pulsanti">
+       		<div class="des">
+       			<a href="javascript:window.close();">chiudi</a>
+       		</div>
+        </div>
+        
+        
+        <!--@@blkStoricoParticella-->
+        <table cellspacing="3" summary="dettaglio unita arboree">
+          <tr>
+            <th class="center" scope="col">
+              Comune
+            </th>
+            <th class="center" scope="col">
+              Sezione
+            </th>
+            <th class="center" scope="col">
+              Foglio
+            </th>
+  
+            <th class="center" scope="col">
+              Particella
+            </th>
+            <th class="center" scope="col">
+              Subalterno
+            </th>
+            <th class="center" scope="col">
+              Sup. grafica
+            </th>
+          </tr>
+          <tr>
+            <td>
+              $$comune
+            </td>
+            <td>
+              $$sezione
+            </td>
+            <td class="numeridx">
+              $$foglio
+            </td>
+            <td class="numeridx">
+              $$particella
+            </td>
+            <td>
+              $$subalterno
+            </td>
+            <td class="numeridx">
+              $$superficieGrafica
+            </td>
+          </tr>
+       </table>
+       <!--@@blkStoricoParticella-->
+        
+        
+        
+        
+        
+        
+        <!--@@blkStoricoEleggibilita-->
+        <table cellspacing="3" summary="Questa tabella contiene i dati delle variazioni storiche delle particelle">
+        	<caption>Elenco eleggibilit&agrave per campagna</caption>
+        	<tr>
+        	  <th class="center" scope="col">Anno campagna</th>
+            <th class="center" scope="col">Eleggibilit&agrave</th>
+      			<th class="center" scope="col">Superficie</th>
+    			</tr>
+    			<!--@@blkElencoStoricoEleggibilita-->
+          
+          <tr >
+            <!-- @@blkRigaPrimo -->
+            <td rowspan="$$dimRighe" class="numeridx" >$$annoCampagna</td>
+            <!-- @@blkRigaPrimo -->
+            <td  >$$descEleggibilita</td>
+          	<td class="numeridx">$$superficie</td>
+          </tr>
+    			<!--@@blkElencoStoricoEleggibilita-->
+        </table>
+        
+    		
+        <p id="nota">Tutte le superfici sono espresse in ettari (ha).</p>
+        <p id="nota">Per ogni anno campagna viene riportata solo l'ultima fotointerpretazione risultante sul GIS.</p>
+        <!--@@blkStoricoEleggibilita-->
+        <!-- @@blkErrore -->
+        <br/>
+        <p class="errore">$$messaggio</p>
+        <br/>
+        <!-- @@blkErrore -->
+        <div class="pulsanti">
+        	<div class="des">
+        		<a href="javascript:window.close();">chiudi</a>
+        	</div>
+        </div>
+      </div>
+    </div>
+  </form>
+</body>
+</html>

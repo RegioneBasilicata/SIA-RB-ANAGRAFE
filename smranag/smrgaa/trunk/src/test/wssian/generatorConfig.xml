@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+
+	<classPathEntry
+		location="C:\TOBECONFIG\wildfly-8.2.1.Final\modules\system\layers\base\com\oracle\main\ojdbc6.jar" />
+
+	<context id="Oracle" defaultModelType="flat" targetRuntime="MyBatis3">
+		<property name="javaFileEncoding" value="utf8" />
+
+		<plugin
+			type="wssian.mybatis.plugin.ForceNumericToLongPlugin" />
+		<plugin
+			type="wssian.mybatis.plugin.ForceDecimalToDoublePlugin" />
+
+		<plugin
+			type="iwssian.mybatis.plugin.AddClassExtendPlugin">
+			<property name="extendedClass" value="wssian.mybatis.GenericExample" />
+		</plugin>
+
+		<plugin type="org.mybatis.generator.plugins.CaseInsensitiveLikePlugin" />
+
+		<!-- TEST -->
+		<jdbcConnection
+			connectionURL="jdbc:oracle:thin://@srv1-oraclesirs.hosting.int:1521/orcl.hosting.int"
+			driverClass="oracle.jdbc.OracleDriver" userId="bas" password="MYPASS" />
+
+		<!-- javaTypeResolver
+			type="it.aizoon.siarb.gufo.integration.mybatis.extension.siarbJavaTypeResolver" /-->
+
+		<javaModelGenerator targetPackage="wssian.dto.generati"
+			targetProject="src/test">
+			<property name="rootClass" value="wssian.dto.BaseDto" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+			
+		<sqlMapGenerator targetPackage="wssian.mapper.generati"
+			targetProject="src\test\wssian" />
+
+		<javaClientGenerator
+			targetPackage="wssian.mapper.generati"
+			targetProject="src\test\wssian" type="XMLMAPPER">
+		</javaClientGenerator>
+
+		<!-- invertito l'ordine con cui vengono generati i mapper per evitare l'overwriting 
+			da parte della wildcard -->
+
+		<!-- table schema="gufo" tableName="gufo_t_utente">			<generatedKey column="id_utente" sqlStatement="JDBC" />
+		</table>
+		
+		<table schema="gufo" tableName="gufo_t_trace_login">
+			<generatedKey column="id_trace_login" sqlStatement="JDBC" />
+		</table>
+		
+		<table schema="gufo" tableName="gufo_d_comune">
+			<generatedKey column="id_comune" sqlStatement="JDBC" />
+		</table>
+		
+		<table schema="gufo" tableName="gufo_d_provincia">
+			<generatedKey column="id_provincia" sqlStatement="JDBC" />
+		</table>
+							
+        <table schema="gufo" tableName="gufo_R_GRUPPO_STATO_SUCCESSIVO"></table>		
+        		
+		<table schema="gufo" tableName="gufo_R_GRUPPO_STATO"></table>
+		
+		<table schema="gufo" tableName="GUFO_T_RICHIESTA">
+			<generatedKey column="id_richiesta" sqlStatement="JDBC" />
+		</table>
+		<table schema="gufo" tableName="GUFO_T_ALLEGATO">
+			<generatedKey column="id_allegato" sqlStatement="JDBC" />
+		</table>-->
+		<table schema="bas" tableName="ISWSRESPANAGFASCICOLO15">
+			<generatedKey column="ID_ISWS_RESP_ANAG_FASC15" sqlStatement="JDBC" />
+		</table>
+	</context>
+
+</generatorConfiguration>

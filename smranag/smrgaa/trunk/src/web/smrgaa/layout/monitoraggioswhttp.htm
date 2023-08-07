@@ -1,0 +1,155 @@
+$$head
+  <title>Anagrafe Agricola della Regione TOBECONFIG</title>
+  <script type="text/javascript" src="../js/checktext.js"></script>
+
+  <script type="text/javascript">
+// Metodo per aprire una pop-up ed effettuare su di essa il submit del form
+function newWindowDoFormGIS(mypage, myname, w, h, scroll) {
+	var winl = (screen.width - w) / 2;
+  	var wint = (screen.height - h) / 2;
+
+  	winprops =    'height='+h+',width='+w+',top='+wint+',left='+winl+',scrollbars='+scroll+',resizable';
+  	win = window.open('', myname, winprops);
+  	if (myname=='abaco') {
+   		win.close();
+    	win = window.open('', myname, winprops);
+  	}
+
+  	if (parseInt(navigator.appVersion) >= 4) {
+    	win.window.focus();
+  	}
+
+  	var target1 = document.form1.target;
+  	var action1 = document.form1.action;
+  	document.form1.target = myname;
+  	document.form1.action = mypage + "?idStoricoParticellaRicTerr=" + document.form1.idStoricoParticellaRicTerr.value + "&abaco=true"; //37167600
+	document.form1.submit();
+  	document.form1.target = target1;
+  	document.form1.action = action1;
+}
+</script>
+</head>
+<body id="homeIndice">
+  <div id="pagina" class="colonnaUnica">
+    <!-- INTESTAZIONE -->
+    <div id="intestazione##pathProvincia">
+      $$header
+      <!-- menu di navigazione-->
+      <div id="titoloEmenu">
+        <h2>
+          <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+        </h2>
+        <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li class="attivo">home</li>
+              <li><a href="#" title="contatti">contatti</a></li>
+              <li><a href="#" title="help">help</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr/>
+      <div style="clear:left"></div>
+      <!-- CORPO -->
+<div id="corpo">
+<div id="Utente">
+<div id="datiUtente"><strong>utente:</strong> $$utente &nbsp; &nbsp; <strong>ente:</strong> $$ente </div>
+<div id="chiudisessione"><a href="javascript:logout()">chiudi sessione</a></div>
+</div>
+<hr />
+<!-- PRIMA COLONNA -->
+<div id="contenuto">
+<br>
+<!-- @@blkOk -->
+<h3>MONITORAGGIO - Dettaglio controlli effettuati:</h3>
+          <table cellspacing="3" summary="Questa tabella è costituita da righe" width="20%">
+            <tr>
+              <th><center>Test effettuato</center></th>
+            </tr>
+            <tr>
+              <td>Database OK</td>
+            </tr>
+            <tr>
+              <td>Servizi IRIDE2/pep OK</td>
+            </tr>
+            <tr>
+              <td>Servizi SMRCOMMS/smrcommsrv OK</td>
+            </tr>
+            <!-- tr>
+              <td>Servizi SMRANAGS/sian OK</td>
+            </tr>
+            <tr>
+              <td>Servizi AAEPSV/aaepsv OK</td>
+            </tr>
+            <tr>
+              <td>Servizi SIGMATER/sigtersrv OK</td>
+            </tr>
+            <tr>
+              <td>Applicazione SMRANAG/sitisso OK</td>
+            </tr>
+            <tr>
+              <td>Applicazione SMRANAG/siticata OK</td>
+            </tr -->
+            <tr>
+              <td>Applicazione SMRANAG/catvitreg OK</td>
+            </tr>
+            <tr>
+              <td><form id="form1" name="form1" method="post" action="../layout/monitoraggioswhttp.htm">
+                ID Storico Particella (come per ricerca terreni): <input type="text" name="idStoricoParticellaRicTerr" />
+                <a href="javascript: newWindowDoFormGIS('../layout/abacoGis.htm', 'abaco', '1000','700','yes', 'GIS');">Esegui verifica per sitisso, siticata, alternativeRMI</a>
+
+              </form></td>
+            </tr>
+          </table>
+<!-- @@blkOk -->
+<hr/>
+<h2>$$strMonitoraggio</h2>
+<hr/>
+<!-- @@blkErrore -->
+<table cellspacing="3"  summary="Questa tabella è costituita da righe">
+  <col width="20%"/>
+  <col width="40%"/>
+  <col width="5%"/>
+  <col width="35%"/>
+  <thead>
+    <tr>
+      <th class="center" scope="col">
+        Database/Applicazione
+      </th>
+      <th class="center" scope="col">
+        Descrizione errore
+      </th>
+      <th class="center" scope="col">
+        Esito
+      </th>
+      <th class="center" scope="col">
+        Note
+      </th>
+     </tr>
+   </thead>   
+   <tbody>
+     <!-- @@blkAnomalia -->
+     <tr>
+      <td>
+        $$tipo
+      </td>
+      <td>
+        $$valore
+      </td>
+      <td class="center" scope="col">
+        <img src="$$immagine" onClick="alert('$$descImmagine')" alt="$$descImmagine" />
+      </td>
+      <td>
+        $$note
+      </td>
+     </tr>
+ <!-- @@blkAnomalia -->
+    </tbody>
+</table>
+<!-- @@blkErrore -->
+</div>
+<!-- SECONDA COLONNA -->
+</div>
+<hr />
+<!-- PIE' DI PAGINA -->
+$$footer

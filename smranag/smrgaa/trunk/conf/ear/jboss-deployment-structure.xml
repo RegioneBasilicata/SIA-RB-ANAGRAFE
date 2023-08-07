@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jboss-deployment-structure xmlns="urn:jboss:deployment-structure:1.2">
+    <deployment>
+        <dependencies>
+            <module name="@IRONJACAMAR_JDBCADAPTERS_MODULE_NAME@" slot="main" export="true" meta-inf="export"/>
+            <module name="@ORACLE_MODULE_NAME@" slot="main" export="true" meta-inf="export"/>
+        </dependencies>
+        <exclude-subsystems>
+			<subsystem name="weld" />
+		</exclude-subsystems>
+    </deployment> 
+</jboss-deployment-structure>

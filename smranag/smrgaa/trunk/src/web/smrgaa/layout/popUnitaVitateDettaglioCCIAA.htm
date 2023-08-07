@@ -1,0 +1,288 @@
+$$head
+<script src="../js/checktext.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+function selezioneElementi() 
+{
+  
+  document.form1.importa.disabled = 'true';
+  var coll = document.form1.chkIdUnitaArborea;
+  var count = 0;
+  if(coll != null) 
+  {
+    if(coll.length) 
+    {
+      for(i=0; i < coll.length; i++) 
+      {
+        if(coll[i].checked) {
+          count++;
+        }
+      }
+      if(count == 0) 
+      {
+        alert("Selezionare una voce dall'elenco");
+        document.form1.importa.disabled = '';
+      }
+      else 
+      {
+        document.form1.operazione.value="importa";
+        document.form1.submit();
+      }
+    }
+    else 
+    {
+      if(coll.checked) 
+      {
+        count++;
+      }
+      if(count == 0) {
+        alert("Selezionare una voce dall'elenco");
+      }
+      else {
+        document.form1.operazione.value="importa";
+        document.form1.submit();
+      }
+    }
+  }
+  else {
+    alert('Non esistono elementi su cui effettuare operazioni');
+  }
+}
+
+</script>
+</head>
+<body id="popup" onLoad="$$err_error" >
+  <form id="form1" name="form1" method="post"
+    action="../layout/popUnitaVitateDettaglioCCIAA.htm">
+    <input type="hidden" name="operazione" value="" />
+    <!-- CORPO -->
+    <div id="contenutopop">
+      <div id="intesta">
+        <p class="$$aziendaIntestazione" title="$$tooltipIntestazione" >
+          $$CUAA $$denominazione
+        </p>
+      </div>
+      <h4 class="titolo">
+        Fonte Dati: Infocamere
+      </h4>
+
+      <table cellspacing="3" summary="dettaglio unita arboree">
+        <tr>
+          <th class="center" scope="col">
+            Comune
+          </th>
+          <th class="center" scope="col">
+            Sezione
+          </th>
+          <th class="center" scope="col">
+            Foglio
+          </th>
+
+          <th class="center" scope="col">
+            Particella
+          </th>
+          <th class="center" scope="col">
+            Subalterno
+          </th>
+          <th class="center" scope="col">
+            Sup. grafica
+          </th>
+        </tr>
+        <tr>
+          <td>
+            $$comuneSiap
+          </td>
+          <td>
+            $$sezioneSiap
+          </td>
+          <td class="numeridx">
+            $$foglioSiap
+          </td>
+          <td class="numeridx">
+            $$particellaSiap
+          </td>
+          <td>
+            $$subalternoSiap
+          </td>
+          <td class="numeridx">
+            $$superficieGraficaSiap
+          </td>
+        </tr>
+      </table>
+
+
+
+      <!-- @@blkHeaderVigneto  -->      
+      <div class="paginazione">
+        <span class="sx">Numero occorrenze: $$numVigneti</span>
+      </div>
+
+      <table cellspacing="3"
+        summary="Questa tabella è costituita da righe">
+        <tr>
+          <th class="radio" rowspan="2" scope="col"></th>
+          <th rowspan="2" class="center" scope="col">
+            <span class="TitOrd">Albo</span>
+            <div class="ordina">
+              <a
+                href="javascript: goToOperazione(document.forms[0].action, document.forms[0], '$$tipoOrdinaAlbo');"
+                class="$$ordinaAlbo" title="$$descOrdinaAlbo"> <span
+                class="nascosto">$$descOrdinaAlbo</span> </a>
+            </div>
+          </th>
+          <th colspan="2" class="center" scope="col">
+            Matricola
+          </th>
+          <th rowspan="2" class="center" scope="col">
+            Sup. iscritta
+          </th>
+          <th rowspan="2" class="center" scope="col">
+            Vitigno
+          </th>
+          <th rowspan="2" class="center" scope="col">
+            Anno vegetativo
+          </th>
+          <th rowspan="2" class="center" scope="col">
+            <abbr title="Numero"><span title="Numero">N.</span>
+            </abbr> ceppi
+          </th>
+          <th rowspan="2" class="center" scope="col">
+            Codice MIPAF
+          </th>
+          <th rowspan="2" class="center" scope="col">
+            CUAA
+          </th>
+          <th rowspan="2" class="center" scope="col">
+            Denominazione
+          </th>
+          <th colspan="2" class="center" scope="col">
+            Residenza
+          </th>
+        </tr>
+
+        <tr>
+          <th class="center">
+            <abbr title="Provincia"><span title="Provincia">PV</span>
+            </abbr>
+          </th>
+          <th class="center">
+            Numero
+          </th>
+          <th class="center">
+            Comune
+          </th>
+          <th class="center">
+            Indirizzo
+          </th>
+        </tr>
+
+
+        <!-- @@blkVigneti  -->
+        <tr>
+        
+          <!-- @@blkPieno -->
+          <td class="radio" scope="row">
+            <input type="checkbox" id="chkIdUnitaArborea"
+              name="chkIdUnitaArborea" value="$$chkIdUnitaArborea"
+              $$checked />
+          </td>
+          <!-- @@blkPieno -->
+          <!-- @@blkVuoto -->
+          <td class="center" scope="row">
+            $$problema
+          </td>
+          <!-- @@blkVuoto -->
+          <td @@blkRed class="rosso" @@blkRed >
+            $$descAlbo
+          </td>
+          <td @@blkRed class="rosso" @@blkRed >
+            $$siglaProvincia
+          </td>
+          <td @@blkBlack class="numeridx" @@blkBlack @@blkRed
+            class="numeridx rosso" @@blkRed >
+            $$nrMatricola
+          </td>
+          <td @@blkBlack class="numeridx" @@blkBlack @@blkRed
+            class="numeridx rosso" @@blkRed >
+            $$superficieH
+          </td>
+          <td @@blkBlack class="center" @@blkBlack @@blkRed
+            class="center rosso" @@blkRed >
+            $$varieta
+          </td>
+          <td @@blkBlack class="numeridx" @@blkBlack @@blkRed
+            class="numeridx rosso" @@blkRed >
+            $$annoVegetativo
+          </td>
+          <td @@blkBlack class="numeridx" @@blkBlack @@blkRed
+            class="numeridx rosso" @@blkRed>
+            $$numCeppi
+          </td>
+          <td @@blkRed class="rosso" @@blkRed >
+            $$codiceMipaf
+          </td>
+          <td @@blkRed class="rosso" @@blkRed >
+            $$cuaaCCIAA
+          </td>
+          <td @@blkRed class="rosso" @@blkRed >
+            $$denominazioneCCIAA
+          </td>
+          <td @@blkRed class="rosso" @@blkRed >
+            $$comuneRes
+          </td>
+          <td @@blkRed class="rosso" @@blkRed >
+            $$indirizzoResidenza
+          </td>
+        </tr>
+        <!-- @@blkVigneti  -->
+
+
+
+        <tr>
+          <td colspan="4" class="tot">
+            Totali
+          </td>
+          <td class="tot">
+            $$totSuperficieH
+          </td>
+          <td colspan="9" class="tot">&nbsp;
+            
+          </td>
+
+        </tr>
+
+
+
+      </table>
+
+      <p id="nota">
+        Tutte le superfici sono espresse in ettari (ha)
+      </p>
+      <!-- @@blkHeaderVigneto  -->
+      <!-- @@blkErrore -->
+      <p class="errore">
+        $$messaggio
+      </p>
+      <!-- @@blkErrore -->
+      <div class="pulsanti">
+        <!-- @@blkImportazione -->
+        <div class="sin">
+          <input id="importa" name="importa" type="button"
+            value="importa dati su Schedario" onClick="javascript:selezioneElementi();"
+            class="inputPulsante" />
+        </div>
+        <!-- @@blkImportazione -->
+      
+        <div class="des">
+          <div class="des">
+            <a href="javascript:window.close();">chiudi</a>
+            <span class="alt">&nbsp;</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </form>
+</body>
+</html>
+

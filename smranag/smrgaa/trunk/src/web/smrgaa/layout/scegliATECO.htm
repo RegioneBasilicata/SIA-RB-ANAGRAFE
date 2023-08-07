@@ -1,0 +1,72 @@
+$$head
+  <script src="../js/checktext.js" type="text/javascript"></script>
+  <script type="text/javascript">
+
+    function elimina(url,form) {
+      window.opener.document.forms.form1.elements.operazione.value='elimina';
+      window.opener.document.forms.form1.submit();
+      window.opener.document.forms.form1.elements.operazione.value='';
+      window.close();
+    }
+
+  </script>
+</head>
+<body id="popup">
+  <form id="sceltaATECO" name="sceltaATECO" method="post" action="">
+    <!-- CORPO -->
+    <div id="contenutopop">
+      <div class="pulsanti">
+        <!-- @@conferma -->
+          <div class="des">
+            <a href="javascript:window.close();">chiudi</a>
+            <span class="alt">&nbsp;/&nbsp;</span>
+        </div>
+        <div class="sin">
+          <a href="javascript:confermaAttivitaATECO()">conferma</a>
+        </div>
+      </div>
+    <!-- @@conferma -->
+    <table cellspacing="3" summary="Questa tabella contiene i dati del rapporto">
+      <col width="5%"/>
+      <col width="45%"/>
+      <col width="50%"/>
+      <tr>
+        <th class="radio" scope="col"></th>
+        <th class="center" scope="col">Codice</th>
+        <th class="center" scope="col">Descrizione</th>
+      </tr>
+      <!-- @@tipiAttivitaATECO -->
+        <tr>
+          <th class="radio" scope="row">
+            <input type="radio" id="idAttivitaATECO" name="idAttivitaATECO" value="$$idAttivitaATECO"/>
+            <label for="idAttivitaATECO" class="alt">idAttivitaATECO</label>
+            <input type="hidden" id="codiceATECO" name="codiceATECO" value="$$codiceATECO"/>
+            <input type="hidden" id="descrizioneATECO" name="descrizioneATECO" value="$$descrizioneATECO"/>
+          </th>
+          <td>$$codiceATECO</td>
+          <td>$$descrizioneATECO</td>
+        </tr>
+      <!-- @@tipiAttivitaATECO -->
+    </table>
+    <p>$$exception</p>
+    <!-- @@conferma -->
+      <div class="pulsanti">
+        <div class="des">
+          <a href="javascript:window.close();">chiudi</a>
+          <span class="alt">&nbsp;/&nbsp;</span>
+        </div>
+        <div class="sin">
+          <a href="javascript:confermaAttivitaATECO()">conferma</a>
+          <span class="alt">&nbsp;/&nbsp;</span>
+        </div>
+      </div>
+    <!-- @@conferma -->
+    <!-- @@chiudi -->
+      <div class="pulsanti"><div class="des">
+        <a href="javascript:window.close();">chiudi</a>
+      </div></div>
+    <!-- @@chiudi -->
+  </div>
+  </form>
+  </body>
+  </html>

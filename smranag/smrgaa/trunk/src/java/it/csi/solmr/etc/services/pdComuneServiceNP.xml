@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<porta-delegata name="smrgaaweb.smrcommsrv.PA_SmrcommFacade">
+	<services>
+		<service name="smrgaaweb.smrcommsrv.PA_SmrcommFacade.service" public-interface-class="it.csi.smrcomms.smrcomm.interfacecsi.ISmrcommCSIInterface">
+			<operations>
+		   	<operation name="smrcommSearchListIdEntiPrivatiByIdTipoEntePrivato" type="synch-call" >
+		        <param-list>
+		        	<param name="idTipoEntePrivato" type="long" />
+		        	<param name="flagCessazione" type="boolean" />
+		        </param-list>
+		        <ret-val type="long[]"/>
+		   	</operation>
+
+        <operation name="smrcommGetEntiPrivatiByIdEntePrivatoRange" type="synch-call" >
+          <param-list>
+             <param name="idEntePrivato" type="long[]" />
+             <param name="tipoRisultato" type="int" />
+             <param name="filtro" type="it.csi.smrcomms.smrcomm.dto.filtro.EntePrivatoFiltroVO" />
+          </param-list>
+          <ret-val type="it.csi.smrcomms.smrcomm.dto.datientiprivati.DatiEntePrivatoVO[]"/>
+        </operation>
+
+        <operation name="smrcommSearchListIdEntiPrivatiByCodiceEntePrivatoRange" type="synch-call" >
+          <param-list>
+             <param name="codiceEntePrivato" type="java.lang.String[]" />
+             <param name="flagCessazione" type="boolean" />
+          </param-list>
+          <ret-val type="long[]"/>
+        </operation>
+
+        <operation name="smrcommSearchListDatiUtenteIride2" type="synch-call" >
+          <param-list>
+             <param name="idProcedimento" type="long" />
+             <param name="ruolo" type="java.lang.String[]" />
+             <param name="diritto" type="java.lang.String" />
+             <param name="idAmministrazione" type="java.lang.Long" />
+             <param name="idLivello" type="java.lang.Long" />
+             <param name="tipoOrdinamento" type="int" />
+          </param-list>
+          <ret-val type="it.csi.smrcomms.smrcomm.dto.datiutenteiride2.DatiUtenteIride2VO[]"/>
+        </operation>
+
+        <operation name="smrcommFindAmmCompFigli" type="synch-call" >
+          <param-list>
+            <param name="codiceAmmPadre" type="java.lang.String" />
+            <param name="idAmmPadre" type="java.lang.Long" />
+            <param name="tipoPadre" type="boolean" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.comune.IntermediarioVO[]"/>
+       </operation>
+       
+       <operation name="smrcommSearchListIdEntiPrivatiByCodiceEntePrivato" type="synch-call" >
+          <param-list>
+             <param name="codiceEnte" type="java.lang.String" />
+             <param name="tipoRisultato" type="int" />
+          </param-list>
+          <ret-val type="long[]"/>
+        </operation>
+        
+        <operation name="smrcommSearchListIdUtentiPrivatiAbilitatiByRuoloUtente" type="synch-call" >
+          <param-list>
+             <param name="idProcedimento" type="long" />    
+             <param name="codFiscale" type="java.lang.String" />
+             <param name="ruolo" type="java.lang.String" />
+             <param name="codiceEnte" type="java.lang.String" />
+             <param name="dirittoAccesso" type="java.lang.String" />         
+          </param-list>
+          <ret-val type="long[]"/>
+        </operation>
+        
+        <operation name="testResources" type="synch-call" >
+        	<ret-val type="boolean"/>
+       	</operation>
+       	
+       	<operation name="isAlive" type="synch-call" >
+        	<ret-val type="boolean"/>
+       	</operation>
+
+      </operations>
+    </service>
+  </services>
+
+   <config>
+    <url-pa>**not used**</url-pa>
+    <pluggable-pd-list chooser-class="it.csi.csi.porte.FixedDelegateChooser">
+	<pluggable-pd name="business" class="it.csi.csi.porte.jaxrpc.PortaDelegataWS" url-pa="***" url-qm="">      
+      <properties>
+         <property name="csi.wrapper.wsinterf.class" value="it.csi.smrcomms.smrcomm.dto.axisgen.SmrcommsrvSmrcomm" />
+		 <property name="csi.http.transport.type" value="commons-http" />
+          <property name="csi.http.timeout" value="10000" />          
+          <property name="class" value="it.csi.smrcomms.smrcomm.dto.axisgen.SmrcommsrvSmrcommServiceLocator" />
+          <!-- l'url dell'endpoint del servizio-->
+ 	      <property name="javax.xml.rpc.service.endpoint.address" value="@SMRCOMMSERVICE_SERVICE_ENDPOINT_URL@" />         
+        </properties>
+      </pluggable-pd>
+    </pluggable-pd-list> 
+    <queue-manager url=""/>
+  	<pre-function-handler-list>
+      <pluggable-fh name="isoint_pre" class="it.csi.csi.porte.jaxrpc.pfh.IsoIntTransformer">
+        <properties>
+          <property name="source.interface" value="it.csi.smrcomms.smrcomm.interfacecsi.ISmrcommCSIInterface" />
+          <property name="target.interface" value="it.csi.smrcomms.smrcomm.dto.axisgen.SmrcommsrvSmrcomm" />
+          <property name="pkg-map-1" value="it.csi.solmr.interfaceCSI.profile.services=it.csi.smrcomms.smrcomm.dto.axisgen" />      
+          <property name="class-map-2" value="it.csi.solmr.dto.comune.AmmCompetenzaVO=it.csi.smrcomms.smrcomm.dto.axisgen.AmmCompetenzaVO" />
+		  <property name="class-map-3" value="it.csi.smrcomms.smrcomm.dto.datientiprivati.DatiEntePrivatoVO=it.csi.smrcomms.smrcomm.dto.axisgen.DatiEntePrivatoVO" />
+		  <property name="class-map-4" value="it.csi.smrcomms.smrcomm.dto.datientiprivati.DatiIndirizzoEntePrivatoVO=it.csi.smrcomms.smrcomm.dto.axisgen.DatiIndirizzoEntePrivatoVO" />
+		  <property name="class-map-5" value="it.csi.smrcomms.smrcomm.dto.datientiprivati.DatiRecapitoEntePrivatoVO=it.csi.smrcomms.smrcomm.dto.axisgen.DatiRecapitoEntePrivatoVO" />
+		  <property name="class-map-6" value="it.csi.smrcomms.smrcomm.dto.datientiprivati.DatiResponsabileEntePrivatoVO=it.csi.smrcomms.smrcomm.dto.axisgen.DatiResponsabileEntePrivatoVO" />
+		  <property name="class-map-7" value="it.csi.smrcomms.smrcomm.dto.datiutenteiride2.DatiUtenteIride2VO=it.csi.smrcomms.smrcomm.dto.axisgen.DatiUtenteIride2VO" />
+		  <property name="class-map-8" value="it.csi.smrcomms.smrcomm.dto.filtro.EntePrivatoFiltroVO=it.csi.smrcomms.smrcomm.dto.axisgen.EntePrivatoFiltroVO" />
+      	  <property name="class-map-9" value="it.csi.solmr.dto.profile.UtenteIride2VO=it.csi.smrcomms.smrcomm.dto.axisgen.UtenteIride2VO" />
+        </properties>
+      </pluggable-fh>
+    </pre-function-handler-list>
+    <post-function-handler-list>
+      <pluggable-fh name="isoint_pre" class="it.csi.csi.porte.jaxrpc.pfh.IsoIntTransformer">
+        <properties>
+          <property name="source.interface" value="it.csi.smrcomms.smrcomm.interfacecsi.ISmrcommCSIInterface" />
+          <property name="target.interface" value="it.csi.smrcomms.smrcomm.dto.axisgen.SmrcommsrvSmrcomm" />
+          <property name="pkg-map-1" value="it.csi.solmr.interfaceCSI.profile.services=it.csi.smrcomms.smrcomm.dto.axisgen" />      
+          <property name="class-map-2" value="it.csi.solmr.dto.comune.AmmCompetenzaVO=it.csi.smrcomms.smrcomm.dto.axisgen.AmmCompetenzaVO" />
+		  <property name="class-map-3" value="it.csi.smrcomms.smrcomm.dto.datientiprivati.DatiEntePrivatoVO=it.csi.smrcomms.smrcomm.dto.axisgen.DatiEntePrivatoVO" />
+		  <property name="class-map-4" value="it.csi.smrcomms.smrcomm.dto.datientiprivati.DatiIndirizzoEntePrivatoVO=it.csi.smrcomms.smrcomm.dto.axisgen.DatiIndirizzoEntePrivatoVO" />
+		  <property name="class-map-5" value="it.csi.smrcomms.smrcomm.dto.datientiprivati.DatiRecapitoEntePrivatoVO=it.csi.smrcomms.smrcomm.dto.axisgen.DatiRecapitoEntePrivatoVO" />
+		  <property name="class-map-6" value="it.csi.smrcomms.smrcomm.dto.datientiprivati.DatiResponsabileEntePrivatoVO=it.csi.smrcomms.smrcomm.dto.axisgen.DatiResponsabileEntePrivatoVO" />
+		  <property name="class-map-7" value="it.csi.smrcomms.smrcomm.dto.datiutenteiride2.DatiUtenteIride2VO=it.csi.smrcomms.smrcomm.dto.axisgen.DatiUtenteIride2VO" />
+		  <property name="class-map-8" value="it.csi.smrcomms.smrcomm.dto.filtro.EntePrivatoFiltroVO=it.csi.smrcomms.smrcomm.dto.axisgen.EntePrivatoFiltroVO" />
+      	  <property name="class-map-9" value="it.csi.solmr.dto.profile.UtenteIride2VO=it.csi.smrcomms.smrcomm.dto.axisgen.UtenteIride2VO" />
+      	  <property name="class-map-10" value="it.csi.smrcomms.smrcomm.exception.InvalidParameterException=it.csi.smrcomms.smrcomm.dto.axisgen.InvalidParameterException"/>
+      	  <property name="class-map-11" value="it.csi.smrcomms.smrcomm.exception.MaxRangeException=it.csi.smrcomms.smrcomm.dto.axisgen.MaxRangeException"/>
+      	  <property name="class-map-12" value="it.csi.smrcomms.smrcomm.exception.QueryTimeOutException=it.csi.smrcomms.smrcomm.dto.axisgen.QueryTimeOutException"/>
+      	  <property name="class-map-13" value="it.csi.smrcomms.smrcomm.exception.SmrcommInternalException=it.csi.smrcomms.smrcomm.dto.axisgen.SmrcommInternalException"/>      	  
+        </properties>
+      </pluggable-fh>
+    </post-function-handler-list>
+  </config>
+
+</porta-delegata>

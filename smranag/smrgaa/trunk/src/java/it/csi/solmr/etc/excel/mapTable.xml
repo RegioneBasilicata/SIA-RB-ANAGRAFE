@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+<map>
+	<!-- tabella che in realtà non esiste su db. E' un mio alias -->
+  	<table name="elencoFascicoli">
+    	<bean name="it.csi.solmr.dto.anag.anagAziendaVO">
+      		<column name="Denominazione" width="30">denominazione</column>
+		    <column name="CUAA" width="25">CUAA</column>
+		    <column name="Partita IVA" width="16">partitaIVA</column>
+		    <column name="Comune" width="30">descComune</column>
+		    <column name="Indirizzo" width="30">sedelegIndirizzo</column>
+		    <column name="CAP" width="7">sedelegCAP</column>
+		    <column name="Provincia" width="10">sedelegProv</column>
+		    <column name="Istat" width="8">sedelegComune</column>
+    	</bean>
+  	</table>
+  	<table name="elencoDocumenti">
+    	<tab-header innerObject="true" property="documentoFiltroExcelVO">
+      		<bean property="intestazione" label="Azienda: " width="25"/>
+      		<bean property="descTipoTipologiaDocumento" label="Tipologia documento: "/>
+      		<bean property="descTipoCategoriaDocumento" label="Tipo documento: "/>
+      		<bean property="descTipoDocumento" label="Descrizione documento: "/>
+      		<bean property="descStatoDocumento" label="Stato documento: "/>
+      		<bean property="dataScadenza" label="In scadenza dal: " />
+      		<bean property="protocollazione" label="Protocollazione: "/>
+    	</tab-header>
+    	<bean name="it.csi.solmr.dto.anag.documentoExcelVO">
+      		<column name="Tipologia" width="25">descTipoTipologiaDocumento</column>
+      		<column name="Tipo" width="25">descTipoCategoriaDocumento</column>
+      		<column name="Descrizione" width="30">descTipoDocumento</column>
+      		<column name="Data Inizio" width="15">dataInizioDocumento</column>
+      		<column name="Data Fine" width="15">dataFineDocumento</column>
+      		<column name="Numero" width="30">numeroProtocollo</column>
+      		<column name="Data" width="15">dataProtocollo</column>
+      		<column name="Stato" width="15">descStatoDocumento</column>
+    	</bean>
+  	</table>
+  	<table name="elencoSianTerritorio">
+    	<bean name="it.csi.solmr.dto.anag.sian.sianTerritorioVO">
+      		<column name="Comune" width="28">descComuneExcel</column>
+      		<column name="Sz." width="4">sezione</column>
+      		<column name="Fgl." width="5">foglio</column>
+      		<column name="Part." width="6">particella</column>
+      		<column name="Sub" width="5">subalterno</column>
+      		<column name="Conduzione" width="12">codiceTipoConduzione</column>
+      		<column name="" width="48">descCodiceProdottoExcel</column>
+      		<column name="Varietà" width="28">descCodiceVarietaExcel</column>
+      		<column name="Sup." width="9">supUtilizzataExcel</column>
+    	</bean>
+  	</table>
+  	<table name="elencoTitoli">
+    	<tab-header innerObject="true" property="anagAziendaVO" >
+      		<bean property="CUAA" label="Cuaa: "/>
+      		<bean property="denominazione" label="Denominazione: "/>
+    	</tab-header>
+    	<bean name="it.csi.solmr.dto.anag.TitoloExcelVO">
+      		<column name="Identificativo" width="20">identificativo</column>
+      		<column name="Valore (Euro)" width="15">valoreTitolo</column>
+      		<column name="Superficie (ha)" width="15">superficie</column>
+      		<column name="Uba obbl." width="15">UBAobbligatori</column>
+      		<column name="Tipo" width="10">tipoTitolo</column>
+      		<column name="Origine" width="10">origine</column>
+      		<column name="Movimento">Movimento</column>
+      		<column name="Codice" width="10">tipoMovimento</column>
+      		<column name="Data" width="15">dataMovimentoExcel</column>
+      		<column name="Validazione" width="15">validazioneExcel</column>
+      		<column name="Data ultimo util." width="15">dataUltimoUtilExcel</column>
+      		<column name="Data fine possesso" width="15">dataFinePossessoExcel</column>
+      		<column name="Stato" width="10">statoExcel</column>
+      		<column name="Cuaa proprietario" width="15">cuaaProprietario</column>
+      		<column name="Cuaa soccidario" width="15">CUAASoccidario</column>
+      		<column name="Identificativo titolo fraz." width="15">idTitoloFrazionato</column>
+      		<column name="Zona primo util." width="15">zonaPrimoUtilizzo</column>
+      		<column name="Anno campagna">Anno campagna</column>
+      		<column name="Inizio" width="15">campagnaInizioVali</column>
+      		<column name="Fine" width="15">campagnaFineValiExcel</column>
+    	</bean>
+  	</table>
+  	<!-- Gestione documento Excel per report 'Riepilogo mandati e validazioni'  -->
+  	<table name="elencoMandatiValidazioni">
+  	  	<tab-header innerObject="true" property="elencoMandatiValidazioniFiltroEvcelVO" >
+      		<bean property="dataRiferimentoValidazione" label="Fascicoli validati "/>
+    	</tab-header>
+		<bean name="it.csi.solmr.dto.anag.DelegaVO">
+			<column name="Denominazione" width="60">denominazioneExcel</column>
+			<column name="Indirizzo" width="20">indirizzoExcel</column>
+			<column name="Comune" width="20">comuneExcel</column>
+			<column name="Provincia" width="9">provinciaExcel</column>
+			<column name="Codice AGEA" width="20">codiceAgeaExcel</column>		
+			<column name="N. Mandati" width="20">totaleMandatiExcel</column>
+			<column name="N. Az. Validate" width="20">totaleMandatiValidatiExcel</column>
+		</bean>  	
+  	</table>
+  	<table name="elencoMandatiValidazioniNotIntermediario">
+  	    <tab-header innerObject="true" property="elencoMandatiValidazioniFiltroEvcelVO" >
+      		<bean property="dataRiferimentoValidazione" label="Fascicoli validati "/>
+    	</tab-header>
+		<bean name="it.csi.solmr.dto.anag.DelegaVO">
+			<column name="Denominazione" width="60">denominazioneExcel</column>
+			<column name="Codice AGEA" width="20">codiceAgeaExcel</column>		
+			<column name="N. Mandati" width="20">totaleMandatiExcel</column>
+			<column name="N. Az. Validate" width="20">totaleMandatiValidatiExcel</column>
+		</bean>  	
+  	</table>
+  	<table name="elencoMandatiValidazioniNotIntermediarioForProvincia">
+  	    <tab-header innerObject="true" property="elencoMandatiValidazioniFiltroEvcelVO" >
+      		<bean property="dataRiferimentoValidazione" label="Fascicoli validati "/>
+    	</tab-header>
+		<bean name="it.csi.solmr.dto.anag.DelegaVO">
+			<column name="Denominazione" width="60">denominazioneExcel</column>
+			<column name="Provincia" width="9">provinciaExcel</column>
+			<column name="Codice AGEA" width="20">codiceAgeaExcel</column>		
+			<column name="N. Mandati" width="20">totaleMandatiExcel</column>
+			<column name="N. Az. Validate" width="20">totaleMandatiValidatiExcel</column>
+		</bean>  	
+  	</table>
+  	<!-- FINE Gestione documento Excel per report 'Riepilogo mandati e validazioni' -->   	
+</map>

@@ -1,0 +1,1040 @@
+$$head
+<script language="javascript1.2" src="../js/stampaMod.js"  type="text/javascript"></script>
+<script language="javascript1.2" src="../js/checktext.js"  type="text/javascript"></script>
+<script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../js/jquery-ui-1.8.21.custom/jquery-ui-1.8.21.custom.min.js"></script>
+<script type="text/javascript" src="../js/messaggistica.js"></script>
+<script language="javascript1.2">  
+  
+  function gestioneStampe() 
+  {
+    var hiddens='';
+    var coll = document.form1.idDocumento;
+    var count = 0;
+    var countIstanzaRiesame = 0;
+    var countTerritoriale = 0;
+    var countAnagrafico = 0;
+    var countZootecnico = 0;
+    var countAziendeCessate = 0;
+    var countContoCorrente = 0;
+    var multDoc = false;
+    var esito = false;
+    if(coll != null) 
+    {
+      if(coll.length) 
+      {
+        for(i=0; i < coll.length; i++) 
+        {
+          if(coll[i].checked) 
+          {
+            //territoriale
+	          if(document.form1.idTipologiaDocumentoHd[i].value == '2')
+	          {
+	            if(document.form1.flagIstanzaRiesame[i].value=='S')
+	            {
+	              countIstanzaRiesame++;
+	            }
+	            else
+	            {
+	              countTerritoriale++;
+	            }
+	          }
+	          //anagrafico
+	          if(document.form1.idTipologiaDocumentoHd[i].value == '1')
+	          {
+	            countAnagrafico++;
+	          }
+	          //zootecnico
+	          if(document.form1.idTipologiaDocumentoHd[i].value == '3')
+	          {
+	            countZootecnico++;
+	          }
+	          //aziende cessate
+	          if(document.form1.idTipologiaDocumentoHd[i].value == '4')
+	          {
+	            countAziendeCessate++;
+	          } 
+	          //conto corrente
+            if(document.form1.idTipologiaDocumentoHd[i].value == '5')
+            {
+              countContoCorrente++;
+            } 
+            hiddens+='<input type="hidden" id="idDocumento" name="idDocumento" value="'+coll[i].value+'" />';           
+            count++;
+          }
+        }
+        
+        if(countIstanzaRiesame > 0)
+        {
+          esito = true;          
+        }
+        
+        if(esito && (countTerritoriale > 0))
+        {
+          multDoc = true;
+        }
+        else if(countTerritoriale > 0)
+        {
+          esito = true;
+        }
+                
+        if(esito && (countAnagrafico > 0))
+        {
+          multDoc = true;
+        }
+        else if(countAnagrafico > 0)
+        {
+          esito = true;
+        }
+        
+        if(esito && (countZootecnico > 0))
+        {
+          multDoc = true;
+          
+        }
+        else if(countZootecnico > 0)
+        {
+          esito = true;
+        }
+        
+        if(esito && (countAziendeCessate > 0))
+        {
+          multDoc = true;
+        }
+        else if(countAziendeCessate > 0)
+        {
+          esito = true;
+        }
+        
+        if(esito && (countContoCorrente > 0))
+        {
+          multDoc = true;
+        }
+        else if(countContoCorrente > 0)
+        {
+          esito = true;
+        }
+        
+                
+        if(count == 0) 
+        {
+          alert("Selezionare una voce dall'elenco");
+        }
+        else if(multDoc)
+        {
+          alert("E' possibile selezionare una sola tipologia di documento dall'elenco per la stampa");
+        }
+        else 
+        {
+          if(countIstanzaRiesame > 0)
+          {
+	          var formRiesame = document.getElementById('formRiesame');
+	          formRiesame.innerHTML = hiddens;
+	          stampaMod(document.stampaRiesame);
+	        }
+	        else
+	        {
+	          document.form1.origineStampaProtocollo.value = 'elencoDocumenti';        
+            submitSomeElementsFormStampaProtocollo('../layout/stampaProtocollo.htm', document.form1, document.form1.idDocumento);	         
+	        }
+        }
+      }
+      else 
+      {
+        //se c'e'ne è uno solo va sicuramente bene,
+        //non devo verificare se sono state selezionate più tipologie di documento!!!
+        if(coll.checked) 
+        {
+          //territoriale
+          if(document.form1.idTipologiaDocumentoHd.value == '2')
+          {
+	          if(document.form1.flagIstanzaRiesame[i].value=='S')
+	          {
+	            countIstanzaRiesame++;
+	          }
+	          else
+	          {
+	            countTerritoriale++;
+	          }
+	        }
+	        //anagrafico
+	        if(document.form1.idTipologiaDocumentoHd.value == '1')
+          {
+            countAnagrafico++;
+          }
+          //zootecnico
+          if(document.form1.idTipologiaDocumentoHd.value == '3')
+          {
+            countZootecnico++;
+          }
+          //aziende cessate
+          if(document.form1.idTipologiaDocumentoHd.value == '4')
+          {
+            countAziendeCessate++;
+          }
+          
+          //conto corrente
+          if(document.form1.idTipologiaDocumentoHd.value == '5')
+          {
+            countContoCorrente++;
+          }
+          
+          hiddens+='<input type="hidden" id="idDocumento" name="idDocumento" value="'+coll.value+'" />';
+          count++;
+        }        
+        else if(count == 0) 
+        {
+          alert("Selezionare una voce dall'elenco");
+        }
+        else 
+        {
+          if(countIstanzaRiesame > 0)
+          {
+	          var formRiesame = document.getElementById('formRiesame');
+	          formRiesame.innerHTML = hiddens;
+	          stampaMod(document.stampaRiesame);
+	        }
+	        else
+	        {
+	          document.form1.origineStampaProtocollo.value = 'elencoDocumenti';        
+            submitSomeElementsFormStampaProtocollo('../layout/stampaProtocollo.htm', document.form1, document.form1.idDocumento);
+	        }	        
+        }
+      }
+    }
+    else 
+    {
+      alert('Non esistono elementi su cui effettuare operazioni');
+    }
+  }
+  		
+	function changeCombo(level) 
+  {
+		document.forms[0].operazione.value = '';
+    document.forms[0].stampaPdf.value = '';
+		if(level != '') {
+			if(level == 'a') {
+				document.forms[0].idCategoriaDocumento.selectedIndex = 0;
+				document.forms[0].idTipoDocumento.selectedIndex = 0;
+				document.forms[0].refresh.value = 'true';
+				document.forms[0].submit();
+			}
+			else if(level == 'b') {
+				document.forms[0].idTipoDocumento.selectedIndex = 0;
+				document.forms[0].refresh.value = 'true';
+				document.forms[0].submit();
+			}
+		}
+	}
+		
+	// Funzione che mi permette di gestire correttamente l'iterazione tra la combo
+	// relativa allo stato del documento e le date del documento scaduto
+	function documentiScaduti() {
+		if(document.forms[0].idStatoDocumento.value == 0 || document.forms[0].idStatoDocumento.value == -1) {
+			document.forms[0].scaduti.disabled = false;
+			document.forms[0].dataDal.disabled = false;
+			document.forms[0].dataAl.disabled = false;
+		}
+		else {
+			document.forms[0].scaduti.checked = false;
+			document.forms[0].scaduti.disabled = true;
+			document.forms[0].dataDal.value = '';
+			document.forms[0].dataAl.value = '';
+			document.forms[0].dataDal.disabled = true;
+			document.forms[0].dataAl.disabled = true;
+		}
+	}
+		
+	// Funzione che mi permette di gestire il blocco relativo ai filtri di ricerca
+	// dei documenti scaduti durante onclick sul check
+	function gestioneDateScadenza() {
+		var mozilla = document.getElementById && !document.all;
+		var ie = document.all;
+		var now = new Date();
+		var year = now.getFullYear();
+		
+		if(document.forms[0].scaduti.checked == true) {
+			document.forms[0].dataDal.disabled = false;
+			document.forms[0].dataAl.disabled = false;
+			document.forms[0].dataDal.value = '11/11/'+(year-1);
+		}
+		else {
+			document.forms[0].dataDal.disabled = true;
+			document.forms[0].dataAl.disabled = true;
+			document.forms[0].dataDal.value = '';
+			document.forms[0].dataAl.value = '';
+		}
+	}
+  
+  function stampaProtocolloImmediata()
+  {
+    stampaModDoc(document.forms[0]);
+  }
+  
+  //setta il valore stampaPdf a null per evitare la stampa immediata
+  //se clicco su stampaProtocollo dopo averla già selezionata precedentemente
+  function submitSomeElementsFormStampaProtocollo(url, form, array)
+  {
+    form.stampaPdf.value = '';
+    submitSomeElementsForm(url, form, array)
+  }
+  
+  
+  //Stama protocollo immediata senza passare attraverso la pagina intermedia
+  function stampaModDoc(form) {
+    var d = new Date();
+    var unique = (d.getUTCHours()*60+d.getUTCMinutes())*60+d.getUTCSeconds();
+    var target = "stampa"+unique;
+    popCentro("",645,500,target);
+    
+    var target1 = document.form1.target;
+    var action1 = document.form1.action;
+    document.form1.target = target;
+    document.form1.action = '../layout/stampaProtocollo.htm';
+    document.form1.stampaPdf.value='stampaPdf';
+    document.form1.submit();
+    document.form1.target = target1;
+    document.form1.action = action1;
+    return;
+  }
+  
+  //Mi permette di resettare il flag che mi fa la stampa immediata
+  function goToOperazioneReset(url, form, operazione) 
+  {
+    form.stampaPdf.value = '';
+    form.operazione.value = operazione;
+    form.action = url;
+    form.submit();
+    form.operazione.value=null;
+  }
+  
+  
+  function visualizzaFile(idDocumentoPerAllegato, idAllegato)
+  {
+    var oldAction = document.form1.action
+
+    document.form1.idAllegato.value = idAllegato;
+    document.form1.idDocumentoPerAllegato.value = idDocumentoPerAllegato;
+     
+    document.form1.action = 'visualizzaFileAllegato.htm?arrivo=elenco';
+    document.form1.submit();
+    document.form1.action = oldAction;
+  }
+  
+  
+  function popUpRicDocumento(mypage, myname, w, h, scroll, strDescDocumento) 
+  {
+     var winl = (screen.width - w) / 2;
+     var wint = (screen.height - h) / 2;
+     if(strDescDocumento == '') 
+     {
+       alert('il campo della ricerca e\' vuoto');
+     }
+     else 
+     {
+       winprops =    'height='+h+',width='+w+',top='+wint+',left='+winl+',scrollbars='+scroll+',resizable';
+       win = window.open('', myname, winprops);
+       if (parseInt(navigator.appVersion) >= 4) 
+       {
+         win.window.focus();
+       }
+       document.form1.strDescDocumento.value = strDescDocumento;
+       document.form1.provenienza.value = 'elenco';
+       var target1 = document.form1.target;
+       var action1 = document.form1.action;
+       document.form1.target = myname;
+       document.form1.action = mypage;
+       document.form1.submit();
+       document.form1.target = target1;
+       document.form1.action = action1;
+     }
+   }
+   
+   
+   function hideColumn(cssColumn, label)
+  {
+    //Nasconde la colonna
+    $('.'  + cssColumn).hide();
+    
+    var html=$('#tdColDisp').html();
+    if (html=='')
+    {
+      $('#tdColDisp').show();
+      html="Colonne disponibili: ";
+    }
+    html+="<a href=\"javascript:showColumn('"+cssColumn+"')\" id='id_"+cssColumn+"'>"+label+"</a><span id='span_"+cssColumn+"'> | </span> <input type='hidden' name='hidden_"+cssColumn+"' id='hidden_"+cssColumn+"' value='"+cssColumn+"' />";
+    $('#tdColDisp').html(html);
+  }
+
+  function showColumn(cssColumn)
+  {
+    
+    $('#id_'  + cssColumn).remove();
+    $('#span_'  + cssColumn).remove();
+    $('#hidden_'  + cssColumn).remove();
+    $('.'  + cssColumn).show();
+    if($('#tdColDisp').html().indexOf('<a')<0)
+    {
+      $('#tdColDisp').hide();
+      $('#tdColDisp').html('');
+    }
+    
+  }
+  
+  
+  function caricaColonne(primoIngresso)
+  {   
+  
+    var esito = '$$esito';
+    var stato = '$$stato';
+    var tipologia = '$$tipologia';
+    var validita = '$$validita';
+    var protocollo = '$$protocollo';   
+                   
+    if(primoIngresso == 'true')
+    {
+      hideColumn("nascondibile_2", "Tipologia");
+    }
+    else
+    {
+      if(esito != null && esito != '')
+      {
+        hideColumn("nascondibile_0", "Esito");
+      }
+      if(stato != null && stato != '')
+      {
+        hideColumn("nascondibile_1", "Stato");
+      }
+      if(tipologia != null && tipologia != '')
+      {
+        hideColumn("nascondibile_2", "Tipologia");
+      }
+      if(validita != null && validita != '')
+      {
+        hideColumn("nascondibile_3", "Validit&agrave; documento");
+      }
+      if(protocollo != null && protocollo != '')
+      {
+    	  hideColumn("nascondibile_4", "Repertorio");
+      }
+    }
+  }
+  
+  
+  		
+  </script>
+</head>
+<body id="homeIndice" onLoad="javascript:documentiScaduti();$$stampaProtocollo;$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');caricaColonne('$$primoIngressso');">
+  <form id="form1" name="form1" method="post"
+    action="../layout/documentiElenco.htm">
+    <input type="hidden" name="operazione" value="$$operazione" />
+    <input type="hidden" name="refresh" value="$$refresh" />
+    <input type="hidden" name="stampaPdf" value="">
+    <input type="hidden" name="regimeDocumenti" id="regimeDocumenti" value="regimeDocumenti">
+    <input type="hidden" name="origineStampaProtocollo" value="" id="origineStampaProtocollo" />
+    <input type="hidden" name="idAllegato" value="" />
+    <input type="hidden" name="idDocumentoPerAllegato" value="" />
+    <input type="hidden" id="provenienza" name="provenienza" value=""/>
+    <input type="hidden" id="idTipologiaDocumentoPopUp" name="idTipologiaDocumentoPopUp" value=""/>
+    <input type="hidden" id="idCategoriaDocumentoPopUp" name="idCategoriaDocumentoPopUp" value=""/>
+    <input type="hidden" id="idTipoDocumentoPopUp" name="idTipoDocumentoPopUp" value=""/>
+    
+    <div id="pagina" class="colonnaUnica">
+      <!-- INTESTAZIONE -->
+      <div id="intestazione##pathProvincia">
+        <!--intestazione-->
+        <!--#include virtual="/ris/include/smrgaaweb/header.html" -->
+        <!-- menu di navigazione-->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li>
+                <a href="../layout/index.htm"
+                  title="Torna alla pagina principale">home</a>
+              </li>
+              <li class="attivo">
+                gestione anagrafe aziende
+              </li>
+              <li>
+                <a href="#" title="contatti">contatti</a>
+              </li>
+              <li>
+                <a href="#" title="help">help</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div style="clear: left"></div>
+      <!-- CORPO -->
+      <div id="corpo">
+        <div id="Utente">
+          <div id="datiUtente">
+            <strong>utente:</strong> $$utente &nbsp;&nbsp;
+            <strong>ente:</strong> $$ente
+          </div>
+          <div id="chiudisessione">
+            <a href="javascript: logout();">chiudi sessione</a>
+          </div>
+        </div>
+        <hr />
+        <!--PRIMA COLONNA -->
+        <h3>
+          Gestione Anagrafe Aziende&nbsp;&gt;&nbsp;Documenti
+          <span class="helpFuori"> <a href="#"> <span
+              class="alt">[help]</span> </a> </span>
+        </h3>
+        <hr />
+        <div class="box">
+          <div class="menuSX1">
+            <ul>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <li>
+                <a href="../layout/elencoAziendeRapLegale.htm">Elenco
+                  Aziende</a>
+              </li>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <!-- @@blkRicercaAzienda-->
+              <li>
+                <a href="../layout/ricerca.htm">Ricerche</a>
+              </li>
+              <!-- @@blkRicercaAzienda-->
+              <!-- @@blkNuova -->
+              <li>
+                <a href="../layout/nuovaAziendaAnagrafica.htm">Nuova
+                  Azienda</a>
+              </li>
+              <!-- @@blkNuova -->
+              <!-- @@blkNuovaIscrizione -->
+		          <li>
+		            <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+		          </li>
+		          <!-- @@blkNuovaIscrizione -->
+            </ul>
+          </div>
+          <div class="menuSX">
+            <ul>
+              <li>
+                <a href="../layout/anagrafica.htm">Anagrafica</a>
+              </li>
+              <!-- @@blkAziendeCollegate -->
+              <li>
+                <a href="../layout/aziendeCollegate.htm">$$aziendeCollegateLabel</a>
+              </li>
+              <!-- @@blkAziendeCollegate -->
+              <!-- @@blkSincronizzaFascicolo -->
+               <li>
+               	<a href="../layout/sincronizzaFascicolo.htm">Sincronizza fascicolo</a>
+               </li>
+              <!-- @@blkSincronizzaFascicolo -->
+              <!-- @@blkSoggettiCollegati -->
+              <li>
+                <a href="../layout/contitolari.htm">Soggetti
+                  collegati</a>
+              </li>
+              <!-- @@blkSoggettiCollegati -->
+              <!-- @@blkContiCorrenti -->
+              <li>
+                <a href="../layout/conti_correnti.htm">Conti
+                  Correnti</a>
+              </li>
+              <!-- @@blkContiCorrenti -->
+              <!-- @@blkUnitaProduttive -->
+              <li>
+                <a href="../layout/sedi.htm">Unit&agrave; produttive</a>
+              </li>
+              <!-- @@blkUnitaProduttive -->
+              <!-- @@blkTerreni -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniParticellareElenco.htm">Terreni</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		            <a href="../layout/riepiloghi.htm">Terreni</a>
+		            <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkTerreni -->
+		          <!-- @@blkUnitaVitate -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniUnitaArboreeElenco.htm">Unit&agrave; Vitate</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		              <a href="../layout/riepiloghiUnitaArboree.htm">Unit&agrave; Vitate</a>
+		              <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkUnitaVitate -->
+              <!-- @@blkFabbricati -->
+              <li>
+                <a href="../layout/fabbricati.htm">Fabbricati e
+                  Strutture</a>
+              </li>
+              <!-- @@blkFabbricati -->
+              <!-- @@blkAllevamenti -->
+              <li>
+                <a href="../layout/allevamenti.htm">Allevamenti</a>
+              </li>
+              <!-- @@blkAllevamenti -->
+              <!-- @@blkManodopera -->
+              <li>
+                <a href="../layout/manodopera.htm">Manodopera</a>
+              </li>
+              <!-- @@blkManodopera -->
+              <!-- @@blkMotoriAgricoli -->
+              <li>
+                <a href="../layout/motori_agricoli_incarico.htm">Macchine agricole</a>
+              </li>
+              <!-- @@blkMotoriAgricoli -->
+              <!-- @@blkDiritti -->
+              <li>
+                <a href="../layout/diritti.htm">Diritti di
+                  produzione</a>
+              </li>
+              <!-- @@blkDiritti -->
+              <!-- @@blkAttestazioni -->
+              <li>
+                <a href="../layout/attestazioniDettaglio.htm">Dichiarazioni</a>
+              </li>
+              <!-- @@blkAttestazioni -->
+              <!-- @@blkDichiarazioniConsistenza -->
+              <li>
+                <a href="../layout/dichiarazioneConsistenza.htm">Validazioni</a>
+              </li>
+              <!-- @@blkDichiarazioniConsistenza -->
+              <!-- @@blkDocumenti -->
+              <li>
+                <a href="../layout/documentiElenco.htm" class="on">Documenti</a>
+                <ul>
+                  <!-- @@blkDettaglio -->
+                  <li>
+                    <a
+                      href="javascript: submitForm('../layout/documentoDettaglio.htm', document.form1, document.form1.idDocumento);">dettaglio</a>
+                  </li>
+                  <!-- @@blkDettaglio -->
+                  <!-- @@blkDocAllegati -->
+                  <li>
+                    <a
+                      href="javascript: submitForm('../layout/documentoAllegati.htm', document.form1, document.form1.idDocumento);">allegati</a>
+                  </li>
+                  <!-- @@blkDocAllegati -->
+                  <!-- @@blkModifica -->
+                  <li>
+                    <a
+                      href="javascript: submitForm('../layout/documentoModifica.htm', document.form1, document.form1.idDocumento);">modifica</a>
+                  </li>
+                  <!-- @@blkModifica -->
+                  <!-- @@blkElimina -->
+                  <li>
+                    <a
+                      href="javascript: submitSomeElementsForm('../layout/documentiElimina.htm', document.form1, document.form1.idDocumento);">annulla</a>
+                  </li>
+                  <!-- @@blkElimina -->
+                  <!-- @@blkAnnullaIstanzaRiesame -->
+                  <li>
+                    <a
+                      href="javascript: submitForm('../layout/annullaIstanzaRiesame.htm', document.form1, document.form1.idDocumento);">annulla istanza riesame</a>
+                  </li>
+                  <!-- @@blkAnnullaIstanzaRiesame -->   
+                  <!-- @@blkInserisci -->
+                  <li>
+                    <a href="../layout/documentoInserisci.htm">inserisci</a>
+                  </li>
+                  <!-- @@blkInserisci -->
+                  <!-- @@blkProtocolla -->
+                  <li>
+                    <a
+                      href="javascript: submitSomeElementsForm('../layout/documentoConfermaProtocollo.htm', document.form1, document.form1.idDocumento);">repertoria</a>
+                  </li>
+                  <!-- @@blkProtocolla -->
+                  <!-- @@blkReplica -->
+                  <li>
+                    <a href="#">replica su nuovo CUAA</a>
+                  </li>
+                  <!-- @@blkReplica -->
+                  <!-- @@blkStampa -->
+                  <li>
+                    <a href="javascript:gestioneStampe()">stampa documento</a>
+                  </li>
+                  <!-- @@blkStampa -->                
+                </ul>
+              </li>
+              <!-- @@blkDocumenti -->
+              <!-- @@blkFascicoloDematerializzato -->
+		          <li>
+		            <a href="../layout/fascicoloDematerializzato.htm">Fascicolo<br>elettronico</a>
+		          </li>
+		          <!-- @@blkFascicoloDematerializzato --> 
+              <!-- @@blkGestioneNotifiche -->
+              <li>
+                <a href="../layout/notifiche.htm">Notifiche</a>
+              </li>
+              <!-- @@blkGestioneNotifiche -->
+              <!-- @@blkComunicazione10R -->
+              <li>
+                <a href="../layout/comunicazione10R_dettaglio.htm">Comunicazione
+                  10/R</a>
+              </li>
+              <!-- @@blkComunicazione10R -->
+              <!-- @@blkPratiche -->
+              <li>
+                <a href="../layout/pratiche.htm">Pratiche</a>
+              </li>
+              <!-- @@blkPratiche -->
+              <!-- @@blkStampaFascicolo -->
+              <li>
+                <a href="../layout/scelta_stampa.htm">Stampe</a>
+              </li>
+              <!-- @@blkStampaFascicolo -->
+			  <li><a href="../layout/strumenti.htm">Strumenti</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr />
+        <!-- SECONDA COLONNA -->
+        <div id="contenuto">
+          <div id="intesta">
+            <p class="$$aziendaIntestazione" title="$$tooltipIntestazione" >
+              $$CUAAIntestazione  $$denominazioneIntestazione
+            </p>
+          </div>
+          <!-- @@blkRicercaDocumenti -->
+          <table cellspacing="3"
+            summary="Questa tabella contiene i filtri per la ricerca dei documenti">
+            <tr>
+              <th>
+                <label for="CUAA">
+                  CUAA
+                </label>
+              </th>
+              <td colspan="3">
+                <select id="CUAA" name="CUAA">
+                  <!-- @@blkElencoCUAA -->
+                  <option value="$$codice" $$selected>
+                    $$descrizione
+                  </option>
+                  <!-- @@blkElencoCUAA -->
+                </select>
+                $$err_CUAA
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="Descrizione">
+                  Descrizione documento
+                </label>
+              </th>
+              <td>
+                <input name="strDescDocumento" id="strDescDocumento"
+                  type="text" class="text" value="$$strDescDocumento" />
+              </td>
+              <td colspan="2" >
+                <div class="azioni"><a href="javascript: popUpRicDocumento('../layout/sceltaTipoDocumento.htm','scegliTipoDocumento','600','300','yes',document.form1.strDescDocumento.value);">cerca</a></div>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="Tipologia">
+                  Tipologia documento
+                </label>
+              </th>
+              <td colspan="3">
+                <select name="idTipologiaDocumento"
+                  id="idTipologiaDocumento"
+                  onchange="javascript:changeCombo('a');">
+                  <option></option>
+                  <!-- @@blkElencoTipiTipologiaDocumento -->
+                  <option value="$$codice" $$selected>
+                    $$descrizione
+                  </option>
+                  <!-- @@blkElencoTipiTipologiaDocumento -->
+                </select>
+                $$err_idTipologiaDocumento
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="Tipo">
+                  Tipo documento
+                </label>
+              </th>
+              <td colspan="3">
+                <select name="idCategoriaDocumento"
+                  id="idCategoriaDocumento"
+                  onchange="javascript:changeCombo('b');">
+                  <option></option>
+                  <!-- @@blkElencoTipiCategoriaDocumento -->
+                  <option value="$$codice" $$selected>
+                    $$descrizione
+                  </option>
+                  <!-- @@blkElencoTipiCategoriaDocumento -->
+                </select>
+                $$err_idCategoriaDocumento
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="Descrizione">
+                  Descrizione documento
+                </label>
+              </th>
+              <td colspan="3">
+                <select name="idTipoDocumento" id="idTipoDocumento"
+                  onchange="javascript:changeCombo('');">
+                  <option></option>
+                  <!-- @@blkElencoTipiDocumento -->
+                  <option value="$$codice" $$selected>
+                    $$descrizione
+                  </option>
+                  <!-- @@blkElencoTipiDocumento -->
+                </select>
+                $$err_idTipoDocumento
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="Stato">
+                  Stato documento
+                </label>
+              </th>
+              <td>
+                <select name="idStatoDocumento" id="idStatoDocumento"
+                  onchange="javascript: documentiScaduti();">
+                  <option>
+                  </option>
+                  <!-- @@blkElencoTipoStatoDocumento -->
+                  <option value="$$codice" $$selected>
+                    $$descrizione
+                  </option>
+                  <!-- @@blkElencoTipoStatoDocumento -->
+                </select>
+              </td>
+              <th>
+                <label for="compresiscaduti">
+                  compresi documenti scaduti
+                </label>
+                &nbsp;
+                <input type="checkbox" name="scaduti" id="scaduti"
+                  value="S" $$checkedScaduti
+                  onclick="javascript: gestioneDateScadenza();" />
+              </th>
+              <td>
+                <label for="scadutida">
+                  dal
+                </label>
+                <br>
+                <input type="text" name="dataDal" class="textmediolungo"
+                  id="dataDal" value="$$dataDal" />
+                $$err_dataDal
+                <label for="scadutial">
+                  al
+                </label>
+                <br>
+                <input type="text" name="dataAl" class="textmediolungo"
+                  id="dataAl" value="$$dataAl" />
+                $$err_dataAl
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="Repertoriazione">
+                  Protocollazione
+                </label>
+              </th>
+              <td colspan="3">
+                <select name="protocollazione" id="protocollazione">
+                  <option>
+                  </option>
+                  <option value="1" $$selectedEffettuata>
+                    effettuata
+                  </option>
+                  <option value="2" $$selectedDaEffettuare>
+                    da effettuare
+                  </option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="controlli">
+                  Controlli eseguiti in data
+                </label>
+              </th>
+              <td>
+                $$dataEsecuzioneControlli
+              </td>
+              <th colspan="2">
+                <div class="azioni">
+                  <a
+                    href="javascript: goToOperazioneReset(document.forms[0].action, document.forms[0], 'attenderePrego');">esegui
+                    controlli e valida</a>
+                </div>
+              </th>
+            </tr>
+          </table>
+          <div class="pulsanti">
+            <div class="sin">
+              <input name="ricerca" type="button"
+                value="ricerca"
+                onclick="javascript: goToOperazioneReset('../layout/documentiElenco.htm', document.form1,'ricerca');"
+                class="inputPulsante" />
+            </div>
+          </div>
+          <!-- @@blkEsitoRicercaDocumenti -->
+          <div class="pulsanti">
+            <div class="sin">
+              <label for="seleziona" class="alt">
+                esporta dati
+              </label>
+              <input id="seleziona" name="scarica" type="button"
+                value="esporta dati"
+                onclick="javascript: goToOperazioneReset('../layout/documentiElenco.htm', document.form1,'scarica');"
+                class="inputPulsante" />
+            </div>
+          </div>
+          <div class="scroll">
+            <div class="pulsanti">
+              <div class="sin">
+                <a
+                  href="javascript:selectAll(document.form1.idDocumento);">seleziona</a>
+              </div>
+              <div class="des">
+                <a
+                  href="javascript:deselectAll(document.form1.idDocumento);">deseleziona</a>              </div>
+            </div>
+            <table cellspacing="3" summary="Questa tabella è costituita dall'elenco dei documenti">
+              <tr>
+	              <td id="tdColDisp" colspan="11" ></td>
+	            </tr>
+              <tr>
+                <th rowspan="2" class="radio" scope="col">
+                  Sel.
+                </th>
+                <th rowspan="2" class="center nascondibile_0" scope="col">
+                  <a href="javascript:hideColumn('nascondibile_0','Esito');">Esito</a>
+                </th>
+                <th rowspan="2" class="center nascondibile_1 " scope="col">
+                  <a href="javascript:hideColumn('nascondibile_1','Stato');">Stato</a>
+                </th>
+                <th rowspan="2" class="center nascondibile_2" scope="col">
+                  <a href="javascript:hideColumn('nascondibile_2','Tipologia');">Tipologia</a>
+                </th>
+                <th rowspan="2" class="center " scope="col">
+                  Tipo documento
+                </th>
+                <th rowspan="2" class="center" scope="col">
+                  Descrizione
+                </th>
+                <th colspan="2" class="center nascondibile_3" scope="col">
+                  <a href="javascript:hideColumn('nascondibile_3','Validit&agrave; documento');">Validit&agrave; documento</a>
+                </th>
+                <th colspan="2" class="center nascondibile_4" scope="col">
+                  <a href="javascript:hideColumn('nascondibile_4','Repertorio');">Repertorio</a>
+                </th>
+                <th rowspan="2" class="center" scope="col">
+                  Allegati
+                </th>
+              </tr>
+              <tr>
+                <th class="center nascondibile_3" scope="col">
+                  Data inizio
+                </th>
+                <th class="center nascondibile_3" scope="col">
+                  Data fine
+                </th>
+                <th class="center nascondibile_4" scope="col">
+                  Numero
+                </th>
+                <th class="center nascondibile_4" scope="col">
+                  Data
+                </th>
+              </tr>
+              <!-- @@blkElencoDocumenti -->
+              <tr class="evidence">
+                <th class="radio" scope="row">
+                  <input type="checkbox" id="idDocumento"
+                    name="idDocumento" value="$$idDocumento" $$checked />
+                  <input type="hidden" id="numeroProtocollo"
+                    name="numeroProtocollo" value="$$numeroProtocollo" />
+                  <input type="hidden" id="flagIstanzaRiesame"
+                    name="flagIstanzaRiesame" value="$$flagIstanzaRiesame" />
+                  <input type="hidden" id="idTipologiaDocumentoHd"
+                    name="idTipologiaDocumentoHd" value="$$idTipologiaDocumentoHd" />
+                </th>
+                <td class="center nascondibile_0">
+                  <span class="center$$classEsitoDocumento"> <a
+                    href="javascript: newWindowDoForm('../layout/popAnomalieDocumento.htm?idDocumentoPop=$$idDocumento', 'documenti', '800', '400', 'yes', 'DOCUMENTI');"
+                    onclick="javascript: newWindowDoForm('../layout/popAnomalieDocumento.htm?idDocumentoPop=$$idDocumento', 'documenti', '800', '400', 'yes', 'DOCUMENTI');"
+                    onkeypress="javascript: newWindowDoForm('../layout/popAnomalieDocumento.htm?idDocumentoPop=$$idDocumento', 'documenti', '800', '400', 'yes', 'DOCUMENTI');"
+                    title="$$descEsitoDocumento"
+                    class="$$classEsitoDocumento"></a> </span>
+                </td>
+                <td class="$$classStatoDocumento nascondibile_1">
+                  <a title="$$titleStatoDocumento"
+                    class="$$classStatoDocumento"></a>
+                </td>
+                <td class="nascondibile_2">
+                  $$descTipoTipologiaDocumento
+                </td>
+                <td>
+                  $$descTipoCategoriaDocumento
+                </td>
+                <td>
+                  $$descTipoDocumento
+                </td>
+                <td class="data nascondibile_3">
+                  $$dataInizioDocumento
+                </td>
+                <td class="data nascondibile_3">
+                  $$dataFineDocumento
+                </td>
+                <td class="numeridx nascondibile_4">
+                  $$numeroProtocollo
+                </td>
+                <td class="data nascondibile_4">
+                  $$dataProtocollo
+                </td>
+                <td>                
+                <!-- @@blkFileAllegato -->
+                  <a href="javascript:visualizzaFile('$$idDocumento', '$$idAllegato')" class="$$immagineStampa" title="$$titleAllegato"></a>
+                <!-- @@blkFileAllegato --> 
+                </td>
+              </tr>
+              <!-- @@blkElencoDocumenti -->
+            </table>
+            <div class="pulsanti">
+              <div class="sin">
+                <a
+                  href="javascript:selectAll(document.form1.idDocumento);">seleziona</a>
+              </div>
+              <div class="des">
+                <a
+                  href="javascript:deselectAll(document.form1.idDocumento);">deseleziona</a>              </div>
+            </div>
+          </div>
+          <!-- @@blkEsitoRicercaDocumenti -->
+          <!-- @@blkErrorePuntuale -->
+          <br />
+          <p class="errore">
+            $$messaggioErrorePuntuale
+          </p>
+          <!-- @@blkErrorePuntuale -->
+          <!-- @@blkRicercaDocumenti -->
+          <!-- @@blkErroreGenerico -->
+          <br />
+          <p class="errore">
+            $$messaggioErrore
+          </p>
+          <!-- @@blkErroreGenerico -->
+        </div>
+      </div>
+      <hr />
+  </form>
+  <form name="stampaRiesame" method="post"
+    action="../servlet/StampaIstanzaRiesameServlet">
+    <div id="formRiesame"></div>
+  </form>
+  $$footer

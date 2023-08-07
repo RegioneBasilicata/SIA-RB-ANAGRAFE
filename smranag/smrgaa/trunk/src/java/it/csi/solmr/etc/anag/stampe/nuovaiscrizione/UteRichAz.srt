@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report Type="TabularSheet" Top="0.4" Left="0.05" Bottom="0.4" Right="0.05" HeaderFromEdge="0.05" FooterFromEdge="0.4" PageNumbering="0" HorizontalWrap="true" PaperSize="8.267716x11.692913" Orientation="1" TabStops="0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5,6.0,6.5,7.0,7.5,8.0"
+ Prompting="true"><Version>9.5</Version>
+<ReportProperty Name="report.modified">
+<![CDATA[2013-05-29 14:37:27]]>
+</ReportProperty>
+<ReportProperty Name="TextMode">
+<![CDATA[false]]>
+</ReportProperty>
+<ReportProperty Name="live.edit">
+<![CDATA[false]]>
+</ReportProperty>
+<ReportProperty Name="edit.layout">
+<![CDATA[false]]>
+</ReportProperty>
+<ReportProperty Name="report.created">
+<![CDATA[2010-07-22 10:44:45]]>
+</ReportProperty>
+<Parameters>
+</Parameters>
+<ParameterSheets>
+</ParameterSheets>
+<RunningTotals>
+</RunningTotals>
+<dataViews>
+</dataViews>
+<reportAssetRepository>
+</reportAssetRepository>
+<Shapes>
+</Shapes>
+<Grid Rows="2" Cols="3">
+<GR Height="0">
+<GD Borders="0,0,0,0" RowSpan="1" ColSpan="3" Width="175.33334" Repeat="false" CellFitPage="true">
+<Background  BackgroundLayout="1"  Color="-4137792"/>
+<SeparatorElement ID="Separator1" Alignment="2" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Serif-PLAIN-10" Foreground="-16777216" Style="4098" SeparatorAdvance="1">
+</SeparatorElement>
+<TextElement ID="lblQuadro" Alignment="65" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-BOLD-10" Foreground="-16777216" FillStyle="0" TabStops="0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5,6.0,6.5,7.0,7.5,8.0" Justify="false" Orphan="false" TextAdvance="3">
+<![CDATA[QUADRO B - Unità Tecnico Economica]]>
+</TextElement>
+<NewlineElement ID="nl1" Alignment="2" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-PLAIN-10" Foreground="-16777216" Count="1" Break="false">
+</NewlineElement>
+<TextElement ID="lblSezione" Alignment="65" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-BOLD-10" Foreground="-16777216" FillStyle="0" TabStops="0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5,6.0,6.5,7.0,7.5,8.0" Justify="false" Orphan="false" TextAdvance="3">
+<![CDATA[SEZ I - Unità Tecnico Economica]]>
+</TextElement>
+</GD>
+<GD Width="244.33331" CellFitPage="true">
+</GD>
+<GD Width="414.33334" CellFitPage="true">
+</GD>
+</GR>
+<GR Height="0">
+<GD Borders="0,0,0,0" RowSpan="1" ColSpan="3" Width="175.33334" Repeat="false" CellFitPage="true">
+<NewlineElement ID="Newline224" Alignment="1" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-PLAIN-5" Foreground="-16777216" Count="1" Break="false">
+</NewlineElement>
+<TextElement ID="txtNessunaUTE" Alignment="65" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Serif-BOLD-10" Foreground="-16777216" FillStyle="0" TabStops="0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5,6.0,6.5,7.0,7.5,8.0" Justify="false" Orphan="false" TextAdvance="3">
+<![CDATA[Non sono presenti unità tecnico economiche]]>
+</TextElement>
+<TableElement ID="tblUTE" Alignment="1" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Serif-PLAIN-10" Foreground="-16777216" TableWidth="0.0" AdhocEnabled="true" Layout="0" TableAdvance="1" MaxColWidth="0.0" OrphanControl="false" FillPage="false" MultiColumn="0" KeepSpanTogether="false" KeepGroupTogether="false" Padding="0,1,0,1" EmbedWidth="false" Embedded="true">
+<property><name><![CDATA[grow]]></name><value><![CDATA[true]]></value></property>
+<Table Rows="1" Cols="3" HeaderRow="1" HeaderCol="0" TrailerRow="0" TrailerCol="0">
+<TR>
+<TD Type="string"><![CDATA[Comune (PV)]]></TD><TD Type="string"><![CDATA[Indirizzo]]></TD><TD Type="string"><![CDATA[CAP]]></TD></TR>
+</Table>
+</TableElement>
+<SpaceElement ID="Space2" Alignment="0" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-PLAIN-10" Foreground="-16777216" Space="16">
+</SpaceElement>
+<NewlineElement ID="Newline322" Alignment="1" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Serif-PLAIN-10" Foreground="-16777216" Count="1" Break="false">
+</NewlineElement>
+</GD>
+<GD Width="244.33331" CellFitPage="true">
+</GD>
+<GD Width="414.33334" CellFitPage="true">
+</GD>
+</GR>
+</Grid>
+</Report>

@@ -1,0 +1,143 @@
+    <table cellspacing="3" summary="Questa tabella contiene l'elenco delle particelle selezionate per la modifica">
+      <caption>Elementi caratteristici del paesaggio</caption>
+      <tr>
+        <th class="center" scope="col">
+          <a href="javascript:modificaRigaEfa('inserisci','')" class="aggiungi" title="inserisci tipo EFA"></a>
+        </th>
+        <th class="center" scope="col">
+          Tipo EFA
+        </th>
+        <th class="center" scope="col">
+          Uso del suolo
+        </th>
+        <th class="center" scope="col">
+          Valore
+        </th>
+        <th class="center" scope="col">
+          Valore in ettari
+        </th>
+        <th class="center" scope="col">
+          Valore valido per il controllo
+        </th>
+      </tr>
+      <!-- @@blkElencoEfa -->
+      <tr>
+        <td class="radio">
+          <a href="javascript:modificaRigaEfa('elimina', '$$numeroUtilizziEfa')" class="cancella" title="elimina Uso efa"></a>
+        </td>
+        <td>
+          <select name="idTipoEfa" id="idTipoEfa" onchange="javascript: modificaTipoUtilizzoEfa('$$numeroUtilizziEfa')">
+            <option value=""></option>
+            <!-- @@blkTipoEfa -->
+            <option value="$$idTipoEfa" title="$$descrizioneEstesa" $$selected>
+              $$descrizione
+            </option>
+            <!-- @@blkTipoEfa -->
+          </select>
+          $$err_idTipoEfa
+        </td>
+        <td>
+          <div id="idTipoUtilizzoEfa$$numeroUtilizziEfa">
+            <select name="idTipoUtilizzoEfa" id="idTipoUtilizzoEfa" class="clsIdTipoUtilizzoEfa"
+              onchange="javascript: modificaComboDestinazioneEfa('$$numeroUtilizziEfa');">
+              <!-- @@blkTipiUsoSuoloEfa -->
+              <option value="$$idTipoUtilizzoEfa" title="$$descCompleta" $$selected>
+                $$descrizione
+              </option>
+              <!-- @@blkTipiUsoSuoloEfa -->
+              <!-- @@blkNoTipiUsoSuoloEfa -->
+              <option value="" ></option>
+              <!-- @@blkNoTipiUsoSuoloEfa -->
+            </select>
+            <input name="fattoreConversione" id="fattoreConversione" type="hidden" value="$$fattoreConversione"  />
+            <input name="fattorePonderazione" id="fattorePonderazione" type="hidden" value="$$fattorePonderazione"  />
+            <input name="descMisuraHd" id="descMisuraHd" type="hidden" value="$$descMisuraHd"  />
+            $$err_idTipoUtilizzoEfa
+          </div>
+          <div id="idTipoDestinazioneEfaDiv$$numeroUtilizziEfa">
+            <select name="idTipoDestinazioneEfa"  
+              onchange="javascript: modificaComboDettaglioUsoEfa('$$numeroUtilizziEfa');">
+              <!-- @@blkTipiDestinazioneEfa -->
+              <option value="$$idTipoDestinazioneEfa" title="$$descCompleta" $$selected>
+                $$descrizione
+              </option>
+              <!-- @@blkTipiDestinazioneEfa -->
+              <!-- @@blkNoTipiDestinazioneEfa -->
+              <option value="" ></option>
+              <!-- @@blkNoTipiDestinazioneEfa -->
+            </select>
+            $$err_idTipoDestinazioneEfa
+          </div>
+          <div id="idTipoDettaglioUsoEfaDiv$$numeroUtilizziEfa">
+            <select name="idTipoDettaglioUsoEfa"  
+              onchange="javascript: modificaComboQualitaUsoEfa('$$numeroUtilizziEfa');">
+              <!-- @@blkTipiDettaglioUsoEfa -->
+              <option value="$$idTipoDettaglioUsoEfa" title="$$descCompleta" $$selected>
+                $$descrizione
+              </option>
+              <!-- @@blkTipiDettaglioUsoEfa -->
+              <!-- @@blkNoTipiDettaglioUsoEfa -->
+              <option value="" ></option>
+              <!-- @@blkNoTipiDettaglioUsoEfa -->
+            </select>                    
+          </div>
+          <div id="idTipoQualitaUsoEfaDiv$$numeroUtilizziEfa">
+            <select name="idTipoQualitaUsoEfa" 
+              onchange="javascript: modificaComboVarietaEfa('$$numeroUtilizziEfa');">
+              <!-- @@blkTipiQualitaUsoEfa -->
+              <option value="$$idTipoQualitaUsoEfa" title="$$descCompleta" $$selected>
+                $$descrizione
+              </option>
+              <!-- @@blkTipiQualitaUsoEfa -->
+              <!-- @@blkNoTipiQualitaUsoEfa -->
+              <option value="" ></option>
+              <!-- @@blkNoTipiQualitaUsoEfa -->
+            </select>
+            $$err_idTipoQualitaUsoEfa
+          </div>
+          <div id="idVarietaEfa$$numeroUtilizziEfa">
+            <select name="idVarietaEfa"
+              onchange="javascript: modTipoDettaglioUso('$$numeroUtilizziEfa');">
+              <!-- @@blkTipiVarietaEfa -->
+              <option value="$$idVarietaEfa" $$selected>
+                $$descrizione
+              </option>
+              <!-- @@blkTipiVarietaEfa -->
+              <!-- @@blkNoTipiVarietaEfa -->
+              <option value="" ></option>
+              <!-- @@blkNoTipiVarietaEfa -->
+            </select>
+            <input name="abbPonderazioneVarieta" id="abbPonderazioneVarieta$$numeroUtilizziEfa" type="hidden" value="$$abbPonderazioneVarieta"  />
+            $$err_idVarietaEfa
+          </div>
+        </td>
+        <td style="white-space:nowrap">
+	          <input name="valoreOriginale" id="valoreOriginale" class="textmedio"
+	            type="text" value="$$valoreOriginale" maxlength="10" 
+	            onChange="javascript:calcolaValori('$$numeroUtilizziEfa');" 
+	            onkeyup="javascript:calcolaValori('$$numeroUtilizziEfa');" />
+	          <div id="descUnitaMisura$$numeroUtilizziEfa" >
+	            $$descUnitaMisura
+	          </div>
+	          $$err_valoreOriginale
+	        </td>
+	        <td class="numeridx" id="rigaValConv$$numeroUtilizziEfa">
+	          $$valoreDopoConversione
+	        </td>
+	        <input name="valoreDopoConversione" id="valoreDopoConversione" type="hidden" value="$$valoreDopoConversione"  />
+	        <td class="numeridx" id="rigaValPond$$numeroUtilizziEfa">
+	          $$valoreDopoPonderazione
+	        </td>
+	        <input name="valoreDopoPonderazione" id="valoreDopoPonderazione" type="hidden" value="$$valoreDopoPonderazione"  />
+	     </tr>
+      <!-- @@blkElencoEfa -->
+    </table>
+    
+    <!-- @@blkNoElenco -->
+    <p class="errore">
+      $$messaggioErrore
+    </p>
+    <!-- @@blkNoElenco -->
+       
+          
+          

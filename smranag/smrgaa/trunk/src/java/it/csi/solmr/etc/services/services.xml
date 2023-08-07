@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE services [
+<!ELEMENT services ( service+ )>
+<!ELEMENT service EMPTY >
+<!ATTLIST service serviceName CDATA #REQUIRED >
+<!ATTLIST service serviceType CDATA #REQUIRED >
+<!ATTLIST service serviceClass CDATA #REQUIRED >
+<!ATTLIST service configurationFile CDATA #REQUIRED>] >
+<services>
+  <service serviceName="anag"
+	   serviceType="1"
+           configurationFile="/it/csi/solmr/etc/anag/pdAnag.xml"
+	   serviceClass="it.csi.solmr.interfaceCSI.anag.AnagCSIInterface"/>
+  <service serviceName="profInternal"
+	   serviceType="0"
+           configurationFile="EJB"
+	   serviceClass="it.csi.solmr.client.profile.ProfileClient"/>
+  <service serviceName="profile"
+	   serviceType="1"
+           configurationFile="/it/csi/solmr/etc/profile/pdProfile.xml"
+	   serviceClass="it.csi.solmr.interfaceCSI.profile.ProfCSIInterface"/>
+  <service serviceName="uma"
+	   serviceType="1"
+           configurationFile="/it/csi/solmr/etc/uma/pdUma.xml"
+	   serviceClass="it.csi.solmr.interfaceCSI.uma.UmaCSIInterface"/>  
+  <service serviceName="viti"
+	   serviceType="1"
+           configurationFile="/it/csi/solmr/etc/services/pdVitiService.xml"
+	   serviceClass="it.csi.solmr.interfaceCSI.viti.services.VitiServiceCSIInterface;"/>
+</services>

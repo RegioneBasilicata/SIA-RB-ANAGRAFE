@@ -1,0 +1,743 @@
+
+/*NUOVO LAYOUT SP7*/
+/* valido per i servizi che hanno come risorse 'ante snippets':
+
+/css_rupar/strutturaGeneraleFluido.css
+/css_rupar/cavalieriniServizi.css
+/css_rupar/menuTendinaServizi.css
+/css_rupar/cavalieriniOrizzServizi.css	
+/css_rupar/menuTendinaOrizzServizi.css	
+/ris/css/agricoltura/skinAgricolturaFluido.css
+
+*/
+
+/*******************/
+
+a:link, a:visited {color:#25559D;}
+a:hover {color:#1E354D}
+
+#caricaDati span.alt,
+#piedipagina #noteSito span.alt,
+#titoloEmenu h2 span.alt,
+#intestazione h1 span.alt {clear:none;height:auto;left:0px;overflow:hidden;position:relative;top:0px;width:auto;}
+
+#intestazione span.spaziatore,
+#intestazione h1.infoSP_old,
+#portalHeader.alt,
+#portalHeader.alt .header {clear:none;height:auto;left:0px;overflow:hidden;position:relative;top:0px;
+width:0;height:0!important;min-height:0!important;}
+
+/*HEADER*/
+
+/* inizio portalHeader.HTML */
+.alert_js p {position:inherit;clear:none;margin:0;top:inherit;left:inherit;text-align:center;width:auto!important;border:2px dotted #BF8F00;padding:4px;color:#000;}
+div#portalHeader,
+div#portalHeader_title, #portalHeader_title h1 a {min-height:30px;height:auto!important;height:30px;}
+div#portalHeader {background:#fff url(/ris/resources/global_share/css/im/banner_corto.jpg) 0 100% no-repeat;padding:0;}
+div#portalHeader_title {width:100%;float:none;background:transparent url(/ris/resources/global_share/css/im/banner_titolo.png) no-repeat scroll 100% 0;background-position:150px 0%;}
+#portalHeader_title h1 a:hover, #portalHeader_title h1 a:active {background-position:227px 0!important;}
+
+/*titolo TOBECONFIG*/
+#portalHeader {color: #FFFFFF; display: block; margin: 0;  min-height: 50px;overflow: hidden;padding: 0;position: relative;width: 100%;}
+#portalHeader h1{color: #0153A9;display: block;font-size: 28px;font-weight: bold;left:0; margin: 0; padding: 0; position: static;top: 0;width: 100%; z-index:1;}
+#portalHeader .header {background: none repeat scroll 0 0 #d3d3d3;color: #0153A9;overflow: hidden;padding: 2px 20px 2px 80px;width:100%;}
+
+/*due tab privati e pa*/
+.menupaprivati, .menupaprivati ul, .menupaprivati ul.pull-right{ padding:0; margin:0; clear:none;}
+.menupaprivati ul.pull-right{ margin-right:10px;}
+.menupaprivati ul.pull-right li{ display:inline; margin-right:3px;}
+.menupaprivati ul.pull-right li a{ color:#fff; font-weight:bold; font-size:14px; text-transform:uppercase; display:inline-block; height:20px; background:#bf5229; padding: 10px 10px 8px; margin-top:12px; text-decoration:none;}
+.menupaprivati ul.pull-right li a:hover { text-decoration: underline;}
+.menupaprivati ul.pull-right li.active a{background:#d3d3d3; color: #0153A9;}
+
+/*cos'è TOBECONFIG + cerca*/
+.menuTopSx.menu { margin-bottom:0; padding-left:80px!important;}
+.menuTopSx.menu li{ display:inline;}
+.menuTopSx.menu li a{ display:inline-block; margin-top:27px; padding:0px; color:#000;padding-left:6px; font-weight: normal; font-size: 1em; text-decoration:none;}
+.menuTopSx.menu li a.pipe_dx{ border-right:1px solid #000; padding-right:6px;}
+.pull-right {float: right;}
+.pull-left {float: left;}
+
+div#portalHeader { background:none; border:none; /*margin-bottom:10px;*/}
+h3{ background:#0B416C;}
+div#applicationHeader h2 {background:none repeat scroll 0 0 #0153A9;}
+
+/*sovrascrittura fluido */
+.menu a:link, .menu a:visited {display:inline;width:auto;border:0;background-color:transparent;font-weight:normal;background-image:none;}
+#homeIndice #intestazione {background:none #fff;}
+#homeIndice h1 {height:auto;line-height:1.1em;}
+#menuDiNavigazione {width:auto!important}
+#pagina.colonnaUnica {width:100%;border:0;background-color:#CCD1D7;}
+
+/* fine portalHeader.HTML */
+
+#titoloEmenu {background: none #0153A9;height:auto;border:0;position:relative}
+#titoloEmenu h2 {color: #fff;display: block;font-size: 30px;height: auto;padding:6px 0 30px 15px;text-align: left;height:auto!important}
+
+div#corpo {position:relative}
+div#Utente  {position:absolute;right:8px;top:-30px;z-index:10000000000;width:100%;border:0;text-align:right;z-index:1}
+div#datiUtente {background-color:transparent!important;border:0;margin:0;padding:0;color:#fff;text-align:right;
+width:85%!important;font-weight: normal;}
+#chiudisessione {overflow:hidden;width:auto;display:inline-block;
+background-color: transparent;line-height: auto;margin-right:12px;border:0;padding-top:1px;padding-bottom:1px;}
+#chiudisessione a,
+#chiudisessione a:link, #chiudisessione a:visited {background-color:transparent;color:#fff;width:auto;border:0;background: url("/ris/resources/global_share/css/im/ico_esci.gif") no-repeat scroll 100% 65% transparent;display:inline-block;padding-right:15px;font-size:1.1em}
+
+#menuDiNavigazione {margin-top: -22px;}
+
+.menuTendina a, .menuTendina a:link, .menuTendina a:visited
+.menuTendina a:active, .menuTendina a:hover {border-color:#0153A9!important;background-color:#F1F1F1!important}
+.menuTendina li.attivo {border-top-color:#0153A9!important;color:#000!important}
+.menuTendina li.attivo {background:#CCD1D7!important;border-bottom-color:#CCD1D7!important}
+.menuTendina li.attivo,
+.menuTendina a, .menuTendina a:link, .menuTendina a:visited {padding:3px 16px!important;}
+
+/*fine HEADER*/
+
+/*CORPO*/
+input, select, textarea, .data {border: 1px solid #C0C0C0;font-family: Arial,Helvetica,sans-serif;font-size: 1em;}
+h3, #areaAvviso h3 {font-size: 1.5em;font-weight:normal;margin-bottom: 16px;margin-top: 0;background-color: #0B416C;color: white;
+line-height: 1.2em;min-height:1.2em;border-left:0;  padding-left: 5px;padding-right: 5px;}
+h4, h5, h6 {font-size: 1.2em;margin-bottom: 16px;background-color:transparent;color:#444E56}
+#help #corpo h2, h3, h4, h5, h6 {min-height: auto;}
+body {background-color:#fff}
+#corpo {background-color:#CCD1D7;border:0;padding:20px;width:auto}
+#colonna, .colonnaUnica #righe, #righe {background-color: transparent;
+border: 0 none;margin: 0;padding: 0;}
+
+#contenuto h4.titolo, #contenutopop h4.titolo {
+    color: #0B416C;text-decoration:none;
+}
+
+/*FOOTER*/
+#piedipagina {background-image:none;background-color:#1E354D;border:0}
+#noteSito {background-image:none;background-color:transparent;color:#fff;width:auto;text-align:center;height:auto!important;height:70px;
+padding:20px 80px;overflow:hidden;font-size:1em;font-weight:normal;}
+#noteSito a:link, #noteSito a:visited, #noteSito a:hover, #noteSito a:active {font-weight:normal;background-image:none;height:1.4em;width:auto;display:inline-block}
+#noteSito .csi a, #noteSito .csi a:link, 
+#noteSito .csi a:visited, #noteSito .csi a:hover, 
+#noteSito .csi a:active {width:171px;height:72px;min-height:60px;float:left;text-decoration:none;
+background: url("/assets/global/images/logoTOBECONFIG.png") no-repeat scroll 0 0 transparent;}
+#noteSito .csi span.logoTOBECONFIG {display:none}
+#noteSito .regione {display:block;vertical-align:middle;padding-top:20px;}
+#noteSito .regione a, 
+#noteSito a.infoSP_old{display:inline!important;background-image:none!important;}
+#noteSito a:hover {border-bottom:1px solid #fff}
+/*ELEMENT*/
+
+#contenuto h3, #corpo h3 {font-weight: normal;font-size: 1.5em;margin:0;margin-bottom:16px;}
+
+.helpFuori {height: auto;border-left:0;}
+.helpFuori a,.helpFuori a:link, .helpFuori a:active, .helpFuori a:visited {
+background: url('/ris/resources/global_share/css/im/ico_help.gif') no-repeat scroll 5px 50% #fff;
+padding: 2px 24px 2px 0px;border: 1px solid #fff;height: 16px !important;width: auto;}
+
+#contenuto {background: none #fff;border: 1px solid #A8B1B8;padding: 15px 15px 7px;
+margin-bottom: 8px;margin-left: 13%;}
+
+
+#corpo {}
+.box {margin-top:0;width: 12%;}
+
+.menuSX1, .menuSX {
+font-size: 1em;
+margin:0;padding:0;
+border-bottom:1px solid #fff;
+margin-bottom:8px;
+}
+.menuSX1 ul li, .menuSX ul li {
+color: #fff;
+margin: 0;
+}
+.menuSX1 ul li a, .menuSX1 ul li a:link, .menuSX1 ul li a:visited,
+.menuSX ul li a, .menuSX ul li a:link, .menuSX ul li a:visited {
+background: none #0153A9;
+color: #fff;
+padding: 0.3em 1em 0.3em 0.6em;
+border:1px solid #fff;border-bottom:0;
+margin:0;
+width:auto;
+}
+
+.menuSX1 ul li a:hover,
+.menuSX ul li a:hover {background: none #0B416C;}
+
+.menuSX ul li a.on,
+.menuSX1 ul li a.on:link, .menuSX1 ul li a.on:hover, .menuSX1 ul li a.on:visited, .menuSX1 ul li a.on:active,
+.menuSX ul li a.on:link, .menuSX ul li a.on:hover, .menuSX ul li a.on:visited, .menuSX ul li a.on:active {
+font-size: 1em;
+color: #fff;
+background: none #0B416C;
+margin: 0;
+width:auto;
+border-color:#fff;
+}
+.menuSX ul li ul li a, 
+.menuSX ul li ul li a:link, 
+.menuSX ul li ul li a:visited {
+font-weight: bold;
+color: #000;
+margin:0;
+border-top:0;border-bottom:0;
+background-color: #E9EBEA;
+
+padding-left:20px;
+background-image: url('/ris/resources/global/css/jquery/im/superfish/ico_menu_2liv_parent.gif');
+background-repeat: no-repeat;
+background-position: 10px 8px;
+}
+
+.menuSX ul li ul li a:hover {background-color: #ccc;}
+
+.menuSX ul li ul li a.etichetta:link, 
+.menuSX ul li ul li a.etichetta:hover, 
+.menuSX ul li ul li a.etichetta:visited, 
+.menuSX ul li ul li a.etichetta:active {
+font-size:1em;
+color: #000;
+border-top:0;border-bottom:0;
+border-color:#fff;
+background-color: #ccc;	
+padding-left:20px;
+background-image: url('/ris/resources/global/css/jquery/im/superfish/ico_menu_2liv_parent.gif');
+background-repeat: no-repeat;
+background-position: 10px 8px;	
+}
+
+
+.menuSX ul li ul li ul li {margin:0;}
+.menuSX ul li ul li ul li a, 
+.menuSX ul li ul li ul li a:link, 
+.menuSX ul li ul li ul li a:visited,
+.menuSX ul li ul li ul li a:active,
+.menuSX ul li ul li ul li a.on:link,  
+.menuSX ul li ul li ul li a.on:visited, 
+.menuSX ul li ul li ul li a.on:active,
+.menuSX ul li ul li a.on:link, .menuSX ul li ul li a.on:hover, .menuSX ul li ul li a.on:visited, .menuSX ul li ul li a.on:active {
+border-color: #fff;
+font-weight: bold;
+color: #000;
+border-bottom: 0;
+background-color: #E9EBEA;
+padding-left: 35px;
+background-image: url('/ris/resources/global/css/jquery/im/superfish/ico_menu_3liv_parent.gif');
+background-repeat: no-repeat;
+background-position: 23px 8px;
+}
+
+.menuSX ul li ul li a.on:link, .menuSX ul li ul li a.on:hover, .menuSX ul li ul li a.on:visited, .menuSX ul li ul li a.on:active,
+.menuSX ul li ul li ul li a.on:link, 
+.menuSX ul li ul li ul li a.on:visited, 
+.menuSX ul li ul li ul li a.on:active {background-color:#ccc;}
+
+.menuSX ul li ul li ul li a:hover {background-color:#E9EBEA;color:#333}
+
+
+/*PULSANTI*/
+
+#contenutopop table td .azioni input.inputPulsante, 
+#contenutopop table td .azioni input.inputPulsante:hover,
+#contenutopop table td .azioni input.inputPulsanteHover,
+
+#contenuto table td .azioni input.inputPulsante, 
+#contenuto table td .azioni input.inputPulsante:hover,
+#contenuto table td .azioni input.inputPulsanteHover,
+
+.pulsanti .sin input.inputPulsante, 
+.pulsanti .sin input.inputPulsante:hover,
+.pulsanti .sin input.inputPulsanteHover,
+
+.pulsanti .des input.inputPulsante, 
+.pulsanti .des input.inputPulsante:hover,
+.pulsanti .des input.inputPulsanteHover,
+
+#contenuto table td .azioni a, 
+#contenuto table td .azioni a:hover,
+#contenuto table td .azioni a:active,
+#contenuto table td .azioni a:link,
+#contenuto table td .azioni a:visited,
+
+.pulsanti .sin  a, 
+.pulsanti .sin  a:hover,
+.pulsanti .sin  a:active,
+.pulsanti .sin  a:link,
+.pulsanti .sin  a:visited,
+
+.pulsanti .des  a, 
+.pulsanti .des  a:hover,
+.pulsanti .des  a:active,
+.pulsanti .des  a:link,
+.pulsanti .des  a:visited,
+
+#popup .azioni a, 
+#popup .azioni a:hover,
+#popup .azioni a:active,
+#popup .azioni a:link,
+#popup .azioni a:visited,
+
+.azioni a, 
+.azioni a:hover,
+.azioni a:active,
+.azioni a:link,
+.azioni a:visited {
+color:#000;
+border-width: 1px;
+border-style: solid;
+border-color: #A7B0B7 #333D46 #000 #838D99;
+background: url('/ris/resources/global_share/css/im/sfondo_pulsante.gif') repeat-x scroll 50% 100% #EBEFF0;
+padding: 1px 5px;
+font-size:1.1em;
+height: auto!important;
+line-height:  auto!important;
+width:auto;
+font-weight:normal;
+margin:0;margin-right:3px;
+cursor:pointer;
+}
+
+
+.azioni a, 
+.azioni a:hover,
+.azioni a:active,
+.azioni a:link,
+.azioni a:visited,
+
+#popup .azioni a, 
+#popup .azioni a:hover,
+#popup .azioni a:active,
+#popup .azioni a:link,
+#popup .azioni a:visited,
+
+#contenuto table td .azioni a, 
+#contenuto table td .azioni a:hover,
+#contenuto table td .azioni a:active,
+#contenuto table td .azioni a:link,
+#contenuto table td .azioni a:visited,
+
+.pulsanti .sin  a, 
+.pulsanti .sin  a:hover,
+.pulsanti .sin  a:active,
+.pulsanti .sin  a:link,
+.pulsanti .sin  a:visited,
+
+.pulsanti .des  a, 
+.pulsanti .des  a:hover,
+.pulsanti .des  a:active,
+.pulsanti .des  a:link,
+.pulsanti .des  a:visited {display:inline-block;padding:2px 5px;}
+
+
+.pulsanti .sin  a, 
+.pulsanti .sin  a:hover,
+.pulsanti .sin  a:active,
+.pulsanti .sin  a:link,
+.pulsanti .sin  a:visited,
+.pulsanti .sin input.inputPulsante, 
+.pulsanti .sin input.inputPulsante:hover,
+.pulsanti .sin input.inputPulsanteHover {margin-right:3px;}
+
+.pulsanti .des  a, 
+.pulsanti .des  a:hover,
+.pulsanti .des  a:active,
+.pulsanti .des  a:link,
+.pulsanti .des  a:visited,
+.pulsanti .des input.inputPulsante, 
+.pulsanti .des input.inputPulsante:hover,
+.pulsanti .des input.inputPulsanteHover {margin-left:3px;}
+
+
+/*#annulla */
+#contenuto table td .azioni input.inputPulsante.annulla, 
+.pulsanti .sin input.inputPulsante.annulla, 
+.pulsanti .des input.inputPulsante.annulla, 
+#contenuto table td .azioni a.annulla, 
+.pulsanti .sin  a.annulla, 
+.pulsanti .des  a.annulla {float:none;line-height:16px;
+background: none repeat-x scroll 50% 100% #fff;}
+
+/*importante*/
+#contenutopop table td .azioni input.inputPulsante.highlighted, 
+#contenuto table td .azioni input.inputPulsante.highlighted, 
+.pulsanti .sin input.inputPulsante.highlighted, 
+.pulsanti .des input.inputPulsante.highlighted, 
+#contenuto table td .azioni a.highlighted, 
+.pulsanti .sin  a.highlighted, 
+.pulsanti .des  a.highlighted {color:#fff;
+   background-image: none;
+background-color: #0153A9;
+background-image: url(IMAGE_URL); 
+background-image: url(IMAGE_URL), -webkit-gradient(linear, left top, left bottom, from(#0153A9), to(#0B416C)); 
+background-image: url(IMAGE_URL), -webkit-linear-gradient(top, #0153A9, #0B416C); 
+background-image: url(IMAGE_URL), -moz-linear-gradient(top, #0153A9, #0B416C);/* scuro 0B416C   chiaro 0153A9*/
+background-image: url(IMAGE_URL), -ms-linear-gradient(top, #0153A9, #0B416C); 
+background-image: url(IMAGE_URL), -o-linear-gradient(top, #0153A9, #0B416C); 
+background-image: url(IMAGE_URL), linear-gradient(top, #0153A9, #0B416C);
+background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #0153A9),color-stop(0.84, #0B416C));
+filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#0153A9', EndColorStr='#0B416C');}
+
+#contenutopop table td .azioni input.inputPulsante:hover,
+#contenutopop table td .azioni input.inputPulsanteHover,
+
+#contenuto table td .azioni input.inputPulsante:hover,
+#contenuto table td .azioni input.inputPulsanteHover,
+.pulsanti .sin input.inputPulsante:hover,
+.pulsanti .sin input.inputPulsanteHover,
+.pulsanti .des input.inputPulsante:hover,
+.pulsanti .des input.inputPulsanteHover,
+#contenuto table td .azioni a:hover,
+.pulsanti .sin  a:hover,
+.pulsanti .des  a:hover,
+#popup .azioni a:hover,
+.azioni a:hover {color:#5F6C7C;}
+
+#contenutopop table td .azioni input.inputPulsante.highlighted:hover,
+#contenutopop table td .azioni input.highlighted.inputPulsanteHover,
+#contenuto table td .azioni input.inputPulsante.highlighted:hover,
+#contenuto table td .azioni input.highlighted.inputPulsanteHover,
+.pulsanti .sin input.highlighted.inputPulsante:hover,
+.pulsanti .sin input.highlighted.inputPulsanteHover,
+.pulsanti .des input.highlighted.inputPulsante:hover,
+.pulsanti .des input.highlighted.inputPulsanteHover,
+#contenuto table td .azioni a.highlighted:hover,
+.pulsanti .sin  a.highlighted:hover,
+.pulsanti .des  a.highlighted:hover { background-image: none;color:#fff;
+background-color: #0B416C; 
+background-image: url(IMAGE_URL); 
+background-image: url(IMAGE_URL), -webkit-gradient(linear, left top, left bottom, from(#0B416C), to(#0B416C)); 
+background-image: url(IMAGE_URL), -webkit-linear-gradient(top, #0B416C, #0B416C); 
+background-image: url(IMAGE_URL), -moz-linear-gradient(top, #0B416C, #0B416C);
+background-image: url(IMAGE_URL), -ms-linear-gradient(top, #0B416C, #0B416C); 
+background-image: url(IMAGE_URL), -o-linear-gradient(top, #0B416C, #0B416C); 
+background-image: url(IMAGE_URL), linear-gradient(top, #0B416C, #0B416C);
+background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #0B416C),color-stop(0.84, #0B416C));
+filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#0B416C', EndColorStr='#0B416C');}
+
+.pulsanti, .azioni {overflow:hidden;width:auto;height: auto!important;}
+.pulsanti, #contenutopop .azioni {margin-top:14px;margin-bottom:14px;}
+.azioni {margin-bottom:14px;}
+table .azioni  {border:0;}
+.azioni.line {display:inline;}
+#contenuto table td input.textmediolungo {width:150px}
+
+/*TABELLE*/
+
+#content table,
+#contenuto table, #contenutopop table {border:0;border-spacing: 0;border-collapse: collapse;}
+
+#content table th, #content table td,
+#contenuto table th, #contenutopop table th,
+#contenuto table td, #contenutopop table td {font-size:1.05em;padding: 5px;border: 1px solid #91A2B2;text-align: left;}
+
+#content table th,
+#contenuto table th.left,
+#contenuto table th, #contenutopop table th {font-weight: bold;padding-right: 10px;color:#444E56;background-color: #E0E9F2;text-align: right;}
+#contenuto table th.left {text-align: left;}
+
+#content table td,
+#contenuto table td, #contenutopop table td {background-color:#fff}
+
+
+#content table.evidence td, 
+#contenuto table.evidence td, 
+#contenutopop table.evidence td,
+#content tr.evidence td, 
+#contenuto tr.evidence td, 
+#contenutopop tr.evidence td  {background-color:#eee}
+#contenuto table.evidence td.giallo {background-color: #FFEC9D}
+
+#content table caption,
+#contenuto table caption, #contenutopop table caption {
+color:#000;background-color:transparent;font-size:1.2em;margin-top:16px;margin-bottom:16px;border:0;
+height: auto!important;line-height:auto!important;}
+
+#content table.detailTable th,  #content table.detailTable td ,
+#contenuto table.detailTable th,  #contenuto table.detailTable td {border:0;border-bottom:1px solid #ebebeb}
+#content table.detailTable th,
+#contenuto table.detailTable th {background-color: #fff;text-align: right;font-weight: bold;padding-right: 10px;}
+#contenuto table.detailTable th.thIn {border:1px solid #ebebeb;}
+
+#contenuto table td.red, #contenutopop table td.red,
+#contenuto table td.tot,
+#contenuto table td.totale {background: none #E0E9F2;text-align: right;font-weight: bold;}
+
+#contenuto table tr.tableExpCol td {background-color: #B6D0DB;}
+
+#contenuto table.msgElenco th {width:8%;}
+#contenuto table.msgElenco td {width:92%;}
+#contenuto table.msgElenco th p.notificheparticellari,
+#contenuto table.msgElenco th p.bloccoprocedimenti,
+#contenuto table.msgElenco th p.bloccata,
+#contenuto table.msgElenco th p.warning,
+#contenuto table.msgElenco th p.segnalazioni {background-position:50% 0}
+
+
+/*FINE TABELLE*/
+
+
+#contenuto table td input,
+input, select, textarea, .data,
+#contenuto table td select,
+#contenuto table td textarea  {
+font-family: Arial,Helvetica,sans-serif;
+font-size: 1em;
+border: 1px solid #C0C0C0;
+/*width:100%;*/
+}
+
+label strong {font-size:0.95em}
+#intesta p.azienda {padding-left:0;}
+
+
+#contenuto h4 {font-size: 1.2em;margin:0;padding:0;
+margin-top: 16px;margin-bottom: 16px;
+background-color: transparent;
+color: #444E56;}
+
+#content p.errore,
+#contenuto div.notifica, #contenuto div.segnalazioni {
+background-color: #fff;
+font-weight: bold;font-style:normal;color:#000;
+margin-bottom:6px;
+}
+
+#contenuto p.errore,
+#contenuto div.notifica, #contenuto div.segnalazioni {
+padding: 20px 22px 20px 105px!important;
+background-repeat: no-repeat;
+background-position: 22px 3px;
+background-color: #fff;
+background-attachment: scroll;
+margin: 0px 0px 8px;
+width:auto;
+}
+
+#contenuto div.segnalazioni {
+background-image: url('/ris/resources/global_share/css/im/ico_info_big.gif');
+color: #065C00;
+border: 2px solid #1A4B74;
+}
+ 
+#contenuto  div.notifica{
+border: 2px solid #FEA500;
+background-image: url('/ris/resources/global_share/css/im/ico_alert_big.gif');
+}
+
+#contenuto p.errore {border: 2px solid #FF1E00;
+background-image: url('/ris/resources/global_share/css/im/ico_error_big.gif');}
+
+/* TAB */
+
+#indice {
+font-size: 1em;
+border-bottom: 1px solid #ccc;
+padding: 0;
+margin: 14px 0 14px 0;
+}
+
+#indice span {
+display:inline-block;
+border: 1px solid #A8B1B8;
+background-color: #E9EBEA;
+background-image: url('none'), -moz-linear-gradient(center top , #E9EBEA, #ccc);
+z-index:10000;
+margin:0;padding:0;padding:3px 6px;
+border-bottom:0;
+}
+
+#indice .evidenza {
+font-weight:normal;
+border-bottom:1px solid #fff;
+margin-bottom:-2px;
+color: #000;
+background-color: #fff;
+background-image: url('none'), -moz-linear-gradient(center top , #fff, #fff);
+}
+
+#indice .voce {
+font-weight: normal;
+color: #666;
+}
+
+#indice .voce a:link, #indice .voce a:visited {
+font-weight:normal;
+color: #000;
+margin:0;padding:0;
+border:0;
+background:transparent;
+}
+
+/***PAGINAZIONE***/
+
+.paginazione {background-color:transparent}
+.paginazione .sx {background-color:transparent}
+.paginazione .dx {}
+.allineaDx span a:hover,
+.paginazione .dx a:hover,
+.paginazione .dx span.evidenziato {background-color: #0B416C;
+color: #FFF;}
+.allineaDx span a {color:#000}
+
+.paginazione .dx .vai input.vaiInput,
+.paginazione .dx .vai input.vaiInput:hover,
+.paginazione .dx .vai input.vaiInputHover  {background:#fff;color:#000}
+.paginazione .dx input  {border: 1px solid #C0C0C0;}
+
+
+/**da verificare: MESSAGGI ERRORE ***/
+
+#content p {background-color:transparent}
+
+#content {background: none repeat scroll 0% 0% #fff;
+border: 1px solid #A8B1B8;
+padding: 15px 15px 7px;
+margin-bottom: 8px;}
+
+/**HOME PAGE**/
+
+#content h4.vaiTit {
+margin: 0px;
+background: #fff;
+padding: 0px;
+height: auto!important;
+line-height: 20px;
+}
+
+#content h4.vaiTit a:link, #content h4.vaiTit a:visited, #content h4.vaiTit a:active, #content h4.vaiTit a:hover, #content h4.vaiTit a {
+    color: #333 !important;
+    font-weight: normal;
+    border-bottom: 1px solid #D1D1D3;
+    background-image: url('/ris/resources/global_share/css/im/ico_menu_home.gif') !important;
+    background-position: 0px 0px !important;
+    background-repeat: no-repeat !important;
+    display: block;
+    width: auto;
+    text-decoration: none;
+    padding: 3px 35px;
+	background-color: transparent;
+	font-size: 1.3em;
+}
+
+#content p.desc {
+    background-color: #FFF !important;
+    padding: 14px 16px 14px 40px !important;
+    margin: 0px !important;
+}
+
+/* POPUP */
+
+#contenutopop {padding:3px;}
+
+#contenuto table td.intestazione2, 
+#contenutopop table td.intestazione2 {color: #444E56;
+background-color: #E0E9F2;padding:5px;}
+
+/*ESPANDI COMPRIMI*/
+
+#contenuto .espandi, #contenuto .comprimi {
+border:1px solid #ADB2B6;
+color:#555555;font-size:1.2em;margin:0;margin-top:10px;
+padding:8px 12px;
+font-weight:bold;
+background: #E4E6E8;
+background-image: url(IMAGE_URL); /* fallback */
+background-image: url(IMAGE_URL), -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#E4E6E8)); /* Saf4+, Chrome */
+background-image: url(IMAGE_URL), -webkit-linear-gradient(top, #ffffff, #E4E6E8); /* Chrome 10+, Saf5.1+ */
+background-image: url(IMAGE_URL), -moz-linear-gradient(top, #ffffff, #E4E6E8); /* FF3.6+ */
+background-image: url(IMAGE_URL), -ms-linear-gradient(top, #ffffff, #E4E6E8); /* IE10 */
+background-image: url(IMAGE_URL), -o-linear-gradient(top, #ffffff, #E4E6E8); /* Opera 11.10+ */
+background-image: url(IMAGE_URL), linear-gradient(top, #ffffff, #E4E6E8); /* W3C */
+background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #ffffff),color-stop(0.84, #E4E6E8)); /*safari*/
+filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#ffffff', EndColorStr='#E4E6E8'); /*ie9*/
+}
+
+#contenuto .espandi span, #contenuto .comprimi span {background-repeat:no-repeat ;background-position:3px 50% ;
+
+padding-left: 18px;}
+
+#contenuto .espandi span {
+background-image: url(/ris/resources/global_share/css/jquery/im/ui-1.8.24/ui-icons-default_accordion.gif); 
+}
+
+#contenuto .comprimi span {
+background-image: url(/ris/resources/global_share/css/jquery/im/ui-1.8.24/ui-icons-active_accordion.gif);
+}
+
+div.stdMessagePanel div.feedLoad {
+padding-left: 105px;background-image:none;overflow:hidden;width:auto;
+/*background-image: url('/ris/resources/global/css/im/ico_load_big.gif')!important;*/
+border: 2px solid #1A4B74;
+}
+div.stdMessagePanel div.feedLoad p {padding-top: 20px;}
+div.stdMessagePanel div.feedLoad img {float:left;margin-right:20px;}
+/*div.stdMessagePanel div.feedLoad img {display:none;}*/
+div.stdMessagePanel div.feedInfo, div.stdMessagePanel div.feedKo, div.stdMessagePanel div.feedLoad, div.stdMessagePanel div.feedCorrect, div.stdMessagePanel div.feedWarning {
+background-color: #FFF;
+font-weight: bold;
+}
+
+div.stdMessagePanel div.feedInfo, div.stdMessagePanel div.feedKo, div.stdMessagePanel div.feedLoad, div.stdMessagePanel div.feedCorrect, div.stdMessagePanel div.feedWarning {
+padding: 28px 22px 28px 105px;
+background-repeat: no-repeat;
+background-position: 22px 18px;
+background-color: #FFF;
+background-attachment: scroll;
+margin: 0px 0px 8px;
+}
+
+/*icone*/
+#contenuto a.firmaElettronica,
+#contenuto a.firmaTablet,
+#contenuto a.noFirma,
+#contenuto a.firmaCarta,
+#contenuto a.stampaErrore {height: 32px;width: 32px;display: block;}
+#contenuto a.firmaElettronica {background: url('/ris/css/agricoltura/im/firmaElettronica.png') no-repeat scroll 50% 50% transparent;}
+#contenuto a.firmaCarta {background: url('/ris/css/agricoltura/im/firmaCarta.png') no-repeat scroll 50% 50% transparent;}
+#contenuto a.firmaTablet {background: url('/ris/css/agricoltura/im/firmaTablet.png') no-repeat scroll 50% 50% transparent;}
+#contenuto a.noFirma {background: url('/ris/css/agricoltura/im/noFirma.png') no-repeat scroll 50% 50% transparent;}
+#contenuto a.stampaErrore {background: url('/ris/css/agricoltura/im/stampaErrore.png') no-repeat scroll 50% 50% transparent;}
+/* formatta icona "CLESSIDRA" */
+#contenuto table td.ico_clessidra, #contenutopop table td.ico_clessidra {
+text-align:center;width:30px;padding:2px 6px 2px 6px;}
+#contenuto a.clessidra, #contenutopop a.clessidra {
+	height:28px;
+	width:24px;
+	background: url(/ris/css/agricoltura/im/ico_clessidra.gif) 50% 50% no-repeat;
+	display:block;
+}
+
+
+/*Gestione loghi nel banner solo per rupar*/
+
+#homeIndice #intestazione_verbanocusioossola,
+#homeIndice #intestazione_verbanocusioossolaa form,
+#homeIndice #intestazione_regione,
+#homeIndice #intestazione_regione form,
+#homeIndice #intestazione_vercelli,
+#homeIndice #intestazione_vercelli form,
+#homeIndice #intestazione_novara,
+#homeIndice #intestazione_novara form,
+#homeIndice #intestazione_cuneo,
+#homeIndice #intestazione_cuneo form,
+#homeIndice #intestazione_biella,
+#homeIndice #intestazione_biella form,
+#homeIndice #intestazione_asti,
+#homeIndice #intestazione_asti form,
+#homeIndice #intestazione_alessandria,
+#homeIndice #intestazione_alessandria form, 
+#homeIndice #intestazione_torino ,
+#homeIndice #intestazione_torino form,
+#homeIndice #intestazione_opr,
+#homeIndice #intestazione_opr form {background:none #fff}
+
+#intestazione_regione span.spaziatore,
+#intestazione_verbanocusioossola span.spaziatore,
+#intestazione_vercelli span.spaziatore,
+#intestazione_novara span.spaziatore,
+#intestazione_cuneo span.spaziatore,
+#intestazione_biella span.spaziatore,
+#intestazione_asti span.spaziatore,
+#intestazione_alessandria span.spaziatore
+#intestazione_torino span.spaziatore,
+#intestazione_opr span.spaziatore {height: 0px;}
+
+/*fine gestione loghi*/

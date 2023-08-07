@@ -1,0 +1,2032 @@
+.gloss {
+	position:absolute;
+	margin:0;
+	font-weight: bold;
+	right:28px;
+	top:-6px;
+	height:24px;
+	border-left:3px solid #fff;
+}
+.gloss a, .gloss a:link, .gloss a:visited  {
+	display:block;
+	width:90px;
+	height:24px;
+	background:#fff url(/css/agricoltura/im/logo_glossario.gif) 100% 50% no-repeat;
+}
+.gloss a:hover, .gloss a:active{
+	display:block;
+	width:90px;
+	height:24px;
+	background:#fff url(/css/agricoltura/im/logo_glossario.gif) 100% 50% no-repeat;
+}
+
+
+/*EXPANDCOLLAPSE STYLES*/
+
+/*entire table container */
+.sas_ExpandCollapseContainerStyle{
+	background-color: #FAF3D4;
+	width: 400px;
+}
+/*entire title row area, including buttons*/
+.sas_ExpandCollapseTitleStyle{
+}
+/*td element containing button table */
+.sas_ExpandCollapseButtonsStyle{
+	text-align: right;	
+}
+/*table containing only buttons */
+.sas_ExpandCollapseButtonsTableStyle{
+}
+/*separator row between the title area and the contents */
+.sas_ExpandCollapseSeparatorStyle{
+}
+/*expand collapse div tag */
+.sas_ExpandCollapseDivStyle{
+	display: none;
+}
+/*button within the component */
+.sas_ExpandCollapsebutton{
+	background-color: transparent;
+	border-style: none;
+}
+
+/*OLAP STYLES*/
+#contenuto table.OLAPMainTable{
+clear:both;
+margin:0 -3px 0 0;
+}
+#contenuto table.OLAPMainTable td, table.OLAPMainTable th {
+     border:0;
+    	border-right:3px solid #fff;
+					border-bottom:3px solid #fff;
+				 padding:0 3px; 
+}
+#contenuto table.OLAPMainTable td {
+font-size:.9em;
+text-align:right;
+vertical-align:bottom;
+}
+#contenuto table.OLAPMainTable td.emptyTableData {
+font-size:1.2em;
+text-align:center;
+color:#900;
+font-weight:bold;
+border:1px dashed #333;
+padding:6px 0;
+background:#ccc;
+}
+#contenuto table.navigationBar {
+					background:#ECDCA1;
+     border:0;
+    	border-right:3px solid #fff;
+					border-bottom:3px solid #fff;
+					padding:0;
+					margin:0;
+}
+#contenuto table td.navigationBarElement {background:#ECDCA1;}
+.OLAPTableTitle {
+			color: #000;
+			text-align: center;
+			vertical-align: middle;
+			font-weight: bold;
+			height: 50px;
+			overflow:scroll;
+}
+.OLAPTableFooter {
+    color: #000;
+    text-align: left;
+    vertical-align: middle;
+    font-weight: bold;
+}
+.OLAPTableToolBar {
+    vertical-align: bottom;
+}
+.OLAPMenubarLeft{
+    margin-right:auto;
+}
+.OLAPMenubarRight{
+    margin-left:auto;
+}
+.OLAPMenubarCenter{
+   margin-left:auto;
+   margin-right:auto;
+}
+/* row title headers with text-align Left */
+th.OLAPTableEmptyRowTitleHeader {
+    background-color: #FAF3D4;
+    border-right: #fff 2px solid;
+    border-bottom: #fff 2px solid;
+    color: #3872ac;
+    text-align: left;
+    vertical-align: middle;
+}
+/* row title headers with text-align Left */
+span.OLAPTableRowTitleHeader {
+				font-size: .9em;
+				font-weight: bold;
+}
+/* column title headers with text-align right */
+span.OLAPTableColumnTitleHeader {
+    color: #000;    
+    text-align: left;
+    vertical-align: middle;
+    font-size: .85em;
+    font-weight: bold;
+}
+/* Ragged Hierarchies on the row */
+th.OLAPRaggedRow {
+    background-color: #FAF3D4;
+    border-bottom: #3872ac 1px solid;
+    text-align: left;
+    vertical-align: middle;
+}
+/* Last Ragged Hierarchies on the row */
+th.OLAPRaggedLastRow {
+    background-color: #FAF3D4;
+    border-bottom: #3872ac 1px solid;
+    border-right: #3872ac 1px solid;
+    text-align: left;
+    vertical-align: middle;
+}
+/* Ragged Hierarchies on the column */
+th.OLAPTableRaggedColumnHeader {
+    background-color: #FAF3D4;
+    border-right: #3872ac 1px solid;
+    text-align: center;
+    vertical-align: text-top;
+    color: #3872ac;
+    font-weight: bold;
+}
+th.OLAPTableColumnHeader {
+    background-color: #E1D099;
+    border-right: #fff 1px solid;
+    border-bottom: #fff 1px solid;
+    text-align: center;
+    vertical-align: text-top;
+    color: #000;
+    font-size: .9em;
+    font-weight: bold;
+}
+.OLAPTableColumnHeader A {
+   text-decoration: none;
+   color: #3872ac;
+}
+
+.OLAPTableColumnHeader a:hover{
+   text-decoration: underline;
+   color: #003399;
+}
+td.OLAPTableMeasureHeaderText
+{
+    color: #3872ac;
+    font-size: 9pt;
+    font-weight: bold;
+}
+
+/* Hover Attribute for Links in measure headers */
+A.OLAPTableMeasureHeaderLink:hover {
+       text-decoration: underline;
+       color: #003399;    
+}
+
+
+/* Links attributes for measure */
+A.OLAPTableMeasureHeaderLink {
+    text-decoration:none;
+    color: #3872ac;     
+}
+
+
+span.OLAPTableColumnHeader
+{
+    color: #000;
+    font-size: 0.85em;
+    font-weight: bold;
+    /*font-family:Arial, Helvetica, sans-serif;*/
+}
+
+span.OLAPTableRowHeader
+{
+    color: #000;
+    font-size:.85em;
+    font-weight: bold;
+}
+
+td.OLAPTableColumnHeaderText
+{
+    color: #000;
+    font-size: 9pt;
+    font-weight: bold;
+}
+
+
+/* data values */
+
+
+.OLAPDataCellDisabled{}
+
+.OLAPTableData A:link, .OLAPTableData A:active, .OLAPTableData A:visited {
+    text-decoration: none;
+    background-color: transparent;
+    color: #000;
+    font-size: .85em;
+    font-weight: bold;
+}
+
+.OLAPTableData a:hover{
+    text-decoration: underline;
+    background-color: transparent;
+    color: #000;
+    font-size: .85em;
+    font-weight: bold;
+}
+
+.ShowDetailTableContainer{
+    background-color:#fff;
+    border-top: #000 2px solid;
+    border-right: #000 1px solid;
+    border-bottom: #000 1px solid;
+    border-left: #000 2px solid;
+    text-align: left;
+}
+
+.OLAPMenuItemContainer	{
+    padding-left: 4px;
+    padding-right: 3px;
+    background-color:#fff;
+    border-top: #3872ac 1px solid;
+    border-right: #3872ac 1px solid;
+    border-bottom: #3872ac 1px solid;
+    border-left: #3872ac 1px solid;
+    text-align: left;
+    color: #3872ac;
+}
+
+.OLAPMenuItem {
+       color: #3872ac;
+       font-size: 9pt;
+       /*font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;*/
+       font-weight: bold;
+       text-align: left;
+}
+
+.OLAPMenuItemDivider {
+    color: #3872ac;
+    height: 1px;
+    width: 90%;
+}
+
+.OLAPMenuItemArrow {
+       color: #000;
+       font-size: 9pt;
+       font-weight: bold;
+       text-align: left;
+}
+
+
+td.OLAPMenuItemLink {
+    color: #000;
+    /*font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;*/
+    font-size: 9pt;
+    font-weight: bold;
+    text-align: left;
+    
+    
+}
+
+.OLAPMenuItemLink A{
+    text-decoration:none;
+    color: #3872ac;
+}
+
+.OLAPMenuItemLink a:hover{
+   text-decoration:underline;
+   background-color: transparent;
+   color: #003399;
+}
+
+.OLAPMenuItemDisabled
+{
+   background-color: transparent;
+   /*font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;*/
+   color:#BBBBBB;
+   font-size:9pt;
+   font-weight: bold;
+}
+
+.MenuBar{
+}
+
+.Menu{
+}
+
+.olapMenuLink{
+}
+
+.olapDrillStatemenuDivider
+{
+  padding-left: 3px;
+  padding-right: 3px;
+  color: #3872ac;
+  font-size: 8pt;
+  /*font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;*/
+  font-weight: bold;
+}
+
+
+.olapDrillStatemenu
+{
+  margin-left: 2px;
+  margin-right: 2px;
+ /* font-size: .7em;*/
+ font-size: 1em;
+    
+}
+
+.olapDrillState {
+background-color:#000;}
+
+
+
+
+
+.olapDrillStateLabel
+{
+  margin-left: 2px;
+  margin-right: 2px;
+  font-size: 8pt;
+  /*font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;*/
+}
+
+th.showDetailTableColumnHeader {
+    background-color: #faf3d4;
+    border-right: #3872ac 1px solid;
+    border-bottom: #3872ac 1px solid;
+    color: black;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 9pt;
+}
+
+th.ShowDetailTableRowHeader {
+    background-color: #faf3d4;
+    border-right: #3872ac 1px solid;
+    border-bottom: #3872ac 1px solid;
+    color: black;
+    text-align: left;
+    vertical-align: middle;
+    font-size: 9pt;
+}
+
+/***************************************************************************
+* DUALSELECTOR STYLES 
+*(applies to com.sas.servlet.tbeans.dualselector.html.DualListSelector,
+* TreeListSelector and DualTreeSelector)
+****************************************************************************/
+
+/* Sets <table class="dualSelectorBg"> to specify the background color and border of the dual selector */
+.dualSelectorContainer 
+{
+  border: solid 1px #C0C0C0;
+}
+
+/* Sets <td class="dualSelectorLabel"> to specify the font and color of the label's text */
+.dualSelectorSourceLabel, .dualSelectorTargetLabel 
+{
+		background-color : #DCDCDC;
+		border: 1px solid #C0C0C0;
+		font-size:.9em; 
+		color: #000;
+}
+
+
+/* Sets <input class="dualSelectorButton"> to specify background attributes of buttons */
+.dualSelectorButton 
+{
+  vertical-align: middle;
+  width: 25px;
+/*
+	background-color: #DCDCDC;
+	border: solid 2px #C0C0C0;
+	border-style: outset;
+	background-color:  #DCDCDC; */
+}
+
+
+.dualSelectorSubmitButton
+{
+		cursor: pointer;
+		color: #003399;
+		padding: 2px;
+		font-size: 9pt;
+		font-weight: bold;
+		text-align: center;
+		vertical-align: middle;
+}
+
+/***************************************************************************
+*
+*  Applies to com.sas.servlet.tbeans.dualselector.html.DualListSelector
+*
+*****************************************************************************/
+
+/* Sets <select class="dualSelectorSource"> to specify the font, color and width of the
+   Source Listbox */
+.dualSelectorSource {
+  background-color: #FEFEFF; 
+  width: 150px; 
+}
+
+/* Sets <select class="dualSelectorTarget"> to specify the font, color and width of the
+   Target Listbox */
+.dualSelectorTarget {
+  background-color: #FEFEFE; 
+  width: 150px; 
+}
+
+ 
+/***************************************************************************
+*
+*  Applies to com.sas.servlet.tbeans.dualselector.html.TreeListSelector
+*
+*****************************************************************************/
+/* Sets the <div class="dualPane"> to specify the border of the TreeListSelector's Source and Target components */
+
+.dualSelectorSourceContainer
+{
+     vertical-align: top;
+     width:150px;
+     height:200px;
+     overflow:scroll;
+     border: 1px solid #000;
+     background-color: #fff;
+     
+  }
+  
+  .dualSelectorTargetContainer
+  {
+     vertical-align: top;
+     width:150px;
+     height:200px;
+     overflow:scroll;
+     border: 1px solid #000;
+     background-color: #fff;
+  }
+
+/* The TreeView's node text used insde the TreeListSelector. */
+.dualText, .dualTree:active, .dualTree:link, .dualTree:visited 
+{
+	/*font-family: Verdana, Arial, Helvetica, sans-serif;*/
+	font-size: .9em;
+	text-decoration: none;
+	color: #000;
+}
+
+/***************************************************************************
+*
+* TABLEVIEW STYLES (applies to com.sas.servlet.tbeans.tableview.html.TableView)
+*
+****************************************************************************/
+
+.tableContainer {
+}
+
+.tableTitle {
+    color: #000;
+    text-align: center;
+    vertical-align: middle;
+    /*font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;*/
+    font-size: 9pt;
+    font-weight: bold;
+    height: 50px;
+}
+
+.tableFooter {
+    color: #000;
+    text-align: center;
+    vertical-align: middle;
+    /*font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;*/
+    font-size: 9pt;
+    font-weight: bold;
+    height: 50px;
+}
+
+.tableToolBar {
+    vertical-align: bottom;
+}
+
+.tableContent {
+}
+
+.mainTable {
+    border-left: #3872ac 2px solid;
+    border-right: #3872ac 1px solid;
+    border-top: #3872ac 2px solid;
+    border-bottom: #3872ac 1px solid;
+}
+
+.tableviewmenuBar {
+}
+
+.tableviewmenu A:link, .tableviewmenu A:active, .tableviewmenu A:visited
+{
+    text-decoration:none;
+   /* background-color: transparent;*/
+   background-color:#fff;
+    color: #3872ac;
+    /*font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;*/
+    font-size: 9pt;
+    font-weight: bold;
+}
+
+.tableviewmenu a:hover {
+    text-decoration: underline;
+    background-color: transparent;
+    color: #003399;
+    font-size: 9pt;
+    font-weight: bold;
+}
+
+.tableviewmenuDisabled {
+	text-decoration:none;
+    background-color: transparent;
+    color: #3872ac;
+    font-size: 9pt;
+    font-weight: bold;
+}
+
+.tableviewmenuItemContainer {
+    padding-left: 4px;
+    padding-right: 3px;
+    border-top: #3872ac 1px solid;
+    border-right: #3872ac 1px solid;
+    border-bottom: #3872ac 1px solid;
+    border-left: #3872ac 1px solid;
+    text-align: left;
+    background-color:#fff;
+    color: #3872ac;
+    font-size: 9pt;
+    font-weight: bold;
+}
+
+.tableviewmenuItem {
+    /*font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;*/
+    text-decoration:none;
+    background-color: #fff;
+    color: #3872ac;
+    font-size: 9pt;
+    font-weight: bold;
+    cursor: hand;
+}
+
+.tableviewmenuItem a:active, .tableviewmenuItem a:link, .tableviewmenuItem a:visited {
+    text-decoration:none;
+    background-color: transparent;
+    color: #3872ac;
+    font-size: 9pt;
+    font-weight: bold;
+}
+
+.tableviewmenuItem a:hover {
+	text-decoration: underline;
+    background-color: transparent;
+    color: #3872ac;
+    font-size: 9pt;
+    font-weight: bold;
+}
+
+.tableviewmenuItemLink A:active, .tableviewmenuItemLink A:link, .tableviewmenuItemLink A:visited {
+    /*font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;*/
+    text-decoration:none;
+    background-color: transparent;
+    color: #3872ac;
+    font-size: 9pt;
+    font-weight: bold;
+}
+
+.tableviewmenuItemLink a:hover {
+	text-decoration: underline;
+    background-color: transparent;
+    color: #3872ac;
+    font-size: 9pt;
+    font-weight: bold;
+}
+
+.tableviewmenuItemDisabled {
+	/*font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;*/
+	text-decoration:none;
+    background-color: transparent;
+    color: #BBBBBB;
+    font-size: 9pt;
+    font-weight: bold;
+}
+
+.tableviewmenuItemArrow {
+	/*font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;*/
+}
+
+.tableviewmenuItemDivider {
+    color: #3872ac;
+    height: 1px;
+    width: 90%!important;
+}
+
+th.tableColumnHeader {
+    background-color: #faf3d4;
+    border-right: #3872ac 1px solid;
+    border-bottom: #3872ac 1px solid;
+    color: #3872ac;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 9pt;
+}
+
+th.tableRowHeader {
+    background-color: #faf3d4;
+    border-right: #3872ac 1px solid;
+    border-bottom: #3872ac 1px solid;
+    color: #3872ac;
+    text-align: left;
+    vertical-align: middle;
+    font-size: 9pt;
+}
+
+/* alpha data values */
+td.tableData {
+    border-right: #3872ac 1px solid;
+    border-bottom: #3872ac 1px solid;
+        font-size: 11px;
+}
+
+/* numeric data values */
+td.tableDataNumeric {
+    border-right: #3872ac 1px solid;
+    border-bottom: #3872ac 1px solid;
+    font-size: 11px;
+    text-align: right;
+}
+
+td.emptyTableData {
+    border-right: #3872ac 1px solid;
+    border-bottom: #3872ac 1px solid;
+    /*font-size: 3em;*/
+				color:#900;
+    /*text-align: center;*/
+}
+
+tr.tableRow {
+}
+
+.tableEditColumnCell {
+    border-right: #3872ac 1px solid;
+    border-bottom: #3872ac 1px solid;
+        text-align: center;
+    vertical-align: middle;
+}
+
+.tableEditRowCell {
+    background-color: #faf3d4;
+    border-right: #3872ac 1px solid;
+    border-bottom: #3872ac 1px solid;
+    color: #3872ac;
+    text-align: left;
+    vertical-align: middle;
+    font-size: 9pt;
+}
+
+.tableRowSelectionCell {
+    border-right: #3872ac 1px solid;
+    border-bottom: #3872ac 1px solid;
+        text-align: center;
+    vertical-align: middle;
+}
+
+
+/***************************************************************************
+*
+* TABLEVIEW STYLES
+*
+****************************************************************************/
+
+/*.navigationBar {
+background-color:#fff;
+}
+.navigationBarElement {
+	vertical-align:top;
+}*/
+.navbarmenuBar {}
+.navbarmenuDisabled {}
+.navigationText {
+    color: #000;
+				font-weight:bold;
+}
+.navbarInput	{
+    color: #000;
+    font-weight: bold;
+    width: 35px;
+}
+.navbarmenuLink {}
+
+/***************************************************************************
+* MENUBAR STYLES
+* Default styles used for com.sas.servlet.tbeans.menubar.html.MenuBar, Menu
+* and MenuItem classes
+***************************************************************************/
+
+/* Sets <table class="menuBar"> on the outer container of the menus.  */
+/*.menuBar 
+{
+	border: solid 1px #000;
+}*/
+
+/* Sets <td class="menuDivider"> */
+.menuDivider	
+{
+	background-color: #F1EACB;
+	font-size: small;
+	font-weight : bold;
+	color: #275E94;
+}
+
+/* Sets <td class="menu|menuLink|menuDisabled|menuLinkDisabled|menuSelected|menuLinkSelected"> */
+/* If the menu has a url, 'menuLink' will be used; otherwise, 'menu' will be the default style class. */
+.menu a, .menuLink a,
+.menuDisabled a, .menuLinkDisabled a {margin:0 3px 0 0;color: #275E94;}
+.menu, .menuLink{   	
+		background-color: #F1EACB;
+		color: #275E94;
+		font-weight: normal;
+		cursor:hand;
+		cursor:pointer;
+		text-align: center;
+}
+td.menulink {
+cursor:auto;
+}
+td.menulink a:link, td.menulink a:visited {
+	background-color: #B38900;
+	padding:0 6px;
+	color: #fff;
+	text-align: center;
+	border:1px solid #333;
+	border-top:1px solid #ccc;
+	border-left:1px solid #ccc;
+}
+td.menulink a:hover, td.menulink a:active {
+	background-color: #333;
+	color: #fff;
+}
+td.menulink a img {display:none;}
+/*.menu a, menu a:visited, 
+.menuLink a, .menuLink a:visited,
+.menuDisabled a, .menuLinkDisabled a:visited {text-decoration: none;}
+
+/*.menuLink a:hover, .menu a:hover{text-decoration: underline;}*/
+
+.menuDisabled, .menuLinkDisabled
+{
+	background-color: #F1EACB;
+	/*font-family: Trebuchet MS, Helvetica, sans-serif;*/
+	/*font-size: x-small; */
+	font-weight: normal;
+	color: #333;
+	text-align: center;
+}
+/* Sets <hr class="menuItemDivider"> or <td class="menuItemDivider"> */
+/* If a divider image for the menu item is not provided, the style will be set on the <hr> */
+/* otherwise, it'll be set on the <td> */
+.menuItemDivider {
+	color: #3872ac;
+	height: 1px;
+ width: 90%;
+}
+
+/* The arrow to indicate that the Menu Item has sub menus. By default, if no image is provided,*/
+/* ">" will be used */
+.menuItemArrow {
+		color: #3872ac;
+		font-weight: bold;
+		text-align: left;
+}
+/* Sets <div class="menuItemContainer">.  The <div> containing the menu items */
+.menuItemContainer	{
+ 	background-color: #fff; 
+ 	border-bottom-color: #3872ac; 
+ 	border-bottom-style: solid; 
+ 	border-bottom-width: 1px; 
+ 	border-left-color: #3872ac; 
+ 	border-left-style: solid; 
+ 	border-left-width: 1px; 
+ 	border-right-color: #3872ac; 
+ 	border-right-style: solid; 
+ 	border-right-width: 1px; 
+ 	border-top-color: #3872ac; 
+ 	border-top-style: solid; 
+ 	border-top-width: 1px; 
+ 	color: #3872ac; 
+ 	font-size: 9pt; 
+ 	font-weight: bold; 
+ 	padding-bottom: 0px; 
+ 	padding-left: 4px; 
+ 	padding-right: 3px; 
+ 	padding-top: 0px; 
+ 	text-align: left;
+}
+
+/* Sets <td class="menuItem|menuItemLink|menuItemDisabled|menuItemLinkDisabled|menuItemSelected|menuItemLinkSelected"> */
+/* If the menu item has a url, 'menuItemLink' will be used; otherwise, 'menuItem' will be the default style class. */
+.menuItem A, .menuItemLink A
+{
+  color: #3872ac;
+  font-family: Trebuchet MS, Helvetica, sans-serif;
+  font-size: 9pt; 
+}
+
+.menuItem, .menuItemLink
+{
+   	background-color: transparent;
+  	cursor:hand;
+  	color: #3872ac;
+	/*font-family: Trebuchet MS, Helvetica, sans-serif;*/
+	font-size:.9em; 
+	font-weight: bold;
+}
+
+.menuItemDisabled, .menuItemDisabled A
+{
+  color: #333;
+  /*font-family: Trebuchet MS, Helvetica, sans-serif;
+  font-size: 9pt; */
+  font-weight: bold;
+}
+
+.menuItemLinkActive, .menuItemActive, .menuItemLinkDisabledActive, .menuItemDisabledActive
+{
+   	background-color: transparent;
+   	/*font-family: Trebuchet MS, Helvetica, sans-serif;*/
+   	font-size: .9em; 
+   	color: #3872ac;
+   	font-weight: bold;
+  	cursor:hand;
+}
+
+.menuItemActive a, menuItemActive a:visited, 
+.menuItemLinkActive a, .menuItemLinkActive a:visited
+{
+  	
+  text-decoration: none;
+}
+
+.menuItem A, .menuItem A:visited, 
+.menuItemLink A, .menuItemLink A:visited,
+.menuItemDisabled A, 
+.menuItemLinkDisabled A,
+.menuItemLinkDisabledActive a:hover,
+.menuItemDisabledActive a:hover
+{
+  	
+  text-decoration: none;
+}
+
+.menuItemLink a:hover,
+.menuItemLinkActive a:hover,
+.menuItem a:hover,
+.menuItemActive a:hover
+{
+	text-decoration: underline;
+	color: #003399
+}
+
+/***************************************************************************
+*
+* COMBOBOXVIEW STYLES (applies to com.sas.servlet.tbeans.form.html.ComboBoxView)
+*
+* See getStyleMap() method on ComboBoxView for list of keys these styles 
+* map to.
+*
+****************************************************************************/
+.comboBoxViewOption		{padding: 0; padding-left: 3; padding-right: 3; width: 100%;
+					background: #fff; padding: 1;  font-style: normal; 
+				 	}
+.comboBoxViewDropDown		{position: absolute; visibility:hidden;
+					border:solid black; border-width: 1px; padding: 0;
+					background: #fff; overflow: hidden; width:100%;}
+.comboBoxViewList			{height: 100%; background: #fff; }
+.comboBoxViewLabel		{padding:0; background: #fff;}
+.comboBoxViewImages		{}
+.comboBoxViewListImages		{}
+.comboBoxViewTextCtrl		{border-right:1px solid buttonface; border-top: none; border-left: none; border-bottom:0;}
+.comboBoxViewTable		{position:relative;left:0px;top:0px;height:100%;width:100%;}
+.comboBoxViewListHighlight	{color:#fff;font-style: normal; }
+.comboBoxViewListUnHighlight	{ 
+				 font-style: normal; }
+.comboBoxViewListText		{height:1px;font-style: normal;}
+.comboBoxViewListSelected	{height:1px;  font-style: normal;}
+.comboBoxViewListTable		{width:100%;}
+.comboBoxViewNoImages		{height:10px; width:2px;}
+.comboBoxViewTextCell		{}
+.comboBoxViewImageCell		{ height:100%;}
+.comboBoxViewEditImageCell	{height:100%; }
+.comboBoxViewArrowCell		{}
+.comboBoxViewButton		{ height:18px; width:16px; }
+.comboBoxViewEditButton		{ height:18px; width:16px;}
+.comboBoxViewDisplayEditTbl	{} 
+.comboBoxViewDisplayTable	{}
+.comboBoxViewTableCell		{}
+.comboBoxViewLeftTableCell	{}
+
+.comboBoxViewButtonXP		{height:18px; width:16px; }
+.comboBoxViewDisplayTableXP	{}
+.comboBoxViewLabelXP		{background: #fff; border:0; }
+.comboBoxViewLeftTableCellXP	{}
+.comboBoxViewArrowCellXP	{}
+.comboBoxViewButtonImgXP	{}
+
+
+/***************************************************************************
+*
+* LISTBOXVIEW STYLES (applies to com.sas.servlet.tbeans.form.html.ListBoxView)
+*
+* See getStyleMap() method on ListBoxView for list of keys these styles 
+* map to.
+*
+****************************************************************************/
+.listBoxViewDropDown	{ 
+				overflow:hidden;
+					padding: 0; 
+					background: #fff;
+					cursor: default;
+					
+				}
+.listBoxViewScroll	{	
+					overflow: hidden; 
+					overflow: scroll;
+					padding: 0; 
+					background: #fff;
+				}
+
+				
+				
+.listBoxViewListImages		{}
+.listBoxViewListText		{font-size:.8em;border-bottom:1px dashed #999;margin:3px 0;padding:2px 0; }
+.listBoxViewListSelected	{}
+.listBoxViewListNoImages	{}
+.listBoxViewListHighlight	{}
+.listBoxViewListUnHighlight	{}
+.listBoxViewListTable		{}
+
+
+.listBoxViewListSelected {
+	color:#900;
+	font-weight:bold;
+	font-size:.8em;border-bottom:1px dashed #000;margin:3px 0;padding:2px 0; 
+}
+.listBoxViewListTableXP		{border: 1px solid #7B9EBD; padding:1px;}
+.listBoxViewDropDownXP		{
+				 overflow:hidden;
+				 padding: 0; 
+				 background: #fff;
+				 cursor: default;
+				}
+
+/***************************************************************************
+*
+* JAVASCRIPTNODE STYLES (applies to com.sas.servlet.tbeans.models.JavaScriptNode)
+*
+* See getStyleMap() method on JavaScriptNode for list of keys these styles 
+* map to.
+*
+****************************************************************************/
+.javaScriptNodeText		{ font-style: normal; }
+.javaScriptNodeNoImage		{height:15px; width:2px}
+.javaScriptNodeIndentStyle	{height:10px; width:7px} 
+
+/***************************************************************************
+*
+*  TREEVIEW STYLES
+*      Applies to com.sas.servlet.tbeans.html.TreeView
+*
+*****************************************************************************/
+
+/* Sets <a class="treeText"> to specify non-linked tree node font attributes */
+.treeText {
+	color: black;
+	cursor: default;
+}
+.treeText:active, .treeText:focus {
+	font-weight: bold;
+}
+.treeText:hover {
+	color: purple;
+}
+
+.treeDisabled {
+	color: gray;
+}
+
+
+.treeSelected, .treeSelected:active, .treeSelected:link, .treeSelected:visited {
+	cursor: default;
+}
+.treeSelected:active, .treeSelected:focus {
+	font-weight: bold;
+}
+.treeSelected:hover {
+	color: navy;
+}	
+
+    
+    
+/* Sets <a class="treeLink"> to specify linked tree node font attributes */
+.treeLink, .treeLink:active, .treeLink:link, .treeLink:visited { 
+	color: #0000CC;
+	text-decoration: none;
+} 
+		
+/* Sets <a class="treeLink"> hover attributes */
+.treeLink:hover	{
+	text-decoration: underline;
+}	
+		
+/* Sets <a class="treeLinkActive"> to specify active linked tree node font attributes */
+.treeLinkActive, .treeLinkActive:active, .treeLinkActive:link, .treeLinkActive:visited { 
+	font-weight: bold;
+	color: #0000CC;
+}
+
+.treeDescription {
+	color:  #C0C0C0;
+}
+		
+/* Sets <a class="treeLinkActive"> hover attributes */
+.treeLinkActive:hover	{
+	text-decoration: underline;
+	color: #0000CC;
+}
+
+
+/* SELECTORS */
+.selectorBackground
+{
+	background-image: url(popup_tiling_background.gif);
+	margin:0px;
+}
+.selectorHeader
+{
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+.selectorText{font-size:.8em; font-weight:bold;}
+.selectorTextEntry,
+.selectorTextArea,
+.selectorInput {color: #003399;}
+.selectorTextEntryDisabled{color: #003399;}
+.selectorRadio {}
+.selectorChoice,
+.selectorList {width:300px;height:200px;background:#fff;border:1px solid #000;}
+.selectorList table td {font-size:.8em;background:#fff;}
+.selectorCheckBox	{}
+.selectorErrorHeader {
+    background-color: transparent;
+    color: black;
+    font-weight: bold;
+}
+.selectorErrorMessages {
+    margin-left: 10px;
+    padding: 1px 4px 1px 4px;
+    background-color: #faf3d4;
+}
+.selectorDialogSpacer {
+	width: 10px;
+}
+.selectorVerticalDialogSpacer {
+    height: 20px;
+}
+.selectorHeaderSpacer {
+	width: 10px;
+}
+.buttonSpacer,
+.componentSpacer,
+.selectorButtonSpacer,
+.selectorComponentSpacer {
+	width: 10px;
+}
+.verticalComponentSpacer,
+.verticalButtonSpacer,
+.selectorRowSpacer,
+.selectorVerticalButtonSpacer {
+	height: 0px;
+	display:none;
+}
+/**************************************
+/*
+/* Button class default styles 
+/***************************************/
+.buttonLeft, .buttonLeftRollover, .buttonLeftInactive {
+    /*border-style: none;
+    text-align: right;*/
+}
+.buttonRight, .buttonRightRollover, .buttonRightInactive {
+    border-style: none;
+    text-align: left;
+    margin: 0px;
+    padding: 0px;
+}
+.buttonActive {
+    text-align: center;
+    vertical-align: middle;
+    color: #fff;
+    font-weight: bold;
+}
+.buttonDisabled {
+    text-align: center; 
+    vertical-align: middle;
+    color: #999;
+    font-weight: bold;
+}
+/*.buttonCenterDisabled span {
+    color: #999;
+    font-size:84%;
+}*/
+
+.buttonCenter IMG, .buttonCenterDisabled img{
+    text-align: center; 
+    vertical-align: middle; 
+}
+/***********************************************
+ * SimpleCalculatedItemSelector default styles 
+ ***********************************************/
+.SimpleCalculatedItemSelectorContainer,
+.SimpleCalculatedItemSelectorNameLabel,
+.SimpleCalculatedItemSelectorDescriptionLabel,
+.SimpleCalculatedItemSelectorMeasureAndLevelButtons,
+.SimpleCalculatedItemSelectorAvailableLabel{color:#333;font-weight:bold;margin:0;}
+
+.SimpleCalculatedItemSelectorNameEntry,
+.SimpleCalculatedItemSelectorDescriptionEntry{
+	/*width: 275px;*/
+}
+/* Set <select class="SimpleCalculatedItemSelectorAvailableList"> to specify the height 
+and width of the Available List */
+.SimpleCalculatedItemSelectorAvailableList{
+  height: 120px;
+ /* width: 175px; */
+}
+.SimpleCalculatedItemSelectorLevelCombo{
+  /*width: 175px; */
+}
+.SimpleCalculatedItemSelectorListEditorComponent{
+	/*height: 114px;*/
+/*	width: 390px;*/
+}
+/***********************************************
+ * BaseExpressionEditor default styles 
+ ***********************************************/
+.BaseExpressionEditorExpressionLabel,
+.BaseExpressionEditorOperatorButtonRow,
+.BaseExpressionEditorStringDataPatternExampleRow{}
+/* Set class="BaseExpressionEditorExpressionArea" to specify the height
+and width of the ExpressionEditor when it is contained in either the
+SimpleCalculatedItemSelectorPanel or the AdvancedCalculatedItemSelectorPanel */
+
+.BaseExpressionEditorExpressionArea {
+  height: 120px;
+  width: 225px;
+}
+/* DataItemSelector styles */
+/* applies to com.sas.servlet.tbeans.dataselectors.html.DataItemSelector */
+.dataItemSelectorRoleComboBox{width: 137px;}
+.dataItemSelectorViewItemsComboBox{width: 130px;}
+.dataItemSelectorOlapDualSelectorSourceContainer{
+     vertical-align: top;
+     width:300px;
+     height:200px;
+     overflow:auto;
+     border: 1px solid #000;
+     background: #fff;
+}
+.dataItemSelectorTableDualSelectorSourceContainer
+{
+     vertical-align: top;
+     width:200px;
+     height:228px;
+     overflow:scroll;
+     border: 1px solid #000;
+     background: #fff;
+}
+  
+.dataItemSelectorDualSelectorTargetContainer{
+     vertical-align: top;
+     width:200px;
+     height:260px;
+     overflow:scroll;
+     border: 1px solid #000;
+     background-color: #fff;
+}
+
+.dataItemSelectorRoleLabel, .dataItemSelectorViewItemsLabel{}
+
+.dataSelectorPanelContainer{
+vertical-align: top;
+     overflow:scroll;
+}
+
+.dataItemSelectorMessageTextEntry{}
+/*****************************/
+/* RemoteFileSelector styles */
+/*****************************/
+/* set Style for entire RemoteFileSelector component */
+.RFSContainer {	border: 0;}
+/*****  Location ToolBar customizations ****/
+/* set style for action buttons */
+.RFSActionButtons {}
+/* Control the space around the image in the action in the menubar area */
+.RFSMenu_menuBar img {
+	margin-right: 3px; 
+	margin-left: 5px; 
+}
+/* Control the look of the anchor of the action in the menubar area */
+.RFSMenu_menuBar a:active, .RFSMenu_menuBar a:link, .RFSMenu_menuBar a:visited {
+	cursor:hand;
+	cursor:pointer;
+}
+.RFSMenu_menuBar a:hover {text-decoration: underline;}
+/* Set style for location combobox label */
+.RFSLabel {
+    font-weight: bold;
+    margin-left: 5px;
+}
+.RFSMenu_menuLink A:link, .RFSMenu_menuLink A:active, .RFSMenu_menuLink A:visited {
+    text-decoration: none;
+    color: #3872ac;
+    font-weight: bold;
+}
+.RFSMenu_menuLink a:hover {
+    text-decoration: underline;
+    color: #003399;
+    font-weight: bold;
+}
+.RFSMenu_menuDisabled, .RFSMenu_menuDisabled a:link, .RFSMenu_menuDisabled a:active, 
+.RFSMenu_menuDisabled a:hover, .RFSMenu_menuDisabled a:visited {
+    text-decoration: none;
+    font-weight: normal;
+}
+
+/* Styles for the show description checkbox */
+.RFSShowDescriptionComponent {margin-left:9px;}
+.RFSshowDescriptionLabel {
+    margin-left: 0px;
+    margin-right: 2px;
+}
+/* set style for ComboBoxView component */
+.RFSComboBoxView {
+    background-color:#fff;
+    width:220px; 
+}
+/* set style on tool bar */
+.RFSToolBar {}
+/**** Detail View customizations ****/
+
+/* set style for entire detail view area */
+.RFSDetailView {
+    padding: 12px 0px 0px 0px;    
+    margin: 0px; 
+}
+/* set style for the outer container of the table */
+.RFSDetailView_tableContainer, .RFSSearchView_tableContainer {border:0;}
+
+/* set style for the content area of the table which is inside the continer */
+.RFSDetailView_tableContent, .RFSSearchView_tableContent {border:0;}
+.RFSDetailView_maintable {
+    padding: 0px;    
+    margin: 0px;
+    width: 100%;
+}
+/* set style for the column headers for the table */
+.RFSDetailView_tablecolumnheader, .RFSSearchView_tablecolumnheader {
+    background-color: #E5E9E6;
+				text-align: left;
+				vertical-align: middle;
+    padding-top: 2px;
+    padding-right: 15px;
+    padding-bottom: 3px;
+    padding-left: 5px; 
+}
+/* set style for the individual cells of the table */
+.RFSDetailView_tabledata, .RFSSearchView_tabledata {}
+/* set style for contents of table cell */
+.RFSDetailView_tableviewmenuBar, .RFSSearchView_tableviewmenuBar {}
+/* create space between image and anchor text with the setting below */
+/* this is the space associated with the folder or file image in the */
+/* first column of the RemoteFileSelector component                  */
+.RFSDetailView_tableviewmenuBar IMG {margin-right: 5px;}
+/* Set style on anchor for each cell */
+.RFSDetailView_tableviewmenuBar A:active, .RFSDetailView_tableviewmenuBar A:link, .RFSDetailView_tableviewmenuBar A:visited {
+	text-decoration:none;
+    background-color: transparent;
+    color: #3872ac;
+    font-weight: bold;
+}
+.RFSDetailView_tableviewmenuBar a:hover, .RFSSearchView_tableviewmenuBar a:hover {
+	text-decoration: underline;
+    background-color: transparent;
+    color: #003399;
+    font-weight: bold;
+}
+.RFSDetailView_oddRow {
+    background-color:#fff;
+    color: black;
+    text-align: left;
+    vertical-align: middle;
+    font-style: normal;
+    padding-top: 2px;
+    padding-right: 15px;
+    padding-bottom: 3px;
+    padding-left: 5px; /* provide some spacing to the left border of the cell */
+}
+.RFSDetailView_evenRow {
+    background-color: #E5E9E6;
+    text-align: left;
+    vertical-align: middle;
+    padding-top: 2px;
+    padding-right: 15px;
+    padding-bottom: 3px;
+    padding-left: 5px; /* provide some spacing to the left border of the cell */
+}
+/**************************/
+/* RFS Search Area Styles */
+/**************************/
+.RFSSearchContainer {padding-bottom: 10px;}
+/* includes fields and buttons */
+.RFSSearchDisplayArea {width: 337px;}
+/* set style for the table containing the data */
+.RFSSearchView_maintable {border:none;}
+.RFSSearchView_tableviewmenuBar IMG {margin-right: 5px;}
+.RFS_NoSearchResultsMsg {}
+.RFSSearchView_tableviewmenuBar a:active, .RFSSearchView_tableviewmenuBar a:link, .RFSSearchView_tableviewmenuBar A:visited {
+    text-decoration: none;
+    background-color: transparent;
+    color: #3872ac;
+    font-weight: bold;
+}
+.RFSSearchView_oddRow {
+    text-align: left;
+    vertical-align: middle;
+    padding-top: 2px;
+    padding-right: 15px;
+    padding-bottom: 3px;
+    padding-left: 5px; /* provide some spacing to the left border of the cell */
+    border-style: none;
+    border-width: 0px;
+}
+
+.RFSSearchView_evenRow {
+    background-color: #E5E9E6;
+    text-align: left;
+    vertical-align: middle;
+    padding-top: 2px;
+    padding-right: 15px;
+    padding-bottom: 3px;
+    padding-left: 5px; /* provide some spacing to the left border of the cell */
+}
+/****************************/
+/* Search fields            */
+/****************************/
+/* style class for entire search area */
+.RFSSearchFields {
+    background-color: #E5E9E6;
+    width: 100%;   
+}
+/* styles for "Search For" field and label */
+.RFSSearchTextComponent {
+    background-color:#fff;
+    color: #003399;
+    width: 100%;
+}
+.RFSSearchTextLabel {font-weight: bold;}
+.RFSSearchTextLabel_cell, .RFSSearchTextComponent_cell { padding: 2px;}
+.RFSSearchText {}
+/* styles for "Search What" field and label */
+.RFSSearchFieldLabel {font-weight: bold;}
+.RFSSearchFieldComponent {background: #fff; width: 100%;}
+.RFSSearchFieldLabel_cell, .RFSSearchFieldComponent_cell {padding: 3px;}
+.RFSSearchField {}
+/* style class for the "search where" label and component */
+.RFSSearchFolder {}
+.RFSSearchFolderLabel {font-weight: bold;}
+.RFSSearchFolderLabel_cell, .RFSSearchFolderComponent_cell {padding: 3px;}
+.RFSSearchFolderComponent {
+    background: #fff;
+    font-size: 9pt;
+    width: 100%;
+}
+/* styles for "Search subfolders" checkbox */
+.RFSSearchSubfoldersComponent_cell {}
+.RFSSearchSubFolders {}
+.RFSSearchSubFoldersComponent {}
+/* styles for search "Date/Time Limits" label and component */
+.RFSSearchLimits {}
+.RFSSearchDateTimeLimits {}
+.RFSSearchDateTimeLimitsLabel {font-weight: bold;}
+.RFSSearchDateTimeLimits_cell, .RFSSearchDateTimeLimitsComponent_cell {padding: 3px;}
+
+/* select elements (e.g. comboboxes ) */
+.RFSSearchDateTimeLimitsComponent {
+    background: #fff;
+    width: 100%;
+}
+/* Styles for "In the last" label and entry fields */
+.RFSSearchLimitValues_cell {
+    text-align: right;
+}
+.RFSSearchLimitValues_table {
+    width:100%;
+    border:0;
+    padding:3px;
+}
+.RFSSearchLimitValueLabel {}
+.RFSSearchLimitValueLabel_cell {text-align: left;}
+.RFSSearchLimitValueComponent_cell {text-align: right;}
+/* class for text input used to enter value for date/time limit */ 
+.RFSLimitValueComponent {
+    background: #fff;
+    color: #003399;
+    width: 20px;
+}
+/* class for dropdown used to select date/time limit units (hr, days, etc.) */ 
+.RFSSearchUnitComponent {
+    background: #fff;
+    font-size: 9pt;
+    width: 70px;
+}
+/*****************************/
+/* Styles for search buttons */
+/*****************************/
+.RFSSearch_buttonContainer {
+    margin-right: 2px;
+}
+.RFSCancel_buttonContainer {
+    margin-left: 2px;
+    margin-right: 2px;
+}
+.RFSSearch_buttonContainer SPAN {
+}
+.RFSCancel_buttonContainer SPAN {
+}
+.RFSSearchButtonsContainer {
+		text-align: right;
+		padding: 5px 5px 0px 0px;
+}
+.RFSSearchButtons {
+    text-align: right;
+}
+.RFSSearch_RFSDetailView_tableviewmenuLink {
+}
+.RFSSearch_button, .RFSCancel_button {
+      	color:#3872ac;
+      	cursor:hand;
+							cursor:pointer;
+      	padding: 1px 3px 1px 3px;
+      	font-family:trebuchet ms,helvetica,sans-serif;
+      	font-size:84%;
+      	font-weight:bold;
+      	background-color:#fcf4dc;
+      	border-top:1px solid #b1c1d0;
+      	border-left:1px solid #b1c1d0;
+      	border-right:1px solid #3872ac;
+      	border-bottom:1px solid #3872ac;
+      	/*filter:progid:DXImageTransform.Microsoft.Gradient(
+	GradientType=0,StartColorStr='#fffff',EndColorStr='#fff1eacb');*/
+}
+.RFSSearch_buttonRollover, .RFSCancel_buttonRollover
+{
+   border-color:#f8b230;
+}
+.RFSExpand_button {
+				cursor:hand;
+				cursor:pointer;
+				text-align: center;
+    vertical-align: middle;
+    padding: 1px 1px 0px 0px;
+    height: 25px;
+    width: 25px
+}
+
+.RFSCollapse_button {
+    cursor: hand;
+				cursor:pointer;
+    text-align: center;
+    vertical-align: middle;
+    padding: 1px 1px 0px 0px;
+    height: 25px;
+    width: 25px
+}
+/*******************************/
+/* styles for search link area */
+/*******************************/
+.RFSSearchLink {
+    border-style: solid;
+    border-width: 1px;
+    border-color: #3872AC;
+    margin-bottom: 5px;  
+    width: 337px;  
+ }
+.RFSSearchLinkLabel {
+    vertical-align:middle;
+    white-space: nowrap;
+    font-size: 9pt;
+    font-weight: bold;
+    margin-right: 20px;
+    margin-left: 5px;
+}
+.minmax_cell {
+    text-align: right;
+    white-space: nowrap;
+}
+.RFSSearchMaximize, .RFSSearchMinimize {
+    height: 16px;
+    width: 16px;	
+}
+.RFSSearchDisplayArea {
+}
+/***************************************************************************
+*
+* RFS COMBOBOXVIEW STYLES for location drop-down and Search Where fields
+*
+****************************************************************************/
+.RFS_comboBoxViewOption		{padding: 0; padding-left: 3; padding-right: 3; width: 100%;
+					background: #fff; padding: 1;}
+.RFS_comboBoxViewDropDown		{position: absolute; visibility: hidden;   
+					border:solid black; border-width: 1px; padding: 0;
+					background: #fff; overflow: hidden; width:100%;}
+.RFS_comboBoxViewList		{width:100%; height: 100%; border-width:0; background: #fff;}
+.RFS_comboBoxViewLabel		{border-top: 2px solid dimgray; border-left: 2px solid dimgray; 
+					border-bottom: 1px solid buttonshadow; background: #fff; 
+					padding: 0; height:22px; overflow:hidden; width:200px; }
+.RFS_comboBoxViewImages		{height:20px; width:20px;}
+.RFS_comboBoxViewListImages		{height:20px; width:20px;}
+.RFS_comboBoxViewTextCtrl		{border-right:100px; border-top: none; border-left: none; border-bottom:0;}
+.RFS_comboBoxViewTable		{position:relative;left:0px;top:0px;height:100%;width:100%;}
+.RFS_comboBoxViewListHighlight	{background: highlight;}
+.RFS_comboBoxViewListUnHighlight	{}
+.RFS_comboBoxViewListText		{height:1px;}
+.RFS_comboBoxViewListSelected	{ height: 1px;}
+.RFS_comboBoxViewListTable		{width:100%;}
+.RFS_comboBoxViewNoImages		{height:10px; width:2px;}
+.RFS_comboBoxViewTextCell		{border-top: 2px solid dimgray; border-left: 2px solid dimgray; 
+				 	border-bottom: 1px solid buttonshadow;}
+.RFS_comboBoxViewImageCell		{border-top: 2px solid dimgray; border-right: 2px solid dimgray; }
+/**** 
+** Advanced filter selector
+****/
+.advancedFilterSelectorValueContainer
+{
+  height: 40px;
+}
+.advancedFilterSelectorTreeContainer
+{
+  height: 40px;
+  width: 50px;
+  overflow:scroll;
+}
+.AdvancedFilterSelectorShowDialog{padding: 0;}
+.AdvancedFilterSelectorCombinationDialog{
+	padding: 0; 
+	width:320px;
+	height:170px;
+}
+.advancedFilterSelectorExpression
+{
+     border-left: #C0C0C0 2px solid;
+     border-right: #C0C0C0 1px solid;
+     border-top: #C0C0C0 2px solid;
+     border-bottom: #C0C0C0 2px solid;
+     height: 75px;
+     width:100%;
+     color: black;
+     overflow:scroll;
+     overflow-x:auto;
+     font-size: x-small; 
+}
+.advancedFilterWarning{}
+.calendarSelectorControl{width: 100px;} 
+.advancedFilterSelectorTreeContainer{
+     vertical-align: top;
+     width:250px;
+     height:200px;
+     overflow:scroll;
+     border: 1px solid #000;
+     background-color: #fff;
+}
+.advancedFilterSelectorControl{
+background:#fff;width: 250px;}
+.advancedFilterWarning{}
+/****************
+/* DataSelectorListBoxView
+/*****************/
+
+/****************
+/* DataSelectorListBoxView
+/*****************/
+.dataSelector{ 
+		overflow:auto;
+  border-right: 4px double inactiveborder; 
+		padding: 0; 
+		background: #fff;
+  width: 350px;
+  height: 100%;
+  overflow: auto; 
+}
+.dataSelectorXP { 
+ padding: 0; 
+ background: #fff;
+ width: 350px;
+ height: 100%;
+ overflow: auto; 
+}
+.dataSelector TABLE, .dataSelectorXP table {width: 100%;}
+.dataSelectorListBoxViewTitle {width: 350px;}
+.dataSelectorListBoxViewTitle table {width: 100%;}
+.dataItemNodeText {
+  /*font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;*/
+  /*font-size: 10pt;*/
+  text-align: left;
+  vertical-align: bottom;
+  white-space: nowrap;
+}
+.dataItemNodeDescription {
+  /*font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;*/
+  /*font-size: 10pt;*/
+  text-align: right;
+  vertical-align: bottom;
+  white-space: nowrap;
+}
+.dataSelectorListBoxViewLabel {
+  /*font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;*/
+ /* font-size: 10pt;*/
+  font-weight: bold;
+  text-align: left;
+}
+.dataSelectorListBoxViewDescription {
+   /*font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;*/
+   /*font-size: 10pt;*/
+   font-weight: bold;
+   text-align: right;
+}
+.qualifierSelectorTreeArea {
+  /*background-color: #FEFEFE; */
+  /*font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;*/
+  font-size:.9em; 
+  width: 350px;
+  height: 250px;
+  overflow:scroll;
+}
+
+/****************
+/* WebMDDBView styles
+/*****************/
+
+/* Sets <span class="wTitle">  */
+.wTitle {
+	color: #00c;
+ margin-top: 10px;
+	font-size : large;
+	font-weight : bold;
+}
+
+/* Sets <span class="wSubTitle">  */
+.wSubTitle {
+	color: #fff;
+ margin-top: 10px;
+	/*font-size : large;*/
+	font-weight : bold;
+}
+
+/* Sets <span class="wSubTitle">  */
+.wTitle2 {
+	color: #00c;
+ margin-top: 8px;
+	/*font-size : medium;*/
+	font-weight : bold;
+}
+/* Sets <td class="wTitleBg"> to specify background attributes of title table */
+.wTitleBg	{}
+/* Sets <td class="wContainer"> to specify background attributes of webmddb container */
+.wContainer {border:0;}
+/* Sets <table class="wTable"> to specify background attributes of webmddb table */
+.wTable {
+        background-color: #fff;
+        /*border-left: solid silver 1 ;
+        border-top: solid silver 1 ;
+        border-bottom: solid #333333 1 ;
+        border-right: solid #333333 1 ;
+        font-family : Arial, Helvetica, sans-serif;
+        font-size: x-small;*/
+        font-weight : bold;
+        /*border-width: 1;*/
+								}
+
+/* Sets <span class="wRowLab"> to specify Row Label font attributes */
+.wRowLab  {
+ background-color: #C6C3C6;
+	font-weight : bold;
+	/*font-size : x-small;*/
+}
+
+/* Sets <td class="wRowLabBg"> to specify background attributes of Row Labels */
+.wRowLabBg	{
+	background-color: #DCDCDC;
+	/*border: solid 1px #C0C0C0;
+	border-top: 0;
+	border-left: 0;*/
+	text-align : center;
+}
+
+/* Sets <span class="wColLab"> to specify Column Label font attributes */
+.wColLab {
+ background-color: #C6C3C6;
+	font-weight : bold;
+	/*font-size : x-small;*/
+}
+
+/* Sets <td class="wColLabBg"> to specify background attributes of Column Labels */
+.wColLabBg	{
+	background-color: #DCDCDC;	
+	/*border: solid 1px #C0C0C0;
+	border-top: 0pt;
+	border-left: 0pt;*/
+	text-align : center;	
+}
+
+
+/* Sets <span class="wData"> to specify Data font attributes */
+.wData	{
+	/*font-size : x-small;*/
+}
+
+/* Sets <td class="wDataBg"> to specify background attributes of Data */
+.wDataBg	{
+	/*border: solid 1px #C0C0C0;
+	border-top: 0pt;
+	border-left: 0pt;*/
+	text-align : right;
+}
+
+/* Sets <td class="wTotLab"> to specify attributes of Total label */
+.wTotLab	{
+	background-color: #C6C3C6;
+	font-weight : bold;
+/*	font-size : x-small;*/
+}
+
+/* Sets <span class="wTotData"> to specify Data attributes of Total row */
+.wTotData	{
+ background-color: #ffc;
+	/*font-size : x-small;*/
+}
+
+/* Sets <span class="wDrillTitle"> to specify Drill Title font attributes */
+.wDrillTitle {
+	/*font-size : x-small;*/
+	font-weight: bold;
+}
+
+/* Sets <span class="wDrillRowLab"> to specify Drill Row Label fattributes */
+.wDrillRowLab {
+	background-color: #C6C3C6;
+	/*font-size : x-small;*/
+	font-weight: bold;
+}
+
+/* Sets <span class="wDrillColLab"> to specify Drill Column Label attributes */
+.wDrillColLab {
+	background-color: #C6C3C6;
+	/*font-size : x-small;*/
+	font-weight: bold;
+}
+
+/* Sets <td class="wDrillColLabBg"> to specify background attributes of Drill Column Labels */
+.wDrillColLabBg	{
+	text-align: center;
+	background-color: #DCDCDC;
+	/*border: solid 1px #C0C0C0;
+	border-top: 0pt;
+	border-left: 0pt;*/
+}
+
+/* Sets <span class="wDrillData"> to specify Drill Data font attributes */
+.wDrillData	{
+	/*font-family : Verdana, Helvetica, sans-serif;
+	font-size : x-small;	*/
+}
+
+/* Sets <td class="wDrillDataBg"> to specify background attributes of Show Drill Data */
+.wDrillDataBg	{
+	background-color: #fff;
+	/*border: solid 1px #C0C0C0;
+	border-top: 0pt;
+	border-left: 0pt;*/
+	text-align: right;
+}
+
+/* Sets <a class="wRowLabLink"> to specify Row Label Link font attributes */
+.wRowLabLink, .webmddbRowLabLink:active, .webmddbRowLabLink:link, .webmddbRowLabLink:visited	{
+	/*	font-weight: bold;
+	color: #0000CC;
+	text-decoration: none;
+}
+
+/* Sets <a class="wLabLink"> hover attributes */
+.wRowLabLink:hover {
+	text-decoration: underline;
+}
+
+/* AGGIUNTE AI COMPONENTI SAS DEFAULT */ 
+fieldset {
+/*background-color:#F7F2E1;*/
+}
+
+.selectorRadioLabel, 
+.selectorCheckBoxLabel	{
+	/*/*font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    font-size: 10pt;*/
+	/*color: transparent; */   
+	font-size:.7em;
+	text-transform:lowercase;
+}
+/*
+.buttonCenter span {
+   	color:#fff;
+   	font-size:.8em;
+   	font-weight:bold;
+}
+.button {
+		color:#fff;
+		cursor: pointer;
+		padding: 1px 1px 1px 1px;
+		font-size:.85em;
+		font-weight:bold;
+		background-color:#B38900;
+		border-top:1px solid #FFDA5B;
+		border-left:1px solid #FFDA5B;
+		border-right:1px solid #333;
+		border-bottom:1px solid #333;
+		text-transform:lowercase;
+		line-height:6px;
+		height:18px;
+}
+
+.buttonRollover{
+				background-color:#A2A2A2;
+   	border-top:1px solid #FFDA5B;
+   	border-left:1px solid #FFDA5B;
+   	border-right:1px solid #333;
+   	border-bottom:1px solid #333;
+}
+.buttonRollover span{
+   	color:#fff;
+   	font-size:.8em;
+   	font-weight:bold;
+}*/
+.OLAPTableRowHeader A {
+   text-decoration: none;
+   color: #000;
+   text-transform:lowercase;
+}
+.OLAPTableRowHeader a:hover{
+   text-decoration: none;
+   color: #000;
+}
+
+.olapDrillStatemenuLink A, .olapDrillStatemenuLink A:visited, .olapDrillStatemenuLink A:active
+{
+  text-decoration: none;
+  background-color: transparent;
+  color: #B38900;
+ /* font-size: .7em;*/
+ font-size: 1.0em;
+ /*font-weight:normal;
+text-transform:lowercase;
+}
+.olapDrillStatemenuLink a:hover	
+{
+  text-decoration: none;
+  background-color: transparent;
+  color: #900;
+  /* font-size: .7em;*/
+  font-weight:normal;
+text-transform:lowercase;
+}
+
+/* Link attributes for column title headers with text-align right */
+.OLAPTableColumnTitleHeader A {
+    text-decoration:none;
+    color: #000;
+}
+
+/* Hover Attribute for Links in row title headers with text-align Left */
+.OLAPTableRowTitleHeader a:hover {
+    color: #000;
+    text-decoration:none;
+}
+
+/* Hover Attribute for Links in column title headers with text-align right */
+.OLAPTableColumnTitleHeader a:hover {
+    color: #000;
+    text-decoration:none;    
+}
+
+.OLAPTableColumnMeasureHeader a {
+   text-decoration: none;
+   color: #000;
+   text-transform:lowercase;
+}
+.OLAPTableColumnMeasureHeader a img {
+float:right;
+white-space:nowrap;
+margin:0;
+padding:0;
+}
+.OLAPTableColumnMeasureHeader a:hover{
+   text-decoration: none;
+   color: #000;
+}
+/*#contenuto table th.OLAPTableColumnMeasureHeader{
+width:5%;
+}*/
+/* Links attributes for row title headers with text-align Left */
+.OLAPTableRowTitleHeader a {
+	text-decoration:none;
+	color: #000;
+	text-transform:lowercase;
+}
+
+td.OLAPTableData {
+    font-size: .85em;
+    text-align: right;
+    vertical-align: bottom;
+}
+th.OLAPTableColumnMeasureHeader {
+    background-color: #E1D099;
+    text-align: center;
+    vertical-align: middle;
+				font-size:0.85em;
+}
+/* column title headers with text-align right */
+th.OLAPTableColumnTitleHeader {
+    background-color: #E1D099;
+    color: #000;
+    text-align: right;
+    vertical-align: middle;
+}
+/* row title headers with text-align Left */
+th.OLAPTableRowTitleHeader {
+    background-color: #F7F2E1;
+    color: #000;
+    text-align: left;
+    vertical-align: middle;
+}
+th.OLAPTableRowHeader{
+    background-color: #F7F2E1;
+    text-align: left;
+    vertical-align: middle;
+    color:#3872ac;
+    font-size: 0.85em;
+    font-weight: bold;
+}
+.selectorFieldsetLegendTop {
+	  font-size: .75em;
+			font-weight: bold;
+			vertical-align: top;
+			padding-left:3px;
+			padding-right:5px;
+			text-transform:lowercase;
+}
+td span.selectorLabel{
+		font-size: .9em;
+		font-weight: bold;
+		text-transform:lowercase;
+		color:#900;
+}
+.selectorLabelTop {
+		font-size: .8em;
+		font-weight: bold;
+		vertical-align: top;
+		text-transform:lowercase;
+}
+
+th.OLAPTableRowMeasureHeader {
+    background-color: #FAF3D4;
+    text-align: left;
+    vertical-align: middle;
+}
+.OLAPTableRowMeasureHeader a {
+   text-decoration: none;
+   color: #000;
+}
+.OLAPTableRowMeasureHeader a:hover{
+   text-decoration: none;
+   color: #000;
+}

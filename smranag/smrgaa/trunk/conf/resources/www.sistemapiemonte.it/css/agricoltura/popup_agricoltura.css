@@ -1,0 +1,73 @@
+/*** popup_agricoltura.css ***/
+/*
+* CSS2.0 per specificare aspetti peculiari delle popup dell'agricoltura di TOBECONFIG
+*/
+
+/* B */
+body {
+	font		: 72%  Arial, Verdana, Helvetica, Geneva, Swiss, SunSans-Regular, sans-serif;
+	background	: #ebebeb;
+	color		: #000;
+	margin		: 0;
+	padding		: 0;
+}
+.bugFix, .alt, .navigazionePagina, .nascosto, .fir span {
+	display		: none;
+}
+/* C */
+#corpo {
+ border:1px solid d5d3d3;
+ padding:10px 11px;
+ margin:0;
+	background: #fff;
+	color: #000;
+	text-align	: left;
+}
+.ocras{
+ margin:0 0 3px 0;
+ padding-left:4px;
+ background:#efd7a5;
+ font-size:1em;
+}
+.ocrac{
+ margin:0 0 3px 0;
+ padding-left:4px;
+ background:#ece2bf;
+ font-size:1em;
+}
+/* H */
+h2 {
+	color		: #fff;
+	background	: #b38900;
+}
+h3 {
+ margin	:0 0 8px 0;
+	padding:0 0 0 6px;
+ font-size	: 1em;
+	font-weight:bold;
+	color: #fff;
+ background:#b38900;
+ width:100%;
+}
+/* P */
+#pagina {
+ margin		: 0;
+	padding		: 0; 
+	width		: 600px
+}
+/* T */
+#titolo {
+	background	: #ebebeb url(../im/testalino_popup_agricoltura_agrichim.jpg) 0 0 no-repeat;
+	color		: #fff;
+	margin		: 0;
+	height		: 29px;
+	padding		: 0 0 0 0;
+} /* _______________il tag h2  usato solo per il titolo della pagina___________ */
+
+td {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+th {
+	font-family: Arial, Helvetica, sans-serif;
+}

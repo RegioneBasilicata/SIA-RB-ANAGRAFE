@@ -1,0 +1,1760 @@
+$$head
+<script type="text/javascript" language="javascript1.2"  src="../js/checkdata.js"></script>
+<script type="text/javascript" language="javascript1.2"  src="../js/checktext.js"></script>
+<script type="text/javascript" src="../js/messaggistica.js"></script>
+<script type="text/javascript">
+
+  function scegliAzienda(mypage, myname, w, h, scroll,cuaa,denominazione,provenienza) {
+    NewWindowAziendaAnag(mypage, myname, w, h, scroll,cuaa,denominazione,provenienza);
+  }
+
+  function NewWindowAziendaAnag(mypage, myname, w, h, scroll,cuaa,denominazione,provenienza) 
+  {
+    var winl = (screen.width - w) / 2;
+    var wint = (screen.height - h) / 2;
+    if(cuaa ==  '' && denominazione == '') {
+      alert('Inserire una cuaa o una denominazione');
+    }
+    else if((cuaa !=  '') && (denominazione != ''))
+    {
+      alert('E\' possibile inserire o solo il cuaa o solo la denominazione');
+    }
+    else 
+    {
+      var errore = 'false' ;
+      if(cuaa !='')
+      {
+        cuaa = trimAll(cuaa);
+        if((cuaa.length !=11) && (cuaa.length !=16))
+        {
+          alert('CUAA inserito errato!');
+          errore = 'true' ;
+        }
+        else if ((cuaa.length == 11) && !isInteger(cuaa))
+        {
+          alert('CUAA inserito errato!');
+          errore = 'true' ;
+        }           
+      }
+      
+      if(errore != 'true' )
+      {
+        winprops =    'height='+h+',width='+w+',top='+wint+',left='+winl+',scrollbars='+scroll+',resizable';
+        win = window.open(mypage+'?cuaa='+cuaa+'&denominazione='+denominazione+'&provenienza='+provenienza, myname, winprops);
+        if (parseInt(navigator.appVersion) >= 4) {
+          win.window.focus();
+        }
+      }
+    }
+  }
+  
+  function scegliComune(mypage, myname, w, h, scroll,provincia,comune, obiettivo) {
+    NewWindowComuneAnag(mypage, myname, w, h, scroll,provincia,comune, obiettivo);
+  }
+
+  function NewWindowComuneAnag(mypage, myname, w, h, scroll,provincia,comune,obiettivo) {
+    var winl = (screen.width - w) / 2;
+    var wint = (screen.height - h) / 2;
+    if(provincia ==  '' && comune == '') {
+      alert('Inserire una provincia o un comune!');
+    }
+    else if(!mappaOggetti(comune)) {
+    }
+    else {
+      winprops =    'height='+h+',width='+w+',top='+wint+',left='+winl+',scrollbars='+scroll+',resizable';
+      win = window.open(mypage+'?obiettivo='+obiettivo+'&provincia='+provincia+'&comune='+comune, myname, winprops);
+      if (parseInt(navigator.appVersion) >= 4) {
+        win.window.focus();
+      }
+    }
+  }
+  
+  function setHiddenOperazione(form, operazione) {
+    form.operazione.value = operazione;
+    form.submit();
+  }
+  
+  function setConfermaBlockAllOperazione(form, operazione) 
+  {
+    document.getElementById('conferma').href = '#';
+    document.getElementById('scegliAziendaCessAcqu').href = '#';
+    document.getElementById('scegliComuneCessAcqu').href = '#';
+    document.getElementById('inserisciCessAcqu').href = '#';
+    
+    if(document.getElementById('eliminaCessAcqu') !=null)
+      document.getElementById('eliminaCessAcqu').href = '#';
+      
+    if(document.getElementById('calcolaAzotoCessAcqu') !=null)
+      document.getElementById('calcolaAzotoCessAcqu').href = '#';
+      
+    document.getElementById('scegliAziendaStocc').href = '#';
+    document.getElementById('scegliComuneStocc').href = '#';
+    document.getElementById('inserisciStocc').href = '#';
+    
+    if(document.getElementById('annullaGlobale') !=null)
+      document.getElementById('annullaGlobale').href = '#';
+      
+    form.operazione.value = operazione;
+    form.submit();
+  }
+  
+  
+  function cambiaEffluenteAcquisito(nRiga) 
+  {
+    document.forms[0].nRigaCessAcqu.value = nRiga;
+    
+    //Mi serve per capire si sono più righe 
+    if(document.forms[0].azotoDichiaratoCessAcqu.length)
+    { 
+      if((document.forms[0].idEffluente[nRiga].value !='')
+        && (document.forms[0].idAziendaCessAcquElenco[nRiga].value !=''))
+      {
+        document.forms[0].operazione.value = 'calcoloEffluenteAcquisito';
+        document.forms[0].submit();
+      }
+    }
+    //Una sola riga
+    else
+    {
+      if((document.forms[0].idEffluente.value !='')
+        && (document.forms[0].idAziendaCessAcquElenco.value !=''))
+      {
+        document.forms[0].operazione.value = 'calcoloEffluenteAcquisito';
+        document.forms[0].submit();
+      }
+    }
+  }
+  
+  
+  function refresh(nRiga) 
+  {
+    document.forms[0].nRigaTratt.value = nRiga;
+    document.forms[0].operazione.value = 'refresh';
+    document.forms[0].submit();
+  }
+  
+  function refreshTratt(nRiga) 
+  {
+    document.forms[0].nRigaTratt.value = nRiga;
+    document.forms[0].operazione.value = 'refreshTratt';
+    document.forms[0].submit();
+  }
+  
+  function refreshCess(nRiga) 
+  {
+    document.forms[0].nRigaCess.value = nRiga;
+    document.forms[0].operazione.value = 'refreshCess';
+    document.forms[0].submit();
+  }
+  
+  function calcolaMaterialeOttenuto(indice) 
+  {
+    var valore1;
+    var valore2;
+    var valore3;
+    var valore4;
+    var valore5;
+    var valore6;
+    
+    
+    var quantitaAzotoVar='';
+    var totale1='';
+    var totale2='';
+    var totale3='';
+    var totale4='';
+    
+    if (document.form1.quantitaTratt.length)
+    {
+      valore1=document.form1.quantitaTratt[indice].value;
+      valore2=document.form1.percVolumesolido[indice].value;
+      valore3=document.form1.percAzotoVolatile[indice].value;
+      valore4=document.form1.azotoProdotto[indice].value;
+      valore5=document.form1.volumeProdotto[indice].value;
+      valore6=document.form1.percAzotoSolido[indice].value;
+    }
+    else
+    {
+      valore1=document.form1.quantitaTratt.value;
+      valore2=document.form1.percVolumesolido.value;
+      valore3=document.form1.percAzotoVolatile.value;
+      valore4=document.form1.azotoProdotto.value;
+      valore5=document.form1.volumeProdotto.value;
+      valore6=document.form1.percAzotoSolido.value;
+    }
+    
+    if (valore1=='')
+    {
+      totale1='';
+      totale2='';
+      totale3='';
+      totale4='';
+    }
+    else
+    {
+      if(IsNumeric(valore1) && IsNumeric(valore2) && IsNumeric(valore3) && IsNumeric(valore4) && IsNumeric(valore5) && IsNumeric(valore6) 
+        && valore1 != '' && valore2 != '' && valore3 != '' && valore4 != '' && valore5 != '' && valore6 != '')
+      {
+        var quantita = parseFloat(valore1.replace(',', '.'));
+        quantitaAzotoVar = quantita * parseFloat(valore4.replace(',', '.')) / parseFloat(valore5.replace(',', '.'));
+        totale1 = quantita * (1 - (parseFloat(valore2.replace(',', '.')) / 100));
+        totale3 = quantita - totale1;
+        totale2 = quantitaAzotoVar * ((1 -(parseFloat(valore3.replace(',', '.') / 100))) * (1 -(parseFloat(valore6.replace(',', '.') / 100))));
+        totale4 = quantitaAzotoVar - totale2;
+        totale1 = Math.round(totale1 * 10);
+        totale1 = ''+(totale1 / 10);
+        totale1=totale1.replace('.',',');
+        totale2 = Math.round(totale2 * 10);
+        totale2 = ''+(totale2 / 10);
+        totale2=totale2.replace('.',',');
+        totale3 = Math.round(totale3 * 10);
+        totale3 = ''+(totale3 / 10);
+        totale3=totale3.replace('.',',');
+        totale4 = Math.round(totale4 * 10);
+        totale4 = ''+(totale4 / 10);
+        totale4=totale4.replace('.',',');
+        quantitaAzotoVar = Math.round(quantitaAzotoVar * 10);
+        quantitaAzotoVar = ''+(quantitaAzotoVar / 10);
+        quantitaAzotoVar=quantitaAzotoVar.replace('.',',');
+      }
+      else
+      { 
+        quantitaAzotoVar = '';
+        totale1='';
+        totale2='';
+        totale3='';
+        totale4='';
+      }
+    }
+    
+    document.getElementById('tdQuantitaPalPostTratt_'+indice).innerHTML=totale3;
+    document.getElementById('tdAzotoPalPostTratt_'+indice).innerHTML=totale4;
+    document.getElementById('tdQuantitaNonPalPostTratt_'+indice).innerHTML=totale1;
+    document.getElementById('tdAzotoNonPalPostTratt_'+indice).innerHTML=totale2;
+    if (document.form1.quantitaTratt.length)
+    {
+      document.form1.quantitaAzoto[indice].value = quantitaAzotoVar;
+      document.form1.quantitaPalDichTratt[indice].value = totale3;
+      document.form1.azotoPalDichTratt[indice].value = totale4;
+      document.form1.quantitaNonPalDichTratt[indice].value = totale1;
+      document.form1.azotoNonPalDichTratt[indice].value = totale2;
+      document.form1.quantitaPalPostTratt[indice].value = totale3;
+      document.form1.azotoPalPostTratt[indice].value = totale4;
+      document.form1.quantitaNonPalPostTratt[indice].value = totale1;
+      document.form1.azotoNonPalPostTratt[indice].value = totale2;
+    }
+    else
+    {
+      document.form1.quantitaAzoto.value = quantitaAzotoVar;
+      document.form1.quantitaPalDichTratt.value = totale3;
+      document.form1.azotoPalDichTratt.value = totale4
+      document.form1.quantitaNonPalDichTratt.value = totale1;
+      document.form1.azotoNonPalDichTratt.value = totale2;
+      document.form1.quantitaPalPostTratt.value = totale3;
+      document.form1.azotoPalPostTratt.value = totale4
+      document.form1.quantitaNonPalPostTratt.value = totale1;
+      document.form1.azotoNonPalPostTratt.value = totale2;
+    }
+    
+  }
+  
+  function calcolaAzotoCessione(indice)
+  {
+    if (document.form1.quantitaPreCess.length)
+    {
+      var valore1 = document.form1.quantitaCessioni[indice].value;
+      var valore2 = document.form1.quantitaPreCess[indice].value;
+      var valore3 = document.form1.azotoPreCess[indice].value;
+      var totale;
+      
+      if(IsNumeric(valore1) && IsNumeric(valore2) && IsNumeric(valore3)  
+        && valore1 != '' && valore2 != '' && valore3 != '')
+      {
+        totale = parseFloat(valore3.replace(',', '.')) * parseFloat(valore1.replace(',', '.')) / parseFloat(valore2.replace(',', '.')) 
+        totale = Math.round(totale * 10) / 10;
+        totale= ''+totale;
+        totale=totale.replace('.',',');
+      }
+      else
+      {
+        totale = '';
+      }
+      document.form1.azotoCessioni[indice].value = ''+totale;
+    }
+    else
+    {
+      var valore1 = document.form1.quantitaCessioni.value;
+      var valore2 = document.form1.quantitaPreCess.value;
+      var valore3 = document.form1.azotoPreCess.value;
+      
+      var totale;
+      
+      
+      if(IsNumeric(valore1) && IsNumeric(valore2) && IsNumeric(valore3)  
+        && valore1 != '' && valore2 != '' && valore3 != '')
+      {
+        totale = parseFloat(valore3.replace(',', '.')) * parseFloat(valore1.replace(',', '.')) / parseFloat(valore2.replace(',', '.')) 
+        totale = Math.round(totale * 10) / 10;
+        totale= ''+totale;
+        totale=totale.replace('.',',');
+      }
+      else
+      {
+        totale = '';
+      }    
+      
+      document.form1.azotoCessioni.value = totale;
+    }
+  
+  
+  } 
+  
+  
+  </script>
+</head>
+<body id="homeIndice" onLoad="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+  <form id="form1" name="form1" method="post"
+    action="../layout/comunicazione10R_modifica.htm">
+    <input type="hidden" name="operazione" id="operazione" value="" />
+    <input type="hidden" name="nRigaCessAcqu" id="nRigaCessAcqu" value="" />
+    <input type="hidden" name="nRigaTratt" id="nRigaTratt" value="" />
+    <input type="hidden" name="nRigaCess" id="nRigaCess" value="" />
+    <input type="hidden" name="regime" id="regime" value="true" />
+    <div id="pagina" class="colonnaUnica">
+      <!--
+        $$err_cuaaCessAcqu
+        $$err_denominazioneCessAcqu
+        $$err_cuaaCessioni
+        $$err_denominazioneCessioni
+        $$err_cuaaStocc
+        $$err_denominazioneStocc
+        $$err_comuneCessAcqu
+        $$err_provinciaCessAcqu
+        $$err_comuneCessioni
+        $$err_provinciaCessioni
+        $$err_comuneStocc
+        $$err_provinciaStocc
+        $$err_eliminaVolSot
+        $$err_eliminaVolRefAz
+        $$err_eliminaCessAcqu
+        $$err_eliminaCessioni
+        $$err_calcolaAzotoCessAcqu
+        $$err_eliminaStocc
+        $$err_eliminaAcqueReflue
+        $$err_eliminaTrattamento
+      -->
+      <div id="intestazione##pathProvincia">
+        $$header
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li>
+                <a href="../layout/index.htm"
+                  title="Torna alla pagina principale">home</a>
+              </li>
+              <li class="attivo">
+                gestione anagrafe aziende
+              </li>
+              <li>
+                <a href="#" title="contatti">contatti</a>
+              </li>
+              <li>
+                <a href="#" title="help">help</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div style="clear: left">
+      </div>
+      <div id="corpo">
+        <div id="Utente">
+          <div id="datiUtente">
+            <strong>utente:</strong> $$utente &nbsp; &nbsp;
+            <strong>ente:</strong> $$ente
+          </div>
+          <div id="chiudisessione">
+            <a href="javascript: logout();">chiudi sessione</a>
+          </div>
+        </div>
+        <hr />
+        <!--PRIMA COLONNA -->
+        <h3>
+          Gestione Anagrafe Aziende&nbsp;&gt;&nbsp;Comunicazione
+          10/R&nbsp;&gt;&nbsp;Modifica
+          <span class="helpFuori"> <a href="#"> <span
+              class="alt">[help]</span> </a> </span>
+        </h3>
+        <hr />
+        <div class="box">
+          <div class="menuSX1">
+            <ul>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <li>
+                <a href="../layout/elencoAziendeRapLegale.htm">Elenco
+                  Aziende</a>
+              </li>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <!-- @@blkRicercaAzienda-->
+              <li>
+                <a href="../layout/ricerca.htm">Ricerche</a>
+              </li>
+              <!-- @@blkRicercaAzienda-->
+              <!-- @@blkNuova -->
+              <li>
+                <a href="../layout/nuovaAziendaAnagrafica.htm">Nuova
+                  Azienda</a>
+              </li>
+              <!-- @@blkNuova -->
+              <!-- @@blkNuovaIscrizione -->
+		          <li>
+		            <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+		          </li>
+		          <!-- @@blkNuovaIscrizione -->
+            </ul>
+          </div>
+          <div class="menuSX">
+            <ul>
+              <li>
+                <a href="../layout/anagrafica.htm">Anagrafica</a>
+              </li>
+              <!-- @@blkAziendeCollegate -->
+              <li>
+                <a href="../layout/aziendeCollegate.htm">$$aziendeCollegateLabel</a>
+              </li>
+              <!-- @@blkAziendeCollegate -->
+              <!-- @@blkSincronizzaFascicolo -->
+               <li>
+               	<a href="../layout/sincronizzaFascicolo.htm">Sincronizza fascicolo</a>
+               </li>
+              <!-- @@blkSincronizzaFascicolo -->
+              <!-- @@blkSoggettiCollegati -->
+              <li>
+                <a href="../layout/contitolari.htm">Soggetti
+                  collegati</a>
+              </li>
+              <!-- @@blkSoggettiCollegati -->
+              <!-- @@blkContiCorrenti -->
+              <li>
+                <a href="../layout/conti_correnti.htm">Conti
+                  Correnti</a>
+              </li>
+              <!-- @@blkContiCorrenti -->
+              <!-- @@blkUnitaProduttive -->
+              <li>
+                <a href="../layout/sedi.htm">Unit&agrave; produttive</a>
+              </li>
+              <!-- @@blkUnitaProduttive -->
+              <!-- @@blkTerreni -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniParticellareElenco.htm">Terreni</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		            <a href="../layout/riepiloghi.htm">Terreni</a>
+		            <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkTerreni -->
+		          <!-- @@blkUnitaVitate -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniUnitaArboreeElenco.htm">Unit&agrave; Vitate</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		              <a href="../layout/riepiloghiUnitaArboree.htm">Unit&agrave; Vitate</a>
+		              <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkUnitaVitate -->
+              <!-- @@blkFabbricati -->
+              <li>
+                <a href="../layout/fabbricati.htm">Fabbricati e
+                  Strutture</a>
+              </li>
+              <!-- @@blkFabbricati -->
+              <!-- @@blkAllevamenti -->
+              <li>
+                <a href="../layout/allevamenti.htm">Allevamenti</a>
+              </li>
+              <!-- @@blkAllevamenti -->
+              <!-- @@blkManodopera -->
+              <li>
+                <a href="../layout/manodopera.htm">Manodopera</a>
+              </li>
+              <!-- @@blkManodopera -->
+              <!-- @@blkMotoriAgricoli -->
+              <li>
+                <a href="../layout/motori_agricoli_incarico.htm">Macchine agricole</a>
+              </li>
+              <!-- @@blkMotoriAgricoli -->
+              <!-- @@blkDiritti -->
+              <li>
+                <a href="../layout/diritti.htm">Diritti di
+                  produzione</a>
+              </li>
+              <!-- @@blkDiritti -->
+              <!-- @@blkAttestazioni -->
+              <li>
+                <a href="../layout/attestazioniDettaglio.htm">Dichiarazioni</a>
+              </li>
+              <!-- @@blkAttestazioni -->
+              <!-- @@blkDichiarazioniConsistenza -->
+              <li>
+                <a href="../layout/dichiarazioneConsistenza.htm">Validazioni</a>
+              </li>
+              <!-- @@blkDichiarazioniConsistenza -->
+              <!-- @@blkDocumenti -->
+              <li>
+                <a href="../layout/documentiElenco.htm">Documenti</a>
+              </li>
+              <!-- @@blkDocumenti -->
+              <!-- @@blkFascicoloDematerializzato -->
+		          <li>
+		            <a href="../layout/fascicoloDematerializzato.htm">Fascicolo<br>elettronico</a>
+		          </li>
+		          <!-- @@blkFascicoloDematerializzato --> 
+              <!-- @@blkGestioneNotifiche -->
+              <li>
+                <a href="../layout/notifiche.htm">Notifiche</a>
+              </li>
+              <!-- @@blkGestioneNotifiche -->
+              <!-- @@blkComunicazione10R -->
+              <li>
+                <a href="../layout/comunicazione10R_dettaglio.htm"
+                  class="on">Comunicazione 10/R</a>
+                <ul>
+                  <!--@@blkDettaglio-->
+                  <li>
+                    <a href="../layout/comunicazione10R_dettaglio.htm">dettaglio</a>
+                  </li>
+                  <!--@@blkDettaglio-->
+                  <!--@@blkModifica-->
+                  <li>
+                    <a href="#" class="etichetta">modifica</a>
+                  </li>
+                  <!--@@blkModifica-->
+                  <!--@@blkRicalcola-->
+                  <li>
+                    <a
+                      href="javascript: goToOperazione('../layout/comunicazione10R_ricalcola.htm', document.form1, 'attenderePrego');">ricalcola</a>
+                  </li>
+                  <!--@@blkRicalcola-->
+                </ul>
+              </li>
+              <!-- @@blkComunicazione10R -->
+              <!-- @@blkPratiche -->
+              <li>
+                <a href="../layout/pratiche.htm">Pratiche</a>
+              </li>
+              <!-- @@blkPratiche -->
+              <!-- @@blkStampaFascicolo -->
+              <li>
+                <a href="../layout/scelta_stampa.htm">Stampe</a>
+              </li>
+              <!-- @@blkStampaFascicolo -->
+			  <li><a href="../layout/strumenti.htm">Strumenti</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr />
+        <!-- SECONDA COLONNA -->
+        <div id="contenuto">
+          <div id="intesta">
+            <p class="$$aziendaIntestazione" title="$$tooltipIntestazione" >
+              $$CUAAIntestazione  $$denominazioneIntestazione
+            </p>
+          </div>
+          <!-- @@blkNotifica -->
+          <p class="$$immagine">
+            $$messaggioNotifica
+          </p>
+          <!-- @@blkINNotifica -->
+          <div class="notifica">$$notifica</div>
+          <!-- @@blkINNotifica -->
+          <!-- @@blkNotifica -->
+          <!-- @@blkErrore -->
+          <p class="errore">
+            $$messaggioErrore
+          </p>
+          <!-- @@blkErrore -->
+          <!-- @@blkNoErr -->
+          <table cellspacing="3"
+            summary="Questa tabella è costituita da righe">
+            <tr>
+              <th>
+                Data Ultimo Ricalcolo
+              </th>
+              <td>
+                $$dataUltimoRicalcolo
+                <input type="hidden" name="dataUltimoRicalcoloHi"
+                  id="dataUltimoRicalcoloHi"
+                  value="$$dataUltimoRicalcolo" />
+              </td>
+            </tr>
+          </table>
+          
+          <!-- @@blkAdesioneDeroga -->
+          <table cellspacing="3"
+            summary="Questa tabella è costituita da righe">
+            <col width="50%" />
+            <col width="50%" />
+            <caption>
+              Adesione deroga
+            </caption>
+            <tr>
+              <th class="center" scope="col">Unit&agrave; produttiva</th>
+              <th scope="col" class="center"></th>
+            </tr>
+            <!-- @@blkElencoAdesioneDeroga -->
+            <tr>
+              <td>$$descUteAdesioneDeroga</td>
+              <td>
+                <label for="si5">
+                   Sì
+                </label>
+                <input type="radio" name="flagAdesioneDeroga$$countAdesione" id="si5" value="S" $$disabledSiAdesioneDeroga $$flagAdesioneDerogaCheckedSi />
+                <label for="no5">
+                   No
+                </label>
+                <input type="radio" name="flagAdesioneDeroga$$countAdesione" id="no5" value="N" $$flagAdesioneDerogaCheckedNo/>
+                $$err_flagAdesioneDeroga
+              </td> 
+            </tr>
+            <!-- @@blkElencoAdesioneDeroga -->        
+          </table>
+          <!-- @@blkAdesioneDeroga -->
+
+
+          <table class="insDati" summary="inserimento dei dati"
+            cellspacing="3">
+            <caption>
+              Volume sottogrigliato
+            </caption>
+            <tr>
+              <td colspan="3">
+                <div class="azioni">
+                  <a
+                    href="javascript:setHiddenOperazione(document.forms[0],'inserisciVolSot');" name="inserisciVolSot" class="highlighted" id="inserisciVolSot">inserisci</a>
+                </div>
+              </td>
+            </tr>
+          </table>
+          <!-- @@blkVolumeSottogrigliato -->
+          <table class="insDati" summary="inserimento dei dati"
+            cellspacing="3">
+            <tr>
+              <th class="radio"></th>
+              <th class="center" scope="col">
+                Unit&agrave; produttiva
+              </th>
+              <th class="center" scope="col">
+                Q.ta (m
+                <sup>
+                  3
+                </sup>
+                )
+              </th>
+            </tr>
+            <!-- @@blkElencoVolumeSottogrigliato -->
+            <tr>
+              <td class="radio">
+                <input type="checkbox" name="chkVolSot" id="chkVolSot"
+                  value="$$chkVolSot" $$checkedVolSot />
+              </td>
+              <td>
+                <select id="idUteVolSot" name="idUteVolSot">
+                  <option value=""></option>
+                  <!-- @@blkElencoUteVolSot -->
+                  <option value="$$codiceUteVolSot"
+                    $$selectedIdUteVolSot>
+                    $$descrizioneUteVolSot
+                  </option>
+                  <!-- @@blkElencoUteVolSot -->
+                </select>
+                $$err_idUteVolSot
+              </td>
+              <td>
+                <input name="volumeSottoGrigliato"
+                  value="$$volumeSottoGrigliato"
+                  id="volumeSottoGrigliato" class="textmedio"
+                  type="text" />
+                $$err_volumeSottoGrigliato
+              </td>
+            </tr>
+            <!-- @@blkElencoVolumeSottogrigliato -->
+            <tr>
+              <td colspan="3">
+                <div class="azioni">
+                  <a id="eliminaVolSot" name="eliminaVolSot"
+                    href="javascript:setHiddenOperazione(document.forms[0],'eliminaVolSot');">elimina</a>
+                </div>
+                ##err_eliminaVolSot
+              </td>
+            </tr>
+          </table>
+          <!-- @@blkVolumeSottogrigliato -->
+
+
+          <table class="insDati" summary="inserimento dei dati"
+            cellspacing="3">
+            <caption>
+              Eventuali altre acque reflue dell'allevamento zootecnico
+              (es. Acque di lavaggio delle strutture, degli impianti e
+              delle attrezzature zootecniche) destinate ad utilizzo
+              agronomico
+            </caption>
+            <tr>
+              <td colspan="3">
+                <div class="azioni">
+                  <a
+                    href="javascript:setHiddenOperazione(document.forms[0],'inserisciVolRefAz');" name="inserisciVolRefAz" class="highlighted" id="inserisciVolRefAz">inserisci</a>
+                </div>
+              </td>
+            </tr>
+          </table>
+          <!-- @@blkVolumeRefluoAzienda -->
+          <table class="insDati" summary="inserimento dei dati"
+            cellspacing="3">
+            <tr>
+              <th class="radio"></th>
+              <th class="center" scope="col">
+                Unit&agrave; produttiva
+              </th>
+              <th class="center" scope="col">
+                Q.ta (m
+                <sup>
+                  3
+                </sup>
+                )
+              </th>
+            </tr>
+            <!-- @@blkElencoVolumeRefluoAzienda -->
+            <tr>
+              <td class="radio">
+                <input type="checkbox" name="chkVolRefAz"
+                  id="chkVolRefAz" value="$$chkVolRefAz"
+                  $$checkedVolRefAz />
+              </td>
+              <td>
+                <select id="idUteVolRefAz" name="idUteVolRefAz">
+                  <option value=""></option>
+                  <!-- @@blkElencoUteVolRefAz -->
+                  <option value="$$codiceUteVolRefAz"
+                    $$selectedIdUteVolRefAz>
+                    $$descrizioneUteVolRefAz
+                  </option>
+                  <!-- @@blkElencoUteVolRefAz -->
+                </select>
+                $$err_idUteVolRefAz
+              </td>
+              <td>
+                <input name="volumeRefluoAzienda"
+                  value="$$volumeRefluoAzienda" id="volumeRefluoAzienda"
+                  class="textmedio" type="text" />
+                $$err_volumeRefluoAzienda
+              </td>
+            </tr>
+            <!-- @@blkElencoVolumeRefluoAzienda -->
+            <tr>
+              <td colspan="3">
+                <div class="azioni">
+                  <a id="eliminaVolRefAz" name="eliminaVolRefAz"
+                    href="javascript:setHiddenOperazione(document.forms[0],'eliminaVolRefAz');">elimina</a>
+                </div>
+                ##err_eliminaVolRefAz
+              </td>
+            </tr>
+          </table>
+          <!-- @@blkVolumeRefluoAzienda -->
+
+          <table class="insDati" summary="inserimento dei dati"
+            cellspacing="3">
+            <caption>
+              Acque reflue provenienti da aziende agricole e da piccole
+              aziende agro-alimentari (capo II reg. 10/R) destinate ad
+              utilizzo agronomico
+            </caption>
+            <tr>
+              <td colspan="3">
+                <div class="azioni">
+                  <a
+                    href="javascript:setHiddenOperazione(document.forms[0],'inserisciAcqueReflue');"
+                    name="inserisciAcqueReflue" class="highlighted" id="inserisciAcqueReflue">inserisci</a>
+                </div>
+              </td>
+            </tr>
+          </table>
+          <!-- @@blkAcqueReflue -->
+          <table class="insDati" summary="inserimento dei dati"
+            cellspacing="3">
+            <tr>
+              <th class="radio"></th>
+              <th class="center" scope="col">
+                Unit&agrave; produttiva
+              </th>
+              <th class="center" scope="col">
+                Settore acque reflue
+              </th>
+              <th class="center" scope="col">
+                Q.ta (m
+                <sup>
+                  3
+                </sup>
+                )
+              </th>
+            </tr>
+            <!-- @@blkElencoAcqueReflue -->
+            <tr>
+              <td class="radio">
+                <input type="checkbox" name="chkAcqueReflue"
+                  id="chkAcqueReflue" value="$$chkAcqueReflue"
+                  $$checkedAcqueReflue />
+              </td>
+              <td>
+                <select id="idUteAcqueReflue" name="idUteAcqueReflue">
+                  <option value=""></option>
+                  <!-- @@blkElencoUteAcqueReflue -->
+                  <option value="$$codiceUteAcqueReflue"
+                    $$selectedIdUteAcqueReflue>
+                    $$descrizioneUteAcqueReflue
+                  </option>
+                  <!-- @@blkElencoUteAcqueReflue -->
+                </select>
+                $$err_idUteAcqueReflue
+              </td>
+              <td>
+                <select name="idTipologiaAcquaAgronomica"
+                  id="idTipologiaAcquaAgronomica">
+                  <option value=""></option>
+                  <!-- @@blkElencoTipoAcquaAgronomica -->
+                  <option value="$$idAcquaAgronomica"
+                    $$selectedAcquaAgronomica>
+                    $$descrizioneAcquaAgronomica
+                  </option>
+                  <!-- @@blkElencoTipoAcquaAgronomica -->
+                </select>
+                $$err_idTipologiaAcquaAgronomica
+              </td>
+              <td>
+                <input name="volumeRefluo" value="$$volumeRefluo"
+                  id="ute7" class="textmedio" type="text" />
+                $$err_volumeRefluo
+              </td>
+            </tr>
+            <!-- @@blkElencoAcqueReflue -->
+            <tr>
+              <td colspan="6">
+                <div class="azioni">
+                  <a id="eliminaAcqueReflue" name="eliminaAcqueReflue"
+                    href="javascript:setHiddenOperazione(document.forms[0],'eliminaAcqueReflue');">elimina</a>
+                </div>
+                ##err_eliminaAcqueReflue
+              </td>
+            </tr>
+          </table>
+          <!-- @@blkAcqueReflue -->
+
+          <table cellspacing="3"
+            summary="Questa tabella è costituita da righe">
+            <caption>
+              Acquisizioni
+            </caption>
+
+            <tr>
+              <th>
+                <label for="cuaa">
+                  CUAA
+                </label>
+              </th>
+              <td>
+                <input type="text" id="cuaaCessAcqu" name="cuaaCessAcqu"
+                  maxlength="16" class="textmediolungo"
+                  value="$$cuaaCessAcqu" />
+                ##err_cuaaCessAcqu
+              </td>
+              <td rowspan="2">
+                <div class="azioni">
+                  <a id="scegliAziendaCessAcqu"
+                    name="scegliAziendaCessAcqu"
+                    href="javascript: scegliAzienda('../ctrl/popElencoAziendeCtrl.jsp','scegli_azienda','800','400','yes',document.form1.cuaaCessAcqu.value,document.form1.denominazioneCessAcqu.value,'Comunicazione10RCessAcqu');"
+                    title="[Attenzione: questo link si apre in una nuova finestra]">cerca</a>
+                </div>
+                <input type="hidden" id="idAziendaCessAcqu"
+                  name="idAziendaCessAcqu" value="$$idAziendaCessAcqu" />
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="denominazione">
+                  Denominazione
+                </label>
+              </th>
+              <td>
+                <input type="text" id="denominazioneCessAcqu"
+                  name="denominazioneCessAcqu" class="text"
+                  value="$$denominazioneCessAcqu" />
+                ##err_denominazioneCessAcqu
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="ute">
+                  Comune UTE
+                </label>
+              </th>
+              <td>
+                <input name="provinciaCessAcqu" id="provinciaCessAcqu"
+                  value="$$provinciaCessAcqu" maxlength="2"
+                  class="textmedio" type="text" />
+                ##err_provinciaCessAcqu
+                <label for="ute2" class="alt"></label>
+                <input name="comuneCessAcqu" id="comuneCessAcqu"
+                  value="$$comuneCessAcqu" class="text" type="text" />
+                ##err_comuneCessAcqu
+              </td>
+              <td>
+                <div class="azioni">
+                  <a id="scegliComuneCessAcqu"
+                    name="scegliComuneCessAcqu"
+                    href="javascript: scegliComune('../view/sceltaComuneView.jsp','scegli_comune','600','300','yes',document.form1.provinciaCessAcqu.value,document.form1.comuneCessAcqu.value,'Comunicazione10RCessAcqu');"
+                    title="[Attenzione: questo link si apre in una nuova finestra]">cerca</a>
+                </div>
+                <input type="hidden" name="istatComuneCessAcqu"
+                  value="$$istatComuneCessAcqu" />
+              </td>
+            </tr>
+            <tr>
+              <td colspan="3">
+                <div class="azioni">
+                  <a
+                    href="javascript:setHiddenOperazione(document.forms[0],'inserisciCessAcqu');" name="inserisciCessAcqu" class="highlighted" id="inserisciCessAcqu">inserisci</a>
+                </div>
+                $$err_inserisciCessAcqu
+              </td>
+            </tr>
+          </table>
+          <!-- @@blkCessAcqu -->
+          <div class="scroll">
+            <table class="insDati" summary="inserimento dei dati"
+              cellspacing="3">
+              <tbody>
+                <tr>
+                  <th rowspan="2" class="radio"></th>
+                  <th colspan="3" class="center">
+                    Azienda
+                  </th>
+                  <th rowspan="2" class="center" scope="col">
+                    Unit&agrave; produttiva
+                  </th>
+                  <th rowspan="2" class="center" scope="col">
+                    Stoc.
+                    <br>
+                    in
+                    <br>
+                    az.
+                  </th>
+                  <th rowspan="2" class="center" scope="col">
+                    Tipo effluente
+                  </th>
+                  <th rowspan="2" class="center" scope="col">
+                    Q.ta (m
+                    <sup>
+                      3
+                    </sup>
+                    )
+                  </th>
+                  <th colspan="2" class="center">
+                    Azoto (Kg)
+                  </th>
+                </tr>
+                <tr>
+                  <th class="center">
+                    CUAA
+                  </th>
+                  <th class="center" scope="col">
+                    Denominazione
+                  </th>
+                  <th class="center" scope="col">
+                    Comune UTE
+                  </th>
+                  <th class="center" scope="col">
+                    Calcolato
+                  </th>
+                  <th class="center" scope="col">
+                    Dichiarato
+                  </th>
+                </tr>
+                <!-- @@blkElencoCessAcqu -->
+                <tr>
+                  <td class="radio">
+                    <input type="checkbox" name="chkCessAcqu"
+                      id="chkCessAcqu" value="$$chkCessAcqu"
+                      $$checkedCessAcqu />
+                    <input type="hidden" id="idAziendaCessAcquElenco"
+                      name="idAziendaCessAcquElenco"
+                      value="$$idAziendaCessAcquElenco" />
+                  </td>
+                  <td>
+                    $$cuaaCessAcqu
+                  </td>
+                  <td>
+                    $$denominazioneCessAcqu
+                  </td>
+                  <td>
+                    $$comuneCessAcqu ($$siglaProvCessAcqu)
+                  </td>
+                  <td>
+                    <select id="idUteCessAcqu" name="idUteCessAcqu">
+                      <option value=""></option>
+                      <!-- @@blkElencoUteCessAcqu -->
+                      <option value="$$codiceUteCessAcqu"
+                        $$selectedIdUteCessAcqu>
+                        $$descrizioneUteCessAcqu
+                      </option>
+                      <!-- @@blkElencoUteCessAcqu -->
+                    </select>
+                    $$err_idUteCessAcqu
+                  </td>
+                  <td class="center">
+                    <input type="checkbox" name="chkStoccaggioCessAcqu"
+                      id="chkStoccaggioCessAcqu"
+                      value="$$chkStoccaggioCessAcqu"
+                      $$checkedStoccaggioCessAcqu />
+                  </td>
+                  <td>
+                    <select id="idEffluente" name="idEffluente"
+                      onChange="jvascript:cambiaEffluenteAcquisito('$$chkCessAcqu')">
+                      <option value=""></option>
+                      <!-- @@blkElencoEffluente -->
+                      <option value="$$codiceEffluente"
+                        $$selectedEffluente>
+                        $$descrizioneEffluente
+                      </option>
+                      <!-- @@blkElencoEffluente -->
+                    </select>
+                    $$err_idEffluente
+                  </td>
+                  <td>
+                    <input name="quantitaCessAcqu"
+                      value="$$quantitaCessAcqu" id="quantitaCessAcqu"
+                      class="textmedio" type="text" />
+                    $$err_quantitaCessAcqu
+                  </td>
+                  <td class="numeridx">
+                    $$azotoCessAcqu $$err_azotoCessAcqu
+                  </td>
+                  <td>
+                    <input name="azotoDichiaratoCessAcqu"
+                      value="$$azotoDichiaratoCessAcqu"
+                      id="azotoDichiaratoCessAcqu"
+                      class="textbreve" maxlength="10" type="text" />
+                    $$err_azotoDichiaratoCessAcqu
+                  </td>
+                </tr>
+                <!-- @@blkElencoCessAcqu -->
+                <tr>
+                  <td colspan="11">
+                    <div class="pulsanti">
+                      <div class="sin">
+                        <a id="eliminaCessAcqu" name="eliminaCessAcqu"
+                          href="javascript:setHiddenOperazione(document.forms[0],'eliminaCessAcqu');">elimina</a>
+                      </div>
+                      <span style="float: left">##err_eliminaCessAcqu</span>
+                      <div class="des">
+                        <a id="calcolaAzotoCessAcqu"
+                          name="calcolaAzotoCessAcqu"
+                          href="javascript:setHiddenOperazione(document.forms[0],'calcolaAzotoCessAcqu');">calcola</a>
+                      </div>
+                      <span style="float: right">##err_calcolaAzotoCessAcqu</span>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- @@blkCessAcqu -->
+          
+          
+          
+          <table cellspacing="3"
+            summary="Questa tabella è costituita da righe">
+            <caption>
+              Trattamenti
+            </caption>
+            <tr>
+              <td>
+                <div class="azioni">
+                  <a
+                    href="javascript:setHiddenOperazione(document.forms[0],'inserisciTrattamenti');" name="inserisciTrattamenti" class="highlighted" id="inserisciTrattamenti">inserisci</a>
+                </div>
+                $$err_inserisciTrattamenti
+              </td>
+            </tr>
+          </table>
+          <!-- @@blkTrattamenti -->
+          <div class="scroll">
+            <table class="insDati" summary="inserimento dei dati"
+              cellspacing="3">
+              <tbody>
+                <tr>
+                  <th rowspan="3" class="radio"></th>
+                  <th rowspan="3" class="center" scope="col">
+                    Unit&agrave; produttiva
+                  </th>
+                  <th rowspan="3" class="center">
+                    Tipo di effluente
+                  </th>
+                  <th rowspan="3" class="center" scope="col">
+                    Tipologia di effluente
+                  </th>
+                  <th rowspan="3" class="center" scope="col">
+                     Q.t&agrave; (m<sup>3</sup>)
+                  </th>
+                  <th rowspan="3" class="center" scope="col">
+                    Azoto (Kg)
+                  </th>
+                  <th rowspan="3" class="center" scope="col">
+                    Tipologia di<br>trattamento
+                  </th>
+                  <th rowspan="3" class="center" scope="col">
+                    Volume<br>trattato (m<sup>3</sup>)
+                  </th>
+                  <th colspan="8" class="center">
+                    Materiale ottenuto
+                  </th>
+                </tr>
+                <tr>
+                  <th class="center" colspan="4" scope="col">
+                    Palabile post trattamento
+                  </th>
+                  <th class="center" colspan="4" scope="col">
+                    Non palabile post trattamento
+                  </th>
+                </tr>
+                <tr>
+                  <th class="center" scope="col" >
+                    Volume (m<sup>3</sup>)
+                  </th>
+                  <th class="center" scope="col">
+                    Azoto (Kg)
+                  </th>
+                  <th class="center" scope="col" >
+                    Volume<br>dichiarato (m<sup>3</sup>)
+                  </th>
+                  <th class="center" scope="col">
+                    Azoto<br>dichiarato (Kg)
+                  </th>
+                  <th class="center" scope="col" >
+                    Volume (m<sup>3</sup>)
+                  </th>
+                  <th class="center" scope="col">
+                    Azoto (Kg)
+                  </th>
+                  <th class="center" scope="col" >
+                    Volume<br>dichiarato (m<sup>3</sup>)
+                  </th>
+                  <th class="center" scope="col">
+                    Azoto<br>dichiarato (Kg)
+                  </th>
+                </tr>
+                <!-- @@blkElencoTrattamenti -->
+                <tr>
+                  <td class="radio">
+                    <input type="checkbox" name="chkTrattamento"
+                      id="chkTrattamento" value="$$chkTrattamento"
+                      $$checkedTrattamento />
+                  </td>
+                  <td>
+                    <select id="idUteTratt" name="idUteTratt"
+                      onChange="javascript:refresh($$chkTrattamento)">
+                      <option value=""></option>
+                      <!-- @@blkElencoUteTratt -->
+                      <option value="$$codiceUteTratt"
+                        $$selectedIdUteTratt>
+                        $$descrizioneUteTratt
+                      </option>
+                      <!-- @@blkElencoUteTratt -->
+                    </select>
+                    $$err_idUteTratt
+                  </td>
+                  <td>
+                    <select id="idEffluenteTratt" name="idEffluenteTratt"
+                      onChange="javascript:refresh($$chkTrattamento)">
+                      <option value=""></option>
+                      <!-- @@blkElencoEffluenteTratt -->
+                      <option value="$$codiceEffluenteTratt"
+                        $$selectedEffluenteTratt>
+                        $$descrizioneEffluenteTratt
+                      </option>
+                      <!-- @@blkElencoEffluenteTratt -->
+                    </select>
+                    $$err_idEffluenteTratt
+                  </td>
+                  <td>
+                    $$tipologiaEffluenteTratt
+                  </td>
+                  <td class="numeridx" >
+                    $$quantitaPreTratt
+                    <input type="hidden" name="quantitaPreTratt" id="quantitaPreTratt" value="$$quantitaPreTratt" /> 
+                  </td>
+                  <td class="numeridx" >
+                    $$azotoPreTratt
+                  </td>
+                  <td>
+                    <select id="idTrattamento" name="idTrattamento"
+                      onChange="javascript:refreshTratt($$chkTrattamento)">
+                      <option value=""></option>
+                      <!-- @@blkElencoTrattamento -->
+                      <option value="$$idTrattamento"
+                        $$selectedTrattamento>
+                        $$codiceTrattamento
+                      </option>
+                      <!-- @@blkElencoTrattamento -->
+                    </select>
+                    <input type="hidden" name="percVolumesolido" id="percVolumesolido" value="$$percVolumesolido" />
+                    <input type="hidden" name="percAzotoVolatile" id="percAzotoVolatile" value="$$percAzotoVolatile" />
+                    <input type="hidden" name="azotoProdotto" id="azotoProdotto" value="$$azotoProdotto" />
+                    <input type="hidden" name="volumeProdotto" id="volumeProdotto" value="$$volumeProdotto" />
+                    <input type="hidden" name="percAzotoSolido" id="percAzotoSolido" value="$$percAzotoSolido" />                    
+                    $$err_idTrattamento
+                  </td>
+                  <td>
+                    <input
+                       onkeyup="javascript:calcolaMaterialeOttenuto($$chkTrattamento);" 
+                       name="quantitaTratt"
+                      value="$$quantitaTratt" id="quantitaTratt"
+                      class="textmedio" type="text" />
+                    <input type="hidden" name="quantitaAzoto" id="quantitaAzoto" value="$$quantitaAzoto" />
+                    <input type="hidden" name="quantitaPalPostTratt" id="quantitaPalPostTratt" value="$$quantitaPalPostTratt" />
+                    <input type="hidden" name="azotoPalPostTratt" id="azotoPalPostTratt" value="$$azotoPalPostTratt" />
+                    <input type="hidden" name="quantitaNonPalPostTratt" id="quantitaNonPalPostTratt" value="$$quantitaNonPalPostTratt" />
+                    <input type="hidden" name="azotoNonPalPostTratt" id="azotoNonPalPostTratt" value="$$azotoNonPalPostTratt" />
+                    <input type="hidden" name="idEffluentePalabile" id="idEffluentePalabile" value="$$idEffluentePalabile" />
+                    <input type="hidden" name="idEffluenteNonPalabile" id="idEffluenteNonPalabile" value="$$idEffluenteNonPalabile" />
+                    $$err_quantitaTratt
+                  </td>
+                  <td class="numeridx" id="tdQuantitaPalPostTratt_$$chkTrattamento">
+                    $$quantitaPalPostTratt                    
+                  </td>
+                  <td class="numeridx" id="tdAzotoPalPostTratt_$$chkTrattamento">
+                    $$azotoPalPostTratt
+                    
+                  </td>
+                  <td>
+                    <input name="quantitaPalDichTratt"
+                      value="$$quantitaPalDichTratt" id="quantitaPalDichTratt"
+                      class="textmedio" type="text" />
+                    $$err_quantitaPalDichTratt
+                  </td>
+                  <td>
+                    <input name="azotoPalDichTratt"
+                      value="$$azotoPalDichTratt" id="azotoPalDichTratt"
+                      class="textmedio" type="text" />
+                    $$err_azotoPalDichTratt
+                  </td>
+                  <td class="numeridx" id="tdQuantitaNonPalPostTratt_$$chkTrattamento" >
+                    $$quantitaNonPalPostTratt
+                  </td>
+                  <td class="numeridx" id="tdAzotoNonPalPostTratt_$$chkTrattamento">
+                    $$azotoNonPalPostTratt
+                  </td>
+                  <td>
+                    <input name="quantitaNonPalDichTratt"
+                      value="$$quantitaNonPalDichTratt" id="quantitaNonPalDichTratt"
+                      class="textmedio" type="text" />
+                    $$err_quantitaNonPalDichTratt
+                  </td>
+                  <td>
+                    <input name="azotoNonPalDichTratt"
+                      value="$$azotoNonPalDichTratt" id="azotoNonPalDichTratt"
+                      class="textmedio" type="text" />
+                    $$err_azotoNonPalDichTratt
+                  </td>
+                </tr>
+                <!-- @@blkElencoTrattamenti -->
+                <tr>
+                  <td colspan="16">
+                    <div class="pulsanti">
+                      <div class="sin">
+                        <a id="eliminaTrattamento" name="eliminaTrattamento"
+                          href="javascript:setHiddenOperazione(document.forms[0],'eliminaTrattamento');">elimina</a>
+                      </div>
+                      <span style="float: left">##err_eliminaTrattamento</span>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- @@blkTrattamenti -->
+          
+          
+          
+          
+          <table cellspacing="3"
+            summary="Questa tabella è costituita da righe">
+            <caption>
+              Cessioni
+            </caption>
+
+            <tr>
+              <th>
+                <label for="cuaa">
+                  CUAA
+                </label>
+              </th>
+              <td>
+                <input type="text" id="cuaaCessioni" name="cuaaCessioni"
+                  maxlength="16" class="textmediolungo"
+                  value="$$cuaaCessioni" />
+                ##err_cuaaCessioni
+              </td>
+              <td rowspan="2">
+                <div class="azioni">
+                  <a id="scegliAziendaCessioni"
+                    name="scegliAziendaCessioni"
+                    href="javascript: scegliAzienda('../ctrl/popElencoAziendeCtrl.jsp','scegli_azienda','800','400','yes',document.form1.cuaaCessioni.value,document.form1.denominazioneCessioni.value,'Comunicazione10RCessioni');"
+                    title="[Attenzione: questo link si apre in una nuova finestra]">cerca</a>
+                </div>
+                <input type="hidden" id="idAziendaCessioni"
+                  name="idAziendaCessioni" value="$$idAziendaCessioni" />
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="denominazione">
+                  Denominazione
+                </label>
+              </th>
+              <td>
+                <input type="text" id="denominazioneCessioni"
+                  name="denominazioneCessioni" class="text"
+                  value="$$denominazioneCessioni" />
+                ##err_denominazioneCessioni
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="ute">
+                  Comune UTE
+                </label>
+              </th>
+              <td>
+                <input name="provinciaCessioni" id="provinciaCessioni"
+                  value="$$provinciaCessioni" maxlength="2"
+                  class="textmedio" type="text" />
+                ##err_provinciaCessioni
+                <label for="ute2" class="alt"></label>
+                <input name="comuneCessioni" id="comuneCessioni"
+                  value="$$comuneCessioni" class="text" type="text" />
+                ##err_comuneCessioni
+              </td>
+              <td>
+                <div class="azioni">
+                  <a id="scegliComuneCessioni"
+                    name="scegliComuneCessioni"
+                    href="javascript: scegliComune('../view/sceltaComuneView.jsp','scegli_comune','600','300','yes',document.form1.provinciaCessioni.value,document.form1.comuneCessioni.value,'Comunicazione10RCessioni');"
+                    title="[Attenzione: questo link si apre in una nuova finestra]">cerca</a>
+                </div>
+                <input type="hidden" name="istatComuneCessioni"
+                  value="$$istatComuneCessioni" />
+              </td>
+            </tr>
+            <tr>
+              <td colspan="3">
+                <div class="azioni">
+                  <a
+                    href="javascript:setHiddenOperazione(document.forms[0],'inserisciCessioni');" name="inserisciCessioni" class="highlighted" id="inserisciCessioni">inserisci</a>
+                </div>
+                $$err_inserisciCessioni
+              </td>
+            </tr>
+          </table>
+          <!-- @@blkCessioni -->
+          <div class="scroll">
+            <table class="insDati" summary="inserimento dei dati"
+              cellspacing="3">
+              <tbody>
+                <tr>
+                  <th rowspan="2" class="radio"></th>
+                  <th colspan="3" class="center">
+                    Azienda
+                  </th>
+                  <th rowspan="2" class="center" scope="col">
+                    Unit&agrave; produttiva
+                  </th>
+                  <th rowspan="2" class="center" scope="col">
+                    Stoc.
+                    <br>
+                    in
+                    <br>
+                    az.
+                  </th>
+                  <th rowspan="2" class="center" scope="col">
+                    Tipo di effluente
+                  </th>
+                  <th rowspan="2" class="center" scope="col">
+                    Tipologia di effluente
+                  </th>
+                  <th rowspan="2" class="center" scope="col">
+                    Q.ta (m<sup>3</sup>)
+                  </th>
+                  <th rowspan="2" class="center">
+                    Azoto (Kg)
+                  </th>
+                  <th rowspan="2" class="center" scope="col">
+                    Q.ta (m<sup>3</sup>)<br>ceduta
+                  </th>
+                  <th rowspan="2" class="center">
+                    Azoto (Kg)<br>ceduto
+                  </th>
+                </tr>
+                <tr>
+                  <th class="center">
+                    CUAA
+                  </th>
+                  <th class="center" scope="col">
+                    Denominazione
+                  </th>
+                  <th class="center" scope="col">
+                    Comune UTE
+                  </th>   
+                </tr>
+                <!-- @@blkElencoCessioni -->
+                <tr>
+                  <td class="radio">
+                    <input type="checkbox" name="chkCessioni"
+                      id="chkCessioni" value="$$chkCessioni"
+                      $$checkedCessioni />
+                    <input type="hidden" id="idAziendaCessioniElenco"
+                      name="idAziendaCessioniElenco"
+                      value="$$idAziendaCessioniElenco" />
+                  </td>
+                  <td>
+                    $$cuaaCessioni
+                  </td>
+                  <td>
+                    $$denominazioneCessioni
+                  </td>
+                  <td>
+                    $$comuneCessioni ($$siglaProvCessioni)
+                  </td>
+                  <td>
+                    <select id="idUteCessioni" name="idUteCessioni"
+                      onChange="javascript:refreshCess($$chkCessioni)">
+                      <option value=""></option>
+                      <!-- @@blkElencoUteCessioni -->
+                      <option value="$$codiceUteCessioni"
+                        $$selectedIdUteCessioni>
+                        $$descrizioneUteCessioni
+                      </option>
+                      <!-- @@blkElencoUteCessioni -->
+                    </select>
+                    $$err_idUteCessioni
+                  </td>
+                  <td class="center">
+                    <input type="checkbox" name="chkStoccaggioCessioni"
+                      id="chkStoccaggioCessioni"
+                      value="$$chkStoccaggioCessioni"
+                      $$checkedStoccaggioCessioni />
+                  </td>
+                  <td>
+                    <select id="idEffluenteCessioni" name="idEffluenteCessioni"
+                      onChange="javascript:refreshCess($$chkCessioni)">
+                      <option value=""></option>
+                      <!-- @@blkElencoEffluenteCessioni -->
+                      <option value="$$codiceEffluenteCessioni"
+                        $$selectedEffluenteCessioni>
+                        $$descrizioneEffluenteCessioni
+                      </option>
+                      <!-- @@blkElencoEffluenteCessioni -->
+                    </select>
+                    $$err_idEffluenteCessioni
+                  </td>
+                  <td>
+                    $$tipologiaEffluenteCess
+                  </td>
+                  <td>
+                    $$quantitaPreCess
+                    <input type="hidden" name="quantitaPreCess" id="quantitaPreCess" value="$$quantitaPreCess" />
+                  </td>
+                  <td>
+                    $$azotoPreCess
+                    <input type="hidden" name="azotoPreCess" id="azotoPreCess" value="$$azotoPreCess" />
+                  </td>
+                  <td>
+                    <input 
+                      onkeyup="javascript:calcolaAzotoCessione($$chkCessioni);"
+                      name="quantitaCessioni"  value="$$quantitaCessioni" id="quantitaCessioni"
+                      class="textmedio" type="text" />
+                    $$err_quantitaCessioni
+                  </td>
+                  <td>
+                    <input name="azotoCessioni"  value="$$azotoCessioni"  id="azotoCessioni" 
+                      class="textbreve" maxlength="10" type="text" />
+                    $$err_azotoCessioni
+                  </td>
+                </tr>
+                <!-- @@blkElencoCessioni -->
+                <tr>
+                  <td colspan="12">
+                    <div class="pulsanti">
+                      <div class="sin">
+                        <a id="eliminaCessioni" name="eliminaCessioni"
+                          href="javascript:setHiddenOperazione(document.forms[0],'eliminaCessioni');">elimina</a>
+                      </div>
+                      <span style="float: left">##err_eliminaCessioni</span>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- @@blkCessioni -->
+          
+          
+          
+          
+          
+          <table cellspacing="3"
+            summary="Questa tabella è costituita da righe">
+            <caption>
+              Eventuali strutture extra aziendali utilizzate per lo
+              stoccaggio
+            </caption>
+            <tr>
+              <th>
+                CUAA
+              </th>
+              <td>
+                <input type="text" id="cuaaStocc" name="cuaaStocc"
+                  maxlength="16" class="textmediolungo"
+                  value="$$cuaaStocc" />
+                ##err_cuaaStocc
+              </td>
+              <td rowspan="2">
+                <div class="azioni">
+                  <a id="scegliAziendaStocc" name="scegliAziendaStocc"
+                    href="javascript: scegliAzienda('../ctrl/popElencoAziendeCtrl.jsp','scegli_azienda','800','400','yes',document.form1.cuaaStocc.value,document.form1.denominazioneStocc.value,'Comunicazione10RStocc');"
+                    title="[Attenzione: questo link si apre in una nuova finestra]">cerca</a>
+                </div>
+                <input type="hidden" id="idAziendaStocc"
+                  name="idAziendaStocc" value="$$idAziendaStocc" />
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="denominazione2">
+                  Denominazione
+                </label>
+              </th>
+              <td>
+                <input type="text" id="denominazioneStocc"
+                  name="denominazioneStocc" class="text"
+                  value="$$denominazioneStocc" />
+                ##err_denominazioneStocc
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="ute1">
+                  Comune UTE
+                </label>
+              </th>
+              <td>
+                <input name="provinciaStocc" id="provinciaStocc"
+                  value="$$provinciaStocc" maxlength="2"
+                  class="textmedio" type="text" />
+                ##err_provinciaStocc
+                <label for="ute2" class="alt"></label>
+                <input name="comuneStocc" id="comuneStocc"
+                  value="$$comuneStocc" class="text" type="text" />
+                ##err_comuneStocc
+              </td>
+              <td>
+                <div class="azioni">
+                  <a id="scegliComuneStocc" name="scegliComuneStocc"
+                    href="javascript: scegliComune('../view/sceltaComuneView.jsp','scegli_comune','600','300','yes',document.form1.provinciaStocc.value,document.form1.comuneStocc.value,'Comunicazione10RStocc');"
+                    title="[Attenzione: questo link si apre in una nuova finestra]">cerca</a>
+                </div>
+                <input type="hidden" name="istatComuneStocc"
+                  value="$$istatComuneStocc" />
+              </td>
+            </tr>
+            <tr>
+              <td colspan="3">
+                <div class="azioni">
+                  <a
+                    href="javascript:setHiddenOperazione(document.forms[0],'inserisciStocc');" name="inserisciStocc" class="highlighted" id="inserisciStocc">inserisci</a>
+                </div>
+                $$err_inserisciStocc
+              </td>
+            </tr>
+          </table>
+          <!-- @@blkStocc -->
+          <table class="insDati" summary="inserimento dei dati"
+            cellspacing="3">
+            <tbody>
+              <tr>
+                <th rowspan="2" class="radio"></th>
+                <th colspan="3" class="center">
+                  Azienda
+                </th>
+                <th rowspan="2" class="center" scope="col">
+                  Unit&agrave; produttiva
+                </th>
+                <th rowspan="2" class="center" scope="col">
+                  Tipo struttura
+                </th>
+                <th rowspan="2" class="center" scope="col">
+                  Volume utile disponibile all'azienda (m
+                  <sup>
+                    3
+                  </sup>
+                  )
+                </th>
+              </tr>
+              <tr>
+                <th class="center">
+                  CUAA
+                </th>
+                <th class="center" scope="col">
+                  Denominazione
+                </th>
+                <th class="center" scope="col">
+                  Comune UTE
+                </th>
+              </tr>
+              <!-- @@blkElencoStocc -->
+              <tr>
+                <td class="radio">
+                  <input type="checkbox" name="chkStocc" id="chkStocc"
+                    value="$$chkStocc" $$checkedStocc />
+                  <input type="hidden" id="idAziendaStoccElenco"
+                    name="idAziendaStoccElenco"
+                    value="$$idAziendaStoccElenco" />
+                </td>
+                <td>
+                  $$cuaaStocc
+                </td>
+                <td>
+                  $$denominazioneStocc
+                </td>
+                <td>
+                  $$comuneStocc ($$siglaProvStocc)
+                </td>
+                <td>
+                  <select id="idUteStocc" name="idUteStocc">
+                    <option value=""></option>
+                    <!-- @@blkElencoUteStocc -->
+                    <option value="$$codiceUteStocc"
+                      $$selectedIdUteStocc>
+                      $$descrizioneUteStocc
+                    </option>
+                    <!-- @@blkElencoUteStocc -->
+                  </select>
+                  $$err_idUteStocc
+                </td>
+                <td>
+                  <select name="idTipologiaFabbricato"
+                    id="idTipologiaFabbricato">
+                    <option value=""></option>
+                    <!-- @@blkElencoTipoFabbricato -->
+                    <option value="$$codiceFabbricato"
+                      $$selectedFabbricato>
+                      $$descrizioneFabbricato
+                    </option>
+                    <!-- @@blkElencoTipoFabbricato -->
+                  </select>
+                  $$err_idTipologiaFabbricato
+                </td>
+                <td>
+                  <input name="quantitaStocc" value="$$quantitaStocc"
+                    id="quantitaStocc" class="textmedio" type="text" />
+                  $$err_quantitaStocc
+                </td>
+              </tr>
+              <!-- @@blkElencoStocc -->
+              <tr>
+                <td colspan="7">
+                  <div class="azioni">
+                    <a id="eliminaStocc" name="eliminaStocc"
+                      href="javascript:setHiddenOperazione(document.forms[0],'eliminaStocc');">elimina</a>
+                  </div>
+                  ##err_eliminaStocc
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <!-- @@blkStocc -->
+
+
+          
+          
+          <!-- @@blkNote -->
+          <table cellspacing="3" summary="Questa tabella è costituita da righe">
+            <caption>
+              UTE: $$descComuneUteNote -  $$indirizzoUteNote
+            </caption>
+            <tr>
+              <th>
+                <label for="noteComunicazione">
+                  Note
+                </label>
+              </th>
+              <td>
+                <textarea name="noteComunicazione"
+                  id="noteComunicazione" cols="85" rows="5">$$noteComunicazione</textarea>
+                $$err_noteComunicazione
+              </td>
+            </tr>
+          </table>
+          <!-- @@blkNote -->
+          
+          
+          <div class="pulsanti">
+	          <div class="sin">
+	            <a id="conferma" name="conferma"
+	              href="javascript:setConfermaBlockAllOperazione(document.forms[0],'conferma');">conferma</a>
+	          </div>
+	          <div class="des">
+	            <a
+	              href="../layout/comunicazione10R_dettaglio.htm" name="annullaGlobale"
+	              title="annulla" class="inputPulsante annulla" id="annullaGlobale">annulla</a>	          </div>
+          </div>
+	        
+	        
+	        <p class="legenda">
+	          <strong>Trattamenti</strong>:<br>
+	          1. separazione delle frazioni solide grossolane (vagliatura -
+	              vaglio rotante o vibrante)<br>
+	          2. separazione delle frazioni solide grossolane (vagliatura -
+	              vaglio rotante o vibrante) + ossigenazione della frazione
+	              liquida chiarificata<br>
+	          3. separazione delle frazioni solide grossolane (vagliatura -
+	              separatore cilindrico rotante o a compressione elicoidale)<br>
+	          4. separazione delle frazioni solide grossolane (vagliatura -
+	              separatore cilindrico rotante o a compressione elicoidale)
+	              + ossigenazione della frazione liquida chiarificata<br>
+	          5. separazione meccanica delle frazioni solide (centrifuga o
+	              nastropressa)<br>
+	          6. separazione meccanica delle frazioni solide (centrifuga o
+	              nastropressa) + ossigenazione della frazione liquida
+	              chiarificata<br>
+	          7. separazione meccanica delle frazioni solide (centrifuga o
+	              nastropressa) + trattamento aerobico a fanghi attivi
+	              (nitri-denitrificazione) della frazione liquida
+	              chiarificata per abbattimento del tenore di N del 90%<br>
+	          8. altre tipologie di trattamento o combinazioni di più
+	              trattamenti (descrivere nel campo note)
+	        </p>        
+
+        </div>      
+        <!-- @@blkNoErr -->    
+        
+      </div>      
+      <hr />
+      <!-- PIE' DI PAGINA -->
+      $$footer

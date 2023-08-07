@@ -1,0 +1,160 @@
+$$head
+<script type="text/javascript" src="../js/checktext.js"></script>  
+<script type="text/javascript">
+  
+  function confermaAzienda(provenienza) 
+  {
+	  if(provenienza == 'newInserimentoAzAss')
+	  {
+	    if(document.sceltaAzienda.idAzienda != null) 
+	    {
+	      var radio;
+	      for(var i = 0; i < document.sceltaAzienda.idAzienda.length || i < 1; i++) 
+	      {
+	        radio = document.sceltaAzienda.idAzienda[i];
+	        if(radio == null) 
+	        {
+	          radio = document.sceltaAzienda.idAzienda;
+	        }
+	        if(radio.checked == true) 
+	        {
+	          var idAzienda = radio.value;
+	          var cuaa = document.sceltaAzienda.cuaa[i];
+	          var partitaIva = document.sceltaAzienda.partitaIva[i];
+	          var denominazione = document.sceltaAzienda.denominazione[i];
+	          if(cuaa == null) 
+	          {
+	            cuaa = document.sceltaAzienda.cuaa;
+	          }
+	          if(partitaIva == null) 
+	          {
+	            partitaIva = document.sceltaAzienda.partitaIva;
+	          }
+	          if(denominazione == null) 
+	          {
+	            denominazione = document.sceltaAzienda.denominazione;
+	          }
+	            
+	          opener.document.form1.cuaa.value = cuaa.value;
+	          opener.document.form1.partitaIva.value = partitaIva.value;
+	          opener.document.form1.denominazione.value = denominazione.value;
+	          opener.document.form1.idAzienda.value = idAzienda;
+	          opener.document.form1.indirizzoIns.disabled = "true";
+			      opener.document.form1.provinciaIns.disabled = "true";
+			      opener.document.form1.comuneIns.disabled = "true";
+			      opener.document.form1.capIns.disabled = "true";
+			      opener.document.getElementById("scegliComune").href="#";
+	          window.close();
+	          return;
+	        }
+	      }
+	      alert('Selezionare un\'azienda!');
+	    }
+	  }
+	  
+	}
+	
+	
+	function sbloccaDatiIns(provenienza) 
+  {
+    <!-- @@blkAbilitaScript -->
+    if(provenienza == 'newInserimentoAzAss')
+    {
+      opener.document.form1.idAzienda.value = "";
+      opener.document.form1.erroreIns.value = "";
+	    opener.document.form1.indirizzoIns.disabled = "";
+	    opener.document.form1.provinciaIns.disabled = "";
+	    opener.document.form1.comuneIns.disabled = "";
+	    opener.document.form1.capIns.disabled = "";
+	    opener.document.getElementById("scegliComune").href="javascript: scegliComune('../view/sceltaComuneView.jsp','scegli_comune',"+
+        "'600','300','yes',document.form1.provinciaIns.value,document.form1.comuneIns.value,"+
+        "'newInserimentoAzAss');";
+	  }
+	  <!-- @@blkAbilitaScript -->
+  }
+</script>  
+  
+  
+</head>
+<body id="popup" onLoad="javascript:sbloccaDatiIns('$$provenienza');">
+  <form name="sceltaAzienda" id="sceltaAzienda" method="post" action="../layout/popElencoAziendeAjax.htm">
+    <input type="hidden" id="paginaCorrente" name="paginaCorrente" value="$$currPage"/>
+    <input type="hidden" id="totalePagine" name="totalePagine" value="$$totPage"/>
+    <input type="hidden" id="numeroRecord" name="numeroRecord" value="$$numeroRecord"/>
+    <input type="hidden" id="operazione" name="operazione" value="$$operazione"/>
+    <input type="hidden" id="provenienza" name="provenienza" value="$$provenienza"/>
+    <!-- CORPO -->
+    <!-- @@blkNoErrore -->
+    <div id="contenutopop">
+    <h3>Elenco aziende</h3>
+    <hr/>
+      <div class="pulsanti">
+        <div class="sin">
+          <a href="javascript:confermaAzienda('$$provenienza');" title="conferma">conferma</a>
+        </div>
+        <div class="des">
+          <a href="javascript:window.close();" title="chiudi">chiudi</a>
+        </div>
+      </div>
+      <hr />
+  	  <p class="allineaDx">Aziende estratte : $$numeroRecord
+        <span>
+          <!--@@bottoneIndietro-->
+            <a href="javascript: goToOperazione('../layout/popElencoAziende.htm', document.sceltaAzienda, 'indietro');">indietro</a>
+          <!--@@bottoneIndietro-->
+          pagina $$currPage di $$totPage
+          <!--@@bottoneAvanti-->
+            <a href="javascript: goToOperazione('../layout/popElencoAziende.htm', document.sceltaAzienda, 'avanti');">avanti</a>
+          <!--@@bottoneAvanti-->
+        </span>
+      </p>
+      <table border="0" cellspacing="3">
+  		  <tr>
+  		    <th rowspan="2" class="radio"></th>
+  		    <th rowspan="2" class="center" scope="col">Denominazione</th>
+  		    <th rowspan="2" class="center" scope="col">CUAA(cod.fisc.)</th>
+  		    <th rowspan="2" class="center" scope="col">Partita IVA</th>
+  		    <th colspan="3" class="center" scope="col">Sede Legale</th>
+  		  </tr>
+  		  <tr>
+  		    <th class="center" scope="col">Comune (pv)</th>
+  		    <th class="center" scope="col">Indirizzo</th>
+  		    <th class="center" scope="col">CAP</th>
+  		  </tr>
+        <!--@@rigaAnagrafica-->
+  		  <tr>
+  		    <th scope="row" class="radio">
+            <input type="radio" id="idAzienda" name="idAzienda" value="$$idAzienda" $$checked/>
+          </th>
+  		    <td>$$denominazione</td>
+  		    <td>$$cuaa</td>
+    		  <td>$$partitaIVA</td>
+    		  <td>$$comune</td>
+  		    <td>$$indirizzo</td>
+    		  <td>$$cap
+            <input type="hidden" id="denominazione" name="denominazione" value="$$denominazione"/>
+            <input type="hidden" id="cuaa" name="cuaa" value="$$cuaa"/>
+            <input type="hidden" id="partitaIva" name="partitaIva" value="$$partitaIVA"/>
+          </td>
+  		  </tr>
+        <!--@@rigaAnagrafica-->
+  		</table>
+      
+      <hr />
+      <div class="pulsanti">
+        <div class="sin">
+          <a href="javascript:confermaAzienda('$$provenienza');" title="conferma">conferma</a>
+        </div>
+        <div class="des"><a href="javascript:window.close();" title="chiudi">chiudi</a></div>
+      </div>
+      
+      <!-- @@blkNoErrore -->
+      <!-- @@blkErrore -->
+        <p class="errore">
+        $$messaggioErrore
+        </p>
+      <!-- @@blkErrore -->
+    </div>  
+  </form>
+</body>
+</html>

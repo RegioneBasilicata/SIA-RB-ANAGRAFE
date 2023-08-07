@@ -1,0 +1,665 @@
+$$head
+<script src="../js/checktext.js" type="text/javascript"></script>
+<script type="text/javascript" src="../js/messaggistica.js"></script>
+</head>
+<body id="homeIndice" onLoad="systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+  <form id="form1" name="form1" method="post"
+    action="../layout/unitaArboreeDettaglio.htm">
+    <input type="hidden" name="abaco" value="abaco" id="abaco" />
+    <input type="hidden" name="idUnita" value="$$idUnita" />
+    <input type="hidden" name="idParticella" value="$$idParticella" id="idParticella" />
+    <div id="pagina" class="colonnaUnica">
+      <!-- INTESTAZIONE -->
+      <div id="intestazione##pathProvincia">
+        $$header
+        <!-- menu di navigazione-->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li>
+                <a href="../layout/index.htm"
+                  title="Torna alla pagina principale">home</a>
+              </li>
+              <li class="attivo">
+                gestione anagrafe aziende
+              </li>
+              <li>
+                <a href="#" title="contatti">contatti</a>
+              </li>
+              <li>
+                <a href="#" title="help">help</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div style="clear: left"></div>
+      <!-- CORPO -->
+      <div id="corpo">
+        <div id="Utente">
+          <div id="datiUtente">
+            <strong>utente:</strong> $$utente &nbsp; &nbsp;
+            <strong>ente:</strong> $$ente
+          </div>
+          <div id="chiudisessione">
+            <a href="javascript:logout();">chiudi sessione</a>
+          </div>
+        </div>
+        <hr />
+        <!--PRIMA COLONNA -->
+        <h3>
+          Gestione Anagrafe Aziende&nbsp;&gt;&nbsp;Unit&agrave;
+          vitate&nbsp;&gt;&nbsp;Dettaglio
+          <span class="helpFuori"> <a href="#"> <span
+              class="alt">[help]</span> </a> </span>
+        </h3>
+        <hr />
+        <div class="box">
+          <div class="menuSX1">
+            <ul>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <li>
+                <a href="../layout/elencoAziendeRapLegale.htm">Elenco
+                  Aziende</a>
+              </li>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <!-- @@blkRicercaAzienda-->
+              <li>
+                <a href="../layout/ricerca.htm">Ricerche</a>
+              </li>
+              <!-- @@blkRicercaAzienda-->
+              <!-- @@blkNuova -->
+              <li>
+                <a href="../layout/nuovaAziendaAnagrafica.htm">Nuova
+                  Azienda</a>
+              </li>
+              <!-- @@blkNuova -->
+              <!-- @@blkNuovaIscrizione -->
+              <li>
+                <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+              </li>
+              <!-- @@blkNuovaIscrizione -->
+            </ul>
+          </div>
+          <div class="menuSX">
+            <ul>
+              <li>
+                <a href="../layout/anagrafica.htm">Anagrafica</a>
+              </li>
+              <!-- @@blkAziendeCollegate -->
+              <li>
+                <a href="../layout/aziendeCollegate.htm">$$aziendeCollegateLabel</a>
+              </li>
+              <!-- @@blkAziendeCollegate -->
+              <!-- @@blkSincronizzaFascicolo -->
+               <li>
+               	<a href="../layout/sincronizzaFascicolo.htm">Sincronizza fascicolo</a>
+               </li>
+              <!-- @@blkSincronizzaFascicolo -->
+              <!-- @@blkSoggettiCollegati -->
+              <li>
+                <a href="../layout/contitolari.htm">Soggetti
+                  collegati</a>
+              </li>
+              <!-- @@blkSoggettiCollegati -->
+              <!-- @@blkContiCorrenti -->
+              <li>
+                <a href="../layout/conti_correnti.htm">Conti
+                  Correnti</a>
+              </li>
+              <!-- @@blkContiCorrenti -->
+              <!-- @@blkUnitaProduttive -->
+              <li>
+                <a href="../layout/sedi.htm">Unit&agrave; produttive</a>
+              </li>
+              <!-- @@blkUnitaProduttive -->
+              <!-- @@blkTerreni -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniParticellareElenco.htm">Terreni</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		            <a href="../layout/riepiloghi.htm">Terreni</a>
+		            <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkTerreni -->
+              <!-- @@blkUnitaVitate -->
+              <li>
+                <!-- @@blkLinkElenco -->
+                <a href="../layout/terreniUnitaArboreeElenco.htm" class="on">Unit&agrave; Vitate</a>
+                <!-- @@blkLinkElenco -->
+                <!-- @@blkLinkRiepiloghi -->
+                <a href="../layout/riepiloghiUnitaArboree.htm" class="on">Unit&agrave; Vitate</a>
+                <!-- @@blkLinkRiepiloghi -->  
+                <ul>                  
+                  <li>
+                    <a href="#" class="etichetta">dettaglio</a>
+                  </li>
+                </ul>                  
+              </li>
+              <!-- @@blkUnitaVitate -->
+              <!-- @@blkFabbricati -->
+              <li>
+                <a href="../layout/fabbricati.htm">Fabbricati e
+                  Strutture</a>
+              </li>
+              <!-- @@blkFabbricati -->
+              <!-- @@blkAllevamenti -->
+              <li>
+                <a href="../layout/allevamenti.htm">Allevamenti</a>
+              </li>
+              <!-- @@blkAllevamenti -->
+              <!-- @@blkManodopera -->
+              <li>
+                <a href="../layout/manodopera.htm">Manodopera</a>
+              </li>
+              <!-- @@blkManodopera -->
+              <!-- @@blkMotoriAgricoli -->
+              <li>
+                <a href="../layout/motori_agricoli_incarico.htm">Macchine agricole</a>
+              </li>
+              <!-- @@blkMotoriAgricoli -->
+              <!-- @@blkDiritti -->
+              <li>
+                <a href="../layout/diritti.htm">Diritti di
+                  produzione</a>
+              </li>
+              <!-- @@blkDiritti -->
+              <!-- @@blkAttestazioni -->
+              <li>
+                <a href="../layout/attestazioniDettaglio.htm">Dichiarazioni</a>
+              </li>
+              <!-- @@blkAttestazioni -->
+              <!-- @@blkDichiarazioniConsistenza -->
+              <li>
+                <a href="../layout/dichiarazioneConsistenza.htm">Validazioni</a>
+              </li>
+              <!-- @@blkDichiarazioniConsistenza -->
+              <!-- @@blkDocumenti -->
+              <li>
+                <a href="../layout/documentiElenco.htm">Documenti</a>
+              </li>
+              <!-- @@blkDocumenti -->
+              <!-- @@blkFascicoloDematerializzato -->
+              <li>
+                <a href="../layout/fascicoloDematerializzato.htm">Fascicolo<br>elettronico</a>
+              </li>
+              <!-- @@blkFascicoloDematerializzato -->
+              <!-- @@blkGestioneNotifiche -->
+              <li>
+                <a href="../layout/notifiche.htm">Notifiche</a>
+              </li>
+              <!-- @@blkGestioneNotifiche -->
+              <!-- @@blkComunicazione10R -->
+              <li>
+                <a href="../layout/comunicazione10R_dettaglio.htm">Comunicazione
+                  10/R</a>
+              </li>
+              <!-- @@blkComunicazione10R -->
+              <!-- @@blkPratiche -->
+              <li>
+                <a href="../layout/pratiche.htm">Pratiche</a>
+              </li>
+              <!-- @@blkPratiche -->
+              <!-- @@blkStampaFascicolo -->
+              <li>
+                <a href="../layout/scelta_stampa.htm">Stampe</a>
+              </li>
+              <!-- @@blkStampaFascicolo -->
+			  <li><a href="../layout/strumenti.htm">Strumenti</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr />
+        <div id="contenuto">
+          <div id="intesta">
+            <p class="$$aziendaIntestazione" title="$$tooltipIntestazione" >
+              $$CUAAIntestazione  $$denominazioneIntestazione
+            </p>
+          </div>
+          <!-- @@blkDatiDettaglio -->
+          <table cellspacing="3"
+            summary="Tabella contenente i dati logici della particella">
+            <tr>
+              <th class="center" scope="col"></th>
+              <th class="center" scope="col">
+                Comune
+              </th>
+              <th class="center" scope="col">
+                <acronym title="Sezione">Sz.</acronym>
+              </th>
+              <th class="center" scope="col">
+                <acronym title="Foglio">Fgl.</acronym>
+              </th>
+              <th class="center" scope="col">
+                <acronym title="Particella">Part.</acronym>
+              </th>
+              <th class="center" scope="col">
+                <acronym title="Subalterno">Sub.</acronym>
+              </th>
+              <th class="center" scope="col">
+                <acronym title="Superficie Catastale">Sup. cat.</acronym>
+              </th>
+              <th class="center" scope="col">
+                <acronym title="Superficie Grafica">Sup. grafica</acronym>
+              </th>
+              <th class="center" scope="col">
+                <acronym title="Superficie Eleggibile">Sup. elegg.</acronym>
+              </th>
+              <th scope="col" class="center">&nbsp;
+                
+              </th>
+            </tr>
+            <tr>
+              <td class="radio">
+                <a
+                  href="javascript: newWindowDoForm('../layout/abacoGis.htm?idStoricoParticella=$$idStoricoParticella', 'abaco', '1000','700','yes', 'GIS');"
+                  title="GIS - Attenzione: questo link si apre in una nuova finestra"
+                  class="gis"></a>
+              </td>
+              <td>
+                $$descComuneParticella ($$siglaProvinciaParticella)
+              </td>
+              <td>
+                $$sezione
+              </td>
+              <td class="numeridx">
+                $$foglio
+              </td>
+              <td class="numeridx">
+                $$particella
+              </td>
+              <td>
+                $$subalterno
+              </td>
+              <td class="numeridx">
+                $$supCatastale
+              </td>
+              <td class="numeridx">
+                $$superficieGrafica
+              </td>
+              <td class="numeridx">
+                $$supEleggibile
+              </td>
+              <td class="piccola">
+                <div class="azioni">
+                  <a
+                    href="javascript:newWindowDoForm('../layout/popupVariazioniParticella.htm', 'storico', '800', '400', 'yes');"
+                    title="Visualizza storico - Attenzione: questo link si apre in una nuova finestra">visualizza
+                    storico</a>
+                </div>
+              </td>
+            </tr>
+          </table>
+          
+          
+          <div id="indice">
+            <span class="evidenza">Unita' Vitata</span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+            <span class="voce"> 
+              <a href="javascript:goTo('../layout/unitaArboreeDettaglioPratiche.htm', document.forms[0]);">Pratiche</a>
+            </span>
+          </div>
+          
+          
+          
+          <table summary="Dati generali unit&agrave; arborea">
+            <caption>
+              Dati Generali
+            </caption>
+            <tr>
+              <th>
+                Progressivo
+              </th>
+              <td>
+                $$progressivo
+              </td>
+              <th>
+                Data impianto
+              </th>
+              <td>
+                $$dataImpianto
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Occupazione suolo
+              </th>
+              <td>
+                $$descUtilizzo
+              </td>
+              <th>
+                Destinazione
+              </th>
+              <td>
+                $$descDestinazione
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Uso
+              </th>
+              <td>
+                $$descDettaglioUso
+              </td>
+              <th>
+                Qualit&agrave;
+              </th>
+              <td>
+                $$descQualitaUso
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Vitigno
+              </th>
+              <td>
+                $$descVarieta
+              </td>
+              <th>
+                Anno riferimento
+              </th>
+              <td>
+                $$annoRiferimento
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Data prima produzione
+              </th>
+              <td>
+                $$dataPrimaProduzione
+              </td>
+              <th>
+                Irrigazione
+              </th>
+              <td>
+                $$descIrrigazione
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Forma allevamento
+              </th>
+              <td>
+                $$descFormaAllevamento
+              </td>
+              <th>
+                Data sovrainnesto
+              </th>
+              <td>
+                $$dataSovrainnesto
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Intervento
+              </th>
+              <td>
+                $$descIntervento
+              </td>
+              <th>
+                Data intervento
+              </th>
+              <td>
+                $$dataIntervento
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Superficie vitata
+              </th>
+              <td>
+                $$area
+              </td>
+              <th>
+                Sesto su fila
+                <acronym title="centimetri">(cm)</acronym>
+              </th>
+              <td>
+                $$sestoSuFila
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Sesto tra file
+                <acronym title="centimetri">(cm)</acronym>
+              </th>
+              <td>
+                $$sestoTraFile
+              </td>
+              <th>
+                <acronym title="Numero">N.</acronym> ceppi
+              </th>
+              <td>
+                $$numeroCeppi
+              </td>
+            </tr>
+            <tr>
+              <th>
+                &#37; Fallanza
+              </th>
+              <td>
+                $$percentualeFallanza
+              </td>
+              <th>
+                Superficie improduttiva
+              </th>
+              <td>
+                $$flagImproduttiva
+              </td>
+            </tr>
+            <tr>
+              <th>
+                &#37; Vitigno
+              </th>
+              <td>
+                $$percentualeVarieta
+              </td>
+              <th>
+                Altri vitigni
+              </th>
+              <td>
+                $$altriVitigni
+              </td>
+            </tr>
+            <tr>              
+              <th>
+                Coltura specializzata
+              </th>
+              <td>
+                $$colturaSpecializzata
+              </td>
+              <th>
+                Ricaduta
+              </th>
+              <td>
+                $$ricaduta
+              </td>
+            </tr>
+          </table>
+          <!-- @@blkAltriVitigni -->
+          <table summary="Elenco altri vitigni">
+            <caption>
+              Altri vitigni
+            </caption>
+            <tr>
+              <th class="center" scope="col">
+                Vitigno
+              </th>
+              <th class="center" scope="col">
+                Percentuale
+              </th>
+            </tr>
+            <!-- @@blkElenco -->
+            <tr>
+              <td>
+                $$varietaVitigni
+              </td>
+              <td class="numeridx">
+                $$percentualeVitigno
+              </td>
+            </tr>
+            <!-- @@blkElenco -->
+          </table>
+          <!-- @@blkAltriVitigni -->
+
+          <table summary="Dati vino unit&agrave; arborea">
+            <caption>
+              Dati di idoneita' alla D.O.
+            </caption>
+            <tr>
+              <th class="w15">
+                Idoneita'
+              </th>
+              <td>
+                $$descTipologiaVino
+              </td>
+              <th class="w15">
+                Anno idoneita'
+              </th>
+              <td>
+                $$annoIscrizioneAlbo
+              </td>
+              <th class="w15">
+                Resa
+                </br>
+                (q/ha)
+              </th>
+              <td colspan="3">
+                $$resa
+              </td>
+            </tr>
+            <tr>
+              <th class="w15">
+                Provincia
+              </th>
+              <td>
+                $$provinciaCCIAA
+              </td>
+              <th class="w15">
+                Matricola
+              </th>
+              <td>
+                $$matricolaCCIAA
+              </td>
+              <th class="w15">
+                Vino DOC
+              </th>
+              <td>
+                <input type="checkbox" id="checkVinoDoc"
+                  name="checkVinoDoc" disabled $$checkedVinoDoc value="" />
+              </td>
+              <th class="w15">
+                Codice MIPAF
+              </th>
+              <td>
+                $$codiceMipaf
+              </td>
+            </tr>
+            <tr>
+              <th class="w15">
+                Menzione</br>geografica
+              </th>
+              <td>
+                $$menzioneGeografica
+              </td>
+              <th class="w15">
+                Genere</br>idoneit&agrave;
+              </th>
+              <td>
+                $$genereIscrizione
+              </td>
+              <th class="w15">
+                Densit&agrave; numero ceppi (ceppi/ha)
+              </th>
+              <td>
+                $$densitaNumCeppiHa
+              </td>
+              <th class="w15">
+                Annotazione in etichetta
+              </th>
+              <td>
+                $$annotazioneEtichetta
+              </td>
+            </tr>
+            <tr>
+              <th class="w15">
+                Vigna
+              </th>
+              <td colspan="3">
+                $$vigna
+              </td>
+              <th class="w15">
+                Vigna elenco regionale
+              </th>
+              <td colspan="4" >
+                $$provVignaRegionale
+              </td>
+            </tr>
+          </table>
+          <!-- @@blkDocRicaduta -->
+          <table>
+             <caption>Doc di ricaduta/resa</caption>
+             <tr>
+               <th class="center" >Tipologia di Vino</th>
+               <th class="center" >Resa(q/ha)</th>
+               <th class="center" >Tipologia di Vino</th>
+               <th class="center" >Resa (q/ha)</th>
+             </tr>
+             <!-- @@blkElencoDocRicaduta -->
+             <tr>
+               <td>$$docRicadutaZero</td>
+               <td>$$resaRicadutaZero</td>
+               <td>$$docRicadutaUno</td>
+               <td>$$resaRicadutaUno</td>
+             </tr>
+             <!-- @@blkElencoDocRicaduta -->
+          </table>
+          <!-- @@blkDocRicaduta -->
+          <table class="detailTable" summary="Validita unit&agrave; arborea">
+            <caption>
+              Validit&agrave;
+            </caption>
+            <tr>
+              <th>
+                Data fine validit&agrave;
+              </th>
+              <td>
+                $$dataFineValidita
+              </td>
+            </tr>
+            <tr>
+              <th>
+                $$labelAggiornamento
+              </th>
+              <td>
+                $$descCausaleModifica
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Ultima modifica unit&agrave vitata
+              </th>
+              <td>
+                $$ultimaModificaVw
+              </td>
+            </tr>
+          </table>
+          <p class="nota">
+            Tutte le superfici sono espresse in ettari (ha)
+          </p>
+          <!-- @@blkDatiDettaglio -->
+          <!-- @@blkErrore -->
+          <p class="errore">
+            $$messaggioErrore
+          </p>
+          <!-- @@blkErrore -->
+        </div>
+      </div>
+  </form>
+  $$footer

@@ -1,0 +1,266 @@
+$$head
+  <script src="../js/checktext.js" type="text/javascript"></script>
+  <script type="text/javascript" src="../js/messaggistica.js"></script>
+</head>
+<body id="homeIndice" onload="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+  <form name="form1" method="POST" action="../layout/fascicoli.htm">
+    <input type="hidden" name="operazione" value="$$operazione"/>
+    <input type="hidden" name="ricarica" value="$$ricarica"/>
+    <div id="pagina" class="colonnaUnica">
+      <!-- INTESTAZIONE -->
+      <div id="intestazione##pathProvincia">
+        $$header
+        <!-- menu di navigazione-->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li><a href="../layout/index.htm" title="Torna alla pagina principale">home</a></li>
+              <li class="attivo">gestione anagrafe aziende</li>
+              <li><a href="#" title="contatti">contatti</a></li>
+              <li><a href="#" title="help">help</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr/>
+      <div style="clear:left">  </div>
+      <!-- CORPO -->
+      <div id="corpo">
+        <div id="Utente">
+          <div id="datiUtente">
+            <strong>utente:</strong>
+            $$utente
+            &nbsp;
+            &nbsp;
+            <strong>ente:</strong>
+            $$ente
+          </div>
+          <div id="chiudisessione">
+            <a href="javascript: logout();">chiudi sessione</a>
+          </div>
+        </div>
+        <hr/>
+        <!--PRIMA COLONNA -->
+        <h3>Reportistica&nbsp;&gt;&nbsp;Fascicoli
+          <span class="helpFuori">
+            <a href="#">
+              <span class="alt">[help]</span>
+            </a>
+          </span>
+        </h3>
+        <hr/>
+        <div class="box">
+          <div class="menuSX1">
+            <ul>
+              <!-- @@blkElencoAziendeRapLegale -->
+                <li><a href="../layout/elencoAziendeRapLegale.htm">Elenco Aziende</a></li>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <!-- @@blkRicercaAzienda-->
+                <li><a href="../layout/ricerca.htm">Ricerca Azienda</a></li>
+              <!-- @@blkRicercaAzienda-->
+              <!--@@blkRicercaTerreno-->
+              <li><a href="../layout/ricercaTerreno.htm">Ricerca Terreno</a></li>
+              <!--@@blkRicercaTerreno-->
+              <!--@@blkRicercaPersona-->
+                <li><a href="../layout/ricercaPersona.htm">Ricerca Persona</a></li>
+              <!--@@blkRicercaPersona-->
+              <!--@@blkRicercaNotifica-->
+              <li><a href="../layout/ricercaNotifica.htm">Ricerca Notifiche</a></li>
+              <!--@@blkRicercaNotifica-->
+              <!--@@blkVariazioniAzienda-->
+                <li><a href="../layout/ricercaVariazioni.htm" >Ricerca Variazioni</a></li>
+              <!--@@blkVariazioniAzienda-->
+              <!--@@blkRicercaRichiesta-->
+                <li><a href="../layout/ricercaRichiesta.htm">Ricerca richiesta azienda</a></li>
+              <!--@@blkRicercaRichiesta-->
+              <!--@@blkNuova-->
+              <li><a href="../layout/nuovaAziendaAnagrafica.htm">Nuova Azienda</a></li>
+              <!--@@blkNuova-->
+              <!-- @@blkNuovaIscrizione -->
+		          <li>
+		            <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+		          </li>
+		          <!-- @@blkNuovaIscrizione -->
+              <!--@@blkNuovaParticella-->
+              <li>
+                <a href="../layout/inserisciTerreno.htm">Nuova Particella</a>
+              </li>
+              <!--@@blkNuovaParticella-->
+              <!--@@blkServizi-->
+                <li><a href="../layout/servizi.htm" >Servizi</a></li>
+              <!--@@blkServizi-->
+              <li><a href="../layout/elencoRicerche.htm" class="on">Reportistica</a></li>
+              <!--@@blkEstrazioneDati-->
+              <li><a href="../layout/macroCategoriaReport.htm">Estrazione dati</a></li>
+              <!--@@blkEstrazioneDati-->
+              <li><a href="../layout/elencoManuali.htm">Scarico Documentazione Tecnica</a></li>  	          
+            </ul>
+          </div>
+        </div>
+        <hr/>
+        <!-- SECONDA COLONNA -->
+        <div id="contenuto">
+          <table cellspacing="3" summary="Questa tabella contiene i dati del fascicolo">
+            <col width="30%"/>
+            <col width="70%"/>
+            <tr>
+              <th scope="row">
+                <label for="caa">C.A.A.</label>
+              </th>
+              <td>
+                <select id="idIntermediario" name="idIntermediario" class="textmediolungo">
+                  <option value=""></option>
+                  <!-- @@blkElencoCAA -->
+                  <option value="$$codice" $$selected>$$descrizione</option>
+                  <!-- @@blkElencoCAA -->
+                </select>
+                $$err_idIntermediario
+              </td>
+            </tr>
+          </table>
+          <table cellspacing="3" summary="Questa tabella è costituita da righe">
+            <col width="30%"/>
+            <col width="70%"/>
+            <tr>
+			<!--  modifica del 3luglio2007
+			
+			              <th>Stato fascicolo</th>
+              <td>
+                <input class="radio" type="radio" name="statoFascicolo" value="tutti" id="tutti" />
+                <label for="tutti">tutti i fascicoli</label>
+                <br/>
+                <input class="radio" type="radio" name="statoFascicolo" value="daValidare" id="davalidare" />
+                <label for="davalidare">da validare per variazione consistenza aziendale</label>
+                <br/>
+                <input class="radio" type="radio" name="statoFascicolo" value="validatiDalAl" id="convalidazione" />
+                <label for="convalidazione">con validazione</label>
+                <label for="convalidazione_dal">dal</label>
+                <input name="convalidazione_dal" id="convalidazione_dal" type="text" class="textmedio" value="$$dal"/>$$err_dal
+                <label for="convalidazione_al">al</label>
+                <input name="convalidazione_al" id="convalidazione_al" type="text" class="textmedio" value="$$al"/>$$err_al
+                <br/>
+                <input class="radio" type="radio" name="statoFascicolo" value="validatiDalAl" id="senzavalidazione" />
+                <label for="senzavalidazione">senza validazione</label>
+                <label for="senzavalidazione_dal">dal</label>
+                <input name="senzavalidazione_dal" id="senzavalidazione_dal" type="text" class="textmedio" value="$$dal"/>$$err_dal
+                <label for="senzavalidazione_al">al</label>
+                <input name="senzavalidazione_al" id="senzavalidazione_al" type="text" class="textmedio" value="$$al"/>$$err_al
+               <br/>
+                <input class="radio" type="radio" name="statoFascicolo" value="daValidare" id="anomalie" />
+                <label for="anomalie">con anomalie</label>&nbsp;<label for="documentali">documentali</label> 
+				<select id="documentali"><option selected="selected">Tutte</option>
+						<option>DOCUMENTI SCADUTI NELL'ANNO</option><option>PARTICELLE IN AFFITTO SENZA DOCUMENTI VALIDI</option>				
+						<option>DOCUMENTI IN MEZZADRIA SENZA DOCUMENTI VALIDI</option></select>
+                </td>
+
+			fine modifica del 3luglio2007			
+			 -->
+			
+			
+              <th>Stato fascicolo</th>
+              <td>
+                <input class="radio" type="radio" name="statoFascicolo" value="tutti" id="tutti" $$checkedTutti/>
+                <label for="tutti">tutti i fascicoli</label>
+                <br/>
+                <input class="radio" type="radio" name="statoFascicolo" value="incompleto" id="incompleto" $$checkedIncompleto/>
+                <label for="incompleto">con piano colturale incompleto</label>
+                <br/>
+                <input class="radio" type="radio" name="statoFascicolo" value="daValidare" $$checkedDaValidare/>
+                <label for="valid">da validare (fascicoli modificati dopo l'ultima dichiarazione di consistenza)</label>
+                <br/>
+                <input class="radio" type="radio" name="statoFascicolo" value="validatiDalAl" id="validati" $$checkedValidatiDalAl/>
+                <label for="tutti">validati</label>
+                <label for="dal">dal</label>
+                <input name="dal" id="dal" type="text" class="textmedio" value="$$dal"/>$$err_dal
+                <label for="al">al</label>
+                <input name="al" id="al" type="text" class="textmedio" value="$$al"/>$$err_al
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <div class="azioni">
+                  <a href="javascript:goToOperazione(document.form1.action, document.form1, 'ricerca');">ricerca</a>
+                </div>
+              </td>
+            </tr>
+          </table>
+          <!-- @@blkAreaResults -->
+            <div class="pulsanti">
+              <div class="sin">
+                <label for="seleziona" class="alt">esporta dati</label>
+                <input id="seleziona" name="scarica" type="button" value="esporta dati" onclick="javascript: goToOperazione('../layout/fascicoli.htm', document.form1,'scarica');" class="inputPulsante"/>
+              </div>
+              <div class="des">
+                <label for="salva" class="alt">dettaglio</label>
+                <input id="dettaglio" name="dettaglio" type="button" value="dettaglio" onclick="javascript: submitForm('../layout/anagrafica.htm', document.form1, document.form1.idAzienda);" class="inputPulsante"/>
+              </div>
+            </div>
+            <div class="paginazione">
+              <span class="sx">$$numeroTotAziende risultati trovati</span>
+              <div class="dx">
+                <label for="numsub1">pagina</label>
+                <input type="text" name="numeroParziale" value="$$numeroParziale" id="numeroParziale" onkeypress="javascript: simulateButtonEventByInvio(document.form1.vai);"/> di $$numeroTotale
+                <span class="vai">
+                  <input type="submit" name="vai" value="vai" class="vaiInput"/>
+                </span>
+		$$err_numeroParziale
+                <!-- @@frecciaSinistra -->
+                  <a href="javascript:freccia('../layout/fascicoli.htm','0', document.form1);" title="vai alla prima pagina">prima</a>
+                  <span class="bugFix">&nbsp;|&nbsp;</span>
+                  <a href="javascript:freccia('../layout/fascicoli.htm','$$valore', document.form1);">&lt;&lt; prec</a>
+                <!-- @@frecciaSinistra -->
+                $$barretta <!--non togliere -->
+                <!-- @@frecciaDestra -->
+                  <a href="javascript:freccia('../layout/fascicoli.htm','$$valore', document.form1);">succ &gt;&gt;</a>
+                  <span class="bugFix">&nbsp;|&nbsp;</span>
+                  <a href="javascript:freccia('../layout/fascicoli.htm','$$valoreUltimaPagina', document.form1);" title="vai all'ultima pagina">ultima</a>
+                <!-- @@frecciaDestra -->
+                <input type="hidden" id="valoreIndice" name="valoreIndice"/>
+                <input type="hidden" id="pagina" name="pagina" value="$$pagina"/>
+              </div>
+            </div>
+            <table summary="Questa tabella è costituita da colonne" cellspacing="3">
+              <tr>
+                <th class="radio" scope="col"></th>
+                <th class="center" scope="col">Denominazione</th>
+                <th class="center" scope="col">CUAA</th>
+                <th class="center" scope="col">Partita iva</th>
+                <th class="center" scope="col">Sede legale</th>
+              </tr>
+              <!-- @@blkListAziende -->
+                <tr>
+                  <th class="radio" scope="row">
+                    <input class="radio" type="radio" name="idAzienda" value="$$idAzienda"/>
+                    <label for="radioDettaglio" class="alt"></label>
+                  </th>
+                  <td>$$denominazione</td>
+                  <td>$$CUAA</td>
+                  <td>$$partitaIVA</td>
+                  <td>$$descSedelegComune($$sedelegProvincia) $$sedelegIndirizzo</td>
+                </tr>
+              <!-- @@blkListAziende -->
+            </table>
+            <div class="pulsanti">
+              <div class="sin">
+                <label for="seleziona" class="alt">esporta dati</label>
+                <input id="seleziona" name="scarica" type="button" value="esporta dati" onclick="javascript: goToOperazione('../layout/fascicoli.htm', document.form1,'scarica');" class="inputPulsante"/>
+              </div>
+              <div class="des">
+                <label for="salva" class="alt">dettaglio</label>
+                <input id="dettaglio" name="dettaglio" type="button" value="dettaglio" onclick="javascript: submitForm('../layout/anagrafica.htm', document.form1, document.form1.idAzienda);" class="inputPulsante"/>
+              </div>
+            </div>
+          <!-- @@blkAreaResults -->
+          <!-- @@blkErrore -->
+          <p class="errore">$$messaggio</p>
+          <!-- @@blkErrore -->
+        </div>
+      </div>
+      <hr/>
+      <!-- PIE' DI PAGINA -->
+    </form>
+    $$footer
+

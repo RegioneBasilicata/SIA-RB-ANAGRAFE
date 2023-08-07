@@ -1,0 +1,343 @@
+$$head
+<link rel="stylesheet" href="../css/jQueryAnag.css" />
+<link href="/ris/css/smrgaaweb/fascicolo.css" rel="stylesheet" type="text/css" /> 
+
+<script src="../js/checktext.js" type="text/javascript"></script>
+<script type="text/javascript" src="../js/messaggistica.js"></script>
+<script>  
+
+  function newWindowPianoGrafico(mypage, myname, w, h, scroll, form) 
+  {
+    var winl = (screen.width - w) / 2;
+    var wint = (screen.height - h) / 2;
+    
+    var sceltaCombo  = document.getElementById('idDichiarazioneConsistenza').value;
+    var strToken = sceltaCombo.split('_');
+    var idDichiarazioneConsistenza = strToken[0];
+    var codice = strToken[1];
+    var idAccessoPianoGrafico = strToken[2];
+    //alert("idDichiarazioneConsistenza: "+idDichiarazioneConsistenza);
+    //alert("codice: "+codice);
+    //alert("idAccessoPianoGrafico: "+idAccessoPianoGrafico);
+
+    winprops =    'height='+h+',width='+w+',top='+wint+',left='+winl+',scrollbars='+scroll+',resizable';
+    win = window.open(mypage+'?idDichiarazioneConsistenza='+idDichiarazioneConsistenza
+      +'&idAccessoPianoGrafico='+idAccessoPianoGrafico+'&codiUtilita='+codice, myname, winprops);
+    if (parseInt(navigator.appVersion) >= 4) 
+    {
+      win.window.focus();
+    }
+    form.operazione.value = 'lancio';
+    form.submit();
+  }
+  
+  function refresh() 
+  {
+    document.forms[0].operazione.value = 'refresh';
+    document.forms[0].submit();
+  }
+   
+  /*function nuova_pagina(linkDaPassare,cuaa) 
+  {
+    var sceltaCombo  = document.getElementById('idDichiarazioneConsistenza').value;
+    var strToken = sceltaCombo.split('_');
+    var codice = strToken[1];
+    linkDaPassare = linkDaPassare+'?codice='+codice+'&cuaa='+cuaa;      
+    window.open(linkDaPassare,'','width=900,height=600,menubar,toolbar,resizable');
+  }*/   
+</script>
+
+<script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../js/jquery-ui-1.8.21.custom/jquery-ui-1.8.21.custom.min.js"></script>
+<script type="text/javascript">
+
+  function modificaControlli()
+  {
+  
+    var idDiv = '#risultatoControlliDiv';
+    var sceltaCombo  = document.getElementById('idDichiarazioneConsistenza').value;
+    var strToken = sceltaCombo.split('_');
+    var idDichiarazioneConsistenzaPar = strToken[0]; 
+    var codice = strToken[1];
+    var idAccessoPianoGraficoPar = strToken[2];        
+    
+    var dataInv = {
+      idDichiarazioneConsistenza: idDichiarazioneConsistenzaPar,
+      idAccessoPianoGrafico: idAccessoPianoGraficoPar
+    };
+     
+    dataInv = $.param(dataInv);    
+    
+    
+    $.ajax({
+      url: "../layout/controlliPianoGrafico.htm",
+      type: "POST",
+      data: dataInv,
+      beforeSend: function() 
+                {
+                  $(idDiv).html("<div id=\'docAttendere\'></div>");         
+                }, 
+      success: function( data ) 
+              { 
+                $(idDiv).html( data );
+              },
+       dataType: 'html'
+      
+    }); 
+  
+  }
+</script>
+</head>
+<body id="homeIndice"
+	onload="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+	<form name="form1" method="post" action="../layout/richiamoPianoGrafico.htm">
+		<input type="hidden" name="operazione" value="$$operazione" />
+		<input type="hidden" id="regimeRichiamoPianoGrafico" name="regimeRichiamoPianoGrafico" value="regimeRichiamoPianoGrafico" />
+		<div id="pagina" class="colonnaUnica">
+			<div id="intestazione">
+				$$header
+				<div id="titoloEmenu">
+					<h2>
+						<span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+					</h2>
+					<div id="menuDiNavigazione" title="Menu di navigazione">
+						<ul class="menuTendina" id="menu-2">
+							<li><a href="../layout/index.htm"
+								title="Torna alla pagina principale">home</a></li>
+							<li class="attivo">gestione anagrafe aziende</li>
+							<li><a href="#" title="contatti">contatti</a></li>
+							<li><a href="#" title="help">help</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<hr />
+			<div style="clear: left"></div>
+			<div id="corpo">
+				<div id="Utente">
+					<div id="datiUtente">
+						<strong>utente:</strong> $$utente&nbsp;&nbsp; <strong>ente:</strong>
+						$$ente
+					</div>
+					<div id="chiudisessione">
+						<a href="javascript: logout();">chiudi sessione</a>
+					</div>
+				</div>
+				<hr />
+				<h3>
+					Gestione Anagrafe
+					Aziende&nbsp;&gt;&nbsp;Terreni&nbsp;&gt;&nbsp;Piano grafico
+					<span class="helpFuori"> <a href="#"> <span class="alt">[help]</span>
+					</a>
+					</span>
+				</h3>
+				<hr />
+				<div class="box">
+					<div class="menuSX1">
+						<ul>
+							<!-- @@blkElencoAziendeRapLegale -->
+							<li><a href="../layout/elencoAziendeRapLegale.htm">Elenco
+									Aziende</a></li>
+							<!-- @@blkElencoAziendeRapLegale -->
+							<!-- @@blkRicercaAzienda-->
+							<li><a href="../layout/ricerca.htm">Ricerche</a></li>
+							<!-- @@blkRicercaAzienda-->
+							<!-- @@blkNuova -->
+							<li><a href="../layout/nuovaAziendaAnagrafica.htm">Nuova
+									Azienda</a></li>
+							<!-- @@blkNuova -->
+							<!-- @@blkNuovaIscrizione -->
+							<li><a href="../layout/newInserimentoAzienda.htm">Nuova
+									Iscrizione</a></li>
+							<!-- @@blkNuovaIscrizione -->
+						</ul>
+					</div>
+					<div class="menuSX">
+						<ul>
+							<li><a href="../layout/anagrafica.htm">Anagrafica</a></li>
+							<!-- @@blkAziendeCollegate -->
+							<li><a href="../layout/aziendeCollegate.htm">$$aziendeCollegateLabel</a>
+							</li>
+							<!-- @@blkAziendeCollegate -->
+							<!-- @@blkSincronizzaFascicolo -->
+               				<li>
+               					<a href="../layout/sincronizzaFascicolo.htm">Sincronizza fascicolo</a>
+               				</li>
+              				<!-- @@blkSincronizzaFascicolo -->
+							<!-- @@blkSoggettiCollegati -->
+							<li><a href="../layout/contitolari.htm">Soggetti
+									collegati</a></li>
+							<!-- @@blkSoggettiCollegati -->
+							<!-- @@blkContiCorrenti -->
+              <li><a href="../layout/conti_correnti.htm">Conti
+                  Correnti</a></li>
+              <!-- @@blkContiCorrenti -->
+							<!-- @@blkUnitaProduttive -->
+							<li><a href="../layout/sedi.htm">Unit&agrave; produttive</a></li>
+							<!-- @@blkUnitaProduttive -->
+							<!-- @@blkTerreni -->
+              <li>
+                <!-- @@blkLinkElenco -->
+                <a href="../layout/terreniParticellareElenco.htm"
+                  class="on">Terreni</a>
+                <ul>
+                  <li>
+                    <a href="../layout/riepiloghi.htm">riepiloghi</a>
+                  </li>
+                <!-- @@blkLinkElenco -->
+                <!-- @@blkLinkRiepiloghi -->
+                <a href="../layout/riepiloghi.htm"
+                  class="on">Terreni</a>
+                <ul>
+                  <li>
+                    <a href="../layout/terreniParticellareElenco.htm">elenco</a>
+                  </li>
+                <!-- @@blkLinkRiepiloghi -->
+                  <li>
+                    <a href="#" class="etichetta">piano grafico</a>
+                  </li>
+                </ul>
+              </li>
+              <!-- @@blkTerreni -->
+							<!-- @@blkUnitaVitate -->
+							<li>
+								<!-- @@blkLinkElenco --> <a
+								href="../layout/terreniUnitaArboreeElenco.htm">Unit&agrave;
+									Vitate</a> <!-- @@blkLinkElenco --> <!-- @@blkLinkRiepiloghi --> <a
+								href="../layout/riepiloghiUnitaArboree.htm">Unit&agrave;
+									Vitate</a> <!-- @@blkLinkRiepiloghi -->
+							</li>
+							<!-- @@blkUnitaVitate -->
+							<!-- @@blkFabbricati -->
+							<li><a href="../layout/fabbricati.htm">Fabbricati e
+									Strutture</a></li>
+							<!-- @@blkFabbricati -->
+							<!-- @@blkAllevamenti -->
+							<li><a href="../layout/allevamenti.htm">Allevamenti</a></li>
+							<!-- @@blkAllevamenti -->
+							<!-- @@blkManodopera -->
+							<li><a href="../layout/manodopera.htm">Manodopera</a></li>
+							<!-- @@blkManodopera -->
+							<!-- @@blkMotoriAgricoli -->
+							<li><a href="../layout/motori_agricoli_incarico.htm">Macchine agricole</a></li>
+							<!-- @@blkMotoriAgricoli -->
+							<!-- @@blkDiritti -->
+							<li><a href="../layout/diritti.htm">Diritti di
+									produzione</a></li>
+							<!-- @@blkDiritti -->
+							<!-- @@blkAttestazioni -->
+							<li><a href="../layout/attestazioniDettaglio.htm">Dichiarazioni</a></li>
+							<!-- @@blkAttestazioni -->
+							<!-- @@blkDichiarazioniConsistenza -->
+              <li>
+                <a href="../layout/dichiarazioneConsistenza.htm">Validazioni</a>
+              </li>
+              <!-- @@blkDichiarazioniConsistenza -->
+							<!-- @@blkDocumenti -->
+							<li><a href="../layout/documentiElenco.htm">Documenti</a></li>
+							<!-- @@blkDocumenti -->
+							<!-- @@blkFascicoloDematerializzato -->
+		          <li>
+		            <a href="../layout/fascicoloDematerializzato.htm">Fascicolo<br>elettronico</a>
+		          </li>
+		          <!-- @@blkFascicoloDematerializzato --> 
+							<!-- @@blkGestioneNotifiche -->
+							<li><a href="../layout/notifiche.htm">Notifiche</a></li>
+							<!-- @@blkGestioneNotifiche -->
+							<!-- @@blkComunicazione10R -->
+							<li><a href="../layout/comunicazione10R_dettaglio.htm">Comunicazione
+									10/R</a></li>
+							<!-- @@blkComunicazione10R -->
+							<!-- @@blkPratiche -->
+							<li><a href="../layout/pratiche.htm">Pratiche</a></li>
+							<!-- @@blkPratiche -->
+							<!-- @@blkStampaFascicolo -->
+							<li><a href="../layout/scelta_stampa.htm">Stampe</a></li>
+							<!-- @@blkStampaFascicolo -->
+							<li>
+                <a href="../layout/strumenti.htm">Strumenti</a>
+              </li>
+						</ul>
+					</div>
+				</div>
+				<hr />
+				<div id="contenuto">
+					<div id="intesta">
+						<p class="$$aziendaIntestazione" title="$$tooltipIntestazione">
+							$$CUAAIntestazione $$denominazioneIntestazione</p>
+					</div>
+					<br />							
+					
+					
+					<!-- @@blkDati -->
+					<table
+						summary="Questa tabella contiene i motivi della dichiarazione">
+						<tr>
+							<th><label for="motivo">Piano di riferimento</label></th>
+							<td>
+							  <select name="idDichiarazioneConsistenza" id="idDichiarazioneConsistenza"
+							   onChange="javascript:modificaControlli();">
+							    <option value="" > - Seleziona una validazione - </option>
+									<!-- @@blkElencoDichiarazione -->
+									<option value="$$idDichiarazioneConsistenza" $$selected>$$descrizione</option>
+									<!-- @@blkElencoDichiarazione -->
+							  </select> 
+							</td>
+						</tr>
+					</table>
+					<!-- @@blkLancioPG -->
+					<div id="lancioDiv">
+						<div class="pulsanti">
+						  <div class="sin">
+						    <input id="aggiorna" name="aggiorna" type="button"
+						      value="aggiorna esito grafico" onClick="javascript:refresh();"
+						      class="inputPulsante" />
+						  </div>
+						</div>
+				  </div>
+				  <!-- @@blkLancioPG -->					
+					<div id="risultatoControlliDiv">
+					  <!-- @@blkTabAnomalia -->   
+					  <table cellspacing="3" summary="Questa tabella contiene i dati del rapporto">
+					    <caption>$$descrizioneAnomalia</caption>
+					    <col width="50%"/>
+					    <col width="50%"/>
+					    <tr>
+					      <th class="center" scope="col">Tipologia</th>
+					      <th class="center" scope="col">Descrizione</th>
+					      <th class="center" scope="col">Esito</th>
+					    </tr>
+					    <!-- @@blkAnomalia -->
+					    <tr>
+					      <td>$$tipologia</td>
+					      <td>$$descrizione</td>
+					      <td>
+					        <a href="#">
+					          <img src="$$immagine" onclick="alert('$$descImmagine')" title="$$descImmagine"/>
+					        </a>
+					      </td>       
+					    </tr>
+					    <!-- @@blkAnomalia -->
+					  </table>
+					  <!-- @@blkTabAnomalia -->
+					  
+					  <!-- @@blkTabMessaggioEsito -->
+					  <table summary="Questa tabella contiene i motivi della dichiarazione">
+					   <tr>
+					     <th><label for="motivo">Esito piano grafico</label></th>
+					     <td>
+					       $$messaggio
+					     </td>
+					   </tr>
+					 </table>
+					 <!-- @@blkTabMessaggioEsito --> 
+					</div>
+					<!-- @@blkDati -->
+					<!-- @@blkErrore -->
+					<p class="errore">$$messaggioErrore</p>
+					<!-- @@blkErrore -->
+				</div>
+			</div>
+			<hr />
+	</form>
+	$$footer

@@ -1,0 +1,516 @@
+$$head
+<link rel="stylesheet" type="text/css" href="../css/jquery.loader.css"/>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery.base64.min.js"></script>
+
+<script type="text/javascript" src="../js/jquery.ui.widget.js"></script>
+
+<script type="text/javascript" src="../js/jquery.loader.js"></script>
+
+<script type="text/javascript" src="../js/checktext.js"></script>
+<script type="text/javascript" src="../js/messaggistica.js"></script>
+
+ <script type="text/javascript" src="../js/jquery.fileupload.js"/></script>
+ <script type="text/javascript" src="https://www.java.com/js/deployJava.js"> </script> 
+ <script type="text/javascript">
+
+//INIZIO SCRIPT APPLET FIRMA
+
+    var READY = 2;
+	   function registerAppletStateHandler() {
+	       if (dSigApplet.status < READY)  {                 
+	    	   dSigApplet.onLoad = onLoadHandler;
+	       } else if (dSigApplet.status >= READY) {
+	           // applet has already loaded or there was an error
+// 	           document.getElementById("display").innerHTML = L'Applet event handler non è stato registrato perchè lo stato è: "+ dSigApplet.status;    
+	       }
+	   }
+	   function onLoadHandler() {
+    	
+	       loadCardReaders();
+	       var cardReaders = dSigApplet.getCardReaders(); 
+	       for(i = 0; i < cardReaders.length; i++) {
+	    	   $("#readers").append('<option value=' + cardReaders[i].getDescription() + '>' + cardReaders[i].getDescription() + '</option>');
+	       } 
+	   }
+	
+ 	   function documentDownloadedAndSign(f) {
+ 		  if($("#readers").val() != null && $("#readers").val().trim() != '') {
+				var cardReaders = dSigApplet.getCardReaders();
+				for(var i = 0; i < cardReaders.length; i++) {
+					if(cardReaders[i].getDescription() === $("#readers").val()) {
+						try {
+							dSigApplet.setSignFormat($("#format").val());
+							dSigApplet.initSelectedCardReaderProvider(cardReaders[i]);
+
+							dSigApplet.setNomeFileToSign(document.getElementById('nomeFile').textContent);
+							
+							dSigApplet.sign("documentSigned","documentError",
+											400,
+											100);
+						} catch(e) {
+							//alert(e);
+						}
+						break;
+					}
+				}
+			} else {
+				alert("Lettore di smart card non valido");
+			}
+		    
+ 	   }
+	   
+	   function loadCardReaders() {
+		   var cardReaders = dSigApplet.getCardReaders(); 
+		   $("#readers")
+		    	.find('option')
+		    	.remove()
+		    	.end(); 
+		   
+		   $.each(cardReaders, function(index, r) {
+			   $("#readers")
+			   	.append('<option value="' + r.getDescription() + '">' + r.getDescription() +'</option>');
+		   });
+	   }
+	   
+		var attributes = {
+			id:'dSigApplet',
+			code: 'com.intemaweb.security.dsig.DSigApplet',
+			archive: ['../js/applet/DSApplet-1.0.0.jar', '../js/applet/bcprov-jdk16-1.46.jar', '../js/applet/bcmail-jdk16-1.46.jar', '../js/applet/itextpdf-5.1.3.jar'],
+			width: 1,
+			height: 1
+		};
+		var parameters = {
+			    java_status_events: 'true',
+			    sessionCookieName : 'JSESSIONID',   
+			    sessionid: document.cookie.match(/JSESSIONID=[^;]+/)[0].split("=")[1]    
+	};
+		
+		deployJava.runApplet(attributes, parameters, '1.6');
+		
+ 		function showLoader(msg) {
+			$.loader({
+ 				className:"blue-with-image-2",
+ 				content:'<div>' + msg + '</div>'
+ 			});
+ 		}
+		
+ 		function hideLoader() {
+ 			$.loader('close');
+ 		}
+
+ 		function documentSigned(f,e) {
+ 			dSigApplet.upload(window.location.origin+"/smrgaaweb/servlet/UploadFileFirmaServlet", 'documentUploaded');
+ 		}
+
+		function documentError() {
+ 		}
+		
+ 		function documentUploaded(f) {
+			hideLoader();
+ 		}
+
+
+		$(document).ready(function() {
+
+ 			if(typeof(dSigApplet) == 'undefined') {
+ 				dSigApplet = document.getElementById('dSigApplet');
+ 			}
+ 			
+			registerAppletStateHandler();
+
+			$('#sign').click(function (e) {
+				showLoader('Firma in corso...');
+			    dSigApplet.download(window.location.origin+"/smrgaaweb/servlet/DownloadFileFirmaServlet", 'documentDownloadedAndSign');
+			});
+
+ 			//dSigApplet.initSelectedCardReaderProvider;
+		});
+//FINE SCRIPT APPLET FIRMA
+
+
+ var operazioneincorso = false;
+ 
+   function carica()
+   {  
+      if (operazioneincorso == false)
+      {   
+        operazioneincorso = true;
+        document.form1.operazione.value='carica';
+        document.form1.submit();
+      }    
+   }
+
+   function caricaToMark()
+   {  
+      if (operazioneincorso == false)
+      {   
+        operazioneincorso = true;
+        document.form2.operazione.value='carica';
+        document.form2.submit();
+      }    
+   }
+
+
+   function marca()
+   {             
+
+ 		document.location.href='../servlet/MarcaTemporaleFileServlet';
+   }
+   
+   
+      
+      function alertMessage(msg) {
+        if(msg != '') {
+        alert(msg);
+        }
+      }
+	
+    
+      function submitForm(tipoOperazione) {
+        if(tipoOperazione != 'nuovo' && tipoOperazione != 'aggiorna') {
+          var elencoSoggetti = document.form1.radiobutton;
+          if(!elencoSoggetti) {
+            alert("Non sono presenti soggetti collegati all''azienda");
+            return;
+          }
+          if(!elencoSoggetti.length) {
+            if(elencoSoggetti.checked)
+            {
+              if(tipoOperazione == 'anagrafeTributaria')
+              {
+                var cuaa=document.form1.CUAA.value;
+                if (cuaa=='')
+                {
+                  alert('Impossibile richiamare il servizio Anagrafe Tributaria in quanto il soggetto è privo di codice fiscale');
+                  return;
+                }
+                document.form1.CUAAselezionato.value = cuaa;
+                goToOperazione('../layout/contitolariAT.htm', document.form1, 'attenderePrego');
+                return;
+              }
+              else
+              {
+                document.form1.action = '../layout/contitolari.htm';
+                document.form1.operazione.value = tipoOperazione;
+                document.form1.submit();
+                return;
+              }
+            }
+          }
+          else {
+            for(i=0; i<elencoSoggetti.length; i++) {
+              if (elencoSoggetti[i].checked)
+              {
+                if(tipoOperazione == 'anagrafeTributaria')
+                {
+                  var cuaa=document.form1.CUAA[i].value;
+                  if (cuaa=='')
+                  {
+                    alert('Impossibile richiamare il servizio Anagrafe Tributaria in quanto il soggetto è privo di codice fiscale');
+                    return;
+                  }
+                  document.form1.CUAAselezionato.value = cuaa;
+                  goToOperazione('../layout/contitolariAT.htm', document.form1, 'attenderePrego');
+                  return;
+                }
+                else
+                {
+                  document.form1.action = '../layout/contitolari.htm';
+                  document.form1.operazione.value = tipoOperazione;
+                  document.form1.submit();
+                  return;
+                }
+              }
+            }
+          }
+          alert("Selezionare una voce dal riepilogo");
+        }
+        else {
+          document.form1.action = '../layout/contitolari.htm';
+          document.form1.operazione.value = tipoOperazione;
+          document.form1.submit();
+        }
+      }
+    </script>
+    
+    
+    
+  </head>
+  <body id="homeIndice" onLoad="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+  
+      <div id="pagina" class="colonnaUnica">
+<!--          <input type="hidden" name="operazione" id="operazione" value="" /> -->
+        <input type="hidden" name="CUAAselezionato" value="" />
+        <!-- INTESTAZIONE -->
+        <div id="intestazione##pathProvincia">
+          <!--#include virtual="/ris/include/smrgaaweb/header.html" -->
+          <div id="titoloEmenu">
+              <h2>
+                <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+              </h2>
+	 	    <div id="menuDiNavigazione" title="Menu di navigazione">
+	 	      <ul class="menuTendina" id="menu-2">
+	 	        <li>
+	 	          <a href="../layout/index.htm" title="Torna alla pagina principale">home</a>
+	 	        </li>
+	 	        <li class="attivo">gestione anagrafe aziende</li>
+	 	        <li>
+	 	          <a href="#" title="contatti">contatti</a>
+	 	        </li>
+	 	        <li>
+	 	          <a href="#" title="help">help</a>
+	 	        </li>
+	 	      </ul>
+	 	    </div>
+          </div><!-- menu di navigazione-->
+	    
+        </div>
+        <hr />
+        <div style="clear:left"></div>
+          <!-- CORPO -->
+          <div id="corpo">
+            <div id="Utente">
+              <div id="datiUtente">
+                <strong>utente:</strong> $$utente &nbsp; &nbsp;
+                <strong>ente:</strong> $$ente
+              </div>
+              <div id="chiudisessione">
+                <a href="javascript: logout();">chiudi sessione</a>
+              </div>
+            </div>
+            <hr />
+            <!--PRIMA COLONNA -->
+            <h3>Gestione Anagrafe Aziende > Soggetti Collegati
+              <span class="helpFuori">
+                <a href="#">
+                  <span class="alt"> [help]</span>
+                </a>
+              </span>
+            </h3>
+            <hr />
+            <div class="box">
+              <div class="menuSX1">
+                <ul>
+                  <!-- @@blkElencoAziendeRapLegale -->
+                <li><a href="../layout/elencoAziendeRapLegale.htm">Elenco Aziende</a></li>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <!-- @@blkRicercaAzienda-->
+                    <li><a href="../layout/ricerca.htm">Ricerche</a></li>
+                  <!-- @@blkRicercaAzienda-->
+                  <!-- @@blkNuova -->
+	                <li>
+	                  <a href="../layout/nuovaAziendaAnagrafica.htm">Nuova Azienda</a>
+	                </li>
+                  <!-- @@blkNuova -->
+                  <!-- @@blkNuovaIscrizione -->
+				          <li>
+				            <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+				          </li>
+				          <!-- @@blkNuovaIscrizione -->
+                </ul>
+              </div>
+              <div class="menuSX">
+                <ul>
+                  <li>
+                    <a href="../layout/anagrafica.htm">Anagrafica</a>
+                  </li>
+                  <!-- @@blkAziendeCollegate -->
+	              			<li>
+	              					<a href="../layout/aziendeCollegate.htm">$$aziendeCollegateLabel</a>
+	              			</li>
+	              	<!-- @@blkAziendeCollegate -->
+	              <!-- @@blkSincronizzaFascicolo -->
+    	         	<li>
+	               	<a href="../layout/sincronizzaFascicolo.htm">Sincronizza fascicolo</a>
+        	       </li>
+                  <!-- @@blkSincronizzaFascicolo -->	
+                  <!-- @@blkSoggettiCollegati -->
+                    <li>
+                      <a href="../layout/contitolari.htm">Soggetti collegati</a>
+                    </li>
+                  <!-- @@blkSoggettiCollegati -->
+                  <!-- @@blkContiCorrenti -->
+                  <li><a href="../layout/conti_correnti.htm">Conti Correnti</a></li>
+                  <!-- @@blkContiCorrenti -->
+                  <!-- @@blkUnitaProduttive -->
+                    <li>
+                      <a href="../layout/sedi.htm">Unit&agrave;  produttive</a>
+                    </li>
+                  <!-- @@blkUnitaProduttive -->
+                  <!-- @@blkTerreni -->
+				          <li>
+				            <!-- @@blkLinkElenco -->
+				            <a href="../layout/terreniParticellareElenco.htm">Terreni</a>
+				            <!-- @@blkLinkElenco -->
+				            <!-- @@blkLinkRiepiloghi -->
+				            <a href="../layout/riepiloghi.htm">Terreni</a>
+				            <!-- @@blkLinkRiepiloghi -->
+				          </li>
+				          <!-- @@blkTerreni -->
+				          <!-- @@blkUnitaVitate -->
+				          <li>
+				            <!-- @@blkLinkElenco -->
+				            <a href="../layout/terreniUnitaArboreeElenco.htm">Unit&agrave; Vitate</a>
+				            <!-- @@blkLinkElenco -->
+				            <!-- @@blkLinkRiepiloghi -->
+				              <a href="../layout/riepiloghiUnitaArboree.htm">Unit&agrave; Vitate</a>
+				              <!-- @@blkLinkRiepiloghi -->
+				          </li>
+				          <!-- @@blkUnitaVitate -->
+                  <!-- @@blkFabbricati -->
+                    <li>
+                      <a href="../layout/fabbricati.htm">Fabbricati e Strutture</a>
+                    </li>
+                  <!-- @@blkFabbricati -->
+                  <!-- @@blkAllevamenti -->
+                    <li>
+                      <a href="../layout/allevamenti.htm">Allevamenti</a>
+                    </li>
+                  <!-- @@blkAllevamenti -->
+                  <!-- @@blkManodopera -->
+                    <li>
+                      <a href="../layout/manodopera.htm">Manodopera</a>
+                    </li>
+                  <!-- @@blkManodopera -->
+                  <!-- @@blkMotoriAgricoli -->
+                    <li>
+                      <a href="../layout/motori_agricoli_incarico.htm">Macchine agricole</a>
+                    </li>
+                  <!-- @@blkMotoriAgricoli -->
+                  <!-- @@blkDiritti -->
+                    <li><a href="../layout/diritti.htm">Diritti di produzione</a></li>
+                  <!-- @@blkDiritti -->
+                  <!-- @@blkAttestazioni -->
+                  	<li><a href="../layout/attestazioniDettaglio.htm">Dichiarazioni</a></li>
+              	  <!-- @@blkAttestazioni -->
+                  <!-- @@blkDichiarazioniConsistenza -->
+                  <li><a href="../layout/dichiarazioneConsistenza.htm">Validazioni</a></li>
+                  <!-- @@blkDichiarazioniConsistenza -->
+                  <!-- @@blkDocumenti -->
+                  <li><a href="../layout/documentiElenco.htm">Documenti</a></li>
+                  <!-- @@blkDocumenti -->
+                  <!-- @@blkFascicoloDematerializzato -->
+				          <li>
+				            <a href="../layout/fascicoloDematerializzato.htm">Fascicolo<br>elettronico</a>
+				          </li>
+				          <!-- @@blkFascicoloDematerializzato --> 
+                  <!-- @@blkGestioneNotifiche -->
+                  <li><a href="../layout/notifiche.htm">Notifiche</a></li>
+                  <!-- @@blkGestioneNotifiche -->
+                  <!-- @@blkComunicazione10R -->
+                    <li>
+                      <a href="../layout/comunicazione10R_dettaglio.htm">Comunicazione 10/R</a>
+                    </li>
+                  <!-- @@blkComunicazione10R -->
+                  <!-- @@blkPratiche -->
+                  <li><a href="../layout/pratiche.htm">Pratiche</a></li>
+                  <!-- @@blkPratiche -->
+                  <!-- @@blkStampaFascicolo -->
+                  <li><a href="../layout/scelta_stampa.htm">Stampe</a></li>
+                  <!-- @@blkStampaFascicolo -->
+				  <li>
+                      <a href="../layout/strumenti.htm">Strumenti</a>
+                      <ul>
+	                      <li>
+	                        <a href="#" class="etichetta">Firma & Marca</a>
+	                      </li>
+                      </ul>
+                    </li>
+                </ul>
+              </div>
+            </div>
+            <hr />
+            
+<!--               <form name="form1" id="form1" method="post" action="../layout/strumentiFirmaMarca.htm"> -->
+
+            <!-- SECONDA COLONNA -->
+            <div id="contenuto">
+              <div id="intesta">
+	              <p class="$$aziendaIntestazione" title="$$tooltipIntestazione" >
+	                $$CUAAIntestazione  $$denominazioneIntestazione
+	              </p>
+	            </div>
+	        <!-- @@blkNotifica -->
+              <p class="$$immagine">$$messaggioNotifica</p>
+              <!-- @@blkINNotifica -->
+              <div class="notifica">$$notifica</div>
+             <!-- @@blkINNotifica -->
+              <!-- @@blkNotifica -->
+             <!--@@blkNoErr-->
+	
+             <!--@@blkNoErr-->
+	            
+	            
+	            <div>
+	              <form name="form1" method="post" action="../layout/strumentiFirmaMarca.htm" enctype="multipart/form-data">
+				    <input type="hidden" name="operazione" value="" />
+				    <input type="hidden"  name="fileToSign" id="fileToSign" value="$$urlFileToSign" size="50"/>
+				    
+				     <fieldset style="width:560px;margin:auto">
+				    <legend>Firma digitale</legend>
+				 	 	
+				    <table style="line-height:1.5em">
+						<thead>
+				    		<tr>
+				    			<td><label for="url">URL:</label></td>
+				    			<td><input type="file"  name="fileAllegato" id="fileAllegato" onchange="javascript:carica()"  style="display: none;" />
+								<input type="button" value="Sfoglia" onclick="document.getElementById('fileAllegato').click();" />
+				    			<label id="nomeFile" value="$$fileName" >$$fileName</label></td>
+				    		</tr>
+				    		<tr>
+				    			<td style="width:150px"><label for="readers">Formato di firma:</label></td>
+				    			<td>
+				    				<select id="format" style="width:405px">
+				    					 <option value="PAdES">Firma PDF (PAdES)</option>
+										 <option value="CAdES">Firma P7M (CAdES)</option>
+				    				</select>
+				    			</td>
+				    		</tr>
+				    		<tr>
+				    			<td style="width:150px"><label for="readers">Lettore smart card:</label></td>
+				    			<td>
+				    				<select id="readers" style="width:405px"></select>
+				    			</td>
+				    		</tr>
+				    		<tr>
+				    			<td></td>
+				    			<td style="text-align:right; padding-top:10px">
+									 <input type="button" id="sign" value="Firma"></input>
+				    			</td>
+				    		</tr>
+				    	</thead>
+				    </table>
+				    
+				     </fieldset>
+				     
+				     
+				    <fieldset style="width:560px;margin:auto">
+				    <legend>Marcatura temporale</legend>
+				    <table style="line-height:1.5em">
+						<thead>
+				    		<tr>
+				    			<td><label for="url">URL:</label></td>
+				    			<td> <input name="fileAllegato2" id="fileAllegato2" onchange="javascript:carica()"  type="file" size="50" style="display: none;" />
+								<input type="button" value="Sfoglia" onclick="document.getElementById('fileAllegato2').click();" />
+				    			<label id="nomeFile2">$$fileName2</label></td>
+				    		</tr>
+				    		
+				    		<tr>
+				    			<td></td>
+				    			<td style="text-align:right; padding-top:10px">
+									 <input type="button" value="Ottieni marca" id="marcaTemporaleBtn" onclick="javascript:marca();"></input>
+				    			</td>
+				    		</tr>
+				    	</thead>
+				    </table>
+				     </fieldset>
+				 	
+				   </form> 
+			   </div>
+
+           </div>
+         </div>
+         <hr />
+         <!-- PIE' DI PAGINA -->
+         $$footer

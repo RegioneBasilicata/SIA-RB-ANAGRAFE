@@ -1,0 +1,471 @@
+$$head
+
+<script type="text/javascript" src="../js/checktext.js"></script>
+<script type="text/javascript" src="../js/messaggistica.js"></script>
+<script type="text/javascript">
+  function submitFormDettaglio() 
+  {
+    var elencoPolizze = document.form1.idPolizzaAssicurativa;
+    var count = 0;
+    var indice = 0;
+    var idPolizza = "";
+    
+    if(elencoPolizze.length)
+    {          
+      for(i=0; i<elencoPolizze.length; i++) 
+      {
+        if (elencoPolizze[i].checked)
+        {
+          count++;
+          indice = i;
+        }
+      }
+      
+      idPolizza = elencoPolizze[indice].value;
+    }
+    else
+    {
+      count++;
+      idPolizza = elencoPolizze.value;
+    }
+    
+    
+    if(count == 1)
+    {
+      document.form1.action = '../layout/polizza_dettaglio.htm?idPolizzaAssicurativa='+idPolizza;
+      document.form1.submit();
+      return;
+    }
+    else
+    {
+      alert("Selezionare una voce dall'elenco");    
+    }
+          
+  }
+
+</script>
+</head>
+<body id="homeIndice" onLoad="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+  <form id="form1" name="form1" method="post"
+    action="../layout/polizzeElenco.htm">
+    <input type="hidden" name="operazione" value="$$operazione"
+      id="operazione" />
+    <div id="pagina" class="colonnaUnica">
+      <!-- INTESTAZIONE -->
+      <div id="intestazione##pathProvincia">
+        $$header
+        <!-- menu di navigazione-->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li>
+                <a href="../layout/index.htm"
+                  title="Torna alla pagina principale">home</a>
+              </li>
+              <li class="attivo">
+                gestione anagrafe aziende
+              </li>
+              <li>
+                <a href="#" title="contatti">contatti</a>
+              </li>
+              <li>
+                <a href="#" title="help">help</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div style="clear: left">
+      </div>
+      <!-- CORPO -->
+      <div id="corpo">
+        <div id="Utente">
+          <div id="datiUtente">
+            <strong>utente:</strong> $$utente &nbsp; &nbsp;
+            <strong>ente:</strong> $$ente
+          </div>
+          <div id="chiudisessione">
+            <a href="javascript: logout();">chiudi sessione</a>
+          </div>
+        </div>
+        <hr />
+        <!--PRIMA COLONNA -->
+        <h3>
+          Gestione Anagrafe Aziende&nbsp;&gt;&nbsp;Pratiche&nbsp;&gt;&nbsp;Polizze
+          <span class="helpFuori"> <a href="#"> <span
+              class="alt">[help]</span> </a> </span>
+        </h3>
+        <div class="box">
+          <div class="menuSX1">
+            <ul>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <li>
+                <a href="../layout/elencoAziendeRapLegale.htm">Elenco
+                  Aziende</a>
+              </li>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <!-- @@blkRicercaAzienda-->
+              <li>
+                <a href="../layout/ricerca.htm">Ricerche</a>
+              </li>
+              <!-- @@blkRicercaAzienda-->
+              <!-- @@blkNuova -->
+              <li>
+                <a href="../layout/nuovaAziendaAnagrafica.htm">Nuova
+                  Azienda</a>
+              </li>
+              <!-- @@blkNuova -->
+              <!-- @@blkNuovaIscrizione -->
+              <li>
+                <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+              </li>
+              <!-- @@blkNuovaIscrizione -->
+            </ul>
+          </div>
+          <div class="menuSX">
+            <ul>
+              <li>
+                <a href="../layout/anagrafica.htm">Anagrafica</a>
+              </li>
+              <!-- @@blkAziendeCollegate -->
+              <li>
+                <a href="../layout/aziendeCollegate.htm">$$aziendeCollegateLabel</a>
+              </li>
+              <!-- @@blkAziendeCollegate -->
+              <!-- @@blkSincronizzaFascicolo -->
+               <li>
+               	<a href="../layout/sincronizzaFascicolo.htm">Sincronizza fascicolo</a>
+               </li>
+              <!-- @@blkSincronizzaFascicolo -->
+              <!-- @@blkSoggettiCollegati -->
+              <li>
+                <a href="../layout/contitolari.htm">Soggetti
+                  collegati</a>
+              </li>
+              <!-- @@blkSoggettiCollegati -->
+              <!-- @@blkContiCorrenti -->
+              <li>
+                <a href="../layout/conti_correnti.htm">Conti
+                  Correnti</a>
+              </li>
+              <!-- @@blkContiCorrenti -->
+              <!-- @@blkUnitaProduttive -->
+              <li>
+                <a href="../layout/sedi.htm">Unit&agrave; produttive</a>
+              </li>
+              <!-- @@blkUnitaProduttive -->
+              <!-- @@blkTerreni -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniParticellareElenco.htm">Terreni</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		            <a href="../layout/riepiloghi.htm">Terreni</a>
+		            <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkTerreni -->
+		          <!-- @@blkUnitaVitate -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniUnitaArboreeElenco.htm">Unit&agrave; Vitate</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		              <a href="../layout/riepiloghiUnitaArboree.htm">Unit&agrave; Vitate</a>
+		              <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkUnitaVitate -->
+              <!-- @@blkFabbricati -->
+              <li>
+                <a href="../layout/fabbricati.htm">Fabbricati e
+                  Strutture</a>
+              </li>
+              <!-- @@blkFabbricati -->
+              <!-- @@blkAllevamenti -->
+              <li>
+                <a href="../layout/allevamenti.htm">Allevamenti</a>
+              </li>
+              <!-- @@blkAllevamenti -->
+              <!-- @@blkManodopera -->
+              <li>
+                <a href="../layout/manodopera.htm">Manodopera</a>
+              </li>
+              <!-- @@blkManodopera -->
+              <!-- @@blkMotoriAgricoli -->
+              <li>
+                <a href="../layout/motori_agricoli_incarico.htm">Macchine agricolei</a>
+              </li>
+              <!-- @@blkMotoriAgricoli -->
+              <!-- @@blkDiritti -->
+              <li>
+                <a href="../layout/diritti.htm">Diritti di
+                  produzione</a>
+              </li>
+              <!-- @@blkDiritti -->
+              <!-- @@blkAttestazioni -->
+              <li>
+                <a href="../layout/attestazioniDettaglio.htm">Dichiarazioni</a>
+              </li>
+              <!-- @@blkAttestazioni -->
+              <!-- @@blkDichiarazioniConsistenza -->
+              <li>
+                <a href="../layout/dichiarazioneConsistenza.htm">Validazioni</a>
+              </li>
+              <!-- @@blkDichiarazioniConsistenza -->
+              <!-- @@blkDocumenti -->
+              <li>
+                <a href="../layout/documentiElenco.htm">Documenti</a>
+              </li>
+              <!-- @@blkDocumenti -->
+              <!-- @@blkFascicoloDematerializzato -->
+              <li>
+                <a href="../layout/fascicoloDematerializzato.htm">Fascicolo<br>elettronico</a>
+              </li>
+              <!-- @@blkFascicoloDematerializzato -->
+              <!-- @@blkGestioneNotifiche -->
+              <li>
+                <a href="../layout/notifiche.htm">Notifiche</a>
+              </li>
+              <!-- @@blkGestioneNotifiche -->
+              <!-- @@blkComunicazione10R -->
+              <li>
+                <a href="../layout/comunicazione10R_dettaglio.htm">Comunicazione
+                  10/R</a>
+              </li>
+              <!-- @@blkComunicazione10R -->
+              <li>
+                <a href="../layout/pratiche.htm" class="on">Pratiche</a>
+                <ul>
+                  <li>
+                    <a href="#" class="etichetta">polizze</a>
+                  </li>
+                  <ul>
+                    <li>
+                      <a href="javascript:submitFormDettaglio();">dettaglio</a>
+                    </li>
+                  </ul>
+                </ul>
+              </li>
+              <!-- @@blkStampaFascicolo -->
+              <li>
+                <a href="../layout/scelta_stampa.htm">Stampe</a>
+              </li>
+              <!-- @@blkStampaFascicolo -->
+              <li><a href="../layout/strumenti.htm">Strumenti</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr />
+        <!-- SECONDA COLONNA -->
+        <div id="contenuto">
+          <div id="intesta">
+            <p class="$$aziendaIntestazione" title="$$tooltipIntestazione" >
+              $$CUAAIntestazione  $$denominazioneIntestazione
+            </p>
+          </div>
+          <!-- @@blkNotifica -->
+          <p class="$$immagine">
+            $$messaggioNotifica
+          </p>
+          <!-- @@blkINNotifica -->
+          <div class="notifica">$$notifica</div>
+          <!-- @@blkINNotifica -->
+          <!-- @@blkNotifica -->
+
+          <table cellspacing="3"
+            summary="Questa tabella contiene i dati del rapporto">
+            <caption>
+              Ricerca polizze
+            </caption>
+            <tr>
+              <th scope="row" class="ottanta" >
+                <label for="annoCampagna">
+                  Anno campagna
+                </label>
+              </th>
+              <td>
+                <select id="annoCampagna" name="annoCampagna">
+                  <option value=""></option>
+                  <!-- @@blkAnnoCampagna -->
+                  <option value="$$annoCampagnaValue"
+                    $$selectedAnnoCampagna>
+                    $$annoCampagnaDesc
+                  </option>
+                  <!-- @@blkAnnoCampagna -->
+                </select>
+                $$err_annoCampagna
+              </td>
+            </tr>
+            <tr>
+              <th scope="row" class="ottanta" >
+                <label for="intervento">
+                  Intervento
+                </label>
+              </th>
+              <td>
+                <select id="intervento" name="intervento">
+                  <option value=""></option>
+                  <!-- @@blkIntervento -->
+                  <option value="$$interventoValue" $$selectedIntervento>
+                    $$interventoDesc
+                  </option>
+                  <!-- @@blkIntervento -->
+                </select>
+                $$err_intervento
+              </td>
+            </tr>
+          </table>
+          <div class="pulsanti">
+          <div class="sin">
+            <input name="ricerca" type="submit"
+              value="ricerca"
+              onclick="javscript:setHiddenOperazione(document.forms[0], 'ricerca');"
+              class="inputPulsante" /></div>
+          </div>
+
+          <!-- @@blkPresenzaPolizze -->
+          
+          
+          <div class="azioni">
+            <a
+              href="javascript: goToOperazione('../layout/polizzeElenco.htm', document.form1,'excel');">esporta dati</a>
+          </div>
+          <br>
+          <br>
+          
+          <div class="paginazione">
+            <span class="sx">$$totaleRighe risultati trovati</span>
+          </div>
+          <table cellspacing="3"
+            summary="Questa tabella contiene i dati del rapporto">
+            <tr>
+              <th class="radio">&nbsp;
+                
+              </th>
+              <th scope="col" class="center">
+                Anno<br>campagna
+              </th>
+              <th scope="col" class="center">
+                Numero polizza
+              </th>
+              <th scope="col" class="center">
+                Cod. Int
+              </th>
+              <th scope="col" class="center">
+                Macrouso
+              </th>
+              <th scope="col" class="center">
+                Consorzio di difesa
+              </th>
+              <th scope="col" class="center">
+                Valore<br>assicurato
+              </th>
+              <th scope="col" class="center">
+                Importo<br>premio
+              </th>
+              <th scope="col" class="center">
+                Importo<br>proposto OP
+              </th>
+              <th scope="col" class="center">
+                Valore<br>risarcito
+              </th>
+              <th scope="col" class="center">
+                Data<br>stipulazione
+              </th>
+              <th scope="col" class="center">
+                Data<br>quietanza
+              </th>
+              <th scope="col" class="center">
+                Periodo di<br>riferimento
+              </th>
+              <th scope="col" class="center">
+                Polizza<br>integrativa
+              </th>
+              <th scope="col" class="center">
+                Polizza<br>aggiuntiva
+              </th>
+            </tr>
+            <!-- @@blkElencoPolizze -->
+            <tr>
+              <th class="radio" scope="row">
+                <input type="radio" id="idPolizzaAssicurativa"
+                  name="idPolizzaAssicurativa" value="$$idPolizzaAssicurativa"
+                  $$checked />
+              </th>
+              <td align="center" >
+                $$annoCampagnaElenco
+              </td>
+              <td>
+                $$numeroPolizza
+              </td>
+              <td>
+                $$codIntervento
+              </td>
+              <td>
+                $$descMacrouso
+              </td>
+              <td>
+                $$consorzio
+              </td>
+              <td class="numeridx" >
+                $$valoreAssicurato
+              </td>
+              <td class="numeridx" >
+                $$importoPremio
+              </td>
+              <td class="numeridx" >
+                $$importoPagato
+              </td>
+              <td class="numeridx" >
+                $$valoreRisarcito
+              </td>
+              <td>
+                $$dataStipulazione
+              </td>
+              <td>
+                $$dataQuietanza
+              </td>
+              <td>
+                $$periodoRiferimento
+              </td>
+              <td class="center">
+                $$polizzaIntegrativa
+              </td>
+              <td class="center">
+                $$aggiuntiva
+              </td>
+            </tr>
+            <!-- @@blkElencoPolizze -->
+            <tr>
+              <td colspan="6" class="tot">Totali</td>
+              <td class="tot">$$totValoreAssicurato</td>
+              <td class="tot">$$totImportoPremio</td>
+              <td class="tot">$$totValoreRisarcito</td>
+              <td class="tot">$$totImportoPagato</td>
+              <td colspan="5" class="tot">&nbsp;</td>
+            </tr>
+          </table>
+          
+          <p class="legenda"><strong>Interventi</strong>:
+            <!-- @@blkLegendaIntervento -->
+              $$interventoElenco
+            <!-- @@blkLegendaIntervento -->
+          </p>
+          
+          
+          <!-- @@blkPresenzaPolizze -->
+          <!-- @@blkErrore -->
+          <p class="errore">
+            $$messaggio
+          </p>
+          <!-- @@blkErrore -->
+          <hr />
+        </div>
+      </div>
+      <hr />
+  
+  <!-- PIE' DI PAGINA -->
+  $$footer

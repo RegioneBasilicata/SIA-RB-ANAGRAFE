@@ -1,0 +1,606 @@
+$$head
+<script type="text/javascript" src="../js/checktext.js"></script>
+<script type="text/javascript" src="../js/messaggistica.js"></script>
+<script type="text/javascript"> 
+
+  function cambio() 
+  {
+    document.forms[0].operazione.value = 'cambio';
+    document.forms[0].submit();
+  }
+  
+  function elimina(idRiga) 
+  {
+    document.forms[0].operazione.value = 'elimina';
+    document.forms[0].idRigaElim.value = idRiga;
+    document.forms[0].submit();
+  }
+  
+  function eliminaPart(idRiga) 
+  {
+    document.forms[0].operazione.value = 'eliminaPart';
+    document.forms[0].idRigaElimPart.value = idRiga;
+    document.forms[0].submit();
+  }
+  
+  function inserisci() 
+  {
+    document.forms[0].operazione.value = 'inserisci';
+    document.forms[0].submit();
+  }
+  
+  function inserisciPart() 
+  {
+    document.forms[0].operazione.value = 'inserisciPart';
+    document.forms[0].submit();
+  }
+  
+  
+  function doForm() 
+  {
+    document.form1.operazione.value="calcolaVolume";
+    document.form1.submit();
+  }
+
+  function onChangeCombo() 
+  {
+    document.form1.operazione.value = "cambioUnitaMisura";
+    document.form1.dimensioneFabbricato.value = '';
+    document.form1.submit();
+  }
+  
+  function setHiddenOperazione(form, operazione) 
+  {
+    form.operazione.value = operazione;
+    form.submit();
+  }
+
+
+
+</script>
+</head>
+
+<!-- $$err_inserisciFabb -->
+
+<body id="homeIndice" onLoad="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+	<form id="form1" name="form1" method="post" action="../layout/newInserimentoFabbricati.htm">
+    <input type="hidden" id="regimeInserimentoFabbricati" name="regimeInserimentoFabbricati" value="regimeInserimentoFabbricati"/>
+    <input type="hidden" id="operazione" name="operazione" value=""/>
+    <input type="hidden" id="idRigaElim" name="idRigaElim" value=""/>
+    <input type="hidden" id="idRigaElimPart" name="idRigaElimPart" value=""/>
+    <div id="pagina" class="colonnaUnica">
+      
+      <!-- INTESTAZIONE -->
+      <div id="intestazione##pathProvincia">
+        $$header
+        <!-- menu di navigazione-->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li>
+                <a href="../layout/index.htm" title="Torna alla pagina principale">home</a>
+              </li>
+              <li class="attivo">gestione anagrafe aziende</li>
+              <li>
+                <a href="#" title="contatti">contatti</a>
+              </li>
+              <li>
+                <a href="#" title="help">help</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr/>
+      <div style="clear:left"></div>
+      <!-- CORPO -->
+      <div id="corpo">
+        <div id="Utente">
+          <div id="datiUtente">
+            <strong>utente:</strong>$$utente&nbsp;&nbsp;
+            <strong>ente:</strong>$$ente
+          </div>
+          <div id="chiudisessione">
+            <a href="javascript: logout();">chiudi sessione</a>
+          </div>
+        </div>
+        <hr/>
+        <!--PRIMA COLONNA -->
+        <h3>Nuova iscrizione
+          <span class="helpFuori">
+            <a href="#">
+              <span class="alt">[help]</span>
+            </a>
+          </span>
+        </h3>
+        <hr/>
+        <div class="box">
+          <div class="menuSX1">
+            <ul>
+              <!-- @@blkRicercaAzienda-->
+              <li>
+                <a href="../layout/ricerca.htm">Ricerche</a>
+              </li>
+              <!-- @@blkRicercaAzienda-->                  
+              <li><a href="../layout/newInserimentoAzienda.htm" class="on">Nuova iscrizione</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr/>
+        <!-- SECONDA COLONNA -->
+        <div id="contenuto">
+          <div id="intesta">
+            <p class="$$aziendaIntestazione" title="$$tooltipIntestazione" >
+              $$CUAAIntestazione  $$denominazioneIntestazione
+            </p>
+          </div>
+        
+        
+          <div id="indice">
+            <span class="voce">
+              <a href="#">Anagrafica</a>
+            </span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+            <span class="voce">
+              <a href="#">Unit&agrave; produttive</a>
+            </span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+            <span class="voce">
+              <a href="#">Terreni</a>
+            </span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+            <span class="evidenza">
+              <a href="#">Fabbricati</a>
+            </span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+            <span class="voce">
+              <a href="#">Allevamenti</a>
+            </span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+            <span class="voce">
+              <a href="#">Soggetti collegati</a>
+            </span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+            <span class="voce">
+              <a href="#">Elenco associati</a>
+            </span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+            <span class="voce">
+              <a href="#">Conti correnti</a>
+            </span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+            <span class="voce">
+              <a href="#">Allegati</a>
+            </span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+          </div>
+          <hr/>
+          
+          <br>
+          <div>
+            <p id="istruzioni">$$testoHelp</p>            
+          </div>
+          <br>
+          
+          
+          <table cellspacing="3" summary="Questa tabella permette di inserire le caratteristiche del fabbricato">
+	          <tr>
+              <th>
+                <label for="idUteAziendaNuova">Ute*</label>
+              </th>
+              <td colspan="$$colspanPrima">
+                <select id="idUteAziendaNuova" name="idUteAziendaNuova" >
+                  <option value=""></option>
+                  <!--@@blkElencoUte-->
+                    <option value="$$idUteAziendaNuova" $$selected >$$descUte</option>
+                  <!--@@blkElencoUte-->
+                </select>
+                $$err_idUteAziendaNuova
+              </td>
+            </tr>
+	          <tr>
+	            <th>
+	              <label for="idTipologiaFabbricato">Tipo fabbricato*</label>
+	            </th>
+	            <td colspan="$$colspanPrima">
+	              <select id="idTipologiaFabbricato" name="idTipologiaFabbricato" onChange="onChangeCombo()">
+	                <option value=""></option>
+	                <!--@@tipologiaFabbricato-->
+	                  <option value="$$idCodice" $$check>$$descrizione</option>
+	                <!--@@tipologiaFabbricato-->
+	              </select>
+	              $$err_tipologiaFabbricato
+	            </td>
+	          </tr>
+	          <!--@@tipologiaFabbricatoDimensioniA-->
+	          <tr>
+	            <th>
+	              <label for="larghezzaFabbricato">$$larghezzaFabbricatoLabel</label>
+	            </th>
+	            <td>
+	              <input type="text" id="larghezzaFabbricato" name="larghezzaFabbricato" maxlength="6" value="$$larghezzaFabbricato" class="textbreve"/>
+	              ##err_larghezza
+	            </td>
+	            <th>
+	              <label for="lunghezzaFabbricato">$$lunghezzaFabbricatoLabel</label>
+	            </th>
+	            <td >
+	              <input type="text" id="lunghezzaFabbricato" name="lunghezzaFabbricato" maxlength="6" value="$$lunghezzaFabbricato" class="textbreve"/>
+	              ##err_lunghezza
+	            </td>
+	          </tr>
+	          <!--@@tipologiaFabbricatoDimensioniA-->
+	          <!--@@tipologiaFabbricatoDimensioniB-->
+	          <tr>
+	            <th>
+	              <label for="larghezzaFabbricato">$$larghezzaFabbricatoLabel</label>
+	            </th>
+	            <td>
+	              <input type="text" id="larghezzaFabbricato" name="larghezzaFabbricato" maxlength="6" value="$$larghezzaFabbricato" class="textbreve"/>
+	              ##err_larghezza
+	            </td>
+	            <th>
+	              <label for="lunghezzaFabbricato">$$lunghezzaFabbricatoLabel</label>
+	            </th>
+	            <td>
+	              <input type="text" id="lunghezzaFabbricato" name="lunghezzaFabbricato" maxlength="6" value="$$lunghezzaFabbricato" class="textbreve"/>
+	              ##err_lunghezza
+	            </td>
+	            <th>
+	              <label for="altezzaFabbricato">$$altezzaFabbricatoLabel</label>
+	            </th>
+	            <td>
+	              <input type="text" id="altezzaFabbricato" name="altezzaFabbricato" maxlength="6" value="$$altezzaFabbricato" class="textbreve"/>
+	              ##err_altezza
+	            </td>
+	          </tr>
+	          <!--@@tipologiaFabbricatoDimensioniB-->
+	          <tr>
+	            <td colspan="6">
+	              <div class="azioni">
+	                <a href="javascript:doForm()">Calcola Superficie</a>
+	              </div>
+	              $$err_calcola
+	            </td>
+	          </tr>
+	        </table>
+	        
+	        <table cellspacing="3" summary="Questa tabella permette di inserire le caratteristiche del fabbricato">
+	          <tr>
+	            <th>
+	              <label for="superficieFabbricato">Superficie (m<sup>2</sup>)*</label>
+	            </th>
+	            <td colspan="$$dimcolspan">
+	              <input type="text" id="superficieFabbricato" name="superficieFabbricato" maxlength="11" value="$$superficieFabbricato" class="textmedio"/>
+	              &nbsp;
+	              $$err_superficieFabbricato
+	            </td>
+	            <th>
+	              <label for="dimensioneFabbricato">Dimensione $$unitaMisuraPar*</label>
+	            </th>
+	            <td colspan="$$dimcolspan">
+	              <input type="text" id="dimensioneFabbricato" name="dimensioneFabbricato" class="textmedio" maxlength="11" value="$$dimensioneFabbricato"/>
+	              $$err_dimensioneFabbricato
+	              <input type="hidden" name="unitaMisura" value="$$unitaMisura"/>
+	            </td>
+	          </tr>
+	          <tr>
+	            <th>
+	              <label for="superficieCopertaFabbricato">Superficie coperta (m<sup>2</sup>)</label>
+	            </th>
+	            <td colspan="2">
+	              <input type="text" id="superficieCopertaFabbricato" name="superficieCopertaFabbricato" maxlength="11" value="$$superficieCopertaFabbricato" class="textmedio"/>
+	              &nbsp;
+	              $$err_superficieCopertaFabbricato
+	            </td>
+	            <th>
+	              <label for="superficieScopertaFabbricato">Superficie scoperta (m<sup>2</sup>)</label>
+	            </th>
+	            <td colspan="2">
+	              <input type="text" id="superficieScopertaFabbricato" name="superficieScopertaFabbricato" class="textmedio" maxlength="11" value="$$superficieScopertaFabbricato"/>
+	              &nbsp;
+	              $$err_superficieScopertaFabbricato
+	            </td>
+	          </tr>
+	
+	
+	          <tr>
+	            <th>
+	              <label for="annoCostruzioneFabbricato">Anno di costruzione o di riattamento*</label>
+	            </th>
+	            <td colspan="$$dimcolspanAnno">
+	              <input type="text" id="annoCostruzioneFabbricato" name="annoCostruzioneFabbricato" class="textbreve" maxlength="4" value="$$annoCostruzioneFabbricato"/>
+	              &nbsp;
+	              $$err_annoCostruzioneFabbricato
+	            </td>
+	          </tr>
+	        </table>
+	        
+	        
+	        
+	        <div class="scroll">
+            <table cellspacing="3" summary="Questa tabella è costituita da righe">
+              <caption>Particelle catastali su cui insiste il fabbricato</caption>
+              <tr>
+                <th class="center" scope="col">
+                  <a href="javascript:inserisciPart()" class="aggiungi" title="inserisci Particelle"></a>
+                </th>
+                <th class="center" scope="col">
+                  Prov*
+                </th>
+                <th class="center" scope="col">
+                  Comune*
+                </th>
+                <th class="center" scope="col">
+                  Sez
+                </th>
+                <th class="center" scope="col">
+                  Fgl*
+                </th>
+                <th class="center" scope="col">
+                  Part*
+                </th>
+                <th class="center" scope="col">
+                  Sub
+                </th>
+                <th class="center" scope="col">
+                  Sup. utilizzata<br>
+                  (ha)*
+                </th>
+                <th class="center" scope="col">
+                  Titolo di<br>
+                  possesso*
+                </th>
+              </tr>
+              <!--@@blkElencoParticelle -->
+              <tr>   
+                <td>
+                  <a href="javascript:eliminaPart('$$idRigaPart')" class="cancella" title="elimina particelle"></a>
+                  $$err_particellaCertificata
+                </td>
+                <td>
+                  <select name="istatProvincia" id="istatProvincia"
+                    onchange="javascript: cambio();">
+                    <option value="" ></option>
+                    <!-- @@blkElencoProvince -->
+                    <option value="$$istatProvincia" $$selected>
+                      $$sglProv
+                    </option>
+                    <!-- @@blkElencoProvince -->
+                  </select>
+                  $$err_istatProvincia
+                </td>
+                <td>
+                  <select name="istatComune" id="istatComune">
+                    <option value="" ></option>
+                    <!-- @@blkElencoComuni -->
+                    <option value="$$istatComune" $$selected>
+                      $$desCom
+                    </option>
+                    <!-- @@blkElencoComuni -->
+                  </select>
+                  $$err_istatComune
+                </td>
+                <td>
+                  <input name="sezione"  id="sezione" type="text" class="textmedio"
+                    maxlength="1" value="$$sezione" />
+                  $$err_sezione
+                </td>
+                <td>
+                  <input name="foglio"  id="foglio" type="text" class="textmedio"
+                    maxlength="5" value="$$foglio" />
+                  $$err_foglio
+                </td>
+                <td>
+                  <input name="particella"  id="particella" type="text" class="textmedio"
+                    maxlength="5" value="$$particella" />
+                  $$err_particella
+                </td>
+                <td>
+                  <input name="subalterno"  id="subalterno" type="text" class="textmedio"
+                    maxlength="3" value="$$subalterno" />
+                  $$err_subalterno
+                </td>
+                <td>
+                  <input name="superficiePart"  id="superficiePart" type="text" class="textmedio"
+                    value="$$superficiePart" />
+                  $$err_superficiePart
+                </td>
+                <td>
+                  <select name="idTitoloPossesso" id="idTitoloPossesso">
+                    <option value="" ></option>
+                    <!-- @@blkElencoTitoloPossesso -->
+                    <option value="$$idTitoloPossesso" $$selected>
+                      $$descTitoloPossesso
+                    </option>
+                    <!-- @@blkElencoTitoloPossesso -->
+                  </select>
+                  $$err_idTitoloPossesso
+                </td>
+              </tr>
+              <!--@@blkElencoParticelle -->
+              <!--@@blkInserisciFabb -->
+              <tr>
+                <td colspan="10">
+                  <div class="azioni">
+                    <a
+                      href="javascript:setHiddenOperazione(document.forms[0],'inserisciFabb');" name="inserisciFabb" class="highlighted" id="inserisciFabb">inserisci fabbricato</a>
+                  </div>
+                  ##err_inserisciFabb
+                </td>
+              </tr>
+              <!--@@blkInserisciFabb -->     
+            </table>
+          </div>
+          
+          
+          <!--@@blkFabbricati -->
+          <div class="scroll">
+            <table cellspacing="3" summary="Questa tabella è costituita da righe">
+              <caption>Elenco fabbricati</caption>
+              <tr>
+                <th rowspan="2" class="center" scope="col">&nbsp;
+                  
+                </th>
+                <th rowspan="2" class="center" scope="col">
+                  Ute
+                </th>
+                <th rowspan="2" class="center" scope="col">
+                  Tipologia<br>fabbricato
+                </th>
+                <th rowspan="2" class="center" scope="col">
+                  Anno costruzione
+                </th>
+                <th rowspan="2" class="center" scope="col">
+                  Largh.(m)
+                </th>
+                <th rowspan="2" class="center" scope="col">
+                  Lungh.(m)
+                </th>
+                <th rowspan="2" class="center" scope="col">
+                  Alt.(m)
+                </th>
+                <th rowspan="2" class="center" scope="col">
+                  Superficie<br>
+                  (m<sup>2</sup>)
+                </th>
+                <th rowspan="2" class="center" scope="col">
+                  Dimensione
+                </th>
+                <th rowspan="2" class="center" scope="col">
+                  Unit&agrave;<br>
+                  di misura
+                </th>
+                <th rowspan="2" class="center" scope="col">
+                  Sup.<br>
+                  coperta<br>
+                  (m<sup>2</sup>)
+                </th>
+                <th rowspan="2" class="center" scope="col">
+                  Sup.<br>
+                  scoperta<br>
+                  (m<sup>2</sup>)
+                </th>
+                <th colspan="8" class="center" scope="col">
+                  Elenco particelle su cui insiste il fabbricato
+                </th>
+              </tr>
+              <tr>
+                <th class="center" scope="col">
+                  Comune
+                </th>
+                <th class="center" scope="col">
+                  Sez.
+                </th>
+                <th class="center" scope="col">
+                  Foglio
+                </th>
+                <th class="center" scope="col">
+                  Part.
+                </th>
+                <th class="center" scope="col">
+                  Sub.
+                </th>
+                <th class="center" scope="col">
+                  Sup. utilizzata<br>(ha)
+                </th>
+                <th class="center" scope="col">
+                  Titolo di<br>possesso
+                </th>
+              </tr>
+              <!--@@blkElencoFabbricati -->
+              <tr>
+                <!--@@blkRigaPrimo -->   
+                <td rowspan="$$numPart" >
+                  <a href="javascript:elimina('$$idRiga')" class="cancella" title="elimina particelle"></a>
+                </td>
+                <td rowspan="$$numPart" >
+                  $$denominazUte
+                </td>
+                <td rowspan="$$numPart" >
+                  $$descFabbricato
+                </td>
+                <td rowspan="$$numPart">
+                  $$annoCostruzione
+                </td>
+                <td rowspan="$$numPart">
+                  $$larghezza
+                </td>
+                <td rowspan="$$numPart">
+                  $$lunghezza
+                </td>
+                <td rowspan="$$numPart">
+                  $$altezza
+                </td>
+                <td rowspan="$$numPart">
+                  $$superficie
+                </td>
+                <td rowspan="$$numPart">
+                  $$dimensione
+                </td>
+                <td rowspan="$$numPart">
+                  $$unitaMisura
+                </td>
+                <td rowspan="$$numPart" >
+                  $$superficieCoperta                  
+                </td>
+                <td rowspan="$$numPart" >
+                  $$superficieScoperta
+                </td>
+                <!--@@blkRigaPrimo -->
+                <td>
+                  $$descComune
+                </td>
+                <td>
+                  $$sezione
+                </td>
+                <td>
+                  $$foglio
+                </td>
+                <td>
+                  $$particella
+                </td>
+                <td>
+                  $$subalterno
+                </td>
+                <td>
+                  $$superficiePart
+                </td>
+                <td>
+                  $$descTitoloPossesso
+                </td>   
+              </tr>
+              
+              <!--@@blkElencoFabbricati -->
+            </table>
+          </div> 
+          <!--@@blkFabbricati -->        
+          
+          
+          <p id="nota">I campi contrassegnati con * sono obbligatori</p>
+          <div class="pulsanti"><div class="sin">
+            <input name="indietro" id="indietro" class="inputPulsante" type="submit" value="indietro"/>
+          </div>
+          <div class="des">
+            <input name="avanti" id="avanti" class="inputPulsante" type="submit" value="avanti"/>
+            $$err_avanti
+          </div>
+          </div>  
+          </br>
+          </br>
+          </br>
+          
+          
+          <!-- @@blkErrore -->
+          <p class="errore">
+            $$messaggioErrore
+          </p>
+          <!-- @@blkErrore -->
+        </div>
+      </div>
+      <hr/>
+      <!-- PIE' DI PAGINA -->
+      $$footer

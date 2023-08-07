@@ -1,0 +1,72 @@
+<porta-delegata name="smrgaaweb.sitiserv.PA_SitiServ">
+  <services>
+    <service name="smrgaaweb.sitiserv.PA_SitiServ.service" public-interface-class="it.csi.smranags.sitiserv.interfacecsi.SitiServServiceCSIInterface">
+     <operations>
+        <operation name="serviceGetDataLavParticelle" type="synch-call" >
+          <param-list>
+            <param name="particelle" type="it.csi.smranags.sitiserv.dto.SitiPlavVO[]" />
+          </param-list>
+          <ret-val type="it.csi.smranags.sitiserv.dto.SitiPlavVO[]"/>
+        </operation>
+        <operation name="serviceGetParticellaUrl3D" type="synch-call" >
+          <param-list>
+            <param name="istatComune" type="java.lang.String" />
+            <param name="sezione" type="java.lang.String" />
+            <param name="foglio" type="java.lang.String" />
+            <param name="particella" type="java.lang.String" />
+            <param name="subalterno" type="java.lang.String" />
+          </param-list>
+          <ret-val type="java.lang.String"/>
+        </operation>
+       <operation name="testResources" type="synch-call">
+            <param-list />
+          <ret-val type="boolean" />
+       </operation>
+       <operation name="isAlive" type="synch-call">
+            <param-list />
+          <ret-val type="boolean" />
+       </operation>
+     </operations>
+    </service>
+  </services>
+
+
+  <config>
+    <url-pa>not_used</url-pa>
+    <pluggable-pd-list chooser-class="it.csi.csi.porte.FixedDelegateChooser">
+      <pluggable-pd
+        name="smrgaaweb.sitiserv.PA_SitiServ.pd"
+        class="it.csi.csi.porte.ejb.PortaDelegataEJB"
+        url-pa="sitiserv/ejb/PA_SitiServ"
+       >
+        <properties>
+          <property name="java.naming.provider.url" value="t3://tst-abacoapp.csi.it:8100" />
+          <property name="java.naming.factory.initial" value="weblogic.jndi.WLInitialContextFactory" />
+        </properties>
+      </pluggable-pd>
+    </pluggable-pd-list>
+    <queue-manager url="not_used"/>
+
+		<pre-function-handler-list>
+			<pluggable-fh name="PA Chiamante TXID Handler(pre)" class="it.csi.cooptrace.business.handler.PaTracingHandler" >
+				<properties>
+					<property name="componentname" value="smrgaa" />
+					<property name="callername" value="smrgaa" />
+					<property name="interfacename" value="SitiServServiceCSIInterface" />
+				</properties>
+			</pluggable-fh>
+		</pre-function-handler-list>
+		<post-function-handler-list>
+			<pluggable-fh name="PA Chiamante TXID Handler(post)" class="it.csi.cooptrace.business.handler.PaTracingHandler" >
+				<properties>
+					<property name="componentname" value="smrgaa" />
+					<property name="callername" value="smrgaa" />
+					<property name="interfacename" value="SitiServServiceCSIInterface" />
+				</properties>
+			</pluggable-fh>
+		</post-function-handler-list>
+
+  </config>
+
+
+</porta-delegata>

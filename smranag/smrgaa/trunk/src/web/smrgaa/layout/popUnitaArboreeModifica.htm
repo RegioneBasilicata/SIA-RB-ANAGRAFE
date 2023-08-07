@@ -1,0 +1,349 @@
+$$head
+<script src="../js/checktext.js" type="text/javascript"></script>
+<script type="text/javascript">
+	
+		// Funzione che serve per ripulire i valori della riga selezionata
+		function cleanRowValue(rowSelected) {
+			if(document.forms[0].numeroAltriVitigni.length) {
+				document.forms[0].idVarieta[rowSelected].selectedIndex = 0;
+				document.forms[0].percentuale[rowSelected].value = '';
+			}
+			else {
+				document.forms[0].idVarieta.selectedIndex = 0;
+				document.forms[0].percentuale.value = '';
+			}
+			document.forms[0].pulisci.value = 'pulisci';
+			document.forms[0].submit();
+		}
+		
+		// Funzione che specifica l'operazione selezionata ed effettua il submit
+		// del form
+		function conferma() {
+			document.forms[0].confermo.value = 'confermo';
+  			document.forms[0].submit();
+		}
+    
+    
+    function abbandona() 
+    {
+      document.forms[0].abbandona.value = 'abbandona';
+      document.forms[0].submit();
+    }
+		
+	</script>
+</head>
+<body id="popup" onLoad="$$err_error">
+  <form id="form1" name="form1" method="post"
+    action="../layout/popUnitaArboreeModifica.htm">
+    <input type="hidden" name="pulisci" value="$$pulisci" id="pulisci" />
+    <input type="hidden" name="confermo" value="$$confermo" id="confermo" />
+    <input type="hidden" name="abbandona" value="" id="abbandona" />
+    <input type="hidden" name="operazione" value="$$operazione" id="operazione" />
+    <div id="contenutopop">
+      <!-- @@blkElencoDati -->
+      <table cellspacing="3" summary="dettaglio unita arboree">
+        <tr>
+          <th class="center" scope="col">
+            Comune
+          </th>
+          <th class="center" scope="col">
+            <acronym title="Sezione">Sez.</acronym>
+          </th>
+          <th class="center" scope="col">
+            <acronym title="Foglio">Fgl.</acronym>
+          </th>
+          <th class="center" scope="col">
+            <acronym title="Particella">Part.</acronym>
+          </th>
+          <th class="center" scope="col">
+            <acronym title="Subalterno">Sub.</acronym>
+          </th>
+          <th class="center" scope="col">
+            <acronym title="Superficie Catastale">Sup. cat.</acronym>
+          </th>
+          <th class="center" scope="col">
+            <acronym title="Progressivo">Progr.</acronym>
+          </th>
+          <th class="center" scope="col">
+            <acronym title="Destinazione produttiva">Dest.
+              prod.</acronym>
+          </th>
+          <th class="center" scope="col">
+            Vitigno
+          </th>
+          <th class="center" scope="col">
+            <acronym title="Superficie Vitata">Sup. Vit.</acronym>
+          </th>
+        </tr>
+        <tr>
+          <td>
+            $$descComuneParticella $$siglaProvinciaParticella
+          </td>
+          <td>
+            $$sezione
+          </td>
+          <td class="numeridx">
+            $$foglio
+          </td>
+          <td class="numeridx">
+            $$particella
+          </td>
+          <td>
+            $$subalterno
+          </td>
+          <td class="numeridx">
+            $$supCatastale
+          </td>
+          <td class="numeridx">
+            $$progrUnar
+          </td>
+          <td>
+            $$destProduttiva
+          </td>
+          <td>
+            $$varieta
+          </td>
+          <td class="numeridx">
+            $$area
+          </td>
+        </tr>
+      </table>
+      <table width="100%" border="0" cellspacing="3" cellpadding="0">
+        <caption>
+          Dati vino
+        </caption>
+        <tr>
+          <th scope="row">
+            <label for="Categoria">
+              Idoneità
+            </label>
+          </th>
+          <td>
+             $$descrizioneTipologiaVino              
+          </td>
+          <th scope="row">
+            <label for="anno">
+              Anno idoneità
+            </label>
+          </th>
+          <td colspan="3" >
+            $$annoIscrizioneAlbo
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">
+            Provincia
+          </th>
+          <td>
+            $$provinciaCCIAA
+          </td>
+          <th scope="row">
+            <label for="Matricola">
+              Matricola
+            </label>
+          </th>
+          <td>
+            $$matricolaCCIAA
+          </td>
+          <th scope="row">
+            <label for="mipaf">
+              Vini Doc
+            </label>
+          </th>
+          <td>
+            <input type="checkbox" id="checkVinoDoc" name="checkVinoDoc" disabled $$checkedVinoDoc  value="" />
+          </td>
+        </tr>        
+        <tr>          
+          <th scope="row">
+            <label for="mipaf">
+              Codice MIPAF
+            </label>
+          </th>
+          <td>
+            <span id="idCodiceMipaf">$$codiceMipaf</span>
+          </td>
+          <th scope="row">
+            <label for="menzioneGeografica">
+              Menzione geografica
+            </label>
+          </th>
+          <!-- @@blkTipoMenzioneGeografica -->
+          <td>
+            <select name="idMenzioneGeografica" id="idMenzioneGeografica">
+              <option></option>
+              <!-- @@blkElencoMenzioneGeografica -->
+              <option value="$$idMenzioneGeografica" $$selected>
+                $$descrizione
+              </option>
+              <!-- @@blkElencoMenzioneGeografica -->
+            </select>
+            $$err_idMenzioneGeografica
+          </td>
+          <!-- @@blkTipoMenzioneGeografica -->
+          <!-- @@blkMenzioneGeografica -->
+          <td>
+            <span id="idMenzioneGeografica">$$menzioneGeografica</span>
+          </td>
+          <!-- @@blkMenzioneGeografica -->
+          <th scope="row">
+            <label for="annotazioneEtichetta">
+              Annotazioni in etichetta
+            </label>
+          </th>
+          <td >
+            <textarea name="annotazioneEtichetta"
+              id="annotazioneEtichetta" cols="40" rows="5"  $$readAnnotazioneEtichetta >$$annotazioneEtichetta</textarea>
+            $$err_annotazioneEtichetta
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">
+            <label for="vigna">
+              Vigna
+            </label>
+          </th>
+          <td >
+            <textarea name="vigna"
+              id="vigna" cols="40" rows="5"  $$readVigna >$$vigna</textarea>
+            $$err_vigna
+          </td>          
+          <th scope="row">
+            <label for="provVignaRegionale">
+              Vigna elenco regionale
+            </label>
+          </th>
+          <td colspan="3" >
+            $$provVignaRegionale
+          </td>
+        </tr>
+      </table>
+      <table width="100%" border="0" cellspacing="3" cellpadding="0">
+        <caption>
+          Dati UV
+        </caption>
+        <tr>
+          <th scope="row">
+            Ricaduta
+          </th>
+          <td>
+            <input type="radio" name="ricaduta" id="ricaduta" value="S"
+              $$checkedSiRicaduta />
+            <label for="s">
+              SI
+            </label>
+            $$err_ricadutaS
+            <input type="radio" name="ricaduta" id="ricaduta" value="N"
+              $$checkedNoRicaduta />
+            <label for="n">
+              NO
+            </label>
+            $$err_ricadutaN
+          </td>
+          <th>
+            Coltura specializzata *
+          </th>
+          <td>
+            <input type="radio" name="colturaSpecializzata"
+              id="colturaSpecializzata" value="S" $$checkedSiSpec />
+            <label for="s">
+              SI
+            </label>
+            $$err_colturaS
+            <input type="radio" name="colturaSpecializzata"
+              id="colturaSpecializzata" value="N" $$checkedNoSpec />
+            <label for="n">
+              NO
+            </label>
+            $$err_colturaN
+          </td>
+        </tr>
+      </table>
+      <table width="100%" border="0" cellspacing="3" cellpadding="0">
+        <caption>
+          Altri vitigni
+        </caption>
+        <tr>
+          <td colspan="4">
+             <div class="azioni"><input name="inserisci" type="button" value="inserisci"
+              class="inputPulsante highlighted"
+              onclick="javascript: goToOperazione(document.forms[0].action, document.forms[0], 'aggiungi');" /></div> 
+          </td>
+        </tr>
+        <!-- @@blkAltriVitigni -->
+        <tr>
+          <th class="radio"></th>
+          <th class="radio"></th>
+          <th scope="col" class="center">
+            Vitigno
+          </th>
+          <th scope="col" class="center">
+            Percentuale
+          </th>
+        </tr>
+        <!-- @@blkElencoAltriVitigni -->
+        <tr>
+          <td class="radio">
+            <input type="checkbox" name="numeroAltriVitigni"
+              value="$$numeroAltriVitigni" />
+            <input type="hidden" name="contatore" value="$$contatore" />
+          </td>
+          <td class="radio">
+            <a href="javascript: cleanRowValue($$contatore);"
+              class="cancella"></a>
+          </td>
+          <td>
+            <label for="Vitigno1" class="alt">
+              Vitigno
+            </label>
+            <select name="idVarieta" id="idVarieta">
+              <option vlaue=""></option>
+              <!-- @@blkVarieta -->
+              <option value="$$idVarieta" $$selected>
+                $$descrizione
+              </option>
+              <!-- @@blkVarieta -->
+            </select>
+            $$err_idVarieta
+          </td>
+          <td>
+            <label for="Percentuale1" class="alt">
+              Percentuale
+            </label>
+            <input type="text" name="percentuale" id="percentuale"
+              class="textmedio" value="$$percentuale" maxlength="3" />
+            $$err_percentuale
+          </td>
+        </tr>
+        <!-- @@blkElencoAltriVitigni -->
+        <tr>
+          <td colspan="4">
+             <div class="azioni"><input name="elimina" type="button" value="elimina"
+              class="inputPulsante"
+              onclick="javascript: goToOperazione(document.forms[0].action, document.forms[0], 'elimina');" /></div>
+          </td>
+        </tr>
+        <!-- @@blkAltriVitigni -->
+      </table>
+      <p class="nota">Tutte le superfici sono espresse in ettari (ha)</p>
+      <div class="pulsanti">
+        <div class="sin">
+          <a href="javascript:conferma();">conferma</a>
+        </div>
+        <div class="des">
+          <a href="javascript:abbandona();" class="inputPulsante annulla">annulla</a>
+        </div>
+      </div>
+      <!-- @@blkElencoDati -->
+      <!-- @@blkErrore -->
+      <p class="errore">
+        $$messaggioErrore
+      </p>
+      <div class="pulsanti"><div class="des">
+        <a href="javascript:window.close();">chiudi</a>
+      </div></div>
+      <!-- @@blkErrore -->
+    </div>
+  </form>
+</body>
+</html>

@@ -1,0 +1,411 @@
+$$head
+<script language="javascript1.2" src="../js/checktext.js"  type="text/javascript"></script>
+<script language="javascript1.2" src="../js/stampaMod.js"  type="text/javascript"></script>
+<script type="text/javascript" src="../js/messaggistica.js"></script>
+<script language="javascript1.2" type="text/javascript">
+
+    
+  
+  function visualizzaFile(idAllegato)
+  {
+    var oldAction = document.form2.action
+
+    document.form2.idAllegato.value = idAllegato;
+     
+    document.form2.action = 'visualizzaFileAllegato.htm?arrivo=dettaglioAllegati';
+    document.form2.submit();
+    document.form2.action = oldAction;
+  }
+  
+  
+  var operazioneincorso=false;
+  
+  function visualizzaMess(vis)
+  {
+     var segnaposto=document.getElementById('messaggio');
+     segnaposto.innerHTML =vis;
+  }
+  
+  function cancella(idAllegato)
+  {     
+    document.form2.idAllegato.value = idAllegato;
+    document.form2.operazione.value='elimina';
+      
+    document.form2.action = 'documentoAllegati.htm';
+    document.form2.submit();
+  }
+  
+  function conferma()
+  {  
+    if (operazioneincorso ==false)
+    {   
+      operazioneincorso = true;
+      var segnaposto=document.getElementById('azioni1');
+      segnaposto.disabled = true;    
+         
+      var segnaposto1=document.getElementById('pulsanti1');
+      segnaposto1.disabled = true;     
+      
+      //visualizzaMess('Upload in corso.Attendere...');
+      visualizzaMess('<p class="errore">Upload in corso. Attendere...</p>');
+      //non deve ricaricare il padre perchè sto operando su questa finestra
+      document.form1.operazione.value='conferma';
+      document.form1.submit();
+    }    
+  }
+
+  	</script>
+</head>
+<!-- $$err_fileAllegato -->
+<!-- $$err_nomeLogico -->
+<body id="homeIndice" onLoad="$$err_error;visualizzaMess('');systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+    <div id="pagina" class="colonnaUnica">
+      <!-- INTESTAZIONE -->
+      <div id="intestazione##pathProvincia">
+        <!--intestazione-->
+        $$header
+        <!-- menu di navigazione-->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li>
+                <a href="../layout/index.htm"
+                  title="Torna alla pagina principale">home</a>
+              </li>
+              <li class="attivo">
+                gestione anagrafe aziende
+              </li>
+              <li>
+                <a href="#" title="contatti">contatti</a>
+              </li>
+              <li>
+                <a href="#" title="help">help</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div style="clear: left"></div>
+      <!-- CORPO -->
+      <div id="corpo">
+        <div id="Utente">
+          <div id="datiUtente">
+            <strong>utente:</strong> $$utente &nbsp;&nbsp;
+            <strong>ente:</strong> $$ente
+          </div>
+          <div id="chiudisessione">
+            <a href="javascript: logout();">chiudi sessione</a>
+          </div>
+        </div>
+        <hr />
+        <!--PRIMA COLONNA -->
+        <h3>
+          Gestione Anagrafe
+          Aziende&nbsp;&gt;&nbsp;Documenti&nbsp;&gt;&nbsp;Allegati
+          <span class="helpFuori"> <a href="#"> <span
+              class="alt">[help]</span> </a> </span>
+        </h3>
+        <hr />
+        <div class="box">
+          <div class="menuSX1">
+            <ul>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <li>
+                <a href="../layout/elencoAziendeRapLegale.htm">Elenco
+                  Aziende</a>
+              </li>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <!-- @@blkRicercaAzienda-->
+              <li>
+                <a href="../layout/ricerca.htm">Ricerche</a>
+              </li>
+              <!-- @@blkRicercaAzienda-->
+              <!-- @@blkNuova -->
+              <li>
+                <a href="../layout/nuovaAziendaAnagrafica.htm">Nuova
+                  Azienda</a>
+              </li>
+              <!-- @@blkNuova -->
+              <!-- @@blkNuovaIscrizione -->
+		          <li>
+		            <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+		          </li>
+		          <!-- @@blkNuovaIscrizione -->
+            </ul>
+          </div>
+          <div class="menuSX">
+            <ul>
+              <li>
+                <a href="../layout/anagrafica.htm">Anagrafica</a>
+              </li>
+              <!-- @@blkAziendeCollegate -->
+              <li>
+                <a href="../layout/aziendeCollegate.htm">$$aziendeCollegateLabel</a>
+              </li>
+              <!-- @@blkAziendeCollegate -->
+              <!-- @@blkSincronizzaFascicolo -->
+               <li>
+               	<a href="../layout/sincronizzaFascicolo.htm">Sincronizza fascicolo</a>
+               </li>
+              <!-- @@blkSincronizzaFascicolo -->
+              <!-- @@blkSoggettiCollegati -->
+              <li>
+                <a href="../layout/contitolari.htm">Soggetti
+                  collegati</a>
+              </li>
+              <!-- @@blkSoggettiCollegati -->
+              <!-- @@blkContiCorrenti -->
+              <li>
+                <a href="../layout/conti_correnti.htm">Conti
+                  Correnti</a>
+              </li>
+              <!-- @@blkContiCorrenti -->
+              <!-- @@blkUnitaProduttive -->
+              <li>
+                <a href="../layout/sedi.htm">Unit&agrave; produttive</a>
+              </li>
+              <!-- @@blkUnitaProduttive -->
+              <!-- @@blkTerreni -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniParticellareElenco.htm">Terreni</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		            <a href="../layout/riepiloghi.htm">Terreni</a>
+		            <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkTerreni -->
+		          <!-- @@blkUnitaVitate -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniUnitaArboreeElenco.htm">Unit&agrave; Vitate</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		              <a href="../layout/riepiloghiUnitaArboree.htm">Unit&agrave; Vitate</a>
+		              <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkUnitaVitate -->
+              <!-- @@blkFabbricati -->
+              <li>
+                <a href="../layout/fabbricati.htm">Fabbricati e
+                  Strutture</a>
+              </li>
+              <!-- @@blkFabbricati -->
+              <!-- @@blkAllevamenti -->
+              <li>
+                <a href="../layout/allevamenti.htm">Allevamenti</a>
+              </li>
+              <!-- @@blkAllevamenti -->
+              <!-- @@blkManodopera -->
+              <li>
+                <a href="../layout/manodopera.htm">Manodopera</a>
+              </li>
+              <!-- @@blkManodopera -->
+              <!-- @@blkMotoriAgricoli -->
+              <li>
+                <a href="../layout/motori_agricoli_incarico.htm">Macchine agricole</a>
+              </li>
+              <!-- @@blkMotoriAgricoli -->
+              <!-- @@blkDiritti -->
+              <li>
+                <a href="../layout/diritti.htm">Diritti di
+                  produzione</a>
+              </li>
+              <!-- @@blkDiritti -->
+              <!-- @@blkAttestazioni -->
+              <li>
+                <a href="../layout/attestazioniDettaglio.htm">Dichiarazioni</a>
+              </li>
+              <!-- @@blkAttestazioni -->
+              <!-- @@blkDichiarazioniConsistenza -->
+              <li>
+                <a href="../layout/dichiarazioneConsistenza.htm">Validazioni</a>
+              </li>
+              <!-- @@blkDichiarazioniConsistenza -->
+              <!-- @@blkDocumenti -->
+              <li>
+                <a href="../layout/documentiElenco.htm" class="on">Documenti</a>
+                <ul>
+                  <li>
+                    <a href="#" class="etichetta">allegati</a>
+                  </li>
+                </ul>
+              </li>
+              <!-- @@blkDocumenti -->
+              <!-- @@blkFascicoloDematerializzato -->
+		          <li>
+		            <a href="../layout/fascicoloDematerializzato.htm">Fascicolo<br>elettronico</a>
+		          </li>
+		          <!-- @@blkFascicoloDematerializzato --> 
+              <!-- @@blkGestioneNotifiche -->
+              <li>
+                <a href="../layout/notifiche.htm">Notifiche</a>
+              </li>
+              <!-- @@blkGestioneNotifiche -->
+              <!-- @@blkComunicazione10R -->
+              <li>
+                <a href="../layout/comunicazione10R_dettaglio.htm">Comunicazione
+                  10/R</a>
+              </li>
+              <!-- @@blkComunicazione10R -->
+              <!-- @@blkPratiche -->
+              <li>
+                <a href="../layout/pratiche.htm">Pratiche</a>
+              </li>
+              <!-- @@blkPratiche -->
+              <!-- @@blkStampaFascicolo -->
+              <li>
+                <a href="../layout/scelta_stampa.htm">Stampe</a>
+              </li>
+              <!-- @@blkStampaFascicolo -->
+			  <li><a href="../layout/strumenti.htm">Strumenti</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr />
+        <!-- SECONDA COLONNA -->
+        <div id="contenuto">
+          <div id="intesta">
+            <p class="$$aziendaIntestazione" title="$$tooltipIntestazione" >
+              $$CUAAIntestazione  $$denominazioneIntestazione
+            </p>
+          </div>
+          <!-- @@blkDettaglioDocumentoOk -->
+          <table cellspacing="3"
+            summary="Questa tabella contiene i dati del documento">
+            <tr>
+              <th>
+                <label for="tipo">
+                  Tipologia documento
+                </label>
+              </th>
+              <td colspan="3">
+                $$descTipoTipologiaDocumento
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="tipo">
+                  Tipo documento
+                </label>
+              </th>
+              <td colspan="3">
+                $$descTipoCategoriaDocumento
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="Stato">
+                  Descrizione documento
+                </label>
+              </th>
+              <td colspan="3">
+                $$descTipoDocumento
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Data inizio validit&agrave;
+              </th>
+              <td>
+                $$dataInizioValidita
+              </td>
+              <th>
+                Data fine validit&agrave;
+              </th>
+              <td>
+                $$dataFineValidita
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Numero di repertorio
+              </th>
+              <td>
+                $$numeroProtocollo
+              </td>
+              <input type="hidden" id="numeroProtocollo"  name="numeroProtocollo" value="$$numeroProtocollo" />
+              <th>
+                Data repertorio
+              </th>
+              <td>
+                $$dataProtocollo
+              </td>
+            </tr>
+          </table>
+    
+          <form name="form1" method="post" action="../layout/documentoAllegati.htm" enctype="multipart/form-data">
+				    <input type="hidden" name="operazione" />
+				    <table cellspacing="3" summary="">
+				      <caption>Allegati</caption>
+				      <tr>
+				        <th scope="row"><label for="nomeLogico">Nome file  </label></th>
+				        <td><input id="nomeLogico" name="nomeLogico" type="text" class="textlungo" value="$$nomeLogico" />##err_nomeLogico</td>
+				        <td rowspan="2">
+				          <div id="pulsanti1">
+			              <div id="azioni1" class="azioni"><a href="javascript:conferma()" class="highlighted" >Inserisci</a></div>
+			            </div>
+				        </td>
+				      </tr>
+				      <tr>
+				        <th scope="row"><label for="fileAllegato">File </label></th>
+				        <td><input name="fileAllegato" id="fileAllegato" type="file" size="50"/>##err_fileAllegato</td>
+				      </tr>
+				    </table>
+				    
+				    <div id="messaggio"></div>
+				  </form>  
+          <form id="form2" name="form2" method="post" action="../layout/documentoAllegati.htm">
+            <input type="hidden" name="idDocumento" value="$$idDocumento" />
+            <input type="hidden" name="operazione" value="$$operazione" />
+            <input type="hidden" name="idAllegato" value="" />
+            
+            
+            
+						<!-- @@fileAllegatiBlk -->
+						<table cellspacing="3" summary="Tabella contenente il riepilogo dei dati dettagliati della ricerca effettuata in precedenza in particolare l'iter del bando">
+						  <tr>   
+                <th class="center" colspan="2">
+                  Nome documento
+                </th>
+                <th class="center" >Allegato</th>
+                <th class="center" >
+                  Data inserimento
+                </th>
+              </tr>						  
+						  <!-- @@fileBlk -->
+						  <tr>   
+						    <td align="center">
+						      <a href="javascript:cancella('$$idAllegato')" class="cancella" title="elimina allegato"></a>
+						    </td>
+						    <td>$$nome</td>
+						    <td align="center" >
+						      <a href="javascript:visualizzaFile('$$idAllegato')" class="$$immagineStampa" title="$$titleAllegato" ></a>
+						    </td>
+						    <td>
+                  $$dataInserimento
+                </td>
+						  </tr>
+						  <!-- @@fileBlk -->
+						</table>
+						<!-- @@fileAllegatiBlk -->
+            
+            
+              
+          </form>
+          
+          <!-- @@blkDettaglioDocumentoOk -->
+          
+          <!-- @@blkDettaglioDocumentoKo -->
+          <p class="errore">
+            $$messaggioErrore
+          </p>
+          <!-- @@blkDettaglioDocumentoKo -->
+        </div>
+      </div>
+  
+  $$footer

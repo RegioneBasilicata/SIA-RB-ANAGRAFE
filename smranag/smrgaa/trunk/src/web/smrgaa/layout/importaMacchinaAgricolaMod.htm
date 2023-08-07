@@ -1,0 +1,431 @@
+$$head
+<script type="text/javascript" src="../js/checkdata.js"></script>
+<script type="text/javascript" src="../js/checktext.js"></script>
+<script type="text/javascript" src="../js/messaggistica.js"></script>
+<script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../js/jquery-ui-1.8.21.custom/jquery-ui-1.8.21.custom.min.js"></script>
+<script type="text/javascript">
+  
+  function modificaComboFormaPossesso()
+  {
+    var idTipoFormaPossessoPar = document.form1.idTipoFormaPossesso.value;
+    
+    collOptions = document.getElementById("idTipoFormaPossesso").options
+		// ciclo
+		for (var i = 0; i < collOptions.length; i++) 
+		{
+		  
+			if (collOptions[i].value == idTipoFormaPossessoPar) 
+			{
+			  if(document.form1.abilitaPercentualePossesso[i].value == 'S')
+			  {
+			    document.form1.percentualePossesso.readOnly = '';
+			  }
+			  else
+			  {
+			    document.form1.percentualePossesso.value = '100';
+			    document.form1.percentualePossesso.readOnly = 'readOnly';
+			  }
+			  
+			}
+		}  
+  }
+  
+  function setBlocked(form, obj, operazione) 
+  {
+    obj.onclick = '';
+    form.operazione.value = operazione
+    form.submit();
+  }
+  
+</script>
+</head>
+<body id="homeIndice" onLoad="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+  <form name="form1" method="post" action="../layout/importaMacchinaAgricolaMod.htm">
+    <input type="hidden" id="regimeImportaMacchinaAgricolaMod" name="regimeImportaMacchinaAgricolaMod" value="regimeImportaMacchinaAgricolaMod" />
+    <input type="hidden" name="operazione"  value="$$operazione" id="operazione" >
+    <input type="hidden" name="idPossessoMacchina" value="$$idPossessoMacchina" id="idPossessoMacchina" />
+    <div id="pagina" class="colonnaUnica">
+      <!-- INTESTAZIONE -->
+      <div id="intestazione##pathProvincia">
+        $$header
+        <!-- menu di navigazione-->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li>
+                <a href="../layout/index.htm" title="Torna alla pagina principale">home</a>
+              </li>
+              <li class="attivo">gestione anagrafe aziende</li>
+              <li>
+                <a href="#" title="contatti">contatti</a>
+              </li>
+              <li>
+                <a href="#" title="help">help</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr/>
+      <div style="clear:left"></div>
+      <!-- CORPO -->
+      <div id="corpo">
+        <div id="Utente">
+          <div id="datiUtente">
+            <strong>utente:</strong>$$utente&nbsp;&nbsp;
+            <strong>ente:</strong>$$ente
+          </div>
+          <div id="chiudisessione">
+            <a href="javascript: logout();">chiudi sessione</a>
+          </div>
+        </div>
+        <hr/>
+        <!--PRIMA COLONNA -->
+        <h3>Gestione Anagrafe Aziende&nbsp;&gt;&nbsp;Macchine agricole&nbsp;&gt;&nbsp;Carica
+          <span class="helpFuori">
+            <a href="#">
+              <span class="alt">[help]</span>
+            </a>
+          </span>
+        </h3>
+        <hr/>
+        <div class="box">
+          <div class="menuSX1">
+            <ul>
+              <!-- @@blkElencoAziendeRapLegale -->
+                <li><a href="../layout/elencoAziendeRapLegale.htm">Elenco Aziende</a></li>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <!-- @@blkRicercaAzienda-->
+                <li><a href="../layout/ricerca.htm">Ricerche</a></li>
+              <!-- @@blkRicercaAzienda-->
+              <!-- @@blkNuova -->
+                <li>
+                  <a href="../layout/nuovaAziendaAnagrafica.htm">Nuova Azienda</a>
+                </li>
+              <!-- @@blkNuova -->
+              <!-- @@blkNuovaIscrizione -->
+		          <li>
+		            <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+		          </li>
+		          <!-- @@blkNuovaIscrizione -->
+            </ul>
+          </div>
+          <div class="menuSX">
+            <ul>
+              <li>
+                <a href="../layout/anagrafica.htm">Anagrafica</a>
+              </li>
+              <!-- @@blkAziendeCollegate -->
+            			<li>
+            					<a href="../layout/aziendeCollegate.htm">$$aziendeCollegateLabel</a>
+            			</li>
+            	<!-- @@blkAziendeCollegate -->
+              <!-- @@blkSincronizzaFascicolo -->
+               <li>
+               	<a href="../layout/sincronizzaFascicolo.htm">Sincronizza fascicolo</a>
+               </li>
+              <!-- @@blkSincronizzaFascicolo -->	
+              <!-- @@blkSoggettiCollegati -->
+                <li>
+                  <a href="../layout/contitolari.htm">Soggetti collegati</a>
+                </li>
+              <!-- @@blkSoggettiCollegati -->
+              <!-- @@blkContiCorrenti -->
+              <li><a href="../layout/conti_correnti.htm">Conti Correnti</a></li>
+              <!-- @@blkContiCorrenti -->
+              <!-- @@blkUnitaProduttive -->
+                <li>
+                  <a href="../layout/sedi.htm">Unit&agrave; produttive</a>
+                </li>
+              <!-- @@blkUnitaProduttive -->
+              <!-- @@blkTerreni -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniParticellareElenco.htm">Terreni</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		            <a href="../layout/riepiloghi.htm">Terreni</a>
+		            <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkTerreni -->
+		          <!-- @@blkUnitaVitate -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniUnitaArboreeElenco.htm">Unit&agrave; Vitate</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		              <a href="../layout/riepiloghiUnitaArboree.htm">Unit&agrave; Vitate</a>
+		              <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkUnitaVitate -->
+              <!-- @@blkFabbricati -->
+                <li>
+                  <a href="../layout/fabbricati.htm">Fabbricati e Strutture</a>
+                </li>
+              <!-- @@blkFabbricati -->
+              <!-- @@blkAllevamenti -->
+                <li>
+                  <a href="../layout/allevamenti.htm">Allevamenti</a>
+                </li>
+              <!-- @@blkAllevamenti -->
+              <!-- @@blkManodopera -->
+                <li>
+                  <a href="../layout/manodopera.htm">Manodopera</a>
+                </li>
+              <!-- @@blkManodopera -->
+              <!-- @@blkMotoriAgricoli -->
+                <li>
+                  <a href="../layout/motori_agricoli_incarico.htm" class="on">Macchine agricole</a>
+                  <ul>
+                    <li>
+                      <a href="#" class="etichetta">carica</a>
+                    </li>
+                  </ul>
+                </li>
+              <!-- @@blkMotoriAgricoli -->
+              <!-- @@blkDiritti -->
+                <li><a href="../layout/diritti.htm">Diritti di produzione</a></li>
+              <!-- @@blkDiritti -->
+              <!-- @@blkAttestazioni -->
+              	<li><a href="../layout/attestazioniDettaglio.htm">Dichiarazioni</a></li>
+              <!-- @@blkAttestazioni -->
+              <!-- @@blkDichiarazioniConsistenza -->
+              <li><a href="../layout/dichiarazioneConsistenza.htm">Validazioni</a></li>
+              <!-- @@blkDichiarazioniConsistenza -->
+              <!-- @@blkDocumenti -->
+              <li><a href="../layout/documentiElenco.htm">Documenti</a></li>
+              <!-- @@blkDocumenti -->
+              <!-- @@blkFascicoloDematerializzato -->
+		          <li>
+		            <a href="../layout/fascicoloDematerializzato.htm">Fascicolo<br>elettronico</a>
+		          </li>
+		          <!-- @@blkFascicoloDematerializzato --> 
+              <!-- @@blkGestioneNotifiche -->
+              <li><a href = "../layout/notifiche.htm">Notifiche</a></li>
+              <!-- @@blkGestioneNotifiche -->
+              <!-- @@blkComunicazione10R -->
+                <li>
+                  <a href="../layout/comunicazione10R_dettaglio.htm">Comunicazione 10/R</a>
+                </li>
+              <!-- @@blkComunicazione10R -->
+              <!-- @@blkPratiche -->
+              <li><a href="../layout/pratiche.htm">Pratiche</a></li>
+              <!-- @@blkPratiche -->
+              <!-- @@blkStampaFascicolo -->
+              <li><a href="../layout/scelta_stampa.htm">Stampe</a></li>
+              <!-- @@blkStampaFascicolo -->
+			  <li><a href="../layout/strumenti.htm">Strumenti</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr/>
+        <!-- SECONDA COLONNA -->
+        <div id="contenuto">
+          <div id="intesta">
+            <p class="$$aziendaIntestazione" title="$$tooltipIntestazione" >
+              $$CUAAIntestazione  $$denominazioneIntestazione
+            </p>
+          </div>
+          
+          
+          
+          
+          
+          
+          <table cellspacing="3" class="detailTable" summary="Questa tabella è costituita da righe">
+            <col width="30%"/>
+            <col width="70%"/>
+            <tr>
+              <th>
+                <label for="idUte">
+                  Unit&agrave; produttiva (U.T.E) *
+                </label>
+              </th>
+              <td>
+                <select name="idUte" id="idUte" class="textmediolungo">
+                  <!-- @@blkComboUte -->
+                  <option value="$$idUte" $$selected>
+                    $$descUte
+                  </option>
+                  <!-- @@blkComboUte -->
+                </select>
+                $$err_idUte
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Tipologia
+              </th>
+              <td>
+                $$descTipoMacchina
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Genere
+              </th>
+              <td>                
+                $$descGenereMacchina
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Tipo 
+              </th>
+              <td>       
+                $$descTipoCategoria
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="annoCostruzione">
+                  Anno acquisto o costruzione
+                </label>
+              </th>
+              <td>
+                <input name="annoCostruzione" type="text"
+                  class="textbreve" id="annoCostruzione"
+                  value="$$annoCostruzione" maxlength="4" $$readOnlyAnnoCostr />
+                $$err_annoCostruzione
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="idMarca">
+                  Marca
+                </label>
+              </th>
+              <td>       
+                <select name="idMarca" id="idMarca" $$disabledTipoMarca>
+                  <option value="" ></option>
+                  <!-- @@blkTipoMarca -->
+                  <option value="$$idMarca" $$selected>
+                    $$descrizione
+                  </option>
+                  <!-- @@blkTipoMarca -->
+                </select>
+                $$err_idMarca                    
+              </td>
+              <!-- @@blkHiddenTipoMarca -->
+              <input name="idMarca" type="hidden" id="idMarca" value="$$idMarca" />
+              <!-- @@blkHiddenTipoMarca -->
+            </tr>
+            <tr>
+              <th>
+                <label for="modello">
+                  Modello
+                </label>
+              </th>
+              <td>
+                <input type="text" id="modello"
+                  name="modello" size="30" maxlength="30"
+                  class="text" value="$$modello" $$readOnlyModello />
+                $$err_modello
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="matricolaTelaio">
+                  N. Telaio
+                </label>
+              </th>
+              <td>
+                <input type="text" id="matricolaTelaio"
+                  name="matricolaTelaio" size="30" maxlength="30"
+                  class="text" value="$$matricolaTelaio" $$readOnlyMatrTelaio />
+                $$err_matricolaTelaio
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="idTipoFormaPossesso">
+                  Forma di possesso
+                </label>
+              </th>
+              <td>       
+                <select name="idTipoFormaPossesso" id="idTipoFormaPossesso" 
+                  onchange="javascript:modificaComboFormaPossesso();" >
+                  <option value="" ></option>
+                  <!-- @@blkTipoFormaPossesso -->
+                  <option value="$$idTipoFormaPossesso" $$selected>
+                    $$descrizione
+                  </option>
+                  <!-- @@blkTipoFormaPossesso -->
+                </select>
+                $$err_idTipoFormaPossesso                    
+              </td>
+              <input type="hidden" id="abilitaPercentualePossesso" name="abilitaPercentualePossesso" value="N" />
+              <!-- @@blkHiddenAbilitaPercPossesso -->
+              <input type="hidden" id="abilitaPercentualePossesso" name="abilitaPercentualePossesso" value="$$abilitaPercentualePossesso" />
+              <!-- @@blkHiddenAbilitaPercPossesso -->
+            </tr>
+            <tr>
+              <th>
+                <label for="percentualePossesso">
+                  Percentuale possesso
+                </label>
+              </th>
+              <td>
+                <input name="percentualePossesso" type="text"
+                  class="textbreve" id="percentualePossesso"
+                  value="$$percentualePossesso" maxlength="3" $$readOnlyPerPoss />
+                $$err_percentualePossesso
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Data carico
+              </th>              
+              <td>
+                <input name="dataCarico" type="text" class="textmedio"
+                  id="dataCarico" value="$$dataCarico" maxlength="10" />
+                &nbsp;gg/mm/aaaa&nbsp;$$err_dataCarico              
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="note">
+                  Note
+                </label>
+              </th>
+              <td>
+                <textarea name="note"
+                  id="note" cols="85" rows="5" maxlength="1000" >$$note</textarea>
+                $$err_note
+              </td>
+            </tr>
+            
+            
+            
+            
+		      </table>
+		      
+		      <div class="pulsanti">
+            <div class="sin">
+              <input type="button" value="indietro" name="indietro"
+                class="inputPulsante"
+                onclick="javascript:goToOperazione('../layout/importaMacchinaAgricola.htm',document.forms[0], 'ricerca');" />
+            </div>
+            <div class="des">
+              <input type="button" id="conferma" value="conferma"
+                name="conferma" class="inputPulsante highlighted"
+                onclick="javascript:setBlocked(document.forms[0], this, 'conferma');" />
+            </div>
+          </div>
+		      
+		      
+		      <!-- @@blkErrore -->
+          <p class="errore">
+            $$messaggioErrore
+          </p>
+          <!-- @@blkErrore -->
+		    
+		  </div>
+		</div>
+		<hr/>
+<!-- PIE' DI PAGINA -->
+$$footer

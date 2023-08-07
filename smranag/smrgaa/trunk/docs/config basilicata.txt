@@ -1,0 +1,17 @@
+url console server wildfly
+
+Server dove sono caricati i servizi
+http://172.18.14.157:9990/console/
+utente=aizoon  password= AL_346CG12 
+
+Server dove sono caricate le applicazioni web
+http://172.18.14.156:9990/console/
+utente=aizoon  password= AL_346CG12
+
+Url applicativa
+http://172.18.14.155/smrgaaweb/local_login.jsp
+https://applicazioni.regione.TOBECONFIG.it/smrgaaweb
+
+Database
+URL jdbc:oracle:thin:@srv1-oraclesirs.hosting.int:1521/orcl.hosting.int
+SMRGAA/MYPASS

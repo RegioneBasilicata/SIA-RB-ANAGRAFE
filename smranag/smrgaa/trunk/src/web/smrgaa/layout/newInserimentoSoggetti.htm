@@ -1,0 +1,436 @@
+$$head
+<script type="text/javascript" src="../js/checktext.js"></script>
+<script type="text/javascript" src="../js/messaggistica.js"></script>
+<script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../js/jquery-ui-1.8.21.custom/jquery-ui-1.8.21.custom.min.js"></script>
+<script type="text/javascript">
+  function modificaRigaDati(tipoModificaPar, numRiga)
+  {    
+    
+    var dataInv = {
+      tipoModifica: tipoModificaPar,
+      numRiga: numRiga
+    };
+     
+    dataInv = $('#form1').serialize() + '&' + $.param(dataInv);
+    
+    
+    
+    $.ajax({
+      url: "../layout/tabellaDatiNewSoggetti.htm",
+      type: "POST",
+      data: dataInv,
+      success: function( data ) 
+              {
+                $('#elencoDatiSoggetti').html( data );                 
+              },
+       dataType: 'html'
+      
+    });   
+  }
+  
+  function modificaComboComune(indice)
+  {    
+    
+    var idCombo = '#idComune'+indice;
+    var istatProvinciaPar = '';
+    
+    //mi serve per capire se ho più righe!!!
+    if (document.form1.dataInizioRuolo.length)
+    {
+      istatProvinciaPar = document.form1.istatProvincia[indice].value;
+    }
+    else
+    {
+      istatProvinciaPar = document.form1.istatProvincia.value;
+    }   
+    
+    var dataInv = {
+      istatProvincia: istatProvinciaPar,
+      provenienza: "nuovaIscrizioneSog",
+      indice: indice
+    };
+     
+    dataInv = $.param(dataInv);    
+    
+    
+    $.ajax({
+      url: "../layout/popolaComboComune.htm",
+      type: "POST",
+      data: dataInv,
+      success: function( data ) 
+              { 
+                $(idCombo).html( data );
+              },
+       dataType: 'html'
+      
+    });   
+  }
+  
+  
+  function modificaCap(indice)
+  {    
+    
+    var idCombo = '#idCap'+indice;
+    var istatComunePar = '';
+    
+    //mi serve per capire se ho più righe!!!
+    if (document.form1.dataInizioRuolo.length)
+    {
+      istatComunePar = document.form1.istatComune[indice].value;
+    }
+    else
+    {
+      istatComunePar = document.form1.istatComune.value;
+    }   
+    
+    var dataInv = {
+      istatComune: istatComunePar,
+      provenienza: "nuovaIscrizioneSog",
+      indice: indice
+    };
+     
+    dataInv = $.param(dataInv);    
+    
+    
+    $.ajax({
+      url: "../layout/popolaCap.htm",
+      type: "POST",
+      data: dataInv,
+      success: function( data ) 
+              { 
+                $(idCombo).html( data );
+              },
+       dataType: 'html'
+      
+    });   
+  }
+  
+
+</script>
+</head>
+<body id="homeIndice" onload="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+	<form id="form1" name="form1" method="post" action="../layout/newInserimentoSoggetti.htm">
+    <input type="hidden" id="regimeInserimentoSoggetti" name="regimeInserimentoSoggetti" value="regimeInserimentoSoggetti"/>
+    <input type="hidden" id="operazione" name="operazione" value=""/>
+    <input type="hidden" id="idRigaElim" name="idRigaElim" value=""/>
+    <div id="pagina" class="colonnaUnica">
+      
+      <!-- INTESTAZIONE -->
+      <div id="intestazione##pathProvincia">
+        $$header
+        <!-- menu di navigazione-->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li>
+                <a href="../layout/index.htm" title="Torna alla pagina principale">home</a>
+              </li>
+              <li class="attivo">gestione anagrafe aziende</li>
+              <li>
+                <a href="#" title="contatti">contatti</a>
+              </li>
+              <li>
+                <a href="#" title="help">help</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr/>
+      <div style="clear:left"></div>
+      <!-- CORPO -->
+      <div id="corpo">
+        <div id="Utente">
+          <div id="datiUtente">
+            <strong>utente:</strong>$$utente&nbsp;&nbsp;
+            <strong>ente:</strong>$$ente
+          </div>
+          <div id="chiudisessione">
+            <a href="javascript: logout();">chiudi sessione</a>
+          </div>
+        </div>
+        <hr/>
+        <!--PRIMA COLONNA -->
+        <h3>Nuova iscrizione
+          <span class="helpFuori">
+            <a href="#">
+              <span class="alt">[help]</span>
+            </a>
+          </span>
+        </h3>
+        <hr/>
+        <div class="box">
+          <div class="menuSX1">
+            <ul>
+              <!-- @@blkRicercaAzienda-->
+              <li>
+                <a href="../layout/ricerca.htm">Ricerche</a>
+              </li>
+              <!-- @@blkRicercaAzienda-->                  
+              <li><a href="../layout/newInserimentoAzienda.htm" class="on">Nuova iscrizione</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr/>
+        <!-- SECONDA COLONNA -->
+        <div id="contenuto">
+          <div id="intesta">
+            <p class="$$aziendaIntestazione" title="$$tooltipIntestazione" >
+              $$CUAAIntestazione  $$denominazioneIntestazione
+            </p>
+          </div>
+          
+          <div id="indice">
+            <span class="voce">
+              <a href="#">Anagrafica</a>
+            </span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+            <span class="voce">
+              <a href="#">Unit&agrave; produttive</a>
+            </span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+            <span class="voce">
+              <a href="#">Terreni</a>
+            </span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+            <span class="voce">
+              <a href="#">Fabbricati</a>
+            </span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+            <span class="voce">
+              <a href="#">Allevamenti</a>
+            </span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+            <span class="evidenza">
+              <a href="#">Soggetti collegati</a>
+            </span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+            <span class="voce">
+              <a href="#">Elenco associati</a>
+            </span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+            <span class="voce">
+              <a href="#">Conti correnti</a>
+            </span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+            <span class="voce">
+              <a href="#">Allegati</a>
+            </span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+          </div>
+          <hr/>
+          
+          <br>
+          <div>
+            <p id="istruzioni">$$testoHelp</p>            
+          </div>
+          <br>
+          
+          <div class="scroll">
+            <div id="elencoDatiSoggetti">
+	            <table cellspacing="3" summary="Questa tabella è costituita da righe">
+	              <caption>Soggetti collegati</caption>
+	              <tr>
+	                <th class="center" scope="col" rowspan="2">
+	                  <a href="javascript:modificaRigaDati('inserisci','')" class="aggiungi" title="inserisci Soggetti"></a>
+	                </th>
+	                <th class="center" scope="col" rowspan="2">
+	                  Ruolo*
+	                </th>
+	                <th class="center" scope="col" rowspan="2">
+	                  Data inizio ruolo*
+	                </th>
+	                <th class="center" scope="col" rowspan="2">
+	                  Codice fiscale*
+	                </th>
+	                <th class="center" scope="col" rowspan="2">
+	                  Cognome*
+	                </th>
+	                <th class="center" scope="col" rowspan="2">
+	                  Nome*
+	                </th>
+	                <th scope="col" class="center" colspan="4">
+	                  Residenza
+	                </th>
+	                <th class="center" scope="col" rowspan="2">
+                    Telefono
+                  </th>
+                  <th class="center" scope="col" rowspan="2">
+                    Email*
+                  </th>
+	              </tr>
+	              <tr>
+	                <th class="center" scope="col">
+	                  Prov*
+	                </th>
+	                <th class="center" scope="col">
+	                  Comune*
+	                </th>
+	                <th class="center" scope="col">
+	                  Indirizzo*
+	                </th>
+	                <th class="center" scope="col">
+	                  CAP*
+	                </th>
+	              </tr>
+	              <!--@@blkElencoSoggetti -->
+	              <!--@@blkRapLegale -->
+	              <tr>   
+                  <td></td>
+                  <td>
+                    RAPPRESENTANTE LEGALE / TITOLARE
+                  </td>
+                  <td>
+                    $$dataInizioRuolo
+                  </td>
+                  <td>
+                    $$codiceFiscale
+                  </td>
+                  <td>
+                    $$cognome
+                  </td>
+                  <td>
+                    $$nome
+                  </td>
+                  <td>
+                    $$sglProv
+                  </td>
+                  <td>
+                    $$desCom
+                  </td>
+                  <td>
+                    $$indirizzo
+                  </td>
+                  <td>
+                    $$cap
+                  </td>
+                  <td>
+                    $$telefono
+                  </td>
+                  <td>
+                    $$email
+                  </td>                              
+                </tr>
+	              <!--@@blkRapLegale -->
+	              <!--@@blkAltroSoggetto -->
+	              <tr>   
+	                <td>
+	                  <a href="javascript:modificaRigaDati('elimina', '$$idRiga')" class="cancella" title="elimina soggetto"></a>
+	                  $$err_generico
+	                </td>
+	                <td>
+	                  <select name="idRuolo" id="idRuolo" >
+	                    <option value="" ></option>
+	                    <!-- @@blkElencoRuoli -->
+	                    <option value="$$idRuolo" $$selected>
+	                      $$descRuolo
+	                    </option>
+	                    <!-- @@blkElencoRuoli -->
+	                  </select>
+	                  $$err_idRuolo
+	                </td>
+	                <td>
+                    <input type="text" name="dataInizioRuolo" class="textmedio"
+                      value="$$dataInizioRuolo" />
+                    $$err_dataInizioRuolo
+                  </td>
+	                <td>
+	                  <input type="text" name="codiceFiscale" class="textmediolungo"
+		                  value="$$codiceFiscale" />
+		                $$err_codiceFiscale
+	                </td>
+	                <td>
+                    <input type="text" name="cognome" class="textmediolungo"
+                      value="$$cognome" />
+                    $$err_cognome
+                  </td>
+                  <td>
+                    <input type="text" name="nome" class="textmediolungo"
+                      value="$$nome" />
+                    $$err_nome
+                  </td>
+                  <td>
+	                  <select name="istatProvincia" id="istatProvincia"
+	                    onchange="javascript: modificaComboComune('$$idRiga');">
+	                    <option value="" ></option>
+	                    <!-- @@blkElencoProvince -->
+	                    <option value="$$istatProvincia" $$selected>
+	                      $$sglProv
+	                    </option>
+	                    <!-- @@blkElencoProvince -->
+	                  </select>
+	                  $$err_istatProvincia
+	                </td>
+	                <td>
+	                  <div id="idComune$$idRiga">
+		                  <select name="istatComune" id="istatComune" 
+		                    onchange="javascript: modificaCap('$$idRiga');">
+		                    <!-- @@blkElencoComuni -->
+		                    <option value="$$istatComune" $$selected>
+		                      $$desCom
+		                    </option>
+		                    <!-- @@blkElencoComuni -->
+		                    <!-- @@blkNoComuni -->
+	                      <option value="" ></option>
+	                      <!-- @@blkNoComuni -->
+		                  </select>
+		                  $$err_istatComune
+		                </div>
+	                </td>
+	                <td>
+                    <input type="text" name="indirizzo" class="textmediolungo"
+                      value="$$indirizzo" />
+                    $$err_indirizzo
+                  </td>
+                  <td>
+                    <div id="idCap$$idRiga">
+	                    <input type="text" name="cap" class="textmedio"
+	                      value="$$cap" />
+	                    $$err_cap
+	                  </div>
+                  </td>
+                  <td>
+                    <input type="text" name="telefono" class="textmedio"
+                      value="$$telefono" />
+                    $$err_telefono
+                  </td>
+                  <td>
+                    <input type="text" name="email" class="textmedio"
+                      value="$$email" />
+                    $$err_email
+                  </td> 	                           
+	              </tr>
+	              <!--@@blkAltroSoggetto -->              
+	              <!--@@blkElencoSoggetti -->
+	            </table>
+	          </div>
+          </div> 
+          
+          
+          <p id="nota">I campi contrassegnati con * sono obbligatori</p>
+          <div class="pulsanti"><div class="sin">
+            <input name="indietro" id="indietro" class="inputPulsante" type="submit" value="indietro"/>
+          </div>
+          <div class="des">
+            <input name="avanti" id="avanti" class="inputPulsante" type="submit" value="avanti" autofocus />
+          </div>
+          </div>  
+          </br>
+          </br>
+          </br>
+          
+          
+          <!-- @@blkErrore -->
+          <p class="errore">
+            $$messaggioErrore
+          </p>
+          <!-- @@blkErrore -->
+        </div>
+      </div>
+      <hr/>
+      <!-- PIE' DI PAGINA -->
+      $$footer

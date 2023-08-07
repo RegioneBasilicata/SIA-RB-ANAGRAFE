@@ -1,0 +1,61 @@
+$$head
+<script src="../js/checktext.js" type="text/javascript"></script>
+<script type="text/javascript" src="../js/messaggistica.js"></script>
+<script type="text/javascript">
+
+    function goTo(url) {
+      document.form1.operazione.value = 'indietro';
+      document.form1.action = url;
+      document.form1.submit();
+    }
+
+    function elimina(url) {
+      document.form1.operazione.value = 'elimina';
+      document.form1.action = url;
+      document.form1.submit();
+    }
+
+  </script>
+</head>
+<body id="homeIndice" onLoad="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+  <form id="form1" name="form1" method="post" action="">
+    <div id="pagina" class="colonnaUnica">
+      <input type="hidden" id="operazione" name="operazione" value="$$operazione"/>
+      <input type="hidden" id="pagina1" name="pagina" value="$$pagina"/>
+      <input type="hidden" id="idFabbricato" name="idFabbricato" value="$$idFabbricato"/>
+      <!-- INTESTAZIONE -->
+      <div id="intestazione##pathProvincia">
+        $$header
+        <!-- menu di navigazione-->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+        </div>
+      </div>
+      <hr/>
+      <div style="clear:left"></div>
+      <!-- CORPO -->
+      <div id="corpo">
+        <hr/>
+        <!-- PRIMA COLONNA -->
+        <div id="content">
+          <p class="errore">Attenzione</p>
+          <p>Eliminare l'appartenenza del fabbricato all'azienda selezionata solo se inserita per errore.Dopo tale operazione i dati non potranno pi&ugrave; essere reperiti. Sei sicuro di proseguire con l'eliminazione?</p>
+          
+           <div class="pulsanti">
+          <div class="sin">
+            <input type="button" value="conferma" name="conferma" class="inputPulsante highlighted" onClick="javascript: elimina('../layout/confermaEliminaFabbricato.htm')"/>
+          </div>
+          <div class="des">
+            <input type="button" value="annulla" name="annulla" class="inputPulsante" onClick="javascript: goTo('../layout/confermaEliminaFabbricato.htm')"/>
+          </div>
+          </div>
+          
+        </div>
+        <!-- SECONDA COLONNA -->
+      </div>
+      <hr/>
+    </form>
+    <!-- PIE' DI PAGINA -->
+    $$footer

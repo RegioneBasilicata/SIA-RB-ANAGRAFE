@@ -1,0 +1,402 @@
+$$head
+
+  <script src="../js/checktext.js" type="text/javascript"></script>
+  <script type="text/javascript" src="../js/messaggistica.js"></script>
+</head>
+<body id="homeIndice" onLoad="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+  <form id="form1" name="form1" method="post" action="../layout/manodoperaMod.htm">
+    <div id="pagina" class="colonnaUnica">
+      <!-- INTESTAZIONE -->
+      <div id="intestazione##pathProvincia">
+        $$header
+        <!-- menu di navigazione-->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li>
+                <a href="../layout/index.htm" title="Torna alla pagina principale">home</a>
+              </li>
+              <li class="attivo">gestione anagrafe aziende</li>
+              <li>
+                <a href="#" title="contatti">contatti</a>
+              </li>
+              <li>
+                <a href="#" title="help">help</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr/>
+      <div style="clear:left"></div>
+      <!-- CORPO -->
+      <div id="corpo">
+        <div id="Utente">
+          <div id="datiUtente">
+            <strong>utente:</strong>$$utente&nbsp;&nbsp;
+            <strong>ente:</strong>$$ente
+          </div>
+          <div id="chiudisessione">
+            <a href="javascript: logout();">chiudi sessione</a>
+          </div>
+        </div>
+        <hr/>
+        <!--PRIMA COLONNA -->
+        <h3>Gestione Anagrafe Aziende&nbsp;&gt;&nbsp;Manodopera&nbsp;&gt;&nbsp;Modifica
+          <span class="helpFuori">
+            <a href="#">
+              <span class="alt">[help]</span>
+            </a>
+          </span>
+        </h3>
+        <hr/>
+        <div class="box">
+          <div class="menuSX1">
+            <ul>
+              <!-- @@blkElencoAziendeRapLegale -->
+                <li><a href="../layout/elencoAziendeRapLegale.htm">Elenco Aziende</a></li>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <!-- @@blkRicercaAzienda-->
+                <li><a href="../layout/ricerca.htm">Ricerche</a></li>
+              <!-- @@blkRicercaAzienda-->
+              <!-- @@blkNuova -->
+                <li>
+                  <a href="../layout/nuovaAziendaAnagrafica.htm">Nuova Azienda</a>
+                </li>
+              <!-- @@blkNuova -->
+              <!-- @@blkNuovaIscrizione -->
+              <li>
+                <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+              </li>
+              <!-- @@blkNuovaIscrizione -->
+            </ul>
+          </div>
+          <div class="menuSX">
+            <ul>
+              <li>
+                <a href="../layout/anagrafica.htm">Anagrafica</a>
+              </li>
+              <!-- @@blkAziendeCollegate -->
+	          			<li>
+	          					<a href="../layout/aziendeCollegate.htm">$$aziendeCollegateLabel</a>
+	          			</li>
+	          	<!-- @@blkAziendeCollegate -->
+	          	<!-- @@blkSincronizzaFascicolo -->
+	               <li>
+	               	<a href="../layout/sincronizzaFascicolo.htm">Sincronizza fascicolo</a>
+	               </li>
+                <!-- @@blkSincronizzaFascicolo -->
+              <!-- @@blkSoggettiCollegati -->
+                <li>
+                  <a href="../layout/contitolari.htm">Soggetti collegati</a>
+                </li>
+              <!-- @@blkSoggettiCollegati -->
+              <!-- @@blkContiCorrenti -->
+                <li><a href="../layout/conti_correnti.htm">Conti Correnti</a></li>
+              <!-- @@blkContiCorrenti -->
+              <!-- @@blkUnitaProduttive -->
+                <li>
+                  <a href="../layout/sedi.htm">Unit&agrave; produttive</a>
+                </li>
+              <!-- @@blkUnitaProduttive -->
+              <!-- @@blkTerreni -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniParticellareElenco.htm">Terreni</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		            <a href="../layout/riepiloghi.htm">Terreni</a>
+		            <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkTerreni -->
+		          <!-- @@blkUnitaVitate -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniUnitaArboreeElenco.htm">Unit&agrave; Vitate</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		              <a href="../layout/riepiloghiUnitaArboree.htm">Unit&agrave; Vitate</a>
+		              <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkUnitaVitate -->
+              <!-- @@blkFabbricati -->
+                <li>
+                  <a href="../layout/fabbricati.htm">Fabbricati e Strutture</a>
+                </li>
+              <!-- @@blkFabbricati -->
+              <!-- @@blkAllevamenti -->
+                <li>
+                  <a href="../layout/allevamenti.htm">Allevamenti</a>
+                </li>
+              <!-- @@blkAllevamenti -->
+              <!-- @@blkManodopera -->
+                <li>
+                  <a href="../layout/manodopera.htm" class="on">Manodopera</a>
+                  <ul>
+                    <li>
+                      <a href="#" class="etichetta">modifica</a>
+                    </li>
+                  </ul>
+                </li>
+              <!-- @@blkManodopera -->
+              <!-- @@blkMotoriAgricoli -->
+                <li>
+                  <a href="../layout/motori_agricoli_incarico.htm">Macchine agricole</a>
+                </li>
+              <!-- @@blkMotoriAgricoli -->
+              <!-- @@blkDiritti -->
+                <li><a href="../layout/diritti.htm">Diritti di produzione</a></li>
+              <!-- @@blkDiritti -->
+              <!-- @@blkAttestazioni -->
+                <li><a href="../layout/attestazioniDettaglio.htm">Dichiarazioni</a></li>
+              <!-- @@blkAttestazioni -->
+              <!-- @@blkDichiarazioniConsistenza -->
+                <li><a href="../layout/dichiarazioneConsistenza.htm">Validazioni</a></li>
+              <!-- @@blkDichiarazioniConsistenza -->
+              <!-- @@blkDocumenti -->
+              <li><a href="../layout/documentiElenco.htm">Documenti</a></li>
+              <!-- @@blkDocumenti -->
+              <!-- @@blkFascicoloDematerializzato -->
+              <li>
+                <a href="../layout/fascicoloDematerializzato.htm">Fascicolo<br>elettronico</a>
+              </li>
+              <!-- @@blkFascicoloDematerializzato -->
+              <!-- @@blkGestioneNotifiche -->
+                <li><a href="../layout/notifiche.htm">Notifiche</a></li>
+              <!-- @@blkGestioneNotifiche -->
+              <!-- @@blkComunicazione10R -->
+                <li>
+                  <a href="../layout/comunicazione10R_dettaglio.htm">Comunicazione 10/R</a>
+                </li>
+              <!-- @@blkComunicazione10R -->
+              <!-- @@blkPratiche -->
+                <li><a href="../layout/pratiche.htm">Pratiche</a></li>
+              <!-- @@blkPratiche -->
+              <!-- @@blkStampaFascicolo -->
+                <li><a href="../layout/scelta_stampa.htm">Stampe</a></li>
+              <!-- @@blkStampaFascicolo -->
+			  <li><a href="../layout/strumenti.htm">Strumenti</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr/>
+        <!-- SECONDA COLONNA -->
+        <div id="contenuto">
+          <div id="intesta">
+            <p class="$$aziendaIntestazione" title="$$tooltipIntestazione" >
+              $$CUAAIntestazione  $$denominazioneIntestazione
+            </p>
+          </div>
+          <div id="indice">
+            <span class="evidenza">manodopera</span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+            <span class="voce">
+              <a href="#">forma di conduzione ed attivit&agrave; complementari svolte in azienda</a>
+            </span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+          </div>
+          
+          <table cellspacing="3" class="detailTable" summary="Questa tabella è costituita da righe">
+            <col width="30%"/>
+            <col width="70%"/>
+            <tr>
+              <th>
+                <label for="matricolaInail">Matricola INAIL</label>
+              </th>
+              <td>
+                <input type="text" id="matricolaInail" name="matricolaInail" value="$$matricolaInail" size="30" maxlength="30" class="textmediolungo"/>
+              </td>
+            </tr>
+          </table>
+          <table cellspacing="3" class="detailTable" summary="Questa tabella è costituita da righe">
+            <caption>Informazioni INPS:</caption>
+            <col width="30%"/>
+            <col width="70%"/>
+            <tr>
+              <th>
+                <label for="idTipoIscrizioneINPS">Tipo iscrizione</label>
+              </th>
+              <td>
+                <select name="idTipoIscrizioneINPS" id="idTipoIscrizioneINPS" class="textmediolungo" >
+                  <option></option>
+                  <!-- @@blkTipoIscrizioneINPS -->
+                    <option value="$$idTipoIscrizioneINPS" $$selected>$$descTipoIscizioneINPS</option>
+                  <!-- @@blkTipoIscrizioneINPS -->
+                </select>
+                $$err_idTipoIscrizioneINPS
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="codiceInps">N&deg;iscrizione</label>
+              </th>
+              <td>
+                <input type="text" id="codiceInps" name="codiceInps" value="$$codiceInps" size="30" maxlength="15" class="textmediolungo"/>
+                $$err_codiceInps
+              </td>
+            </tr>
+            <tr>
+	            <th>
+	              <label for="dataInizioIscrizione">
+	                Data iscrizione
+	              </label>
+	            </th>
+	            <td>
+	              <input type="text" name="dataInizioIscrizione"
+	                id="dataInizioIscrizione" value="$$dataInizioIscrizione" class="textmedio" />
+	              &nbsp;gg/mm/aaaa &nbsp;$$err_dataInizioIscrizione          
+	            </td>
+	          </tr>
+	          <tr>
+              <th>
+                <label for="dataCessazioneIscrizione">
+                  Data cessazione
+                </label>
+              </th>
+              <td>
+                <input type="text" name="dataCessazioneIscrizione"
+                  id="dataCessazioneIscrizione" value="$$dataCessazioneIscrizione" class="textmedio" />
+                &nbsp;gg/mm/aaaa &nbsp;$$err_dataCessazioneIscrizione          
+              </td>
+            </tr>
+          </table>
+
+            <table cellspacing="3" summary="Questa tabella è costituita da righe">
+              <caption>Manodopera:</caption>
+              <col width="25%"/>
+              <col width="25%"/>
+              <col width="25%"/>
+              <col width="25%"/>
+              <tr>
+                <th>&nbsp;</th>
+                <th class="center" scope="col">N. uomini</th>
+                <th class="center" scope="col">N. donne</th>
+                <th class="center" scope="col">N. giornate/anno</th>
+              </tr>
+              <tr>
+                <th>$$desFamTempoPieno
+                  <input type="hidden" id="idFamTempoPieno" name="idFamTempoPieno" value="$$idFamTempoPieno" size="4" class="textmedio"/>
+                </th>
+                <td>
+                  <input type="text" id="famTempoPienoUomini" name="famTempoPienoUomini" value="$$famTempoPienoUomini" size="10" maxlength="3" class="textmedio"/>
+                  <label for="famTempoPienoUomini" class="alt">
+                    <span>famTempoPienoUomini</span>
+                  </label>
+                  $$err_famTempoPienoUomini
+                </td>
+                <td>
+                  <input type="text" id="famTempoPienoDonne" name="famTempoPienoDonne" value="$$famTempoPienoDonne" size="10" maxlength="3" class="textmedio"/>
+                  <label for="famTempoPienoDonne" class="alt">
+                    <span>famTempoPienoDonne</span>
+                  </label>
+                  $$err_famTempoPienoDonne
+                </td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <th>$$desFamTempoParz
+                  <input type="hidden" id="idFamTempoParz" name="idFamTempoParz" value="$$idFamTempoParz" size="4" class="textmedio"/>
+                </th>
+                <td>
+                  <input type="text" id="famTempoParzUomini" name="famTempoParzUomini" value="$$famTempoParzUomini" size="10" maxlength="3" class="textmedio"/>
+                  <label for="famTempoParzUomini" class="alt">
+                    <span>famTempoParzUomini</span>
+                  </label>
+                  $$err_famTempoParzUomini
+                </td>
+                <td>
+                  <input type="text" id="famTempoParzDonne" name="famTempoParzDonne" value="$$famTempoParzDonne" size="10" maxlength="3" class="textmedio"/>
+                  <label for="famTempoParzDonne" class="alt">
+                    <span>famTempoParzDonne</span>
+                  </label>
+                  $$err_famTempoParzDonne
+                </td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <th>$$desSalFisTempoPieno
+                  <input type="hidden" id="idSalFisTempoPieno" name="idSalFisTempoPieno" value="$$idSalFisTempoPieno" size="4" class="textmedio"/>
+                </th>
+                <td>
+                  <input type="text" id="salFisTempoPienoUomini" name="salFisTempoPienoUomini" value="$$salFisTempoPienoUomini" size="10" maxlength="3" class="textmedio"/>
+                  <label for="salFisTempoPienoUomini" class="alt">
+                    <span>salFisTempoPienoUomini</span>
+                  </label>
+                  $$err_salFisTempoPienoUomini
+                </td>
+                <td>
+                  <input type="text" id="salFisTempoPienoDonne" name="salFisTempoPienoDonne" value="$$salFisTempoPienoDonne" size="10" maxlength="3" class="textmedio"/>
+                  <label for="salFisTempoPienoDonne" class="alt">
+                    <span>salFisTempoPienoDonne</span>
+                  </label>
+                  $$err_salFisTempoPienoDonne
+                </td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <th>$$desSalFisTempoParz
+                  <input type="hidden" id="idSalFisTempoParz" name="idSalFisTempoParz" value="$$idSalFisTempoParz" size="4" class="textmedio"/>
+                </th>
+                <td>
+                  <input type="text" id="salFisTempoParzUomini" name="salFisTempoParzUomini" value="$$salFisTempoParzUomini" size="10" maxlength="3" class="textmedio"/>
+                  <label for="salFisTempoParzUomini" class="alt">
+                    <span>salFisTempoParzUomini</span>
+                  </label>
+                  $$err_salFisTempoParzUomini
+                </td>
+                <td>
+                  <input type="text" id="salFisTempoParzDonne" name="salFisTempoParzDonne" value="$$salFisTempoParzDonne" size="10" maxlength="3" class="textmedio"/>
+                  <label for="salFisTempoParzDonne" class="alt">
+                    <span>salFisTempoParzDonne</span>
+                  </label>
+                  $$err_salFisTempoParzDonne
+                </td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <td colspan="4"></td>
+              </tr>
+              <tr>
+                <th>$$desSalAvv
+                  <input type="hidden" id="idSalAvv" name="idSalAvv" value="$$idSalAvv" size="4" class="textmedio"/>
+                </th>
+                <td>
+                  <input type="text" id="salAvvUomini" name="salAvvUomini" value="$$salAvvUomini" size="10" maxlength="3" class="textmedio"/>
+                  <label for="salAvvUomini" class="alt">
+                    <span>salAvvUomini</span>
+                  </label>
+                  $$err_salAvvUomini
+                </td>
+                <td>
+                  <input type="text" id="salAvvDonne" name="salAvvDonne" value="$$salAvvDonne" size="10" maxlength="3" class="textmedio"/>
+                  <label for="salAvvDonne" class="alt">
+                    <span>salAvvDonne</span>
+                  </label>
+                  $$err_salAvvDonne
+                </td>
+                <td>
+                  <input type="text" id="salAvvGiornateAnnue" name="salAvvGiornateAnnue" value="$$salAvvGiornateAnnue" size="10" maxlength="7" class="textmedio"/>
+                  <label for="salAvvGiornateAnnue" class="alt">
+                    <span>salAvvGiornateAnnue</span>
+                  </label>
+                  $$err_salAvvGiornateAnnue
+                </td>
+              </tr>
+            </table>
+
+		  <div class="pulsanti">
+          <div class="sin">
+            <input name="annulla" class="inputPulsante annulla" type="submit" value="annulla"/>
+          </div>
+          <div class="des">
+            <input name="avanti" class="inputPulsante" type="submit" value="avanti"/>
+          </div>
+		  </div>
+        </div>
+      </div>
+      <hr/>
+      <!-- PIE' DI PAGINA -->
+      $$footer

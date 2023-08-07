@@ -1,0 +1,246 @@
+$$head
+  <script type="text/javascript" src="../js/checktext.js"></script>
+  <script type="text/javascript" src="../js/messaggistica.js"></script>
+</head>
+<body id="homeIndice" onLoad="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+<form action="../layout/reportisticaValidazioni.htm" method="post" name="form1">
+  <div id="pagina" class="colonnaUnica">
+    <!-- INTESTAZIONE -->
+    <div id="intestazione##pathProvincia">
+        	<!--intestazione-->
+$$header
+      <!-- menu di navigazione-->
+      <div id="titoloEmenu">
+        <h2>
+          <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+        </h2>
+        <div id="menuDiNavigazione" title="Menu di navigazione">
+          <ul class="menuTendina" id="menu-2">
+            <li><a href="../layout/index.htm" title="Torna alla pagina principale">home</a></li>
+            <li class="attivo">gestione anagrafe aziende</li>
+            <li><a href="#" title="contatti">contatti</a></li>
+            <li><a href="#" title="help">help</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <hr/>
+    <div style="clear:left">  </div>
+    <!-- CORPO -->
+    <div id="corpo">
+      <div id="Utente">
+        <div id="datiUtente">
+          <strong>utente:</strong>
+          $$utente
+          &nbsp;
+          &nbsp;
+          <strong>ente:</strong>
+          $$ente
+        </div>
+        <div id="chiudisessione">
+          <a href="javascript:logout();">chiudi sessione</a>
+        </div>
+      </div>
+      <hr/>
+      <!--PRIMA COLONNA -->
+      <h3>Reportistica
+          &nbsp;&gt;&nbsp;
+          Riepilogo validazioni
+        <span class="helpFuori">
+          <a href="#">
+            <span class="alt">[help]</span>
+          </a>
+        </span>
+      </h3>
+      <hr/>
+      <div class="box">
+        <div class="menuSX1">
+          <ul>
+            <!-- @@blkElencoAziendeRapLegale -->
+                <li><a href="../layout/elencoAziendeRapLegale.htm">Elenco Aziende</a></li>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <!-- @@blkRicercaAzienda-->
+              <li><a href="../layout/ricerca.htm">Ricerca Azienda</a></li>
+            <!-- @@blkRicercaAzienda-->
+            <!--@@blkRicercaTerreno-->
+            <li><a href="../layout/ricercaTerreno.htm">Ricerca Terreno</a></li>
+            <!--@@blkRicercaTerreno-->
+            <!--@@blkRicercaPersona-->
+              <li><a href="../layout/ricercaPersona.htm">Ricerca Persona</a></li>
+            <!--@@blkRicercaPersona-->
+            <!--@@blkRicercaNotifica-->
+            <li><a href="../layout/ricercaNotifica.htm">Ricerca Notifiche</a></li>
+            <!--@@blkRicercaNotifica-->
+            <!--@@blkVariazioniAzienda-->
+               <li><a href="../layout/ricercaVariazioni.htm" >Ricerca Variazioni</a></li>
+            <!--@@blkVariazioniAzienda-->
+            <!--@@blkRicercaRichiesta-->
+               <li><a href="../layout/ricercaRichiesta.htm">Ricerca richiesta azienda</a></li>
+            <!--@@blkRicercaRichiesta-->
+            <!--@@blkNuova-->
+            <li><a href="../layout/nuovaAziendaAnagrafica.htm">Nuova Azienda</a></li>
+            <!--@@blkNuova-->
+            <!-- @@blkNuovaIscrizione -->
+            <li>
+              <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+            </li>
+            <!-- @@blkNuovaIscrizione -->
+            <!--@@blkNuovaParticella-->
+            <li>
+              <a href="../layout/inserisciTerreno.htm">Nuova Particella</a>
+            </li>
+            <!--@@blkNuovaParticella-->
+            <!--@@blkServizi-->
+              <li><a href="../layout/servizi.htm" >Servizi</a></li>
+            <!--@@blkServizi-->
+            <li><a href="../layout/elencoRicerche.htm" class="on">Reportistica</a></li>
+            <!--@@blkEstrazioneDati-->
+            <li><a href="../layout/macroCategoriaReport.htm">Estrazione dati</a></li>
+            <!--@@blkEstrazioneDati-->
+	          <li><a href="../layout/elencoManuali.htm">Scarico Documentazione Tecnica</a></li>  	        
+          </ul>
+        </div>
+      </div>
+      <hr/>
+      <!-- SECONDA COLONNA -->
+      <div id="contenuto">
+        <table cellspacing="3" summary="Questa tabella è costituita da righe">
+          <caption>Riepilogo validazioni</caption>
+          <!-- @@blkIntermediario -->
+            <tr>
+              <td>
+                <input type="checkbox" name="suddividi" value="S" $$checkedZona/>
+                <label for="uffici_zona" class="checkbox">suddividi per uffici di zona</label>
+              </td>
+            </tr>
+          <!-- @@blkIntermediario -->
+          <!-- @@blkUtentePA -->
+            <tr>
+              <td>
+                <input type="checkbox" name="suddividi" value="S" $$checkedZona/>
+                <label for="provincia" class="checkbox">suddividi per provincia</label>
+              </td>
+            </tr>
+          <!-- @@blkUtentePA -->
+          <tr>
+            <td>
+              <label for="dal">dal *</label>
+              <input name="dal" type="text" class="textmedio" id="dal" value="$$dal" maxlength="10"/>$$err_dal
+              <label for="al">al *</label>
+              <input name="al" type="text" class="textmedio" id="al" value="$$al" maxlength="10"/>$$err_al
+            </td>
+          </tr>
+        </table>
+        <div class="pulsanti">
+          <div class="sin">
+            <input type="submit" id="aggiorna" name="aggiorna" value="aggiorna riepiologo" class="inputPulsante"/>
+          </div>
+        </div>
+        <!-- @@blkMandati -->
+          <table summary="Questa tabella è costituita da colonne" cellspacing="3">
+            <thead>
+              <tr>
+                <!-- @@blkIntermediarioLivelloZ -->
+                  <th class="center" scope="col">Denominazione</th>
+                  <th class="center" scope="col">Indirizzo</th>
+                  <th class="center" scope="col">Codice AGEA</th>
+                  <th class="center" scope="col">Numero validazioni</th>
+                <!-- @@blkIntermediarioLivelloZ -->
+                <!-- @@blkIntermediarioLivelloP -->
+                  <th class="center" scope="col">Provincia</th>
+                  <th class="center" scope="col">Comune</th>
+                  <th class="center" scope="col">Indirizzo</th>
+                  <th class="center" scope="col">Codice AGEA</th>
+                  <th class="center" scope="col">Numero validazioni</th>
+                <!-- @@blkIntermediarioLivelloP -->
+                <!-- @@blkIntermediarioLivelloRNotForArea -->
+                  <th class="center" scope="col">Denominazione</th>
+                  <th class="center" scope="col">Provincia</th>
+                  <th class="center" scope="col">Numero validazioni</th>
+                <!-- @@blkIntermediarioLivelloRNotForArea -->
+                <!-- @@blkIntermediarioLivelloRForArea -->
+                  <th class="center" scope="col">Provincia</th>
+                  <th class="center" scope="col">Comune</th>
+                  <th class="center" scope="col">Indirizzo</th>
+                  <th class="center" scope="col">Codice AGEA</th>
+                  <th class="center" scope="col">Numero validazioni</th>
+                <!-- @@blkIntermediarioLivelloRForArea -->
+                <!-- @@blkPANotForArea -->
+                  <th class="center" scope="col">Denominazione</th>
+                  <th class="center" scope="col">Numero validazioni</th>
+                <!-- @@blkPANotForArea -->
+                <!-- @@blkPAForArea -->
+                  <th class="center" scope="col">Denominazione</th>
+                  <th class="center" scope="col">Provincia</th>
+                  <th class="center" scope="col">Numero validazioni</th>
+                <!-- @@blkPAForArea -->
+              </tr>
+            </thead>
+            <tfoot>
+              <tr>
+                <th colspan="$$valoreColspan">TOTALE</th>
+                <th class="numeridx">$$totaleMandati</th>
+              </tr>
+            </tfoot>
+            <tbody>
+            <!-- @@blkElencoMandatiLivelloZ -->
+              <tr>
+                <td width="35%">$$denominazione</td>
+                <td width="35%">$$indirizzo</td>
+                <td width="10%">$$codiceAgea</td>
+                <td class="numeridx">$$numeroMandati</td>
+              </tr>
+            <!-- @@blkElencoMandatiLivelloZ -->
+            <!-- @@blkElencoMandatiLivelloP -->
+              <tr>
+                <td width="10%">$$provincia</td>
+                <td width="30%">$$comune</td>
+                <td width="40%">$$indirizzo</td>
+                <td width="10%">$$codiceAgea</td>
+                <td class="numeridx">$$numeroMandati</td>
+              </tr>
+            <!-- @@blkElencoMandatiLivelloP -->
+            <!-- @@blkElencoMandatiLivelloRNotForArea -->
+              <tr>
+                <td width="40%">$$denominazione</td>
+                <td width="40%">$$provincia</td>
+                <td class="numeridx">$$numeroMandati</td>
+              </tr>
+            <!-- @@blkElencoMandatiLivelloRNotForArea -->
+            <!-- @@blkElencoMandatiLivelloRForArea -->
+              <tr>
+                <td width="10%">$$provincia</td>
+                <td width="30%">$$comune</td>
+                <td width="40%">$$indirizzo</td>
+                <td width="10%">$$codiceAgea</td>
+                <td class="numeridx">$$numeroMandati</td>
+              </tr>
+            <!-- @@blkElencoMandatiLivelloRForArea -->
+            <!-- @@blkElencoMandatiPANotForArea -->
+              <tr>
+                <td>$$denominazione</td>
+                <td class="numeridx">$$numeroMandati</td>
+              </tr>
+            <!-- @@blkElencoMandatiPANotForArea -->
+            <!-- @@blkElencoMandatiPAForArea -->
+              <tr>
+                <td width="40%">$$denominazione</td>
+                <td width="40%">$$provincia</td>
+                <td class="numeridx">$$numeroMandati</td>
+              </tr>
+            <!-- @@blkElencoMandatiPAForArea -->
+          </tbody>
+        </table>
+      <!-- @@blkMandati -->
+      <!-- @@blkErrore -->
+        <p class="errore">$$messaggio</p>
+      <!-- @@blkErrore -->
+    </div>
+  </div>
+  <hr/>
+</form>
+<!-- PIE' DI PAGINA -->
+$$footer
+
+
+

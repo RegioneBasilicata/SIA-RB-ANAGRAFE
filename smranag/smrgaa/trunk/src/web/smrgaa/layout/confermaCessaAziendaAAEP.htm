@@ -1,0 +1,51 @@
+$$head
+  <script src="../js/checktext.js" type="text/javascript"></script>
+  <script type="text/javascript">
+    function abbandona()
+    {
+      var lastAction = document.chiudi.action;
+      document.chiudi.action = "../layout/anagrafica.htm";
+      document.chiudi.submit();
+      document.chiudi.action = lastAction;
+    }
+  </script>
+</head>
+<body id="homeIndice">
+    <div id="pagina" class="colonnaUnica">
+      <!-- INTESTAZIONE -->
+      <div id="intestazione##pathProvincia">
+        $$header
+        <!-- menu di navigazione-->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+        </div>
+      </div>
+      <hr/>
+      <div style="clear:left"></div>
+      <!-- CORPO -->
+      <div id="corpo">
+        <hr/>
+        <!-- PRIMA COLONNA -->
+        <form id="chiudi" name="chiudi" action="../layout/controlliCessaAzienda.htm" method="post">
+        <div id="content">
+          <p class="errore">Attenzione</p>
+          <p>Su fonte Infocamere l'azienda risulta ancora attiva, sicuro di voler proseguire?</p>
+          
+          
+            <div class="pulsanti">
+          <div class="sin">
+            <input type="submit" value="conferma" name="conferma" class="inputPulsante highlighted"/>
+          </div>
+          <div class="des">
+            <input type="button" value="annulla" name="annulla" class="inputPulsante" onClick="abbandona();"/>
+          </div>
+           </div>
+          
+        </div>
+        </form>
+      </div>
+      <hr/>
+      <!-- PIE' DI PAGINA -->
+      $$footer

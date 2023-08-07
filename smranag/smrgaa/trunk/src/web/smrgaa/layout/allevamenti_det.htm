@@ -1,0 +1,1341 @@
+$$head
+<script src="../js/checktext.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+    function customDoForm(page) {
+      var oldAction = document.form1.action;
+      document.form1.action=page;
+      document.form1.submit();
+      document.form1.action=oldAction;
+    }
+
+  </script>
+<script type="text/javascript" src="../js/messaggistica.js"></script>
+</head>
+<body id="homeIndice" onLoad="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+  <form name="form1" id="form1" method="post"
+    action="../layout/allevamenti_det.htm">
+    <div id="pagina" class="colonnaUnica">
+      <input type="hidden" name="radiobutton" id="radiobutton"
+        value="$$idAllevamento" />
+      <input type="hidden" name="operazione" id="operazione"
+        value="$$operazione" />
+      <input type="hidden" name="idAnno" id="idAnno" value="$$idAnno" />
+      <input type="hidden" name="idDichiarazioneConsistenza" id="idDichiarazioneConsistenza" value="$$idDichiarazioneConsistenza" />
+      <!-- INTESTAZIONE -->
+      <div id="intestazione##pathProvincia">
+        <!--#include virtual="/ris/include/smrgaaweb/header.html" -->
+        <!-- menu di navigazione-->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li>
+                <a href="../layout/index.htm"
+                  title="Torna alla pagina principale">home</a>
+              </li>
+              <li class="attivo">
+                gestione anagrafe aziende
+              </li>
+              <li>
+                <a href="#" title="contatti">contatti</a>
+              </li>
+              <li>
+                <a href="#" title="help">help</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div style="clear: left"></div>
+      <!-- CORPO -->
+      <div id="corpo">
+        <div id="Utente">
+          <div id="datiUtente">
+            <strong>utente:</strong>$$utente&nbsp;&nbsp;
+            <strong>ente:</strong>$$ente
+          </div>
+          <div id="chiudisessione">
+            <a href="javascript: logout();">chiudi sessione</a>
+          </div>
+        </div>
+        <hr />
+        <!--PRIMA COLONNA -->
+        <h3>
+          Gestione Anagrafe
+          Aziende&nbsp;&gt;&nbsp;Allevamenti&nbsp;&gt;&nbsp;Dettaglio
+          <span class="helpFuori"> <a href="#"> <span
+              class="alt">[help]</span> </a> </span>
+        </h3>
+        <hr />
+        <div class="box">
+          <div class="menuSX1">
+            <ul>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <li>
+                <a href="../layout/elencoAziendeRapLegale.htm">Elenco
+                  Aziende</a>
+              </li>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <!-- @@blkRicercaAzienda-->
+              <li>
+                <a href="../layout/ricerca.htm">Ricerche</a>
+              </li>
+              <!-- @@blkRicercaAzienda-->
+              <!-- @@blkNuova -->
+              <li>
+                <a href="../layout/nuovaAziendaAnagrafica.htm">Nuova
+                  Azienda</a>
+              </li>
+              <!-- @@blkNuova -->
+              <!-- @@blkNuovaIscrizione -->
+		          <li>
+		            <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+		          </li>
+		          <!-- @@blkNuovaIscrizione -->
+            </ul>
+          </div>
+          <div class="menuSX">
+            <ul>
+              <li>
+                <a href="../layout/anagrafica.htm">Anagrafica</a>
+              </li>
+              <!-- @@blkAziendeCollegate -->
+              <li>
+                <a href="../layout/aziendeCollegate.htm">$$aziendeCollegateLabel</a>
+              </li>
+              <!-- @@blkAziendeCollegate -->
+              <!-- @@blkSincronizzaFascicolo -->
+              <li>
+                <a href="../layout/sincronizzaFascicolo.htm">Sincronizza fascicolo</a>
+              </li>
+              <!-- @@blkSincronizzaFascicolo -->
+              <!-- @@blkSoggettiCollegati -->
+              <li>
+                <a href="../layout/contitolari.htm">Soggetti
+                  collegati</a>
+              </li>
+              <!-- @@blkSoggettiCollegati -->
+              <!-- @@blkContiCorrenti -->
+              <li>
+                <a href="../layout/conti_correnti.htm">Conti
+                  Correnti</a>
+              </li>
+              <!-- @@blkContiCorrenti -->
+              <!-- @@blkUnitaProduttive -->
+              <li>
+                <a href="../layout/sedi.htm">Unit&agrave; produttive</a>
+              </li>
+              <!-- @@blkUnitaProduttive -->
+              <!-- @@blkTerreni -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniParticellareElenco.htm">Terreni</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		            <a href="../layout/riepiloghi.htm">Terreni</a>
+		            <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkTerreni -->
+		          <!-- @@blkUnitaVitate -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniUnitaArboreeElenco.htm">Unit&agrave; Vitate</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		              <a href="../layout/riepiloghiUnitaArboree.htm">Unit&agrave; Vitate</a>
+		              <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkUnitaVitate -->
+              <!-- @@blkFabbricati -->
+              <li>
+                <a href="../layout/fabbricati.htm">Fabbricati e
+                  Strutture</a>
+              </li>
+              <!-- @@blkFabbricati -->
+              <!-- @@blkAllevamenti -->
+              <li>
+                <a href="../layout/allevamenti.htm" class="on">Allevamenti</a>
+                <ul>
+                  <li>
+                    <a href="#" class="etichetta">dettaglio</a>
+                  </li>
+                  <!--@@blkModifica-->
+                  <li>
+                    <a
+                      href="javaScript: goTo('../layout/allevamenti_mod.htm', document.form1);">modifica</a>
+                  </li>
+                  <!--@@blkModifica-->
+                  <!-- @@blkCessazione -->
+                  <li>
+                    <a
+                      href="javaScript: goToOperazione('../layout/cessazioneAttivita.htm', document.form1, 'allevamento')">cessazione</a>
+                  </li>
+                  <!-- @@blkCessazione -->
+                  <!--@@blkElimina-->
+                  <li>
+                    <a
+                      href="javascript: goTo('../layout/confermaEliminaAllevamento.htm', document.form1)">elimina</a>
+                  </li>
+                  <!--@@blkElimina-->
+                </ul>
+              </li>
+              <!-- @@blkAllevamenti -->
+              <!-- @@blkManodopera -->
+              <li>
+                <a href="../layout/manodopera.htm">Manodopera</a>
+              </li>
+              <!-- @@blkManodopera -->
+              <!-- @@blkMotoriAgricoli -->
+              <li>
+                <a href="../layout/motori_agricoli_incarico.htm">Macchine agricole</a>
+              </li>
+              <!-- @@blkMotoriAgricoli -->
+              <!-- @@blkDiritti -->
+              <li>
+                <a href="../layout/diritti.htm">Diritti di
+                  produzione</a>
+              </li>
+              <!-- @@blkDiritti -->
+              <!-- @@blkAttestazioni -->
+              <li>
+                <a href="../layout/attestazioniDettaglio.htm">Dichiarazioni</a>
+              </li>
+              <!-- @@blkAttestazioni -->
+              <!-- @@blkDichiarazioniConsistenza -->
+              <li>
+                <a href="../layout/dichiarazioneConsistenza.htm">Validazioni</a>
+              </li>
+              <!-- @@blkDichiarazioniConsistenza -->
+              <!-- @@blkDocumenti -->
+              <li>
+                <a href="../layout/documentiElenco.htm">Documenti</a>
+              </li>
+              <!-- @@blkDocumenti -->
+              <!-- @@blkFascicoloDematerializzato -->
+		          <li>
+		            <a href="../layout/fascicoloDematerializzato.htm">Fascicolo<br>elettronico</a>
+		          </li>
+		          <!-- @@blkFascicoloDematerializzato -->
+              <!-- @@blkGestioneNotifiche -->
+              <li>
+                <a href="../layout/notifiche.htm">Notifiche</a>
+              </li>
+              <!-- @@blkGestioneNotifiche -->
+              <!-- @@blkComunicazione10R -->
+              <li>
+                <a href="../layout/comunicazione10R_dettaglio.htm">Comunicazione
+                  10/R</a>
+              </li>
+              <!-- @@blkComunicazione10R -->
+              <!-- @@blkPratiche -->
+              <li>
+                <a href="../layout/pratiche.htm">Pratiche</a>
+              </li>
+              <!-- @@blkPratiche -->
+              <!-- @@blkStampaFascicolo -->
+              <li>
+                <a href="../layout/scelta_stampa.htm">Stampe</a>
+              </li>
+              <!-- @@blkStampaFascicolo -->
+			  <li><a href="../layout/strumenti.htm">Strumenti</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr />
+        <!-- SECONDA COLONNA -->
+        <div id="contenuto">
+          <div id="intesta">
+            <p class="$$aziendaIntestazione" title="$$tooltipIntestazione" >
+              $$CUAAIntestazione  $$denominazioneIntestazione
+            </p>
+          </div>
+          <table cellspacing="3" class="detailTable"
+            summary="Questa tabella contiene i dati del rapporto">
+            <col width="30%" />
+            <col width="70%" />
+            <tr>
+              <th>
+                <label for="denominazioneAllevamento">
+                  Denominazione
+                </label>
+              </th>
+              <td>
+                $$denominazioneAllevamento
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Unit&agrave; produttiva (U.T.E.)
+              </th>
+              <td>
+                $$comuneUnitaProduttiva&nbsp;$$indirizzoUnitaProduttiva
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Codice azienda zootecnica
+              </th>
+              <td colspan=3>
+                $$codiceAziendaZootecnica
+              </td>
+            </tr>
+            <tr>
+              <th>
+                A.S.L.
+              </th>
+              <td>
+                $$descrizioneASL
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="dataInizioAttivita">
+                  Data apertura allevamento
+                </label>
+              </th>
+              <td>
+                $$dataInizioAttivita
+              </td>
+            </tr>
+          </table>
+          <table cellspacing="3" class="detailTable"
+            summary="Questa tabella contiene i dati del rapporto">
+            <caption>
+              Ubicazione
+            </caption>
+            <tr>
+              <th>
+                Indirizzo
+              </th>
+              <td colspan=3>
+                $$indirizzo
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Provincia
+              </th>
+              <td colspan=3>
+                $$provinciaAllevamento
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Comune
+              </th>
+              <td colspan=3>
+                $$comuneAllevamento
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <acronym title="codice avviamento postale" lang="it">C.A.P</acronym>
+              </th>
+              <td colspan=3>
+                $$cap
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Telefono
+              </th>
+              <td colspan=3>
+                $$telefono
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Longitudine
+              </th>
+              <td>
+                $$longitudine
+              </td>
+              <th>
+                Latitudine
+              </th>
+              <td>
+                $$latitudine
+              </td>
+            </tr>
+          </table>
+          <!--  @@consOldStyle -->
+          <div class="scroll">
+            <table  class="evidence" cellspacing="3" 
+              summary="Questa tabella contiene i dati del rapporto">
+              <caption>
+                Consistenza
+              </caption>
+              <tr>
+                <th>
+                  Specie
+                </th>
+                <td colspan="12">
+                  $$specie
+                </td>
+              </tr>
+              <tr>
+                <th rowspan="3" class="center" scope="col">
+                  Categoria
+                </th>
+                <th rowspan="3" class="center" scope="col">
+                  Sottocategoria
+                </th>
+                <th rowspan="3" class="center" scope="col">
+                  $$unitaMisuraSpecie
+                </th>
+                <th rowspan="3" class="center" scope="col">
+                  Peso vivo medio
+                  <br />
+                  unitario (kg)
+                </th>
+                <th rowspan="3" class="center" scope="col">
+                  Tot. peso vivo medio (kg)
+                </th>
+                <th rowspan="3" class="center" scope="col">
+                  n. gg vuoto sanitario ordinario per singolo ciclo
+                </th>
+                <th rowspan="3" class="center" scope="col">
+                  Durata Ciclo (gg/Anno)
+                </th>
+                <th colspan="4" class="center" scope="col">
+                  Permanenza pascolo
+                </th>
+                <th rowspan="3" class="center" scope="col">
+                  Tot. UBA
+                </th>
+              </tr>
+              <tr>
+                <th colspan="2" class="center" scope="col">
+                  primavera estate
+                </th>
+                <th colspan="2" class="center" scope="col">
+                  autunno inverno
+                </th>
+              </tr>
+              <tr>
+                <th class="center" scope="col">
+                  gg
+                </th>
+                <th class="center" scope="col">
+                  hh
+                </th>
+                <th class="center" scope="col">
+                  gg
+                </th>
+                <th class="center" scope="col">
+                  hh
+                </th>
+              </tr>
+              <!-- @@blksottoCategoriaAllevamenti -->
+              <tr>
+                <td>
+                  $$descCategoriaTab
+                </td>
+                <td>
+                  $$descSottoCategoriaTab
+                </td>
+                <td class="numeridx">
+                  $$capiTab
+                </td>
+                <td class="numeridx">
+                  $$pesoVivoTab
+                </td>
+                <td class="numeridx">
+                  $$pesoVivoTotTab
+                </td>
+                <td class="numeridx">
+                  $$giorniVuotoSanitarioTab
+                </td>
+                <td class="numeridx">
+                  $$cicliTab
+                </td>
+                <td class="numeridx">
+                  $$giorniPascoloEstateTab
+                </td>
+                <td class="numeridx">
+                  $$orePascoloEstateTab
+                </td>
+                <td class="numeridx">
+                  $$giorniPascoloInvernoTab
+                </td>
+                <td class="numeridx">
+                  $$orePascoloInvernoTab
+                </td>
+                <td class="tot">
+                  $$totaleUBA
+                </td>
+              </tr>
+              <!-- @@blksottoCategoriaAllevamenti -->
+              <!-- @@blksottoCategoriaAllevamentiTot -->
+              <tr>
+                <td class="tot">
+                  Totale
+                </td>
+                <td class="tot">&nbsp;
+                  
+                </td>
+                <td class="tot">
+                  $$sommaTotaleCapi
+                </td>
+                <td class="tot">&nbsp;
+                  
+                </td>
+                <td class="tot">
+                  $$sommaPesoVivoTotale
+                </td>
+                <td class="tot">&nbsp;
+                  
+                </td>
+                <td class="tot">&nbsp;
+                  
+                </td>
+                <td class="tot">&nbsp;
+                  
+                </td>
+                <td class="tot">&nbsp;
+                  
+                </td>
+                <td class="tot">&nbsp;
+                  
+                </td>
+                <td class="tot">&nbsp;
+                  
+                </td>
+                <td class="tot">
+                  $$sommaTotaleUBA
+                </td>
+              </tr>
+              <!-- @@blksottoCategoriaAllevamentiTot -->
+            </table>
+          </div>
+          <!--  @@consOldStyle -->
+          
+          <!--  @@consNewStyle -->
+          <div class="scroll">
+            <table class="evidence" cellspacing="3" 
+              summary="Questa tabella contiene i dati del rapporto">
+              <caption>
+                Consistenza
+              </caption>
+              <tr>
+                <th>
+                  Specie
+                </th>
+                <td colspan="13">
+                  $$specie
+                </td>
+              </tr>
+              <tr>
+                <th rowspan="3" class="center" scope="col">
+                  Categoria
+                </th>
+                <th rowspan="3" class="center" scope="col">
+                  Sottocategoria
+                </th>
+                <th rowspan="3" class="center" scope="col">
+                  $$unitaMisuraSpecie<br>
+                  in detenzione
+                </th>
+                <th rowspan="3" class="center" scope="col">
+                  $$unitaMisuraSpecie<br>
+                  in propriet&agrave;
+                </th>
+                <th rowspan="3" class="center" scope="col">
+                  Peso vivo medio
+                  <br />
+                  (kg/capo)
+                </th>
+                <th rowspan="3" class="center" scope="col">
+                  Peso vivo totale (kg)
+                </th>
+                <th colspan="2" rowspan="2" class="center" scope="col">
+                  Cicli allevamento
+                </th>
+                <th colspan="4" class="center" scope="col">
+                  Permanenza pascolo
+                </th>
+                <th rowspan="3" class="center" scope="col">
+                  Azoto zootecnico (kg/anno)
+                </th>
+                <th rowspan="3" class="center" scope="col">
+                  Tot. UBA
+                </th>
+              </tr>
+              <tr>
+                <th colspan="2" class="center" scope="col">
+                  primavera estate
+                </th>
+                <th colspan="2" class="center" scope="col">
+                  autunno inverno
+                </th>
+              </tr>
+              <tr>
+                <th class="center" scope="col">
+                  n/anno
+                </th>
+                <th class="center" scope="col">
+                  Durata ciclo<br>(gg)
+                </th>
+                <th class="center" scope="col">
+                  gg
+                </th>
+                <th class="center" scope="col">
+                  hh
+                </th>
+                <th class="center" scope="col">
+                  gg
+                </th>
+                <th class="center" scope="col">
+                  hh
+                </th>
+              </tr>
+              <!-- @@blksottoCategoriaAllevamenti -->
+              <tr>
+                <td>
+                  $$descCategoriaTab
+                </td>
+                <td>
+                  $$descSottoCategoriaTab
+                </td>
+                <td class="numeridx">
+                  $$capiTab
+                </td>
+                <td class="numeridx">
+                  $$capiProprietaTab
+                </td>
+                <td class="numeridx">
+                  $$pesoVivoTab
+                </td>
+                <td class="numeridx">
+                  $$pesoVivoTotTab
+                </td>
+                <td class="numeridx">
+                  $$numeroClicliAnnualiTab
+                </td>
+                <td class="numeridx">
+                  $$cicliTab
+                </td>
+                <td class="numeridx">
+                  $$giorniPascoloEstateTab
+                </td>
+                <td class="numeridx">
+                  $$orePascoloEstateTab
+                </td>
+                <td class="numeridx">
+                  $$giorniPascoloInvernoTab
+                </td>
+                <td class="numeridx">
+                  $$orePascoloInvernoTab
+                </td>
+                <td class="numeridx">
+                  $$azotoZootecnicoTab
+                </td>
+                <td class="tot">
+                  $$totaleUBA
+                </td>
+              </tr>
+              <!-- @@blksottoCategoriaAllevamenti -->
+              <!-- @@blksottoCategoriaAllevamentiTot -->
+              <tr>
+                <td class="tot" colspan="2">
+                  Totale
+                </td>
+                <td class="tot">
+                  $$sommaTotaleCapi
+                </td>
+                <td class="tot">
+                  $$sommaTotaleCapiProprieta
+                </td>
+                <td class="tot">&nbsp;
+                  
+                </td>
+                <td class="tot">
+                  $$sommaPesoVivoTotale
+                </td>
+                <td class="tot" colspan="6">&nbsp;
+                  
+                </td>
+                <td class="tot">
+                  $$sommaTotaleAzoto
+                </td>
+                <td class="tot">
+                  $$sommaTotaleUBA
+                </td>
+              </tr>
+              <!-- @@blksottoCategoriaAllevamentiTot -->
+            </table>
+          </div>
+          <!--  @@consNewStyle -->
+
+          <!--  @@stabOldStyle -->
+          <div class="scroll">
+            <table class="evidence" cellspacing="3" 
+              summary="Questa tabella contiene i dati di stabulazione e trattamenti">
+              <!-- @@blkStabulazioniInsert -->
+              <caption>
+                Stabulazioni e Trattamenti
+              </caption>
+              <!-- @@blkStabulazioniTrattamenti -->
+              <tr>
+                <th colspan="2" rowspan="2" class="center" scope="col">
+                  Categoria - Sottocategoria
+                </th>
+                <th rowspan="2" class="center" scope="col">
+                  Stabulazione
+                </th>
+                <th rowspan="2" class="center" scope="col">
+                  $$unitaMisuraSpecie
+                </th>
+                <th colspan="2" class="center" scope="col">
+                  Effluenti prodotti
+                </th>
+                <th rowspan="2" class="center" scope="col">
+                  Trattamento
+                </th>
+                <th colspan="2" class="center" scope="col">
+                  Effluenti prodotti post trattamento
+                </th>
+                <th rowspan="2" class="center" scope="col">
+                  Totale Azoto (kg)
+                </th>
+              </tr>
+              <tr>
+                <th class="center" scope="col">
+                  Palabile (m
+                  <sup>
+                    3
+                  </sup>
+                  )
+                </th>
+                <th class="center" scope="col">
+                  Non palabile (m
+                  <sup>
+                    3
+                  </sup>
+                  )
+                </th>
+                <th class="center" scope="col">
+                  Palabile (m
+                  <sup>
+                    3
+                  </sup>
+                  )
+                </th>
+                <th class="center" scope="col">
+                  Non Palabile (m
+                  <sup>
+                    3
+                  </sup>
+                  )
+                </th>
+              </tr>
+              <!-- @@blkStabulazioneTrattamento -->
+
+              <tr>
+                <td>
+                  $$descCategoria
+                </td>
+                <td>
+                  $$descSottoCategoria
+                </td>
+                <td>
+                  $$stabulazioneDesc
+                </td>
+                <td class="numeridx">
+                  $$quantitaStab
+                </td>
+                <td class="numeridx">
+                  $$palabile
+                </td>
+                <td class="numeridx">
+                  $$nonPalabile
+                </td>
+                <td>
+                  <div title="$$trattamentiDesc">
+                    $$idTrattamentoStab
+                  </div>
+                </td>
+                <td class="numeridx">
+                  $$palabileTrat
+                </td>
+                <td class="numeridx">
+                  $$nonPalabileTrat
+                </td>
+                <td class="numeridx">
+                  $$totaleAzoto
+                </td>
+              </tr>
+              <!-- @@blkStabulazioneTrattamento -->
+              <!-- @@blkStabulazioneTrattamentoTot -->
+              <tr>
+                <th class="tot">
+                  Totale
+                </th>
+                <td class="tot"></td>
+                <td class="tot">&nbsp;
+                  
+                </td>
+                <td class="tot">
+                  $$quantitaStab
+                </td>
+                <td class="tot">
+                  $$palabile
+                </td>
+                <td class="tot">
+                  $$nonPalabile
+                </td>
+                <td class="tot">&nbsp;
+                  
+                </td>
+                <td class="tot">
+                  $$palabileTrat
+                </td>
+                <td class="tot">
+                  $$nonPalabileTrat
+                </td>
+                <td class="tot">
+                  $$totaleAzoto
+                </td>
+                <!-- @@blkStabulazioneTrattamentoTot -->
+              </tr>
+              <!-- @@blkStabulazioniTrattamenti -->
+              <tr>
+                <th>
+                  Descrizione altri trattamenti
+                </th>
+                <td colspan="9">
+                  $$descrizioneAltriTrattam
+                </td>
+              </tr>
+              <!-- @@blkStabulazioniInsert -->
+            </table>
+          </div>
+          <!--  @@stabOldStyle -->
+          
+          <!--  @@stabNewStyle -->
+          <div class="scroll">
+            <table class="evidence" cellspacing="3" 
+              summary="Questa tabella contiene i dati di stabulazione e trattamenti">
+              <!-- @@blkStabulazioniInsert -->
+              <caption>
+                Stabulazioni
+              </caption>
+              <!-- @@blkStabulazioniTrattamenti -->
+              <tr>
+                <th colspan="2" rowspan="3" class="center" scope="col">
+                  Categoria - Sottocategoria
+                </th>
+                <th rowspan="3" class="center" scope="col">
+                  Stabulazione
+                </th>
+                <th rowspan="3" class="center" scope="col">
+                  $$unitaMisuraSpecie
+                </th>
+                <th rowspan="3" class="center" scope="col">
+                  Permanenza in stalla (gg)
+                </th>
+                <th rowspan="3" class="center" scope="col">
+                  Azoto escreto<br>
+                  al pascolo (Kg)
+                </th>
+                <th colspan="5" class="center" scope="col">
+                  Effluenti prodotti in stalla
+                </th>
+              </tr>
+              <tr>
+		            <th colspan="3" class="center" scope="col">
+		              Palabile
+		            </th>
+		            <th colspan="2" class="center" scope="col">
+		              Non Palabile
+		            </th>
+		          </tr>
+		          <tr>
+		            <th class="center" scope="col">
+		              m<sup>3</sup>/anno
+		            </th>
+		            <th class="center" scope="col">
+		              t/anno
+		            </th>
+		            <th class="center" scope="col">
+		              kg N/anno
+		            </th>
+		            <th class="center" scope="col">
+		              m<sup>3</sup>/anno
+		            </th>
+		            <th class="center" scope="col">
+		              kg N/anno
+		            </th>
+		          </tr>
+              <!-- @@blkStabulazioneTrattamento -->
+
+              <tr>
+                <td>
+                  $$descCategoria
+                </td>
+                <td>
+                  $$descSottoCategoria
+                </td>
+                <td>
+                  $$stabulazioneDesc
+                </td>
+                <td class="numeridx">
+                  $$quantitaStab
+                </td>
+                <td class="numeridx">
+                  $$permanenzaInStalla
+                </td>
+                <td class="numeridx">
+                  $$escretoAlPascolo
+                </td>
+                <td class="numeridx">
+                  $$palabile
+                </td>
+		            <td class="numeridx">      
+		              $$palabileTAnno
+		            </td>
+		            <td class="numeridx">            
+		              $$azotoPalabile
+		            </td>
+		            <td class="numeridx" >
+		              $$nonPalabile
+		            </td>            
+		            <td class="numeridx">           
+		              $$azotoNonPalabile
+		            </td>
+              </tr>
+              <!-- @@blkStabulazioneTrattamento -->
+              <!-- @@blkStabulazioneTrattamentoTot -->
+              <tr>
+                <th class="tot" colspan="3">
+                  Totale
+                </th>
+                <td class="tot">
+                  $$quantitaStab
+                </td>
+                <td class="tot">&nbsp;
+                  
+                </td>
+                <td class="tot">
+                  $$escretoAlPascolo
+                </td>
+                <td class="tot">
+                  $$palabile
+                </td>
+                <td class="tot">
+                  $$palabileTAnno
+                </td>
+                <td class="tot">
+                  $$azotoPalabile
+                </td>
+                <td class="tot">
+                  $$nonPalabile
+                </td>
+                <td class="tot">
+                  $$azotoNonPalabile
+                </td>
+                <!-- @@blkStabulazioneTrattamentoTot -->
+              </tr>
+              <!-- @@blkStabulazioniTrattamenti -->
+              <!-- @@blkStabulazioniInsert -->      
+            </table>
+          </div>
+          <!--  @@stabNewStyle -->
+          
+          <!-- @@blkSoloAvicoli -->
+          <table cellspacing="3" class="detailTable"
+             summary="Questa tabella contiene i dati di stabulazione e trattamenti">
+            <tr>
+              <th>
+                  Le deiezioni degli avicoli sono essiccate con processo
+                  rapido a tenori di sostanza secca superiori al 65%
+              </th>
+              <td colspan="11">
+                $$flagDeiezioneAvicoli
+              </td>
+            </tr>
+          </table>
+          <!-- @@blkSoloAvicoli -->
+          
+          <table cellspacing="3" class="detailTable"
+            summary="Questa tabella contiene i dati del rapporto">
+            <col width="30%" />
+            <col width="70%" />
+            <caption>
+              Produzione
+            </caption>
+            <tr>
+              <th>
+                Tipo produzione
+              </th>
+              <td colspan="3">
+                $$descTipoProduzione
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Orientamento produttivo
+              </th>
+              <td>
+                $$descOrientamentoProduttivo
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Tipologia produttiva ai fini assicurativi
+              </th>
+              <td>
+                $$descTipoProduzioneCosman
+              </td>
+            </tr>
+          </table>
+
+          <table cellspacing="3" class="detailTable"
+            summary="Questa tabella contiene i dati del rapporto">
+            <caption>
+              Detenzione
+            </caption>
+            <tr>
+              <th>
+                Codice fiscale proprietario
+              </th>
+              <td colspan=3>
+                $$codiceFiscaleProprietario
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Denominazione proprietario
+              </th>
+              <td colspan=3>
+                $$denominazioneProprietario
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Codice fiscale detentore
+              </th>
+              <td colspan=3>
+                $$codiceFiscaleDetentore
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Denominazione detentore
+              </th>
+              <td colspan=3>
+                $$denominazioneDetentore
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Data inizio detenzione
+              </th>
+              <td>
+                $$dataInizioDetenzione
+              </td>
+              <th>
+                Data fine detenzione
+              </th>
+              <td>
+                $$dataFineDetenzione
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Soccida
+              </th>
+              <td>
+                $$flagSoccida
+              </td>
+              <th>
+                Motivo
+              </th>
+              <td>
+                $$motivoSoccida
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Soggetto che si assicura in caso di soccida
+              </th>
+              <td colspan="3">
+                $$soggettoSoccida
+              </td>
+          </table>
+
+          <!-- @@mungOldStyle -->
+          <!-- @@blkStruttureMungitura -->
+          <table cellspacing="3" class="detailTable"
+            summary="Questa tabella contiene i dati di stabulazione e trattamenti">
+            <caption>
+              Strutture di mungitura
+            </caption>
+            <tr>
+              <th>
+                n. capi in lattazione
+              </th>
+              <td>
+                $$mediaCapiLattazione
+              </td>
+            </tr>
+            <!-- @@blkTipologiaStruttureMungitura -->
+            <tr>
+              <th>
+                Tipologia struttura mungitura
+              </th>
+              <td colspan="10">
+                $$descMungitura
+              </td>
+            </tr>
+            <!-- @@blkTipologiaStruttureMungitura -->
+            <tr>
+              <th>
+                Acque di lavaggio totali (m
+                <sup>
+                  3
+                </sup>
+                /anno)
+              </th>
+              <td>
+                $$quantitaAcquaLavaggio
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="litriAcquaCapoGiorno">Acque di lavaggio per capo (litri/giorno)</label>
+              </th>
+              <td>
+                $$litriAcquaCapoGiorno
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Acque di lavaggio convogliate
+                <br />
+                in strutture di stoccaggio effluenti?
+              </th>
+              <td>
+                $$flagAcqueEffluenti
+              </td>
+            </tr>
+
+          </table>
+          <!-- @@blkStruttureMungitura -->
+          <!-- @@mungOldStyle -->
+          
+          <!-- @@mungNewStyle -->
+          <!-- @@blkStruttureMungitura -->
+          <table cellspacing="3" class="detailTable"
+            summary="Questa tabella contiene i dati di stabulazione e trattamenti">
+            <caption>
+              Strutture di mungitura
+            </caption>
+            <tr>
+              <th>
+                n. capi in lattazione
+              </th>
+              <td>
+                $$mediaCapiLattazione
+              </td>
+            </tr>
+            <!-- @@blkTipologiaStruttureMungitura -->
+            <tr>
+              <th>
+                Tipologia struttura mungitura
+              </th>
+              <td colspan="10">
+                $$descMungitura
+              </td>
+            </tr>
+            <!-- @@blkTipologiaStruttureMungitura -->
+            <tr>
+              <th>
+                Acque di lavaggio totali (m
+                <sup>
+                  3
+                </sup>
+                /anno)
+              </th>
+              <td>
+                $$quantitaAcquaLavaggio
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="litriAcquaCapoGiorno">Acque di lavaggio per capo (litri/giorno)</label>
+              </th>
+              <td>
+                $$litriAcquaCapoGiorno
+              </td>
+            </tr>
+            <!-- @@blkDestinoAcquaLavaggio -->
+            <tr>
+              <!-- @@blkPrimoAcquaLavaggio -->          
+              <th rowspan="$$numDestinoAcqualLavaggio">
+                Destino acque di lavaggio (m<sup>3</sup>/anno)
+              </th>              
+              <td>
+                $$descDestinoAcquaLavaggio&nbsp;&nbsp;&nbsp;&nbsp;
+                $$destQuantitaAcquaLavaggio            
+              </td>
+              <!-- @@blkPrimoAcquaLavaggio -->          
+              <!-- @@blkSecondoAcquaLavaggio -->           
+              <td>
+                $$descDestinoAcquaLavaggio&nbsp;&nbsp;&nbsp;&nbsp;
+                $$destQuantitaAcquaLavaggio
+              </td>
+              <!-- @@blkSecondoAcquaLavaggio -->            
+            </tr>
+            <!-- @@blkDestinoAcquaLavaggio -->
+
+          </table>
+          <!-- @@blkStruttureMungitura -->
+          <!-- @@mungNewStyle -->
+          
+          
+          <table cellspacing="3" class="detailTable" summary="Questa tabella contiene i dati di stabulazione e trattamenti">
+            <!-- @@blkLettiera -->
+            <tr>
+              <th>
+                Superficie lettiera permanente (m
+                <sup>
+                  2
+                </sup>
+                )
+              </th>
+              <td width="40">
+                $$superficieLettieraPermanente
+              </td>
+              <th width="5">
+                Altezza (m)
+              </th>
+              <td width="9">
+                $$altezza
+              </td>
+              <th width="9">
+                Volume (m
+                <sup>
+                  3
+                </sup>
+                )
+              </th>
+              <td width="9">
+                $$volume
+              </td>
+            </tr>
+            <!-- @@blkLettiera -->
+            <tr>
+              <th>
+                Note
+              </th>
+              <td colspan="5">
+                $$note
+              </td>
+            </tr>
+          </table>
+          
+          
+          
+          <table cellspacing="3" class="detailTable"
+            summary="Questa tabella è costituita da righe">
+            <caption>
+              Metodo biologico - Fonte ABIO $$dataAggiornamentoAbio
+            </caption>
+            <!--@@blkDatiAbio-->
+            <tr>
+              <th class="center" >Categoria</th>
+              <th class="center" >Convenzionale $$unitaMisura </th>
+              <th class="center" >Biologico $$unitaMisura</th>
+            </tr>
+            <!--@@blkElencoDatiAbio-->
+            <tr>
+              <td>$$descCategoria</td>
+              <td class="numeridx" >$$supConvenzionale</td>
+              <td class="numeridx" >$$supBiologico</td>
+            </tr>
+            <!--@@blkElencoDatiAbio-->
+            <!--@@blkDatiAbio-->
+            <!--@@blkNoDatiAbio-->
+            <tr>
+              <td>$$nessunDato</td>
+            </tr>
+            <!--@@blkNoDatiAbio-->
+          </table>
+          
+          
+          
+          
+          <table cellspacing="3" class="detailTable"
+            summary="Questa tabella contiene i dati del rapporto">
+            <col width="30%" />
+            <col width="70%" />
+            <caption>
+              Validit&agrave;:
+            </caption>
+            <!--@@blkHidden-->
+            <tr>
+              <th>
+                Dal
+              </th>
+              <td colspan="3">
+                $$validitaDal
+              </td>
+            </tr>
+            <!--@@blkHidden-->
+            <tr>
+              <th>
+                Data fine validit&agrave;
+              </th>
+              <td>
+                $$validitaAl
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Ultima modifica allevamenti
+              </th>
+              <td>
+                $$ultimaModificaVw
+              </td>
+            </tr>
+          </table>
+          <p class="legenda">
+            Si intende per lettiera permanente una lettiera che viene rinnovata con frequenza ridotta (intervallo di rimozione superiore ai due mesi, oppure alla sola conclusione del ciclo di allevamento). 
+          </p>
+          </br>
+          <!--@@blkLegenda-->
+          <p class="legenda">
+            <strong>Trattamenti</strong>:<br>
+            1. separazione delle frazioni solide grossolane (vagliatura -
+                vaglio rotante o vibrante)<br>
+            2. separazione delle frazioni solide grossolane (vagliatura -
+                vaglio rotante o vibrante) + ossigenazione della frazione
+                liquida chiarificata<br>
+            3. separazione delle frazioni solide grossolane (vagliatura -
+                separatore cilindrico rotante o a compressione elicoidale)<br>
+            4. separazione delle frazioni solide grossolane (vagliatura -
+                separatore cilindrico rotante o a compressione elicoidale)
+                + ossigenazione della frazione liquida chiarificata<br>
+            5. separazione meccanica delle frazioni solide (centrifuga o
+                nastropressa)<br>
+            6. separazione meccanica delle frazioni solide (centrifuga o
+                nastropressa) + ossigenazione della frazione liquida
+                chiarificata<br>
+            7. separazione meccanica delle frazioni solide (centrifuga o
+                nastropressa) + trattamento aerobico a fanghi attivi
+                (nitri-denitrificazione) della frazione liquida
+                chiarificata per abbattimento del tenore di N del 90%<br>
+            8. altre tipologie di trattamento o combinazioni di più
+                trattamenti (descrivere nel campo note)
+          </p>
+          <!--@@blkLegenda-->
+        </div>
+      </div>
+      <hr />
+      <!-- PIE' DI PAGINA -->
+      $$footer

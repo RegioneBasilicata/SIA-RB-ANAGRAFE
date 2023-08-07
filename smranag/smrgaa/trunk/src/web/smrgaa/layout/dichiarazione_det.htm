@@ -1,0 +1,557 @@
+$$head
+<script type="text/javascript" src="../js/checktext.js"></script>
+<script type="text/javascript" src="../js/messaggistica.js"></script>
+</head>
+<body id="homeIndice" onLoad="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+  <form id="form1" name="form1" method="post"
+    action="../layout/dichiarazione_det.htm">
+    <input type="hidden" name="radiobutton"
+      value="$$idDichiarazioneConsistenza"
+      id="idDichiarazioneConsistenza">
+    <div id="pagina" class="colonnaUnica">
+      <div id="intestazione##pathProvincia">
+        <!--#include virtual="/ris/include/smrgaaweb/header.html" -->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li>
+                <a href="../layout/index.htm"
+                  title="Torna alla pagina principale">home</a>
+              </li>
+              <li class="attivo">
+                gestione anagrafe aziende
+              </li>
+              <li>
+                <a href="#" title="contatti">contatti</a>
+              </li>
+              <li>
+                <a href="#" title="help">help</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div style="clear: left"></div>
+      <div id="corpo">
+        <div id="Utente">
+          <div id="datiUtente">
+            <strong>utente:</strong> $$utente &nbsp;&nbsp;
+            <strong>ente:</strong> $$ente
+          </div>
+          <div id="chiudisessione">
+            <a href="javascript: logout();">chiudi sessione</a>
+          </div>
+        </div>
+        <hr />
+        <h3>
+          Gestione Anagrafe
+          Aziende&nbsp;&gt;&nbsp;Validazioni&nbsp;&gt;&nbsp;Dettaglio
+          <span class="helpFuori"> <a href="#"> <span
+              class="alt">[help]</span> </a> </span>
+        </h3>
+        <hr />
+        <div class="box">
+          <div class="menuSX1">
+            <ul>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <li>
+                <a href="../layout/elencoAziendeRapLegale.htm">Elenco
+                  Aziende</a>
+              </li>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <!-- @@blkRicercaAzienda-->
+              <li>
+                <a href="../layout/ricerca.htm">Ricerche</a>
+              </li>
+              <!-- @@blkRicercaAzienda-->
+              <!-- @@blkNuova -->
+              <li>
+                <a href="../layout/nuovaAziendaAnagrafica.htm">Nuova
+                  Azienda</a>
+              </li>
+              <!-- @@blkNuova -->
+              <!-- @@blkNuovaIscrizione -->
+		          <li>
+		            <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+		          </li>
+		          <!-- @@blkNuovaIscrizione -->
+            </ul>
+          </div>
+          <div class="menuSX">
+            <ul>
+              <li>
+                <a href="../layout/anagrafica.htm">Anagrafica</a>
+              </li>
+              <!-- @@blkAziendeCollegate -->
+              <li>
+                <a href="../layout/aziendeCollegate.htm">$$aziendeCollegateLabel</a>
+              </li>
+              <!-- @@blkAziendeCollegate -->
+              <!-- @@blkSincronizzaFascicolo -->
+               <li>
+               	<a href="../layout/sincronizzaFascicolo.htm">Sincronizza fascicolo</a>
+               </li>
+              <!-- @@blkSincronizzaFascicolo -->
+              <!-- @@blkSoggettiCollegati -->
+              <li>
+                <a href="../layout/contitolari.htm">Soggetti
+                  collegati</a>
+              </li>
+              <!-- @@blkSoggettiCollegati -->
+              <!-- @@blkContiCorrenti -->
+              <li>
+                <a href="../layout/conti_correnti.htm">Conti
+                  Correnti</a>
+              </li>
+              <!-- @@blkContiCorrenti -->
+              <!-- @@blkUnitaProduttive -->
+              <li>
+                <a href="../layout/sedi.htm">Unit&agrave; produttive</a>
+              </li>
+              <!-- @@blkUnitaProduttive -->
+              <!-- @@blkTerreni -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniParticellareElenco.htm">Terreni</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		            <a href="../layout/riepiloghi.htm">Terreni</a>
+		            <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkTerreni -->
+		          <!-- @@blkUnitaVitate -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniUnitaArboreeElenco.htm">Unit&agrave; Vitate</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		              <a href="../layout/riepiloghiUnitaArboree.htm">Unit&agrave; Vitate</a>
+		              <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkUnitaVitate -->
+              <!-- @@blkFabbricati -->
+              <li>
+                <a href="../layout/fabbricati.htm">Fabbricati e
+                  Strutture</a>
+              </li>
+              <!-- @@blkFabbricati -->
+              <!-- @@blkAllevamenti -->
+              <li>
+                <a href="../layout/allevamenti.htm">Allevamenti</a>
+              </li>
+              <!-- @@blkAllevamenti -->
+              <!-- @@blkManodopera -->
+              <li>
+                <a href="../layout/manodopera.htm">Manodopera</a>
+              </li>
+              <!-- @@blkManodopera -->
+              <!-- @@blkMotoriAgricoli -->
+              <li>
+                <a href="../layout/motori_agricoli_incarico.htm">Macchine agricole</a>
+              </li>
+              <!-- @@blkMotoriAgricoli -->
+              <!-- @@blkDiritti -->
+              <li>
+                <a href="../layout/diritti.htm">Diritti di
+                  produzione</a>
+              </li>
+              <!-- @@blkDiritti -->
+              <!-- @@blkAttestazioni -->
+              <li>
+                <a href="../layout/attestazioniDettaglio.htm">Dichiarazioni</a>
+              </li>
+              <!-- @@blkAttestazioni -->
+              <!-- @@blkDichiarazioniConsistenza -->
+              <li>
+                <a href="../layout/dichiarazioneConsistenza.htm"
+                  class="on">Validazioni</a>
+                <ul>
+                  <li>
+                    <a href="#" class="etichetta">dettaglio</a>
+                  </li>
+                </ul>
+              </li>
+              <!-- @@blkDichiarazioniConsistenza -->
+              <!-- @@blkDocumenti -->
+              <li>
+                <a href="../layout/documentiElenco.htm">Documenti</a>
+              </li>
+              <!-- @@blkDocumenti -->
+              <!-- @@blkFascicoloDematerializzato -->
+		          <li>
+		            <a href="../layout/fascicoloDematerializzato.htm">Fascicolo<br>elettronico</a>
+		          </li>
+		          <!-- @@blkFascicoloDematerializzato --> 
+              <!-- @@blkGestioneNotifiche -->
+              <li>
+                <a href="../layout/notifiche.htm">Notifiche</a>
+              </li>
+              <!-- @@blkGestioneNotifiche -->
+              <!-- @@blkComunicazione10R -->
+              <li>
+                <a href="../layout/comunicazione10R_dettaglio.htm">Comunicazione
+                  10/R</a>
+              </li>
+              <!-- @@blkComunicazione10R -->
+              <!-- @@blkPratiche -->
+              <li>
+                <a href="../layout/pratiche.htm">Pratiche</a>
+              </li>
+              <!-- @@blkPratiche -->
+              <!-- @@blkStampaFascicolo -->
+              <li>
+                <a href="../layout/scelta_stampa.htm">Stampe</a>
+              </li>
+              <!-- @@blkStampaFascicolo -->
+			  <li><a href="../layout/strumenti.htm">Strumenti</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr />
+        <div id="contenuto">
+          <div id="intesta">
+            <p class="$$aziendaIntestazione" title="$$tooltipIntestazione" >
+              $$CUAAIntestazione  $$denominazioneIntestazione
+            </p>
+          </div>
+          <!-- @@blkDichiarazioneConsistenza -->
+          <table cellspacing="3" class="detailTable"
+            summary="Questa tabella contiene i dati del rapporto">
+            <tr>
+              <th scope="row" colspan="1">
+                Anno di riferimento
+              </th>
+              <td colspan="3">
+                $$anno
+              </td>
+            </tr>
+            <tr>
+              <th scope="row" colspan="1">
+                Data della dichiarazione
+              </th>
+              <td colspan="3">
+                $$data
+              </td>
+            </tr>
+            <tr>
+              <th scope="row" colspan="1">
+                Motivo
+              </th>
+              <td colspan="3">
+                $$motivo
+              </td>
+            </tr>
+            <tr>
+              <th scope="row" colspan="1">
+                Numero repertorio
+              </th>
+              <td colspan="3">
+                $$numeroProtocollo
+              </td>
+            </tr>
+            <tr>
+              <th scope="row" colspan="1">
+                Data repertorio
+              </th>
+              <td colspan="3">
+                $$dataProtocollo
+              </td>
+            </tr>
+            <tr>
+              <th scope="row" colspan="1">
+                Note
+              </th>
+              <td colspan="3">
+                $$note
+              </td>
+            </tr>
+            <tr>
+              <th scope="row" colspan="1">
+                Utente
+              </th>
+              <td colspan="3">
+                $$utente
+              </td>
+            </tr>
+          </table>
+          <table cellspacing="3" 
+            summary="Questa tabella contiene le tipologie di esiti sian">
+            <caption>
+              Esito aggiornamento sian:
+            </caption>
+            <tr>
+              <th class="center" scope="col" >
+                Tipo Dato
+              </th>
+              <th class="center" scope="col" >
+                Data
+              </th>
+              <th class="center" scope="col" colspan="2" >
+                Esito
+              </th>
+            </tr>  
+            <tr>
+              <th scope="row">
+                Fascicolo
+              </th>
+              <td>
+                $$dataAggiornamentoSian
+              </td>
+              <td align="center">$$aggiornamentoSian</td>
+              <td>
+                $$esitoAggiornamentoSian
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">
+                Consistenza territoriale
+              </th>
+              <td>
+                $$dataAggiornamentoSianCT
+              </td>
+              <td align="center">$$aggiornamentoSianCT</td>
+              <td>
+                $$esitoAggiornamentoSianCT
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">
+                Unit&agrave; vitate
+              </th>
+              <td>
+                $$dataAggiornamentoSianUV
+              </td>
+              <td align="center">$$aggiornamentoSianUV</td>
+              <td>
+                $$esitoAggiornamentoSianUV
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">
+                Fabbricati
+              </th>
+              <td>
+                $$dataAggiornamentoSianFab
+              </td>
+              <td align="center">$$aggiornamentoSianFab</td>
+              <td>
+                $$esitoAggiornamentoSianFab
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">
+                Conti correnti
+              </th>
+              <td>
+                $$dataAggiornamentoSianCC
+              </td>
+              <td align="center">$$aggiornamentoSianCC</td>
+              <td>
+                $$esitoAggiornamentoSianCC
+              </td>
+            </tr>
+          </table>
+          <table cellspacing="3" class="detailTable"
+            summary="Questa tabella contiene le tipologie di esiti sian">
+            <caption>
+              Ultima richiesta schedulata dall'operatore:
+            </caption>
+            <tr>
+              <th class="right" scope="col" >
+                Stato richiesta
+              </th>
+              <td>
+                $$statoInvio
+              </td>
+            </tr>
+            <tr>
+              <th class="right" scope="col" >
+                Data richiesta
+              </th>
+              <td>
+                $$dataRichiesta
+              </td>
+            </tr>  
+            <tr>
+              <th class="right" scope="col" >
+                Data conclusione
+              </th>
+              <td>
+                $$dataConclusione
+              </td>
+            </tr>
+            <tr>
+              <th class="right" scope="col" >
+                Nr. tentativi invio
+              </th>
+              <td>
+                $$numTentativi
+              </td>
+            </tr>
+          </table>        
+          <!-- @@blkDichiarazioneConsistenza -->
+          <table cellspacing="3" class="detailTable"
+            summary="Questa tabella contiene le tipologie di segnalazioni">
+            <caption>
+              Segnalazioni:
+            </caption>
+            <tr>
+              <th>
+                Tipologia segnalazione
+              </th>
+              <td>
+                <input name="segnalazioneBloccante" type="checkbox"
+                  value="S" $$checkedBloccante />
+                <img src="$$srcBloccante" alt="$$descImmagineBloccante"
+                  width="17" height="17"
+                  onclick="alert('$$descImmagineBloccante')"
+                  onkeypress="alert('$$descImmagineBloccante')" />
+                <input name="segnalazioneWarning" type="checkbox"
+                  value="N" $$checkedWarning />
+                <img src="$$srcWarning" alt="$$descImmagineWarning"
+                  width="17" height="17"
+                  onclick="alert('$$descImmagineWarning')"
+                  onkeypress="alert('$$descImmagineWarning')" />
+                <input name="segnalazioneOk" type="checkbox" value="P"
+                  $$checkedOk />
+                <img src="$$srcOk" alt="$$descImmagineOk" width="16"
+                  height="16" onClick="alert('$$descImmagineOk')"
+                  onkeypress="alert('$$descImmagineOk')" />
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <label for="gruppo controllo">
+                  Gruppo controllo
+                </label>
+              </th>
+              <td>
+                <select name="idGruppoControllo" id="idGruppoControllo"
+                  onchange="javascript: document.forms[0].submit();">
+                  <option></option>
+                  <!-- @@blkElencoGruppoControllo -->
+                  <option value="$$idGruppoControllo" $$selected>
+                    $$descrizione
+                  </option>
+                  <!-- @@blkElencoGruppoControllo -->
+                </select>
+                $$err_idGruppoControllo
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <label for="controllo">
+                  Controllo
+                </label>
+              </th>
+              <td>
+                <select name="idControllo" id="idControllo">
+                  <option></option>
+                  <!-- @@blkElencoControllo -->
+                  <option value="$$idControllo" $$selected>
+                    $$descrizione
+                  </option>
+                  <!-- @@blkElencoControllo -->
+                </select>
+                $$err_idControllo
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <div class="azioni"><input type="submit" name="aggiorna" value="aggiorna"
+                  class="inputPulsante" /></div>
+              </td>
+            </tr>
+          </table>
+          <!-- @@blkElencoAnomalie -->
+          <!-- @@blkTabAnomalia -->
+          <table cellspacing="3" 
+            summary="Questa tabella contiene i dati del rapporto">
+            <caption>
+              $$descrizioneAnomalia
+            </caption>
+            <tr>
+              <th colspan="2" class="center" scope="col">
+                Controllo
+              </th>
+              <th class="center" scope="col">
+                Esito
+              </th>
+              <th colspan="2" class="center" scope="col">
+                Risoluzione
+              </th>
+            </tr>
+            <!-- @@blkAnomalia -->
+            <tr class="evidence">
+              <td>
+                $$tipologia
+              </td>
+              <td>
+                $$descrizione
+              </td>
+              <td>
+                <img src="$$immagine" onClick="alert('$$descImmagine')"
+                  alt="$$descImmagine" />
+              </td>
+              <td>
+                $$ris1
+              </td>
+              <td>
+                $$ris2
+              </td>
+            </tr>
+            <!-- @@blkAnomalia -->
+          </table>
+          <!-- @@blkTabAnomalia -->
+          <!-- @@blkElencoAnomalie -->
+          <!-- @@blkNoAnomalie -->
+          <p class="errore">
+            $$messaggioErrore
+          </p>
+          <!-- @@blkNoAnomalie -->
+          
+          <!-- @@blkElencoAllegati -->
+          <table cellspacing="3" summary="Questa tabella contiene i dati del rapporto">
+            <caption>Elenco allegati</caption>
+            <tr>
+              <th class="center" scope="col">
+                Tipo allegato
+              </th>
+              <th class="center" scope="col">
+                Data allegato
+              </th>
+              <th class="center" scope="col">
+                Tipo firma
+              </th>
+              <th class="center" scope="col">
+                Data firma
+              </th>
+            </tr>
+            <!-- @@blkAllegato -->
+            <tr class="evidence">
+              <td>
+                $$descTipoAlegato
+              </td>
+              <td>
+                $$dataAllegato
+              </td>
+              <td>
+                $$descTipoFirma
+              </td>
+              <td>
+                $$dataFirma
+              </td>
+            </tr>
+            <!-- @@blkAllegato -->
+          </table>
+          <!-- @@blkElencoAllegati -->
+          
+        </div>
+      </div>
+      <hr />
+  </form>
+  $$footer

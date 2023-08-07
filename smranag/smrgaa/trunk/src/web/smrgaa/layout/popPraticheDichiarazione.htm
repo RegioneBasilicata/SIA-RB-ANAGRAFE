@@ -1,0 +1,34 @@
+$$head
+</head>
+<body id="popup">
+	<form id="form1" name="form1" method="post" action="../layout/popPraticheDichiarazione.htm">
+    	<div id="contenutopop">
+        	<table cellspacing="3" summary="Questa tabella contiene i dati delle pratiche">
+          		<tr>
+            		<th class="center" scope="col">Procedimento</th>
+            		<th class="center" scope="col">Numero pratica</th>
+            		<th class="center" scope="col">Descrizione</th>
+            		<th class="center" scope="col">Stato</th>
+            		<th class="center" scope="col">Dal</th>
+            		<th class="center" scope="col">Amministrazione competenza </th>
+          		</tr>
+            	<!-- @@blkElencoPratiche -->
+            		<tr>
+              			<td>$$descProcedimento</td>
+              			<td>$$numeroPratica</td>
+              			<td>$$descrizione</td>
+              			<td>$$descrizioneStato</td>
+              			<td>$$dataValiditaStato</td>
+              			<td>$$amministrazioneCompetenza</td>
+            		</tr>
+            	<!-- @@blkElencoPratiche -->
+        	</table>
+      		<div class="pulsanti">
+        		<div class="des">
+          			<a href="javascript:window.close();">chiudi</a>
+        		</div>
+      		</div>
+    	</div>
+  	</form>
+</body>
+</html>

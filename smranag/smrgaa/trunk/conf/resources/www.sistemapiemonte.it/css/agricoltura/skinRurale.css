@@ -1,0 +1,1910 @@
+/*** skinRurale.css ***/
+/*
+* versione v.2.2.2003.11.27.21.16
+* CSS2.0 per specificare aspetti peculiari delle pagine dell'agricoltura di TOBECONFIG
+*/
+/* A */
+#descrizione #annulla, #annulla {
+	display:block;
+	width:95px;
+	font-size:0.95em;
+	float:left;
+	text-align:center;
+	color:#fff;
+	background-color: #b38900; 
+	line-height:1.3em;
+	margin:0px; 
+	border-top: 1px solid #ccc; 
+	border-bottom: 1px solid #333; 
+	border-left: 1px solid #ccc; 
+	border-right: 1px solid #333;
+}
+#descrizione #annulla a, #annulla a {
+	display:block;
+	width:100%;
+	color:#fff;
+	background-color: #b38900;
+}
+#descrizione #annulla a:link,
+#descrizione #annulla a:visited,
+#annulla a:link,
+#annulla a:visited {
+	display:block;
+	color:#fff;
+	background-color: #b38900;
+}
+#descrizione #annulla a:hover, 
+#descrizione #annulla a:active,
+#annulla a:hover, 
+#annulla a:active {
+	display:block;
+	color:#fff;
+	background-color:#333;
+}
+.allineaSx{text-align:left;}
+.allineaDx{text-align:right;}
+.allineato{
+margin-left:1.6em;
+}
+a:link,a:visited  {
+	color		: #B38900;
+	font-weight	: bold;
+	text-decoration:none;
+}
+a:hover,a:active {
+	color		: #900;
+	text-decoration:none;
+}
+/* B */
+body#homeAgri #colonna-1HOME {
+		background:#fff url(/css/agricoltura/im/imm_home_portale_agri.jpg) 0 0 no-repeat;
+		color : #000;
+}
+body#homeAgri #colonna-1 {
+		background:#fff;
+		color : #000;
+}
+body#homeAnAz #colonna-1HOME {
+		background:#fff url(/css/agricoltura/im/imm_anagrafe.jpg) 0 0 no-repeat;
+		color : #000;
+}
+body#homeAvvAtm #colonna-1HOME {
+		background:#fff url(/css/agricoltura/im/imm_avversita.jpg) 0 0 no-repeat;
+		color : #000;
+}
+body#homeSolmr #colonna-1HOME {
+		background:#fff url(/css/agricoltura/im/imm_carburante.jpg) 0 0 no-repeat;
+		color : #000;
+}
+body#homeCensimenti #colonna-1HOME {
+		background:#fff url(/css/agricoltura/im/imm_censimenti.jpg) 0 0 no-repeat;
+		color : #000;
+}
+body#homePua #colonna-1HOME {
+		background:#fff url(/css/agricoltura/im/imm_concimazione.jpg) 0 0 no-repeat;
+		color : #000;
+}
+body#homeDwAgristat #colonna-1HOME {
+		background:#fff url(/css/agricoltura/im/img_home.jpg) 0 0 no-repeat;
+		color : #000;
+}
+body#homePatentini #colonna-1HOME {
+		background:#fff url(/css/agricoltura/im/imm_patentino.jpg) 0 0 no-repeat;
+		color : #000;
+}
+body#homePiano #colonna-1HOME {
+		background:#fff url(/css/agricoltura/im/imm_pianosviluppo.jpg) 0 0 no-repeat;
+		color : #000;
+}
+body#homeTrasformatrici #colonna-1HOME {
+		background:#fff url(/css/agricoltura/im/imm_trasformatrici.jpg) 0 0 no-repeat;
+		color : #000;
+}
+body#homeUma #colonna-1HOME {
+		background:#fff url(/css/agricoltura/im/imm_utentimotori.jpg) 0 0 no-repeat;
+		color : #000;
+}
+body#homeVenatoria #colonna-1HOME {
+		background:#fff url(/css/agricoltura/im/imm_venatoria.jpg) 0 0 no-repeat;
+		color : #000;
+}
+body#homeVitivinicolo #colonna-1HOME {
+		background:#fff url(/css/agricoltura/im/imm_vitivinicolo.jpg) 0 0 no-repeat;
+		color : #000;
+}
+body#homeAutVivai #colonna-1HOME {
+		background:#fff url(/css/agricoltura/im/imm_vivaistica.jpg) 0 0 no-repeat;
+		color : #000;
+}
+body#homeIgieneMangimi #colonna-1HOME {
+		background:#fff url(/css/agricoltura/im/imm_igiene_mangimi.jpg) 0 0 no-repeat;
+		color : #000;
+}
+body#homeRistVigneti #colonna-1HOME {
+		background:#fff url(/css/agricoltura/im/imm_ristrutt_vigneti.jpg) 0 0 no-repeat;
+		color : #000;
+}
+
+#barra a,
+#barra a:link, 
+#barra a:visited {
+		color:#4f4f4c;
+		display:block; 
+		background:#e1d099 url(../im/pulsanti/puls_vai_agri.gif) 100% 50% no-repeat;
+		text-decoration:none;
+}
+#barra a:hover, 
+#barra a:active { 
+		color:#333;
+		display:block;
+		background:#e1d099 url(../im/pulsanti/puls_vai_roll_agri.gif) 100% 50% no-repeat;
+		text-decoration:none;
+}
+#barra {
+		line-height:1.4em;
+		display:block;
+		font-size:0.95em;
+		background:#e1d099;
+		margin-left:8.8em; 
+		padding:0 0 0 6px;
+}
+.box{
+  height:22px;
+		margin:0 0 3px 0;
+		background:#EFD7A5;
+}
+/*#colonna-dx {	
+background:transparent url(im/agricoltura_bannervert.jpg) left top no-repeat;
+}*/
+
+#colonna-dx {	
+background:transparent url(/css/agricoltura/im/imm_servizi.jpg) left top no-repeat;
+_height:300px;
+}
+#colonna-dx p {
+	padding:3px 6px;
+	margin:0;
+}
+#colonna-dx p.ocra{
+	padding:3px 6px;
+	margin:0;
+	background-color:#F0E9CE;
+}
+
+#colonna-dx2 {	
+background:#fff;
+}
+#colonna-2 ul{
+ font-size:0.95em;
+ margin:0 0 8px 15px;
+}
+#colonna-2 li{
+ color:#b38900;
+ list-style:square;
+}
+#colonna-2 li a{
+ color:#b38900;
+ list-style:square;
+}
+#colonna-2 li a:hover{
+ color:#fff;
+ background:#b38900;
+ list-style:square;
+}
+#colonna-2 #province {
+clear:both;
+background:#fff;
+margin-top:0px!important;
+margin:-5px 0 0 0;
+}
+#colonna-2 #province img {
+border:0;
+}
+#colonna-2 #enti {
+background-color:#E8E8E8;
+height:35px;
+margin-top:3px;
+}
+#colonna-2 #enti #regione {
+margin-top:3px;
+float:left;
+}
+#colonna-2 #enti #regione img {
+margin-left:25px;
+border:0;
+}
+#colonna-2 #enti #testoregione {
+margin:0;
+padding:13px 0 0 0;
+}
+
+#chiaro{
+background:#dbba4f;
+margin-bottom:3px;
+color:#b48c09;
+}
+#corpo p label.cerca{
+	font-size:11px;
+	color:#000;
+	margin-left:23em;
+	font-weight:bold;
+}
+/* D */
+#datiUtente {
+	background	: #ebebeb;
+	color		: #000;
+}
+#datiUtente h3 {
+	background	: #008631;
+	color		: #fff;
+}
+#datiUtente p {
+	font-size	: 0.90em;
+	padding		: 0 .5em .5em .5em;
+}
+#descrizione{
+background:#fff;
+width :462px;
+color :#000;
+float :left; 
+}
+#descrizione p{
+margin:3px 0 6px 0;
+padding:3px 6px;
+}
+#descrizione p.paginazione,
+#corpo p.paginazione{
+margin:3px 0 0 0;
+padding: 0 0 0 6px;
+font-weight:bold;
+font-size:.95em;
+}
+{
+margin:3px 0 0 0;
+padding: 0 0 0 6px;
+font-weight:bold;
+font-size:.95em;
+}
+#descrizione p.avviso, .errore {
+background:#ededed;
+color:#C00;
+text-align:center;
+font-weight:bold;
+border:0;
+border-top:1px solid #333;
+border-bottom:1px solid #333; 
+}
+#descrizione img{
+float :left;margin: 0 10px 10px 0;
+}
+#descrizione h3 {
+	margin-top:3px;
+ clear :both;
+ background	: #e1d099;
+ color:#333;
+ padding:0 0 0 6px;
+} 
+#descrizione h3.ult {
+	margin:35px 0 0 0;
+} 
+#descrizione h3 a, 
+#descrizione h3 a:link, 
+#descrizione h3 a:visited 
+{
+ display:block;
+ position:relative;
+ background:#e1d099 url(../im/pulsanti/puls_vai_agri.gif) 100% 50% no-repeat;
+ color:#333;
+ text-decoration:none;
+ height:16px;
+} 
+#descrizione h3 a:hover, #descrizione h3 a:active {
+ display:block;
+ position:relative;
+ background:#e1d099 url(../im/pulsanti/puls_vai_roll_agri.gif) 100% 50% no-repeat;
+ color:#333;
+ text-decoration:none;
+} 
+#descrizione .bordo, #descrizione .notabordo{
+padding:3px 6px;
+border:1px dashed #000;
+background:#eaeaea;
+margin:0 0 3px 0;
+}
+#descrizione .bordo span{
+text-align:right;
+font-size:.9em;
+display:block;
+width:100%;
+padding:0;
+margin:0;
+}
+#descrizione .bordo p{
+padding:3px;
+margin:0 0 0 0;
+position:relative;
+font-size:.9em;
+}
+#descrizioneunica {
+width:698px;
+}
+.doc {
+		height:15px!important;
+		position:relative;
+		text-align:right;
+		display:block;
+		width:40px;
+		font-weight: bold;
+		height/**/:20px;
+		background:  url("../im/pulsanti/ico_doc.gif") 50% 50% no-repeat;
+		}
+.doc a, 
+.doc a:link, 
+.doc a:visited  {
+		height:15px!important;
+		display:block;
+		background:  url("../im/pulsanti/ico_doc.gif") 50% 50% no-repeat;
+		height/**/:20px;
+			}
+.doc a:hover, .doc a:active  {
+		background:  url("../im/pulsanti/ico_doc_roll.gif") 50% 50% no-repeat;
+}
+/* c */
+.pgrigio ul {
+	background-color:#E6E6E6;
+	margin:-6px 0 6px 0;
+	padding:3px 6px 3px 6px;
+}
+.pgrigio p {
+	margin: 3px 0 3px 0;
+	background-color:#E6E6E6;
+	padding:3px 6px 3px 6px;
+	position:relative;
+}
+#colonna-dx ul{
+	margin: 0 0 3px 0;
+	background:#F0E9CE;
+	padding:3px 6px 3px 20px;
+	position:relative;
+}
+/*#colonna-dx p.bianco{
+	margin: 0;
+	background-color:#fff;
+	padding:0 6px 3px 6px;
+}*/
+#colonna-dx img{
+float :left;
+}
+#corpo h3 a, 
+#corpo h3 a:link, 
+#corpo h3 a:visited,
+#corpo h3 a:hover, 
+#corpo h3 a:active {
+	color:#fff;
+	text-decoration:none;
+	height:16px;
+	line-height:16px;
+}
+
+
+#colonna-dx h4 {
+ margin-top: 0px;
+ background:#e1d099;
+ color:#333;
+ padding:0 0 0 6px;
+ clear :both;
+	position:relative;
+}
+#colonna-dx h4 a, 
+#colonna-dx h4 a:link, 
+#colonna-dx h4 a:visited {
+	display:block;
+	position:relative;
+	background:#e1d099 url(../im/pulsanti/puls_vai_agri.gif) 100% 50% no-repeat;
+	color:#333;
+	text-decoration:none;
+	height:16px;
+	line-height:16px;
+}
+#colonna-dx h4 a:hover, 
+#colonna-dx h4 a:active {
+ display:block;
+ background:#e1d099 url(../im/pulsanti/puls_vai_roll_agri.gif) 100% 50% no-repeat;
+ color:#333;
+ text-decoration:none;
+}
+#colonna-dx .elenco h4 {
+margin:6px 0 2px 0;
+}
+#colonna-dx .elenco h4.primo {
+margin:1px 0 2px 0;
+}
+.centroFAQ{/**/
+	position:relative;
+	margin-top:8px;
+}
+.centroFAQ p{/**/
+	background:#efefef;
+	margin:0;
+	padding-left:6px;
+	border-bottom:3px solid #fff;
+}
+.centroFAQ a, .centroFAQ a:link, .centroFAQ a:visited {/**/
+	color:#333;
+}
+.centroFAQ a:hover, .centroFAQ a:active {/**/
+	color:#900;
+}
+/* D */
+.distante {
+ margin-left:10em;
+}
+/* E */
+#elencoAltriServiziICI dd {
+	background	: #efefef;
+	color		: #000;
+	margin		: 0;
+	padding		: 0 0 0 0.50em;
+	border-top	: 2px solid #fff;
+}
+#elencoAltriServiziICI dt {
+	background	: #008631;
+	color		: #fff;
+	font-weight	: bold;
+	padding-left	: .5em;
+}
+#elencoServiziICI {
+	background	: #efefef;
+	color		: #000;
+}
+#elencoServiziICI dd {
+	background	: #cecece;
+	color		: #000;
+	margin-left	: 7em; /* spazio per gli elementi dt */
+}
+#elencoServiziICI dt {
+ position:absolute;left:.5em;
+ font-weight	: bold
+}
+#elencoServizi, .elencoServizi {
+margin:0 0 6px 0;
+float:none;
+clear:both;
+border:1px solid #e1d099;
+}
+.elencoServizi p{
+margin:0;
+padding:0 0 0 6px;
+/*background:#E0D098;F8EABB*/}
+ #elencoServizi ul{
+	color		: #000;
+	font-weight:bold;
+}
+#elencoServizi li {
+	margin:0 0 1px 0;
+	background:#e1d099;
+	color:#333;
+}
+#elencoServizi li.disponibile {
+	list-style:url(/css/im/attivo.gif) inside none;
+}
+#elencoServizi li.nondisponibile {
+	list-style:url(/css/im/disattivo.gif) inside none;
+	color:#666;
+}
+#elencoServizi li.default {
+	list-style:url(/css/im/default.gif) inside none;
+	color:#666;
+}
+/* F */
+.frecce a:link, .frecce a:visited {
+	color		: #fff;
+	background	: #b38900 url(../im/pulsanti/frecce_tributi.png) 100% 50% no-repeat;
+}
+.frecce a:hover, .frecce a:active {
+	color		: #cbdce3;
+	background	: #b38900 url(../im/pulsanti/frecce_tributi_roll.png) 100% 50% no-repeat;
+}
+dl.frecce a:link,
+dl.frecce a:visited,
+ul.frecce a:link,
+ul.frecce a:visited {
+	color		: #000;
+	background	: #cecece url(../im/pulsanti/frecce_tributi_gs.png) 100% 50% no-repeat;
+}
+dl.frecce a:hover,
+dl.frecce a:active,
+ul.frecce a:hover,
+ul.frecce a:active {
+	color		: #900;
+	background	: #cecece url(../im/pulsanti/frecce_tributi_roll_gs.png) 100% 50% no-repeat;
+}
+
+/* G */
+
+#glossarioCerca h3 {
+	 margin-top:0;
+	 clear :both;
+	 background: #e1d099;
+	 color:#333;
+	 padding:0 0 0 6px;
+}
+
+#glossarioCerca h4 {
+	 margin-top:0;
+	 clear :both;
+    background-color: #debf52;
+	 color:#fff;
+	 padding:0 0 0 6px;
+}
+
+#glossarioCerca p{
+	margin:3px 0 6px 0;
+	padding:3px 6px;
+}
+
+#glossarioCerca div.modulo {
+	background: #efefef;
+	position: relative;
+	padding: 4px 0px 4px 0px;
+	margin-bottom: 4px;
+}
+
+#glossarioCerca div.modulo input{
+	
+	margin: 0 0 0 0 !important;
+}
+
+#glossarioCerca a{
+	color: #005191;
+}
+
+#glossarioCerca a:hover{
+	color: #555;
+}
+
+#glossarioCerca table{
+	width: 100% !important;
+	background-color: #fff;
+	border-collapse: collapse;
+	margin-bottom: 4px;
+}
+
+#glossarioCerca td{
+   background-color: #efefef;
+	padding-left: 4px;
+	border-right: 4px solid #ffffff;
+	margin: 0px !important;
+	border-top: 4px solid #ffffff;
+}
+
+#glossarioCerca .nobordo{
+	border-right: 0px !important;
+}
+
+#glossarioCerca th{
+   background-color: #debf52;
+	color: #fff;
+	padding-left: 4px;
+	border-collapse: collapse;
+}
+
+#glossarioCerca .bordono td{
+   border: none !important;
+}
+
+a.input {
+text-align:center;
+	font-size: .95em;
+	font-weight: bold;
+	color: #FFFFFF;
+	background-color: #003366;
+	margin: 0 3px 0 0 ;
+	border-width: 1px;
+	border-style: solid;
+	border-top-color: #999;
+	border-right-color: #333;
+	border-bottom-color: #333;
+	border-left-color: #999;
+	height:16px;
+	line-height:16px;
+	padding:0 15px;
+	/*width:150px;*/ /*posso utilizzare la larghezza solo se occorre*/
+}
+a.input:hover, a.input:active {
+	background-color: #f00;
+}
+a.inputA, a.inputA:visited, a.inputA:link  {
+	text-align:center;
+	font-size: 0.95em;
+	font-weight: bold;
+	color: #555 !important;
+	background-color: #efddbd;
+	margin: 0 3px 0 0 ;
+	border-width: 1px;
+	border-style: solid;
+	border-top-color: #999;
+	border-right-color: #333;
+	border-bottom-color: #333;
+	border-left-color: #999;
+	height:16px;
+	line-height:16px;
+	padding:0 15px;
+	/*width:150px;*/ /*posso utilizzare la larghezza solo se occorre*/
+}
+a.inputA:hover, a.inputA:active {
+	background-color: #e1d099;
+}
+#testoDX {
+	margin:3px 0 3px 0;
+	width:100%;  /*determina una largezza per tutta la barra*/
+	position:relative;
+	background:#e1d099;
+}
+#pulsSX {
+	background:#fff;
+	padding:0;
+	margin:0;
+	height:16px;
+	line-height:16px;
+	position:relative;
+	float:left;
+	z-index:1000;
+}
+#testoDX a.barra {
+	background:#e1d099 url(../im/pulsanti/puls_vai_agri.gif) 100% 50% no-repeat;
+	position:relative;
+	color:#555 !important;
+	font-size:1em;
+	height:16px;
+	line-height:16px;
+	padding:0 0 0 6px;
+	margin:0;
+	width:auto;
+	display:block;}
+	
+#testoDX a.barra:hover{
+	background:#e1d099 url(../im/pulsanti/puls_vai_roll_agri.gif) 100% 50% no-repeat;
+	position:relative;
+}	
+#descrizione a{
+	color: #005191;
+}
+#descrizione a:hover{
+	color: #555;
+	color:#900;
+}
+.testo {
+	width: 117px;
+}
+td.corsivopicc {
+	font-size: 0.9em;
+	font-style: italic;
+	height: 0.9em;
+	margin: 0 0 0 0 !important;
+}
+#barralunga a, 
+#barralunga a:link, 
+#barralunga a:visited 
+{
+ display:block;
+ position:relative;
+ background:#e1d099 url(../im/pulsanti/puls_vai_agri.gif) 100% 50% no-repeat;
+ color:#333;
+ text-decoration:none;
+ padding:0 0 0 .3em;
+} 
+#barralunga a:hover, #barralunga a:active {
+ display:block;
+ position:relative;
+ background:#e1d099 url(../im/pulsanti/puls_vai_roll_agri.gif) 100% 50% no-repeat;
+ color:#333;
+ text-decoration:none;
+ padding:0 0 0 .3em;
+}
+
+#barraindietro a, 
+#barraindietro a:link, 
+#barraindietro a:visited 
+{
+ display:block;
+ position:relative;
+ background:#e1d099 url(../im/pulsanti/puls_indietro.gif) 0% 100% no-repeat;
+ color:#333;
+ text-decoration:none;
+ padding:0 0 0 .3em;
+} 
+#barraindietro a:hover, #barraindietro a:active {
+ display:block;
+ position:relative;
+ background:#e1d099 url(../im/pulsanti/puls_indietro_roll.gif) 0% 100% no-repeat;
+ color:#333;
+ text-decoration:none;
+ padding:0 0 0 .3em;
+}
+
+a.help, a.help:link {
+	
+	width: 18px;
+	height: 18px;
+	background-color: #dedede;
+	display: block;
+	text-align:center;
+	border: 1px outset;
+	color: #000000 !important;
+	}
+.selezionavoci {
+	width: 250px; 
+	margin: 2px 0 0 0;
+	}
+.selezionavoci p{
+	float: left;
+}
+#corpo table input.text {
+	vertical-align:middle;
+	font-size:0.8em;
+	color:#000;
+	background:#fff;
+	border:1px solid #000;
+	margin:0;
+}
+div#popup_contenuto {
+   	background-color: white;
+	background-image:  url(../im/gloss_banner_popup.jpg);
+	background-repeat: no-repeat;
+	background-position: top left;
+	margin-top: 0px;
+	padding: 26px 8px 4px 8px;
+	text-align: left;
+}
+body#popup {
+	margin-top:0px; background-color:white;
+}
+div#popup_contenuto  h3{
+	color :#fff;
+	margin-top: 12px;
+	margin-bottom:3px;
+	background: #e1d099 !important;
+	color:#000;
+}
+/* H */
+h2{
+	margin		: 0;
+	height		: 29px !important;/*1.5em */
+	height /**/	: 29px;/*3.2em;*/
+	padding		: 0 0 0 0;/*1.2em 0 .5em 90px;*/
+} /* _______________il tag h2  usato solo per il titolo della pagina in Glossario ___________ */
+h2.alto {
+	margin		: 0;
+	height		: 43px !important;/*1.5em */
+	height /**/	: 43px;/*3.2em;*/
+	padding		: 0 0 0 0;/*1.2em 0 .5em 90px;*/
+} 
+/* _______________il tag h2  usato solo per il titolo della pagina in Glossario ___________ */
+h3, h4 {
+	margin		: 0 0 3px 0;
+	padding		:0 0 0 6px;
+}
+h3{
+ color :#fff;
+ background	: #AF8650;/*b48c09*/
+ margin-bottom:3px;
+}
+
+.elencoServizi h3{
+ color :#000;
+ background	: #CABB85;
+ margin-bottom:3px;
+}
+ h3.servizi{
+ color :#000;
+ background	: #D7B365;
+ margin-bottom:3px;
+}
+.elenco h3.servizi{
+ color :#000;
+ background	: #D7B365;
+ margin:12px 0 3px 0;
+}
+h4 {
+clear:both;
+position:relative;
+	color		: #fff;
+	background	: #b38900;
+}
+h4.primo{
+clear:both;
+position:relative;
+	color		: #fff;
+	background	: #b38900;
+	margin-top:3px;
+}
+
+.esplicazione h4 {
+ background	: #B38900;
+ color:#fff;
+ margin:0;
+}
+.esplicazione {
+ margin:0 0 3px 0;
+	padding:0 0 0 0;
+	position:relative;
+	border:1px solid #B38900;
+}
+h4.b{
+	color		: #fff;
+	background	: #e1d099;
+}
+h4.b a,
+h4.b a:link,
+h4.b a:visited {
+	display:block;
+	background:#e1d099 url(../im/pulsanti/puls_vai_agri.gif) 100% 50% no-repeat;
+	color:#B38900;
+	text-decoration:none;
+	position:relative;
+}
+h4.b a:hover,
+h4.b a:active {/**/
+    color:#4A4D4A;
+	display:block;
+	 background:#e1d099 url(../im/pulsanti/puls_vai_roll_agri.gif) 100% 50% no-repeat;
+	text-decoration:none;
+}
+h5 {
+background:transparent;
+	color		: #b38900;
+	font-weight:bold;
+	padding-left:6px;
+}
+#corpo h5.panna {
+background:#e1d099;
+	color:#333;
+	font-weight:bold;
+	padding-left:6px;
+}
+
+/* I */
+ .htm {
+		height:15px!important;
+		position:relative;
+		text-align:right;
+		display:block;
+		width:40px;
+		font-weight: bold;
+		height/**/:20px;
+	background: url(/css/im/pulsanti/ico_htm.gif) 100% 50% no-repeat;
+		}
+.htm a, 
+.htm a:link, 
+.htm a:visited  {
+		height:15px!important;
+		display:block;
+	background: url(/css/im/pulsanti/ico_htm.gif) 100% 50% no-repeat;
+		height/**/:20px;
+			}
+.htm a:hover, .htm a:active  {
+	background: url(/css/im/pulsanti/ico_htm_roll.gif) 100% 50% no-repeat;
+}
+
+
+.linkImg a {
+	width:38px;
+	height:22px;
+	display:block;
+	background: url(/css/im/pulsanti/ico_htm.gif) 100% 50% no-repeat;
+}
+.linkImg a:link, 
+.linkImg a:visited {
+
+	background: url(/css/im/pulsanti/ico_htm.gif) 100% 50% no-repeat;
+}
+.linkImg a:hover,
+.linkImg a:active {
+	background: url(/css/im/pulsanti/ico_htm_roll.gif) 100% 50% no-repeat;
+}
+.linkImgs a {
+	width:38px;
+	height:22px;
+	display:block;
+}
+.linkImgs a:link, 
+.linkImgs a:visited {
+	background:#EFD7A5 url("../im/pulsanti/ico_htm.gif") 100% 50% no-repeat;
+}
+.linkImgs a:hover,
+.linkImgs a:active {
+	background:#EFD7A5 url("../im/pulsanti/ico_htm_roll.gif") 100% 50% no-repeat;
+}
+.linkIm a {
+	width:38px;
+	height:22px;
+	display:block;
+}
+.linkIm a:link,
+.linkIm a:visited {
+	background: url("../im/pulsanti/ico_pdf.gif") 100% 50% no-repeat;
+}
+.linkIm a, .linkIm a:hover,
+.linkIm a:active {
+    background: url("../im/pulsanti/ico_pdf_roll.gif") 100% 50% no-repeat;
+}
+
+
+
+
+#i a:hover, #i a:active {
+	background	: transparent url(../im/testalinob_crediti_roll.gif) top left no-repeat;
+	color		: #900;
+}
+#informazioni p img{
+	 position :relative;
+	 float :right;
+	 margin :3px
+}
+#informazioni {
+    padding:8px 0 8px 0;
+	background	: #fff;
+	color		: #000;
+	position: relative;
+}
+#informazioni h4 {
+	clear :both;
+	background	: #b38900 url(../im/pulsanti/frecce_home_roll.gif) 100% 50% no-repeat;
+	color		: #fff;
+}
+#informazioni h4 a:link, #informazioni h4 a:visited {
+	display:block;
+	position:relative;
+	background	: #b38900 url(../im/pulsanti/frecce_home.gif) 100% 50% no-repeat;
+	color		: #fff;
+	text-decoration:none;
+}
+#informazioni h4 a:hover, #informazioni h4 a:active {
+	display:block;
+	background	: #b38900 url(../im/pulsanti/frecce_home_roll.gif) 100% 50% no-repeat;
+	color		: #fff;
+	text-decoration:none;
+}
+.info_notext {
+    padding:8px 0 8px 0;
+	background	: #fff;
+	color		: #000;
+	position: relative;
+}
+.info_notext h4 {
+	clear :both;
+	background	: #b38900 url(../im/pulsanti/frecce_home_roll.gif) 100% 50% no-repeat;
+	color		: #fff;
+}
+.info_notext h4 a:link, .info_notext h4 a:visited {
+	display:block;
+	position:relative;
+	background	: #b38900 url(../im/pulsanti/frecce_home.gif) 100% 50% no-repeat;
+	color		: #fff;
+	text-decoration:none;
+}
+.info_notext h4 a:hover, .info_notext h4 a:active {
+	display:block;
+	background	: #b38900 url(../im/pulsanti/frecce_home_roll.gif) 100% 50% no-repeat;
+	color		: #fff;
+	text-decoration:none;
+}
+#indice {/**/
+	font-size:.95em;
+	border-bottom:1px solid #ccc;
+	padding: 3px 0;
+	margin: 3px 0;
+}
+.voce {
+	font-weight: bold;
+	color: #666666;
+}
+.voce a:link, .voce a:visited {
+	color: #B38900;
+	padding:0 10px;
+	border:1px solid #fff;
+	background:#fff;
+		}
+.voce a:hover, .voce a:active {
+	color: #000;
+}
+.evidenza {
+ 	border:1px solid #b48c09;
+	color: #000;
+	background-color: #EFE7BD;
+	padding:0 6px;
+	font-weight: bold;
+}
+#informazioni p {
+	margin		: 3px 0 3px 0;
+	padding		: 0 0 .5em 3px;
+}
+#istruzioni {
+ width:100%;
+	color :#000; margin-bottom:3px;
+}
+#istruzioni h3 {
+ background	: #b48c09;
+ color:#fff;
+ padding:0 0 0 6px;
+}
+#istruzioni h3 a {
+width:100%;
+ display:block;
+ background:#b48c09 url(../im/pulsanti/puls_freccia_home.gif) right 50% no-repeat;
+ color:#fff;
+ text-decoration:none;
+}
+#istruzioni h3 a:hover, #istruzionih3 a:active {
+ display:block;
+ background:#b48c09 url(../im/pulsanti/puls_freccia_roll_home.gif) right 50% no-repeat;
+ color:#fff;
+ text-decoration:none;
+}
+/* L */
+#lista{
+ width: 210px;
+}
+#label{
+    margin-left:10px;
+	margin-right:10px;
+}
+#linkform{
+ clear:both;
+ float:none;
+ text-align:center;
+}
+li{
+	list-style:square;
+}
+/* N */
+
+/*#noteSito {
+	height:23px;
+	width:100%;
+	display:block;
+	background: transparent url(../im/note_rurale.jpg) 100% 100% no-repeat;
+	color: #fff;
+}*/
+#noteSito {
+	height:23px;
+	width:100%;
+	display:block;
+	background: transparent url(/css/agricoltura/im/testa_inf_portale_agri.jpg) 100% 100% no-repeat;
+	color: #fff;
+}
+#noteSitoElenco {
+	height:23px;
+	width:100%;
+	display:block;
+	background: transparent url(/css/agricoltura/im/testa_inf_elenco_agri.jpg) 100% 100% no-repeat;
+	color: #fff;
+}
+#noteSitoViti {
+	height:23px;
+	width:100%;
+	display:block;
+	background: transparent url(im/viticolo_inf.jpg) 100% 100% no-repeat;
+	color: #fff;
+}
+#noteSitoDwIapi {
+	height:23px;
+	width:100%;
+	display:block;
+	background: transparent url(/css/agricoltura/im/testalino_inf_dw_iapi.jpg) 100% 100% no-repeat;
+	color: #fff;
+}
+#noteSitoAnagrafe {
+	height:23px;
+	width:100%;
+	display:block;
+	background: transparent url(im/anagrafe_inf.jpg) 100% 100% no-repeat;
+	color: #fff;
+}
+#noteSitoAnagAz{
+	height:23px;
+	width:100%;
+	display:block;
+	background: transparent url(im/testa_inf_aztrasf.jpg) 100% 100% no-repeat;
+	color: #fff;
+}
+
+#noteSitoAvvAtm{
+	height:23px;
+	width:100%;
+	display:block;
+	background: transparent url(im/avversita_inf.jpg) 100% 100% no-repeat;
+	color: #fff;
+}
+#noteVivai{
+	height:23px;
+	width:100%;
+	display:block;
+	background:transparent url(im/testalino_inf_vivai_sp.jpg) 100% 100% no-repeat;
+	color: #fff;
+}
+#notePatentini{
+	height:23px;
+	width:100%;
+	display:block;
+	background:transparent url(im/patentini_sotto.jpg) 100% 100% no-repeat;
+	color: #fff;
+}
+#noteSitoPianoSvilRurale{
+	height:23px;
+	width:100%;
+	display:block;
+	background: transparent url(im/sviluppo_inf.jpg) 100% 100% no-repeat;
+	color: #fff;
+}
+#noteSitoAnagrafeVenatoria{
+	height:23px;
+	width:100%;
+	display:block;
+	background: transparent url(im/anagrafe_venatoria_inf.jpg) 100% 100% no-repeat;
+	color: #fff;
+}
+#noteSitoDwPac{
+	height:23px;
+	width:100%;
+	display:block;
+	background: transparent url(../dw_pac/im/testalino_sotto.jpg) 100% 100% no-repeat;
+	color: #fff;
+}
+#noteSitoAnalisiTerritorio{
+	height:23px;
+	width:100%;
+	display:block;
+	background: transparent url(im/testa_inf_analisi.jpg) 100% 100% no-repeat;
+	color: #fff;
+}
+#noteSitoDwZootecnia{
+	height:23px;
+	width:100%;
+	display:block;
+	background: transparent url(../dw_zootecnia/im/testalino_sotto_zootecnia.jpg) 100% 100% no-repeat;
+	color: #fff;
+}
+#noteSitoDwUma{
+	height:23px;
+	width:100%;
+	display:block;
+	background: transparent url(../dw_uma/im/testalino_sotto_uma.jpg) 100% 100% no-repeat;
+	color: #fff;
+}
+#noteSitoDwAgristat{
+	height:23px;
+	width:100%;
+	display:block;
+	background: transparent url(../dw_agristat/im/testalino_sotto_agristat.jpg) 100% 100% no-repeat;
+	color: #fff;
+}
+#noteSitoRegimePagamento{
+	height:23px;
+	width:100%;
+	display:block;
+	background: transparent url(/css/procedimentoStandardizzato/im/testa_inf_reg_sp.jpg) 100% 100% no-repeat;
+	color: #fff;
+}
+#noteSitoUma{
+	height:23px;
+	width:100%;
+	display:block;
+	background: transparent url(im/carburante_inf.jpg) 100% 100% no-repeat;
+	color: #fff;
+}
+#noteSitoPua{
+	height:23px;
+	width:100%;
+	display:block;
+	background: transparent url(im/pua_inf.jpg) 100% 100% no-repeat;
+	color: #fff;
+}
+
+#noteSitoSibiWeb{
+	height:23px;
+	width:100%;
+	display:block;
+	background: transparent url(im/testa_inf_sibi.jpg) 100% 100% no-repeat;
+	color: #fff;
+}
+
+#noteSitoAiutiStato{
+	height:23px;
+	width:100%;
+	display:block;
+	background: transparent url(/css/procedimentoStandardizzato/im/testa_inf_aiuti_sp.jpg) 100% 100% no-repeat;
+	color: #fff;
+}
+#noteSitoRistrutVigneti{
+	height:23px;
+	width:100%;
+	display:block;
+	background: transparent url(/css/agricoltura/im/testa_inf_ristrut_vigneti.jpg) 100% 100% no-repeat;
+	color: #fff;
+}
+
+#noteSito a {
+	height:23px;
+	width:100%;
+	display:block;
+	color: #fff;
+}
+
+#noteSitoAgrichim a {
+	height:23px;
+	width:100%;
+	display:block;
+	background: transparent url(im/testa_inf_agrichim.jpg) 100% 100% no-repeat;
+	color: #fff;
+}
+.numeri {
+ position:relative;
+ padding-left:6px;
+ padding-right:6px;
+ background:#bfbfbf;
+ color:#666666;
+ display:block;
+ font-size:11px;
+ font-weight:bold;
+ margin-bottom:8px;
+ line-height:1.3em;
+}
+.numeri table{ width:100%;}
+.numeri td{ width:50%;}
+.numeri a, .numeri a:visited{
+    padding:0 3px 0 3px;
+    background:#bfbfbf;
+			color:#666666;
+			text-decoration:none;
+}
+.numeri a:hover, .numeri a:active {
+ background:#bfbfbf;
+	color:#FFFFFF;
+	text-decoration:none;
+}
+a.numactive{
+ background:#666;
+	color:#fff;
+	text-decoration:none;
+}
+#colonna-2 .bianco{
+ margin-top:3px;
+ margin-bottom:3px;
+ text-align:center;
+}
+#colonna-2 .bianco img{
+ margin:3px 0 0 0;
+}
+/* O */
+.ocra{
+ margin-top:3px;
+ margin-bottom:3px;
+ background:#ece2bf;
+}
+.ocra2{
+ margin-top:3px;
+ margin-bottom:3px;
+ background:#EFD7A5;
+}
+.boxInfo{
+ margin-top:3px;
+ margin-bottom:3px;
+}
+
+.ocrac{
+ float:left;
+	height:22px;
+ margin-bottom:3px;
+ padding-left:4px;
+ background:#ece2bf;
+ font-size:0.95em;
+ width:90%;
+}
+.ocras{
+ float:left;
+	height:22px;
+ margin-bottom:3px;
+ padding-left:4px;
+ background:#EFD7A5;
+ font-size:0.95em;
+ width:90%;
+}
+.ocras p{
+ margin-top:3px;
+ margin-bottom:3px;
+ background:#EFD7A5;
+ font-size:0.95em;
+}
+.ocra p {
+ padding:0 0 0 6px;
+ margin-top:0;
+}
+/* P */
+#pulsanti {margin-bottom:3px;}
+#pulsantiLungo {
+	clear:both;
+	width:698px;
+}
+#pulsantiLungo.FAQpua {
+	margin-top:8px;
+}
+#va {	
+	margin:-3px 0 6px 0;
+	font-size:.95em;
+}
+#va h3 {
+	margin:3px 0 0 0;
+ clear:both;
+ background: #ece2bf;
+ color:#333;
+ padding:0 0 0 6px;
+} 
+#va h3 a, 
+#va h3 a:link, 
+#va h3 a:visited 
+{
+font-weight:normal;
+ display:block;
+ position:relative;
+ background:#ece2bf url(../im/pulsanti/puls_vai_agri2.gif) 100% 50% no-repeat;
+ color:#333;
+ text-decoration:none;
+} 
+
+#va h3 a:hover, 
+#va h3 a:active {
+ display:block;
+ position:relative;
+ background:#ece2bf url(../im/pulsanti/pulsvai_roll_agri2.gif) 100% 50% no-repeat;
+ color:#333;
+ text-decoration:none;
+} 
+#wo {	
+	margin:-3px 0 6px 0;
+	font-size:.95em;
+}
+#wo h3 {
+ clear:both;
+ background: #ece2bf;
+ color:#333;
+ padding:0 0 0 6px;
+} 
+#wo h3 a, 
+#wo h3 a:link, 
+#wo h3 a:visited 
+{
+	font-weight:normal;
+ display:block;
+ position:relative;
+ background:#ece2bf url("../im/pulsanti/ico_doc2.gif") 100% 50% no-repeat;
+ color:#333;
+ text-decoration:none;
+} 
+#wo h3 a:hover, 
+#wo h3 a:active {
+ display:block;
+ position:relative;
+ background:#ece2bf url("../im/pulsanti/ico_doc_roll2.gif") 100% 50% no-repeat;
+ color:#333;
+ text-decoration:none;
+}
+#pd {	
+	margin:-3px 0 6px 0;
+	font-size:.95em;
+}
+#pd h3 {
+	margin:3px 0 0 0;
+ clear:both;
+ background: #ece2bf;
+ color:#333;
+ padding:0 0 0 6px;
+} 
+#pd h3 a, 
+#pd h3 a:link, 
+#pd h3 a:visited 
+{
+height:16px;
+font-weight:normal;
+ display:block;
+ position:relative;
+ background:#ece2bf url("../im/pulsanti/ico_pdf.gif") 100% 50% no-repeat;
+ color:#333;
+ text-decoration:none;
+} 
+
+#pd h3 a:hover, 
+#pd h3 a:active {
+ display:block;
+ position:relative;
+ background:#ece2bf url("../im/pulsanti/ico_pdf_roll.gif") 100% 50% no-repeat;
+ color:#333;
+ text-decoration:none;
+} 
+p {
+	margin: 0 0 8px 0;
+}
+dl {
+margin:6px 0 0 0;
+/*background:#EEE0B0;*/
+border:1px solid #e1d099;
+}
+dt {
+padding:0 0 0 6px;
+color:#005090;
+font-weight:bold;
+}
+dt a:link, dt a:visited, dd a:link, dd a:visited  {
+	color		: #005090;
+	font-weight	: bold;
+	text-decoration:none;
+}
+dt a:hover, dt a:active, dd a:hover, dd a:active {
+	color		: #900;
+	text-decoration:none;
+}
+
+dd {
+	padding:6px;
+	margin-right:0px;
+   margin-left:0px;
+}
+p img{
+	margin: 0 6px 0 0;
+	float:left;
+}
+
+
+#pagina #corpo a.freccine,
+#pagina #corpo a.freccine:link,
+#pagina #corpo a.freccine:visited {
+	display		: block;
+	font-size	: 1px;
+	background	: #b38900 url(../im/pulsanti/freccine_home.gif) 100% 0 no-repeat;
+	color		: #b38900;
+	height		: 11px;
+	margin		: 5px 0 5px 0;
+	overflow	: hidden;
+}
+#pagina #corpo a.freccine:hover,
+#pagina #corpo a.freccine:active {
+	background	: #b38900 url(../im/pulsanti/freccine_home.gif) 100% -11px no-repeat;
+	color		: #b38900;
+}
+#pagina #corpo a.freccine2,
+#pagina #corpo a.freccine2:link,
+#pagina #corpo a.freccine2:visited {
+	display		: block;
+	font-size	: 1px;
+	background	: #b38900 url(/css/agricoltura/im/freccine_home2.gif) 100% 0 no-repeat;
+	color		: #b38900;
+	height		: 11px;
+	margin		: 5px 0 0 0;
+	overflow	: hidden;
+}
+#pagina #corpo a.freccine2:hover,
+#pagina #corpo a.freccine2:active {
+	background	: #b38900 url(/css/agricoltura/im/freccine_home2.gif) 100% -11px no-repeat;
+	color		: #b38900;
+}
+
+
+ .pdf {
+		height:15px!important;
+		position:relative;
+		text-align:right;
+		display:block;
+		width:40px;
+		font-weight: bold;
+		height/**/:20px;
+		background:  url("../im/pulsanti/ico_pdf.gif") 50% 50% no-repeat;
+		}
+.pdf a, 
+.pdf a:link, 
+.pdf a:visited  {
+		height:15px!important;
+		display:block;
+		background:  url("../im/pulsanti/ico_pdf.gif") 50% 50% no-repeat;
+		height/**/:20px;
+			}
+.pdf a:hover, .pdf a:active  {
+		background:  url("../im/pulsanti/ico_pdf_roll.gif") 50% 50% no-repeat;
+}
+
+.pulsantiHelp {/**/
+	float:left;
+	width:698px;
+}
+.annullaHelp {
+	display:block;
+	font-size:0.95em;
+	float:left;
+	text-align:center;
+	line-height:1.3em;
+	margin:0; 
+}
+.annullaHelp a, .annullaHelp a:visited {/**/
+	display:block;
+	color:#4f4f4c;
+	height:8px;
+	width:27px;
+	background:#fff url(../im/mdp_tornasu.gif) 100% 50% no-repeat;
+}
+.annullaHelp a:hover, .annullaHelp a:active {/**/
+	display:block;
+	color:#fff;
+	height:8px;
+	width:27px;
+	background:#fff url(../im/mdp_tornasu_roll.gif) 100% 50% no-repeat;
+}
+/* R */
+.righe {/**/
+	margin-left:10px;
+	background:url(../im/linea_ocra.gif) 100% 100% repeat-y;
+	margin: 0;
+	padding: 0;
+	position:relative;
+	height:100%;
+	}
+#ricerca{
+	padding-top:6px;
+	margin-top:-5px;
+	margin-bottom:3px;
+	width:100%;
+	background	:#ece2bf;
+}
+#ricerca form{
+	margin-bottom:6px;
+}
+#ricerca form input {
+	font		: 11px  Arial, Verdana, Helvetica, Geneva, Swiss, SunSans-Regular, sans-serif;
+	border:1px solid #000;
+	padding-left:2px;
+	margin-left:10px;
+}
+#ricerca form input.pulsantevai {
+	font-size:11px;
+	font-weight:bold;
+	padding:0;
+	margin:0;
+	height:1.6em;
+	width:28px;
+	border-right:1px solid #b48c09;
+	border-bottom:1px solid #b48c09;
+	border-top:1px solid #cecece;
+	border-left:1px solid #cecece;
+	background:#999797;
+	color:#fff;
+}
+#risultati p {
+	 position:relative;
+	 padding-left:6px;
+	 line-height:1.3em;
+	 background:#d9d9d9;
+	 margin-bottom:3px;
+}
+#righe{
+background:transparent url(/css/agricoltura/im/riga_ocra.gif) 0 0 repeat-y;
+}
+/* S */
+#servizi {
+	position:relative;
+	border-top	: 1px solid #999;
+	background	: #fff;
+	color		: #000;
+	margin-bottom	: 1em;
+}
+#servizi a:link {
+	color		: #b38900;
+	background	: #fff;
+}
+#servizi a:visited {
+	color		: #b38900;
+	background	: #fff;
+}
+#servizi a:hover,#servizi a:active {
+	color		: #900;
+	background	: #fff;
+}
+#servizi h5 {
+	margin		: 0;
+	border-top	: 10px solid #fff;
+	padding		: .2em .5em 0 .5em;
+	background	: #cbdce3;
+	color		: #000;
+}
+#servizi p {
+	margin		: 0;
+	padding		: 5px 5px 0 5px
+}
+#servizi #iNuoviServizi ul{
+ color:#b38900;
+ font-weight:bold;
+ font-family:Arial, Helvetica, sans-serif;
+ line-height:1.3em;
+ margin-top:0;
+}
+#servizi #iNuoviServizi li{
+ list-style-type:square;
+ margin-left:-23px;
+ vertical-align:middle;
+ border:0;
+ padding:1px;
+}
+/* T */
+.tabella_servizi {
+ margin-bottom: 5px;
+ display:block;
+ font-size:0.9em;
+ line-height:22px;
+ margin-left:-2px;
+ width:466px;
+}
+.tabella_servizi td,
+.tabella_servizi th {
+	color :#666;
+	padding:0 0 0 6px;
+	text-align: center;
+	font-weight:bold;
+	font-size:1em;
+	background	: #ece2bf;
+	vertical-align:middle;
+	/*display: compact;*/
+}
+.tabella_servizi th.row {
+	color :#666;
+	padding:0 0 0 6px;
+	text-align: left;
+	font-weight:bold;
+	font-size:1em;
+	background	: #ece2bf;
+	vertical-align:middle;
+	/*display: compact;*/
+}
+.tabella_servizi td.col,
+.tabella_servizi th.col{
+background:#efd7a5;
+} 
+.tabella_servizi caption {
+	color :#e04646;
+	background	: #efd7a5;
+	padding		:0 0 0 6px;
+	line-height: 18px;
+	text-align: left;
+	font-weight:bold;
+}
+
+/*#titoloEmenu {
+	background	: #ebebeb url(../im/testata_rurale.jpg) 0 0 no-repeat;
+	color		: #fff
+}*/
+#titoloEmenu {
+	background	: #ebebeb url(/css/agricoltura/im/testa_sup_portale_agri.jpg) 0 0 no-repeat;
+	color		: #fff
+}
+#titoloEmenuElenco {
+	background	: #ebebeb url(/css/agricoltura/im/testa_sup_elenco_agri.jpg) 0 0 no-repeat;
+	color		: #fff
+}
+#titoloEmenu_glossario {
+	background	: #ebebeb url(../im/testata_glossario.jpg) 0 0 no-repeat;
+	color		: #fff;
+	
+}
+#titoloEmenu_PUA {
+	background	: #ebebeb url(im/pua_sup.jpg) 0 0 no-repeat;
+	color		: #fff
+}
+#titoloEmenu_superficivitate {
+	background	: #ebebeb url(../im/testata_rurale_superficivitate.jpg) 0 0 no-repeat;
+	color		: #fff
+}
+#titoloEmenu_assegnazione_carburante {/* */
+	background	: #ebebeb url(im/carburante_sup.jpg) 0 0 no-repeat;
+	color		: #fff
+}
+#titoloEmenu_agrichim {/* */
+	background	: #ebebeb url(im/testa_sup_agrichim.jpg) 0 0 no-repeat;
+	color		: #fff
+}
+#titoloEmenu_anagrafe_aziende {/* */
+	background	: #ebebeb url(im/anagrafe_sup.jpg) 0 0 no-repeat;
+	color		: #fff
+}
+#titoloEmenu_piano_sviluppo_rurale {/* */
+	background	: #ebebeb url(im/sviluppo_sup.jpg) 0 0 no-repeat;
+	color		: #fff
+}
+#titoloEmenu_potenziale_vitivinicolo {/* */
+	background	: #ebebeb url(im/viticolo_sup.jpg) 0 0 no-repeat;
+	color		: #fff
+}
+#titoloEmenu_avversita_atmosferiche {/* */
+	background	: #ebebeb url(im/avversita_sup.jpg) 0 0 no-repeat;
+	color		: #fff
+}
+#titoloEmenu_patentini_fitosanitari {/* */
+	background	: #ebebeb url(im/patentini_sopra.jpg) 0 0 no-repeat;
+	color		: #fff
+}
+#titoloEmenu_autorizzazione_vivai {/* */
+	background	: #ebebeb url(im/testalino_sup_vivai_sp.jpg) 0 0 no-repeat;
+	color		: #fff
+}
+#titoloEmenu_anagrafe_venatoria {/* */
+	background	: #ebebeb url(im/anagrafe_venatoria_sup.jpg) 0 0 no-repeat;
+	color		: #fff
+}
+#titoloEmenu_dw_pac {/* */
+	background	: #ebebeb url(../dw_pac/im/testalino_sopra.jpg) 0 0 no-repeat;
+	color		: #fff
+}
+#titoloEmenu_dw_iapi {/* */
+	background	: #ebebeb url(/css/agricoltura/im/testalino_dw_iapi_sup.jpg) 0 0 no-repeat;
+	color		: #fff
+}
+
+#titoloEmenu_dw_zootecnia {/* */
+	background	: #ebebeb url(../dw_zootecnia/im/testalino_sopra_zootecnia.jpg) 0 0 no-repeat;
+	color		: #fff
+}
+#titoloEmenu_dw_uma {/* */
+	background	: #ebebeb url(../dw_uma/im/testalino_sopra_uma.jpg) 0 0 no-repeat;
+	color		: #fff
+}
+#titoloEmenu_dw_agristat {/* */
+	background	: #ebebeb url(../dw_agristat/im/testalino_sopra_agristat.jpg) 0 0 no-repeat;
+	color		: #fff
+}
+#titoloEmenu_analisi_territorio {/* */
+	background	: #ebebeb url(im/testa_sup_analisi.jpg) 0 0 no-repeat;
+	color		: #fff
+}
+#titoloEmenu_azTras {
+	background	: #ebebeb url(im/testa_sup_aztrasf.jpg) 0 0 no-repeat;	
+	color		: #fff
+}
+#titoloRegimePagamento {
+	background	: #ebebeb url(/css/procedimentoStandardizzato/im/testa_sup_reg.jpg) 0 0 no-repeat;
+	color		: #fff;
+}
+#titoloIgieneMangimi {
+	background	: #ebebeb url(/css/procedimentoStandardizzato/im/mangimi_sup_sp.jpg) 0 0 no-repeat;
+	color		: #fff;
+}
+
+#titoloEmenu_sibi_web {/* */
+	background	: #ebebeb url(/css/agricoltura/im/testa_sup_sibi.jpg) 0 0 no-repeat;
+	color		: #fff
+}
+
+#titoloEmenu_aiuti_stato {/* */
+	background	: #ebebeb url(/css/procedimentoStandardizzato/im/testa_sup_aiuti_sp.jpg) 0 0 no-repeat;
+	color		: #fff
+}
+#titoloEmenu_ristrutturazione_vigneti {
+	background	: #ebebeb url(/css/agricoltura/im/testalino_ristrut_vigneti.jpg) 0 0 no-repeat;
+	color		: #fff
+}
+
+/* U */
+ul {
+margin: 6px 0 6px 24px;
+}
+ul li span.titolo{
+font-weight:bold;
+color:#b38900;
+}
+ul li span.voce{
+font-weight:bold;
+color:#999999;
+}
+#unico{
+margin-bottom:3px;
+}
+/* V */
+.vicino {
+ margin-bottom:1px;
+ margin-top:2px;
+ margin-left:0;
+}
+
+/*inizio COLONNA DUE*/
+#colonna-2 p#faq {background:#ece2bf url(/css_rupar/generali/im/ico_faq.gif) right top no-repeat;}
+#colonna-2 p#faq a, #colonna2 p#faq .titolo {color:#ece2bf; background:#ece2bf;}
+#colonna-2 .confoto_sf {padding:6px 80px 6px 6px!important;padding:3px 80px 6px 6px;}
+
+.infogenerali {
+border:1px solid #e1d099;
+margin-bottom:5px;
+ }
+
+#descrizione .barraHtm { 
+	clear :both;
+	background	:#ece2bf;
+	color:#000;
+	line-height:16px;
+	font-size: 90%;
+	font-weight:normal;
+	position:relative;
+}
+.barraHtm span{
+display:block;
+ width:415px; 
+font-size: 100%;
+}
+#descrizione .barraHtm a:link, #descrizione .barraHtm a:visited { 
+	padding:0 0 0 .3em;
+	position:relative;
+	display:block;
+	background:#ece2bf url(/css/im/pulsanti/ico_htm_barra.gif) 100% 50% no-repeat;
+	color:#666;
+	text-decoration:none;
+	margin-bottom:3px;
+}
+#descrizione .barraHtm a:hover, #descrizione .barraHtm a:active{
+	padding:0 0 0 .3em;
+	display:block;
+	background:#ece2bf url(/css/im/pulsanti/ico_htm_barra_roll.gif) 100% 50% no-repeat;
+	color:#000;
+	text-decoration:none;
+	margin-bottom:3px;
+ }
+#descrizione .barraPdf { 
+	clear :both;
+	background:#ece2bf;
+	color:#000;
+	padding:0 0 0 .3em;
+	line-height:16px;
+	font-size: 90%;
+	font-weight:bold;
+	position:relative;
+	display:block;
+	margin-bottom:3px;
+}
+#descrizione .barraPdf a:link, #descrizione .barraPdf a:visited { 
+	padding:0 0 0 .3em;
+	position:relative;
+	display:block;
+	background:#ece2bf url(/css/im/pulsanti/ico_pdf_barra.gif) 100% 50% no-repeat;
+	color:#666;
+	text-decoration:none;
+	margin-bottom:3px;
+  }
+#descrizione .barraPdf a:hover, #descrizione .barraPdf a:active{ 
+	padding:0 0 0 .3em;
+	display:block;
+	background:#ece2bf url(/css/im/pulsanti/ico_pdf_barra_roll.gif) 100% 50% no-repeat;
+	color:#000;
+	text-decoration:none;
+	margin-bottom:3px;
+ }
+#descrizione .barralunga {
+ display:block;
+ position:relative;
+ font-size:.95em;
+ background:#e1d099 url(../im/pulsanti/puls_vai_agri.gif) 100% 50% no-repeat;
+ color:#333;
+ margin:0 0 6px 0;
+} 
+
+#descrizione .barralunga a, 
+#descrizione .barralunga a:link, 
+#descrizione .barralunga a:visited 
+{
+ display:block;
+ position:relative;
+ background:#e1d099 url(../im/pulsanti/puls_vai_agri.gif) 100% 50% no-repeat;
+ color:#333;
+ text-decoration:none;
+ padding:0 0 0 .3em;
+} 
+#descrizione .barralunga a:hover, #descrizione .barralunga a:active {
+ display:block;
+ position:relative;
+ background:#e1d099 url(../im/pulsanti/puls_vai_roll_agri.gif) 100% 50% no-repeat;
+ color:#900;
+ text-decoration:none;
+ padding:0 0 0 .3em;
+}

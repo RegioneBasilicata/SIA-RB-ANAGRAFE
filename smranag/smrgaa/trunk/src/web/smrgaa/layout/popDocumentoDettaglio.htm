@@ -1,0 +1,116 @@
+$$head
+	<script src="../js/checktext.js" type="text/javascript"></script>
+</head>
+<body id="popup">
+	<form id="form1" name="form1" method="post" action="../layout/popDocumentoDettaglio.htm">
+    <div id="contenutopop">
+     	<table cellspacing="3" summary="Questa tabella contiene i dati delle particelle da associare al documento">
+      	<tr>
+       		<th class="center" scope="col" rowspan="2">Comune (Prov.)</th>
+          <th class="center" scope="col" rowspan="2">Sez.</th>
+          <th class="center" scope="col" rowspan="2">Foglio</th>
+          <th class="center" scope="col" rowspan="2">Particella</th>
+          <th class="center" scope="col" rowspan="2">Sub.</th>
+          <th class="center" scope="col" rowspan="2">Sup. catastale</th>
+          <th class="center" scope="col" colspan="2">Conduzione</th>
+		    </tr>
+		    <tr>
+		      <th class="center" scope="col"></th>
+		      <th class="center" scope="col">Sup. condotta</th>
+		    </tr>
+		    <tr>
+        	<td>$$descComuneParticella $$siglaProvinciaParticella</td>
+          <td>$$sezione</td>
+          <td>$$foglio</td>
+          <td>$$particella</td>
+          <td>$$subalterno</td>
+          <td class="numeridx">$$supCatastale</td>
+          <td>$$idTitoloPossesso</td>
+          <td class="numeridx">$$superficieCondotta</td>
+		    </tr>
+      </table>
+      <!-- @@blkElencoDocumenti -->
+      <!-- @@blkDatiDocumento -->
+			<table cellspacing="3" summary="Questa tabella contiene i dati dei documenti associate alla particella">
+				<caption>Documento $$count</caption>
+   			<tr>
+     			<th scope="row">Documento</th>
+     			<td colspan="3">$$descTipoDocumento</td>
+     		</tr>
+   			<tr>
+     			<th scope="row">Data inizio validit&agrave;</th>
+     			<td>$$dataInizioValidita</td>
+        <th>Data fine validit&agrave;</th>
+     			<td>$$dataFineValidita</td>
+   			</tr>
+   			<tr>
+     			<th scope="row">Numero di repertorio</th>
+     			<td>$$numeroProtocollo</td>
+     			<th>Data repertorio</th>
+     			<td>$$dataProtocollo</td>
+   			</tr>
+ 		  </table>
+	    <!-- @@blkEtichettaProp -->
+			<table cellspacing="3" summary="Questa tabella contiene i dati dei proprietari associati al documento">
+				<caption>Proprietari</caption>
+ 				<tr>
+   				<th class="center" scope="col">Codice fiscale</th>
+   				<th class="center" scope="col">Denominazione</th>
+ 				</tr>
+ 				<!-- @@blkElencoProprietari -->
+   			<tr>
+     		  <td>$$codiceFiscale</td>
+     			<td>$$denominazioneProprietario</td>
+  			</tr>
+  			<!-- @@blkElencoProprietari -->
+      </table>
+     	<!-- @@blkEtichettaProp -->
+ 			<!-- @@blkLabelPart -->
+    	<table cellspacing="3" summary="Questa tabella contiene i dati delle particelle associate al documento">
+        <caption>Particelle associate al documento</caption>
+    		<tr>
+        	<th class="center" scope="col" rowspan="2">Comune (Prov.)</th>
+      	  <th class="center" scope="col" rowspan="2">Sez.</th>
+      	  <th class="center" scope="col" rowspan="2">Foglio</th>
+      	  <th class="center" scope="col" rowspan="2">Particella</th>
+      	  <th class="center" scope="col" rowspan="2">Sub.</th>
+      	  <th class="center" scope="col" rowspan="2">Sup. catastale</th>
+      	  <th class="center" scope="col" colspan="2">Conduzione</th>
+      	  <th class="center" scope="col" rowspan="2">Data scadenza</th>
+    		</tr>
+    		<tr>
+       		<th class="center" scope="col"></th>
+        	<th class="center" scope="col">Sup. condotta</th>
+    		</tr>
+    		<!-- @@blkElencoParticelle -->
+      	<tr>
+        	<td>$$descComuneParticella $$siglaProvinciaParticella</td>
+       	  <td>$$sezione</td>
+       	  <td>$$foglio</td>
+       	  <td>$$particella</td>
+       	  <td>$$subalterno</td>
+       	  <td class="numeridx">$$supCatastale</td>
+       	  <td>$$idTitoloPossesso</td>
+       	  <td class="numeridx">$$supCondotta</td>
+       	  <td>$$dataFineValidita</td>
+        </tr>
+        <!-- @@blkElencoParticelle -->
+  		</table>
+ 			<!-- @@blkLabelPart -->
+      <!-- @@blkDatiDocumento -->
+      <!-- @@blkLegenda -->
+      <p id="nota">I documenti possono essere stati inseriti posteriormente alla validazione.</p>  
+      <!-- @@blkLegenda -->
+      <!-- @@blkElencoDocumenti -->
+      <!-- @@blkNoDocumenti -->
+      <p class="errore">$$messaggioErrore</p>
+      <!-- @@blkNoDocumenti -->
+      <div class="pulsanti">
+      	<div class="des">
+        		<a href="javascript:window.close();">chiudi</a>
+      	</div>
+      </div>
+    </div>
+	</form>
+</body>
+</html>

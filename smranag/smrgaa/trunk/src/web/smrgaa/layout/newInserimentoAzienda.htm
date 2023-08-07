@@ -1,0 +1,141 @@
+$$head
+
+<script type="text/javascript" src="../js/checktext.js"></script>
+<script type="text/javascript" src="../js/messaggistica.js"></script>
+</head>
+<!-- $$err_cuaaCaaInserimento -->
+<!-- $$err_cuaaInserimento -->
+<!-- $$err_partitaIvaInserimento -->
+<!-- $$err_partitaIvaCaaInserimento -->
+<body id="homeIndice" onload="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+	<form action="../layout/newInserimentoAzienda.htm" method="post" name="form1"
+		id="form1">
+		<input type="hidden" id="regimeInserimentoAzienda" name="regimeInserimentoAzienda" value="regimeInserimentoAzienda"/>
+		<div id="pagina" class="colonnaUnica">
+			<!-- INTESTAZIONE -->
+			<div id="intestazione##pathProvincia">
+				$$header
+				<!-- menu di navigazione-->
+				<div id="titoloEmenu">
+					<h2>
+						<span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+					</h2>
+					<div id="menuDiNavigazione" title="Menu di navigazione">
+						<ul class="menuTendina" id="menu-2">
+							<li><a href="../layout/index.htm"
+								title="Torna alla pagina principale">home</a></li>
+							<li class="attivo">gestione anagrafe aziende</li>
+							<li><a href="#" title="contatti">contatti</a></li>
+							<li><a href="#" title="help">help</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<hr />
+			<div style="clear: left"></div>
+			<!-- CORPO -->
+			<div id="corpo">
+				<div id="Utente">
+					<div id="datiUtente">
+						<strong>utente: </strong> $$utente &nbsp; &nbsp; <strong>ente:
+						</strong> $$ente
+					</div>
+					<div id="chiudisessione">
+						<a href="javascript: logout();">chiudi sessione</a>
+					</div>
+				</div>
+				<hr />
+				<!--PRIMA COLONNA -->
+				<h3>
+					Nuova iscrizione <span class="helpFuori"> <a href="#"> <span
+							class="alt"> [help]</span>
+					</a>
+					</span>
+				</h3>
+				<hr />
+				<div class="box">
+					<div class="menuSX1">
+						<ul>
+						  <!-- @@blkRicercaAzienda-->
+              <li>
+                <a href="../layout/ricerca.htm">Ricerche</a>
+              </li>
+              <!-- @@blkRicercaAzienda-->    							
+							<li><a href="#" class="on">Nuova iscrizione</a></li>
+						</ul>
+					</div>
+				</div>
+				<hr />
+				<!-- SECONDA COLONNA -->
+				<div id="contenuto">
+				  <br>
+          <div>
+            <p id="istruzioni">$$testoHelp</p>            
+          </div>
+          <br>
+				
+				
+					<table cellspacing="3"
+						summary="Questa tabella è costituita da righe">
+						<caption>Inserisci codice fiscale dell'azienda:</caption>
+						<col width="20%"/>
+            <col width="80%"/>
+            <!-- @@blkNormale -->
+						<tr>
+							<th>Societ&agrave; ed Enti</th>
+							<td colspan="2"><input type="text" name="partitaIvaInserimento"
+								id="partitaIvaInserimento" class="textmediolungo" value="$$partitaIvaInserimento"
+								maxlength="11" /> 
+							 ##err_partitaIvaInserimento
+							</td>
+						</tr>
+						<tr>
+              <th class="left" colspan="3">oppure</th>
+            </tr>
+						<tr>
+              <th>Ditte individuali e Privati</th>
+              <td colspan="2"><input type="text" name="cuaaInserimento" id="cuaaInserimento"
+                class="textmediolungo" value="$$cuaaInserimento" maxlength="16" />
+                ##err_cuaaInserimento</td>
+            </tr>
+            <!-- @@blkNormale -->
+            <!-- @@blkGestoreIntermediario -->
+            <tr>
+              <th>Codice CAA</th>
+              <td colspan="2"><input type="text" name="cuaaCaaInserimento" id="cuaaCaaInserimento"
+                class="textmediolungo" value="$$cuaaCaaInserimento" maxlength="9" />
+                ##err_cuaaCaaInserimento</td>
+            </tr>
+            <tr>
+              <th>Cuaa</th>
+              <td colspan="2"><input type="text" name="partitaIvaCaaInserimento"
+                id="partitaIvaCaaInserimento" class="textmediolungo" value="$$partitaIvaCaaInserimento"
+                maxlength="11" /> 
+               ##err_partitaIvaCaaInserimento
+              </td>
+            </tr>
+            <!-- @@blkGestoreIntermediario -->
+					</table>
+				<div class="pulsanti">
+        		<div class="sin">
+            <input type="submit" name="avantiInsAzienda" id="avantiInsAzienda"
+              value="avanti" alt="avanti" class="inputPulsante" autofocus />
+            $$exc
+          </div>
+       		</div>
+          
+          
+          </br>
+          </br>
+          </br>
+          
+          <!-- @@blkErrore -->
+            <p class="errore">$$messaggioErrore</p>
+          <!-- @@blkErrore --> 
+          
+          
+				</div>
+			</div>
+			<hr />
+			<!-- PIE' DI PAGINA -->
+			$$footer

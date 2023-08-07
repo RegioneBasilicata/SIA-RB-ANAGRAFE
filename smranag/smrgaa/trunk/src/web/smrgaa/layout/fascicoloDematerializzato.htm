@@ -1,0 +1,625 @@
+$$head
+<link href="/ris/css/smrgaaweb/fascicolo.css" rel="stylesheet" type="text/css" /> 
+  
+<script type="text/javascript" src="../js/checktext.js"  ></script>
+<script type="text/javascript" src="../js/checkdata.js"></script>
+<script type="text/javascript" src="../js/messaggistica.js"></script>
+<script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../js/jquery-ui-1.8.21.custom/jquery-ui-1.8.21.custom.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() 
+  {
+    $("#root ul").each(function() {$(this).css("display", "none");});
+    $("#root .category").click(function() 
+    {
+      var childid = "#" + $(this).attr("childid");
+      if ($(childid).css("display") == "none") {$(childid).css("display", "block");}
+      else {$(childid).css("display", "none");}
+      if ($(this).hasClass("cat_close")) {$(this).removeClass("cat_close").addClass("cat_open");}
+      else{$(this).removeClass("cat_open").addClass("cat_close");}
+    });
+  });
+  
+  
+  function loadCartelle(divFolder, idFolder)
+  {
+    var divLuca = "#"+divFolder;
+    
+    var prova = "[childid = \'"+divFolder+"\']";
+    if($(prova).hasClass("cat_close"))
+    {
+      $(prova).css("background-image", "url(/ris/css/smrgaaweb/im/listImage.gif)");
+      $(divLuca).hide();
+      
+      $(divLuca+" .category").click(function() 
+      {
+                  
+        if ($(this).hasClass("cat_close")) {$(this).removeClass("cat_close").addClass("cat_open");}
+        else{$(this).removeClass("cat_open").addClass("cat_close");}
+      });  
+    }
+    else
+    {      
+      $.ajax({
+        url: "../layout/treeDematerializzato.htm",
+        type: "POST",
+        data: { idFolder: ""+idFolder },
+        beforeSend: function() 
+                {
+                  $(prova).css("background-image", "url(/ris/css/smrgaaweb/im/load_folder.gif)");
+                  $( divLuca ).hide();
+                }, 
+        success: function( data ) 
+					      {
+					        $(prova).css("background-image", "url(/ris/css/smrgaaweb/im/listImage_open.gif)");
+					        $( divLuca ).html( data );
+					        $( divLuca ).show();
+					        $(divLuca+" .category").click(function() 
+					        {          
+					          if ($(this).hasClass("cat_close")) {$(this).removeClass("cat_close").addClass("cat_open");}
+					          else{$(this).removeClass("cat_open").addClass("cat_close");}
+					        });    
+					        
+					      },
+		     dataType: 'html'
+        
+      });
+      
+    } 
+    
+  }
+  
+  
+  
+  function loadCartelleName(divFolder, idFolder)
+  {
+    var divLuca = "#"+divFolder;
+    
+    var prova = "[childid = \'"+divFolder+"\']";
+    if($(prova).hasClass("cat_open"))
+    {
+      $(prova).css("background-image", "url(/ris/css/smrgaaweb/im/listImage.gif)");
+      $(divLuca).hide();
+      
+      $(divLuca+" .category").click(function() 
+      {
+                  
+        if ($(this).hasClass("cat_close")) {$(this).removeClass("cat_close").addClass("cat_open");}
+        else{$(this).removeClass("cat_open").addClass("cat_close");}
+      });  
+    }
+    else
+    {      
+      $.ajax({
+        url: "../layout/treeDematerializzato.htm",
+        type: "POST",
+        data: { idFolder: ""+idFolder },
+        beforeSend: function() 
+                {
+                  $(prova).css("background-image", "url(/ris/css/smrgaaweb/im/load_folder.gif)");
+                  $( divLuca ).hide();
+                }, 
+        success: function( data ) 
+                {
+                  $(prova).css("background-image", "url(/ris/css/smrgaaweb/im/listImage_open.gif)");
+                  $( divLuca ).html( data );
+                  $( divLuca ).show();
+                  $(divLuca+" .category").click(function() 
+                  {          
+                    if ($(this).hasClass("cat_close")) {$(this).removeClass("cat_close").addClass("cat_open");}
+                    else{$(this).removeClass("cat_open").addClass("cat_close");}
+                  });    
+                  
+                },
+         dataType: 'html'
+        
+      });
+      
+    } 
+    
+  }
+  
+  
+  function vaiAPagina(idFolder, pagina, primoIngresso)
+  {  
+  
+    var docAtt = $('#hidden_nascondibile_0').val();
+    var nomeFile = $('#hidden_nascondibile_1').val();
+    var dtIns = $('#hidden_nascondibile_2').val();
+    var anno = $('#hidden_nascondibile_3').val();
+    var numProt = $('#hidden_nascondibile_4').val();
+    var dtProt = $('#hidden_nascondibile_5').val();
+    var catDoc = $('#hidden_nascondibile_6').val();
+    var tipDoc = $('#hidden_nascondibile_7').val();
+    var procOrig = $('#hidden_nascondibile_8').val();
+    
+    $.ajax({
+        url: "../layout/elencoDocDem.htm",
+        type: "POST",
+        data: { idFolder: ""+idFolder, pagina: ""+pagina, primoIngresso: ""+primoIngresso },
+        beforeSend: function() 
+                {
+                  $("#elencoDoc" ).html("<div id=\'docAttendere\'></div>");         
+                }, 
+        success: function( data ) 
+						     {
+						       $("#elencoDoc" ).html( data );
+						       
+						       
+						       if(primoIngresso == "true")
+							     {
+							       hideColumn("nascondibile_3", "Anno");
+							       hideColumn("nascondibile_5", "Data repertorio");
+							       hideColumn("nascondibile_6", "Categoria documento");
+							       hideColumn("nascondibile_7", "Tipologia documento");
+							       hideColumn("nascondibile_8", "Procedimento di origine");
+							     }
+							     else
+							     {
+							       if(docAtt != null && docAtt != '')
+							       {
+							         hideColumn("nascondibile_0", "Documento attivo");
+							       }
+							       if(nomeFile != null && nomeFile != '')
+                     {
+                       hideColumn("nascondibile_1", "Nome file");
+                     }
+                     if(dtIns != null && dtIns != '')
+                     {
+                       hideColumn("nascondibile_2", "Data inserimento");
+                     }
+                     if(anno != null && anno != '')
+                     {
+                       hideColumn("nascondibile_3", "Anno");
+                     }
+                     if(numProt != null && numProt != '')
+                     {
+                       hideColumn("nascondibile_4", "Numero repertorio");
+                     }
+                     if(dtProt != null && dtProt != '')
+                     {
+                       hideColumn("nascondibile_5", "Data repertorio");
+                     }
+                     if(catDoc != null && catDoc != '')
+                     {
+                       hideColumn("nascondibile_6", "Categoria documento");
+                     }
+                     if(tipDoc != null && tipDoc != '')
+                     {
+                       hideColumn("nascondibile_7", "Tipologia documento");
+                     }
+                     if(procOrig != null && procOrig != '')
+                     {
+                       hideColumn("nascondibile_8", "Procedimento di origine");
+                     }  
+							    
+							    
+							     }
+						       
+						       
+						       
+						       
+						      
+						       var altezza = 600;
+						       if($("#elencoDoc").height() > 600)
+						       {
+						         altezza = $("#elencoDoc").height();
+						       }
+						      
+						       $(".contentDem").css("min-height", altezza );
+						       $("#root a").each(function() {$(this).css("color", "#027AC6");});
+						           
+						       var aFolder = "a"+idFolder
+						       var prova = "[childName = \'"+aFolder+"\']";
+						       $(prova).css("color", "red");
+						      
+						      },
+				 error: function(XMLHttpRequest, textStatus, errorThrown) 
+							  { 
+			            var prova = "<p class=\"errore\">"+XMLHttpRequest.responseText+"</p>"; 
+			            $("#elencoDoc" ).html(prova);
+			          },       
+         dataType: 'html'
+        
+      });
+  
+    
+  }
+  
+  function vaiAPaginaNumero(idFolder, totalepagine, primoIngresso)
+  {  
+ 
+    var docAtt = $('#hidden_nascondibile_0').val();
+    var nomeFile = $('#hidden_nascondibile_1').val();
+    var dtIns = $('#hidden_nascondibile_2').val();
+    var anno = $('#hidden_nascondibile_3').val();
+    var numProt = $('#hidden_nascondibile_4').val();
+    var dtProt = $('#hidden_nascondibile_5').val();
+    var catDoc = $('#hidden_nascondibile_6').val();
+    var tipDoc = $('#hidden_nascondibile_7').val();
+    var procOrig = $('#hidden_nascondibile_8').val();
+ 
+      
+    var pagina = document.form1.paginaCorrente.value;
+    if(!isInteger(pagina))
+    {
+      alert('il numero inserito non e\' un numero intero');
+      return;
+    }
+    
+    if(pagina > totalepagine)
+    {
+      alert('il numero inserito non puo\' essere superiore a '+totalepagine);
+      return;
+    } 
+    
+    $.ajax({
+        url: "../layout/elencoDocDem.htm",
+        type: "POST",
+        data: { idFolder: ""+idFolder, pagina: ""+pagina, primoIngresso: ""+primoIngresso },
+        beforeSend: function() 
+                {
+                  $("#elencoDoc" ).html("<div id=\'docAttendere\'></div>");         
+                }, 
+        success: function( data ) 
+                 {
+                   $("#elencoDoc" ).html( data );
+                   
+                   
+                   if(docAtt != null && docAtt != '')
+                   {
+                     hideColumn("nascondibile_0", "Documento attivo");
+                   }
+                   if(nomeFile != null && nomeFile != '')
+                   {
+                     hideColumn("nascondibile_1", "Nome file");
+                   }
+                   if(dtIns != null && dtIns != '')
+                   {
+                     hideColumn("nascondibile_2", "Data inserimento");
+                   }
+                   if(anno != null && anno != '')
+                   {
+                     hideColumn("nascondibile_3", "Anno");
+                   }
+                   if(numProt != null && numProt != '')
+                   {
+                     hideColumn("nascondibile_4", "Numero repertorio");
+                   }
+                   if(dtProt != null && dtProt != '')
+                   {
+                     hideColumn("nascondibile_5", "Data repertorio");
+                   }
+                   if(catDoc != null && catDoc != '')
+                   {
+                     hideColumn("nascondibile_6", "Categoria documento");
+                   }
+                   if(tipDoc != null && tipDoc != '')
+                   {
+                     hideColumn("nascondibile_7", "Tipologia documento");
+                   }
+                   if(procOrig != null && procOrig != '')
+                   {
+                     hideColumn("nascondibile_8", "Procedimento di origine");
+                   }  
+                  
+                  
+                   
+                   
+                   
+                   
+                   
+                  
+                   var altezza = 300;
+                   if($("#elencoDoc").height() > 300)
+                   {
+                     altezza = $("#elencoDoc").height();
+                   }
+                  
+                   $(".contentDem").css("min-height", altezza );
+                   $("#root a").each(function() {$(this).css("color", "#027AC6");});
+                       
+                   var aFolder = "a"+idFolder
+                   var prova = "[childName = \'"+aFolder+"\']";
+                   $(prova).css("color", "red");
+                  
+                  },
+         dataType: 'html'
+        
+      });
+  
+    
+  }
+  
+  function visualizzaFile(idDocumentoIndex)
+  {
+    var oldAction = document.form1.action
+
+    document.form1.idDocumentoIndex.value = idDocumentoIndex;
+     
+    document.form1.action = 'visualizzaFileAllegatoIndex.htm';
+    document.form1.submit();
+    document.form1.action = oldAction;
+  }
+  
+  
+  function hideColumn(cssColumn, label)
+	{
+	  //Nasconde la colonna
+	  $('.'  + cssColumn).hide();
+	  
+	  var html=$('#tdColDisp').html();
+	  if (html=='')
+	  {
+	    $('#tdColDisp').show();
+	    html="Colonne disponibili: ";
+	  }
+	  html+="<a href=\"javascript:showColumn('"+cssColumn+"')\" id='id_"+cssColumn+"'>"+label+"</a><span id='span_"+cssColumn+"'> | </span> <input type='hidden' name='idColonnaNascosta' id='hidden_"+cssColumn+"' value='"+cssColumn+"' />";
+	  $('#tdColDisp').html(html);
+	}
+
+	function showColumn(cssColumn)
+	{
+	  
+	  $('#id_'  + cssColumn).remove();
+	  $('#span_'  + cssColumn).remove();
+	  $('#hidden_'  + cssColumn).remove();
+	  $('.'  + cssColumn).show();
+	  if($('#tdColDisp').html().indexOf('<a')<0)
+	  {
+	    $('#tdColDisp').hide();
+	    $('#tdColDisp').html('');
+	  }
+	  
+	}
+  
+  
+  
+  
+</script>
+</head>
+
+<body id="homeIndice" onload="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+  <form id="form1" name="form1" method="post"
+    action="../layout/fascicoloDematerializzato.htm">
+    <input type="hidden" name="operazione" value="$$operazione" />
+    <input type="hidden" name="regimeFascicoloDematerializzato" value="true" />
+    <input type="hidden" name="idDocumentoIndex" id="idDocumentoIndex" value="" />
+    <input type="hidden" name="idColonneVisibili" id="idColonneVsibili" value="" />
+    <div id="pagina" class="colonnaUnica">
+      <!-- INTESTAZIONE -->
+      <div id="intestazione##pathProvincia">
+        <!--intestazione-->
+        $$header
+        <!-- menu di navigazione-->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li>
+                <a href="../layout/index.htm"
+                  title="Torna alla pagina principale">home</a>
+              </li>
+              <li class="attivo">
+                gestione anagrafe aziende
+              </li>
+              <li>
+                <a href="#" title="contatti">contatti</a>
+              </li>
+              <li>
+                <a href="#" title="help">help</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div style="clear: left"></div>
+      <!-- CORPO -->
+      <div id="corpo">
+        <div id="Utente">
+          <div id="datiUtente">
+            <strong>utente:</strong> $$utente &nbsp;&nbsp;
+            <strong>ente:</strong> $$ente
+          </div>
+          <div id="chiudisessione">
+            <a href="javascript: logout();">chiudi sessione</a>
+          </div>
+        </div>
+        <hr />
+        <!--PRIMA COLONNA -->
+        <h3>
+          Fascicolo elettronico
+          <span class="helpFuori"> <a href="#"> <span
+              class="alt">[help]</span> </a> </span>
+        </h3>
+        <hr />
+        <div class="box">
+          <div class="menuSX1">
+            <ul>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <li>
+                <a href="../layout/elencoAziendeRapLegale.htm">Elenco
+                  Aziende</a>
+              </li>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <!-- @@blkRicercaAzienda-->
+              <li>
+                <a href="../layout/ricerca.htm">Ricerche</a>
+              </li>
+              <!-- @@blkRicercaAzienda-->
+              <!-- @@blkNuova -->
+              <li>
+                <a href="../layout/nuovaAziendaAnagrafica.htm">Nuova
+                  Azienda</a>
+              </li>
+              <!-- @@blkNuova -->
+              <!-- @@blkNuovaIscrizione -->
+		          <li>
+		            <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+		          </li>
+		          <!-- @@blkNuovaIscrizione -->
+            </ul>
+          </div>
+          <div class="menuSX">
+            <ul>
+              <li>
+                <a href="../layout/anagrafica.htm">Anagrafica</a>
+              </li>
+              <!-- @@blkAziendeCollegate -->
+              <li>
+                <a href="../layout/aziendeCollegate.htm">$$aziendeCollegateLabel</a>
+              </li>
+              <!-- @@blkAziendeCollegate -->
+              <!-- @@blkSincronizzaFascicolo -->
+               <li>
+               	<a href="../layout/sincronizzaFascicolo.htm">Sincronizza fascicolo</a>
+               </li>
+              <!-- @@blkSincronizzaFascicolo -->
+              <!-- @@blkSoggettiCollegati -->
+              <li>
+                <a href="../layout/contitolari.htm">Soggetti
+                  collegati</a>
+              </li>
+              <!-- @@blkSoggettiCollegati -->
+              <!-- @@blkContiCorrenti -->
+              <li>
+                <a href="../layout/conti_correnti.htm">Conti
+                  Correnti</a>
+              </li>
+              <!-- @@blkContiCorrenti -->
+              <!-- @@blkUnitaProduttive -->
+              <li>
+                <a href="../layout/sedi.htm">Unit&agrave; produttive</a>
+              </li>
+              <!-- @@blkUnitaProduttive -->
+              <!-- @@blkTerreni -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniParticellareElenco.htm">Terreni</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		            <a href="../layout/riepiloghi.htm">Terreni</a>
+		            <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkTerreni -->
+		          <!-- @@blkUnitaVitate -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniUnitaArboreeElenco.htm">Unit&agrave; Vitate</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		              <a href="../layout/riepiloghiUnitaArboree.htm">Unit&agrave; Vitate</a>
+		              <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkUnitaVitate -->
+              <!-- @@blkFabbricati -->
+              <li>
+                <a href="../layout/fabbricati.htm">Fabbricati e
+                  Strutture</a>
+              </li>
+              <!-- @@blkFabbricati -->
+              <!-- @@blkAllevamenti -->
+              <li>
+                <a href="../layout/allevamenti.htm">Allevamenti</a>
+              </li>
+              <!-- @@blkAllevamenti -->
+              <!-- @@blkManodopera -->
+              <li>
+                <a href="../layout/manodopera.htm">Manodopera</a>
+              </li>
+              <!-- @@blkManodopera -->
+              <!-- @@blkMotoriAgricoli -->
+              <li>
+                <a href="../layout/motori_agricoli_incarico.htm">Macchine agricole</a>
+              </li>
+              <!-- @@blkMotoriAgricoli -->
+              <!-- @@blkDiritti -->
+              <li>
+                <a href="../layout/diritti.htm">Diritti di
+                  produzione</a>
+              </li>
+              <!-- @@blkDiritti -->
+              <!-- @@blkAttestazioni -->
+              <li>
+                <a href="../layout/attestazioniDettaglio.htm">Dichiarazioni</a>
+              </li>
+              <!-- @@blkAttestazioni -->
+              <!-- @@blkDichiarazioniConsistenza -->
+              <li>
+                <a href="../layout/dichiarazioneConsistenza.htm">Validazioni</a>
+              </li>
+              <!-- @@blkDichiarazioniConsistenza -->
+              <!-- @@blkDocumenti -->
+              <li>
+                <a href="../layout/documentiElenco.htm">Documenti</a>
+              </li>
+              <!-- @@blkDocumenti -->
+              <!-- @@blkFascicoloDematerializzato -->
+		          <li>
+		            <a href="#" class="on" >Fascicolo<br>elettronico</a>
+		          </li>
+		          <!-- @@blkFascicoloDematerializzato --> 
+              <!-- @@blkGestioneNotifiche -->
+              <li>
+                <a href="../layout/notifiche.htm">Notifiche</a>
+              </li>
+              <!-- @@blkGestioneNotifiche -->
+              <!-- @@blkComunicazione10R -->
+              <li>
+                <a href="../layout/comunicazione10R_dettaglio.htm">Comunicazione
+                  10/R</a>
+              </li>
+              <!-- @@blkComunicazione10R -->
+              <!-- @@blkPratiche -->
+              <li>
+                <a href="../layout/pratiche.htm">Pratiche</a>
+              </li>
+              <!-- @@blkPratiche -->
+              <!-- @@blkStampaFascicolo -->
+              <li>
+                <a href="../layout/scelta_stampa.htm">Stampe</a>
+              </li>
+              <!-- @@blkStampaFascicolo -->
+			  <li><a href="../layout/strumenti.htm">Strumenti</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr />
+        <!-- SECONDA COLONNA -->
+        <div id="contenuto">
+          <div id="intesta">
+            <p class="$$aziendaIntestazione" title="$$tooltipIntestazione" >
+              $$CUAAIntestazione  $$denominazioneIntestazione
+            </p>
+          </div>
+          <!-- @@blkElencoCartelle -->
+					<div class="contentDem">
+					  <ul id="root" class="menuDem">
+					    <!-- @@blkCartella -->
+				      <li class="liDem">
+				        <a href="javascript:loadCartelle('$$divFolder','$$idFolder')" childid="$$divFolder" class="cat_close category">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+				        <a href="javascript:loadCartelleName('$$divFolder','$$idFolder');vaiAPagina('$$idFolder','1', 'true')" childName="$$aFolder" >$$nomeFolder</a>
+				      </li>
+				      <ul id="$$divFolder" class="menuDemChd"></ul>
+				      <!-- @@blkCartella --> 
+				    </ul>
+					</div>
+          
+          <div id="elencoDoc" class="contentDemDoc">
+            
+          </div>
+          <!-- @@blkElencoCartelle -->
+          
+          <!-- @@blkErrore -->
+          <p class="errore">
+            $$messaggio
+          </p>
+          <!-- @@blkErrore -->
+
+        </div>
+      </div>
+      <hr />
+      $$footer

@@ -1,0 +1,145 @@
+$$head
+  <script type="text/javascript" src="../js/checktext.js"></script>
+  <script type="text/javascript" src="../js/messaggistica.js"></script>
+</head>
+<body id="homeIndice" onload="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+  <form action="../layout/elencoManuali.htm" method="post" name="form1">
+    <div id="pagina" class="colonnaUnica">
+      <!-- INTESTAZIONE -->
+      <div id="intestazione##pathProvincia">
+       $$header
+         <!-- menu di navigazione-->
+         <div id="titoloEmenu">
+         <h2>
+           <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+         </h2>
+           <div id="menuDiNavigazione" title="Menu di navigazione">
+             <ul class="menuTendina" id="menu-2">
+               <li><a href="../layout/index.htm" title="Torna alla pagina principale">home</a></li>
+               <li class="attivo">gestione anagrafe aziende</li>
+               <li><a href="#" title="contatti">contatti</a></li>
+               <li><a href="#" title="help">help</a></li>
+             </ul>
+           </div>
+         </div>
+       </div>
+       <hr/>
+       <div style="clear:left">  </div>
+       <!-- CORPO -->
+       <div id="corpo">
+         <div id="Utente">
+           <div id="datiUtente">
+             <strong>utente:</strong>
+             $$utente
+             &nbsp;
+             &nbsp;
+             <strong>ente:</strong>
+             $$ente
+           </div>
+           <div id="chiudisessione">
+             <a href="javascript: logout();">chiudi sessione</a>
+           </div>
+         </div>
+         <hr/>
+         <!--PRIMA COLONNA -->
+         <h3>Elenco manuali
+           <span class="helpFuori">
+             <a href="#">
+               <span class="alt">[help]</span>
+             </a>
+           </span>
+         </h3>
+         <hr/>
+         <div class="box">
+           <div class="menuSX1">
+             <ul>
+               <!-- @@blkElencoAziendeRapLegale -->
+               <li><a href="../layout/elencoAziendeRapLegale.htm">Elenco Aziende</a></li>
+             <!-- @@blkElencoAziendeRapLegale -->
+             <!-- @@blkRicercaAzienda-->
+                 <li><a href="../layout/ricerca.htm">Ricerca Azienda</a></li>
+               <!-- @@blkRicercaAzienda-->
+               <!--@@blkRicercaTerreno-->
+                 <li><a href="../layout/ricercaTerreno.htm">Ricerca Terreno</a></li>
+               <!--@@blkRicercaTerreno-->
+               <!--@@blkRicercaPersona-->
+                 <li><a href="../layout/ricercaPersona.htm">Ricerca Persona</a></li>
+               <!--@@blkRicercaPersona-->
+               <!--@@blkRicercaNotifica-->
+                 <li><a href="../layout/ricercaNotifica.htm">Ricerca Notifiche</a></li>
+               <!--@@blkRicercaNotifica-->
+               <!--@@blkVariazioniAzienda-->
+                 <li><a href="../layout/ricercaVariazioni.htm" >Ricerca Variazioni</a></li>
+               <!--@@blkVariazioniAzienda-->
+               <!--@@blkRicercaRichiesta-->
+                 <li><a href="../layout/ricercaRichiesta.htm">Ricerca richiesta azienda</a></li>
+               <!--@@blkRicercaRichiesta-->
+               <!--@@blkNuova-->
+                 <li><a href="../layout/nuovaAziendaAnagrafica.htm">Nuova Azienda</a></li>
+               <!--@@blkNuova-->
+               <!-- @@blkNuovaIscrizione -->
+               <li>
+                <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+               </li>
+               <!-- @@blkNuovaIscrizione -->
+               <!--@@blkNuovaParticella-->
+               <li>
+                 <a href="../layout/inserisciTerreno.htm">Nuova Particella</a>
+               </li>
+               <!--@@blkNuovaParticella-->
+               <!--@@blkServizi-->
+                <li><a href="../layout/servizi.htm" >Servizi</a></li>
+               <!--@@blkServizi--> 
+               <li><a href="../layout/elencoRicerche.htm" >Reportistica</a></li>
+               <!--@@blkEstrazioneDati-->
+               <li><a href="../layout/macroCategoriaReport.htm">Estrazione dati</a></li>
+               <!--@@blkEstrazioneDati-->
+               <li><a href="../layout/elencoManuali.htm" >Scarico Documentazione Tecnica</a></li>             
+             </ul>
+           </div>
+         </div>
+         <hr/>
+         <!-- SECONDA COLONNA -->
+         <div id="contenuto">
+<!-- CORPO -->
+<!-- @@blkAziende -->
+  <table border="0" cellspacing="3">
+    <tr>
+      <th scope="col" colspan="6"><h3>Elenco aziende</h3></th>
+    </tr>
+  </table>
+  <table border="0" cellspacing="3">
+    <tr>
+      <th scope="col" align="center">Denominazione</th>
+      <th scope="col" align="center">CUAA</th>
+      <th scope="col" align="center">Partita IVA</th>
+      <th scope="col" align="center">Comune</th>
+      <th scope="col" align="center">Indirizzo</th>
+      <th scope="col" align="center">CAP</th>
+      <th scope="col" align="center">Provincia</th>
+      <th scope="col" align="center">Istat</th>
+    </tr>
+    <!-- @@blkElencoAziende -->
+      <tr>
+        <td align="left">&nbsp;$$denominazione</td>
+        <td align="left">&nbsp;$$cuaa</td>
+        <td align="left">&nbsp;$$partitaIva</td>
+        <td align="left">&nbsp;$$descComuneSede</td>
+        <td align="left">&nbsp;$$indirizzoSede</td>
+        <td align="left">&nbsp;$$capSede</td>
+        <td align="left">&nbsp;$$provinciaSede</td>
+        <td align="left">&nbsp;$$istatComuneSede</td>
+      </tr>
+    <!-- @@blkElencoAziende -->
+  </table>
+<!-- @@blkAziende -->
+ <!-- @@blkErrore -->
+             <p class="errore">$$messaggio</p>
+           <!-- @@blkErrore -->
+         </div>
+       </div>
+     </div>
+     <hr/>
+   </form>
+    <!-- PIE' DI PAGINA -->
+    $$footer

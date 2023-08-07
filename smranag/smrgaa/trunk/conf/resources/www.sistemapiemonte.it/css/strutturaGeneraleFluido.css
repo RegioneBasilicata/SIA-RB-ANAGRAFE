@@ -1,0 +1,194 @@
+html, body { height: auto; width: 100%; margin: 0px; padding: 0px; /*font-size: 15px;*/ font-family: sans-serif;}
+body {
+	font		: 75%  Arial, Helvetica, Geneva, Swiss, SunSans-Regular;
+	background	: #ebebeb;
+	color		: #000;
+	/*text-align	: center;*/
+}
+#pagina {
+width:95%;height:auto;margin-right:auto;margin-left:auto;background: #fff url(/css_rupar/AnagrafeAziende/im/l_dx.jpg) 100% 0 repeat-y;min-height:100%;}
+#pagina.colonnaUnica {text-align:left;background: #fff;
+border-right:1px solid #000;
+border-left:1px solid #000;
+}
+/* H */
+#homeIndice h1 { /*class utilizzato per visualizzare la scritta Intranet TOBECONFIG in fase di stampa*/
+	margin		: 0 0 0 0;
+	position	: absolute;
+	top			: 0px;
+	left		: 25px;
+	height		: 25px;
+	width		: 380px;
+} 
+#homeIndice h1 a { /*class utilizzato per visualizzare la scritta intranet TOBECONFIG in fase di stampa*/
+	display		: block;
+	/*height		: 32px;*/
+	height		: 46px;
+	width		: 100%;
+}
+h2 {margin		: 0;
+	height		: 43px !important;/*1.5em */
+	height /**/	: 43px;/*3.2em;*/
+	padding		: 0 0 0 0;/*1.2em 0 .5em 90px;*/
+}
+h3, h4 {margin		: 0 0 .5em 0;
+	padding		:1px 0 1px .5em;
+	clear 		:left;
+}
+
+h5, h6 { /* class utilizzato per definire lo stile dei titoli dei livelli 5 e 6. E' anche presente nei css parametriDiFormato (dove sono definiti i font) e skinIndice (dove sono definiti gli stili del titolo quando si trova dentro il div Descrizione (H3) o Informazioni (H4)*/
+margin: 0 0 .5em 0;
+}
+/* I */
+#intestazione form { /*questo class definisce l'altezza tra banner di rupar e il menu di navigazione. Questo stile è presente anche nel css parametriDiFormato dove vengono definiti i font e sfondo*/ 
+	margin		: 0 0 0 0;
+	height		: 47px;
+	
+}
+/* M */
+#menuDiServizio { /*questo class definisce lo stile del div che contiene il menu dei servizi. Per questo menu esistono anche i css ad hoc menuTendina e cavalierini. Questo stile è definito anche nel css parametriDiFormato dove vengono definiti i font e sfondo*/
+	position	: absolute;
+	z-index		: 50;
+	top			: 4px;
+	right		: 6px;
+	width		:33.2em;
+	border		: 0;
+	margin-right: -22px;
+}
+#menuDiNavigazione {  /*questo class definisce lo stile del div che contiene il menu di navigazione. Per questo menu esistono anche i css ad hoc menuTendina e cavalierini. */
+	padding		: 0 0 9px 10px;
+	position	: absolute; 
+	width		: 100% !important;
+	width		/**/: 100%;
+	z-index		: 40;
+	margin-top	: -15px; 
+	font-size: 0.95em;
+}
+/* P *//* class di formattazione del paragrafo*/
+p { 
+	margin: 0 0 8px 0;
+}
+
+/*#pagina {  class che definisce gli stili del div pagina. Questo stile è definito anche nel css parametriDiFormato dove vengono definiti i font e sfondo
+	z-index		: 0;
+	width		: 720px;
+	margin		: 0 auto;
+	position	: relative;
+}*/
+
+#piedipagina {
+	clear		: both; /* necessario dato che le due colonne sono flottanti */
+	padding-top	: 10px; /* spazio per il bordo inferiore, sfumato, del corpo -- applicato come sfondo */
+	position	: relative; /* risolve un baco -- non sistematico -- di IE */
+}
+
+#piedipagina p { /* class che definisce gli stili del div pie di pagina. Questo stile è definito anche nel css parametriDiFormato dove vengono definiti i font e sfondo*/
+	margin		: 0;
+}
+
+.bugFix, .alt, .navigazionePagina, .nascosto, .fir span, hr { /*class utilizzati per elementi che non devono comparire a video*/
+    position: absolute;
+    left: -10000px;
+    top: -10000px;
+	overflow: hidden;
+    width:0;
+	height:0;
+	clear:none;
+	/*display:inline;
+	display:none;*/
+}
+
+#intestazione span.spaziatore {
+		margin: 0 0 0 0;
+		height: 40px;
+		z-index:1000;
+		display:block;
+}
+
+form {
+		margin: 0;
+		padding: 0;
+}
+
+/* fogli di stile per l'errore*/
+.errore  {
+	border:0;
+	padding:0;
+	vertical-align: middle;
+	margin: 0;
+	display:inline;
+}
+
+#boxError {
+color:#FF0000;
+text-align:center;
+/*position:relative;*/
+font-weight:bold;
+background:#DEDEDE;
+border-bottom:1px solid #9C9C9C;
+border-top:1px solid #9C9C9C;
+padding-left: 6px;
+padding-right: 6px;
+padding-bottom: 6px;
+padding-top: 6px;
+margin: 8px 0 0 0;
+/*padding:12px;*/
+/*margin:0 0 12px 0;*/
+}
+#boxError img{
+vertical-align:middle;
+}
+/*inizio NON USARE PIù (usare #boxError) >> richiamato da alcuni servizio in SANDBOX */
+#avviso {
+	background-color: #eeeeee;
+	border-top: 1px solid #666666;
+	border-bottom: 1px solid #666666;
+	padding-left: 6px;
+	border-left-width: 0px;
+	padding-right: 6px;
+	padding-bottom: 6px;
+	padding-top: 6px;
+	margin: 8px 0 0 0;
+	text-align: center;
+	font-weight: bold;
+	color:#FF0000;
+}
+/*fine NON USARE PIù*/
+
+/* fogli di stile per l'errore*/
+
+
+/*inizio testo noscript*/
+#avvisoJavascript {
+background:#fff;
+/*margin:2px 0 3px 0;*/
+margin:0 0 3px 0;
+padding:0;
+border:1px dashed #036;	
+text-align:center;
+position:relative;
+}
+#avvisoJavascript p {color:#900;background:#fff;
+text-align:center;margin:0;padding:6px;}
+/*fine testo noscript*/
+
+/*avviso temporaneo*/
+#msgAvviso {color:#FF0000;font-weight:bold;background:#DEDEDE;border-bottom:1px solid #9C9C9C;border-top:1px solid #9C9C9C;padding:12px;text-align:center;margin:0 0 8px 0;clear:both;}
+
+/*inizio problemi browser*/
+#descrizione p.msgIE{
+margin:11px 0;
+padding:12px 40px 14px 6px;
+background:#FDEE97 url(/css/im/ico_ex.gif) 100% 50% no-repeat;
+border:1px dashed #000;
+}
+/*fine problemi browser*/
+
+/*inserito per accessibile.shtml*/
+ul, ol {padding:0;list-style-position:outside;margin:0 0 0 22px;}
+ol {padding:0!important;
+	padding:0 0 0 8px;
+	voice-family: "\"}\"";
+	voice-family: inherit;
+	padding:0 0 0 8px;} .finto {}
+li {margin:0 0 3px 0;}

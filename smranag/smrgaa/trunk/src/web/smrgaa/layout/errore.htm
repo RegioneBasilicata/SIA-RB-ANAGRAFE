@@ -1,0 +1,51 @@
+$$head
+<script src="../js/checktext.js" type="text/javascript"></script></head><body id="homeIndice">
+<div id="pagina" class="colonnaUnica">
+<form method="post" id="form1" action="">
+  <!-- INTESTAZIONE -->
+  <div id="intestazione##pathProvincia">    $$header
+    <!-- menu di navigazione-->
+    <div id="titoloEmenu">
+      <h2>
+        <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+      </h2>
+    </div>
+  </div>
+  <hr/>
+  <div style="clear:left">  </div>
+  <!-- CORPO -->
+  <div id="corpo">
+    <hr/>
+    <!-- PRIMA COLONNA -->
+    <div id="content">
+      <p class="errore">$$exception</p>
+      <!-- @@blkBack -->
+      <div class="pulsanti">
+         <div class="sin"><a href="$$backPage">indietro</a></div>
+      </div>
+      <!-- @@blkBack -->
+      <!-- @@blkHistory -->
+     <div class="pulsanti">
+      <div class="sin">
+            <input type="button" value="indietro" name="indietro" class="inputPulsante" onclick="history.go(-1)"/>
+      </div></div>
+      <!-- @@blkHistory -->
+      <!-- @@blkHistory2 -->
+       <div class="pulsanti"><div class="sin">
+            <input type="button" value="indietro" name="indietro" class="inputPulsante" onclick="history.go(-2)"/>
+      </div></div>
+      <!-- @@blkHistory2 -->
+      <!-- @@blkChiudi -->
+       <div class="pulsanti">
+         <div class="sin"><a href="javascript: window.close();">chiudi</a></div>
+      </div>
+      <!-- @@blkChiudi -->
+      <!--     Torna indietro-->
+    </div>
+    <!-- SECONDA COLONNA -->
+  </div>
+  <hr/>
+</form>
+<!-- PIE' DI PAGINA -->
+$$footer
+

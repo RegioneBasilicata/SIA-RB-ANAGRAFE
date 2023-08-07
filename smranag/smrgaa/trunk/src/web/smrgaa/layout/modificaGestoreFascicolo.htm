@@ -1,0 +1,333 @@
+$$head
+	<script language="javascript1.2">
+		
+		// Funzione che mi permette di gestire correttamente l'iterazione tra la combo
+		// degli OPR e le date di apertura e chiusura del fascicolo
+		function gestioneDateFascicolo() {
+			if(document.forms[0].idOpr.value == 0) {
+				document.forms[0].dataAperturaFascicolo.value = '';
+				document.forms[0].dataChiusuraFascicolo.value = '';
+				document.forms[0].dataAperturaFascicolo.disabled = true;
+				document.forms[0].dataChiusuraFascicolo.disabled = true;
+			}
+			else {
+				document.forms[0].dataAperturaFascicolo.disabled = false;
+				document.forms[0].dataChiusuraFascicolo.disabled = false;
+			}
+		}
+			
+  	</script>
+  	<script type="text/javascript" src="../js/messaggistica.js"></script>
+</head>
+<body id="homeIndice" onLoad="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+	<form id="form1" name="form1" method="post" action="../layout/modificaGestoreFascicolo.htm">
+		<div id="pagina" class="colonnaUnica">
+			<!-- INTESTAZIONE -->
+				<div id="intestazione##pathProvincia">
+			<!--intestazione-->
+			$$header
+			<!-- menu di navigazione-->
+			<div id="titoloEmenu">
+				<h2>
+					<span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+				</h2>
+				<div id="menuDiNavigazione" title="Menu di navigazione">
+					<ul class="menuTendina" id="menu-2">
+						<li>
+							<a href="../layout/index.htm" title="Torna alla pagina principale">home</a>
+						</li>
+						<li class="attivo">gestione anagrafe aziende</li>
+						<li><a href="#" title="contatti">contatti</a></li>
+						<li><a href="#" title="help">help</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<hr />
+		<div style="clear:left"></div>
+		<!-- CORPO -->
+		<div id="corpo">
+			<div id="Utente">
+				<div id="datiUtente">
+					<strong>utente: </strong>
+					$$utente&nbsp;&nbsp;
+					<strong>ente: </strong>
+					$$ente
+				</div>
+				<div id="chiudisessione">
+					<a href="javascript: logout();">chiudi sessione</a>
+				</div>
+			</div>
+			<hr />
+			<!--PRIMA COLONNA -->
+			<h3>Gestione Anagrafe Aziende&nbsp;&gt;&nbsp;Anagrafica&nbsp;&gt;&nbsp;Dettaglio 
+				<span class="helpFuori"> 
+					<a href="#"> 
+						<span class="alt">[help]</span>
+					</a> 
+				</span>
+			</h3>
+			<hr />
+			<div class="box">
+				<div class="menuSX1">
+					<ul>
+						<!-- @@blkElencoAziendeRapLegale -->
+                			<li><a href="../layout/elencoAziendeRapLegale.htm">Elenco Aziende</a></li>
+              			<!-- @@blkElencoAziendeRapLegale -->
+              			<!-- @@blkRicercaAzienda-->
+              				<li><a href="../layout/ricerca.htm">Ricerche</a></li>
+            			<!-- @@blkRicercaAzienda-->
+            			<!-- @@blkNuova -->
+            				<li><a href="../layout/nuovaAziendaAnagrafica.htm">Nuova Azienda</a></li>
+            			<!-- @@blkNuova -->
+            			<!-- @@blkNuovaIscrizione -->
+		              <li>
+		                <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+		              </li>
+		              <!-- @@blkNuovaIscrizione -->
+					</ul>
+				</div>
+				<div class="menuSX">
+					<ul>
+						<li><a href="../layout/anagrafica.htm" class="on">Anagrafica</a>
+	              			<ul>
+	                			<li><a href="../layout/anagrafica.htm">dettaglio</a></li>
+	                			<!--@@blkFontiCertificate-->
+	                  				<li><a href="../layout/fonti.htm">fonti certificate</a></li>
+	                			<!--@@blkFontiCertificate-->
+	                			<!--@@linkDichiarazioneInsediamento-->
+				                    <li>
+				                      <a href="../layout/insediamento.htm">dichiarazione insediamento</a>
+				                    </li>
+				                <!--@@linkDichiarazioneInsediamento-->
+	                			<li>
+	                				<!--@@linkGestoreFascicolo-->
+	                  					<a href="../layout/gestoreFascicolo.htm" class="etichetta">gestore fascicolo</a>
+	                				<!--@@linkGestoreFascicolo-->
+	                				<ul>
+	                  					<!-- @@blkStoricoMandati -->
+	                  						<li><a href="../layout/storicoMandati.htm">storico mandati</a></li>
+	                  					<!-- @@blkStoricoMandati -->
+					  					<li><a href="#" class="on">modifica</a></li>
+					  				</ul>					  				  
+					  			    </li>
+					  			      <!--@@blkStoricoAzienda-->
+	                			<li><a href="../layout/listaStoricoAzienda.htm">storico azienda</a></li>
+	                			<!--@@blkStoricoAzienda-->
+	                		</ul>
+	                	</li>
+	                	
+	          			<!-- @@blkAziendeCollegate -->
+			          			<li>
+			          					<a href="../layout/aziendeCollegate.htm">$$aziendeCollegateLabel</a>
+			          			</li>
+			          	<!-- @@blkAziendeCollegate -->
+			          	<!-- @@blkSincronizzaFascicolo -->
+               			<li>
+               				<a href="../layout/sincronizzaFascicolo.htm">Sincronizza fascicolo</a>
+               			</li>
+              			<!-- @@blkSincronizzaFascicolo -->
+						      <!-- @@blkSoggettiCollegati -->
+            				<li><a href="../layout/contitolari.htm">Soggetti collegati</a></li>
+            			<!-- @@blkSoggettiCollegati -->
+            			<!-- @@blkContiCorrenti -->
+                    <li><a href="../layout/conti_correnti.htm">Conti Correnti</a></li>
+                  <!-- @@blkContiCorrenti -->
+            			<!-- @@blkUnitaProduttive -->
+            				<li><a href="../layout/sedi.htm">Unit&agrave; produttive</a></li>
+            			<!-- @@blkUnitaProduttive -->
+            			<!-- @@blkTerreni -->
+				          <li>
+				            <!-- @@blkLinkElenco -->
+				            <a href="../layout/terreniParticellareElenco.htm">Terreni</a>
+				            <!-- @@blkLinkElenco -->
+				            <!-- @@blkLinkRiepiloghi -->
+				            <a href="../layout/riepiloghi.htm">Terreni</a>
+				            <!-- @@blkLinkRiepiloghi -->
+				          </li>
+				          <!-- @@blkTerreni -->
+				          <!-- @@blkUnitaVitate -->
+				          <li>
+				            <!-- @@blkLinkElenco -->
+				            <a href="../layout/terreniUnitaArboreeElenco.htm">Unit&agrave; Vitate</a>
+				            <!-- @@blkLinkElenco -->
+				            <!-- @@blkLinkRiepiloghi -->
+				              <a href="../layout/riepiloghiUnitaArboree.htm">Unit&agrave; Vitate</a>
+				              <!-- @@blkLinkRiepiloghi -->
+				          </li>
+				          <!-- @@blkUnitaVitate -->
+            			<!-- @@blkFabbricati -->
+            				<li><a href="../layout/fabbricati.htm">Fabbricati e Strutture</a></li>
+            			<!-- @@blkFabbricati -->
+            			<!-- @@blkAllevamenti -->
+            				<li><a href="../layout/allevamenti.htm">Allevamenti</a></li>
+            			<!-- @@blkAllevamenti -->
+            			<!-- @@blkManodopera -->
+            				<li><a href="../layout/manodopera.htm">Manodopera</a></li>
+            			<!-- @@blkManodopera -->
+            			<!-- @@blkMotoriAgricoli -->
+            				<li><a href="../layout/motori_agricoli_incarico.htm">Macchine agricole</a></li>
+            			<!-- @@blkMotoriAgricoli -->
+            			<!-- @@blkDiritti -->
+            				<li><a href="../layout/diritti.htm">Diritti di produzione</a></li>
+            			<!-- @@blkDiritti -->
+            			<!-- @@blkAttestazioni -->
+                			<li><a href="../layout/attestazioniDettaglio.htm">Dichiarazioni</a></li>
+              			<!-- @@blkAttestazioni -->
+            			<!-- @@blkDichiarazioniConsistenza -->
+            				<li><a href="../layout/dichiarazioneConsistenza.htm">Validazioni</a></li>
+            			<!-- @@blkDichiarazioniConsistenza -->
+					        <!-- @@blkDocumenti -->
+	              		<li><a href="../layout/documentiElenco.htm">Documenti</a></li>
+	              	<!-- @@blkDocumenti -->
+	              	<!-- @@blkFascicoloDematerializzato -->
+		              <li>
+		                <a href="../layout/fascicoloDematerializzato.htm">Fascicolo<br>elettronico</a>
+		              </li>
+		              <!-- @@blkFascicoloDematerializzato -->
+	              	<!-- @@blkGestioneNotifiche -->
+	              		<li><a href="../layout/notifiche.htm">Notifiche</a></li>
+	              	<!-- @@blkGestioneNotifiche -->
+                   <!-- @@blkComunicazione10R -->
+                     <li>
+                       <a href="../layout/comunicazione10R_dettaglio.htm">Comunicazione 10/R</a>
+                     </li>
+                   <!-- @@blkComunicazione10R -->
+	              	<!-- @@blkPratiche -->
+	              		<li><a href="../layout/pratiche.htm">Pratiche</a></li>
+	              	<!-- @@blkPratiche -->
+	              	<!-- @@blkStampaFascicolo -->
+	              		<li><a href="../layout/scelta_stampa.htm">Stampe</a></li>
+	              	<!-- @@blkStampaFascicolo -->
+					<li><a href="../layout/strumenti.htm">Strumenti</a></li>
+					</ul>
+				</div>
+			</div>
+			<hr />
+			<!-- SECONDA COLONNA -->
+			<div id="contenuto">
+				<div id="intesta">
+          <p class="$$aziendaIntestazione" title="$$tooltipIntestazione" >
+            $$CUAAIntestazione  $$denominazioneIntestazione
+          </p>
+        </div>
+				<br />
+				<!-- @@blkFunzioneOk -->
+					<!-- @@blkDatiIntermediario -->
+					<p>L'azienda ha conferito il mandato per la gestione del proprio fascicolo aziendale a: </p>
+					<table>
+            					<tr>
+              						<th class="allineaSx">$$denomIntermediario</th>
+          					  </tr>
+         				 </table>
+						<table cellspacing="3" summary="Questa tabella contiene il detentore della delega">
+							<caption></caption>
+							<tr>
+								<th scope="row">Data inizio validit&agrave; del mandato</th>
+								<td>$$dataInizioMandato</td>
+							</tr>
+							<tr>
+								<th scope="row">Ultima modifica gestore fascicolo</th>
+								<td>$$ultimaModificaVw</td>
+							</tr>
+						</table>
+						<p>Il fascicolo &egrave; depositato e disponibile presso l'ufficio:</p>
+						<table cellspacing="3" summary="Questa tabella contiene i dati relativi all'ufficio di zona">
+							<caption></caption>
+							<tr>
+								<th>
+									<label for="codifica">Codifica</label>
+								</th>
+							<td>$$codiceAgea</td>
+						</tr>
+						<tr>
+							<th>
+								<label for="ufficioFascicolo">Denominazione</label>
+							</th>
+							<td>$$denominazioneUfficio</td>
+						</tr>
+						<tr>
+							<th>
+								<label for="indirizzo">Indirizzo</label>
+							</th>
+							<td>$$indirizzo</td>
+						</tr>
+						<tr>
+							<th>
+								<label for="provincia">Provincia</label>
+							</th>
+							<td>$$siglaProvincia</td>
+						</tr>
+						<tr>
+							<th>
+								<label for="comune">Comune</label>
+							</th>
+							<td>$$descrizioneComune</td>
+						</tr>
+						<tr>
+							<th>
+								<label for="cap">C.A.P.</label>
+							</th>
+							<td>$$cap</td>
+						</tr>
+						<tr>
+							<th>
+								<label for="recapito">Recapito</label>
+							</th>
+							<td>$$recapito</td>
+						</tr>
+					</table>
+				<!-- @@blkDatiIntermediario -->
+				<!-- @@blkKo -->
+				<p>L'azienda NON ha conferito il mandato per la gestione del proprio fascicolo aziendale</p>						
+				<!-- @@blkKo -->
+				<table cellspacing="3" summary="Questa tabella contiene i dati relativi all'OPR">
+					<caption>Dati di gestione del fascicolo aziendale:</caption>
+					<tr>
+						<th>
+							<label for="Codice">Codice Organismo pagatore</label>
+						</th>
+						<td>
+                			<select name="idOpr" id="idOpr" onChange="javascript: gestioneDateFascicolo();">
+                  				<option></option>
+                  				<!-- @@blkElencoTipiOpr -->
+                    				<option value="$$codice" $$selected>$$descrizione</option>
+                  				<!-- @@blkElencoTipiOpr -->
+                			</select>
+              			</td>
+					</tr>
+					<tr>
+						<th>
+							<label for="apertura">Data apertura fascicolo</label>
+						</th>
+						<td>
+							<input type="text" name="dataAperturaFascicolo" id="dataAperturaFascicolo" value="$$dataAperturaFascicolo" class="textmediolungo" />$$err_dataAperturaFascicolo
+						</td>
+					</tr>
+					<tr>
+						<th>
+							<label for="chiusura">Data chiusura fascicolo</label>
+						</th>
+						<td>
+							<input type="text" name="dataChiusuraFascicolo" id="dataChiusuraFascicolo" value="$$dataChiusuraFascicolo" class="textmediolungo" />$$err_dataChiusuraFascicolo
+						</td>
+					</tr>
+				</table>
+				<div class="pulsanti">
+					<div class="sin">
+						<input name="conferma" type="submit" value="conferma" class="inputPulsante highlighted" />
+					</div>
+					<div class="des">
+						<input name="annulla" type="submit" value="annulla" class="inputPulsante annulla" />
+					</div>
+				</div>
+			<!-- @@blkFunzioneOk -->
+			<!-- @@blkGestioneErrore  -->
+				<p class="errore">$$messaggioErrore</p>
+			<!-- @@blkGestioneErrore  -->
+		</div>
+	</div>
+	<hr />
+</form>
+<!-- PIE' DI PAGINA -->
+$$footer

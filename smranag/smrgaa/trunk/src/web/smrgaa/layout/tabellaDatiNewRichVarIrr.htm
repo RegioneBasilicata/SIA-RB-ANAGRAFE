@@ -1,0 +1,207 @@
+    <table cellspacing="3" summary="Questa tabella è costituita da righe">
+      <caption>Macchine</caption>
+      <tr>
+        <th class="center" scope="col">
+          <a href="javascript:modificaRigaDati('inserisci','')" class="aggiungi" title="inserisci Macchine"></a>
+        </th>
+        <th class="center" scope="col">
+          UTE*
+        </th>
+        <th class="center" scope="col">
+          Genere*
+        </th>
+        <th class="center" scope="col">
+          Tipo
+        </th>
+        <th class="center" scope="col">
+          Anno
+        </th>
+        <th class="center" scope="col">
+          Marca
+        </th>
+        <th class="center" scope="col">
+          Modello
+        </th>
+        <th class="center" scope="col">
+          Telaio
+        </th>
+        <th class="center" scope="col">
+          Forma possesso*
+        </th>
+        <th class="center" scope="col">
+          % possesso*
+        </th>
+        <th class="center" scope="col">
+          Data carico*
+        </th>
+        <th class="center" scope="col">
+          Data scarico*
+        </th>
+      </tr>
+      <!--@@blkElencoMacchine -->
+      <!--@@blkPresoDaDb -->
+      <tr>   
+        <td>
+          <input type="hidden" id="idMacchina" name="idMacchina" value="$$idMacchina"/>
+        </td>
+        <td>
+          $$descUte
+          <input type="hidden" id="idUte" name="idUte" value="$$idUte"/>
+        </td>
+        <td>
+          $$descGenere
+          <input type="hidden" id="idGenereMacchina" name="idGenereMacchina" value="$$idGenereMacchina"/>
+        </td>
+        <td>
+          $$descCategoria
+          <input type="hidden" id="idCategoria" name="idCategoria" value="$$idCategoria"/>
+        </td>
+        <td>
+          $$annoCostruzione
+          <input type="hidden" id="annoCostruzione" name="annoCostruzione" value="$$annoCostruzione"/>
+        </td>
+        <td>
+          $$descMarca
+          <input type="hidden" id="idMarca" name="idMarca" value="$$idMarca"/>
+        </td>
+        <td>
+          $$modello
+          <input type="hidden" id="modello" name="modello" value="$$modello"/>
+        </td>
+        <td>
+          $$matricolaTelaio
+          <input type="hidden" id="matricolaTelaio" name="matricolaTelaio" value="$$matricolaTelaio"/>
+        </td>
+        <td>
+          $$descTipoFormPossesso
+          <input type="hidden" id="idTipoFormaPossesso" name="idTipoFormaPossesso" value="$$idTipoFormaPossesso"/>
+        </td>
+        <td>
+          $$percentualePossesso
+          <input type="hidden" id="percentualePossesso" name="percentualePossesso" value="$$percentualePossesso"/>
+        </td>
+        <td>
+          $$dataCarico
+          <input type="hidden" id="dataCarico" name="dataCarico" value="$$dataCarico"/>
+        </td>
+        <td>
+          <input name="dataScarico" type="text" class="textmedio"
+            id="dataScarico" value="$$dataScarico" maxlength="10" />
+          &nbsp;gg/mm/aaaa&nbsp;$$err_dataScarico
+        </td>                              
+      </tr>
+      <!--@@blkPresoDaDb -->
+      <!--@@blkInseritoMano -->
+      <tr>   
+        <td>
+          <a href="javascript:modificaRigaDati('elimina', '$$idRiga')" class="cancella" title="elimina soggetto"></a>
+          $$err_generico
+          <input type="hidden" id="idMacchina" name="idMacchina" value=""/>
+        </td>
+        <td>
+          <select name="idUte" id="idUte">
+            <option value=""></option>
+            <!-- @@blkElencoUte -->
+            <option value="$$idUte" $$selected>
+              $$descUte
+            </option>
+            <!-- @@blkElencoUte -->
+          </select>
+          $$err_idUte
+        </td>
+        <td>
+          <select name="idGenereMacchina" id="idGenereMacchina"
+             onchange="javascript:modificaComboCategoria('$$idRiga');modificaComboMarca('$$idRiga');" >
+            <option value="" ></option>
+            <!-- @@blkTipoGenereMacchina -->
+            <option value="$$idGenereMacchina" $$selected>
+              $$descGenere
+            </option>
+            <!-- @@blkTipoGenereMacchina -->
+          </select>
+          $$err_idGenereMacchina
+        </td>
+        <td>
+          <div id="idCategoriaDiv$$idRiga">
+            <select name="idCategoria" id="idCategoria" >
+              <!-- @@blkTipoCategoria -->
+              <option value="$$idCategoria" $$selected>
+                $$descCategoria
+              </option>
+              <!-- @@blkTipoCategoria -->
+              <!-- @@blkNoTipoCategoria -->
+              <option value="" ></option>
+              <!-- @@blkNoTipoCategoria -->
+            </select>
+            $$err_idCategoria                    
+          </div>
+        </td>
+        <td>
+          <input type="text" name="annoCostruzione" id="annoCostruzione" class="textbreve"
+            value="$$annoCostruzione" />
+          $$err_annoCostruzione
+        </td>
+        <td>
+          <div id="idMarcaDiv$$idRiga">  
+	          <select name="idMarca" id="idMarca" >
+	            <option value="" ></option>
+	            <!-- @@blkTipoMarca -->
+	            <option value="$$idMarca" $$selected>
+	              $$descMarca
+	            </option>
+	            <!-- @@blkTipoMarca -->
+	          </select>
+	          $$err_idMarca
+	        </div>
+        </td>
+        <td>
+          <input type="text" id="modello"
+            name="modello" size="30" maxlength="30"
+            class="text" value="$$modello" />
+          $$err_modello
+        </td>
+        <td>
+          <input type="text" id="matricolaTelaio"
+            name="matricolaTelaio" size="30" maxlength="30"
+            class="text" value="$$matricolaTelaio" />
+          $$err_matricolaTelaio
+        </td>
+        <td>
+          <select name="idTipoFormaPossesso" id="idTipoFormaPossesso" >
+            <option value="" ></option>
+            <!-- @@blkTipoFormaPossesso -->
+            <option value="$$idTipoFormaPossesso" $$selected>
+              $$descTipoFormPossesso
+            </option>
+            <!-- @@blkTipoFormaPossesso -->
+          </select>
+          $$err_idTipoFormaPossesso      
+        </td>
+        <td>
+          <input name="percentualePossesso" type="text"
+            class="textbreve" id="percentualePossesso"
+            value="$$percentualePossesso" maxlength="3" />
+          $$err_percentualePossesso
+        </td>
+        <td>
+          <input name="dataCarico" type="text" class="textmedio"
+            id="dataCarico" value="$$dataCarico" maxlength="10" />
+          &nbsp;gg/mm/aaaa&nbsp;$$err_dataCarico
+        </td>
+        <td>
+          $$dataScarico
+          <input type="hidden" id="dataScarico" name="dataScarico" value="$$dataScarico"/>
+        </td>                              
+      </tr>
+      <!--@@blkInseritoMano -->              
+      <!--@@blkElencoMacchine -->
+    </table>
+    
+    <!-- @@blkNoElenco -->
+    <p class="errore">
+      $$messaggioErrore
+    </p>
+    <!-- @@blkNoElenco -->
+       
+          
+          

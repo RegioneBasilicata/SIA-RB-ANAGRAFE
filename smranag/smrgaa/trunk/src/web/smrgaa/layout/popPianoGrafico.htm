@@ -1,0 +1,41 @@
+$$head
+<script type="text/javascript" src="../js/checktext.js"></script>
+<script type="text/javascript">
+	// Funzione che specifica l'operazione selezionata ed effettua il submit
+	// del form
+	function conferma() {
+		document.forms[0].aggiungi.value = 'aggiungi';
+		document.forms[0].submit();
+	}
+</script>
+</head>
+<body id="popup">
+	<form id="" name="form1" method="post" action="../layout/popPianoGrafico.htm">
+		<input type="hidden" name="idDichiarazioneConsistenza" value="$$idDichiarazioneConsistenza" />
+		<input type="hidden" name="idAccessoPianoGrafico" value="$$idAccessoPianoGrafico" />
+
+		<!-- CORPO -->		
+		<div id="contenutopop">
+		  <!-- @@blkErrore -->
+	    <p class="errore">
+	      $$messaggioErrore
+	    </p>
+	    <!-- @@blkErrore -->
+			<div class="pulsanti">
+				<div class="des">
+					<a href="javascript:window.close()" class="inputPulsante annulla">chiudi</a> 
+					<span class="alt">&nbsp;/&nbsp;</span>
+				</div>
+				<div class="sin">
+					<a href="javascript:conferma();">conferma</a> <span class="alt">&nbsp;/&nbsp;</span>
+				</div>
+			</div>
+		</div>
+		</div>
+		
+    
+		
+		
+	</form>
+</body>
+</html>

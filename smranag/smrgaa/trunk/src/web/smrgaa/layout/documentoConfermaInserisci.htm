@@ -1,0 +1,280 @@
+$$head
+  <script language="javascript1.2" src="../js/stampaMod.js" type="text/javascript"></script>
+  <script language="javascript1.2" src="../js/checktext.js" type="text/javascript"></script>
+  <script type="text/javascript" src="../js/messaggistica.js"></script>
+  <script language="javascript1.2" type="text/javascript">
+  
+  
+  var hWin;
+   
+  //forza la chiusura dell pop up ad esempio se indiero o si rintre senza chiudere
+  function chiudiPopup()
+  {
+    if ( hWin != null)
+    {
+      hWin.close();
+    } 
+  }
+  
+  
+  
+  function goTo(url) 
+  {
+    document.form1.action = url;
+    document.form1.submit();
+  }
+  
+  
+  function gestioneStampeInserisci()
+  {
+    
+    if(document.form1.flagIstanzaRiesame.value=='S')
+    {
+      stampaMod(document.stampaRiesame);
+    }
+    else
+    {
+      document.form1.stampaConfermaInserisciPdf.value = '';    
+      document.form1.origineStampaProtocollo.value = 'documentoConfermaInserisci';        
+      goTo('../layout/stampaProtocollo.htm', document.form1);
+    }
+  }
+  
+  
+  function stampaProtocolloImmediata()
+  {
+    stampaModDoc(document.forms[0]);
+  }
+    
+  //Stama protocollo immediata senza passare attraverso la pagina intermedia
+  function stampaModDoc(form) {
+    var d = new Date();
+    var unique = (d.getUTCHours()*60+d.getUTCMinutes())*60+d.getUTCSeconds();
+    var target = "stampa"+unique;
+    popCentro("",645,500,target);
+    
+    var target1 = document.form1.target;
+    var action1 = document.form1.action;
+    document.form1.target = target;
+    document.form1.action = '../layout/stampaProtocollo.htm';
+    document.form1.stampaConfermaInserisciPdf.value='stampaConfermaInserisciPdf';
+    document.form1.submit();
+    document.form1.target = target1;
+    document.form1.action = action1;
+    return;
+  }
+  
+  
+  </script>
+</head>
+<body id="homeIndice" onLoad="$$stampaProtocollo;$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+  <form id="form1" name="form1" method="post" action="../layout/documentoConfermaInserisci.htm" onunload="javascript:chiudiPopup()" >
+    <input type="hidden" name="pageFrom" value="$$pageFrom" />
+    <input type="hidden" name="idDocumento" value="$$idDocumento" />
+    <input type="hidden" name="origineStampaProtocollo" value="" id="origineStampaProtocollo" />
+    <input type="hidden" name="stampaConfermaInserisciPdf" value="" id="stampaConfermaInserisciPdf" />
+    <input type="hidden" id="flagIstanzaRiesame" name="flagIstanzaRiesame" value="$$flagIstanzaRiesame" />
+    <input type="hidden" id="regimeDocumentoConfermaInserisci" name="regimeDocumentoConfermaInserisci" value="regimeDocumentoConfermaInserisci" />
+    <div id="pagina" class="colonnaUnica">
+      <!-- INTESTAZIONE -->
+      <div id="intestazione##pathProvincia">
+        <!--intestazione-->
+        $$header
+        <!-- menu di navigazione-->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li>  <a href="../layout/index.htm" title="Torna alla pagina principale">home</a>  </li>
+              <li class="attivo">gestione anagrafe aziende</li>
+              <li>  <a href="#" title="contatti">contatti</a>  </li>
+              <li>  <a href="#" title="help">help</a>  </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr/>
+      <div style="clear:left">  </div>
+      <!-- CORPO -->
+      <div id="corpo">
+        <div id="Utente">
+          <div id="datiUtente">
+            <strong>utente:</strong>
+            $$utente
+            &nbsp;&nbsp;
+            <strong>ente:</strong>
+            $$ente
+          </div>
+          <div id="chiudisessione">
+            <a href="javascript: logout();">chiudi sessione</a>
+          </div>
+        </div>
+        <hr/>
+        <!--PRIMA COLONNA -->
+        <h3>Gestione Anagrafe Aziende&nbsp;&gt;&nbsp;Documenti&nbsp;&gt;&nbsp;Inserisci
+          <span class="helpFuori">
+            <a href="#">
+              <span class="alt">[help]</span>
+            </a>
+          </span>
+        </h3>
+        <hr/>
+        <div class="box">
+          <div class="menuSX1">
+            <ul>
+              <!-- @@blkElencoAziendeRapLegale -->
+                <li><a href="../layout/elencoAziendeRapLegale.htm">Elenco Aziende</a></li>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <!-- @@blkRicercaAzienda-->
+                <li><a href="../layout/ricerca.htm">Ricerche</a></li>
+              <!-- @@blkRicercaAzienda-->
+              <!-- @@blkNuova -->
+              <li>  <a href="../layout/nuovaAziendaAnagrafica.htm">Nuova Azienda</a>  </li>
+              <!-- @@blkNuova -->
+              <!-- @@blkNuovaIscrizione -->
+		          <li>
+		            <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+		          </li>
+		          <!-- @@blkNuovaIscrizione -->
+            </ul>
+          </div>
+          <div class="menuSX">
+            <ul>
+              <li>  <a href="../layout/anagrafica.htm">Anagrafica</a>  </li>
+              <!-- @@blkAziendeCollegate -->
+	          			<li>
+	          					<a href="../layout/aziendeCollegate.htm">$$aziendeCollegateLabel</a>
+	          			</li>
+	          	<!-- @@blkAziendeCollegate -->
+	          <!-- @@blkSincronizzaFascicolo -->
+               <li>
+               	<a href="../layout/sincronizzaFascicolo.htm">Sincronizza fascicolo</a>
+               </li>
+              <!-- @@blkSincronizzaFascicolo -->	
+              <!-- @@blkSoggettiCollegati -->
+              <li>  <a href="../layout/contitolari.htm">Soggetti collegati</a>  </li>
+              <!-- @@blkSoggettiCollegati -->
+              <!-- @@blkContiCorrenti -->
+              <li><a href="../layout/conti_correnti.htm">Conti Correnti</a></li>
+              <!-- @@blkContiCorrenti -->
+              <!-- @@blkUnitaProduttive -->
+              <li>  <a href="../layout/sedi.htm">Unit&agrave; produttive</a>  </li>
+              <!-- @@blkUnitaProduttive -->
+              <!-- @@blkTerreni -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniParticellareElenco.htm">Terreni</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		            <a href="../layout/riepiloghi.htm">Terreni</a>
+		            <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkTerreni -->
+		          <!-- @@blkUnitaVitate -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniUnitaArboreeElenco.htm">Unit&agrave; Vitate</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		              <a href="../layout/riepiloghiUnitaArboree.htm">Unit&agrave; Vitate</a>
+		              <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkUnitaVitate -->
+              <!-- @@blkFabbricati -->
+              <li>  <a href="../layout/fabbricati.htm">Fabbricati e Strutture</a> </li>
+              <!-- @@blkFabbricati -->
+              <!-- @@blkAllevamenti -->
+              <li>  <a href="../layout/allevamenti.htm">Allevamenti</a>  </li>
+              <!-- @@blkAllevamenti -->
+              <!-- @@blkManodopera -->
+              <li>  <a href="../layout/manodopera.htm">Manodopera</a>  </li>
+              <!-- @@blkManodopera -->
+              <!-- @@blkMotoriAgricoli -->
+              <li>  <a href="../layout/motori_agricoli_incarico.htm">Macchine agricole</a>  </li>
+              <!-- @@blkMotoriAgricoli -->
+              <!-- @@blkDiritti -->
+              <li><a href="../layout/diritti.htm">Diritti di produzione</a></li>
+              <!-- @@blkDiritti -->
+              <!-- @@blkAttestazioni -->
+              	<li><a href="../layout/attestazioniDettaglio.htm">Dichiarazioni</a></li>
+              <!-- @@blkAttestazioni -->
+              <!-- @@blkDichiarazioniConsistenza -->
+              <li><a href="../layout/dichiarazioneConsistenza.htm">Validazioni</a></li>
+              <!-- @@blkDichiarazioniConsistenza -->
+              <!-- @@blkDocumenti -->
+                <li>
+                  <a href="javascript: goTo('../layout/documentiElenco.htm', document.form1);" class="on">Documenti</a>
+                  <ul>
+                    <li><a href="#">inserisci</a></li>
+                  </ul>
+                </li>
+              <!-- @@blkDocumenti -->
+              <!-- @@blkFascicoloDematerializzato -->
+		          <li>
+		            <a href="../layout/fascicoloDematerializzato.htm">Fascicolo<br>elettronico</a>
+		          </li>
+		          <!-- @@blkFascicoloDematerializzato --> 
+              <!-- @@blkGestioneNotifiche -->
+              <li><a href="../layout/notifiche.htm">Notifiche</a></li>
+              <!-- @@blkGestioneNotifiche -->
+              <!-- @@blkComunicazione10R -->
+                <li>
+                  <a href="../layout/comunicazione10R_dettaglio.htm">Comunicazione 10/R</a>
+                </li>
+              <!-- @@blkComunicazione10R -->
+              <!-- @@blkPratiche -->
+              <li><a href="../layout/pratiche.htm">Pratiche</a></li>
+              <!-- @@blkPratiche -->
+              <!-- @@blkStampaFascicolo -->
+              <li><a href="../layout/scelta_stampa.htm">Stampe</a></li>
+              <!-- @@blkStampaFascicolo -->
+			  <li><a href="../layout/strumenti.htm">Strumenti</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr/>
+        <!-- SECONDA COLONNA -->
+        <div id="contenuto">
+          <div id="intesta">
+            <p class="$$aziendaIntestazione" title="$$tooltipIntestazione" >
+              $$CUAAIntestazione  $$denominazioneIntestazione
+            </p>
+          </div>
+          <!-- @@blkDocumentoOk -->
+            <p>Il documento &egrave; stato repertoriato con il numero $$numeroProtocollo, data $$dataProtocollo .</p>
+          <!-- @@blkDocumentoOk -->
+          <!-- @@blkDocumentoKo -->
+            <p class="errore">$$messaggioErrore</p>
+          <!-- @@blkDocumentoKo -->
+          
+          <p>Si vogliono inserire allegati al documento prima di proseguire?</p>
+          <div class="pulsanti">
+            <div class="sin">
+              <input type="button" name="stampa" 
+                value="stampa" onClick="javascript:gestioneStampeInserisci();" class="inputPulsante"/>
+            </div>
+          </div>
+            <div class="pulsanti">          
+          <div class="sin">
+            <input type="button" value="       SI        " name="conferma" class="inputPulsante" onClick="javascript:goTo('../layout/documentoAllegati.htm')"/>
+          </div>
+          <div class="des">
+            <input type="button" value="       NO        " name="annulla" class="inputPulsante" onClick="javascript: goTo('../layout/documentiElenco.htm')"/>
+          </div></div>
+                    
+        </div>
+              
+      </div>
+      <hr/>
+      </form>
+      <form name="stampaRiesame" method="post"
+		    action="../servlet/StampaIstanzaRiesameServlet">
+		    <input type="hidden" name="idDocumento" value="$$idDocumento" />
+		    <div id="formRiesame"></div>
+		  </form>
+      $$footer
+
+
+

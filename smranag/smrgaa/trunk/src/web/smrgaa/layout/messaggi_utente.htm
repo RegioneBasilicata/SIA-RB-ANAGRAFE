@@ -1,0 +1,184 @@
+$$head
+</head>
+<script type="text/javascript" src="../js/util.js"></script>
+<script type="text/javascript" src="../js/checktext.js"></script>
+
+<script type="text/javascript">
+
+	function dettaglio(id) {
+		var oldAction = document.form1.action;
+		document.form1.action = 'dett_messaggi_utente.htm';
+		document.form1.idElencoMessaggi.value = id;
+		document.form1.submit();
+		document.form1.action = oldAction;
+		return;
+	}
+</script>
+<script type="text/javascript" src="../js/messaggistica.js"></script>
+<body id="homeIndice"	onload="$$err_error; systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+	<div id="pagina" class="colonnaUnica">
+		<!-- INTESTAZIONE -->
+      <div id="intestazione##pathProvincia">
+        $$header
+        <!-- menu di navigazione-->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li><a href="../layout/index.htm"
+                title="Torna alla pagina principale">home</a></li>
+              <li class="attivo">gestione anagrafe aziende</li>
+              <li><a href="#" title="contatti">contatti</a></li>
+              <li><a href="#" title="help">help</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div style="clear: left"></div>
+      <!-- CORPO -->
+      <div id="corpo">
+        <div id="Utente">
+          <div id="datiUtente">
+            <strong>utente: </strong> $$utente &nbsp; &nbsp; <strong>ente:
+            </strong> $$ente
+          </div>
+          <div id="chiudisessione">
+            <a href="javascript: logout();">chiudi sessione</a>
+          </div>
+        </div>
+        <hr />
+			<!--PRIMA COLONNA -->
+        <h3>
+          Elenco messaggi del Sistema Informativo Agricoltura della Regione TOBECONFIG <span class="helpFuori"> <a href="#"> <span
+              class="alt"> [help]</span>
+          </a>
+          </span>
+        </h3>
+        <hr />
+        <div class="box">
+	        <div class="menuSX1">
+	          <ul>
+	            <!-- @@blkElencoAziendeRapLegale -->
+	            <li><a href="../layout/elencoAziendeRapLegale.htm">Elenco
+	                Aziende</a></li>
+	            <!-- @@blkElencoAziendeRapLegale -->
+	            <!-- @@blkRicercaAzienda-->
+	            <li><a href="../layout/ricerca.htm">Ricerca Azienda</a></li>
+	            <!-- @@blkRicercaAzienda-->
+	            <!--@@blkRicercaTerreno-->
+	            <li><a href="../layout/ricercaTerreno.htm">Ricerca
+	                Terreno</a></li>
+	            <!--@@blkRicercaTerreno-->
+	            <!--@@blkRicercaPersona-->
+	            <li><a href="../layout/ricercaPersona.htm">Ricerca
+	                Persona</a></li>
+	            <!--@@blkRicercaPersona-->
+	            <!--@@blkRicercaNotifica-->
+	            <li><a href="../layout/ricercaNotifica.htm">Ricerca
+	                Notifiche</a></li>
+	            <!--@@blkRicercaNotifica-->
+	            <!--@@blkVariazioniAzienda-->
+	            <li><a href="../layout/ricercaVariazioni.htm">Ricerca
+	                Variazioni</a></li>
+	            <!--@@blkVariazioniAzienda-->
+	            <!--@@blkRicercaRichiesta-->
+	            <li><a href="../layout/ricercaRichiesta.htm">Ricerca 
+	                richiesta azienda</a></li>
+	            <!--@@blkRicercaRichiesta-->
+	            <!--@@blkNuova-->
+	            <li><a href="../layout/nuovaAziendaAnagrafica.htm">Nuova
+	                Azienda</a></li>
+	            <!--@@blkNuova-->
+	            <!-- @@blkNuovaIscrizione -->
+	            <li>
+	              <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+	            </li>
+	            <!-- @@blkNuovaIscrizione -->
+	            <!--@@blkNuovaParticella-->
+	            <li><a href="../layout/inserisciTerreno.htm">Nuova
+	                Particella</a></li>
+	            <!--@@blkNuovaParticella-->
+	            <!--@@blkServizi-->
+	            <li><a href="../layout/servizi.htm">Servizi</a></li>
+	            <!--@@blkServizi-->
+	            <!--@@blkReportistica-->
+	            <li><a href="../layout/elencoRicerche.htm">Reportistica</a>
+	            </li>
+	            <!--@@blkReportistica-->
+	            <!--@@blkEstrazioneDati-->
+	            <li><a href="../layout/macroCategoriaReport.htm">Estrazione
+	                dati</a></li>
+	            <!--@@blkEstrazioneDati-->
+	            <li><a href="../layout/elencoManuali.htm">Scarico
+	                Documentazione Tecnica</a></li>
+	          </ul>
+	        </div>				
+					<div class="menuSX">
+						<ul>
+							<li><a href="#">Messaggi utente</a></li>
+						</ul>
+					</div>
+				</div>
+				<hr />
+
+			<div id="contenuto">
+
+				<form action="messaggi_utente.htm" method="post" name="form1">
+					<!-- Campo hidden di appoggio per il ritorno sul folder per revoca delega -->
+					<input type="hidden" name="funzione" value="" /> <input
+						type="hidden" name="idElencoMessaggi" value="" /> <input
+						type="hidden" name="chiamante" value="messaggi_utente.htm" />
+
+					<!--@@blkNoData-->
+					<p class="errore">Nessun messaggio presente</p>
+					<!--@@blkNoData-->
+
+
+					<!--@@blkData-->
+					<table summary="tabella messaggi di sistema da leggere">
+						<caption>Elenco messaggi rivolti agli utenti del Sistema
+							Informativo Agricoltura della Regione TOBECONFIG</caption>
+						<tr>
+							<th class="center">Titolo<br /></th>
+							<th class="center">Data inserimento</th>
+							<th class="center">Allegati</th>
+						</tr>
+						<!--@@blktitoloDaLeggere-->
+						<tr>
+							<th class="center" colspan="3">Messaggi da leggere</th>
+						</tr>
+						<!--@@blktitoloDaLeggere-->
+						<!--@@blkMessaggioDaLeggere-->
+						<tr>
+							<td><a href="javascript:dettaglio('$$idMessaggio');"
+								style="">$$titolo</a></td>
+							<td>$$dataInserimento</td>
+							<td>$$flagAllegati</td>
+						</tr>
+						<!--@@blkMessaggioDaLeggere-->
+						<!--@@blktitoloLetti-->
+						<tr>
+							<th class="center" colspan="3">Messaggi letti</th>
+						</tr>
+						<!--@@blktitoloLetti-->
+						<!--@@blkMessaggioLetto-->
+						<tr>
+							<td><a href="javascript:dettaglio('$$idMessaggio');">$$titolo</a></td>
+							<td>$$dataInserimento</td>
+							<td>$$flagAllegati</td>
+						</tr>
+						<!--@@blkMessaggioLetto-->
+					</table>
+					<p class="nota">In rosso i messaggi con lettura obbligatoria;
+						per visualizzare un messaggio fare click sul titolo</p>
+					<!--@@blkData-->
+				</form>
+				<br> <br> <br> <br>
+			</div>
+		</div>
+		<hr />
+		<!-- PIE' DI PAGINA -->
+		$$footer

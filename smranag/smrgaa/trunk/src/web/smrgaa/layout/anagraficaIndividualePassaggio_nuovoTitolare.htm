@@ -1,0 +1,774 @@
+$$head
+  <script src="../js/checktext.js" type="text/javascript"></script>
+  <script type="text/javascript" src="../js/messaggistica.js"></script>
+  <script type="text/javascript">
+
+    function newWindowComuneAzienda(mypage, myname, w, h, scroll,comune, provincia) {
+      var winl = (screen.width - w) / 2;
+      var wint = (screen.height - h) / 2;
+      if(comune == '' && provincia == '') {
+        alert('Inserire almeno una parte del comune o la provincia');
+      }
+      else if(!mappaOggetti(comune) || !mappaOggetti(provincia)) {
+      }
+      else {
+        winprops =    'height='+h+',width='+w+',top='+wint+',left='+winl+',scrollbars='+scroll+',resizable';
+        win = window.open('', myname, winprops);
+        if(parseInt(navigator.appVersion) >= 4) {
+          win.window.focus();
+        }
+        document.form1.comune.value = comune;
+        document.form1.provincia.value = provincia;
+        document.form1.obiettivo.value = 'insAzienda';
+        document.form1.provenienza.value = '';
+        var target1 = document.form1.target;
+        var action1 = document.form1.action;
+        document.form1.target = myname;
+        document.form1.action = mypage;
+        document.form1.submit();
+        document.form1.target = target1;
+        document.form1.action = action1;
+      }
+    }
+
+    function newWindowStatoNascita(mypage, myname, w, h, scroll,stato) {
+      var winl = (screen.width - w) / 2;
+      var wint = (screen.height - h) / 2;
+
+      if(!mappaOggetti(stato)) {
+      }
+      else {
+        winprops =    'height='+h+',width='+w+',top='+wint+',left='+winl+',scrollbars='+scroll+',resizable';
+        win = window.open('', myname, winprops);
+        if(parseInt(navigator.appVersion) >= 4) {
+          win.window.focus();
+        }
+        document.form1.stato.value = stato;
+        document.form1.obiettivo.value = 'statoNascita';
+        var target1 = document.form1.target;
+        var action1 = document.form1.action;
+        document.form1.target = myname;
+        document.form1.action = mypage;
+        document.form1.submit();
+        document.form1.target = target1;
+        document.form1.action = action1;
+      }
+    }
+
+    // Funzione per disabilitare i campi stato estero e città relativi alla "nascita"
+    function disabilitaStatoCittaNascita(provinciaNascita,luogoNascita,statoEsteroNascita,cittaNascita) {
+      if(provinciaNascita != '' || luogoNascita != '') {
+        document.form1.nascitaStatoEstero.disabled = true;
+        document.form1.cittaNascita.disabled = true;
+        provinciaNascita.disabled = false;
+        luogoNascita.disabled = false;
+      }
+      else if(statoEsteroNascita != '' || cittaNascita != '') {
+        document.form1.nascitaProv.disabled = true;
+        document.form1.descNascitaComune.disabled = true;
+        document.form1.nascitaStatoEstero.disabled = false;
+        document.form1.cittaNascita.disabled = false;
+      }
+      else {
+        document.form1.nascitaProv.disabled = false;
+        document.form1.descNascitaComune.disabled = false;
+        document.form1.nascitaStatoEstero.disabled = false;
+        document.form1.cittaNascita.disabled = false;
+      }
+    }
+
+    function newWindowProvAndCom(mypage, myname, w, h, scroll,provincia,comune) {
+      var winl = (screen.width - w) / 2;
+      var wint = (screen.height - h) / 2;
+      if(provincia == '' && comune == '') {
+        alert('Inserire una provincia o un comune per effettuare la ricerca');
+      }
+      else if(!mappaOggetti(provincia) || !mappaOggetti(comune)) {
+      }
+      else {
+        winprops =    'height='+h+',width='+w+',top='+wint+',left='+winl+',scrollbars='+scroll+',resizable';
+        win = window.open('', myname, winprops);
+        if(parseInt(navigator.appVersion) >= 4) {
+          win.window.focus();
+        }
+        document.form1.provincia.value = provincia;
+        document.form1.comune.value = comune
+        document.form1.obiettivo.value = 'insAziendaProvAndCom';
+        document.form1.provenienza.value = 'nonEstinto';
+        var target1 = document.form1.target;
+        var action1 = document.form1.action;
+        document.form1.target = myname;
+        document.form1.action = mypage;
+        document.form1.submit();
+        document.form1.target = target1;
+        document.form1.action = action1;
+      }
+    }
+
+    function cessa() {
+      var lastAction = document.form1.action;
+      document.form1.action = "../layout/anagrafica.htm";
+      document.form1.cessazione.value="true";
+      document.form1.submit();
+      document.form1.cessazione.value="";
+      document.form1.action = lastAction;
+    }
+
+    function newWindowStatoAzienda(mypage, myname, w, h, scroll,stato) {
+      var winl = (screen.width - w) / 2;
+      var wint = (screen.height - h) / 2;
+
+      if(!mappaOggetti(stato)) {
+      }
+      else {
+        winprops =    'height='+h+',width='+w+',top='+wint+',left='+winl+',scrollbars='+scroll+',resizable';
+        win = window.open('', myname, winprops);
+        if(parseInt(navigator.appVersion) >= 4) {
+          win.window.focus();
+        }
+        document.form1.stato.value = stato;
+        document.form1.obiettivo.value = 'insAziendaStato';
+        var target1 = document.form1.target;
+        var action1 = document.form1.action;
+        document.form1.target = myname;
+        document.form1.action = mypage;
+        document.form1.submit();
+        document.form1.target = target1;
+        document.form1.action = action1;
+      }
+    }
+
+    function newWindowDomicilio(mypage, myname, w, h, scroll,provincia,comune) {
+      var winl = (screen.width - w) / 2;
+      var wint = (screen.height - h) / 2;
+      if(provincia == '' && comune == '') {
+        alert('Inserire una provincia o un comune per effettuare la ricerca');
+      }
+      else if(!mappaOggetti(provincia) || !mappaOggetti(comune)) {
+      }
+      else {
+        winprops =    'height='+h+',width='+w+',top='+wint+',left='+winl+',scrollbars='+scroll+',resizable';
+        win = window.open('', myname, winprops);
+        if(parseInt(navigator.appVersion) >= 4) {
+          win.window.focus();
+        }
+        document.form1.provincia.value = provincia;
+        document.form1.comune.value = comune
+        document.form1.obiettivo.value = 'domicilio';
+        document.form1.provenienza.value = 'nonEstinto';
+        var target1 = document.form1.target;
+        var action1 = document.form1.action;
+        document.form1.target = myname;
+        document.form1.action = mypage;
+        document.form1.submit();
+        document.form1.target = target1;
+        document.form1.action = action1;
+      }
+    }
+
+    function onChangeCombo() {
+      document.form1.operazione.value = "cambioTitoloStudio";
+      document.form1.submit();
+    }
+
+    function newWindowStatoDomicilio(mypage, myname, w, h, scroll,stato) {
+      var winl = (screen.width - w) / 2;
+      var wint = (screen.height - h) / 2;
+
+      if(!mappaOggetti(stato)) {
+      }
+      else {
+        winprops =    'height='+h+',width='+w+',top='+wint+',left='+winl+',scrollbars='+scroll+',resizable';
+        win = window.open('', myname, winprops);
+        if(parseInt(navigator.appVersion) >= 4) {
+          win.window.focus();
+        }
+        document.form1.stato.value = stato;
+        document.form1.obiettivo.value = 'statoDomicilio';
+        var target1 = document.form1.target;
+        var action1 = document.form1.action;
+        document.form1.target = myname;
+        document.form1.action = mypage;
+        document.form1.submit();
+        document.form1.target = target1;
+        document.form1.action = action1;
+      }
+    }
+
+  </script>
+</head>
+<body id="homeIndice" onload="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+  <form id="form1" name="form1" method="post" action="../layout/anagraficaIndividualePassaggio_nuovoTitolare.htm">
+    <div id="pagina" class="colonnaUnica">
+      <input type="hidden" id="provenienza" name="provenienza" value="$$provenienza"/>
+      <input type="hidden" id="operazione" name="operazione" value="$$operazione"/>
+      <input type="hidden" id="comune" name="comune" value="$$comune"/>
+      <input type="hidden" id="provincia" name="provincia" value="$$provincia"/>
+      <input type="hidden" id="obiettivo" name="obiettivo" value="$$obiettivo"/>
+      <input type="hidden" id="cessazione" name="cessazione" value="$$cessazione"/>
+      <!-- INTESTAZIONE -->
+      <div id="intestazione##pathProvincia">
+        $$header
+        <!-- menu di navigazione-->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li><a href="../layout/index.htm" title="Torna alla pagina principale">home</a></li>
+              <li class="attivo">gestione anagrafe aziende</li>
+              <li><a href="#" title="contatti">contatti</a></li>
+              <li><a href="#" title="help">help</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr/>
+      <div style="clear:left">  </div>
+      <!-- CORPO -->
+      <div id="corpo">
+        <div id="Utente">
+          <div id="datiUtente">
+            <strong>utente:</strong>
+            $$utente
+            &nbsp;
+            &nbsp;
+            <strong>ente:</strong>
+            $$ente
+          </div>
+          <div id="chiudisessione">
+            <a href="javascript: logout();">chiudi sessione</a>
+          </div>
+        </div>
+        <hr/>
+        <!--PRIMA COLONNA -->
+        <h3>Gestione Anagrafe Aziende&nbsp;&gt;&nbsp;Anagrafica&nbsp;&gt;&nbsp;Subentro nuovo titolare
+          <span class="helpFuori">
+            <a href="#">
+              <span class="alt">[help]</span>
+            </a>
+          </span>
+        </h3>
+        <hr/>
+        <div class="box">
+          <div class="menuSX1">
+            <ul>
+              <!-- @@blkElencoAziendeRapLegale -->
+                <li><a href="../layout/elencoAziendeRapLegale.htm">Elenco Aziende</a></li>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <!-- @@blkRicercaAzienda-->
+                <li><a href="../layout/ricerca.htm">Ricerche</a></li>
+              <!-- @@blkRicercaAzienda-->
+              <!-- @@blkNuova -->
+              <li><a href="../layout/nuovaAziendaAnagrafica.htm">Nuova Azienda</a></li>
+              <!-- @@blkNuova -->
+              <!-- @@blkNuovaIscrizione -->
+		          <li>
+		            <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+		          </li>
+		          <!-- @@blkNuovaIscrizione -->
+            </ul>
+          </div>
+          <div class="menuSX">
+            <ul>
+              <li>
+                <a href="../layout/anagrafica.htm" class="on">Anagrafica</a>
+                <ul>
+                  <li>
+                    <a href="../layout/anagrafica.htm">dettaglio</a>
+                  </li>
+                  <li><a href="../layout/fonti.htm">fonti certificate</a></li>
+                  <!--@@linkModifica-->
+                    <li>
+                      <a href="../layout/anagrafica_mod.htm">modifica</a>
+                    </li>
+                  <!--@@linkModifica-->
+                  <!--@@linkCessa-->
+                    <li>
+                      <a href="javascript:cessa()">cessazione</a>
+                    </li>
+                  <!--@@linkCessa-->
+                    <li>
+                      <a href="#" class="etichetta">subentro nuovo titolare</a>
+                    </li>
+                  <!--@@linkCambioRappresentante-->
+                    <li>
+                      <a href="../layout/anagraficaSocieta_cambiaRappresentante.htm">cambio rappr. legale</a>
+                    </li>
+                  <!--@@linkCambioRappresentante-->
+                  <!--@@linkDichiarazioneInsediamento-->
+                    <li>
+                      <a href="../layout/insediamento.htm">dichiarazione insediamento</a>
+                    </li>
+                  <!--@@linkDichiarazioneInsediamento-->
+                  <!--@@linkGestoreFascicolo-->
+                    <li>
+                      <a href="../layout/gestoreFascicolo.htm">gestore fascicolo</a>
+                    </li>
+                  <!--@@linkGestoreFascicolo-->
+                  <!--@@linkRevocaDelega-->
+                    <li>
+                      <a href="../layout/revocaDelega.htm">revoca mandato</a>
+                    </li>
+                  <!--@@linkRevocaDelega-->
+                  <!--@@blkStoricoAzienda-->
+                  <li>
+                    <a href="../layout/listaStoricoAzienda.htm">storico azienda</a>
+                  </li>
+                  <!--@@blkStoricoAzienda-->
+                </ul>
+              </li>
+              <!-- @@blkAziendeCollegate -->
+                                  <li>
+                                                  <a href="../layout/aziendeCollegate.htm">$$aziendeCollegateLabel</a>
+                                  </li>
+                    <!-- @@blkAziendeCollegate -->
+              <!-- @@blkSincronizzaFascicolo -->
+               <li>
+               	<a href="../layout/sincronizzaFascicolo.htm">Sincronizza fascicolo</a>
+               </li>
+              <!-- @@blkSincronizzaFascicolo -->
+              <!-- @@blkSincronizzaFascicolo -->
+               <li>
+               	<a href="../layout/sincronizzaFascicolo.htm">Sincronizza fascicolo</a>
+               </li>
+              <!-- @@blkSincronizzaFascicolo -->      
+              <!-- @@blkSoggettiCollegati -->
+                <li>
+                  <a href="../layout/contitolari.htm">Soggetti collegati</a>
+                </li>
+              <!-- @@blkSoggettiCollegati -->
+              <!-- @@blkContiCorrenti -->
+              <li><a href="../layout/conti_correnti.htm">Conti Correnti</a></li>
+              <!-- @@blkContiCorrenti -->
+              <!-- @@blkUnitaProduttive -->
+              <li><a href="../layout/sedi.htm">Unit&agrave; produttive</a></li>
+              <!-- @@blkUnitaProduttive -->
+              <!-- @@blkTerreni -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniParticellareElenco.htm">Terreni</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		            <a href="../layout/riepiloghi.htm">Terreni</a>
+		            <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkTerreni -->
+		          <!-- @@blkUnitaVitate -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniUnitaArboreeElenco.htm">Unit&agrave; Vitate</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		              <a href="../layout/riepiloghiUnitaArboree.htm">Unit&agrave; Vitate</a>
+		              <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkUnitaVitate -->
+              <!-- @@blkFabbricati -->
+              <li><a href="../layout/fabbricati.htm">Fabbricati e Strutture</a></li>
+              <!-- @@blkFabbricati -->
+              <!-- @@blkAllevamenti -->
+              <li><a href="../layout/allevamenti.htm">Allevamenti</a></li>
+              <!-- @@blkAllevamenti -->
+              <!-- @@blkManodopera -->
+              <li><a href="../layout/manodopera.htm">Manodopera</a></li>
+              <!-- @@blkManodopera -->
+              <!-- @@blkMotoriAgricoli -->
+              <li><a href="../layout/motori_agricoli_incarico.htm">Macchine agricole</a></li>
+              <!-- @@blkMotoriAgricoli -->
+              <!-- @@blkDiritti -->
+                <li><a href="../layout/diritti.htm">Diritti di produzione</a></li>
+              <!-- @@blkDiritti -->
+              <!-- @@blkAttestazioni -->
+                      <li><a href="../layout/attestazioniDettaglio.htm">Dichiarazioni</a></li>
+              <!-- @@blkAttestazioni -->
+              <!-- @@blkDichiarazioniConsistenza -->
+              <li><a href="../layout/dichiarazioneConsistenza.htm">Validazioni</a></li>
+              <!-- @@blkDichiarazioniConsistenza -->
+              <!-- @@blkDocumenti -->
+              <li><a href="../layout/documentiElenco.htm">Documenti</a></li>
+              <!-- @@blkDocumenti -->
+              <!-- @@blkFascicoloDematerializzato -->
+		          <li>
+		            <a href="../layout/fascicoloDematerializzato.htm">Fascicolo<br>elettronico</a>
+		          </li>
+		          <!-- @@blkFascicoloDematerializzato --> 
+              <!-- @@blkGestioneNotifiche -->
+              <li><a href="../layout/notifiche.htm">Notifiche</a></li>
+              <!-- @@blkGestioneNotifiche -->
+              <!-- @@blkComunicazione10R -->
+                <li>
+                  <a href="../layout/comunicazione10R_dettaglio.htm">Comunicazione 10/R</a>
+                </li>
+              <!-- @@blkComunicazione10R -->
+              <!-- @@blkPratiche -->
+                <li><a href="../layout/pratiche.htm">Pratiche</a></li>
+              <!-- @@blkPratiche -->
+              <!-- @@blkStampaFascicolo -->
+              <li><a href="../layout/scelta_stampa.htm">Stampe</a></li>
+              <!-- @@blkStampaFascicolo -->
+			  <li><a href="../layout/strumenti.htm">Strumenti</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr/>
+        <!-- SECONDA COLONNA -->
+        <div id="contenuto">
+          <div id="intesta">
+            <p class="$$aziendaIntestazione" title="$$tooltipIntestazione" >
+              $$CUAAIntestazione  $$denominazioneIntestazione
+            </p>
+          </div>
+          <div id="indice">
+            <span class="voce">
+              <a href="#">anagrafica</a>
+            </span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+            <span class="evidenza">rappr.legale/titolare</span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+            <span class="voce">
+              <a href="#">sede legale</a>
+            </span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+          </div>
+          <table cellspacing="3" summary="Questa tabella è costituita da righe">
+            <col width="30%"/>
+            <col width="70%"/>
+            <tr>
+              <th scope="row">Codice fiscale</th>
+              <td colspan="2">$$codiceFiscale</td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <label for="cognome">Cognome*</label>
+              </th>
+              <td colspan="2">
+                <input type="text" id="cognome" name="cognome" size="40" value="$$cognome" class="trenta"/>
+                &nbsp;&nbsp;
+                $$err_cognome
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <label for="nome">Nome*</label>
+              </th>
+              <td colspan="2">
+                <input type="text" id="nome" name="nome" size="40" value="$$nome" class="trenta"/>
+                &nbsp;&nbsp;
+                $$err_nome
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Sesso*</th>
+              <td colspan="2">
+                <input type="radio" id="sessoM" name="sesso" value="M" $$checkedM/>
+                <label for="sessoM">M</label>
+                <input type="radio" id="sessoF" name="sesso" value="F" $$checkedF>
+                <label for="sessoF">F</label>
+                &nbsp;&nbsp;
+                $$err_sesso
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <label for="strNascitaData">Data di nascita*</label>
+              </th>
+              <td colspan="2">
+                <input type="text" id="strNascitaData" name="strNascitaData" size="10" value="$$strNascitaData" class="textmedio"/>
+                gg/mm/aaaa
+                &nbsp;&nbsp;
+                $$err_strNascitaData
+              </td>
+            </tr>
+          </table>
+          <table cellspacing="3" summary="Questa tabella è costituita da righe">
+            <caption>Luogo di nascita* (indicare provincia e comune se in Italia, stato e citt&agrave; all'estero)</caption>
+            <tr>
+              <th rowspan="2" scope="row">in Italia</th>
+              <th>
+                <label for="nascitaProv">Provincia</label>
+              </th>
+              <td colspan="2">
+                <input type="text" id="nascitaProv" name="nascitaProv" size="2" maxlength="2" value="$$nascitaProv" class="due"/>
+                &nbsp;&nbsp;
+                $$err_nascitaProv
+                <input type="hidden" id="provinciaN" name="provinciaN" value="$$provinciaN"/>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="descNascitaComune">Comune</label>
+              </th>
+              <td>
+                <input type="text" id="descNascitaComune" name="descNascitaComune" size="36" maxlength="100" value="$$descNascitaComune" class="text"/>
+              </td>
+              <td>
+                <div class="azioni">
+                  <a href="javascript: newWindowComuneAzienda('../layout/sceltaComune.htm','scegliComune','600','300','yes',document.form1.descNascitaComune.value,document.form1.nascitaProv.value);">cerca</a>
+                </div>
+                &nbsp;&nbsp;
+                $$err_descNascitaComune
+                <input type="hidden" id="nascitaComune" name="nascitaComune" value="$$nascitaComune"/>
+                <input type="hidden" id="codiceFiscaleComune" name="codiceFiscaleComune" value="$$codiceFiscaleComune"/>
+              </td>
+            </tr>
+            <tr>
+              <th rowspan="2">all'estero</th>
+              <th>
+                <label for="nascitaStatoEstero">Stato</label>
+              </th>
+              <td>
+                <input type="text" id="nascitaStatoEstero" name="nascitaStatoEstero" size="30" maxlength="50" value="$$nascitaStatoEstero" class="text"/>
+              </td>
+              <td>
+                <div class="azioni">
+                  <a href="javascript:newWindowStatoNascita('../layout/sceltaStato.htm','scegliStato','600','300','yes',document.form1.nascitaStatoEstero.value);">cerca</a>
+                </div>
+                &nbsp;&nbsp;
+                $$err_nascitaStatoEstero
+                <input type="hidden" id="istatStatoEsteroNascita" name="istatStatoEsteroNascita" value="$$istatStatoEsteroNascita"/>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="nascitaCittaEstero">Citt&agrave;</label>
+              </th>
+              <td colspan="2">
+                <input type="text" id="nascitaCittaEstero" name="nascitaCittaEstero" value="$$cittaNascita" size="30" maxlength="50" class="text"/>
+                &nbsp;&nbsp;
+                $$err_nascitaCittaEstero
+              </td>
+            </tr>
+          </table>
+          <table cellspacing="3" summary="Questa tabella è costituita da righe">
+            <caption>Residenza</caption>
+            <col width="30%"/>
+            <col width="50%"/>
+            <col width="20%"/>
+            <tr>
+              <th scope="row">
+                <label for="resIndirizzo">Indirizzo*</label>
+              </th>
+              <td colspan="2">
+                <input type="text" id="resIndirizzo" name="resIndirizzo" size="53" maxlength="30" value="$$resIndirizzo" class="trenta"/>
+                &nbsp;&nbsp;
+                $$err_resIndirizzo
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <label for="resProvincia">Provincia*</label>
+              </th>
+              <td colspan="2">
+                <input type="text" id="resProvincia" name="resProvincia" size="4" maxlength="2" value="$$resProvincia" class="due"/>
+                &nbsp;&nbsp;
+                $$err_resProvincia
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <label for="descResComune">Comune*</label>
+              </th>
+              <td>
+                <input type="text" id="descResComune" name="descResComune" size="30" maxlength="50" value="$$descResComune" class="text"/>
+                <input type="hidden" id="resComune" name="resComune" size="50" maxlength="100" value="$$resComune"/>
+              </td>
+              <td>
+                <div class="azioni">
+                  <a href="javascript: newWindowProvAndCom('../layout/sceltaComune.htm','scegliComAndProv','600','300','yes',document.form1.resProvincia.value,document.form1.descResComune.value);">cerca</a>
+                </div>
+                &nbsp;&nbsp;
+                $$err_descResComune
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <label for="resCAP">
+                  <acronym title="Codice Avviamento Postale">C.A.P.*</acronym>
+                </label>
+              </th>
+              <td colspan="2">
+                <input type="text" id="resCAP" name="resCAP" size="6" maxlength="5" value="$$resCAP" class="textbreve"/>
+                &nbsp;&nbsp;
+                $$err_resCAP
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <label for="statoEsteroRes">Stato estero</label>
+              </th>
+              <td>
+                <input type="text" id="statoEsteroRes" name="statoEsteroRes" size="30" maxlength="50" value="$$statoEsteroRes" class="text"/>
+                <input type="hidden" name="stato" size="6" value="$$stato"/>
+              </td>
+              <td>
+                <div class="azioni">
+                  <a href="javascript:newWindowStatoAzienda('../layout/sceltaStato.htm','scegliStato','600','300','yes',document.form1.statoEsteroRes.value);">cerca</a>
+                </div>
+                &nbsp;&nbsp;
+                $$err_statoEsteroRes
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <label for="cittaResidenza">Citt&agrave;</label>
+              </th>
+              <td colspan="2">
+                <input type="text" id="cittaResidenza" name="cittaResidenza" value="$$cittaResidenza" maxlength="50" class="text"/>
+                &nbsp;&nbsp;
+                $$err_cittaResidenza
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <label for="resTelefono">Telefono</label>
+              </th>
+              <td colspan="2">
+                <input type="text" id="resTelefono" name="resTelefono" size="50" maxlength="15" value="$$resTelefono" class="quindici"/>
+                &nbsp;&nbsp;
+                $$err_resTelefono
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <label for="resFax">Fax</label>
+              </th>
+              <td colspan="2">
+                <input type="text" id="resFax" name="resFax" size="50" maxlength="15" value="$$resFax" class="quindici"/>
+                &nbsp;&nbsp;
+                $$err_resFax
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <label for="resMail">E-mail</label>
+              </th>
+              <td colspan="2">
+                <input type="text" id="resMail" name="resMail" size="50" maxlength="30" value="$$resMail" class="text"/>
+                &nbsp;&nbsp;
+                $$err_resMail
+              </td>
+            </tr>
+          </table>
+          <table cellspacing="3" summary="Questa tabella è costituita da righe">
+            <caption>Domicilio (se diverso da residenza)</caption>
+            <col width="30%"/>
+            <col width="50%"/>
+            <col width="20%"/>
+            <tr>
+              <th scope="row">
+                <label for="domIndirizzo">Indirizzo</label>
+              </th>
+              <td colspan="2">
+                <input type="text" id="domIndirizzo" name="domIndirizzo" size="53" maxlength="90" value="$$domIndirizzo" class="text"/>
+                &nbsp;&nbsp;
+                $$err_domIndirizzo
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <label for="domProvincia">Provincia</label>
+              </th>
+              <td colspan="2">
+                <input type="text" id="domProvincia" name="domProvincia" size="2" maxlength="2" value="$$domProvincia" class="due"/>
+                &nbsp;&nbsp;
+                $$err_domProvincia
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <label for="domComune">Comune</label>
+              </th>
+              <td>
+                <input type="text" id="domComune" name="domComune" size="40" maxlength="50" value="$$domComune" class="text"/>
+              </td>
+              <td>
+                <div class="azioni">
+                  <a href="javascript:newWindowDomicilio('sceltaComune.htm','scegliComAndProv','600','300','yes',document.form1.domProvincia.value,document.form1.domComune.value);">cerca</a>
+                </div>
+                &nbsp;&nbsp;
+                $$err_domComune
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <label for="domCAP">
+                  <acronym title="Codice Avviamento Postale">C.A.P.</acronym>
+                </label>
+              </th>
+              <td colspan="2">
+                <input type="text" id="domCAP" name="domCAP" size="5" maxlength="50" value="$$domCAP" class="textbreve"/>
+                &nbsp;&nbsp;
+                $$err_domCAP
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <label for="domicilioStatoEstero">Stato estero</label>
+              </th>
+              <td>
+                <input type="text" id="domicilioStatoEstero" name="domicilioStatoEstero" size="40" maxlength="100" value="$$domicilioStatoEstero" class="text"/>
+              </td>
+              <td>
+                <div class="azioni">
+                  <a href="javascript: newWindowStatoDomicilio('../layout/sceltaStato.htm','scegliStato','600','300','yes',document.form1.domicilioStatoEstero.value);">cerca</a>
+                </div>
+                &nbsp;&nbsp;
+                $$err_domicilioStatoEstero
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <label for="descCittaEsteroDomicilio">Citt&agrave;</label>
+              </th>
+              <td colspan="2">
+                <input type="text" id="descCittaEsteroDomicilio" name="descCittaEsteroDomicilio" value="$$descCittaEsteroDomicilio" maxlength="50" class="text"/>
+                &nbsp;&nbsp;
+                $$err_descCittaEsteroDomicilio
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <label for="idTitoloStudio">Titolo di studio</label>
+              </th>
+              <td colspan="2">
+                <select id="idTitoloStudio" name="idTitoloStudio" onchange="onChangeCombo()">
+                  <option value=""></option>
+                  <!-- @@elencoTitoliStudio -->
+                  <option value="$$idCodice" $$check>$$descrizione</option>
+                  <!-- @@elencoTitoliStudio -->
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <label for="idIndirizzoStudio">Ad indirizzo</label>
+              </th>
+              <td colspan="2">
+                <select id="idIndirizzoStudio" name="idIndirizzoStudio">
+                  <option value=""></option>
+                  <!-- @@elencoIndirizziStudio -->
+                  <option value="$$idCodice" $$check>$$descrizione</option>
+                  <!-- @@elencoIndirizziStudio -->
+                </select>
+                &nbsp;&nbsp;
+                $$err_idIndirizzoStudio
+              </td>
+            </tr>
+          </table>
+          <div class="pulsanti">
+            <div class="sin">
+              <input type="submit" name="indietro" value="indietro" class="inputPulsante"/>
+            </div>
+            <div class="des">
+              <input type="submit" name="avanti" value="avanti" class="inputPulsante"/>
+            </div>
+          </div>
+          <!-- fine della tabella a due colonne -->
+        </div>
+      </div>
+      <hr/>
+    </form>
+    <!-- PIE' DI PAGINA -->
+    $$footer

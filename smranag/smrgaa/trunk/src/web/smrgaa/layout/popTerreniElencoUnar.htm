@@ -1,0 +1,78 @@
+$$head
+	<script src="../js/checktext.js" type="text/javascript"></script>
+</head>
+<body id="popup">
+	<form id="form1" name="form1" method="post" action="../layout/popTerreniElencoUnar.htm">
+    	<div id="contenutopop">
+        	<table cellspacing="3" summary="Questa tabella contiene i dati della chiave logica della particella selezionata">
+            	<tr>
+          			<th class="center" scope="col">Comune (Prov.)</th>
+          			<th class="center" scope="col">Sez.</th>
+          			<th class="center" scope="col">Foglio</th>
+          			<th class="center" scope="col">Part.</th>
+          			<th class="center" scope="col">Sub.</th>
+          			<th class="center" scope="col">Sup. catastale (ha)</th>
+                <th class="center" scope="col">Sup. grafica (ha)</th>
+        		</tr>
+        		<tr>
+          			<td>$$descComuneParticella $$siglaProvinciaParticella</td>
+          			<td>$$sezione</td>
+          			<td class="numeridx">$$foglio</td>
+          			<td class="numeridx">$$particella</td>
+          			<td>$$subalterno</td>
+          			<td class="numeridx">$$supCatastale</td>
+                <td class="numeridx">$$superficieGrafica</td>
+        		</tr>
+            </table>
+            <!-- @@blkUnitaArboree -->
+				<table width="0" border="0" cellspacing="3" cellpadding="0" summary="Questa tabella contiene l'elenco delle unità arboree associate alla particella">
+  					<tr>
+  						<th class="center" scope="col"><strong>Tipo unar</strong></th>
+    					<th class="center" scope="col"><strong><acronym title="Progressivo">Progr.</acronym></strong></th>
+    					<th class="center" scope="col"><strong>Sesto su fila (cm)</strong></th>
+    					<th class="center" scope="col"><strong>Sesto tra file (cm)</strong></th>
+    					<th class="center" scope="col"><strong>N.Ceppi</strong></th>
+    					<th class="center" scope="col"><strong>Anno <acronym title="impianto">imp.</acronym></strong></th>    
+    					<th class="center" scope="col"><strong><acronym title="Forma allevamento">F. all.</acronym></strong></th>
+    					<th class="center" scope="col"><strong><acronym title="Superficie vitata">Sup. vit.</acronym></strong></th>
+                        <th class="center" scope="col"><strong>Dest. prod.</strong></th>
+    					<th class="center" scope="col"><strong>Vitigno</strong></th>
+    					<th class="center" scope="col"><strong>&#37; Vitigno</strong></th>
+    					<th class="center" scope="col"><strong>Altri vitigni</strong></th>
+  					</tr>
+  					<!-- @@blkElenco -->
+  						<tr>
+    						<td>$$descTipologiaUnar</td>
+    						<td class="numeridx">$$progrUnar</td>
+    						<td class="numeridx">$$sestoSuFila</td>
+    						<td class="numeridx">$$sestoTraFile</td>
+    						<td class="numeridx">$$numCeppi</td>
+    						<td class="numeridx">$$annoImpianto</td>
+    						<td>$$descFormaAllevamento</td>
+    						<td class="numeridx">$$area</td>
+    						<td>$$destProduttiva</td>
+    						<td>$$varieta</td>
+    						<td class="numeridx">$$percentualeVarieta</td>
+    						<td>$$altriVitigni</td>
+  						</tr>
+  					<!-- @@blkElenco -->
+  					<tr>
+						<td colspan="7" class="totale">Totali</td>
+						<td class="totale numeridx">$$totArea</td>
+						<td class="totale" colspan="4">&nbsp;</td>
+					</tr>
+				</table>
+				<p>Tutte le superfici sono espresse in ettari</p>
+			<!-- @@blkUnitaArboree -->
+			<!-- @@blkNoUnitaArboree -->
+				<p class="errore">$$messaggio</p>
+			<!-- @@blkNoUnitaArboree -->
+        	<div class="pulsanti">
+          		<div class="des">
+            		<a href="javascript:window.close();">chiudi</a>
+          		</div>
+        	</div>
+    	</div>
+	</form>
+</body>
+</html>

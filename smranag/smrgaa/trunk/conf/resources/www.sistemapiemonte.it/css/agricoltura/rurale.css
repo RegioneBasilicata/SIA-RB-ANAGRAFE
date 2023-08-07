@@ -1,0 +1,8 @@
+/*** rurale.css ***/
+@import url(../strutturaGenerale.css);	/* impostazione della struttura della pagina */
+@import url(../parametriDiFormato.css);	/* impostazione del testo e di sfondi e colori comuni */
+@import url(skinRurale.css);		/* colori e sfondi per la sezione tributi */
+@import url(../cavalierini.css);		/* gestione dei cavalierini */
+@import url(../menuTendina.css);		/* gestione dei menu a tendina */
+@import url(../cavalieriniOrizz.css);		/* gestione dei cavalierini (elimina errore js)*/
+@import url(../menuTendinaOrizz.css);		/* gestione dei menu a tendina elimina errore js)*/

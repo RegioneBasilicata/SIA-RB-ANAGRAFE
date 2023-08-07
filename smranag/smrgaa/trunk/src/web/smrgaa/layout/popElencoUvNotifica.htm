@@ -1,0 +1,119 @@
+$$head
+	<script src="../js/checktext.js" type="text/javascript"></script>
+</head>
+<body id="popup">
+	<form id="form1" name="form1" method="post" action="../layout/popElencoUvNotifica.htm">
+   	<input type="hidden" name="idTipologiaNotifica" id="idTipologiaNotifica" value="$$idTipologiaNotifica"/>
+   	<input type="hidden" name="idCategoriaNotifica" id="idCategoriaNotifica" value="$$idCategoriaNotifica"/>
+   	<input type="hidden" name="urlChiamante" id="urlChiamante" value="$$urlChiamante"/>
+   	<input type="hidden" name="idTipoEntita" id="idTipoEntita" value="$$idTipoEntita"/>
+   	<input type="hidden" name="descrizione" id="descrizione" value="$$descrizione"/>
+   	<input type="hidden" name="idDichiarazioneConsistenza" id="idDichiarazioneConsistenza" value="$$idDichiarazioneConsistenza"/>
+    <div id="contenutopop">
+      <!-- @@blkUv -->
+        <div class="pulsanti">
+        	<div class="sin">
+            	<a href="javascript: closePopupWithSubmit(document.form1, document.form1.idStoricoUnitaArborea)">associa alla notifica</a>
+          	</div>
+          	<div class="des">
+            	<a href="javascript:window.close();">chiudi</a>
+          	</div>
+        </div>
+        <div class="pulsanti">
+          <div class="sin">
+            <a href="javascript: selectAll(document.form1.idStoricoUnitaArborea);">seleziona</a>
+          </div>
+          <div class="des">
+            <a href="javascript: deselectAll(document.form1.idStoricoUnitaArborea);">deseleziona</a>
+          </div>
+        </div>
+      
+        <table cellspacing="3" summary="Questa tabella contiene i dati delle unit&agrave; vitate da associare alla notifica">
+          <tr>
+            <th class="center" scope="col" >Sel</th>
+            <th class="center" scope="col" >Comune<acronym title="Provincia">(Prov.)</acronym></th>
+            <th class="center" scope="col" ><acronym title="Sezione">Sz.</acronym></th>
+            <th class="center" scope="col" ><acronym title="Foglio">Fgl.</acronym></th>
+            <th class="center" scope="col" ><acronym title="Particella">Part.</acronym></th>
+            <th class="center" scope="col" ><acronym title="Subalterno">Sub.</acronym></th>
+            <th class="center" scope="col" ><acronym title="Progressivo unar">Progr.<br>unar</acronym></th>
+            <th class="center" scope="col" >Destinazione produttiva</th>
+            <th class="center" scope="col">Vitigno</th>
+            <th class="center" scope="col" >Anno<br>impianto</th>
+            <th class="center" scope="col" >Idoneit&agrave;</th>
+            <th class="center" scope="col" >Anno<br>idoneit&agrave;</th>
+            <th class="center" scope="col" >Sup.<br>vitata</th>
+          </tr>
+          <!-- @@blkElencoUv -->
+          <tr>
+            <td>
+              <input type="checkbox" name="idStoricoUnitaArborea" value="$$idStoricoUnitaArborea" id="idStoricoUnitaArborea" />
+            </td>
+            <td>
+              $$descComuneParticella ($$siglaProvinciaParticella)
+            </td>
+            <td class="center">
+              $$sezione
+            </td>
+            <td class="center" >
+              $$foglio
+            </td>
+            <td class="center" >
+              $$particella
+            </td>
+            <td class="center" >
+              $$subalterno
+            </td>
+            <td class="center" >
+              $$progrUnar
+            </td>
+            <td>
+              $$destProd
+            </td>
+            <td>
+              $$descVitigno
+            </td>
+            <td class="center" >
+              $$annoImpianto
+            </td>
+            <td>
+              $$descIdoneita
+            </td>
+            <td class="center" >
+              $$annoIdoneita
+            </td>
+            <td class="numeridx">
+              $$supVitata
+            </td>
+          </tr>
+          <!-- @@blkElencoUv -->
+        </table>
+        <p class="nota">Tutte le superfici sono espresse in ettari (ha).</p>
+        <div class="pulsanti">
+        	<div class="sin">
+            	<a href="javascript: selectAll(document.form1.idStoricoUnitaArborea);">seleziona</a>
+          	</div>
+          	<div class="des">
+            	<a href="javascript: deselectAll(document.form1.idStoricoUnitaArborea);">deseleziona</a>
+          	</div>
+        </div>
+        <div class="pulsanti">
+        	<div class="sin">
+            	<a href="javascript: closePopupWithSubmit(document.form1, document.form1.idStoricoUnitaArborea)">associa alla notifica</a>
+          	</div>
+          	<div class="des">
+            	<a href="javascript:window.close();">chiudi</a>
+          	</div>
+        </div>
+      <!-- @@blkUv -->
+      <!-- @@blkNoParticelle -->
+        <p class="errore">$$messaggioErrore</p>
+        <br />
+        <div class="pulsanti"><div class="des">
+          <a href="javascript:window.close();">chiudi</a>
+        </div></div>
+      <!-- @@blkNoParticelle -->
+    </div>
+    </form>
+    </body>
+    </html>

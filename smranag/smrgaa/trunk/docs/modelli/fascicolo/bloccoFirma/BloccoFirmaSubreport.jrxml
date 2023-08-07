@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 4.1.3  -->
+<!-- 2016-10-03T11:24:37 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="BloccoFirmaSubreport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<parameter name="DichFinali" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="FirmaSubreport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="fascicoloDS" class="java.util.List"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="dichiarazioni" class="it.csi.smranag.smrgaa.dto.jaxb.fascicolo.Dichiarazioni"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="110" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="0" width="550" height="90">
+					<printWhenExpression><![CDATA[$F{dichiarazioni}.getFirma() != null]]></printWhenExpression>
+				</reportElement>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{fascicoloDS},false)]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{FirmaSubreport}]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="100">
+			<subreport>
+				<reportElement x="-5" y="10" width="550" height="70">
+					<printWhenExpression><![CDATA[$F{dichiarazioni}.getBloccoFinale()!= null &&
+$F{dichiarazioni}.getBloccoFinale().getElencoDichiarazioni()!= null&&
+$F{dichiarazioni}.getBloccoFinale().getElencoDichiarazioni().getDichiarazione() != null && $F{dichiarazioni}.getBloccoFinale().getElencoDichiarazioni().getDichiarazione().size()>0]]></printWhenExpression>
+				</reportElement>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{dichiarazioni}.getBloccoFinale().getElencoDichiarazioni().getDichiarazione(),false)]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{DichFinali}]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>

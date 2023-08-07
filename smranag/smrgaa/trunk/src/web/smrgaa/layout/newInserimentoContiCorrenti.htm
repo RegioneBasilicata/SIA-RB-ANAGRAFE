@@ -1,0 +1,223 @@
+$$head
+<script type="text/javascript" src="../js/checktext.js"></script>
+<script type="text/javascript" src="../js/messaggistica.js"></script>
+<script type="text/javascript"> 
+
+  function cambio() 
+  {
+    document.forms[0].operazione.value = 'cambio';
+    document.forms[0].submit();
+  }
+  
+  function elimina(idRiga) 
+  {
+    document.forms[0].operazione.value = 'elimina';
+    document.forms[0].idRigaElim.value = idRiga;
+    document.forms[0].submit();
+  }
+  
+  function inserisci() 
+  {
+    document.forms[0].operazione.value = 'inserisci';
+    document.forms[0].submit();
+  }
+  
+  function aggiorna() 
+  {
+    document.forms[0].operazione.value = 'aggiorna';
+    document.forms[0].submit();
+  }
+
+
+
+</script>
+</head>
+<body id="homeIndice" onload="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+	<form id="form1" name="form1" method="post" action="../layout/newInserimentoContiCorrenti.htm">
+    <input type="hidden" id="regimeInserimentoCC" name="regimeInserimentoCC" value="regimeInserimentoCC"/>
+    <input type="hidden" id="operazione" name="operazione" value=""/>
+    <input type="hidden" id="idRigaElim" name="idRigaElim" value=""/>
+    <div id="pagina" class="colonnaUnica">
+      
+      <!-- INTESTAZIONE -->
+      <div id="intestazione##pathProvincia">
+        $$header
+        <!-- menu di navigazione-->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li>
+                <a href="../layout/index.htm" title="Torna alla pagina principale">home</a>
+              </li>
+              <li class="attivo">gestione anagrafe aziende</li>
+              <li>
+                <a href="#" title="contatti">contatti</a>
+              </li>
+              <li>
+                <a href="#" title="help">help</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr/>
+      <div style="clear:left"></div>
+      <!-- CORPO -->
+      <div id="corpo">
+        <div id="Utente">
+          <div id="datiUtente">
+            <strong>utente:</strong>$$utente&nbsp;&nbsp;
+            <strong>ente:</strong>$$ente
+          </div>
+          <div id="chiudisessione">
+            <a href="javascript: logout();">chiudi sessione</a>
+          </div>
+        </div>
+        <hr/>
+        <!--PRIMA COLONNA -->
+        <h3>Nuova iscrizione
+          <span class="helpFuori">
+            <a href="#">
+              <span class="alt">[help]</span>
+            </a>
+          </span>
+        </h3>
+        <hr/>
+        <div class="box">
+          <div class="menuSX1">
+            <ul>
+              <!-- @@blkRicercaAzienda-->
+              <li>
+                <a href="../layout/ricerca.htm">Ricerche</a>
+              </li>
+              <!-- @@blkRicercaAzienda-->                  
+              <li><a href="../layout/newInserimentoAzienda.htm" class="on">Nuova iscrizione</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr/>
+        <!-- SECONDA COLONNA -->
+        <div id="contenuto">
+          <div id="intesta">
+            <p class="$$aziendaIntestazione" title="$$tooltipIntestazione" >
+              $$CUAAIntestazione  $$denominazioneIntestazione
+            </p>
+          </div>
+          
+          <div id="indice">
+            <span class="voce">
+              <a href="#">Anagrafica</a>
+            </span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+            <span class="voce">
+              <a href="#">Unit&agrave; produttive</a>
+            </span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+            <span class="voce">
+              <a href="#">Terreni</a>
+            </span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+            <span class="voce">
+              <a href="#">Fabbricati</a>
+            </span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+            <span class="voce">
+              <a href="#">Allevamenti</a>
+            </span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+            <span class="voce">
+              <a href="#">Soggetti collegati</a>
+            </span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+            <span class="voce">
+              <a href="#">Elenco associati</a>
+            </span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+            <span class="evidenza">
+              <a href="#">Conti correnti</a>
+            </span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+            <span class="voce">
+              <a href="#">Allegati</a>
+            </span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+          </div>
+          <hr/>
+          
+          <br>
+          <div>
+            <p id="istruzioni">$$testoHelp</p>            
+          </div>
+          <br>
+          
+          <div class="scroll">
+            <table cellspacing="3" summary="Questa tabella è costituita da righe">
+              <caption>Conti Correnti</caption>
+              <tr>
+                <th class="center" scope="col">
+                  <a href="javascript:inserisci()" class="aggiungi" title="inserisci conti correnti"></a>
+                </th>
+                <th class="center" scope="col" colspan="2">
+                  IBAN*
+                </th>
+                <th class="center" scope="col">
+                  Banca
+                </th>
+                <th class="center" scope="col">
+                  Filiale
+                </th>
+              </tr>
+              <!--@@blkElencoCC -->
+              <tr>   
+                <td>
+                  <a href="javascript:elimina('$$idRiga')" class="cancella" title="elimina cc"></a>
+                </td>
+                <td>
+                  <input name="iban"  id="iban" type="text" class="text" maxlength="27" value="$$iban" />
+                   $$err_iban
+                </td>
+                <td>  
+                  <div class="azioni">
+				            <a id="aggiorna" name="aggiorna"
+				              href="javascript:aggiorna();">aggiorna</a>
+				          </div>         
+                </td>
+                <td>
+                  $$descBanca
+                </td>
+                <td>
+                  $$descFiliale
+                </td>
+              </tr>
+              
+              <!--@@blkElencoCC -->
+            </table>
+          </div> 
+          
+          
+          <p id="nota">I campi contrassegnati con * sono obbligatori</p>
+          <div class="pulsanti"><div class="sin">
+            <input name="indietro" id="indietro" class="inputPulsante" type="submit" value="indietro"/>
+          </div>
+          <div class="des">
+            <input name="avanti" id="avanti" class="inputPulsante" type="submit" value="avanti"/>
+          </div>
+          </div>  
+          </br>
+          </br>
+          </br>
+          
+          
+          <!-- @@blkErrore -->
+          <p class="errore">
+            $$messaggioErrore
+          </p>
+          <!-- @@blkErrore -->
+        </div>
+      </div>
+      <hr/>
+      <!-- PIE' DI PAGINA -->
+      $$footer

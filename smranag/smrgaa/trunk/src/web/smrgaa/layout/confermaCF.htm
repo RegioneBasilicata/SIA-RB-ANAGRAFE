@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+  <script language="JavaScript" >
+
+function conferma(url) {
+  //form.action = url;
+  window.opener.name = 'conferma';
+  window.opener.form1.operazione.value = 'M';
+  //form.target = window.opener.name;
+  window.opener.form1.submit();
+  window.close();
+}
+
+
+</script>
+  <script src="../js/checktext.js" type="text/javascript"></script>
+    <title>Anagrafe Agricola della Regione TOBECONFIG</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <link rel="stylesheet" type="text/css" href="../../##pathToFollow/css/stile.css">
+    <link rel="stylesheet" type="text/css" href="../../##pathToFollow/css/stilebase.css">
+  </head>
+  <body bgcolor="#DFDFDF" text="#000000">
+    <div align="center">
+
+  <table cellpadding="0" cellspacing="0" width="577">
+    <tr>
+      <td id="banner" width="744">&nbsp;</td>
+    </tr>
+    <tr>
+      <td id="banner2" width="744"><img src="../../##pathToFollow/im/banner_pop.gif" width="577" height="26"></td>
+    </tr>
+    <tr>
+      <td id="navigazione" background-image="../../##pathToFollow/im/sfondo_banner.gif" width="744">&nbsp;</td>
+    </tr>
+    <tr>
+      <td id="corpo"> <div align="center" id="navi"> </div>
+        <!-- tabella a due colonne per il contenuto -->
+		 <table cellspacing="0" cellpadding="0">
+          <tr>
+            <td>&nbsp; </td>
+          </tr>
+        </table>
+        <br>
+        <div align="center">
+          <table width="98%">
+            <tr bgcolor="#FFFFFF">
+              <td class="datiAziendaB"> <table class="data">
+                  <col style="width:500px; text-align:left">
+                  <tr>
+                    <td >Attenzione: i dati inseriti non sono compatibili con 
+                      il codice fiscale.Se si vuole proseguire premere conferma</td>
+                  </tr>
+                </table>
+                <br>
+                <table width="98%" cellspacing="0" cellpadding="0">
+                  <tr> 
+                    <td class="bottone"> 
+					<!-- link sul file originario
+					<a style="cursor:hand" onClick="javascript:conferma('../layout/anagraficaIndividualeSocieta_nuovoSoggetto.htm');">
+					-->
+                      <div align="left"> 
+                        <input type="submit" class="inputPulsante highlighted" value="conferma">
+                      </div>
+                    </td>
+                    <td class="bottone">
+                      <!-- link sul file originario
+					<a style="cursor:hand" onClick="javascript:window.close();"  >
+					-->
+                      <div align="right">
+                        <input type="submit" value="chiudi" name="annulla">
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+          <br>
+          <!-- fine della tabella a due colonne -->
+        </div></td>
+    </tr>
+    <tr>
+      <td id="piede" align="left">&nbsp; </td>
+    </tr>
+    <tr>
+      <td> </td>
+    </tr>
+  </table>
+    </div>
+	</body>
+</html>
+

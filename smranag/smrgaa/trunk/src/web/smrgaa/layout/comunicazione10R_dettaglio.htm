@@ -1,0 +1,747 @@
+$$head
+  <script type="text/javascript" src="../js/checkdata.js"></script>
+  <script type="text/javascript" src="../js/checktext.js"></script>
+  <script type="text/javascript" src="../js/messaggistica.js"></script>
+  <script type="text/javascript"> 
+  function setHiddenOperazione(form, operazione) {
+      form.operazione.value = operazione;
+      form.submit();
+    }
+  </script>
+</head>
+<body id="homeIndice" onload="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+  <form id="form1" name="form1" method="post" action="../layout/comunicazione10R_dettaglio.htm">
+    <input type="hidden" name="operazione" id="operazione" value="" />
+    <div id="pagina" class="colonnaUnica">
+      <div id="intestazione##pathProvincia">
+        $$header
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+                <li><a href="../layout/index.htm" title="Torna alla pagina principale">home</a></li>
+                <li class="attivo">gestione anagrafe aziende</li>
+                <li><a href="#" title="contatti">contatti</a></li>
+                <li><a href="#" title="help">help</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div style="clear:left"></div>
+      <div id="corpo">
+        <div id="Utente">
+            <div id="datiUtente">
+              <strong>utente:</strong> 
+              $$utente &nbsp; &nbsp;
+              <strong>ente:</strong> 
+              $$ente
+            </div>
+            <div id="chiudisessione">
+              <a href="javascript: logout();">chiudi sessione</a>
+            </div>
+        </div>
+        <hr />
+        <!--PRIMA COLONNA -->
+        <h3>Gestione Anagrafe Aziende&nbsp;&gt;&nbsp;Comunicazione 10/R&nbsp;&gt;&nbsp;Dettaglio
+          <span class="helpFuori">
+            <a href="#">
+              <span class="alt"> [help]</span>
+            </a>
+          </span>
+        </h3>
+        <hr />
+        <div class="box">
+          <div class="menuSX1">
+            <ul>
+              <!-- @@blkElencoAziendeRapLegale -->
+                <li><a href="../layout/elencoAziendeRapLegale.htm">Elenco Aziende</a></li>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <!-- @@blkRicercaAzienda-->
+                <li><a href="../layout/ricerca.htm">Ricerche</a></li>
+              <!-- @@blkRicercaAzienda-->
+              <!-- @@blkNuova -->
+                <li><a href="../layout/nuovaAziendaAnagrafica.htm">Nuova Azienda</a></li>
+              <!-- @@blkNuova -->
+              <!-- @@blkNuovaIscrizione -->
+		          <li>
+		            <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+		          </li>
+		          <!-- @@blkNuovaIscrizione -->
+            </ul>
+          </div>
+          <div class="menuSX">
+            <ul>
+              <li><a href="../layout/anagrafica.htm">Anagrafica</a></li>
+              <!-- @@blkAziendeCollegate -->
+                  <li>
+                      <a href="../layout/aziendeCollegate.htm">$$aziendeCollegateLabel</a>
+                  </li>
+              <!-- @@blkAziendeCollegate -->
+              <!-- @@blkSincronizzaFascicolo -->
+               <li>
+               	<a href="../layout/sincronizzaFascicolo.htm">Sincronizza fascicolo</a>
+               </li>
+              <!-- @@blkSincronizzaFascicolo -->
+              <!-- @@blkSoggettiCollegati -->
+                <li><a href="../layout/contitolari.htm">Soggetti collegati</a></li>
+              <!-- @@blkSoggettiCollegati -->
+              <!-- @@blkContiCorrenti -->
+                <li><a href="../layout/conti_correnti.htm">Conti Correnti</a></li>
+              <!-- @@blkContiCorrenti -->
+              <!-- @@blkUnitaProduttive -->
+                <li><a href="../layout/sedi.htm">Unit&agrave; produttive</a></li>
+              <!-- @@blkUnitaProduttive -->
+              <!-- @@blkTerreni -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniParticellareElenco.htm">Terreni</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		            <a href="../layout/riepiloghi.htm">Terreni</a>
+		            <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkTerreni -->
+		          <!-- @@blkUnitaVitate -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniUnitaArboreeElenco.htm">Unit&agrave; Vitate</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		              <a href="../layout/riepiloghiUnitaArboree.htm">Unit&agrave; Vitate</a>
+		              <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkUnitaVitate -->
+              <!-- @@blkFabbricati -->
+                <li>
+                  <a href="../layout/fabbricati.htm">Fabbricati e Strutture</a>
+                </li>
+              <!-- @@blkFabbricati -->
+              <!-- @@blkAllevamenti -->
+                <li><a href="../layout/allevamenti.htm">Allevamenti</a></li>
+              <!-- @@blkAllevamenti -->
+              <!-- @@blkManodopera -->
+                  <li><a href="../layout/manodopera.htm">Manodopera</a></li>
+              <!-- @@blkManodopera -->
+              <!-- @@blkMotoriAgricoli -->
+                  <li><a href="../layout/motori_agricoli_incarico.htm">Macchine agricole</a></li>
+              <!-- @@blkMotoriAgricoli -->
+              <!-- @@blkDiritti -->
+                  <li><a href="../layout/diritti.htm">Diritti di produzione</a></li>
+              <!-- @@blkDiritti -->
+              <!-- @@blkAttestazioni -->
+                <li><a href="../layout/attestazioniDettaglio.htm">Dichiarazioni</a></li>
+              <!-- @@blkAttestazioni -->
+              <!-- @@blkDichiarazioniConsistenza -->
+                <li><a href="../layout/dichiarazioneConsistenza.htm">Validazioni</a></li>
+              <!-- @@blkDichiarazioniConsistenza -->
+              <!-- @@blkDocumenti -->
+                <li><a href="../layout/documentiElenco.htm">Documenti</a></li>
+              <!-- @@blkDocumenti -->
+              <!-- @@blkFascicoloDematerializzato -->
+		          <li>
+		            <a href="../layout/fascicoloDematerializzato.htm">Fascicolo<br>elettronico</a>
+		          </li>
+		          <!-- @@blkFascicoloDematerializzato --> 
+              <!-- @@blkGestioneNotifiche -->
+                <li><a href="../layout/notifiche.htm">Notifiche</a></li>
+              <!-- @@blkGestioneNotifiche -->
+              <!-- @@blkComunicazione10R -->
+                <li>
+                  <a href="../layout/comunicazione10R_dettaglio.htm" class="on">Comunicazione 10/R</a>
+                  <ul>
+                    <!--@@blkDettaglio-->
+                    <li>
+                      <a href="#" class="etichetta">dettaglio</a>
+                    </li>
+                    <!--@@blkDettaglio-->
+                    <!--@@blkModifica-->
+                    <li><a href="../layout/comunicazione10R_modifica.htm">modifica</a></li>
+                    <!--@@blkModifica-->
+                    <!--@@blkRicalcola-->
+                    <li><a href="javascript: goToOperazione('../layout/comunicazione10R_ricalcola.htm', document.form1, 'attenderePrego');">ricalcola</a></li>
+                    <!--@@blkRicalcola-->
+                  </ul>
+                </li>
+              <!-- @@blkComunicazione10R -->
+              <!-- @@blkPratiche -->
+                <li><a href="../layout/pratiche.htm">Pratiche</a></li>
+              <!-- @@blkPratiche -->
+              <!-- @@blkStampaFascicolo -->
+                <li><a href="../layout/scelta_stampa.htm">Stampe</a></li>
+              <!-- @@blkStampaFascicolo -->
+			  <li><a href="../layout/strumenti.htm">Strumenti</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr/>
+        <!-- SECONDA COLONNA -->
+        <div id="contenuto">
+          <div id="intesta">
+            <p class="$$aziendaIntestazione" title="$$tooltipIntestazione" >
+              $$CUAAIntestazione  $$denominazioneIntestazione
+            </p>
+          </div>
+          <!-- @@blkNotifica -->
+              <p class="$$immagine">$$messaggioNotifica</p>
+              <!-- @@blkINNotifica -->
+              <div class="notifica">$$notifica</div>
+             <!-- @@blkINNotifica -->
+          <!-- @@blkNotifica -->
+          <table cellspacing="3" summary="Questa tabella è costituita da righe">
+            <tr>
+              <th><label for="piano">Piano di riferimento</label></th>
+              <td>
+                <select name="idDichiarazioneConsistenza" id="idDichiarazioneConsistenza">
+                <!-- @@blkPianoRiferimento -->
+                  <option value="$$idDichiarazioneConsistenza" $$selected>$$descDichiarazioneConsistenza</option>
+                <!-- @@blkPianoRiferimento -->
+                </select>
+              </td>
+              <td>
+                <div class="azioni">
+                  <a href="#" id="aggiorna" name="aggiorna" onclick="setHiddenOperazione(document.forms[0],'aggiorna');return false;" >aggiorna</a>
+                </div>
+              </td>
+            </tr>
+          </table>
+          <!-- @@blkErrore -->
+            <p class="errore">$$messaggioErrore</p>
+          <!-- @@blkErrore -->
+          <!-- @@blkNoErr -->
+          
+          
+          <table cellspacing="3" summary="Questa tabella è costituita da righe">
+            <tr>
+              <th>Data Ultimo ricalcolo</th>
+              <td colspan="2">$$dataUltimoRicalcolo</td>
+            </tr>
+          </table>
+          
+          <h4>Riepilogo Aziendale </h4>
+          
+          <table cellspacing="3" summary="Questa tabella è costituita da righe">
+            <tr>
+              <th>Azienda che ricade in ZVN</th>
+              <td colspan="2">$$aziendaZVN</td>
+            </tr>
+          </table>
+          
+          
+          <!--  @@blkAdesioneDeroga -->
+          <table cellspacing="3" summary="Questa tabella è costituita da righe">
+            <col width="50%" />
+            <col width="50%" />
+            <caption>
+              Adesione deroga
+            </caption>
+            <tr>
+              <th class="center" scope="col">Unit&agrave; produttiva</th>
+              <th scope="col" class="center"></th>
+            </tr>
+            <!-- @@blkElencoAdesioneDeroga -->
+            <tr>
+              <td>$$descUteAdesioneDeroga</td>
+              <td class="left" >$$adesioneDeroga</td>
+            </tr>
+            <!-- @@blkElencoAdesioneDeroga -->  
+          </table>
+          <!--  @@blkAdesioneDeroga -->
+          
+          
+          <table cellspacing="3" summary="Questa tabella è costituita da righe">
+            <caption>
+              Rispetto dei vincoli - Terreni
+            </caption>
+            <col width="11%" />
+            <col width="11%" />
+            <col width="11%" />
+            <col width="11%" />
+            <col width="14%" />
+            <col width="14%" />
+            <col width="14%" />
+            <col width="14%" />
+            <tr>
+              <th colspan="2" class="center">Superfici in conduzione (ha)</th>
+              <th colspan="2" class="center">Superfici in asservimento (ha)</th>
+              <th rowspan="2" class="center">Ricettivit&agrave; Azoto (kg)</th>
+              <th rowspan="2" class="center">Azoto prodotto in stalla (kg/anno)</th>
+              <th rowspan="2" class="center">Azoto escreto al pascolo (kg N/anno)</th>
+              <th rowspan="2" class="center">Azoto all'utilizzo agronomico (kg)</th>
+            </tr>
+            <tr>
+              <th class="center">ZVN</th>
+              <th class="center">Fuori ZVN</th>
+              <th class="center">ZVN</th>
+              <th class="center">Fuori ZVN</th>
+            </tr>
+            <tr>
+              <td class="totale">$$totConduzioneZVN</td>
+              <td class="totale">$$totConduzioneNoZVN</td>
+              <td class="totale">$$totAsservimentoZVN</td>
+              <td class="totale">$$totAsservimentoNoZVN</td>
+              <td class="$$coloreSommeTotale">$$totRicettivitaAzoto</td>
+              <td class="$$coloreSommeTotale">$$totAzotoZooAziendale</td>
+              <td class="tot">$$totAzotoEscretoPascolo</td>
+              <td class="$$coloreSommeTotale">$$totAzotoNettCessioni</td>
+            </tr>
+          </table>
+          <table cellspacing="3" summary="Questa tabella è costituita da righe">
+            <caption>
+            Stoccaggio
+            </caption>
+            <tr>
+              <th class="center">Tipologia</th>
+              <th class="center">Refluo all'utilizzo agronomico (m<sup>3</sup>)</th>
+              <th class="center">Stoccaggio disponibile m<sup>3</sup></th>
+              <th class="center">Stoccaggio necessario m<sup>3</sup></th>
+            </tr>
+            <tr>
+              <td>Palabile</td>
+              <td class="numeridx">$$totStocNettoPalabile</td>
+              <td class="numeridx">$$totStocDispPalabile</td>
+              <td class="numeridx">$$totStocNecPalabile</td>
+            </tr>
+            <tr>
+              <td>Non palabile</td>
+              <td class="numeridx">$$totStocNettoNonPalabile</td>
+              <td class="numeridx">$$totStocDispNonPalabile</td>
+              <td class="numeridx">$$totStocNecNonPalabile</td>
+            </tr>
+          </table>  
+          
+          
+          <h4>Rispetto dei vincoli</h4>
+          <!-- @@blkTerrenoRefluo -->
+          <table cellspacing="3" summary="Questa tabella è costituita da righe">
+            <caption>Terreni - UTE: $$descComuneUte - $$indirizzoUte </caption>        
+            <tr>
+              <th>Superficie in conduzione ZVN (ha)</th>
+              <td class="numeridx">$$supCondZVN</td>
+              <th>Ricettività massima di Azoto (kg)</th>
+              <td  class="numeridx">$$azotoCondZVN</td>
+            </tr>
+            <tr>
+              <th>Superficie in asservimento ZVN (ha)</th>
+              <td class="numeridx">$$supAssZVN</td>
+			        <th>Ricettività massima di Azoto (kg) </th>
+			        <td class="numeridx">$$azotoAssZVN</td>
+            </tr>
+            <tr>
+              <th>Superficie in conduzione fuori ZVN (ha)</th>
+              <td class="numeridx">$$supCondNoZVN</td>
+              <th>Ricettività massima di Azoto (kg)</th>
+              <td class="numeridx">$$azotoCondNoZVN</td>
+            </tr>
+            <tr>
+              <th>Superficie in asservimento fuori ZVN (ha)</th>
+              <td class="numeridx">$$supAssNoZVN</td>
+              <th>Ricettività massima di Azoto (kg) </th>
+              <td class="numeridx">$$azotoAssNoZVN</td>
+            </tr>
+            <tr>
+              <td class="tot">Totale</td>
+              <td class="tot">$$totaleSup</td>
+              <th>&nbsp;</th>
+              <td class="$$coloreTotale">$$totaleAzoto</td>
+            </tr>
+            <tr>
+              <td class="tot" colspan="3">Totale azoto prodotto in stalla (kg)</td>
+              <td class="$$coloreTotale"><strong>$$totaleAzotoAziendale</strong></td>              
+            </tr>
+            <tr>
+              <td class="tot" colspan="3">Totale azoto escreto al pascolo (kg)</td>
+              <td class="tot"><strong>$$azotoEscretoPascolo</strong></td>              
+            </tr>
+            <tr>
+              <td class="tot" colspan="3">Totale azoto all'utilizzo agronomico (kg)</td>
+              <td class="$$coloreTotale"><strong>$$totaleAzotoAziendaleNetCessAcqu</strong></td>              
+            </tr>
+          </table>
+          <!-- @@blkTerrenoRefluo -->
+          
+          <!-- @@blkEffluentiPrimo -->
+          <table cellspacing="3" summary="Questa tabella è costituita da righe">
+            <caption>Stoccaggio - UTE: $$descComuneUtePrimo - $$indirizzoUtePrimo</caption>         
+            <tr>
+              <th rowspan="2" class="center">Tipologia</th>
+              <th rowspan="2" class="center">Tipo</th>
+              <th rowspan="2" class="center">Refluo all'utilizzo agronomico (m<sup>3</sup>)</th>
+              <th rowspan="2" class="center">Stoccaggio disponibile (m<sup>3</sup>)</th>
+              <th colspan="2" class="center">Stoccaggio necessario</th>
+            </tr>
+            <tr>
+              <th class="center">m<sup>3</sup></th>
+              <th class="center">gg</th>
+            </tr>
+            <!-- @@blkElencoEffluentiPrimo -->
+            <tr>
+              <td>$$tipoEffluente</td>
+              <td>$$descrizione</td>
+              <td class="numeridx">$$nettoCessioni</td>
+              <!-- @@blkRigaPrimo -->
+              <td class="numeridx" rowspan="$$dimRighe">$$stoccaggioDiponibileVol</td>
+              <!-- @@blkRigaPrimo -->
+              <td class="numeridx">$$stocNecVol</td>
+              <td class="numeridx">$$stocNecGG</td>
+            </tr>
+            <!-- @@blkTotaleEffluentiPrimo -->
+            <tr>
+              <td class="tot" colspan="3">Totale</td>
+              <td class="$$coloreTotPrimo">$$totStoccaggioDiponibileVol</td>
+              <td class="$$coloreTotPrimo">$$totStocNecVol</td>
+              <td class="tot">&nbsp;</td>
+            </tr>
+            <!-- @@blkTotaleEffluentiPrimo -->
+            <!-- @@blkElencoEffluentiPrimo -->
+          </table>
+          <!-- @@blkEffluentiPrimo -->
+          
+          <!-- @@blkCessAcqu -->
+          <table cellspacing="3" summary="Questa tabella è costituita da righe">
+            <caption>Acquisizioni</caption>
+            <tr>
+              <th colspan="3" class="center" scope="col">Azienda</th>
+              <th rowspan="2" class="center" scope="col">Unit&agrave; produttiva</th>
+              <th rowspan="2" class="center" scope="col">Stoccato in azienda</th>
+              <th rowspan="2" class="center" scope="col">Tipo effluente </th>
+              <th rowspan="2" class="center" scope="col">Q.ta (m<sup>3</sup>) </th>
+              <th colspan="2" class="center" scope="col">Azoto (Kg) </th>
+            </tr>
+            <tr>
+              <th class="center" scope="col">CUAA</th>
+              <th class="center" scope="col">Denominazione</th>
+              <th class="center" scope="col">Comune UTE </th>
+              <th class="center" scope="col">Calcolato</th>
+              <th class="center" scope="col">Dichiarato</th>
+            </tr>
+            <!-- @@blkElencoCessAcqu -->
+            <tr>
+              <td>$$cuaaCessAcqu</td>      
+              <td>$$denominazioneCessAcqu</td>
+              <td>$$comuneCessAcqu ($$siglaProvCessAcqu)</td>
+              <td>$$descComuneUteCessAcqu</td>
+              <td>$$flagStoccaggioCessAcqu</td>
+              <td>$$descrizioneEffluente</td>
+              <td class="numeridx">$$quantitaCessAcqu</td>
+              <td class="numeridx">$$azotoCessAcqu</td>
+               <td class="numeridx">$$azotoDichiaratoCessAcqu</td>
+            </tr>
+            <!-- @@blkElencoCessAcqu -->
+          </table>
+          <!-- @@blkCessAcqu -->
+          
+          
+          <!-- @@blkTrattamenti -->          
+          <table class="insDati" summary="inserimento dei dati"  cellspacing="3">
+            <caption>Trattamenti</caption>            
+            <tr>
+              <th rowspan="3" class="center" scope="col">
+                Unit&agrave; produttiva
+              </th>
+              <th rowspan="3" class="center">
+                Tipo di effluente
+              </th>
+              <th rowspan="3" class="center" scope="col">
+                Tipologia di effluente
+              </th>
+              <th rowspan="3" class="center" scope="col">
+                Volume<br>trattato (m<sup>3</sup>)
+              </th>
+              <th rowspan="3" class="center" scope="col">
+                Azoto<br>trattato (Kg)
+              </th>
+              <th rowspan="3" class="center" scope="col">
+                Tipologia di<br>trattamento
+              </th>
+              <th colspan="4" class="center">
+                Materiale ottenuto
+              </th>
+            </tr>
+            <tr>
+              <th class="center" colspan="2" scope="col">
+                Palabile post trattamento
+              </th>
+              <th class="center" colspan="2" scope="col">
+                Non palabile post trattamento
+              </th>
+            </tr>
+            <tr>
+              <th class="center" scope="col" >
+                Volume<br>dichiarato (m<sup>3</sup>)
+              </th>
+              <th class="center" scope="col">
+                Azoto<br>dichiarato (Kg)
+              </th>
+              <th class="center" scope="col" >
+                Volume<br>dichiarato (m<sup>3</sup>)
+              </th>
+              <th class="center" scope="col">
+                Azoto<br>dichiarato (Kg)
+              </th>
+            </tr>
+           <!-- @@blkElencoTrattamenti -->
+           <tr>
+             <td>
+               $$descUteTrattamenti
+             </td>
+             <td>
+               $$descrizioneEffluente
+             </td>
+             <td>
+               $$tipologiaEffluenteTratt
+             </td>
+             <td class="numeridx">                  
+               $$quantitaTratt
+             </td>
+             <td class="numeridx">                  
+               $$azotoTratt
+             </td>
+             <td class="center"> 
+               $$codiceTrattamento                    
+             </td>
+             <td class="numeridx">
+               $$quantitaPalDichTratt
+             </td>
+             <td class="numeridx" >
+               $$azotoPalDichTratt
+             </td>
+             <td class="numeridx">
+               $$quantitaNonPalDichTratt
+             </td>
+             <td class="numeridx" >
+               $$azotoNonPalDichTratt
+             </td>
+           </tr>
+           <!-- @@blkElencoTrattamenti -->
+          </table>          
+          <!-- @@blkTrattamenti -->
+          
+          
+          <!-- @@blkCessioni -->
+          <table cellspacing="3" summary="Questa tabella è costituita da righe">
+            <caption>Cessioni</caption>
+            <tr>
+              <th colspan="3" class="center" scope="col">Azienda</th>
+              <th rowspan="2" class="center" scope="col">Unit&agrave; produttiva</th>
+              <th rowspan="2" class="center" scope="col">Stoccato in azienda</th>
+              <th rowspan="2" class="center" scope="col">Tipo effluente </th>
+              <th rowspan="2" class="center" scope="col">Q.ta (m<sup>3</sup>) Ceduta</th>
+              <th rowspan="2" class="center" scope="col">Azoto (Kg) ceduto</th>
+            </tr>
+            <tr>
+              <th class="center" scope="col">CUAA</th>
+              <th class="center" scope="col">Denominazione</th>
+              <th class="center" scope="col">Comune UTE </th>
+            </tr>
+            <!-- @@blkElencoCessioni -->
+            <tr>
+              <td>$$cuaaCessAcqu</td>      
+              <td>$$denominazioneCessAcqu</td>
+              <td>$$comuneCessAcqu ($$siglaProvCessAcqu)</td>
+              <td>$$descComuneUteCessAcqu</td>
+              <td>$$flagStoccaggioCessAcqu</td>
+              <td>$$descrizioneEffluente</td>
+              <td class="numeridx">$$quantitaCessAcqu</td>
+              <td class="numeridx">$$azotoCessAcqu</td>
+            </tr>
+            <!-- @@blkElencoCessioni -->
+          </table>
+          <!-- @@blkCessioni -->
+          
+          
+          <!-- @@blkStocc -->    
+          <table cellspacing="3" summary="Questa tabella è costituita da righe">
+            <caption>Eventuali strutture extra aziendali utilizzate per lo stoccaggio</caption>
+            <tr>
+              <th colspan="3" class="center" scope="col">Azienda</th>
+              <th rowspan="2" class="center" scope="col">Unit&agrave; produttiva</th>
+              <th rowspan="2" class="center" scope="col">Tipo struttura </th>
+              <th rowspan="2" class="center" scope="col">Volume utile disponibile all'azienda (m <sup>3</sup>)</th>
+            </tr>
+            <tr>
+              <th class="center" scope="col">CUAA</th>
+              <th class="center" scope="col">Denominazione</th>
+              <th class="center" scope="col">Comune UTE </th>
+            </tr>
+            <!-- @@blkElencoStocc -->
+            <tr>
+              <td>$$cuaaStocc</td>
+              <td>$$denominazioneStocc</td>
+              <td>$$comuneStocc ($$siglaProvStocc)</td>
+              <td>$$descComuneUteStocc</td>
+              <td>$$descrizioneFabbricato</td>
+              <td class="numeridx">$$quantitaStocc</td>
+            </tr>
+            <!-- @@blkElencoStocc -->
+          </table>
+          <!-- @@blkStocc -->
+          
+          
+          <!-- @@blkVolumeSottogrigliato -->
+          <table cellspacing="3" summary="Questa tabella &egrave; costituita da righe">
+            <caption>  Volume sottogrigliato  </caption>
+            <tr>
+              <th class="center" scope="col">Unit&agrave; produttiva</th>
+              <th class="center" scope="col">Q.ta (m<sup>3</sup>) </th>
+            </tr>
+            <!-- @@blkElencoVolumeSottogrigliato -->
+            <tr>
+              <td>$$descComuneUteVolumeSottogrigliato</td>
+              <td class="numeridx">$$volumeSottoGrigliato</td>
+            </tr>
+            <!-- @@blkElencoVolumeSottogrigliato -->
+          </table>
+          <!-- @@blkVolumeSottogrigliato -->
+          
+          <!-- @@blkVolumeRefluoAzienda -->
+          <table cellspacing="3" summary="Questa tabella &egrave; costituita da righe">
+            <caption>Eventuali altre acque reflue dell'allevamento zootecnico (es. Acque di lavaggio delle strutture, degli impianti e delle attrezzature zootecniche) destinate ad utilizzo agronomico  </caption>
+            <tr>
+              <th class="center" scope="col">Unit&agrave; produttiva</th>
+              <th class="center" scope="col">Q.ta (m<sup>3</sup>) </th>
+            </tr>
+            <!-- @@blkElencoVolumeRefluoAzienda -->
+            <tr>
+              <td>$$descComuneUteVolumeRefluoAzienda</td>
+              <td class="numeridx">$$volumeRefluoAzienda</td>
+            </tr>
+            <!-- @@blkElencoVolumeRefluoAzienda -->
+          </table>
+          <!-- @@blkVolumeRefluoAzienda -->
+      
+          <!-- @@blkAcqueReflue -->  
+          <table cellspacing="3" summary="Questa tabella è costituita da righe">
+            <caption>Acque reflue provenienti da aziende agricole e da piccole aziende agro-alimentari (capo II reg. 10/R) destinate ad utilizzo agronomico</caption>
+            <tr>
+              <th class="center" scope="col">Unit&agrave; produttiva</th>
+              <th scope="col" class="center">Settore acque reflue</th>
+              <th scope="col" class="center">Q.ta (m<sup>3</sup>)</th>
+            </tr>
+            <!-- @@blkElencoAcqueReflue -->
+            <tr>
+              <td>$$descComuneUteAcqueReflue</td>
+              <td>$$descrizioneAcquaAgronomica</td>
+              <td class="numeridx">$$volumeRefluo</td>
+            </tr>
+            <!-- @@blkElencoAcqueReflue -->  
+          </table>
+          <!-- @@blkAcqueReflue -->
+          
+          
+          <!-- @@blkReflui -->
+          <table cellspacing="3" summary="Questa tabella è costituita da righe">
+            <caption>Riepilogo Effluenti prodotti al netto dell'escreto al pascolo - UTE: $$descComuneUteSecondo - $$indirizzoUteSecondo</caption>          
+            <tr>
+              <th rowspan="2" class="center">Tipologia</th>
+              <th rowspan="2" class="center">Tipo</th>
+              <th colspan="2" class="center">Effluenti prodotti in stalla</th>
+              <th colspan="2" class="center">Acquisizioni</th>
+              <th colspan="2" class="center">Post trattamento calcolato</th>
+              <th colspan="2" class="center">Post trattamento dichiarato</th>
+              <th colspan="2" class="center">Cessioni</th>
+              <th colspan="2" class="center">Utilizzo agronomico</th>
+            </tr>
+            <tr>
+              <th class="center">Q.ta (m<sup>3</sup>)</th>
+              <th class="center">Azoto (kg)</th>
+              <th class="center">Q.ta (m<sup>3</sup>)</th>
+              <th class="center">Azoto (kg)</th>
+              <th class="center">Q.ta (m<sup>3</sup>)</th>
+              <th class="center">Azoto (kg)</th>
+              <th class="center">Q.ta (m<sup>3</sup>)</th>
+              <th class="center">Azoto (kg)</th>
+              <th class="center">Q.ta (m<sup>3</sup>)</th>
+              <th class="center">Azoto (kg)</th>
+              <th class="center">Q.ta (m<sup>3</sup>)</th>
+              <th class="center">Azoto (kg)</th>
+            </tr>
+            <!-- @@blkElencoReflui -->
+            <tr>
+              <td>$$tipoEffluente</td>
+              <td>$$descrizione</td>
+              <td class="numeridx">$$volumeEffProdStalla</td>
+              <td class="numeridx ">$$azotoEffProdStalla</td>
+              <td class="numeridx">$$volumeAcquisito</td>
+              <td class="numeridx">$$azotoAcquisito</td>
+              <td class="numeridx">$$volumePostTrattamentoCalc</td>
+              <td class="numeridx">$$azotoPostTrattamentoCalc</td>
+              <td class="numeridx">$$volumePostTrattamentoDich</td>
+              <td class="numeridx">$$azotoPostTrattamentoDich</td>
+              <td class="numeridx">$$volumeCeduto</td>
+              <td class="numeridx">$$azotoCeduto</td>
+              <td class="numeridx">$$volumeUtilizzoAgronomico</td>
+              <td class="numeridx">$$azotoUtilizzoAgronomico</td>
+            </tr>
+            <!-- @@blkElencoReflui -->
+            <tr>
+              <td class="totale" colspan="2">Totale</td>
+              <td class="totale">$$totVolumeEffProdStalla</td>
+              <td class="totale">$$totAzotoEffProdStalla</td>
+              <td class="totale">$$totVolumeAcquisito</td>
+              <td class="totale">$$totAzotoAcquisito</td>
+              <td class="totale">$$totVolumePostTrattamentoCalc</td>
+              <td class="totale">$$totAzotoPostTrattamentoCalc</td>
+              <td class="totale">$$totVolumePostTrattamentoDich</td>
+              <td class="totale">$$totAzotoPostTrattamentoDich</td>
+              <td class="totale">$$totVolumeCeduto</td>
+              <td class="totale">$$totAzotoCeduto</td>
+              <td class="totale">$$totVolumeUtilizzoAgronomico</td>
+              <td class="totale">$$totAzotoUtilizzoAgronomico</td>
+            </tr>
+          </table>
+          <!-- @@blkReflui -->
+          
+          <!--  @@blkNote -->
+          <table cellspacing="3" summary="Questa tabella è costituita da righe">
+            <caption>
+              UTE: $$descComuneUteNote -  $$indirizzoUteNote
+            </caption>
+            <tr>
+              <th>Note</th>
+              <td>$$noteComunicazione</td>
+            </tr>
+          </table>
+          <!--  @@blkNote -->  
+          
+          
+          <table cellspacing="3" summary="Questa tabella è costituita da righe">
+            <tr>
+              <th>Ultima modifica comunicazione 10r</th>
+              <td colspan="9">$$ultimoAggiornamento</td>
+            </tr>
+          </table>
+          <!-- @@blkNoErr -->
+          
+        <p class="note">Fatta eccezione per i casi di presenza di cordoli rilevati, i volumi di stoccaggio necessari non tengono conto dell'eventuale applicazione dei criteri di tolleranza stabiliti dalla DGR 116 - 9440 del 1 agosto 2008 </p>  
+        <p class="legenda">
+          <strong>Trattamenti</strong>:<br>
+          1. separazione delle frazioni solide grossolane (vagliatura -
+              vaglio rotante o vibrante)<br>
+          2. separazione delle frazioni solide grossolane (vagliatura -
+              vaglio rotante o vibrante) + ossigenazione della frazione
+              liquida chiarificata<br>
+          3. separazione delle frazioni solide grossolane (vagliatura -
+              separatore cilindrico rotante o a compressione elicoidale)<br>
+          4. separazione delle frazioni solide grossolane (vagliatura -
+              separatore cilindrico rotante o a compressione elicoidale)
+              + ossigenazione della frazione liquida chiarificata<br>
+          5. separazione meccanica delle frazioni solide (centrifuga o
+              nastropressa)<br>
+          6. separazione meccanica delle frazioni solide (centrifuga o
+              nastropressa) + ossigenazione della frazione liquida
+              chiarificata<br>
+          7. separazione meccanica delle frazioni solide (centrifuga o
+              nastropressa) + trattamento aerobico a fanghi attivi
+              (nitri-denitrificazione) della frazione liquida
+              chiarificata per abbattimento del tenore di N del 90%<br>
+          8. altre tipologie di trattamento o combinazioni di più
+              trattamenti (descrivere nel campo note)
+        </p>
+        </div>
+      </div>
+      <hr/>
+      <!-- PIE' DI PAGINA -->
+    $$footer

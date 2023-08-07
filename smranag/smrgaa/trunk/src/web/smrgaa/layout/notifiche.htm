@@ -1,0 +1,317 @@
+$$head
+  <script type="text/javascript" src="../js/checktext.js"></script>
+  <script type="text/javascript" src="../js/messaggistica.js"></script>
+  <script>
+    function visualizzaFile(idDocumento, idAllegato)
+	  {
+	    var oldAction = document.form1.action
+	
+	    document.form1.idAllegato.value = idAllegato;
+	    document.form1.idDocumento.value = idDocumento;
+	     
+	    document.form1.action = 'visualizzaFileAllegato.htm?arrivo=elencoNotifiche';
+	    document.form1.submit();
+	    document.form1.action = oldAction;
+	  }
+  </script>
+</head>
+<body id="homeIndice" onLoad="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+  <form name="form1" method="post" action="../layout/notifiche.htm">
+    <div id="pagina" class="colonnaUnica">
+      <input type="hidden" id="operazione" name="operazione" value="$$operazione"/>
+      <input type="hidden" id="paginaChiamante" name="paginaChiamante" value="/layout/notifiche.htm"/>
+      <input type="hidden" name="idAllegato" value="" />
+      <input type="hidden" name="idDocumento" value="" />
+      <!-- INTESTAZIONE -->
+      <div id="intestazione##pathProvincia">
+        <!--#include virtual="/ris/include/smrgaaweb/header.html" -->
+        <!-- menu di navigazione-->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li><a href="../layout/index.htm" title="Torna alla pagina principale">home</a></li>
+              <li class="attivo">gestione anagrafe aziende</li>
+              <li><a href="#" title="contatti">contatti</a></li>
+              <li><a href="#" title="help">help</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr/>
+      <div style="clear:left">  </div>
+      <!-- CORPO -->
+      <div id="corpo">
+        <div id="Utente">
+          <div id="datiUtente">
+            <strong>utente:</strong>
+            $$utente
+            &nbsp;
+            &nbsp;
+            <strong>ente:</strong>
+            $$ente
+          </div>
+          <div id="chiudisessione">
+            <a href="javascript: logout();">chiudi sessione</a>
+          </div>
+        </div>
+        <hr/>
+        <!--PRIMA COLONNA -->
+        <h3>Gestione Anagrafe Aziende&nbsp;&gt;&nbsp;Notifiche
+          <span class="helpFuori">
+            <a href="#">
+              <span class="alt">[help]</span>
+            </a>
+          </span>
+        </h3>
+        <hr/>
+        <div class="box">
+          <div class="menuSX1">
+            <ul>
+              <!-- @@blkElencoAziendeRapLegale -->
+                <li><a href="../layout/elencoAziendeRapLegale.htm">Elenco Aziende</a></li>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <!-- @@blkRicercaAzienda-->
+                <li><a href="../layout/ricerca.htm">Ricerche</a></li>
+              <!-- @@blkRicercaAzienda-->
+              <!-- @@blkNuova -->
+              <li><a href="../layout/nuovaAziendaAnagrafica.htm">Nuova Azienda</a></li>
+              <!-- @@blkNuova -->
+              <!-- @@blkNuovaIscrizione -->
+              <li>
+                <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+              </li>
+              <!-- @@blkNuovaIscrizione -->
+            </ul>
+          </div>
+          <div class="menuSX">
+            <ul>
+              <li><a href="../layout/anagrafica.htm">Anagrafica</a></li>
+              <!-- @@blkAziendeCollegate -->
+	          			<li>
+	          					<a href="../layout/aziendeCollegate.htm">$$aziendeCollegateLabel</a>
+	          			</li>
+	          	<!-- @@blkAziendeCollegate -->
+	          <!-- @@blkSincronizzaFascicolo -->
+               <li>
+               	<a href="../layout/sincronizzaFascicolo.htm">Sincronizza fascicolo</a>
+               </li>
+              <!-- @@blkSincronizzaFascicolo -->	
+              <!-- @@blkSoggettiCollegati -->
+              <li><a href="../layout/contitolari.htm">Soggetti collegati</a></li>
+              <!-- @@blkSoggettiCollegati -->
+              <!-- @@blkContiCorrenti -->
+              <li><a href="../layout/conti_correnti.htm">Conti Correnti</a></li>
+              <!-- @@blkContiCorrenti -->
+              <!-- @@blkUnitaProduttive -->
+              <li><a href="../layout/sedi.htm">Unit&agrave; produttive</a></li>
+              <!-- @@blkUnitaProduttive -->
+              <!-- @@blkTerreni -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniParticellareElenco.htm">Terreni</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		            <a href="../layout/riepiloghi.htm">Terreni</a>
+		            <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkTerreni -->
+		          <!-- @@blkUnitaVitate -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniUnitaArboreeElenco.htm">Unit&agrave; Vitate</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		              <a href="../layout/riepiloghiUnitaArboree.htm">Unit&agrave; Vitate</a>
+		              <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkUnitaVitate -->
+              <!-- @@blkFabbricati -->
+              <li><a href="../layout/fabbricati.htm">Fabbricati e Strutture</a></li>
+              <!-- @@blkFabbricati -->
+              <!-- @@blkAllevamenti -->
+              <li><a href="../layout/allevamenti.htm">Allevamenti</a></li>
+              <!-- @@blkAllevamenti -->
+              <!-- @@blkManodopera -->
+              <li><a href="../layout/manodopera.htm">Manodopera</a></li>
+              <!-- @@blkManodopera -->
+              <!-- @@blkMotoriAgricoli -->
+              <li><a href="../layout/motori_agricoli_incarico.htm">Macchine agricole</a></li>
+              <!-- @@blkMotoriAgricoli -->
+              <!-- @@blkDiritti -->
+                <li><a href="../layout/diritti.htm">Diritti di produzione</a></li>
+              <!-- @@blkDiritti -->
+              <!-- @@blkAttestazioni -->
+              	<li><a href="../layout/attestazioniDettaglio.htm">Dichiarazioni</a></li>
+              <!-- @@blkAttestazioni -->
+              <!-- @@blkDichiarazioniConsistenza -->
+              <li><a href="../layout/dichiarazioneConsistenza.htm">Validazioni</a></li>
+              <!-- @@blkDichiarazioniConsistenza -->
+              <!-- @@blkDocumenti -->
+              <li><a href="../layout/documentiElenco.htm">Documenti</a></li>
+              <!-- @@blkDocumenti -->
+              <!-- @@blkFascicoloDematerializzato -->
+              <li>
+                <a href="../layout/fascicoloDematerializzato.htm">Fascicolo<br>elettronico</a>
+              </li>
+              <!-- @@blkFascicoloDematerializzato -->
+              <!-- @@blkGestioneNotifiche -->
+                <li>
+                  <a href="../layout/notifiche.htm" class="on">Notifiche</a>
+                  <ul>
+                    <!-- @@blkDettaglioNotifica -->
+                      <li>
+                        <a href="javascript: submitForm('../layout/dettaglioNotifica.htm', document.form1, document.form1.idNotifica);">dettaglio</a>
+                      </li>
+                    <!-- @@blkDettaglioNotifica -->
+                    <!-- @@blkNuovaNotifica -->
+                      <li>
+                        <a href="../layout/nuovaNotifica.htm">inserisci</a>
+                      </li>
+                    <!-- @@blkNuovaNotifica -->
+                    <!-- @@blkModificaNotifica -->
+                      <li>
+                        <a href="javascript: submitForm('../layout/modificaNotifica.htm', document.form1, document.form1.idNotifica);">modifica</a>
+                      </li>
+                    <!-- @@blkModificaNotifica -->
+                    <!-- @@blkChiusuraNotifica -->
+                      <li>
+                        <a href="javascript: submitForm('../layout/chiusuraNotifica.htm', document.form1, document.form1.idNotifica);">chiusura</a>
+                      </li>
+                    <!-- @@blkChiusuraNotifica -->
+                  </ul>
+                </li>
+              <!-- @@blkGestioneNotifiche -->
+              <!-- @@blkComunicazione10R -->
+                <li>
+                  <a href="../layout/comunicazione10R_dettaglio.htm">Comunicazione 10/R</a>
+                </li>
+              <!-- @@blkComunicazione10R -->
+              <!-- @@blkPratiche -->
+              <li><a href="../layout/pratiche.htm">Pratiche</a></li>
+              <!-- @@blkPratiche -->
+              <!-- @@blkStampaFascicolo -->
+              <li><a href="../layout/scelta_stampa.htm">Stampe</a></li>
+              <!-- @@blkStampaFascicolo -->
+            </ul>
+          </div>
+        </div>
+        <hr/>
+        <!-- SECONDA COLONNA -->
+        <div id="contenuto">
+          <div id="intesta">
+            <p class="$$aziendaIntestazione" title="$$tooltipIntestazione" >
+              $$CUAAIntestazione  $$denominazioneIntestazione
+            </p>
+          </div>
+          <br/>
+          <table cellspacing="3" summary="Questa tabella è costituita da righe">
+            <tr>
+              <th scope="row">
+                <label for="storico">Visualizza storico</label>
+                <input type="checkbox" id="storico" name="storico" $$checked/>
+              </th>
+              <td>
+                <div class="azioni"><a href="javascript:goToOperazione('../layout/notifiche.htm', document.form1, 'aggiorna');">Aggiorna</a></div>
+              </td>
+            </tr>
+          </table>
+          <!--@@blkSiNotifiche-->
+          <p class="allineaDx">Notifiche estratte: $$numeroTotNotifiche
+            <span>
+              <!-- @@frecciaSinistra -->
+              <a href="javascript:freccia('../layout/notifiche.htm','$$valore', document.form1);">indietro</a>
+              <!-- @@frecciaSinistra -->
+              pagina $$numeroParziale di $$numeroTotale
+              <!-- @@frecciaDestra -->
+              <a href="javascript:freccia('../layout/notifiche.htm','$$valore', document.form1);">avanti</a>
+              <!-- @@frecciaDestra -->
+            </span>
+            <input type="hidden" name="valoreIndice" id="valoreIndice"/>
+            <input type="hidden" name="pagina" id="pagina" value="$$pagina"/>
+          </p>
+
+          <!--@@blkNotifiche-->
+          <table  class="evidence" cellspacing="3" summary="Questa tabella è costituita da righe">
+            <tr>
+              <th class="radio" scope="col"></th>
+              <th class="center" scope="col">Tipo</th>
+              <th class="center" scope="col">Categoria</th>
+              <th class="center" scope="col">Data <br />apertura</th> 
+              <th class="center" scope="col">Utente</th>
+              <th class="center" scope="col">Descrizione</th>
+              <th class="center" scope="col">Allegati</th>
+            </tr>
+            <!--@@blkElencoNotifiche-->
+            <tr>
+              <th class="radio" scope="row">
+                <input type="radio" id="idNotifica" name="idNotifica" value="$$idNotifica" $$radioChecked/>
+              </th>
+              <td class="center" >
+                <img src="$$immagine" title="$$descTipologiaNotifica"/>
+              </td>
+              <td>$$descCategoriaNotifica</td>
+              <td>$$strDataInserimento</td>
+              <td>$$ultimaModificaVw</td>
+              <td>$$descrizione</td>
+              <td>                
+              <!-- @@blkFileAllegato -->
+                <a href="javascript:visualizzaFile('$$idDocumento', '$$idAllegato')" class="pratica" title="$$titleAllegato"></a>
+              <!-- @@blkFileAllegato --> 
+              </td>
+            </tr>
+            <!--@@blkElencoNotifiche-->
+          </table>
+          <!--@@blkNotifiche-->
+          
+          <!--@@blkStoricoNotifiche-->
+          <table  class="evidence" cellspacing="3" summary="Questa tabella è costituita da righe">
+            <tr>
+              <th rowspan="2" class="radio" scope="col">      </th>
+              <th rowspan="2" class="center" scope="col">Tipo</th>
+              <th rowspan="2" class="center" scope="col">Categoria</th>
+              <th colspan="2" class="center" scope="col">Apertura</th>
+              <th colspan="2" class="center" scope="col">Chiusura</th>
+              <th rowspan="2" class="center" scope="col">Descrizione</th>
+              <th rowspan="2" class="center" scope="col">Allegati</th>
+            </tr>
+            <tr>
+              <th class="center" scope="col">Data</th>
+              <th class="center" scope="col">Utente</th>
+              <th class="center" scope="col">Data</th>
+              <th class="center" scope="col">Utente</th>
+            </tr>
+            <!--@@blkElencoNotifiche-->
+            <tr>
+              <th class="radio" scope="row">
+                <input type="radio" id="idNotifica" name="idNotifica" value="$$idNotifica" $$radioChecked/>              </th>
+              <td>
+                <img src="$$immagine" alt="immagine"/>
+              </td>
+              <td>$$descCategoriaNotifica</td>
+              <td>$$strDataInserimento</td>
+              <td>$$ultimaModificaVw</td>
+              <td>$$strDataChiusura</td>
+              <td>$$ultimaModificaChiusuraVw</td>
+              <td>$$descrizione</td>
+              <td>                
+              <!-- @@blkFileAllegato -->
+                <a href="javascript:visualizzaFile('$$idNotifica', '$$idAllegato')" class="pratica" title="$$titleAllegato"></a>
+              <!-- @@blkFileAllegato --> 
+              </td>
+            </tr>
+            <!--@@blkElencoNotifiche-->
+          </table>
+          <!--@@blkStoricoNotifiche-->
+          
+          <!--@@blkSiNotifiche-->
+          <!-- @@blkNoNotifiche -->
+          <p class="errore">$$messaggio</p>
+          <!-- @@blkNoNotifiche -->
+        </div>
+      </div>
+      <hr/>
+      <!-- PIE' DI PAGINA -->
+      $$footer

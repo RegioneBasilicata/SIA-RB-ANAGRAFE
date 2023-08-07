@@ -1,0 +1,294 @@
+$$head
+  <script type="text/javascript" language="javascript1.2" src="../js/checktext.js"></script>
+  <script type="text/javascript" language="javascript1.2" src="../js/checkdata.js"></script>
+  <script type="text/javascript" src="../js/messaggistica.js"></script>
+</head>
+<body id="homeIndice" onload="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+  <form id="form1" name="form1" method="post" action="../layout/terreniVerifica_ko.htm">
+    <input type="hidden" name="operazione" id="operazione" value="" />
+    <div id="pagina" class="colonnaUnica">
+      <input type="hidden" id="anno" name="anno" value="##anno"/>
+      <!-- INTESTAZIONE -->
+      <div id="intestazione##pathProvincia">
+        $$header
+        <!-- menu di navigazione-->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li><a href="../layout/index.htm" title="Torna alla pagina principale">home</a></li>
+              <li class="attivo">gestione anagrafe aziende</li>
+              <li><a href="#" title="contatti">contatti</a></li>
+              <li><a href="#" title="help">help</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr/>
+      <div style="clear:left">  </div>
+      <!-- CORPO -->
+      <div id="corpo">
+        <div id="Utente">
+          <div id="datiUtente">
+            <strong>utente:</strong>
+            $$utente
+            &nbsp;
+            &nbsp;
+            <strong>ente:</strong>
+            $$ente
+          </div>
+          <div id="chiudisessione">
+            <a href="javascript: logout();">chiudi sessione</a>
+          </div>
+        </div>
+        <hr/>
+        <!--PRIMA COLONNA -->
+        <h3>Gestione Anagrafe Aziende&nbsp;&gt;&nbsp;Terreni&nbsp;&gt;&nbsp;Controlli
+          <span class="helpFuori">
+            <a href="#">
+              <span class="alt">[help]</span>
+            </a>
+          </span>
+        </h3>
+        <hr/>
+        <div class="box">
+          <div class="menuSX1">
+            <ul>
+              <!-- @@blkElencoAziendeRapLegale -->
+                <li><a href="../layout/elencoAziendeRapLegale.htm">Elenco Aziende</a></li>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <!-- @@blkRicercaAzienda-->                
+                <li>
+                  <a href="../layout/ricerca.htm">Ricerche</a>
+                </li>
+              <!-- @@blkRicercaAzienda-->
+              <!--@@blkNuova-->
+              <li><a href="../layout/nuovaAziendaAnagrafica.htm">Nuova Azienda</a></li>
+              <!--@@blkNuova-->
+              <!-- @@blkNuovaIscrizione -->
+              <li>
+                <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+              </li>
+              <!-- @@blkNuovaIscrizione -->
+            </ul>
+          </div>
+          <div class="menuSX">
+            <ul>
+              <li><a href="../layout/anagrafica.htm">Anagrafica</a></li>
+              <!-- @@blkAziendeCollegate -->
+	          			<li>
+	          					<a href="../layout/aziendeCollegate.htm">$$aziendeCollegateLabel</a>
+	          			</li>
+	          	<!-- @@blkAziendeCollegate -->
+	          <!-- @@blkSincronizzaFascicolo -->
+               <li>
+               	<a href="../layout/sincronizzaFascicolo.htm">Sincronizza fascicolo</a>
+               </li>
+              <!-- @@blkSincronizzaFascicolo -->	
+              <!-- @@blkSoggettiCollegati -->
+              <li><a href="../layout/contitolari.htm">Soggetti collegati</a></li>
+              <!-- @@blkSoggettiCollegati -->
+              <!-- @@blkContiCorrenti -->
+              <li><a href="../layout/conti_correnti.htm">Conti Correnti</a></li>
+              <!-- @@blkContiCorrenti -->
+              <!-- @@blkUnitaProduttive -->
+              <li><a href="../layout/sedi.htm">Unit&agrave; produttive</a></li>
+              <!-- @@blkUnitaProduttive -->
+              <!-- @@blkTerreni -->
+             	<li>
+               	<!-- @@blkLinkElenco -->
+                <a href="../layout/terreniParticellareElenco.htm"
+                  class="on">Terreni</a>
+                <ul>
+                  <li>
+                    <a href="../layout/riepiloghi.htm">riepiloghi</a>
+                  </li>
+                <!-- @@blkLinkElenco -->
+                <!-- @@blkLinkRiepiloghi -->
+                <a href="../layout/riepiloghi.htm"
+                  class="on">Terreni</a>
+                <ul>
+                  <li>
+                    <a href="../layout/terreniParticellareElenco.htm">elenco</a>
+                  </li>
+                <!-- @@blkLinkRiepiloghi -->
+                    	<!-- @@blkVerifiche -->
+                      		<li>
+                        		<a href="../layout/terreniVerifica.htm">controlli</a>
+                      		</li>
+                    	<!-- @@blkVerifiche -->
+                    	<!-- @@blkImportaParticelle -->
+                  		<li>
+                    		<a href="../layout/importaTerreniGenerico.htm">importa</a>
+                  		</li>
+                    	<!-- @@blkImportaParticelle -->
+                  	</ul>
+                </li>
+              <!-- @@blkTerreni -->
+              <!-- @@blkUnitaVitate -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniUnitaArboreeElenco.htm">Unit&agrave; Vitate</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		              <a href="../layout/riepiloghiUnitaArboree.htm">Unit&agrave; Vitate</a>
+		              <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkUnitaVitate -->
+              <!-- @@blkFabbricati -->
+              <li><a href="../layout/fabbricati.htm">Fabbricati e Strutture</a></li>
+              <!-- @@blkFabbricati -->
+              <!-- @@blkAllevamenti -->
+              <li><a href="../layout/allevamenti.htm">Allevamenti</a></li>
+              <!-- @@blkAllevamenti -->
+              <!-- @@blkManodopera -->
+              <li><a href="../layout/manodopera.htm">Manodopera</a></li>
+              <!-- @@blkManodopera -->
+              <!-- @@blkMotoriAgricoli -->
+              <li><a href="../layout/motori_agricoli_incarico.htm">Macchine agricole</a></li>
+              <!-- @@blkMotoriAgricoli -->
+              <!-- @@blkDiritti -->
+                <li><a href="../layout/diritti.htm">Diritti di produzione</a></li>
+              <!-- @@blkDiritti -->
+              <!-- @@blkAttestazioni -->
+              	<li><a href="../layout/attestazioniDettaglio.htm">Dichiarazioni</a></li>
+              <!-- @@blkAttestazioni -->
+              <!-- @@blkDichiarazioniConsistenza -->
+              <li><a href="../layout/dichiarazioneConsistenza.htm">Validazioni</a></li>
+              <!-- @@blkDichiarazioniConsistenza -->
+              <!-- @@blkDocumenti -->
+              <li><a href="../layout/documentiElenco.htm">Documenti</a></li>
+              <!-- @@blkDocumenti -->
+              <!-- @@blkFascicoloDematerializzato -->
+              <li>
+                <a href="../layout/fascicoloDematerializzato.htm">Fascicolo<br>elettronico</a>
+              </li>
+              <!-- @@blkFascicoloDematerializzato -->
+              <!-- @@blkGestioneNotifiche -->
+              <li><a href="../layout/notifiche.htm">Notifiche</a></li>
+              <!-- @@blkGestioneNotifiche -->
+              <!-- @@blkComunicazione10R -->
+                <li>
+                  <a href="../layout/comunicazione10R_dettaglio.htm">Comunicazione 10/R</a>
+                </li>
+              <!-- @@blkComunicazione10R -->
+              <!-- @@blkPratiche -->
+                <li><a href="../layout/pratiche.htm">Pratiche</a></li>
+              <!-- @@blkPratiche -->
+              <!-- @@blkStampaFascicolo -->
+              <li><a href="../layout/scelta_stampa.htm">Stampe</a></li>
+              <!-- @@blkStampaFascicolo -->
+			  <li><a href="../layout/strumenti.htm">Strumenti</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr/>
+        <!-- SECONDA COLONNA -->
+        <div id="contenuto">
+          <div id="intesta">
+            <p class="$$aziendaIntestazione" title="$$tooltipIntestazione" >
+              $$CUAAIntestazione  $$denominazioneIntestazione
+            </p>
+          </div>
+          <hr/>
+          <!-- @@blkFiltriTabAnomalia -->
+          <table cellspacing="3" summary="Questa tabella è costituita da righe">
+            <tr>
+              <th><label for="Tipologia">Tipologia</label></th>
+              <td>
+                <select name="idControllo" id="idControllo">
+                  <option value="" >Tutte</option>
+                  <!-- @@blkTipoControllo -->
+                    <option value="$$idControllo" $$selected>$$descrizione</option>
+                  <!-- @@blkTipoControllo -->
+                </select>
+                $$err_idControllo
+              </td>
+              <td rowspan="2">
+                <div class="azioni">
+                  <a href="javascript: goToOperazione('../layout/terreniVerifica_ko.htm', document.form1,'cerca');">aggiorna</a>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th>Segnalazioni</th>
+              <td>
+                <input name="segnalazioneBloccante" type="checkbox" value="B" $$checkedBloccante /> 
+                <img src="$$srcBloccante" alt="$$descImmagineBloccante" width="17" height="17" onclick="alert('$$descImmagineBloccante')" onkeypress="alert('$$descImmagineBloccante')"/> 
+                <input name="segnalazioneWarning" type="checkbox" value="W" $$checkedWarning /> 
+                <img src="$$srcWarning" alt="$$descImmagineWarning" width="17" height="17" onclick="alert('$$descImmagineWarning')" onkeypress="alert('$$descImmagineWarning')"/>
+                <input name="segnalazioneOk" type="checkbox" value="P" $$checkedOk /> 
+                <img src="$$srcOk" alt="$$descImmagineOk" width="16" height="16" onclick="alert('$$descImmagineOk')" onkeypress="alert('$$descImmagineOk')"/>  
+              </td>
+            </tr>
+          </table>
+          <!-- @@blkFiltriTabAnomalia -->
+          <!-- @@blkTabAnomalia -->
+          <div class="scroll">
+            <div class="azioni">
+              <a href="javascript: goToOperazione('../layout/terreniVerifica_ko.htm', document.form1,'excel');">esporta dati</a>
+              <span class="alt">&nbsp;&nbsp;</span>
+            </div>
+          </div>          
+         
+          <table cellspacing="3" summary="Questa tabella è costituita da righe">
+            <caption>$$descrizioneAnomalia</caption>
+            <tr>
+              <th class="radio">&nbsp;</th>
+              <th class="center" scope="col">
+                <span class="TitOrd">Tipologia</span>
+                <div class="ordina">
+                  <a href="javascript: goToOperazione(document.forms[0].action, document.forms[0], '$$tipoOrdinaTipologia');" class="$$ordinaTipologia" title="$$descOrdinaTipologia">
+                    <span class="nascosto">$$descOrdinaTipologia</span>
+                  </a>
+                </div>
+              </th>
+              <th class="center" scope="col">
+                <span class="TitOrd">Comune</span>
+                <div class="ordina">
+                  <a href="javascript: goToOperazione(document.forms[0].action, document.forms[0], '$$tipoOrdinaComune');" class="$$ordinaComune" title="$$descOrdinaComune">
+                    <span class="nascosto">$$descOrdinaComune</span>
+                  </a>
+                </div>
+              </th>
+              <th class="center" scope="col">Sez.</th>
+              <th class="center" scope="col">Fgl.</th>
+              <th class="center" scope="col">Part.</th>
+              <th class="center" scope="col">Sub.</th>
+              <th class="center" scope="col"> Sup.Cat</th>
+              <th class="center" scope="col">Sup.Cond</th>
+              <th class="center" scope="col">Descrizione</th>
+            </tr>
+            <!-- @@blkAnomalia -->
+            <tr>
+              <td>
+                <a href="#">
+                  <img src="$$immagine" onclick="alert('$$descImmagine')" onkeypress="alert('$$descImmagine')" alt="$$descImmagine"/>
+                </a>
+              </td>
+              <td>$$tipologia</td>
+              <td>$$descComune</td>
+              <td>$$sezione</td>
+              <td class="numeridx">$$foglio</td>
+              <td class="numeridx">$$particella</td>
+              <td>$$subalterno</td>
+              <td class="numeridx">$$supCatastale</td>
+              <td class="numeridx">$$supCondotta</td>
+              <td>$$descrizione</td>              
+            </tr>
+            <!-- @@blkAnomalia -->
+          </table>
+          <div class="azioni">
+            <a href="javascript: goToOperazione('../layout/terreniVerifica_ko.htm', document.form1,'excel');">esporta dati</a>
+            <span class="alt">&nbsp;&nbsp;</span>
+          </div>
+          <!-- @@blkTabAnomalia -->
+          <!-- @@blkNoTabAnomalia -->
+            <p class="errore">$$noRecordTrovati</p>
+          <!-- @@blkNoTabAnomalia -->
+       </div>
+     </div>
+     <hr />   
+     $$footer

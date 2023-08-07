@@ -1,0 +1,21 @@
+Elenco dei targets "interni",non obbligatori, aggiunti per utilità del progetto.
+
+1)  all-targets:           Esegue il build per le varie distribuzioni in sequenza.
+2)  anag:                  Builds anag's EJB-JAR.
+3)  anagServices:          Builds anag's EJB-JAR(utilizzato per smrgaasv).
+4)  application_config:    Crea il file application.xml e lo configura in base al nome della componente.
+5)  clean:                 Delete all directories created by this Ant script.
+6)  clean-create-lib:      Elimina, ricrea e popola la cartella lib.
+7)  client:                Crea il jar con le classi di anag per i servizi via soap.
+8) compile-jsp-weblogic:  Compila le jsp per weblogic.
+9) compileLib:            Compile all source.
+10) default:               Eseguire il build per l'environment specificato a linea di comando con -Dtarget=${target} o per tutti gli environment (se non specificato).
+11) environment-config:    Parsifica i modelli dei file di configurazione inserendo al loro interno i dati necessari per ciascun ambiente.
+12) libs:                  Builds library JARs containing classes from etc's, exception's, dto's and util's packages.
+13) libsServices:          Builds library JARs containing classes from etc's, exception's, dto's and util's packages(utilizzato per smrgaasv).
+14) sv-ear:                Builds from scratch SOLMR - Anag's EAR file(utilizzato per smrgaasv).
+15) warAnagNotPrecompiled: Builds SOLMR - Anag's WAR.
+16) warAnagPrecompiled:    Builds SOLMR - Anag's WAR.
+17) warService:            Builds SOLMR - Anag's WAR(utilizzato per smrgaasv).
+18) web-ear:               Builds from scratch SOLMR - Anag's EAR file.
+19) Default target:        default

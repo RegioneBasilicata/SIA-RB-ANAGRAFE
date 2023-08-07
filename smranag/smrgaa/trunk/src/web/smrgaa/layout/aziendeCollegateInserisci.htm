@@ -1,0 +1,506 @@
+$$head
+
+
+<!--ex menu' flottante-->
+
+
+
+<script type="text/javascript" src="../js/checkdata.js"></script>
+<script type="text/javascript" src="../js/checktext.js"></script>
+<script type="text/javascript" src="../js/messaggistica.js"></script>
+<script type="text/javascript">
+
+    function scegliAzienda(mypage, myname, w, h, scroll,cuaa,partitaIva,denominazione,provenienza) {      
+      NewWindowAziendaAnag(mypage, myname, w, h, scroll,cuaa,partitaIva,denominazione,provenienza);
+    }
+
+    function NewWindowAziendaAnag(mypage, myname, w, h, scroll,cuaa,partitaIva,denominazione,provenienza) {
+      var winl = (screen.width - w) / 2;
+      var wint = (screen.height - h) / 2;
+      
+      if(cuaa ==  '' && denominazione == '' && partitaIva == '') {
+        alert('Inserire un cuaa, una partita iva o una denominazione');
+      }
+      else if((cuaa !=  '') && (denominazione != '') && (partitaIva != '') )
+      {
+        alert('E\' possibile inserire solo un elemento tra cuaa, partita iva e denominazione');
+      }
+      else 
+      {
+        var errore = 'false' ;
+        cuaa = trimAll(cuaa);
+        if(cuaa !='')
+        {
+          if((cuaa.length !=11) && (cuaa.length !=16))
+          {
+            alert('CUAA inserito errato!');
+            errore = 'true' ;
+          }
+          else if ((cuaa.length == 11) && !isInteger(cuaa))
+          {
+            alert('CUAA inserito errato!');
+            errore = 'true' ;
+          }           
+        }
+        
+        partitaIva = trimAll(partitaIva);
+        if(partitaIva !='')
+        {
+          if(partitaIva.length !=11)
+          {
+            alert('partita iva inserita errata!');
+            errore = 'true' ;
+          }
+          if ((partitaIva.length == 11) && !isInteger(partitaIva))
+          {
+            alert('Partita Iva inserita errata!');
+            errore = 'true' ;
+          }           
+        }
+        
+        if(errore != 'true' )
+        {
+          winprops =    'height='+h+',width='+w+',top='+wint+',left='+winl+',scrollbars='+scroll+',resizable';
+          win = window.open(mypage+'?cuaa='+cuaa+'&partitaIva='+partitaIva+'&denominazione='+denominazione+'&provenienza='+provenienza, myname, winprops);
+          if (parseInt(navigator.appVersion) >= 4) {
+            win.window.focus();
+          }
+        }
+      }
+    }
+    
+    function scegliComune(mypage, myname, w, h, scroll, provincia, comune, obiettivo) {
+      NewWindowComuneAnag(mypage, myname, w, h, scroll, provincia, comune, obiettivo);
+    }
+
+    function NewWindowComuneAnag(mypage, myname, w, h, scroll,provincia,comune,obiettivo) {
+      var winl = (screen.width - w) / 2;
+      var wint = (screen.height - h) / 2;
+      if(provincia ==  '' && comune == '') {
+        alert('Inserire una provincia o un comune!');
+      }
+      else if(!mappaOggetti(comune)) {
+      }
+      else {
+        winprops = 'height='+h+',width='+w+',top='+wint+',left='+winl+',scrollbars='+scroll+',resizable';
+        win = window.open(mypage+'?obiettivo='+obiettivo+'&provincia='+provincia+'&comune='+comune, myname, winprops);
+        if (parseInt(navigator.appVersion) >= 4) {
+          win.window.focus();
+        }
+      }
+    }
+    
+    function setHiddenOperazione(form, operazione) {
+      form.operazione.value = operazione;
+      form.submit();
+    }
+    
+    function setBlocked(form, obj) {
+      obj.onclick = '';
+      form.annulla.onclick = '';
+    }
+    
+  </script>
+</head>
+<body id="homeIndice" onLoad="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+ 
+      <div id="pagina" class="colonnaUnica">
+      
+      
+  <form name="form1" id="form1" method="post"
+    action="../layout/aziendeCollegateInserisci.htm">
+    <input type="hidden" name="operazione" id="operazione" value="" />
+      
+      
+        <div id="intestazione##pathProvincia">
+          $$header
+          <!-- menu di navigazione-->
+          <div id="titoloEmenu">
+            <h2>
+              <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+            </h2>
+            <div id="menuDiNavigazione" title="Menu di navigazione">
+              <ul class="menuTendina" id="menu-2">
+                <li>
+                  <a href="../layout/index.htm"
+                    title="Torna alla pagina principale">home</a>
+                </li>
+                <li class="attivo">
+                  gestione anagrafe aziende
+                </li>
+                <li>
+                  <a href="#" title="contatti">contatti</a>
+                </li>
+                <li>
+                  <a href="#" title="help">help</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <hr />
+        <div style="clear: left"></div>
+        <div id="corpo">
+          <div id="Utente">
+            <div id="datiUtente">
+              <strong>utente:</strong> $$utente &nbsp;&nbsp;
+              <strong>ente:</strong> $$ente
+            </div>
+            <div id="chiudisessione">
+              <a href="javascript:logout();">chiudi sessione</a>
+            </div>
+          </div>
+          <hr />
+          <h3>
+            Gestione Anagrafe Aziende > ##aziendeCollegateArianna >
+            Inserisci
+            <span class="helpFuori"> <a href="#"> <span
+                class="alt"> [help]</span> </a> </span>
+          </h3>
+          
+    <div class="box">
+      <div class="menuSX1">
+        <ul>
+          <!-- @@blkElencoAziendeRapLegale -->
+          <li>
+            <a href="../layout/elencoAziendeRapLegale.htm">Elenco
+              Aziende</a>
+          </li>
+          <!-- @@blkElencoAziendeRapLegale -->
+          <!-- @@blkRicercaAzienda-->
+          <li>
+            <a href="../layout/ricerca.htm">Ricerche</a>
+          </li>
+          <!-- @@blkRicercaAzienda-->
+          <!-- @@blkNuova -->
+          <li>
+            <a href="../layout/nuovaAziendaAnagrafica.htm">Nuova
+              Azienda</a>
+          </li>
+          <!-- @@blkNuova -->
+          <!-- @@blkNuovaIscrizione -->
+          <li>
+            <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+          </li>
+          <!-- @@blkNuovaIscrizione -->
+        </ul>
+      </div>
+      <div class="menuSX">
+        <ul>
+          <li>
+            <a href="../layout/anagrafica.htm">Anagrafica</a>
+          </li>
+          <!-- @@blkAziendeCollegate -->
+          <li>
+            <a href="../layout/aziendeCollegate.htm" class="on">$$aziendeCollegateLabel</a>
+            <ul>
+              <li>
+                <a href="#">inserisci</a>
+              </li>
+            </ul>
+          </li>
+          <!-- @@blkAziendeCollegate -->
+          <!-- @@blkSincronizzaFascicolo -->
+          <li>
+           	<a href="../layout/sincronizzaFascicolo.htm">Sincronizza fascicolo</a>
+          </li>
+          <!-- @@blkSincronizzaFascicolo -->
+          <!-- @@blkSoggettiCollegati -->
+          <li>
+            <a href="../layout/contitolari.htm">Soggetti collegati</a>
+          </li>
+          <!-- @@blkSoggettiCollegati -->
+          <!-- @@blkUnitaProduttive -->
+          <li>
+            <a href="../layout/sedi.htm">Unit&agrave; produttive</a>
+          </li>
+          <!-- @@blkUnitaProduttive -->
+          <!-- @@blkTerreni -->
+          <li>
+            <!-- @@blkLinkElenco -->
+            <a href="../layout/terreniParticellareElenco.htm">Terreni</a>
+            <!-- @@blkLinkElenco -->
+            <!-- @@blkLinkRiepiloghi -->
+            <a href="../layout/riepiloghi.htm">Terreni</a>
+            <!-- @@blkLinkRiepiloghi -->
+          </li>
+          <!-- @@blkTerreni -->
+          <!-- @@blkUnitaVitate -->
+          <li>
+            <!-- @@blkLinkElenco -->
+            <a href="../layout/terreniUnitaArboreeElenco.htm">Unit&agrave; Vitate</a>
+            <!-- @@blkLinkElenco -->
+            <!-- @@blkLinkRiepiloghi -->
+              <a href="../layout/riepiloghiUnitaArboree.htm">Unit&agrave; Vitate</a>
+              <!-- @@blkLinkRiepiloghi -->
+          </li>
+          <!-- @@blkUnitaVitate -->
+        </ul>
+      </div>
+    </div>          
+          
+          <hr />
+          <div id="contenuto">
+            <div id="intesta">
+              <p class="$$aziendaIntestazione" title="$$tooltipIntestazione" >
+                $$CUAAIntestazione  $$denominazioneIntestazione
+              </p>
+            </div>
+            <!-- @@blkNotifica -->
+            <p class="$$immagine">
+              $$messaggioNotifica
+            </p>
+            <!-- @@blkINNotifica -->
+          <div class="notifica">$$notifica</div>
+          <!-- @@blkINNotifica -->
+            <!-- @@blkNotifica -->
+
+
+
+            <br />
+
+
+
+            <h4>
+              Ricerca azienda
+            </h4>
+            <table cellspacing="3"
+              summary="Questa tabella contiene i dati del rapporto">
+              <tr>
+                <th scope="row">
+                  <label for="cuaa">
+                    CUAA
+                  </label>
+                </th>
+                <td>
+                  <input type="text" id="cuaa" name="cuaa"
+                    maxlength="16" class="textmediolungo"
+                    value="$$cuaaIns" />
+                  $$err_cuaa
+                </td>
+                <td rowspan="3">
+                  <div class="azioni">
+                    <a
+                      href="javascript: scegliAzienda('../ctrl/popElencoAziendeCtrl.jsp','scegli_azienda','800','400','yes',document.form1.cuaa.value,document.form1.partitaIva.value, document.form1.denominazione.value,'AziendeCollegate');">cerca</a>
+                  </div>
+                  <input type="hidden" id="idAzienda" name="idAzienda"
+                    value="$$idAzienda" />
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  Partita Iva
+                </th>
+                <td>
+                  <input type="text" name="partitaIva" id="partitaIva"
+                    maxlength="11" value="$$partitaIvaIns"
+                    class="textmediolungo" />
+                  $$err_partitaIva
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <label for="denominazione">
+                    Denominazione
+                  </label>
+                </th>
+                <td>
+                  <input type="text" id="denominazione"
+                    name="denominazione" class="text"
+                    value="$$denominazioneIns" />
+                  $$err_denominazione
+                  <br />
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <label for="indirizzo">
+                    Indirizzo
+                  </label>
+                </th>
+                <td colspan="2">
+                  <input name="indirizzoIns" id="indirizzoIns"
+                    value="$$indirizzoIns" class="longText" type="text"
+                    $$disabledIndirizzo />
+                  $$err_indirizzoIns
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <label for="comune">
+                    Comune
+                  </label>
+                </th>
+                <td>
+                  <input name="provinciaIns" id="provinciaIns"
+                    value="$$provinciaIns" maxlength="2"
+                    class="textbreve" type="text" $$disabledProvincia />
+                  $$err_provinciaIns
+                  <input name="comuneIns" id="comuneIns"
+                    value="$$comuneIns" class="text" type="text"
+                    $$disabledComune />
+                  $$err_comuneIns
+                </td>
+                <td>
+                  <div class="azioni">
+                    <a id="scegliComune" name="scegliComune"
+                      href="$$disabledCerca"
+                      title="[Attenzione: questo link si apre in una nuova finestra]">cerca</a>
+                  </div>
+                  <input type="hidden" name="istatComuneIns"
+                    value="$$istatComuneIns" />
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <label for="cap">
+                    C.A.P.
+                  </label>
+                </th>
+                <td colspan="2">
+                  <input name="capIns" value="$$capIns" id="capIns"
+                    maxlength="5" class="textbreve" type="text"
+                    $$disabledCAP />
+                  $$err_capIns
+                </td>
+              </tr>
+              <tr>
+                <td colspan="3">
+                  <div class="azioni">
+                    <a href="#"
+                      name="inserisciAzienda" class="highlighted" id="inserisciAzienda"
+                      onclick="setHiddenOperazione(document.forms[0],'inserisciAzienda');return false;">inserisci</a>
+                  </div>
+                  $$err_inserisciAzienda
+                </td>
+              </tr>
+            </table>
+
+            <!-- @@blkErrore -->
+            <p class="errore">
+              $$messaggioErrore
+            </p>
+            <!-- @@blkErrore -->
+
+            <!-- @@blkAziende -->
+            <h4>
+              $$aziendeCollegateLabel all'azienda $$azPadreCUAA -
+              $$azPadreDenominazione
+            </h4>
+            <div class="scroll">
+              <table cellspacing="3"
+                summary="Questa tabella contiene i dati del rapporto">
+                <thead>
+                  <tr>
+                    <th rowspan="2" class="radio" scope="col">
+                      Sel
+                    </th>
+                    <th rowspan="2" class="center" scope="col">
+                      CUAA
+                    </th>
+                    <th rowspan="2" class="center" scope="col">
+                      Partita IVA
+                    </th>
+                    <th rowspan="2" class="center" scope="col">
+                      Denominazione
+                    </th>
+                    <th colspan="3" class="center" scope="col">
+                      Sede legale
+                    </th>
+                    <th rowspan="2" class="center" scope="col">
+                      Data ingresso
+                    </th>
+                    <th rowspan="2" class="center" scope="col">
+                      Data uscita
+                    </th>
+                  </tr>
+                  <tr>
+                    <th class="center" scope="col">
+                      Comune (Pv)
+                    </th>
+                    <th class="center" scope="col">
+                      Indirizzo
+                    </th>
+                    <th class="center" scope="col">
+                      CAP
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- @@blkElencoAziende -->
+                  <tr>
+                    <th class="radio" scope="row">
+                      <input type="checkbox" name="chkIdCount"
+                        id="chkIdCount" value="$$chkIdCount" $$checked />
+                      <input type="hidden" name="idCountHid"
+                        id="idCountHid" value="$$chkIdCount" />
+                      <label for="sel1" class="alt">
+                        sel1
+                      </label>
+                    </th>
+                    <td>
+                      $$cuaa
+                    </td>
+                    <td>
+                      $$partitaIva
+                    </td>
+                    <td>
+                      $$nomeAzienda
+                    </td>
+                    <td>
+                      $$comune
+                    </td>
+                    <td>
+                      $$indirizzo
+                    </td>
+                    <td>
+                      $$cap
+                    </td>
+                    <td>
+                      <input type="text" id="dataIngresso"
+                        name="dataIngresso" maxlength="10"
+                        class="textmedio" value="$$dataIngresso" />
+                      $$err_dataIngresso
+                    </td>
+                    <td>
+                      <input type="text" id="dataUscita"
+                        name="dataUscita" maxlength="10"
+                        class="textmedio" value="$$dataUscita" />
+                      $$err_dataUscita
+                    </td>
+                  </tr>
+                  <!-- @@blkElencoAziende -->
+                  <tr>
+                    <td colspan="9" class="radio" scope="row">
+                      <div class="azioni">
+                        <a href="#"
+                          onclick="setHiddenOperazione(document.forms[0],'elimina');return false;">elimina</a>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!-- @@blkAziende -->
+            <div class="pulsanti">
+              <div class="sin">
+                <input type="button" id="conferma" value="conferma"
+                  name="conferma" class="inputPulsante highlighted"
+                  onclick="javascript:setBlocked(document.forms[0], this);goToOperazione('../layout/aziendeCollegateInserisci.htm', document.form1, 'attenderePrego');" />
+              </div>
+              <div class="des">
+                <input type="button" value="annulla" name="annulla"
+                  class="inputPulsante"
+                  onclick="javascript:goTo('../layout/aziendeCollegate.htm',document.forms[0]);" />
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+        <hr />
+        
+        </form>
+  
+  <!-- PIE' DI PAGINA -->
+  $$footer

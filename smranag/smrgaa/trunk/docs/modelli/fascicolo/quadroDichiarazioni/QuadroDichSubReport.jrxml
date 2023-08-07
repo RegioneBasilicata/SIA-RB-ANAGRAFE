@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 4.1.3  -->
+<!-- 2016-10-03T11:23:07 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="QuadroDichSubReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="AllegatiCondSubReport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="fascicoloDS" class="java.util.List"/>
+	<parameter name="AllegatiCondCheckSubReport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="AllegatiNormaliCheckSubReport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="AllegatiNormaliSubReport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="PrimoBloccoSubReport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="DichFinaliSubReport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="DichCheck2SubReport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="DichCheckSubReport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="BloccoFirma2SubReport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="DichSecondoSubReport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="check_uncheked" class="java.lang.String"/>
+	<parameter name="check_cheked" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="allegati" class="it.csi.smranag.smrgaa.dto.jaxb.fascicolo.Allegati"/>
+	<field name="dichiarazioni" class="it.csi.smranag.smrgaa.dto.jaxb.fascicolo.Dichiarazioni"/>
+	<detail>
+		<band height="117" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="10" width="550" height="80" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{allegati}!=null && $F{allegati}.getAllegatiCondizionalita() != null]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="AllegatiCondCheckSubReport">
+					<subreportParameterExpression><![CDATA[$P{AllegatiCondCheckSubReport}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="check_cheked">
+					<subreportParameterExpression><![CDATA[$P{check_cheked}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="check_uncheked">
+					<subreportParameterExpression><![CDATA[$P{check_uncheked}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{allegati}.getAllegatiCondizionalita(),false)]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{AllegatiCondSubReport}]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="114">
+			<subreport>
+				<reportElement x="0" y="10" width="550" height="80" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{allegati}!= null && $F{allegati}.getAllegatiNormali() != null]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="AllegatiNormaliCheckSubReport">
+					<subreportParameterExpression><![CDATA[$P{AllegatiNormaliCheckSubReport}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="check_uncheked">
+					<subreportParameterExpression><![CDATA[$P{check_uncheked}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="check_cheked">
+					<subreportParameterExpression><![CDATA[$P{check_cheked}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{allegati}.getAllegatiNormali(),false)]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{AllegatiNormaliSubReport}]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="101">
+			<subreport>
+				<reportElement x="0" y="10" width="550" height="80" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{dichiarazioni}!=null && $F{dichiarazioni}.getPrimoBlocco() != null]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="AllegatiNormaliCheckSubReport">
+					<subreportParameterExpression><![CDATA[$P{AllegatiNormaliCheckSubReport}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{dichiarazioni}.getPrimoBlocco().getElencoDichiarazioni().getDichiarazione(),false)]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{PrimoBloccoSubReport}]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="111">
+			<subreport>
+				<reportElement x="0" y="20" width="545" height="80" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{dichiarazioni}.getBloccoConCheck() != null &&
+$F{dichiarazioni}.getBloccoConCheck().getElencoCheck() != null  &&
+$F{dichiarazioni}.getBloccoConCheck().getElencoCheck().getDichiarazioneCheck() != null]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="check_cheked">
+					<subreportParameterExpression><![CDATA[$P{check_cheked}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="check_uncheked">
+					<subreportParameterExpression><![CDATA[$P{check_uncheked}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{dichiarazioni}.getBloccoConCheck().getElencoCheck().getDichiarazioneCheck(),false)]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{DichCheckSubReport}]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="129">
+			<subreport>
+				<reportElement x="0" y="18" width="544" height="102" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{dichiarazioni}.getFirma2() != null]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="fascicoloDS">
+					<subreportParameterExpression><![CDATA[$P{fascicoloDS}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{fascicoloDS},false)]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{BloccoFirma2SubReport}]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="123">
+			<subreport>
+				<reportElement x="0" y="10" width="545" height="100" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{dichiarazioni}.getBloccoFinale() !=null &&
+$F{dichiarazioni}.getBloccoFinale().getElencoDichiarazioni() != null]]></printWhenExpression>
+				</reportElement>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{dichiarazioni}.getBloccoFinale().getElencoDichiarazioni().getDichiarazione(),false)]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{DichFinaliSubReport}]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="117">
+			<subreport>
+				<reportElement x="0" y="10" width="544" height="90">
+					<printWhenExpression><![CDATA[$F{dichiarazioni}.getSecondoBlocco() != null]]></printWhenExpression>
+				</reportElement>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{dichiarazioni}.getSecondoBlocco().getElencoDichiarazioni().getDichiarazione(),false)]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{DichSecondoSubReport}]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="149">
+			<subreport>
+				<reportElement x="0" y="12" width="544" height="118">
+					<printWhenExpression><![CDATA[$F{dichiarazioni}.getBloccoConCheck2() != null]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="check_uncheked">
+					<subreportParameterExpression><![CDATA[$P{check_uncheked}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="check_cheked">
+					<subreportParameterExpression><![CDATA[$P{check_cheked}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{dichiarazioni}.getBloccoConCheck2().getElencoCheck().getDichiarazioneCheck(),false)]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{DichCheck2SubReport}]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>

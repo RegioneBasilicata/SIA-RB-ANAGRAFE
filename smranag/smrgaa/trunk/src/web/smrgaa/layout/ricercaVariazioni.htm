@@ -1,0 +1,246 @@
+$$head
+<script src="../js/checktext.js" type="text/javascript"></script>
+<script type="text/javascript" src="../js/messaggistica.js"></script>
+<script language="javascript1.2">
+  function ricaricaCombo()
+  {
+    document.form1.operazione.value='RELOAD';
+    document.form1.submit();
+  }
+  
+  function scegliComune(mypage, myname, w, h, scroll,provincia,comune, obiettivo) 
+  {
+    NewWindowComuneAnag(mypage, myname, w, h, scroll,provincia,comune, obiettivo);
+  }
+  
+  function NewWindowComuneAnag(mypage, myname, w, h, scroll,provincia,comune,obiettivo) {
+    var winl = (screen.width - w) / 2;
+    var wint = (screen.height - h) / 2;
+    if(provincia ==  '' && comune == '') {
+      alert('Inserire una provincia o un comune!');
+    }
+    else if(!mappaOggetti(comune)) {
+    }
+    else {
+      winprops =    'height='+h+',width='+w+',top='+wint+',left='+winl+',scrollbars='+scroll+',resizable';
+      win = window.open(mypage+'?obiettivo='+obiettivo+'&provincia='+provincia+'&comune='+comune, myname, winprops);
+      if (parseInt(navigator.appVersion) >= 4) {
+        win.window.focus();
+      }
+    }
+  }
+</script>
+</head>
+<body id="homeIndice" onLoad="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+  <form name="form1" method="post" action="../layout/ricercaVariazioni.htm">
+    <div id="pagina" class="colonnaUnica">
+    <input type="hidden" id="operazione" name="operazione"/>
+      <!-- INTESTAZIONE -->
+      <div id="intestazione##pathProvincia">
+        $$header
+        <!-- menu di navigazione-->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li>
+                <a href="../layout/index.htm" title="Torna alla pagina principale">home</a>
+              </li>
+              <li class="attivo">gestione anagrafe aziende</li>
+              <li>
+                <a href="#" title="contatti">contatti</a>
+              </li>
+              <li>
+                <a href="#" title="help">help</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr/>
+      <div style="clear:left"></div>
+      <!-- CORPO -->
+      <div id="corpo">
+        <div id="Utente">
+          <div id="datiUtente">
+            <strong>utente:</strong>$$utente&nbsp;&nbsp;
+            <strong>ente:</strong>$$ente
+          </div>
+          <div id="chiudisessione">
+            <a href="javascript: logout();">chiudi sessione</a>
+          </div>
+        </div>
+        <hr/>
+        <!--PRIMA COLONNA -->
+		 <h3>Ricerca variazioni
+        <span class="helpFuori">
+            <a href="#">
+              <span class="alt">[help]</span>
+            </a>
+
+          </span>
+        </h3>
+        <hr/>
+        <div class="box">
+        <div class="menuSX1">
+            <ul>
+              <!-- @@blkElencoAziendeRapLegale -->
+                <li><a href="../layout/elencoAziendeRapLegale.htm">Elenco Aziende</a></li>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <!-- @@blkRicercaAzienda-->
+                <li><a href="../layout/ricerca.htm">Ricerca Azienda</a></li>
+              <!-- @@blkRicercaAzienda-->
+              <!--@@blkRicercaTerreno-->
+                <li>
+                  <a href="../layout/ricercaTerreno.htm">Ricerca Terreno</a>
+                </li>
+              <!--@@blkRicercaTerreno-->
+              <!--@@blkRicercaPersona-->
+                <li><a href="../layout/ricercaPersona.htm">Ricerca Persona</a></li>
+              <!--@@blkRicercaPersona-->
+              <!--@@blkRicercaNotifica-->
+                <li>
+                  <a href="../layout/ricercaNotifica.htm">Ricerca Notifiche</a>
+                </li>
+              <!--@@blkRicercaNotifica-->
+              <!--@@blkVariazioniAzienda-->
+                <li><a href="../layout/ricercaVariazioni.htm" class="on" >Ricerca Variazioni</a></li>
+              <!--@@blkVariazioniAzienda-->
+              <!--@@blkRicercaRichiesta-->
+                <li><a href="../layout/ricercaRichiesta.htm">Ricerca richiesta azienda</a></li>
+              <!--@@blkRicercaRichiesta-->
+              <!-- @@blkNuova -->
+                <li>
+                  <a href="../layout/nuovaAziendaAnagrafica.htm">Nuova Azienda</a>
+                </li>
+              <!-- @@blkNuova -->
+              <!-- @@blkNuovaIscrizione -->
+              <li>
+                <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+              </li>
+              <!-- @@blkNuovaIscrizione -->
+              <!--@@blkNuovaParticella-->
+              <li>
+                <a href="../layout/inserisciTerreno.htm">Nuova Particella</a>
+              </li>
+              <!--@@blkNuovaParticella-->
+              <!--@@blkServizi-->
+                <li><a href="../layout/servizi.htm" >Servizi</a></li>
+              <!--@@blkServizi-->
+              <!--@@blkReportistica-->
+                <li>
+                  <a href="../layout/elencoRicerche.htm">Reportistica</a>
+                </li>
+              <!--@@blkReportistica-->
+              <!--@@blkEstrazioneDati-->
+              <li><a href="../layout/macroCategoriaReport.htm">Estrazione dati</a></li>
+              <!--@@blkEstrazioneDati-->
+              <li><a href="../layout/elencoManuali.htm">Scarico Documentazione Tecnica</a></li> 
+          </ul>
+
+        </div>
+        </div>
+        <hr/>
+        <!-- SECONDA COLONNA -->
+        <div id="contenuto">
+          <table cellspacing="3" summary="Questa tabella è costituita da righe">
+		  <caption>Filtri di ricerca</caption>
+              <tr>
+                <th scope="row"><label for="competenza">Amministrazione di competenza</label></th>
+                <td>
+                   <select id="competenza" class="mini" name="competenza">
+                      <option value=""></option>
+                      <!-- @@blkProvince -->
+                      <option value="$$idCodice" $$check>$$descrizione</option>
+                      <!-- @@blkProvince -->
+                   </select>
+                </td>
+                <th scope="row"><label for="presaVisione">Presa visione ##etichettaDescGruppoRuolo</label></th>
+                <td>
+                  <select id="presaVisione" class="mini" name="presaVisione">
+                    <option value=""></option>
+                    <!-- @@blkPresaVisione -->
+                    <option value="$$idCodice" $$check>$$descrizione</option>
+                    <!-- @@blkPresaVisione -->
+                  </select>
+                </td>
+              </tr>
+			  <tr>
+                <th scope="row"><label for="catVariazione">Tipo variazione</label></th>
+                <td>
+                  <select id="catVariazione" class="medio" name="catVariazione" onChange="ricaricaCombo();">
+                    <option value=""></option>
+                    <!-- @@blkCatVariazioni -->
+                    <option value="$$idCodice" $$check>$$descrizione</option>
+                    <!-- @@blkCatVariazioni -->
+                  </select>
+                </td>
+                
+                <td colspan="2">
+                <select id="tipVariazione" class="medio" name="tipVariazione">
+                  <option value=""></option>
+                  <!-- @@blkTipVariazioni -->
+                  <option value="$$idCodice" $$check>$$descrizione</option>
+                  <!-- @@blkTipVariazioni -->
+                </select></td>
+		      </tr>	
+              <tr>
+                <th>
+                  <label for="dataVariazioneDal">Dal</label>
+                </th>
+                <td>
+                  <input type="text" id="dataVariazioneDal" name="dataVariazioneDal" maxlength="10" value="$$dataVariazioneDal"/>$$err_dataVariazioneDal
+                </td>
+                <th>
+                  <label for="dataVariazioneAl">Al</label>
+                </th>
+                <td>
+                  <input type="text" id="dataVariazioneAl" name="dataVariazioneAl" maxlength="10" value="$$dataVariazioneAl"/>$$err_dataVariazioneAl
+                </td>
+              </tr>
+              <tr>
+                <th>CUAA</th>
+                <td><input type="cuaa" id="cuaa" name="cuaa" maxlength="16" value="$$cuaa"/>$$err_cuaa</td>
+                <th><label for="storicizzate">Variazioni storicizzate</label></th>
+                <td>
+                  <input type="checkbox" name="variazioniStoricizzate" id="variazioniStoricizzate" $$checkedVariazioniStoricizzate />
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  Comune (sede legale)
+                </th>
+                <td>
+                  <input name="provinciaRicerca" id="provinciaRicerca"
+                    value="$$provinciaRicerca" type="text" size="2"
+                    maxlength="2" class="due" />
+                  $$err_provinciaRicerca
+                </td>
+                <td>  
+                  <input name="comuneRicerca" id="comuneRicerca"
+                    value="$$comuneRicerca" class="text" type="text" />
+                  $$err_comuneRicerca
+                </td>
+                <td>
+                  <div class="azioni">
+                    <a id="scegliComuneCessAcqu"
+                      name="scegliComuneCessAcqu"
+                      href="javascript: scegliComune('../view/sceltaComuneView.jsp','scegli_comune','600','300','yes',document.form1.provinciaRicerca.value,document.form1.comuneRicerca.value,'RicercaVariazioni');"
+                      title="[Attenzione: questo link si apre in una nuova finestra]">cerca</a>
+                  </div>
+                  <input type="hidden" name="istatComuneRicerca"
+                    value="$$istatComuneRicerca" />
+                </td>
+              </tr>
+          </table>
+          <div class="pulsanti"><div class="sin">
+            <input name="ricerca" class="inputPulsante" type="submit" value="ricerca" />
+          </div></div>
+                   
+        </div>
+      </div>
+      <hr/>
+      <!-- PIE' DI PAGINA -->
+      $$footer

@@ -1,0 +1,490 @@
+$$head
+<script type="text/javascript" src="../js/checktext.js"></script>
+<script type="text/javascript" src="../js/messaggistica.js"></script>
+<script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../js/jquery-ui-1.8.21.custom/jquery-ui-1.8.21.custom.min.js"></script>
+<script type="text/javascript">
+
+  function funzionalita(funz) {
+     document.form1.operazione.value = funz;
+     document.form1.submit();
+   }
+
+
+
+  function setHiddenBlockedValida(form, obj, operazione) 
+  {
+    var count = 0;
+    var radioObj = document.form1.idRichiestaAzienda;
+    
+    if(radioObj.length)
+    {
+      for(var i = 0; i < radioObj.length; i++) 
+      {
+        if(radioObj[i].checked) 
+        {
+          document.form1.idStampa.value = radioObj[i].value;
+          count = count + 1;
+        }
+      }    
+    }
+    else
+    {
+      if(radioObj.checked) 
+      {
+        document.form1.idStampa.value = radioObj.value;
+        count = count + 1;
+      }
+    }
+    
+    if(count == 0)
+    {
+      alert('Selezionare una voce dall\'elenco');
+    }
+    else
+    {
+		  form.operazione.value = operazione;
+		  obj.onclick = '';
+		  form.submit();
+		}
+	}
+	
+	
+	function setHiddenBlockedAnnulla(form, obj, operazione) 
+  {
+    var count = 0;
+    var radioObj = document.form1.idRichiestaAzienda;
+    
+    if(radioObj.length)
+    {
+      for(var i = 0; i < radioObj.length; i++) 
+      {
+        if(radioObj[i].checked) 
+        {
+          document.form1.idStampa.value = radioObj[i].value;
+          count = count + 1;
+        }
+      }    
+    }
+    else
+    {
+      if(radioObj.checked) 
+      {
+        document.form1.idStampa.value = radioObj.value;
+        count = count + 1;
+      }
+    }
+    
+    if(count == 0)
+    {
+      alert('Selezionare una voce dall\'elenco');
+    }
+    else
+    {
+      form.operazione.value = operazione;
+      obj.onclick = '';
+      form.submit();
+    }
+  }
+	
+	function setHiddenOperazione(form, operazione) 
+  {
+    form.operazione.value = operazione;
+    form.submit();
+  }
+  
+  function visualizzaStampa()
+  {
+    var count = 0;
+    var radioObj = document.form1.idRichiestaAzienda;
+    var idStatoHidden;
+    
+    if(radioObj.length)
+    {
+      for(var i = 0; i < radioObj.length; i++) 
+      {
+	      if(radioObj[i].checked) 
+	      {
+	        document.form1.idStampa.value = radioObj[i].value;
+	        count = count + 1;
+	        idStatoHidden = document.form1.idStatoAziendaHd[i].value;
+	      }
+	    }    
+    }
+    else
+    {
+      if(radioObj.checked) 
+      {
+        document.form1.idStampa.value = radioObj.value;
+        idStatoHidden = document.form1.idStatoAziendaHd.value;
+        count = count + 1;
+      }
+    }
+    
+    if(count == 0)
+    {
+      alert('Selezionare una voce dall\'elenco');
+    }
+    else if(idStatoHidden == 10)
+    {
+      alert('La stampa non e\' disponibile: la richiesta non e\' mai stata portata in stato stampata');
+    }
+    else
+    {
+      var oldAction = document.form1.action;
+	    document.form1.action = 'visualizzaPdf.htm?arrivo=elencoRicercaRichiesta';
+	    document.form1.submit();
+	    document.form1.action = oldAction;
+	  }
+  }
+  
+  
+  function hideColumn(cssColumn, label)
+  {
+    //Nasconde la colonna
+    $('.'  + cssColumn).hide();
+    
+    var html=$('#tdColDisp').html();
+    if (html=='')
+    {
+      $('#tdColDisp').show();
+      html="Colonne disponibili: ";
+    }
+    html+="<a href=\"javascript:showColumn('"+cssColumn+"')\" id='id_"+cssColumn+"'>"+label+"</a><span id='span_"+cssColumn+"'> | </span> <input type='hidden' name='hidden_"+cssColumn+"' id='hidden_"+cssColumn+"' value='"+cssColumn+"' />";
+    $('#tdColDisp').html(html);
+  }
+
+  function showColumn(cssColumn)
+  {
+    
+    $('#id_'  + cssColumn).remove();
+    $('#span_'  + cssColumn).remove();
+    $('#hidden_'  + cssColumn).remove();
+    $('.'  + cssColumn).show();
+    if($('#tdColDisp').html().indexOf('<a')<0)
+    {
+      $('#tdColDisp').hide();
+      $('#tdColDisp').html('');
+    }
+    
+  }
+  
+  
+  function caricaColonne(primoIngresso)
+  {  
+    
+    var motRich = '$$motRich';
+    var statoRich = '$$statoRich';
+    var dataAgg = '$$dataAgg';
+    var utIns = '$$utIns';
+    var not = '$$not';
+    var valSuc = '$$valSuc';    
+                   
+    if(primoIngresso == 'true')
+    {
+      hideColumn("nascondibile_5", "Utente inserimento richiesta");
+      hideColumn("nascondibile_6", "Note");
+      hideColumn("nascondibile_7", "Validazione successiva alla richiesta");
+    }
+    else
+    {
+      if(motRich != null && motRich != '')
+      {
+        hideColumn("nascondibile_2", "Motivo richiesta");
+      }
+      if(statoRich != null && statoRich != '')
+      {
+        hideColumn("nascondibile_3", "Stato richiesta");
+      }
+      if(dataAgg != null && dataAgg != '')
+      {
+        hideColumn("nascondibile_4", "Data aggiornamento");
+      }
+      if(utIns != null && utIns != '')
+      {
+        hideColumn("nascondibile_5", "Utente inserimento richiesta");
+      }
+      if(not != null && not != '')
+      {
+        hideColumn("nascondibile_6", "Note");
+      }
+      if(valSuc != null && valSuc != '')
+      {
+        hideColumn("nascondibile_7", "Validazione successiva alla richiesta");
+      }
+    }
+  }
+  
+  function funzionalitaValRich(page)
+  {
+    document.form1.operazione.value='';
+    document.form1.action=page;
+    document.form1.submit();
+  }
+                    
+
+</script>
+</head>
+<body id="homeIndice" onload="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');caricaColonne('$$primoIngressso');">
+  <form name="form1" method="post" action="../layout/elencoRicercaRichiesta.htm">
+    <input type="hidden" name="operazione" value="$$operazione"/>
+    <input type="hidden" name="regimeElencoRicercaRichiesta" id="regimeElencoRicercaRichiesta" value="regimeElencoRicercaRichiesta"/>
+    <input type="hidden" name="idStampa" />
+    <input type="hidden" name="idAzienda" id="idAzienda" value="$$idAzienda" />
+    <div id="pagina" class="colonnaUnica">
+    <!-- INTESTAZIONE -->
+      <div id="intestazione##pathProvincia">
+        $$header
+        <!-- menu di navigazione-->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li>
+                <a href="../layout/index.htm" title="Torna alla pagina principale">home</a>
+              </li>
+              <li class="attivo">gestione anagrafe aziende</li>
+              <li>
+                <a href="#" title="contatti">contatti</a>
+              </li>
+              <li>
+                <a href="#" title="help">help</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr/>
+      <div style="clear:left"></div>
+      <!-- CORPO -->
+        <div id="corpo">
+          <div id="Utente">
+            <div id="datiUtente">
+              <strong>utente: </strong>$$utente&nbsp;&nbsp;
+              <strong>ente: </strong>$$ente
+            </div>
+          <div id="chiudisessione">
+          <a href="javascript: logout();">chiudi sessione</a>
+        </div>
+      </div>
+      <hr/>
+      <!--PRIMA COLONNA -->
+      <h3>Azienda&nbsp;&gt;&nbsp;Richieste Azienda
+        <span class="helpFuori">
+          <a href="#">
+            <span class="alt">[help]</span>
+          </a>
+        </span>
+      </h3>
+      <hr/>
+      <div class="box">
+        <div class="menuSX1">
+          <ul>
+            <!-- @@blkElencoAziendeRapLegale -->
+            <li><a href="../layout/elencoAziendeRapLegale.htm">Elenco
+                Aziende</a></li>
+            <!-- @@blkElencoAziendeRapLegale -->
+            <!-- @@blkRicercaAzienda-->
+            <li><a href="../layout/ricerca.htm">Ricerca Azienda</a></li>
+            <!-- @@blkRicercaAzienda-->
+            <!--@@blkRicercaTerreno-->
+            <li><a href="../layout/ricercaTerreno.htm">Ricerca
+                Terreno</a></li>
+            <!--@@blkRicercaTerreno-->
+            <!--@@blkRicercaPersona-->
+            <li><a href="../layout/ricercaPersona.htm">Ricerca
+                Persona</a></li>
+            <!--@@blkRicercaPersona-->
+            <!--@@blkRicercaNotifica-->
+            <li><a href="../layout/ricercaNotifica.htm">Ricerca
+                Notifiche</a></li>
+            <!--@@blkRicercaNotifica-->
+            <!--@@blkVariazioniAzienda-->
+            <li><a href="../layout/ricercaVariazioni.htm">Ricerca
+                Variazioni</a></li>
+            <!--@@blkVariazioniAzienda-->
+            <!--@@blkRicercaRichiesta-->
+            <li><a href="../layout/ricercaRichiesta.htm" >Ricerca richiesta azienda</a></li>
+            <!--@@blkRicercaRichiesta-->
+            <!--@@blkNuova-->
+            <li><a href="../layout/nuovaAziendaAnagrafica.htm">Nuova
+                Azienda</a></li>
+            <!--@@blkNuova-->
+            <!-- @@blkNuovaIscrizione -->
+            <li>
+              <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+            </li>
+            <!-- @@blkNuovaIscrizione -->
+            <!--@@blkNuovaParticella-->
+            <li><a href="../layout/inserisciTerreno.htm">Nuova
+                Particella</a></li>
+            <!--@@blkNuovaParticella-->
+            <!--@@blkServizi-->
+            <li><a href="../layout/servizi.htm">Servizi</a></li>
+            <!--@@blkServizi-->
+            <!--@@blkReportistica-->
+            <li><a href="../layout/elencoRicerche.htm">Reportistica</a>
+            </li>
+            <!--@@blkReportistica-->
+            <!--@@blkEstrazioneDati-->
+            <li><a href="../layout/macroCategoriaReport.htm">Estrazione
+                dati</a></li>
+            <!--@@blkEstrazioneDati-->
+            <li><a href="../layout/elencoManuali.htm">Scarico
+                Documentazione Tecnica</a></li>
+          </ul>
+        </div>
+        <div class="menuSX">
+          <ul>
+            <li>
+              <a href="#" class="on">Azienda</a>
+              <ul>
+                <li>
+                  <a href="javascript:funzionalita('dettaglio');">dettaglio</a>
+                </li>
+                <li>
+                  <a href="#" class="etichetta">richieste azienda</a>
+                  <ul>
+                    <!-- @@blkRichiesteCessVal -->
+                    <li>
+			                <a href="javascript:funzionalitaValRich('newInserimentoRichiestaValidazione.htm')">nuova richiesta<br>validazione</a>
+			              </li>
+			              <li>
+			                <a href="javascript:funzionalitaValRich('newInserimentoRichiestaCessazione.htm')">nuova richiesta<br>cessazione</a>
+			              </li>
+			              <!-- @@blkRichiesteCessVal -->
+			              <!-- @@blkRichiestaAzienda -->
+			              <li>
+                      <a href="javascript:funzionalitaValRich('newInserimentoRichiestaVariazione.htm')">nuova richiesta<br>variazione</a>
+                    </li>
+                    <!-- @@blkRichiestaAzienda -->
+                  </ul>
+                  
+                </li>                
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <hr/>
+      <!-- SECONDA COLONNA -->
+      <div id="contenuto">
+      
+        <div id="intesta">
+            <p class="$$aziendaIntestazione" title="$$tooltipIntestazione" >
+              $$CUAAIntestazione  $$denominazioneIntestazione
+            </p>
+            <p>situazione al $$dataSituazioneAlStr</p>
+        </div>
+      
+        <table cellspacing="3" summary="Questa tabella contiene i dati del rapporto">
+          <tr>
+            <th class="left">Elenco richieste predisposte dall'azienda</th>
+          </tr>
+        </table>
+          
+        
+          <!-- @@blkAnagrafica -->
+          <input type="hidden" name="paginaCorrente" value="$$currPage"/>
+          <input type="hidden" name="totalePagine" value="$$totPage"/>
+          <input type="hidden" name="numeroRecord" value="$$numeroRecord"/>
+          <p class="allineaDx">Aziende estratte : $$numeroRecord
+            <span>
+              <!--@@bottoneIndietro-->
+                <a href="javascript: goToOperazione('../layout/elencoRicercaRichiesta.htm', document.form1, 'indietro');">indietro</a>
+              <!--@@bottoneIndietro-->
+              pagina $$currPage di $$totPage
+              <!--@@bottoneAvanti-->
+                <a href="javascript: goToOperazione('../layout/elencoRicercaRichiesta.htm', document.form1, 'avanti');">avanti</a>
+              <!--@@bottoneAvanti-->
+            </span>
+          </p>
+          <table cellspacing="3" summary="Questa tabella è costituita da righe">
+            <tr>
+	            <td id="tdColDisp" colspan="12" ></td>
+	          </tr>
+            <tr>
+              <th class="radio" scope="col"></th>
+              <th class="center" scope="col">Tipo richiesta</th>
+              <th class="center nascondibile_2" scope="col">
+                <a href="javascript:hideColumn('nascondibile_2','Motivo richiesta');">Motivo richiesta</a>
+              </th>
+              <th class="center nascondibile_3" scope="col">
+                <a href="javascript:hideColumn('nascondibile_3','Stato richiesta');">Stato richiesta</a>
+              </th>
+              <th class="center nascondibile_4" scope="col">
+                <a href="javascript:hideColumn('nascondibile_4','Data aggiornamento');">Data aggiornamento</a>
+              </th>
+              <th class="center nascondibile_5" scope="col">
+                <a href="javascript:hideColumn('nascondibile_5','Utente inserimento richiesta');">Utente inserimento richiesta</a>
+              </th>
+              <th class="center nascondibile_6" scope="col">
+                <a href="javascript:hideColumn('nascondibile_6','Note');">Note</a>
+              </th>
+              <th class="center nascondibile_7" scope="col">
+                <a href="javascript:hideColumn('nascondibile_7','Validazione successiva alla richiesta');">Validazione<br>successiva<br>alla richiesta</a>
+              </th>
+            </tr>
+            <!--@@rigaAnagrafica-->
+              <tr>
+              <th class="radio" scope="row">
+                <input type="radio" id="idRichiestaAzienda" name="idRichiestaAzienda" value="$$idRichiestaAzienda" $$checked/>
+                <input type="hidden" id="idStatoAziendaHd" name="idStatoAziendaHd" value="$$idStatoAziendaHd" />
+              </th>
+              <td>$$descTipoRichiesta</td>
+              <td class="nascondibile_2" >$$descMotivoRichiesta</td>
+              <td class="nascondibile_3" >$$descStatoRichiesta</td>
+              <td class="nascondibile_4" >$$dataAggiornamento</td>
+              <td class="nascondibile_5" >$$denominazUtente</td>
+              <td class="nascondibile_6" >$$note</td>
+              <td class="nascondibile_7" >$$validazioneSucc</td>
+            </tr>
+          <!--@@rigaAnagrafica-->
+        </table>
+        <br/>
+        <div class="pulsanti">
+          <div class="sin">
+            <input id="stampa" name="stampa" type="button"
+              value="stampa richiesta" onclick="javascript:visualizzaStampa();"
+              class="inputPulsante" />
+          </div>   
+          <div class="des">
+           <input id="valida" name="valida" type="button" value="presa in carico" onclick="javascript:setHiddenBlockedValida(document.forms[0], this,'attenderePrego');" class="inputPulsante" />
+           <!-- @@blkButtonScrittura -->        
+           <input id="annullaId" name="annullaId" type="button"
+              value="annulla"
+              onclick="javascript:setHiddenBlockedAnnulla(document.forms[0], this,'annulla');"
+              class="inputPulsante" />
+           <!-- @@blkButtonScrittura -->           
+         </div>
+         
+        </div>	      
+	      <!-- @@blkAnagrafica --> 
+	      
+	      
+	      
+	      
+	      <!-- @@blkErrore -->
+	      <p class="errore">
+	        $$messaggioErrore
+	      </p>
+	      <!-- @@blkErrore -->
+	      
+	      
+	             
+      </div>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </div>
+    <hr/>
+    <!-- PIE' DI PAGINA -->
+    $$footer

@@ -1,0 +1,9 @@
+url di dev 
+http://TOBECONFIG/smrgaaweb/secure/loginSispie.htm
+http://TOBECONFIG/smrgaaweb/local_login.jsp
+
+URL console JBoss: http://TOBECONFIG/console/App.html
+Username/password console JBoss: admin/myadmin
+   
+Server unix: TOBECONFIG
+Username/password server Unix: TOBECONFIG/mypass

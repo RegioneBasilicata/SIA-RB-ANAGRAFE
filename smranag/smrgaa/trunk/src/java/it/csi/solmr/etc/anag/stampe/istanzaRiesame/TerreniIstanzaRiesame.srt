@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report Type="TabularSheet" Top="0.4" Left="0.05" Bottom="0.4" Right="0.05" HeaderFromEdge="0.05" FooterFromEdge="0.4" PageNumbering="0" HorizontalWrap="true" PaperSize="8.267716x11.692913" Orientation="0" TabStops="0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5,6.0,6.5,7.0,7.5,8.0"
+ Prompting="true"><Version>9.5</Version>
+<ReportProperty Name="report.modified">
+<![CDATA[2011-08-09 12:36:23]]>
+</ReportProperty>
+<ReportProperty Name="TextMode">
+<![CDATA[false]]>
+</ReportProperty>
+<ReportProperty Name="live.edit">
+<![CDATA[false]]>
+</ReportProperty>
+<ReportProperty Name="edit.layout">
+<![CDATA[false]]>
+</ReportProperty>
+<ReportProperty Name="report.created">
+<![CDATA[2010-07-12 16:43:37]]>
+</ReportProperty>
+<Parameters>
+</Parameters>
+<ParameterSheets>
+</ParameterSheets>
+<RunningTotals>
+</RunningTotals>
+<dataViews>
+</dataViews>
+<reportAssetRepository>
+</reportAssetRepository>
+<Shapes>
+</Shapes>
+<Grid Rows="4" Cols="3">
+<GR Height="0">
+<GD Borders="0,0,0,0" RowSpan="1" ColSpan="3" Width="175.33334" Repeat="false" CellFitPage="true">
+<Background  BackgroundLayout="1"  Color="-4137792"/>
+<SeparatorElement ID="Separator1" Alignment="2" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Serif-PLAIN-10" Foreground="-16777216" Style="4098" SeparatorAdvance="1">
+</SeparatorElement>
+<TextElement ID="lblQuadro" Alignment="65" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-BOLD-10" Foreground="-16777216" FillStyle="0" TabStops="0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5,6.0,6.5,7.0,7.5,8.0" Justify="false" Orphan="false" TextAdvance="3">
+<![CDATA[QUADRO B - Terreni - Elenco particelle associate al documento Istanza di riesame]]>
+</TextElement>
+<NewlineElement ID="nl1" Alignment="2" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-PLAIN-10" Foreground="-16777216" Count="1" Break="false">
+</NewlineElement>
+<TextElement ID="lblSezione" Alignment="65" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-BOLD-10" Foreground="-16777216" FillStyle="0" TabStops="0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5,6.0,6.5,7.0,7.5,8.0" Justify="false" Orphan="false" TextAdvance="3">
+<![CDATA[SEZ I - Elenco particelle associate al documento Istanza di riesame]]>
+</TextElement>
+</GD>
+<GD Width="244.33331" CellFitPage="true">
+</GD>
+<GD Width="414.33334" CellFitPage="true">
+</GD>
+</GR>
+<GR Height="0">
+<GD RowSpan="1" ColSpan="3" Width="175.33334" Repeat="false" CellFitPage="true">
+<NewlineElement ID="Newline4738" Alignment="1" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-PLAIN-5" Foreground="-16777216" Count="1" Break="false">
+</NewlineElement>
+<TextElement ID="txtNoTerreni" Alignment="65" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Serif-BOLD-10" Foreground="-16777216" FillStyle="0" TabStops="0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5,6.0,6.5,7.0,7.5,8.0" Justify="false" Orphan="false" TextAdvance="3">
+<![CDATA[Non sono presenti terreni]]>
+</TextElement>
+<NewlineElement ID="Newline274" Alignment="1" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Serif-PLAIN-10" Foreground="-16777216" Count="1" Break="false">
+</NewlineElement>
+</GD>
+<GD Width="244.33331" CellFitPage="true">
+</GD>
+<GD Width="414.33334" CellFitPage="true">
+</GD>
+</GR>
+<GR Height="0">
+<GD Borders="0,0,0,0" RowSpan="1" ColSpan="3" Width="175.33334" Repeat="false" CellFitPage="true">
+<TableElement ID="tblQuadroI1" Alignment="1" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Serif-PLAIN-8" Foreground="-16777216" TableWidth="0.0" AdhocEnabled="true" Layout="0" TableAdvance="1" MaxColWidth="0.0" OrphanControl="false" FillPage="false" MultiColumn="0" KeepSpanTogether="false" KeepGroupTogether="false" Padding="0,1,0,1" EmbedWidth="false" Embedded="true">
+<property><name><![CDATA[grow]]></name><value><![CDATA[true]]></value></property>
+<Table Rows="2" Cols="26" HeaderRow="0" HeaderCol="0" TrailerRow="0" TrailerCol="0">
+<TR>
+<TD Type="string"><![CDATA[Comune(PV)]]></TD><TD Type="string"><![CDATA[S
+e
+z]]></TD><TD Type="string"><![CDATA[F
+g
+l]]></TD><TD Type="string"><![CDATA[P
+a
+r
+t]]></TD><TD Type="string"><![CDATA[S
+u
+b]]></TD><TD Type="string"><![CDATA[Sup.
+cat.]]></TD><TD Type="null"><![CDATA[null]]></TD><TD Type="null"><![CDATA[null]]></TD><TD Type="string"><![CDATA[Uso.
+agron.]]></TD><TD Type="string"><![CDATA[Uso del suolo]]></TD><TD Type="string"><![CDATA[Sup.
+util]]></TD><TD Type="string"><![CDATA[Tipo area]]></TD><TD Type="null"><![CDATA[null]]></TD><TD Type="null"><![CDATA[null]]></TD><TD Type="null"><![CDATA[null]]></TD><TD Type="string"><![CDATA[C.
+P.
+(2)]]></TD><TD Type="string"><![CDATA[Z
+V
+N
+(3)]]></TD><TD Type="string"><![CDATA[Z.
+A.
+(4)]]></TD><TD Type="string"><![CDATA[I
+R
+R
+(5)]]></TD><TD Type="string"><![CDATA[C.
+A.
+P.
+(6)]]></TD><TD Type="string"><![CDATA[P.
+I
+R.
+(7)]]></TD><TD Type="string"><![CDATA[R
+O
+T.
+(8)]]></TD><TD Type="string"><![CDATA[T
+E
+R.
+(9)]]></TD><TD Type="string"><![CDATA[Data
+scadenza]]></TD><TD Type="string"><![CDATA[Note]]></TD><TD Type="string"><![CDATA[Priorità di
+lavorazione]]></TD></TR>
+<TR>
+<TD Type="null"><![CDATA[null]]></TD><TD Type="null"><![CDATA[null]]></TD><TD Type="null"><![CDATA[null]]></TD><TD Type="null"><![CDATA[null]]></TD><TD Type="null"><![CDATA[null]]></TD><TD Type="null"><![CDATA[null]]></TD><TD Type="null"><![CDATA[null]]></TD><TD Type="null"><![CDATA[null]]></TD><TD Type="null"><![CDATA[null]]></TD><TD Type="null"><![CDATA[null]]></TD><TD Type="null"><![CDATA[null]]></TD><TD Type="string"><![CDATA[A]]></TD><TD Type="string"><![CDATA[B]]></TD><TD Type="string"><![CDATA[C]]></TD><TD Type="string"><![CDATA[D]]></TD><TD Type="null"><![CDATA[null]]></TD><TD Type="null"><![CDATA[null]]></TD><TD Type="null"><![CDATA[null]]></TD><TD Type="null"><![CDATA[null]]></TD><TD Type="null"><![CDATA[null]]></TD><TD Type="null"><![CDATA[null]]></TD><TD Type="null"><![CDATA[null]]></TD><TD Type="null"><![CDATA[null]]></TD><TD Type="null"><![CDATA[null]]></TD><TD Type="null"><![CDATA[null]]></TD><TD Type="null"><![CDATA[null]]></TD></TR>
+</Table>
+</TableElement>
+</GD>
+<GD Width="244.33331" CellFitPage="true">
+</GD>
+<GD Width="414.33334" CellFitPage="true">
+</GD>
+</GR>
+<GR Height="224">
+<GD Borders="0,0,0,0" RowSpan="1" ColSpan="3" Width="175.33334" Repeat="false" CellFitPage="true">
+<NewlineElement ID="Newline459" Alignment="1" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Serif-PLAIN-10" Foreground="-16777216" Count="1" Break="false">
+</NewlineElement>
+<TableElement ID="tblLegendaHeader" Alignment="65" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Serif-BOLD-9" Foreground="-16777216" TableWidth="0.0" AdhocEnabled="true" Layout="0" TableAdvance="1" MaxColWidth="0.0" OrphanControl="false" FillPage="false" MultiColumn="0" KeepSpanTogether="false" KeepGroupTogether="false" Padding="0,1,0,1" EmbedWidth="false" Embedded="true">
+<property><name><![CDATA[grow]]></name><value><![CDATA[true]]></value></property>
+<Table Rows="1" Cols="7" HeaderRow="0" HeaderCol="0" TrailerRow="0" TrailerCol="0">
+<TR>
+<TD Type="string"><![CDATA[Legenda]]></TD><TD Type="null"><![CDATA[null]]></TD><TD Type="null"><![CDATA[null]]></TD><TD Type="null"><![CDATA[null]]></TD><TD Type="null"><![CDATA[null]]></TD><TD Type="null"><![CDATA[null]]></TD><TD Type="null"><![CDATA[null]]></TD></TR>
+</Table>
+</TableElement>
+<TableElement ID="tblTipoAreaA" Alignment="1" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-ITALIC-7" Foreground="-16777216" TableWidth="0.0" AdhocEnabled="true" Layout="0" TableAdvance="1" MaxColWidth="0.0" OrphanControl="false" FillPage="false" MultiColumn="0" KeepSpanTogether="false" KeepGroupTogether="false" Padding="0,1,0,1" EmbedWidth="false" Embedded="true">
+<property><name><![CDATA[grow]]></name><value><![CDATA[true]]></value></property>
+<Table Rows="1" Cols="2" HeaderRow="0" HeaderCol="0" TrailerRow="0" TrailerCol="0">
+<TR>
+<TD Type="string"><![CDATA[Tipo Area A:]]></TD><TD Type="string"><![CDATA[1]]></TD></TR>
+</Table>
+</TableElement>
+<NewlineElement ID="Newline4741" Alignment="1" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-PLAIN-5" Foreground="-16777216" Count="1" Break="false">
+</NewlineElement>
+<TableElement ID="tblTipoAreaB" Alignment="1" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-ITALIC-7" Foreground="-16777216" TableWidth="0.0" AdhocEnabled="true" Layout="0" TableAdvance="1" MaxColWidth="0.0" OrphanControl="false" FillPage="false" MultiColumn="0" KeepSpanTogether="false" KeepGroupTogether="false" Padding="0,1,0,1" EmbedWidth="false" Embedded="true">
+<property><name><![CDATA[grow]]></name><value><![CDATA[true]]></value></property>
+<Table Rows="1" Cols="2" HeaderRow="0" HeaderCol="0" TrailerRow="0" TrailerCol="0">
+<TR>
+<TD Type="string"><![CDATA[Tipo Area B:]]></TD><TD Type="string"><![CDATA[1]]></TD></TR>
+</Table>
+</TableElement>
+<NewlineElement ID="Newline4742" Alignment="1" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-PLAIN-5" Foreground="-16777216" Count="1" Break="false">
+</NewlineElement>
+<TableElement ID="tblTipoAreaC" Alignment="1" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-ITALIC-7" Foreground="-16777216" TableWidth="0.0" AdhocEnabled="true" Layout="0" TableAdvance="1" MaxColWidth="0.0" OrphanControl="false" FillPage="false" MultiColumn="0" KeepSpanTogether="false" KeepGroupTogether="false" Padding="0,1,0,1" EmbedWidth="false" Embedded="true">
+<property><name><![CDATA[grow]]></name><value><![CDATA[true]]></value></property>
+<Table Rows="1" Cols="2" HeaderRow="0" HeaderCol="0" TrailerRow="0" TrailerCol="0">
+<TR>
+<TD Type="string"><![CDATA[Tipo Area C:]]></TD><TD Type="string"><![CDATA[1]]></TD></TR>
+</Table>
+</TableElement>
+<NewlineElement ID="Newline4743" Alignment="1" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-PLAIN-5" Foreground="-16777216" Count="1" Break="false">
+</NewlineElement>
+<TableElement ID="tblTipoAreaD" Alignment="1" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-ITALIC-7" Foreground="-16777216" TableWidth="0.0" AdhocEnabled="true" Layout="0" TableAdvance="1" MaxColWidth="0.0" OrphanControl="false" FillPage="false" MultiColumn="0" KeepSpanTogether="false" KeepGroupTogether="false" Padding="0,1,0,1" EmbedWidth="false" Embedded="true">
+<property><name><![CDATA[grow]]></name><value><![CDATA[true]]></value></property>
+<Table Rows="1" Cols="2" HeaderRow="0" HeaderCol="0" TrailerRow="0" TrailerCol="0">
+<TR>
+<TD Type="string"><![CDATA[Tipo Area D:]]></TD><TD Type="string"><![CDATA[1]]></TD></TR>
+</Table>
+</TableElement>
+<NewlineElement ID="Newline4744" Alignment="1" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-PLAIN-5" Foreground="-16777216" Count="1" Break="false">
+</NewlineElement>
+<TableElement ID="legendaConduzione" Alignment="1" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-ITALIC-7" Foreground="-16777216" TableWidth="0.0" AdhocEnabled="true" Layout="0" TableAdvance="1" MaxColWidth="0.0" OrphanControl="false" FillPage="false" MultiColumn="0" KeepSpanTogether="false" KeepGroupTogether="false" Padding="0,1,0,1" EmbedWidth="false" Embedded="true">
+<property><name><![CDATA[grow]]></name><value><![CDATA[true]]></value></property>
+<Table Rows="1" Cols="3" HeaderRow="0" HeaderCol="0" TrailerRow="0" TrailerCol="0">
+<TR>
+<TD Type="string"><![CDATA[(1)]]></TD><TD Type="string"><![CDATA[Conduzione:]]></TD><TD Type="string"><![CDATA[1]]></TD></TR>
+</Table>
+</TableElement>
+<TableElement ID="legendaCasiParticolari" Alignment="1" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-ITALIC-7" Foreground="-16777216" TableWidth="0.0" AdhocEnabled="true" Layout="0" TableAdvance="1" MaxColWidth="0.0" OrphanControl="false" FillPage="false" MultiColumn="0" KeepSpanTogether="false" KeepGroupTogether="false" Padding="0,1,0,1" EmbedWidth="false" Embedded="true">
+<property><name><![CDATA[grow]]></name><value><![CDATA[true]]></value></property>
+<Table Rows="1" Cols="3" HeaderRow="0" HeaderCol="0" TrailerRow="0" TrailerCol="0">
+<TR>
+<TD Type="string"><![CDATA[(2)]]></TD><TD Type="string"><![CDATA[Casi particolari:]]></TD><TD Type="string"><![CDATA[1]]></TD></TR>
+</Table>
+</TableElement>
+<TableElement ID="tblLegZonaVulNitrati" Alignment="1" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-ITALIC-7" Foreground="-16777216" TableWidth="0.0" AdhocEnabled="true" Layout="0" TableAdvance="1" MaxColWidth="0.0" OrphanControl="false" FillPage="false" MultiColumn="0" KeepSpanTogether="false" KeepGroupTogether="false" Padding="0,1,0,1" EmbedWidth="false" Embedded="true">
+<property><name><![CDATA[grow]]></name><value><![CDATA[true]]></value></property>
+<Table Rows="1" Cols="5" HeaderRow="0" HeaderCol="0" TrailerRow="0" TrailerCol="0">
+<TR>
+<TD Type="string"><![CDATA[(3)]]></TD><TD Type="string"><![CDATA[Zona vulnerabile da nitrati]]></TD><TD Type="null"><![CDATA[null]]></TD><TD Type="null"><![CDATA[null]]></TD><TD Type="null"><![CDATA[null]]></TD></TR>
+</Table>
+</TableElement>
+<TableElement ID="tblLegZonaAlt" Alignment="1" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-ITALIC-7" Foreground="-16777216" TableWidth="0.0" AdhocEnabled="true" Layout="0" TableAdvance="1" MaxColWidth="0.0" OrphanControl="false" FillPage="false" MultiColumn="0" KeepSpanTogether="false" KeepGroupTogether="false" Padding="0,1,0,1" EmbedWidth="false" Embedded="true">
+<property><name><![CDATA[grow]]></name><value><![CDATA[true]]></value></property>
+<Table Rows="1" Cols="3" HeaderRow="0" HeaderCol="0" TrailerRow="0" TrailerCol="0">
+<TR>
+<TD Type="string"><![CDATA[(4)]]></TD><TD Type="string"><![CDATA[Zona altimetrica:]]></TD><TD Type="string"><![CDATA[1]]></TD></TR>
+</Table>
+</TableElement>
+<TableElement ID="tblLegTerrIrr" Alignment="65" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-ITALIC-7" Foreground="-16777216" TableWidth="0.0" AdhocEnabled="true" Layout="0" TableAdvance="1" MaxColWidth="0.0" OrphanControl="false" FillPage="false" MultiColumn="0" KeepSpanTogether="false" KeepGroupTogether="false" Padding="0,1,0,1" EmbedWidth="false" Embedded="true">
+<property><name><![CDATA[grow]]></name><value><![CDATA[true]]></value></property>
+<Table Rows="1" Cols="2" HeaderRow="0" HeaderCol="0" TrailerRow="0" TrailerCol="0">
+<TR>
+<TD Type="string"><![CDATA[(5)]]></TD><TD Type="string"><![CDATA[Terreno irrigabile]]></TD></TR>
+</Table>
+</TableElement>
+<TableElement ID="tblLegCapAcquePozzi" Alignment="65" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-ITALIC-7" Foreground="-16777216" TableWidth="0.0" AdhocEnabled="true" Layout="0" TableAdvance="1" MaxColWidth="0.0" OrphanControl="false" FillPage="false" MultiColumn="0" KeepSpanTogether="false" KeepGroupTogether="false" Padding="0,1,0,1" EmbedWidth="false" Embedded="true">
+<property><name><![CDATA[grow]]></name><value><![CDATA[true]]></value></property>
+<Table Rows="1" Cols="2" HeaderRow="0" HeaderCol="0" TrailerRow="0" TrailerCol="0">
+<TR>
+<TD Type="string"><![CDATA[(6)]]></TD><TD Type="string"><![CDATA[Zona captazione acque pozzi]]></TD></TR>
+</Table>
+</TableElement>
+<TableElement ID="tblPotenzialitaIrrigua" Alignment="1" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-ITALIC-7" Foreground="-16777216" TableWidth="0.0" AdhocEnabled="true" Layout="0" TableAdvance="1" MaxColWidth="0.0" OrphanControl="false" FillPage="false" MultiColumn="0" KeepSpanTogether="false" KeepGroupTogether="false" Padding="0,1,0,1" EmbedWidth="false" Embedded="true">
+<property><name><![CDATA[grow]]></name><value><![CDATA[true]]></value></property>
+<Table Rows="1" Cols="3" HeaderRow="0" HeaderCol="0" TrailerRow="0" TrailerCol="0">
+<TR>
+<TD Type="string"><![CDATA[(7)]]></TD><TD Type="string"><![CDATA[Potenzialità irrigua]]></TD><TD Type="null"><![CDATA[null]]></TD></TR>
+</Table>
+</TableElement>
+<TableElement ID="tblRotazioneColturale" Alignment="1" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-ITALIC-7" Foreground="-16777216" TableWidth="0.0" AdhocEnabled="true" Layout="0" TableAdvance="1" MaxColWidth="0.0" OrphanControl="false" FillPage="false" MultiColumn="0" KeepSpanTogether="false" KeepGroupTogether="false" Padding="0,1,0,1" EmbedWidth="false" Embedded="true">
+<property><name><![CDATA[grow]]></name><value><![CDATA[true]]></value></property>
+<Table Rows="1" Cols="3" HeaderRow="0" HeaderCol="0" TrailerRow="0" TrailerCol="0">
+<TR>
+<TD Type="string"><![CDATA[(8)]]></TD><TD Type="string"><![CDATA[Rotazione colturale]]></TD><TD Type="null"><![CDATA[null]]></TD></TR>
+</Table>
+</TableElement>
+<TableElement ID="tblTerrazzamento" Alignment="1" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-ITALIC-7" Foreground="-16777216" TableWidth="0.0" AdhocEnabled="true" Layout="0" TableAdvance="1" MaxColWidth="0.0" OrphanControl="false" FillPage="false" MultiColumn="0" KeepSpanTogether="false" KeepGroupTogether="false" Padding="0,1,0,1" EmbedWidth="false" Embedded="true">
+<property><name><![CDATA[grow]]></name><value><![CDATA[true]]></value></property>
+<Table Rows="1" Cols="3" HeaderRow="0" HeaderCol="0" TrailerRow="0" TrailerCol="0">
+<TR>
+<TD Type="string"><![CDATA[(9)]]></TD><TD Type="string"><![CDATA[Terrazzamenti]]></TD><TD Type="null"><![CDATA[null]]></TD></TR>
+</Table>
+</TableElement>
+<TableElement ID="tblLegScadenza" Alignment="1" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-ITALIC-7" Foreground="-16777216" TableWidth="0.0" AdhocEnabled="true" Layout="0" TableAdvance="1" MaxColWidth="0.0" OrphanControl="false" FillPage="false" MultiColumn="0" KeepSpanTogether="false" KeepGroupTogether="false" Padding="0,1,0,1" EmbedWidth="false" Embedded="true">
+<property><name><![CDATA[grow]]></name><value><![CDATA[true]]></value></property>
+<Table Rows="1" Cols="2" HeaderRow="0" HeaderCol="0" TrailerRow="0" TrailerCol="0">
+<TR>
+<TD Type="string"><![CDATA[(7)]]></TD><TD Type="string"><![CDATA[Data cessazione legame con il documento ]]></TD></TR>
+</Table>
+</TableElement>
+</GD>
+<GD Width="244.33331" CellFitPage="true">
+</GD>
+<GD Width="414.33334" CellFitPage="true">
+</GD>
+</GR>
+</Grid>
+</Report>

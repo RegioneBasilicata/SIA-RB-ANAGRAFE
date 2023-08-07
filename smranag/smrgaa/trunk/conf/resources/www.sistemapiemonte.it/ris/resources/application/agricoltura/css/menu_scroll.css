@@ -1,0 +1,21 @@
+/* scroll agri */
+/*non mettere in skin agricoltura, spacca il menu'*/
+
+.box {display:block; 
+	position:fixed;
+	left: 3.5%;
+	top:150px;
+	z-index:10000;
+	height: 200px;/*per evitare il bianco sotto*/
+	width: 10%;}
+#pagina {height: 1000px;}
+menuSX, menuSX1 {background-image:none;}
+
+/*REGOLE PER IE7*/
+*:first-child+html, *:first-child+html body {/*overflow:hidden;*/
+overflow-x:hidden;overflow-y:auto;margin:0;padding:0;}
+*:first-child+html html {position: absolute;}
+*:first-child+html .box { background:trasparent;height:auto;}
+*:first-child+html #pagina {height: auto;position:relative;}
+*:first-child+html #contenitore {position:relative;height:100%;overflow:auto;}
+*:first-child+html menuSX, *:first-child+html menuSX1 {position:absolute;}

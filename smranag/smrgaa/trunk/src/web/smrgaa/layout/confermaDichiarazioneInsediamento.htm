@@ -1,0 +1,47 @@
+$$head
+  <script src="../js/checktext.js" type="text/javascript"></script>
+  <script type="text/javascript">
+
+    function chiudi() {
+      document.chiudi.submit();
+    }
+
+  </script>
+</head>
+<body id="homeIndice">
+    <div id="pagina" class="colonnaUnica">
+      <!-- INTESTAZIONE -->
+      <div id="intestazione##pathProvincia">
+        $$header
+        <!-- menu di navigazione-->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+        </div>
+      </div>
+      <hr/>
+      <div style="clear:left"></div>
+      <!-- CORPO -->
+      <div id="corpo">
+        <hr/>
+        <!-- PRIMA COLONNA -->
+        <form id="chiudi" name="chiudi" action="../layout/dichiarazioneInsediamento.htm" method="post">
+        <div id="content">
+          <p>Proseguendo verrà registrato a sistema l'effettivo insediamento. Vuoi proseguire?</p>
+          
+           <div class="pulsanti">
+          <div class="sin">
+            <input type="submit" value="conferma" name="insediamento" class="inputPulsante highlighted"/>
+          </div>
+          <div class="des">
+            <input type="button" value="annulla" name="annulla" class="inputPulsante" onClick="document.chiudi.submit()"/>
+          </div>
+          </div>
+          
+        </div>
+        </form>
+      </div>
+      <hr/>
+      <!-- PIE' DI PAGINA -->
+      $$footer

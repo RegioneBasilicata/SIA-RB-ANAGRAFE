@@ -1,0 +1,717 @@
+$$head
+<script src="../js/checktext.js" type="text/javascript"></script>
+<script type="text/javascript" src="../js/messaggistica.js"></script>
+<script language="javascript1.2">
+  function ricerca()
+  {
+    var action1 = document.form1.action;
+    document.form1.action="../layout/ricercaVariazioni.htm"
+    document.form1.ricerca.value='ricerca';
+    document.form1.submit();
+    document.form1.action = action1;
+  }
+  
+  function vaiAPagina(pagina)
+  {
+    document.elenco.paginaCorrente.value=pagina;
+    document.elenco.paginaCorrenteDup.value=pagina;
+    document.elenco.submit();
+  }
+  
+ 
+  function ricaricaCombo()
+  {
+    var action1 = document.form1.action;
+    document.form1.action="../layout/ricercaVariazioni.htm"
+    document.form1.operazione.value='RELOAD';
+    document.form1.submit();
+    document.form1.action = action1;
+    document.form1.operazione.value='';
+  }
+  
+  function presaVisione()
+  {
+    document.elenco.operazione.value='PRESA_VISIONE';
+    document.elenco.submit();
+    document.elenco.operazione.value='';
+  }
+  
+  function deselezionaTutto() 
+  {
+    if(document.elenco.idPresaVisione.length) 
+      for(var i = 0; i < document.elenco.idPresaVisione.length; i++)  
+        document.elenco.idPresaVisione[i].checked = false;
+    else document.elenco.idPresaVisione.checked = false;
+  }
+  
+  function selezionaTutto() 
+  {
+    if(document.elenco.idPresaVisione.length) 
+      for(var i = 0; i < document.elenco.idPresaVisione.length; i++)  
+        document.elenco.idPresaVisione[i].checked = true;
+    else document.elenco.idPresaVisione.checked = true;
+  }
+  
+  function scegliComune(mypage, myname, w, h, scroll,provincia,comune, obiettivo) 
+  {
+    NewWindowComuneAnag(mypage, myname, w, h, scroll,provincia,comune, obiettivo);
+  }
+  
+  function NewWindowComuneAnag(mypage, myname, w, h, scroll,provincia,comune,obiettivo) {
+    var winl = (screen.width - w) / 2;
+    var wint = (screen.height - h) / 2;
+    if(provincia ==  '' && comune == '') {
+      alert('Inserire una provincia o un comune!');
+    }
+    else if(!mappaOggetti(comune)) {
+    }
+    else {
+      winprops =    'height='+h+',width='+w+',top='+wint+',left='+winl+',scrollbars='+scroll+',resizable';
+      win = window.open(mypage+'?obiettivo='+obiettivo+'&provincia='+provincia+'&comune='+comune, myname, winprops);
+      if (parseInt(navigator.appVersion) >= 4) {
+        win.window.focus();
+      }
+    }
+  }
+  
+  
+  </script>
+</head>
+<body id="homeIndice" onLoad="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+  <div id="pagina" class="colonnaUnica">
+    <!-- INTESTAZIONE -->
+    <div id="intestazione##pathProvincia">
+      $$header
+      <!-- menu di navigazione-->
+      <div id="titoloEmenu">
+        <h2>
+          <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+        </h2>
+        <div id="menuDiNavigazione" title="Menu di navigazione">
+          <ul class="menuTendina" id="menu-2">
+            <li>
+              <a href="../layout/index.htm"
+                title="Torna alla pagina principale">home</a>
+            </li>
+            <li class="attivo">
+              gestione anagrafe aziende
+            </li>
+            <li>
+              <a href="#" title="contatti">contatti</a>
+            </li>
+            <li>
+              <a href="#" title="help">help</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <hr />
+    <div style="clear: left"></div>
+    <!-- CORPO -->
+    <div id="corpo">
+      <div id="Utente">
+        <div id="datiUtente">
+          <strong>utente:</strong>$$utente&nbsp;&nbsp;
+          <strong>ente:</strong>$$ente
+        </div>
+        <div id="chiudisessione">
+          <a href="javascript: logout();">chiudi sessione</a>
+        </div>
+      </div>
+      <hr />
+      <!--PRIMA COLONNA -->
+      <h3>
+        Ricerca variazioni
+        <span class="helpFuori"> <a href="#"> <span
+            class="alt">[help]</span> </a> </span>
+      </h3>
+      <hr />
+      <div class="box">
+        <div class="menuSX1">
+          <ul>
+            <!-- @@blkElencoAziendeRapLegale -->
+            <li>
+              <a href="../layout/elencoAziendeRapLegale.htm">Elenco
+                Aziende</a>
+            </li>
+            <!-- @@blkElencoAziendeRapLegale -->
+            <!-- @@blkRicercaAzienda-->
+            <li>
+              <a href="../layout/ricerca.htm">Ricerca Azienda</a>
+            </li>
+            <!-- @@blkRicercaAzienda-->
+            <!--@@blkRicercaTerreno-->
+            <li>
+              <a href="../layout/ricercaTerreno.htm">Ricerca Terreno</a>
+            </li>
+            <!--@@blkRicercaTerreno-->
+            <!--@@blkRicercaPersona-->
+            <li>
+              <a href="../layout/ricercaPersona.htm">Ricerca Persona</a>
+            </li>
+            <!--@@blkRicercaPersona-->
+            <!--@@blkRicercaNotifica-->
+            <li>
+              <a href="../layout/ricercaNotifica.htm">Ricerca
+                Notifiche</a>
+            </li>
+            <!--@@blkRicercaNotifica-->
+            <!--@@blkVariazioniAzienda-->
+            <li>
+              <a href="../layout/ricercaVariazioni.htm">Ricerca
+                Variazioni</a>
+            </li>
+            <!--@@blkVariazioniAzienda-->
+            <!--@@blkRicercaRichiesta-->
+               <li><a href="../layout/ricercaRichiesta.htm">Ricerca richiesta azienda</a></li>
+            <!--@@blkRicercaRichiesta-->
+            <!-- @@blkNuova -->
+            <li>
+              <a href="../layout/nuovaAziendaAnagrafica.htm">Nuova
+                Azienda</a>
+            </li>
+            <!-- @@blkNuova -->
+            <!-- @@blkNuovaIscrizione -->
+	          <li>
+	            <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+	          </li>
+	          <!-- @@blkNuovaIscrizione -->
+            <!--@@blkNuovaParticella-->
+            <li>
+              <a href="../layout/inserisciTerreno.htm">Nuova
+                Particella</a>
+            </li>
+            <!--@@blkNuovaParticella-->
+            <!--@@blkServizi-->
+            <li>
+              <a href="../layout/servizi.htm">Servizi</a>
+            </li>
+            <!--@@blkServizi-->
+            <!--@@blkReportistica-->
+            <li>
+              <a href="../layout/elencoRicerche.htm">Reportistica</a>
+            </li>
+            <!--@@blkReportistica-->
+            <!--@@blkEstrazioneDati-->
+            <li>
+              <a href="../layout/macroCategoriaReport.htm">Estrazione
+                dati</a>
+            </li>
+            <!--@@blkEstrazioneDati-->
+            <li><a href="../layout/elencoManuali.htm">Scarico Documentazione Tecnica</a></li>
+          </ul>
+        </div>
+        <!--@@blkVariazione-->
+        <div class="menuSX">
+          <ul>
+            <li>
+              <a href="#" class="on">Variazioni</a>
+              <ul>
+                <!--@@blkPresaVisione-->
+                <li>
+                  <a href="javascript: presaVisione();">presa
+                    visione</a>
+                </li>
+                <!--@@blkPresaVisione-->
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <!--@@blkVariazione-->
+      </div>
+      <hr />
+      <!-- SECONDA COLONNA -->
+      <div id="contenuto">
+        <form name="form1" method="post"
+          action="../layout/elencoVariazioni.htm">
+          <input type="hidden" id="ricerca" name="ricerca" />
+          <input type="hidden" id="operazione" name="operazione"
+            value="" />
+          <table cellspacing="3"
+            summary="Questa tabella è costituita da righe">
+            <caption>
+              Filtri di ricerca
+            </caption>
+            <tr>
+              <th scope="row">
+                <label for="competenza">
+                  Amministrazione di competenza
+                </label>
+              </th>
+              <td>
+                <select id="competenza" class="mini" name="competenza">
+                  <option value=""></option>
+                  <!-- @@blkProvince -->
+                  <option value="$$idCodice" $$check>
+                    $$descrizione
+                  </option>
+                  <!-- @@blkProvince -->
+                </select>
+              </td>
+              <th scope="row">
+                <label for="presaVisione">
+                  Presa visione ##etichettaDescGruppoRuolo
+                </label>
+              </th>
+              <td>
+                <select id="presaVisione" class="mini"
+                  name="presaVisione">
+                  <option value=""></option>
+                  <!-- @@blkPresaVisione -->
+                  <option value="$$idCodice" $$check>
+                    $$descrizione
+                  </option>
+                  <!-- @@blkPresaVisione -->
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <label for="catVariazione">
+                  Tipo variazione
+                </label>
+              </th>
+              <td>
+                <select id="catVariazione" class="medio"
+                  name="catVariazione" onChange="ricaricaCombo();">
+                  <option value=""></option>
+                  <!-- @@blkCatVariazioni -->
+                  <option value="$$idCodice" $$check>
+                    $$descrizione
+                  </option>
+                  <!-- @@blkCatVariazioni -->
+                </select>
+              </td>
+
+              <td colspan="2">
+                <select id="tipVariazione" class="medio"
+                  name="tipVariazione">
+                  <option value=""></option>
+                  <!-- @@blkTipVariazioni -->
+                  <option value="$$idCodice" $$check>
+                    $$descrizione
+                  </option>
+                  <!-- @@blkTipVariazioni -->
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="dataVariazioneDal">
+                  Dal
+                </label>
+              </th>
+              <td>
+                <input type="text" id="dataVariazioneDal"
+                  name="dataVariazioneDal" maxlength="10"
+                  value="$$dataVariazioneDal" />
+                $$err_dataVariazioneDal
+              </td>
+              <th>
+                <label for="dataVariazioneAl">
+                  Al
+                </label>
+              </th>
+              <td>
+                <input type="text" id="dataVariazioneAl"
+                  name="dataVariazioneAl" maxlength="10"
+                  value="$$dataVariazioneAl" />
+                $$err_dataVariazioneAl
+              </td>
+            </tr>
+            <tr>
+              <th>
+                CUAA
+              </th>
+              <td>
+                <input type="cuaa" id="cuaa" name="cuaa" maxlength="16"
+                  value="$$cuaa" />
+                $$err_cuaa
+              </td>
+              <th>
+                <label for="storicizzate">
+                  Variazioni storicizzate
+                </label>
+              </th>
+              <td>
+                <input type="checkbox" name="variazioniStoricizzate"
+                  id="variazioniStoricizzate"
+                  $$checkedVariazioniStoricizzate />
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Comune (sede legale)
+              </th>
+              <td>
+                <input name="provinciaRicerca" id="provinciaRicerca"
+                  value="$$provinciaRicerca" type="text" size="2"
+                  maxlength="2" class="due" />
+                $$err_provinciaRicerca
+              </td>
+              <td>
+                <input name="comuneRicerca" id="comuneRicerca"
+                  value="$$comuneRicerca" class="text" type="text" />
+                $$err_comuneRicerca
+              </td>
+              <td>
+                <div class="azioni">
+                  <a id="scegliComuneCessAcqu"
+                    name="scegliComuneCessAcqu"
+                    href="javascript: scegliComune('../view/sceltaComuneView.jsp','scegli_comune','600','300','yes',document.form1.provinciaRicerca.value,document.form1.comuneRicerca.value,'RicercaVariazioni');"
+                    title="[Attenzione: questo link si apre in una nuova finestra]">cerca</a>
+                </div>
+                <input type="hidden" name="istatComuneRicerca"
+                  value="$$istatComuneRicerca" />
+              </td>
+            </tr>
+          </table>
+          <div class="pulsanti">
+            <div class="sin">
+              <a href="javascript:ricerca();">ricerca</a>
+            </div>
+          </div>
+        </form>
+        <!-- $$err_paginaCorrente -->
+        <!--@@blkElenco-->
+
+        <!-- @@blkTroppeVariazioni -->
+        <p class="errore">
+          Troppe variazioni selezionate - Impostare un filtro più
+          restrittivo
+        </p>
+        <!-- @@blkTroppeVariazioni -->
+
+        <!-- @@blkNessunaPresaVisione -->
+        <p class="errore">
+          Selezionare una voce dall'elenco
+        </p>
+        <!-- @@blkNessunaPresaVisione -->
+
+        <!-- @@blkTroppePreseVisione -->
+        <p class="errore">
+          E' possibile selezionare un massimo di
+          $$numeroElementiSelezionati voci dall'elenco
+        </p>
+        <!-- @@blkTroppePreseVisione -->
+
+        <!-- @@blkPresaVisionePresente -->
+        <p class="errore">
+          Selezionare le voci dall'elenco che non hanno l'indicazione di
+          presa visione
+        </p>
+        <!-- @@blkPresaVisionePresente -->
+
+
+        <div class="pulsanti">
+          <div class="sin">
+            <input id="esportaDati" name="esportaDati" type="button"
+              value="esporta dati"
+              onclick="javascript:goToOperazione('../layout/elencoVariazioni.htm', document.form1,'excel');"
+              class="inputPulsante" />
+          </div>
+        </div>
+        <div class="pulsanti">
+          <div class="sin">
+            <input id="seleziona" name="seleziona" type="button"
+              value="seleziona" onClick="javascript:selezionaTutto();"
+              onkeypress="javascript:selezionaTutto();"
+              class="inputPulsante" />
+          </div>
+          <div class="des">
+            <input id="deseleziona" name="deseleziona" type="button"
+              value="deseleziona"
+              onclick="javascript:deselezionaTutto();"
+              onkeypress="javascript:deselezionaTutto();"
+              class="inputPulsante" />
+          </div>
+        </div>
+
+        <div class="paginazione">
+          <span class="sx">$$totaleRighe risultati trovati</span>
+
+          <form name="elenco" method="post"
+            action="../layout/elencoVariazioni.htm">
+            <div class="dx">
+              <label for="paginaCorrente">
+                pagina
+              </label>
+              <input type="text" name="paginaCorrente"
+                value="$$paginaCorrente" maxlength="4"
+                id="paginaCorrente"
+                onkeyup="document.elenco.paginaCorrente.value=this.value" />
+              ##err_paginaCorrente di $$totalePagine
+              <span class="vai"> <input type="submit" name="vai"
+                  value="vai" class="vaiInput" /> </span>
+              <!--@@blkGruppoPrecedente-->
+              <span class="bugFix">&nbsp;|&nbsp;</span>
+              <a href="#" onClick="vaiAPagina($$value)" class="$$class"
+                title="$$tooltip"> $$text </a>
+              <!--@@blkGruppoPrecedente-->
+              <!--@@blkGruppoCorrente-->
+              <span class="evidenziato"> $$paginaCorrente </span>
+              <!--@@blkGruppoCorrente-->
+              <!--@@blkGruppoSuccessivo-->
+              <span class="bugFix">&nbsp;|&nbsp;</span>
+              <a href="#" onClick="vaiAPagina($$value)" class="$$class"
+                title="$$tooltip"> $$text </a>
+              <!--@@blkGruppoSuccessivo-->
+              <!--@@blkPaginaPrecedente-->
+              <span class="bugFix">&nbsp;|&nbsp;</span>
+              <a href="#" onClick="vaiAPagina($$pagina)"
+                title="vai alla pagina precedente">&lt;&lt; prec</a>
+              <span class="bugFix">&nbsp;|&nbsp;</span>
+              <!--@@blkPaginaPrecedente-->
+              <!--@@blkPaginaSuccessiva-->
+              <span class="bugFix">&nbsp;|&nbsp;</span>
+              <a href="#" onClick="vaiAPagina($$pagina)"
+                title="vai alla pagina successiva">succ &gt;&gt;</a>
+              <span class="bugFix">&nbsp;|&nbsp;</span>
+              <!--@@blkPaginaSuccessiva-->
+            </div>
+        </div>
+
+        <div class="scroll">
+          <input type="hidden" name="from"
+            value="../layout/elencoVariazioni.htm" />
+          <input type="hidden" name="operazione" value="" />
+          <table cellspacing="3"
+            summary="Tabella contenente i risultati della ricerca delle unità arboree">
+            <tr>
+              <th rowspan="2" class="radio" scope="col">
+                Sel.
+              </th>
+              <th rowspan="2" class="center" scope="col">
+                Presa visione ##etichettaDescGruppoRuolo
+              </th>
+              <th rowspan="2" class="ordine center" scope="col">
+                <span class="TitOrd">CUAA</span>
+                <div class="ordina">
+                  <a
+                    href="javascript: goToOperazione(document.elenco.action, document.elenco, '$$ordinaCampoCUAA');"
+                    class="$$ordinaCUAA" title="$$descOrdinaCUAA"> <span
+                    class="nascosto">$$descOrdinaCUAA</span> </a>
+                </div>
+              </th>
+
+
+              <th rowspan="2" class="center" scope="col">
+                Partita iva
+              </th>
+
+              <th rowspan="2" class="ordine center" scope="col">
+                <span class="TitOrd">Denominazione</span>
+                <div class="ordina">
+                  <a
+                    href="javascript: goToOperazione(document.elenco.action, document.elenco, '$$ordinaCampoDENOMINAZIONE');"
+                    class="$$ordinaDENOMINAZIONE"
+                    title="$$descOrdinaDENOMINAZIONE"> <span
+                    class="nascosto">$$descOrdinaDENOMINAZIONE</span> </a>
+                </div>
+              </th>
+
+
+              <th class="center" scope="col" colspan="3">
+                Sede legale
+              </th>
+              <th class="center" scope="col" colspan="2">
+                Tipo variazione
+              </th>
+
+              <th rowspan="2" class="ordine center" scope="col">
+                <span class="TitOrd">Data Variazione</span>
+                <div class="ordina">
+                  <a
+                    href="javascript: goToOperazione(document.elenco.action, document.elenco, '$$ordinaCampoDATA_VARIAZIONE');"
+                    class="$$ordinaDATA_VARIAZIONE"
+                    title="$$descOrdinaDATA_VARIAZIONE"> <span
+                    class="nascosto">$$descOrdinaDATA_VARIAZIONE</span>
+                  </a>
+                </div>
+              </th>
+
+              <th rowspan="2" class="ordine center" scope="col">
+                <span class="TitOrd">Amm. di competenza</span>
+                <div class="ordina">
+                  <a
+                    href="javascript: goToOperazione(document.elenco.action, document.elenco, '$$ordinaCampoPROV_COMP');"
+                    class="$$ordinaPROV_COMP"
+                    title="$$descOrdinaPROV_COMP"> <span
+                    class="nascosto">$$descOrdinaPROV_COMP</span> </a>
+                </div>
+              </th>
+
+            </tr>
+            <tr>
+              <th class="ordine center" scope="col">
+                <span class="TitOrd">Comune (Pv)</span>
+                <div class="ordina">
+                  <a
+                    href="javascript: goToOperazione(document.elenco.action, document.elenco, '$$ordinaCampoCOMUNE');"
+                    class="$$ordinaCOMUNE" title="$$descOrdinaCOMUNE">
+                    <span class="nascosto">$$descOrdinaCOMUNE</span> </a>
+                </div>
+              </th>
+
+
+              <th class="center">
+                Indirizzo
+              </th>
+              <th class="center">
+                Cap
+              </th>
+
+              <th class="ordine center" scope="col">
+                <div class="ordina">
+                  <a
+                    href="javascript: goToOperazione(document.elenco.action, document.elenco, '$$ordinaCampoTIPOLOGIA_VARIAZIONE');"
+                    class="$$ordinaTIPOLOGIA_VARIAZIONE"
+                    title="$$descOrdinaTIPOLOGIA_VARIAZIONE"> <span
+                    class="nascosto">$$descOrdinaTIPOLOGIA_VARIAZIONE</span>
+                  </a>
+                </div>
+              </th>
+
+              <th class="ordine center" scope="col">
+                <div class="ordina">
+                  <a
+                    href="javascript: goToOperazione(document.elenco.action, document.elenco, '$$ordinaCampoVARIAZIONE');"
+                    class="$$ordinaVARIAZIONE"
+                    title="$$descOrdinaVARIAZIONE"> <span
+                    class="nascosto">$$descOrdinaVARIAZIONE</span> </a>
+                </div>
+              </th>
+            </tr>
+            <!--@@blkRiga-->
+            <tr>
+              <td scope="row">
+                <input type="checkbox" name="idPresaVisione"
+                  id="idPresaVisione" value="$$idDettaglioVariazioneAzi"
+                  $$checkPresaVisione />
+              </td>
+              <td>
+                @@blkPresaVisione
+                <span title="Presa visione" class="eseguito"></span>@@blkPresaVisione
+              </td>
+              <td @@blkRed class="rosso" @@blkRed>
+                $$cuaa
+              </td>
+              <td @@blkRed class="rosso" @@blkRed>
+                $$partitaIva
+              </td>
+              <td @@blkRed class="rosso" @@blkRed>
+                $$denominazione
+              </td>
+              <td @@blkRed class="rosso" @@blkRed>
+                $$comune
+              </td>
+              <td @@blkRed class="rosso" @@blkRed>
+                $$indirizzo
+              </td>
+              <td @@blkRed class="rosso" @@blkRed>
+                $$cap
+              </td>
+              <td @@blkRed class="rosso" @@blkRed>
+                $$tipologiaVariazione
+              </td>
+              <td @@blkRed class="rosso" @@blkRed>
+                $$variazione
+              </td>
+              <td @@blkRed class="rosso" @@blkRed>
+                $$dataVariazione
+              </td>
+              <td @@blkRed class="rosso" @@blkRed>
+                $$descProvAmmComp
+              </td>
+            </tr>
+            <!--@@blkRiga-->
+
+          </table>
+
+
+          <div class="paginazione">
+            <span class="sx">$$totaleRighe risultati trovati</span>
+            <div class="dx">
+              <label for="paginaCorrenteDup">
+                pagina
+              </label>
+              <input type="text" name="paginaCorrenteDup"
+                value="$$paginaCorrente" maxlength="4"
+                id="paginaCorrenteDup"
+                onkeyup="document.elenco.paginaCorrenteDup.value=this.value" />
+              ##err_paginaCorrente di $$totalePagine
+              <span class="vai"> <input type="submit" name="vai"
+                  value="vai" class="vaiInput" /> </span>
+              <!--@@blkGruppoPrecedente-->
+              <span class="bugFix">&nbsp;|&nbsp;</span>
+              <a href="#" onClick="vaiAPagina($$value)" class="$$class"
+                title="$$tooltip"> $$text </a>
+              <!--@@blkGruppoPrecedente-->
+              <!--@@blkGruppoCorrente-->
+              <span class="evidenziato"> $$paginaCorrente </span>
+              <!--@@blkGruppoCorrente-->
+              <!--@@blkGruppoSuccessivo-->
+              <span class="bugFix">&nbsp;|&nbsp;</span>
+              <a href="#" onClick="vaiAPagina($$value)" class="$$class"
+                title="$$tooltip"> $$text </a>
+              <!--@@blkGruppoSuccessivo-->
+              <!--@@blkPaginaPrecedente-->
+              <span class="bugFix">&nbsp;|&nbsp;</span>
+              <a href="#" onClick="vaiAPagina($$pagina)"
+                title="vai alla pagina precedente">&lt;&lt; prec</a>
+              <span class="bugFix">&nbsp;|&nbsp;</span>
+              <!--@@blkPaginaPrecedente-->
+              <!--@@blkPaginaSuccessiva-->
+              <span class="bugFix">&nbsp;|&nbsp;</span>
+              <a href="#" onClick="vaiAPagina($$pagina)"
+                title="vai alla pagina successiva">succ &gt;&gt;</a>
+              <span class="bugFix">&nbsp;|&nbsp;</span>
+              <!--@@blkPaginaSuccessiva-->
+            </div>
+            </form>
+          </div>
+        </div>
+        <p id="nota">
+          Le righe evidenziate in rosso rappresentano variazioni
+          storicizzate
+        </p>
+
+        <div class="pulsanti">
+          <div class="sin">
+            <input id="seleziona" name="seleziona" type="button"
+              value="seleziona" onClick="javascript:selezionaTutto();"
+              onkeypress="javascript:selezionaTutto();"
+              class="inputPulsante" />
+          </div>
+          <div class="des">
+            <input id="deseleziona" name="deseleziona" type="button"
+              value="deseleziona"
+              onclick="javascript:deselezionaTutto();"
+              onkeypress="javascript:deselezionaTutto();"
+              class="inputPulsante" />
+          </div>
+        </div>
+
+        <div class="pulsanti">
+          <div class="sin">
+            <input id="esportaDati" name="esportaDati" type="button"
+              value="esporta dati"
+              onclick="javascript:goToOperazione('../layout/elencoVariazioni.htm', document.form1,'excel');"
+              class="inputPulsante" />
+          </div>
+        </div>
+
+        <!--@@blkElenco-->
+        <!-- @@blkNoVariazioni -->
+        <p class="errore">
+          Non esistono variazioni che soddisfino i parametri di ricerca
+          impostati
+        </p>
+        <!-- @@blkNoVariazioni -->
+
+      </div>
+    </div>
+    <hr />
+    <!-- PIE' DI PAGINA -->
+    $$footer

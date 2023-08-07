@@ -1,0 +1,67 @@
+$$head
+	<script src="../js/checktext.js" type="text/javascript"></script>
+  	<script type="text/javascript">
+
+    	function chiudi() {
+      		document.chiudi.submit();
+    	}
+
+  	</script>
+</head>
+<body id="homeIndice">
+	<form id="chiudi" name="chiudi" action="../layout/conti_correnti_mod.htm" method="post">
+    	<div>
+      		<input type="hidden" id="idContoCorrente" name="idContoCorrente" value="$$idContoCorrente"/>
+      		<input type="hidden" id="cin" name="cin" value="$$cin"/>
+          <input type="hidden" name="cctrl" value="$$cctrl" id="cctrl"/>
+          <input type="hidden" name="iban" value="$$iban" id="iban"/>
+          <input type="hidden" id="flagContoGf" name="flagContoGf" value="$$flagContoGf"/>
+      		<input type="hidden" id="intestatario" name="intestatario" value="$$intestatario"/>
+          <input type="hidden" id="motivoValidazione" name="motivoValidazione" value="$$motivoValidazione" />
+      		<input type="hidden" id="estinto" name="estinto" value="si"/>
+          <input type="hidden" name="regimeModificaCC" value="true" />
+    	</div>
+  	</form>
+  	<form id="elimina" name="elimina" method="post" action="../layout/conti_correnti_mod.htm">
+    	<div id="pagina" class="colonnaUnica">
+          <input type="hidden" name="regimeModificaCC" value="true" />
+      		<input type="hidden" id="salva" name="salva" value="salva"/>
+      		<input type="hidden" id="idContoCorrente" name="idContoCorrente" value="$$idContoCorrente"/>
+      		<input type="hidden" id="cin" name="cin" value="$$cin"/>
+      		<input type="hidden" name="cab" value="$$cab"/>
+      		<input type="hidden" name="cctrl" value="$$cctrl" id="cctrl"/>
+      		<input type="hidden" name="iban" value="$$iban" id="iban"/>
+      		<input type="hidden" id="flagContoGf" name="flagContoGf" value="$$flagContoGf"/>
+      		<input type="hidden" id="intestatario" name="intestatario" value="$$intestatario"/>
+          <input type="hidden" id="motivoValidazione" name="motivoValidazione" value="$$motivoValidazione" />
+      		<input type="hidden" id="estinto" name="estinto" value="si"/>
+      		<input type="hidden" id="confermaEstinzione" name="confermaEstinzione" value="confermato"/>
+      		<div id="intestazione##pathProvincia">
+        		$$header
+        		<div id="titoloEmenu">
+          			<h2>
+            			<span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          			</h2>
+        		</div>
+      		</div>
+      		<hr/>
+      		<div style="clear:left"></div>
+      		<div id="corpo">
+        		<hr/>
+        		<div id="content">
+          			<p class="errore">Attenzione</p>
+          			<p>L'estinzione di un conto corrente non &egrave; reversibile. In caso di errore occorre inserire un nuovo conto con le stesse caratteristiche. Sei sicuro di proseguire con la modifica?</p>
+                    
+                    <div class="pulsanti">
+          			<div class="sin">
+            			<input type="submit" value="conferma" name="conferma" class="inputPulsante highlighted"/>
+          			</div>
+          			<div class="des">
+            			<input type="button" value="annulla" name="annulla" class="inputPulsante" onClick="document.chiudi.submit()"/>
+          			</div>                   
+                    </div>
+                    
+        		</div>
+      		</div>
+      		<hr/>
+      	$$footer

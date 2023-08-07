@@ -1,0 +1,852 @@
+$$head
+<script language="javascript1.2" src="../js/checktext.js"  type="text/javascript"></script>
+<script language="javascript1.2" src="../js/stampaMod.js"  type="text/javascript"></script>
+<script type="text/javascript" src="../js/messaggistica.js"></script>
+<script language="javascript1.2" type="text/javascript">
+
+  //Si stampano anche quelli senza protocollo
+  function gestioneStampe() 
+  {
+    if(document.form1.flagIstanzaRiesame.value=='S')
+    {
+      stampaMod(document.stampaRiesame);
+    }
+    else
+    {
+	    document.form1.stampaDettaglioPdf.value = '';    
+	    document.form1.origineStampaProtocollo.value = 'dettaglioDocumenti';        
+	    goTo('../layout/stampaProtocollo.htm', document.form1);
+	  }
+    
+  }   
+    	
+  // Funzione che apre la pop-up relativa all'anagrafe tributaria
+	function newWindowAT(mypage, myname, w, h, scroll, parameter) 
+  {
+	  if(parameter == '') 
+    {
+			alert('Inserire un codice fiscale o una partita IVA validi');
+		}
+		else 
+    {
+  		var winl = (screen.width - w) / 2;
+  		var wint = (screen.height - h) / 2;
+  		winprops =    'height='+h+',width='+w+',top='+wint+',left='+winl+',scrollbars='+scroll+',resizable'
+  		win = window.open(mypage+'?cuaa='+parameter, myname, winprops);
+  		if (parseInt(navigator.appVersion) >= 4) 
+      {
+    		win.window.focus();
+  		}
+		}
+	}
+    
+  function stampaProtocolloImmediata()
+  {
+    stampaModDoc(document.forms[0]);
+  }
+    
+  //Stama protocollo immediata senza passare attraverso la pagina intermedia
+  function stampaModDoc(form) {
+    var d = new Date();
+    var unique = (d.getUTCHours()*60+d.getUTCMinutes())*60+d.getUTCSeconds();
+    var target = "stampa"+unique;
+    popCentro("",645,500,target);
+    
+    var target1 = document.form1.target;
+    var action1 = document.form1.action;
+    document.form1.target = target;
+    document.form1.action = '../layout/stampaProtocollo.htm';
+    document.form1.stampaDettaglioPdf.value='stampaDettaglioPdf';
+    document.form1.submit();
+    document.form1.target = target1;
+    document.form1.action = action1;
+    return;
+  }
+  
+  //Mi permette di resettare il flag che mi fa la stampa immediata
+  function goToOperazioneReset(url, form, operazione) 
+  {
+    form.stampaDettaglioPdf.value = '';
+    form.operazione.value = operazione;
+    form.action = url;
+    form.submit();
+    form.operazione.value=null;
+  }
+  
+  function visualizzaFile(idAllegato)
+  {
+    var oldAction = document.form1.action
+
+    document.form1.idAllegato.value = idAllegato;
+     
+    document.form1.action = 'visualizzaFileAllegato.htm?arrivo=dettaglio';
+    document.form1.submit();
+    document.form1.action = oldAction;
+  }
+
+  	</script>
+</head>
+<body id="homeIndice" onLoad="$$stampaProtocollo;$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+  <form id="form1" name="form1" method="post" action="../layout/documentoDettaglio.htm">
+    <input type="hidden" name="idDocumento" value="$$idDocumento" />
+    <input type="hidden" name="pageFrom" value="$$pageFrom" />
+    <input type="hidden" name="operazione" value="$$operazione" id="operazione" />
+    <input type="hidden" name="stampaDettaglioPdf" value="">
+    <input type="hidden" name="origineStampaProtocollo" value="" id="origineStampaProtocollo" />
+    <input type="hidden" id="flagIstanzaRiesame" name="flagIstanzaRiesame" value="$$flagIstanzaRiesame" />
+    <input type="hidden" name="idAllegato" value="" />
+    <div id="pagina" class="colonnaUnica">
+      <!-- INTESTAZIONE -->
+      <div id="intestazione##pathProvincia">
+        <!--intestazione-->
+        <!--#include virtual="/ris/include/smrgaaweb/header.html" -->
+        <!-- menu di navigazione-->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li>
+                <a href="../layout/index.htm"
+                  title="Torna alla pagina principale">home</a>
+              </li>
+              <li class="attivo">
+                gestione anagrafe aziende
+              </li>
+              <li>
+                <a href="#" title="contatti">contatti</a>
+              </li>
+              <li>
+                <a href="#" title="help">help</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div style="clear: left"></div>
+      <!-- CORPO -->
+      <div id="corpo">
+        <div id="Utente">
+          <div id="datiUtente">
+            <strong>utente:</strong> $$utente &nbsp;&nbsp;
+            <strong>ente:</strong> $$ente
+          </div>
+          <div id="chiudisessione">
+            <a href="javascript: logout();">chiudi sessione</a>
+          </div>
+        </div>
+        <hr />
+        <!--PRIMA COLONNA -->
+        <h3>
+          Gestione Anagrafe
+          Aziende&nbsp;&gt;&nbsp;Documenti&nbsp;&gt;&nbsp;Dettaglio
+          <span class="helpFuori"> <a href="#"> <span
+              class="alt">[help]</span> </a> </span>
+        </h3>
+        <hr />
+        <div class="box">
+          <div class="menuSX1">
+            <ul>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <li>
+                <a href="../layout/elencoAziendeRapLegale.htm">Elenco
+                  Aziende</a>
+              </li>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <!-- @@blkRicercaAzienda-->
+              <li>
+                <a href="../layout/ricerca.htm">Ricerche</a>
+              </li>
+              <!-- @@blkRicercaAzienda-->
+              <!-- @@blkNuova -->
+              <li>
+                <a href="../layout/nuovaAziendaAnagrafica.htm">Nuova
+                  Azienda</a>
+              </li>
+              <!-- @@blkNuova -->
+              <!-- @@blkNuovaIscrizione -->
+		          <li>
+		            <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+		          </li>
+		          <!-- @@blkNuovaIscrizione -->
+            </ul>
+          </div>
+          <div class="menuSX">
+            <ul>
+              <li>
+                <a href="../layout/anagrafica.htm">Anagrafica</a>
+              </li>
+              <!-- @@blkAziendeCollegate -->
+              <li>
+                <a href="../layout/aziendeCollegate.htm">$$aziendeCollegateLabel</a>
+              </li>
+              <!-- @@blkAziendeCollegate -->
+              <!-- @@blkSincronizzaFascicolo -->
+               <li>
+               	<a href="../layout/sincronizzaFascicolo.htm">Sincronizza fascicolo</a>
+               </li>
+              <!-- @@blkSincronizzaFascicolo -->
+              <!-- @@blkSoggettiCollegati -->
+              <li>
+                <a href="../layout/contitolari.htm">Soggetti
+                  collegati</a>
+              </li>
+              <!-- @@blkSoggettiCollegati -->
+              <!-- @@blkContiCorrenti -->
+              <li>
+                <a href="../layout/conti_correnti.htm">Conti
+                  Correnti</a>
+              </li>
+              <!-- @@blkContiCorrenti -->
+              <!-- @@blkUnitaProduttive -->
+              <li>
+                <a href="../layout/sedi.htm">Unit&agrave; produttive</a>
+              </li>
+              <!-- @@blkUnitaProduttive -->
+              <!-- @@blkTerreni -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniParticellareElenco.htm">Terreni</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		            <a href="../layout/riepiloghi.htm">Terreni</a>
+		            <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkTerreni -->
+		          <!-- @@blkUnitaVitate -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniUnitaArboreeElenco.htm">Unit&agrave; Vitate</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		              <a href="../layout/riepiloghiUnitaArboree.htm">Unit&agrave; Vitate</a>
+		              <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkUnitaVitate -->
+              <!-- @@blkFabbricati -->
+              <li>
+                <a href="../layout/fabbricati.htm">Fabbricati e
+                  Strutture</a>
+              </li>
+              <!-- @@blkFabbricati -->
+              <!-- @@blkAllevamenti -->
+              <li>
+                <a href="../layout/allevamenti.htm">Allevamenti</a>
+              </li>
+              <!-- @@blkAllevamenti -->
+              <!-- @@blkManodopera -->
+              <li>
+                <a href="../layout/manodopera.htm">Manodopera</a>
+              </li>
+              <!-- @@blkManodopera -->
+              <!-- @@blkMotoriAgricoli -->
+              <li>
+                <a href="../layout/motori_agricoli_incarico.htm">Macchine agricole</a>
+              </li>
+              <!-- @@blkMotoriAgricoli -->
+              <!-- @@blkDiritti -->
+              <li>
+                <a href="../layout/diritti.htm">Diritti di
+                  produzione</a>
+              </li>
+              <!-- @@blkDiritti -->
+              <!-- @@blkAttestazioni -->
+              <li>
+                <a href="../layout/attestazioniDettaglio.htm">Dichiarazioni</a>
+              </li>
+              <!-- @@blkAttestazioni -->
+              <!-- @@blkDichiarazioniConsistenza -->
+              <li>
+                <a href="../layout/dichiarazioneConsistenza.htm">Validazioni</a>
+              </li>
+              <!-- @@blkDichiarazioniConsistenza -->
+              <!-- @@blkDocumenti -->
+              <li>
+                <a href="../layout/documentiElenco.htm" class="on">Documenti</a>
+                <ul>
+                  <li>
+                    <a href="#" class="etichetta">dettaglio</a>
+                  </li>
+                  <!-- @@blkModifica -->
+                  <li>
+                    <a
+                      href="javascript: goTo('../layout/documentoModifica.htm', document.form1);">modifica</a>
+                  </li>
+                  <!-- @@blkModifica -->
+                  <!-- @@blkElimina -->
+                  <li>
+                    <a
+                      href="javascript: goTo('../layout/documentiElimina.htm', document.form1);">annulla</a>
+                  </li>
+                  <!-- @@blkElimina -->
+                  <!-- @@blkInserisci -->
+                  <li>
+                    <a href="../layout/documentoInserisci.htm">inserisci</a>
+                  </li>
+                  <!-- @@blkInserisci -->
+                  <!-- @@blkProtocolla -->
+                  <li>
+                    <a
+                      href="javascript: goTo('../layout/documentoConfermaProtocollo.htm', document.form1);">repertoria</a>
+                  </li>
+                  <!-- @@blkProtocolla -->
+                  <!-- @@blkReplica -->
+                  <li>
+                    <a href="#">replica su nuovo CUAA</a>
+                  </li>
+                  <!-- @@blkReplica -->
+                  <li>
+                    <a href="javascript: gestioneStampe();"
+                      title="Attenzione: questo link si apre in una nuova finestra">stampa documento</a>
+                  </li>
+                </ul>
+              </li>
+              <!-- @@blkDocumenti -->
+              <!-- @@blkFascicoloDematerializzato -->
+		          <li>
+		            <a href="../layout/fascicoloDematerializzato.htm">Fascicolo<br>elettronico</a>
+		          </li>
+		          <!-- @@blkFascicoloDematerializzato --> 
+              <!-- @@blkGestioneNotifiche -->
+              <li>
+                <a href="../layout/notifiche.htm">Notifiche</a>
+              </li>
+              <!-- @@blkGestioneNotifiche -->
+              <!-- @@blkComunicazione10R -->
+              <li>
+                <a href="../layout/comunicazione10R_dettaglio.htm">Comunicazione
+                  10/R</a>
+              </li>
+              <!-- @@blkComunicazione10R -->
+              <!-- @@blkPratiche -->
+              <li>
+                <a href="../layout/pratiche.htm">Pratiche</a>
+              </li>
+              <!-- @@blkPratiche -->
+              <!-- @@blkStampaFascicolo -->
+              <li>
+                <a href="../layout/scelta_stampa.htm">Stampe</a>
+              </li>
+              <!-- @@blkStampaFascicolo -->
+			  <li><a href="../layout/strumenti.htm">Strumenti</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr />
+        <!-- SECONDA COLONNA -->
+        <div id="contenuto">
+          <div id="intesta">
+            <p class="$$aziendaIntestazione" title="$$tooltipIntestazione" >
+              $$CUAAIntestazione  $$denominazioneIntestazione
+            </p>
+          </div>
+          <!-- @@blkDettaglioDocumentoOk -->
+          <table cellspacing="3"
+            summary="Questa tabella contiene i dati del documento">
+            <tr>
+              <th>
+                <label for="tipo">
+                  Tipologia documento
+                </label>
+              </th>
+              <td colspan="3">
+                $$descTipoTipologiaDocumento
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="tipo">
+                  Tipo documento
+                </label>
+              </th>
+              <td colspan="3">
+                $$descTipoCategoriaDocumento
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="Stato">
+                  Descrizione documento
+                </label>
+              </th>
+              <td colspan="3">
+                $$descTipoDocumento
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Data inizio validit&agrave;
+              </th>
+              <td>
+                $$dataInizioValidita
+              </td>
+              <th>
+                Data fine validit&agrave;
+              </th>
+              <td>
+                $$dataFineValidita
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Numero di repertorio
+              </th>
+              <td>
+                $$numeroProtocollo
+              </td>
+              <input type="hidden" id="numeroProtocollo"  name="numeroProtocollo" value="$$numeroProtocollo" />
+              <th>
+                Data repertorio
+              </th>
+              <td>
+                $$dataProtocollo
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Repertorio esterno
+              </th>
+              <td colspan="3">
+                $$numeroProtocolloEsterno
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Causale modifica
+              </th>
+              <td colspan="3">
+                $$descCausaleModifica
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Note
+              </th>
+              <td colspan="3">
+                $$note
+              </td>
+            </tr>
+            <tr>
+	            <th>
+	              <label for="allegati">
+	                Allegati
+	              </label>
+	            </th>
+	            <td colspan="3">
+	              <!-- @@blkFileAllegato -->
+	                <a href="javascript:visualizzaFile('$$idAllegato')" class="$$immagineStampa" title="$$titleAllegato"></a>
+	              <!-- @@blkFileAllegato --> 
+	            </td>
+            </tr>
+            <tr>
+              <th>
+                Ultima modifica documento
+              </th>
+              <td colspan="3">
+                $$ultimaModificaVw
+              </td>
+            </tr>
+          </table>
+          <!-- @@blkDatiAnagrafici -->
+          <table cellspacing="3"
+            summary="Questa tabella indica i dati anagrafici del documento">
+            <tr>
+              <th>
+                Numero documento
+              </th>
+              <td>
+                $$numeroDocumento
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Ente di rilascio
+              </th>
+              <td>
+                $$enteRilascioDocumento
+              </td>
+            </tr>
+          </table>
+          <!-- @@blkDatiAnagrafici -->
+          <!-- @@blkDatiZootecnici -->
+          <table cellspacing="3"
+            summary="Questa tabella indica i dati zootecnici del documento">
+            <tr>
+              <th>
+                Cuaa
+              </th>
+              <td>
+                <a
+                  href="javascript: newWindowAT('../layout/popSoggettoAT.htm', 'anagrafeTributaria', 1000, 700, 'yes', '$$cuaaSoccidario');"
+                  title="AT - Attenzione: questo link si apre in una nuova finestra">$$cuaaSoccidario</a>
+              </td>
+            </tr>
+          </table>
+          <!-- @@blkDatiZootecnici -->
+          <!-- @@blkProprietariDocumento -->
+          <table cellspacing="3"
+            summary="Questa tabella è costituita dall'elenco dei proprietari del documento">
+            <caption>
+              Proprietari
+            </caption>
+            <tr>
+              <th class="center" scope="col">
+                Codice fiscale
+              </th>
+              <th class="center" scope="col">
+                Denominazione
+              </th>
+            </tr>
+            <!-- @@blkElencoProprietariDocumento -->
+            <tr>
+              <td>
+                <a
+                  href="javascript: newWindowAT('../layout/popSoggettoAT.htm', 'anagrafeTributaria', 1000, 700, 'yes', '$$cuaa');"
+                  title="AT - Attenzione: questo link si apre in una nuova finestra">$$cuaa</a>
+              </td>
+              <td>
+                $$denominazione
+              </td>
+            </tr>
+            <!-- @@blkElencoProprietariDocumento -->
+          </table>
+          <!-- @@blkProprietariDocumento -->
+          <!-- @@blkNoProprietariDocumento -->
+          <p class="errore">
+            $$messaggioErrore
+          </p>
+          <!-- @@blkNoProprietariDocumento -->
+          <!-- @@blkRicercaParticelle -->
+          <table cellspacing="3"
+            summary="Questa tabella contiene il check per la visualizzazione dei soli legami attivi tra particelle e documento">
+            <caption>
+              Particelle associate al documento
+            </caption>
+            <tr>
+              <td>
+                <label for="legamiAttivi" class="checkbox">
+                  Visualizza associazioni attive
+                </label>
+                <input type="checkbox" name="legamiAttivi"
+                  id="legamiAttivi" value="S" $$checkedLegamiAttivi />
+              </td>
+              <td>
+                <div class="azioni">
+                  <a
+                    href="javascript:goToOperazioneReset(document.forms[0].action, document.forms[0], 'aggiorna');">aggiorna</a>
+                </div>
+              </td>
+            </tr>
+          </table>
+          <!-- @@blkRicercaParticelle -->
+          <!-- @@blkParticelleDocumento -->
+          <table cellspacing="3"
+            summary="Questa tabella è costituita dalle particelle associate al documento">
+            <tr>
+              <th class="center" scope="col" rowspan="2">
+                Comune
+                <acronym title="Provincia">(Prov.)</acronym>
+              </th>
+              <th class="center" scope="col" rowspan="2">
+                <acronym title="Sezione">Sz.</acronym>
+              </th>
+              <th class="center" scope="col" rowspan="2">
+                <acronym title="Foglio">Fgl.</acronym>
+              </th>
+              <th class="center" scope="col" rowspan="2">
+                <acronym title="Particella">Part.</acronym>
+              </th>
+              <th class="center" scope="col" rowspan="2">
+                <acronym title="Subalterno">Sub.</acronym>
+              </th>
+              <th class="center" scope="col" rowspan="2">
+                <acronym title="Superficie Catastale">Sup.Cat.(ha)</acronym>
+              </th>
+              <th class="center" scope="col" colspan="2">
+                Conduzione
+              </th>
+              <th class="center" scope="col" rowspan="2">
+                <acronym title="Caso Particolare">C.P.</acronym>
+              </th>
+              <th class="center" scope="col" rowspan="2">
+                <acronym title="Note">Note</acronym>
+              </th>
+              <!-- @@blkTabPrioritaLaborazione -->
+              <th class="center" scope="col" rowspan="2">
+                <acronym title="Priorità">Priorit&agrave;<br>di lavorazione</acronym>
+              </th>
+              <!-- @@blkTabPrioritaLaborazione -->
+              <!-- @@blkLabelScadenza -->
+              <th class="center" scope="col" rowspan="2">
+                Data scadenza
+              </th>
+              <!-- @@blkLabelScadenza -->
+            </tr>
+            <tr>
+              <th class="center" scope="col"></th>
+              <th class="center" scope="col">
+                <acronym title="Percentuale Possesso">%</acronym>
+              </th>
+            </tr>
+            <!-- @@blkElencoParticelleDocumento -->
+            <tr  class="evidence">
+              <td>
+                $$descComuneParticella ($$siglaProvinciaParticella)
+              </td>
+              <td class="center" >
+                $$sezione
+              </td>
+              <td class="center">
+                $$foglio
+              </td>
+              <td class="center">
+                $$particella
+              </td>
+              <td class="center" >
+                $$subalterno
+              </td>
+              <td class="numeridx">
+                $$supCatastale
+              </td>
+              <td class="center" >
+                $$idTitoloPossesso
+              </td>
+              <td class="center">
+                $$percentualePossesso
+              </td>
+              <td class="center" >
+                $$idCasoParticolare
+              </td>
+              <td class="center">
+                $$noteDocConduzione
+              </td>
+              <!-- @@blkElencPrioritaLavorazione -->
+              <td class="center" scope="row">
+                <input type="checkbox" id="lavorazionePrioritaria"
+                  name="lavorazionePrioritaria" value="" $$checkedLavorazionePrioritaria disabled="disabled"/>
+              </td>
+              <!-- @@blkElencPrioritaLavorazione -->
+              <!-- @@blkDataScadenza -->
+              <td>
+                $$dataScadenza
+              </td>
+              <!-- @@blkDataScadenza -->
+            </tr>
+            <!-- @@blkElencoParticelleDocumento -->
+          </table>
+
+          <!-- @@blkTabellaParticelleDaAssociate -->
+          <table cellspacing="3"
+            summary="Questa tabella contiene le particelle associate al documento">
+            <caption>
+              Particelle da associare
+            </caption>
+            <tr>
+              <th class="center" scope="col" rowspan="2">
+                Comune
+                <abbr title="Provincia">(PV.)</abbr>
+              </th>
+              <th class="center" scope="col" rowspan="2">
+                <abbr title="Sezione">Sz.</abbr>
+              </th>
+              <th class="center" scope="col" rowspan="2">
+                <abbr title="Foglio">Fgl.</abbr>
+              </th>
+              <th class="center" scope="col" rowspan="2">
+                <abbr title="Particella">Part.</abbr>
+              </th>
+              <th class="center" scope="col" rowspan="2">
+                <abbr title="Subalterno">Sub.</abbr>
+              </th>
+              <th class="center" scope="col" rowspan="2">
+                <abbr title="Superficie Catastale">Sup.Cat.(ha)</abbr>
+              </th>
+              <th class="center" scope="col" rowspan="2">
+                <abbr title="Evento">Evento</abbr>
+              </th>
+              <th class="center" scope="col" colspan="2">
+                Conduzione
+              </th>
+              <th rowspan="2" class="center" scope="col">
+                Uso primario
+              </th>
+              <th class="center" scope="col" rowspan="2">
+                <abbr title="Superficie utilizzata">Sup. util.</abbr>
+              </th>
+              <th rowspan="2" class="center" scope="col">
+                C.P.
+              </th>
+            </tr>
+            <tr>
+              <th class="center" scope="col"></th>
+              <th class="center" scope="col">
+                <abbr title="Superficie Condotta">Sup.</abbr>
+              </th>
+            </tr>
+            <!-- @@blkTabellaParticelleDaAssociareBody -->
+            <tr>
+              <td>
+                $$descComuneParticella ($$siglaProvinciaParticella)
+              </td>
+              <td class="center" >
+                $$sezione
+              </td>
+              <td class="center" >
+                $$foglio
+              </td>
+              <td class="center" >
+                $$particella
+              </td>
+              <td class="center" >
+                $$subalterno
+              </td>
+              <td class="numeridx">
+                $$supCatastale
+              </td>
+              <td>
+                $$descEvento
+              </td>
+              <td class="center" >
+                $$idConduzione
+              </td>
+              <td class="numeridx">
+                <label class="alt" for="sup">
+                  superficie
+                </label>
+                $$supConduzione
+              </td>
+              <td>
+                $$descUsoPrimario
+              </td>
+              <td>
+                <label class="alt" for="utilizzata">
+                  superficie utilizzata
+                </label>
+                $$supUtilizzata
+              </td>
+              <td class="center" >
+                $$idCasoParticolare
+              </td>
+            </tr>
+            <!-- @@blkTabellaParticelleDaAssociareBody -->
+          </table>
+          <!-- @@blkTabellaParticelleDaAssociate -->
+          <!-- @@blkLegende -->
+          <p class="legenda">
+            <strong>Conduzione</strong>:
+            <!-- @@blkLegendaConduzione -->
+            $$idTitoloPossesso $$descTitoloPossesso
+            <!-- @@blkLegendaConduzione -->
+          </p>
+          <p class="legenda">
+            <strong>Casi particolari</strong>:
+            <!-- @@blkLegendaCasiParticolari -->
+            $$idCasoParticolare $$descCasoParticolare
+            <!-- @@blkLegendaCasiParticolari -->
+          </p>
+          <!-- @@blkLegende -->
+          <!-- @@blkParticelleDocumento -->
+          <!-- @@blkNoParticelleDocumento -->
+          <p class="errore">
+            $$messaggioErrore
+          </p>
+          <!-- @@blkNoParticelleDocumento -->
+          
+          <!-- @@blkContiCorrenti -->
+          <table cellspacing="3"
+            summary="Questa tabella contiene i dati del rapporto">
+            <tr>
+              <th rowspan="2" class="center" scope="col">
+                Banca
+              </th>
+              <th rowspan="2" class="center" scope="col">
+                Filiale
+              </th>
+              <th colspan="6" class="center" scope="col">
+                IBAN
+              </th>
+              <th rowspan="2" class="center" scope="col">
+                Dal
+              </th>
+              <th rowspan="2" class="center" scope="col">
+                Al
+              </th>
+              <th rowspan="2" class="radio" scope="col">
+                Validazione
+              </th>
+            </tr>
+            <tr>
+              <th class="center" scope="col">
+                Codice Paese
+              </th>
+              <th class="center" scope="col">
+                Cifra di controllo
+              </th>
+              <th class="center" scope="col">
+                CIN
+              </th>
+              <th class="center" scope="col">
+                ABI
+              </th>
+              <th class="center" scope="col">
+                CAB
+              </th>
+              <th class="center" scope="col">
+                Numero Conto
+              </th>
+            </tr>
+            <tr>
+              <td>
+                $$banca
+              </td>
+              <td>
+                $$filiale
+              </td>
+              <td>
+                $$codpaese
+              </td>
+              <td>
+                $$cctrl
+              </td>
+              <td>
+                $$cin
+              </td>
+              <td>
+                $$abi
+              </td>
+              <td>
+                $$cab
+              </td>
+              <td>
+                $$numeroconto
+              </td>
+              <td>
+                $$dataInizioValidita
+              </td>
+              <td>
+                $$dataEstinzione
+              </td>
+              <td align="center">
+                $$validazioneCC
+              </td>
+            </tr>
+          </table>
+          <!-- @@blkContiCorrenti -->         
+          
+          <!-- @@blkDettaglioDocumentoOk -->
+          <!-- @@blkDettaglioDocumentoKo -->
+          <p class="errore">
+            $$messaggioErrore
+          </p>
+          <!-- @@blkDettaglioDocumentoKo -->
+        </div>
+      </div>
+  </form>
+  <form name="stampaRiesame" method="post"
+    action="../servlet/StampaIstanzaRiesameServlet">
+    <input type="hidden" name="idDocumento" value="$$idDocumento" />
+    <div id="formRiesame"></div>
+  </form>
+  $$footer

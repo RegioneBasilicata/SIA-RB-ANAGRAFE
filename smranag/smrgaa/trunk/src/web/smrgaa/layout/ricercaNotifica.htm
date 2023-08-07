@@ -1,0 +1,311 @@
+$$head
+  <script type="text/javascript" src="../js/checktext.js"></script>
+  <script type="text/javascript" src="../js/messaggistica.js"></script>
+  <script type="text/javascript">
+    function CodeDescription(code, secondaryCode, description)
+	  {
+	    
+	    this.code = code;
+	    this.secondaryCode = secondaryCode;
+	    this.description = description;
+	  }
+	  
+	  var categoriaSel='$$categoriaSel';
+	  var categoriaArray = new Array();
+	  var categoriaTmp;
+	  
+	  
+	  
+	  @@blkCategoriaCombo
+	    categoriaTmp = new CodeDescription($$idCategoriaNotifica, $$idTipologiaNotifica, "$$descCategoriaNotifica");
+	    categoriaArray[$$index] = categoriaTmp;
+	  @@blkCategoriaCombo
+	  
+	  
+	  function onChangeTipologia()
+    {
+	    var tipologiaCombo = document.form1.idTipologiaNotifica;
+	    var categoriaCombo = document.form1.idCategoriaNotifica;
+	
+	    
+	    /*if(tipologiaCombo.selectedIndex == 0)
+	    {
+	      categoriaCombo.options.length = 0;
+	      categoriaCombo.options[0] = new Option("","");
+	      return;
+	    }*/
+	
+	    categoriaCombo.options.length = 0;
+	    categoriaCombo.options[0] = new Option("","");
+	    var effectiveCnt = 1;
+	    for(idx=0; idx<categoriaArray.length; idx++)
+	    {
+	      categoria = categoriaArray[idx];
+	
+	      if(tipologiaCombo.value == categoria.secondaryCode)
+	      {
+	        categoriaCombo.options[effectiveCnt] = new Option(categoria.description, categoria.code);
+	        if(categoriaSel == categoria.code)
+	        {
+	          categoriaCombo.options[effectiveCnt].selected = true;
+	        }
+	        effectiveCnt++;
+	      }
+	    }
+	    categoriaSel='';
+	  }
+	  
+	  function visualizzaFile(idDocumento, idAllegato)
+    {
+      var oldAction = document.form1.action
+  
+      document.form1.idAllegato.value = idAllegato;
+      document.form1.idDocumento.value = idDocumento;
+       
+      document.form1.action = 'visualizzaFileAllegato.htm?arrivo=ricercaNotifica';
+      document.form1.submit();
+      document.form1.action = oldAction;
+    }
+  
+  
+  </script>
+</head>
+<body id="homeIndice" onLoad="javascript:onChangeTipologia();$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+  <form id="form1" name="form1" method="post" action="../layout/ricercaNotifica.htm" >
+    <input type="hidden" id="operazione" name="operazione" value="$$operazione"/>
+    <input type="hidden" id="valoreIndice" name="valoreIndice"/>
+    <input type="hidden" id="pagina" name="pagina" value="$$pagina"/>
+    <input type="hidden" name="idAllegato" value="" />
+    <input type="hidden" name="idDocumento" value="" />
+    <div id="pagina" class="colonnaUnica">
+    <!-- INTESTAZIONE -->
+    <div id="intestazione##pathProvincia">
+      $$header
+      <!-- menu di navigazione-->
+      <div id="titoloEmenu">
+        <h2>
+          <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+        </h2>
+        <div id="menuDiNavigazione" title="Menu di navigazione">
+          <ul class="menuTendina" id="menu-2">
+            <li><a href="../layout/index.htm" title="Torna alla pagina principale">home</a></li>
+            <li class="attivo">gestione anagrafe aziende</li>
+            <li><a href="#" title="contatti">contatti</a></li>
+            <li><a href="#" title="help">help</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <hr/>
+    <div style="clear:left">  </div>
+    <!-- CORPO -->
+    <div id="corpo">
+      <div id="Utente">
+        <div id="datiUtente">
+          <strong>utente:</strong>
+          $$utente
+          &nbsp;
+          &nbsp;
+          <strong>ente:</strong>
+          $$ente
+        </div>
+        <div id="chiudisessione">
+          <a href="javascript: logout();">chiudi sessione</a>
+        </div>
+      </div>
+      <hr/>
+      <!--PRIMA COLONNA -->
+      <h3>Ricerca notifiche
+        <span class="helpFuori">
+          <a href="#">
+            <span class="alt">[help]</span>
+          </a>
+        </span>
+      </h3>
+      <hr/>
+      <div class="box">
+        <div class="menuSX1">
+          <ul>
+            <!-- @@blkElencoAziendeRapLegale -->
+            <li><a href="../layout/elencoAziendeRapLegale.htm">Elenco Aziende</a></li>
+            <!-- @@blkElencoAziendeRapLegale -->
+            <!-- @@blkRicercaAzienda-->
+            <li><a href="../layout/ricerca.htm">Ricerca Azienda</a></li>
+            <!-- @@blkRicercaAzienda-->
+            <!--@@blkRicercaTerreno-->
+            <li><a href="../layout/ricercaTerreno.htm">Ricerca Terreno</a></li>
+            <!--@@blkRicercaTerreno-->
+            <!--@@blkRicercaPersona-->
+            <li><a href="../layout/ricercaPersona.htm">Ricerca Persona</a></li>
+            <!--@@blkRicercaPersona-->
+            <li><a href="#" class="on">Ricerca Notifiche</a></li>
+            <!--@@blkVariazioniAzienda-->
+            <li><a href="../layout/ricercaVariazioni.htm" >Ricerca Variazioni</a></li>
+            <!--@@blkVariazioniAzienda-->
+            <!--@@blkRicercaRichiesta-->
+            <li><a href="../layout/ricercaRichiesta.htm">Ricerca richiesta azienda</a></li>
+            <!--@@blkRicercaRichiesta-->
+            <!-- @@blkNuova -->
+            <li><a href="../layout/nuovaAziendaAnagrafica.htm">Nuova Azienda</a></li>
+            <!-- @@blkNuova -->
+            <!-- @@blkNuovaIscrizione -->
+            <li><a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a></li>
+            <!-- @@blkNuovaIscrizione -->
+            <!--@@blkNuovaParticella-->
+            <li><a href="../layout/inserisciTerreno.htm">Nuova Particella</a></li>
+            <!--@@blkNuovaParticella-->
+            <!--@@blkServizi-->
+            <li><a href="../layout/servizi.htm" >Servizi</a></li>
+            <!--@@blkServizi-->
+            <!--@@blkReportistica-->
+            <li><a href="../layout/elencoRicerche.htm">Reportistica</a></li>
+            <!--@@blkReportistica-->
+            <!--@@blkEstrazioneDati-->
+            <li><a href="../layout/macroCategoriaReport.htm">Estrazione dati</a></li>
+            <!--@@blkEstrazioneDati-->
+            <li><a href="../layout/elencoManuali.htm">Scarico Documentazione Tecnica</a></li>
+          </ul>
+        </div>
+        <div class="menuSX">
+          <ul>
+            <li><a href="#" class="on">Notifica</a>
+            <ul>
+              <li><a href="javascript: submitForm('../layout/anagrafica.htm', document.form1, document.form1.primaryKey);">dettaglio azienda</a></li>
+              <li><a href="javascript: submitForm('../layout/ricercaDettaglioNotifica.htm', document.form1, document.form1.primaryKey);">dettaglio notifica</a></li>
+            </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <hr/>
+      <!-- SECONDA COLONNA -->
+      <div id="contenuto">
+        <br/>
+        <table cellspacing="3" summary="Questa tabella è costituita da righe">
+          <tr>
+            <th scope="row">
+              <label for="Tipologia">Tipologia</label>
+            </th>
+            <td>
+              <select id="idTipologiaNotifica" name="idTipologiaNotifica"
+                onchange="javascript: onChangeTipologia();">
+                <!-- @@blkTipologiaNotifica -->
+                  <option value="$$idTipologiaNotifica" $$selected>$$descTipologiaNotifica</option>
+                <!-- @@blkTipologiaNotifica -->
+              </select>
+              $$err_idTipologiaNotifica
+            </td>
+          </tr>
+          <tr>
+	          <th scope="row">
+	            <label for="notifica">Categoria</label>
+	          </th>
+	          <td>
+	            <select name="idCategoriaNotifica" id="idCategoriaNotifica">
+	              <option value=""></option>
+	            </select>
+	            $$err_idCategoriaNotifica
+	          </td>
+	        </tr>
+          <tr>
+            <th scope="row">
+              <label for="istatProvincia">Provincia</label>
+            </th>
+            <td>
+              <select id="istatProvincia" name="istatProvincia">
+                <!-- @@blkProvince -->
+                <option value="$$idCodice" $$check>$$descrizione</option>
+                <!-- @@blkProvince -->
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Dal</th>
+            <td>
+              <input type="text" id="dataDal" name="dataDal" maxlength="10" size="10" value="$$dataDal" class="textmedio"/>
+              <label for="dataDal" class="alt">dataDal</label>
+              $$err_dataDal
+              al
+              <input type="text" id="dataAl" name="dataAl" maxlength="10" size="10" value="$$dataAl" class="textmedio"/>
+              <label for="dataAl" class="alt">dataAl</label>
+              $$err_dataAl
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Visualizza storico</th>
+            <td class="left">
+                <input type="checkbox" id="storico" name="storico" $$checked/>
+            </td>
+          </tr>
+        </table>
+        <div class="pulsanti">
+			    <div class="sin">
+	          <input type="submit" id="aggiorna" name="aggiorna" value="aggiorna" class="inputPulsante" />
+	        </div>
+	        <div class="des">
+            <input id="scarica" name="scarica" type="button" value="esporta dati" onclick="javascript: goTo('../layout/sceltaEsportaDatiNotifiche.htm', document.forms[0]);" class="inputPulsante"/>
+          </div>
+	      </div>
+        <!-- @@blkElencoNotifiche -->
+        <p class="allineaDx">Notifiche estratte: $$numeroTotNotifiche
+          <span>
+            <!-- @@frecciaSinistra -->
+            <a href="javascript:freccia('../layout/ricercaNotifica.htm','$$valore', document.form1);">indietro</a>
+            <!-- @@frecciaSinistra -->
+            pagina $$numeroParziale di $$numeroTotale
+            <!-- @@frecciaDestra -->
+            <a href="javascript:freccia('../layout/ricercaNotifica.htm','$$valore', document.form1);">avanti</a>
+            <!-- @@frecciaDestra -->
+          </span>
+        </p>
+        <table cellspacing="3" summary="Questa tabella è costituita da righe">
+          <tr>
+            <th class="radio" rowspan="2"></th>
+            <th class="center" rowspan="2">Tipo</th>
+            <th class="center" rowspan="2">Categoria</th>
+            <th class="center" rowspan="2">Azienda</th>
+            <th class="center" rowspan="2">Descrizione</th>
+            <th class="center" colspan="2">Apertura</th>
+            <th class="center" colspan="3">Chiusura</th>
+            <th class="center" rowspan="2">Allegati</th>
+          </tr>
+          <tr>
+            <th class="center">Data</th>
+            <th class="center">Utente</th>
+            <th class="center">Data</th>
+            <th class="center">Utente</th>
+            <th class="center">Motivo</th>
+          </tr>
+          <!-- @@blkElenco -->
+          <tr>
+            <th class="radio" scope="row">
+              <input type="radio" id="primaryKey" name="primaryKey" value="$$primaryKey"/>
+            </th>
+            <td>
+              <img src="$$immagine" alt="immagine"/>
+            </td>
+            <td>$$descCategoriaNotifica</td>
+            <td>$$cuaa $$denominazione $$comuneSedeLegale</td>
+            <td>$$descrizione</td>
+            <td>$$dataInserimento</td>
+            <td>$$ultimaModificaVw</td>
+            <td>$$dataChiusura</td>
+            <td>$$datiChiusura</td>
+            <td>$$motivoChiusura</td>
+            <td>                
+            <!-- @@blkFileAllegato -->
+              <a href="javascript:visualizzaFile('$$idNotifica', '$$idAllegato')" class="pratica" title="$$titleAllegato"></a>
+            <!-- @@blkFileAllegato --> 
+            </td>
+          </tr>
+          <!-- @@blkElenco -->
+        </table>
+        <!-- @@blkElencoNotifiche -->
+        <!-- @@blkNoNotifiche -->
+        <p class="errore">$$messaggio</p>
+        <!-- @@blkNoNotifiche -->
+      </div>
+    </div>
+    <hr/>
+    <!-- PIE' DI PAGINA -->
+    $$footer

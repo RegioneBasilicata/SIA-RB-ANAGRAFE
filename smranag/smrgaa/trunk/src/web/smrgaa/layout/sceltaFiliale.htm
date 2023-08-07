@@ -1,0 +1,115 @@
+$$head
+  <script src="../js/checktext.js" type="text/javascript"></script>
+  <script type="text/javascript">
+
+    function confermaFiliale() {
+      var cab=safeArray(document.getElementsByName("cab"));
+      var indirizzo=safeArray(document.getElementsByName("indirizzo"));
+      var provincia=safeArray(document.getElementsByName("provincia"));
+      var comune=safeArray(document.getElementsByName("comune"));
+      var codPaese=safeArray(document.getElementsByName("codPaese"));
+      var cap=safeArray(document.filiale.cap);
+      var siglaprov=safeArray(document.filiale.siglaprov);
+      var indice=safeArray(document.filiale.indice);
+      for (var i=0;i<indice.length;i++) {
+        if (indice[i].checked) {
+          window.opener.popolaFiliale(cab[i].innerHTML,
+                                      indirizzo[i].innerHTML,
+                                      provincia[i].innerHTML,
+                                      codPaese[i].innerHTML,
+                                      comune[i].innerHTML,
+                                      cap[i].value,
+                                      siglaprov[i].value);
+
+            window.close();
+            return;
+        }
+      }
+    }
+
+    function safeArray(obj) {
+      if (obj==null) { // Non esiste ==> ritorno array vuoto
+        return new Array();
+      }
+      if (obj.length!=null) { // E' già un array ==> ritorno se stesso
+        return obj;
+      }
+      // E' un oggetto singolo ==> lo inglobo in un array
+      var tmpArray=new Array();
+      tmpArray[0]=obj;
+      return tmpArray;
+    }
+
+  </script>
+</head>
+<body id="popup">
+  <form id="filiale" name="filiale" method="post" action="">
+    <!-- CORPO -->
+    <div id="contenutopop">
+      <div class="pulsanti">
+        <!-- @@blkConferma -->
+          <div class="des">
+            <a href="javascript:window.close();">chiudi</a>
+            <span class="alt">&nbsp;/&nbsp;</span>
+          </div>
+          <div class="sin">
+            <a href="javascript:confermaFiliale()">conferma</a>
+          </div>
+        <!-- @@blkConferma -->
+      </div>
+      <table cellspacing="3" summary="Questa tabella contiene i dati del rapporto">
+        <col width="5%"/>
+        <col width="20%"/>
+        <col width="20%"/>
+        <col width="20%"/>
+        <col width="20%"/>
+        <col width="15%"/>
+        <tr>
+          <th class="radio" scope="col">&nbsp;</th>
+          <th class="center" scope="col">Banca</th>
+          <th class="center" scope="col">CAB</th>
+          <th class="center" scope="col">Indirizzo</th>
+          <th class="center" scope="col">Comune</th>
+          <th class="center" scope="col">Prov.</th>
+          <th class="center" scope="col">Codice Paese</th>
+        </tr>
+        <!-- @@elencoFiliali -->
+          <tr>
+            <td class="radio" scope="row">
+              <input type="radio" id="indice" name="indice" value="$$indice" $$checked/>
+              <label for="indice" class="alt">indice</label>
+            </td>
+            <td id="banca" name="banca">$$banca</td>
+            <td id="cab" name="cab">$$cab</td>
+            <td id="indirizzo" name="indirizzo">$$indirizzo</td>
+            <td id="comune" name="comune">$$comune</td>
+            <td id="provincia" name="provincia">$$provincia
+              <input type="hidden" id="cap" name="cap" value="$$cap" />
+              <input type="hidden" id="siglaprov" name="siglaprov" value="$$siglaprov" />
+            </td>
+            <td id="codPaese" name="codPaese">$$codPaese</td>
+          </tr>
+        <!-- @@elencoFiliali -->
+      </table>
+      <p>$$errorMsg</p>
+      <!-- @@blkConferma -->
+        <div class="pulsanti">
+          <div class="des">
+            <a href="javascript:window.close();">chiudi</a>
+            <span class="alt">&nbsp;/&nbsp;</span>
+          </div>
+          <div class="sin">
+            <a href="javascript:confermaFiliale()">conferma</a>
+            <span class="alt">&nbsp;/&nbsp;</span>
+          </div>
+        </div>
+      <!-- @@blkConferma -->
+      <!-- @@blkChiudi -->
+        <div class="pulsanti"><div class="des">
+          <a href="javascript:window.close();">chiudi</a>
+        </div></div>
+      <!-- @@blkChiudi -->
+    </div>
+    </form>
+    </body>
+    </html>

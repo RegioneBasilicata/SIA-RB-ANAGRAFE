@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 4.1.3  -->
+<!-- 2016-09-29T11:02:58 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="quadroFabbricatiSubreport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<parameter name="fascicoloDS" class="java.util.List"/>
+	<parameter name="FabbricatoSubReport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="ElencoParticelleSubReport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="quadroFabbricati" class="it.csi.smranag.smrgaa.dto.jaxb.fascicolo.QuadroFabbricati"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="50">
+			<rectangle radius="10">
+				<reportElement x="0" y="0" width="555" height="50" forecolor="#000000" backcolor="#99CCFF"/>
+				<graphicElement>
+					<pen lineColor="#44C2FC"/>
+				</graphicElement>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToTallestObject" x="9" y="0" width="534" height="19"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{quadroFabbricati}.getTitoloFabbricati()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="185" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="14" width="555" height="160">
+					<printWhenExpression><![CDATA[$F{quadroFabbricati}.getFabbricati() != null &&
+$F{quadroFabbricati}.getFabbricati().getFabbricato() !=null]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="ElencoParticelleSubReport">
+					<subreportParameterExpression><![CDATA[$P{ElencoParticelleSubReport}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{quadroFabbricati}.getFabbricati().getFabbricato(),false)]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{FabbricatoSubReport}]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,0 +1,64 @@
+$$head
+  <script type="text/javascript" src="../js/checktext.js"></script>
+</head>
+<body id="popup">
+  <form id="sceltaTipoDocumento" name="sceltaTipoDocumento" method="post" action="">
+    <input type="hidden" id="provenienza" name="provenienza" value="$$provenienza"/>
+    <!-- CORPO -->
+    <div id="contenutopop">
+      <!-- @@conferma -->
+        <div class="pulsanti">
+          <div class="des">
+            <a href="javascript:window.close();">chiudi</a>
+            <span class="alt">&nbsp;/&nbsp;</span>        </div>
+        <div class="sin">
+          <a href="javascript:confermaTipoDocumento()">conferma</a>
+        </div> </div>
+      <!-- @@conferma -->
+      <table cellspacing="3" summary="Questa tabella contiene i dati del rapporto">
+        <col width="7%"/>
+        <col width="31%"/>
+        <col width="31%"/>
+        <col width="31%"/>
+        <tr>
+          <th class="radio" scope="col">&nbsp;</th>
+          <th class="center" scope="col">Tipologia documento</th>
+          <th class="center" scope="col">Tipo documento</th>
+          <th class="center" scope="col">Descrizione documento</th>
+        </tr>
+        <!-- @@elencoTipiDocumento -->
+          <tr>
+            <td class="radio" scope="row">
+              <input type="radio" id="idDescDocumento" name="idDescDocumento" value="$$idDescDocumento"/>
+            </td>
+            <td>$$descTipologiaDocumento</td>
+            <td>$$descTipoCategoria</td>
+            <td>$$descTipoDocumento
+              <input type="hidden" id="idTipologiaDocumento" name="idTipologiaDocumento" value="$$idTipologiaDocumento"/>
+              <input type="hidden" id="idCategoriaDocumento" name="idCategoriaDocumento" value="$$idCategoriaDocumento"/>
+            </td>
+          </tr>
+        <!-- @@elencoTipiDocumento -->
+      </table>
+      <p>$$exception</p>
+      <!-- @@conferma -->
+        <div class="pulsanti">
+          <div class="des">
+            <a href="javascript:window.close();">chiudi</a>
+            <span class="alt">&nbsp;/&nbsp;</span>          </div>
+          <div class="sin">
+            <a href="javascript:confermaTipoDocumento()">conferma</a>
+            <span class="alt">&nbsp;/&nbsp;</span>
+          </div>
+        </div>
+      <!-- @@conferma -->
+      <!-- @@chiudi -->
+       <div class="pulsanti">
+      <div class="des">
+        <a href="javascript:window.close();">chiudi</a>      </div>
+      </div>
+      <!-- @@chiudi -->
+   
+    </div></form>
+    </body>
+    </html>

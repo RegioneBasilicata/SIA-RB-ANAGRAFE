@@ -1,0 +1,54 @@
+$$head
+  <title>Anagrafe Agricola della Regione TOBECONFIG</title>
+  <script src="../js/checktext.js" type="text/javascript"></script>
+</head>
+<body id="homeIndice" onLoad="javascript: goToOperazione('$$action', document.form1, document.form1.operazione.value);">
+  <form name="form1" method="POST" action="$$action">
+    <input type="hidden" name="operazione" value="$$operazione"/>
+    <input type="hidden" name="CUAAselezionato" value="$$CUAAselezionato"/>
+    <input type="hidden" name="radiobutton" value="$$idDichiarazioneConsistenza"/>
+    <!-- INIZIO Parametri per importazione aaep anagraficaVisuraCamerale -->
+    <input type="hidden" name="denominazioneAttAAEP" value="$$denominazioneAttAAEP"/>
+    <input type="hidden" name="partitaIVAAttAAEP" value="$$partitaIVAAttAAEP"/>
+    <input type="hidden" name="provinciaREAAttAAEP" value="$$provinciaREAAttAAEP"/>
+    <input type="hidden" name="numeroREAAttAAEP" value="$$numeroREAAttAAEP"/>
+    <input type="hidden" name="annoIscrizioneAttAAEP" value="$$annoIscrizioneAttAAEP"/>
+    <input type="hidden" name="numeroRegistroImpreseAttAAEP" value="$$numeroRegistroImpreseAttAAEP"/>
+    <input type="hidden" name="pecAttAAEP" value="$$pecAttAAEP"/>
+    <input type="hidden" name="sedeLegaleAttAAEP" value="$$sedeLegaleAttAAEP"/>
+    <input type="hidden" name="titolareRappresentanteAttAAEP" value="$$titolareRappresentanteAttAAEP"/>
+    <input type="hidden" name="formaGiuridicaAttAAEP" value="$$formaGiuridicaAttAAEP"/>
+    <input type="hidden" name="descrizioneAtecoAttAAEP" value="$$descrizioneAtecoAttAAEP"/>
+    <input type="hidden" name="sezioneAttAAEP" value="$$sezioneAttAAEP"/> 
+    <input type="hidden" name="descrizioneAtecoSecAttAAEP" value="$$descrizioneAtecoSecAttAAEP"/> 
+    <input type="hidden" name="dataIscrizioneREAAttAAEP" value="$$dataIscrizioneREAAttAAEP"/> 
+    <input type="hidden" name="dataCancellazioneREAAttAAEP" value="$$dataCancellazioneREAAttAAEP"/> 
+    <input type="hidden" name="dataIscrizioneRIAttAAEP" value="$$dataIscrizioneRIAttAAEP"/>  
+    <!-- FINE Parametri per importazione aaep anagraficaVisuraCamerale -->
+    <div id="pagina" class="colonnaUnica">
+      <!-- INTESTAZIONE -->
+      <div id="intestazione##pathProvincia">
+        $$header
+          <!-- menu di navigazione-->
+          <div id="titoloEmenu">
+            <h2>
+              <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+            </h2>
+          </div>
+        </div>
+        <hr/>
+        <a name="A-contenuti" id="A-contenuti" class="bugFix">CONTENUTI</a>
+        <!-- CORPO -->
+        <div id="corpo">
+          <hr/>
+          <div class="stdMessagePanel">			
+            <div class="feedLoad">
+			<img src="/staticresources/ris/resources/global/css/im/ico_load_big.gif" />
+             <p>Attendere prego: il sistema sta caricando i dati</p>
+            </div>
+        </div>
+        </div>
+      <hr/>
+    </form>
+    <!-- PIE' DI PAGINA -->
+    $$footer

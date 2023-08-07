@@ -1,0 +1,109 @@
+$$head
+  <script language="javascript1.2" src="../js/checktext.js" type="text/javascript"></script>
+  <script type="text/javascript" src="../js/messaggistica.js"></script>
+</head>
+<body id="homeIndice" onLoad="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+  <form id="form1" name="form1" method="post" action="../layout/annullaRichiesta.htm">
+    <input type="hidden" id="idRichiestaAzienda" name="idRichiestaAzienda" value="$$idRichiestaAzienda" />
+    <input type="hiden" name="arrivo" id="arrivo" value="$$arrivo" />
+    <div id="pagina" class="colonnaUnica">
+      <!-- INTESTAZIONE -->
+      <div id="intestazione##pathProvincia">
+        <!--intestazione-->
+        $$header
+        <!-- menu di navigazione-->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li>  <a href="../layout/index.htm" title="Torna alla pagina principale">home</a>  </li>
+              <li class="attivo">gestione anagrafe aziende</li>
+              <li>  <a href="#" title="contatti">contatti</a>  </li>
+              <li>  <a href="#" title="help">help</a>  </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr/>
+      <div style="clear:left">  </div>
+      <!-- CORPO -->
+      <div id="corpo">
+        <div id="Utente">
+          <div id="datiUtente">
+            <strong>utente:</strong>
+            $$utente
+            &nbsp;&nbsp;
+            <strong>ente:</strong>
+            $$ente
+          </div>
+          <div id="chiudisessione">
+            <a href="javascript: logout();">chiudi sessione</a>
+          </div>
+        </div>
+        <hr/>
+        <!--PRIMA COLONNA -->
+        <h3>Ricerca Richiesta Azienda&nbsp;&gt;&nbsp;Annulla
+          <span class="helpFuori">
+            <a href="#">
+              <span class="alt">[help]</span>
+            </a>
+          </span>
+        </h3>
+        <hr/>
+        <div class="box">
+          <div class="menuSX1">
+            <ul>
+              <!-- @@blkRicercaAzienda-->
+              <li>
+                <a href="../layout/ricerca.htm">Ricerche</a>
+              </li>
+              <!-- @@blkRicercaAzienda-->              
+              <li><a href="../layout/ricercaRichiesta.htm" class="on">Ricerca richiesta azienda</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr/>
+        <!-- SECONDA COLONNA -->
+        <div id="contenuto">
+          <div id="intesta">
+            <p class="$$aziendaIntestazione" title="$$tooltipIntestazione" >
+              $$CUAAIntestazione  $$denominazioneIntestazione
+            </p>
+          </div>
+            <table cellspacing="3" summary="Questa tabella indica ...">
+              <tr>
+                <td colspan="2">
+                  $$msgAnnulla
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  Motivo annullamento
+                </th>
+                <td>  
+                  <textarea name="note" cols="85" rows="4">$$note</textarea>&nbsp;$$err_note<br><br>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">  
+                  <input type="checkbox" name="chkMail" id="chkMail"
+                    value="S" $$checkedMail />Si richiede di inviare email di conferma all'indirizzo specificato dall'azienda in fase di inserimento richiesta o nel fascicolo aziendale.
+                  $$err_chkMail
+                </td>
+              </tr>
+            </table>
+          <div class="pulsanti">
+            <div class="sin">
+              <input type="submit" name="conferma" value="conferma" class="inputPulsante highlighted"/>
+              $$err_conferma
+            </div>
+            <div class="des">
+              <input type="submit" name="annulla" value="annulla" class="inputPulsante annulla"/>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr/>
+      $$footer

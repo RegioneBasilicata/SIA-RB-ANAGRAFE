@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 4.1.3  -->
+<!-- 2016-10-10T16:39:07 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="HeaderSubreport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="0" bottomMargin="0">
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<parameter name="fascicoloDS" class="java.util.List"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="headerLandscape" class="it.csi.smranag.smrgaa.dto.jaxb.fascicolo.HeaderLandscape"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="168" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="0" y="56" width="190" height="96"/>
+				<graphicElement>
+					<pen lineColor="#99CCFF"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="200" y="56" width="169" height="96"/>
+				<graphicElement>
+					<pen lineColor="#99CCFF"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="380" y="56" width="175" height="96"/>
+				<graphicElement>
+					<pen lineColor="#99CCFF"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="10" y="66" width="170" height="30"/>
+				<textElement>
+					<font fontName="SansSerif" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SPAZIO RISERVATO AL PROTOCOLLO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="206" y="66" width="170" height="30"/>
+				<textElement>
+					<font fontName="SansSerif" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ENTE DETENTORE DEL FASCICOLO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="425" y="66" width="94" height="20"/>
+				<textElement>
+					<font fontName="SansSerif" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DICHIARAZIONE DEL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="445" y="106" width="64" height="20"/>
+				<textElement>
+					<font fontName="SansSerif" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MOTIVO]]></text>
+			</staticText>
+			<textField>
+				<reportElement positionType="FixRelativeToBottom" x="10" y="106" width="170" height="30" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{headerLandscape}.getCastelletto().getProtocollo()!=null]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{headerLandscape}.getCastelletto().getProtocollo()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="206" y="85" width="154" height="30">
+					<printWhenExpression><![CDATA[$F{headerLandscape}.getCastelletto().getEnteFascicolo()!=null]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{headerLandscape}.getCastelletto().getEnteFascicolo()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="207" y="117" width="154" height="30">
+					<printWhenExpression><![CDATA[$F{headerLandscape}.getCastelletto().getIndirizzoEnte2()!=null]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{headerLandscape}.getCastelletto().getIndirizzoEnte2()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="390" y="83" width="154" height="30">
+					<printWhenExpression><![CDATA[$F{headerLandscape}.getCastelletto().getDataDich()!=null]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{headerLandscape}.getCastelletto().getDataDich()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="390" y="120" width="154" height="30">
+					<printWhenExpression><![CDATA[$F{headerLandscape}.getCastelletto().getMotivoDich()!=null]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{headerLandscape}.getCastelletto().getMotivoDich()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="9" width="554" height="20" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{headerLandscape}!=null && $F{headerLandscape}.getTitolo1() != null]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{headerLandscape}.getTitolo1().replace("del TOBECONFIG", "della TOBECONFIG")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="FixRelativeToBottom" x="1" y="29" width="554" height="20" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{headerLandscape}!=null && $F{headerLandscape}.getTitolo2() != null]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" size="14" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{headerLandscape}.getTitolo2()]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

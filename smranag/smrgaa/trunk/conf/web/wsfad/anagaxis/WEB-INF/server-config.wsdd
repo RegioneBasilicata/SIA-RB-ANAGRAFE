@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+ <globalConfiguration>
+  <parameter name="adminPassword" value="admin"/>
+  <parameter name="attachments.Directory" value="attachments"/>
+  <parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <parameter name="sendXsiTypes" value="true"/>
+  <parameter name="sendMultiRefs" value="true"/>
+  <parameter name="sendXMLDeclaration" value="true"/>
+  <parameter name="axis.sendMinimizedElements" value="true"/>
+  <requestFlow>
+   <handler type="java:org.apache.axis.handlers.JWSHandler">
+    <parameter name="scope" value="session"/>
+   </handler>
+   <handler type="java:org.apache.axis.handlers.JWSHandler">
+    <parameter name="scope" value="request"/>
+    <parameter name="extension" value=".jwr"/>
+   </handler>
+  </requestFlow>
+ </globalConfiguration>
+ <handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
+ <handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
+ <handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
+ <service name="Version2" provider="java:RPC">
+  <parameter name="allowedMethods" value="getVersion"/>
+  <parameter name="className" value="org.apache.axis.Version"/>
+ </service>
+ <service name="AdminService" provider="java:MSG">
+  <parameter name="allowedMethods" value="AdminService"/>
+  <parameter name="enableRemoteAdmin" value="false"/>
+  <parameter name="className" value="org.apache.axis.utils.Admin"/>
+  <namespace>http://xml.apache.org/axis/wsdd/</namespace>
+ </service>
+
+ <service name="anagaxis" provider="Handler"   >
+  <parameter name="wsdlPortType" value="anagaxis" />
+  <parameter name="allowedMethods" value="*"/>
+  <parameter name="defPDResource" value="/defpdelegata_embedded_anag.xml"/>
+  <parameter name="className" value="it.csi.solmr.interfaceCSI.anag.AnagCSIInterface"/>
+  <parameter name="handlerClass" value="it.csi.csi.wrapper.jaxrpc.axis.PDProvider"/>
+  
+  <beanMapping languageSpecificType="java:it.csi.csi.wrapper.CSIException" qname="ns2:CSIException" xmlns:ns2="urn:anagaxis"/>
+  <beanMapping languageSpecificType="java:it.csi.csi.wrapper.UserException" qname="ns3:UserException" xmlns:ns3="urn:anagaxis"/>
+  <beanMapping languageSpecificType="java:it.csi.csi.wrapper.SystemException" qname="ns4:SystemException" xmlns:ns4="urn:anagaxis"/>
+  <beanMapping languageSpecificType="java:it.csi.csi.wrapper.UnrecoverableException" qname="ns5:UnrecoverableException" xmlns:ns5="urn:anagaxis"/>
+  <beanMapping languageSpecificType="java:it.csi.csi.wrapper.CommunicationException" qname="ns6:CommunicationException" xmlns:ns6="urn:anagaxis"/>
+  <!-- mapping delle user defined entities -->
+
+  <beanMapping languageSpecificType="java:it.csi.solmr.dto.anag.AnagAziendaVO" qname="ns10:AnagAziendaVO" xmlns:ns10="urn:anagwaxis"/>  
+  <beanMapping languageSpecificType="java:it.csi.solmr.dto.CodeDescription" qname="ns10:CodeDescription" xmlns:ns10="urn:anagwaxis"/>  
+  <beanMapping languageSpecificType="java:it.csi.solmr.dto.ComuneVO" qname="ns10:ComuneVO" xmlns:ns10="urn:anagwaxis"/>  
+  <beanMapping languageSpecificType="java:it.csi.solmr.dto.ProvinciaVO" qname="ns10:ProvinciaVO" xmlns:ns10="urn:anagwaxis"/>  
+  <beanMapping languageSpecificType="java:it.csi.solmr.dto.StringcodeDescription" qname="ns10:StringcodeDescription" xmlns:ns10="urn:anagwaxis"/>  
+  <beanMapping languageSpecificType="java:it.csi.solmr.dto.anag.DelegaVO" qname="ns10:DelegaVO" xmlns:ns10="urn:anagwaxis"/>  
+  <beanMapping languageSpecificType="java:it.csi.solmr.dto.anag.ElencoMandatiValidazioniFiltroExcelVO" qname="ns10:ElencoMandatiValidazioniFiltroExcelVO" xmlns:ns10="urn:anagwaxis"/>
+  <beanMapping languageSpecificType="java:it.csi.solmr.dto.anag.PersonaFisicaVO" qname="ns10:PersonaFisicaVO" xmlns:ns10="urn:anagwaxis"/>
+  <beanMapping languageSpecificType="java:it.csi.solmr.dto.anag.AnagraficaAzVO" qname="ns11:AnagraficaAzVO" xmlns:ns11="urn:anagwaxis"/>  
+  <beanMapping languageSpecificType="java:it.csi.solmr.dto.CodeDescr" qname="ns12:CodeDescr" xmlns:ns12="urn:anagwaxis"/>   
+
+  <!-- mapping delle user defined exceptions -->
+  <beanMapping languageSpecificType="java:it.csi.solmr.exception.DataAccessException" qname="ns13:DataAccessException" xmlns:ns13="urn:anagwaxis"/>
+  <beanMapping languageSpecificType="java:it.csi.solmr.exception.DataControlException" qname="ns14:DataControlException" xmlns:ns14="urn:anagwaxis"/>
+  <beanMapping languageSpecificType="java:it.csi.solmr.exception.NotFoundException" qname="ns15:NotFoundException" xmlns:ns15="urn:anagwaxis"/>
+  <beanMapping languageSpecificType="java:it.csi.solmr.exception.SolmrException" qname="ns16:SolmrException" xmlns:ns16="urn:anagwaxis"/>
+  
+ </service>
+
+ <service name="Version" provider="java:RPC">
+  <parameter name="allowedMethods" value="getVersion"/>
+  <parameter name="className" value="org.apache.axis.Version"/>
+ </service>
+ <transport name="http">
+  <requestFlow>
+   <handler type="URLMapper"/>
+   <handler type="java:org.apache.axis.handlers.http.HTTPAuthHandler"/>
+  </requestFlow>
+ </transport>
+ <transport name="local">
+  <responseFlow>
+   <handler type="LocalResponder"/>
+  </responseFlow>
+ </transport>
+</deployment>

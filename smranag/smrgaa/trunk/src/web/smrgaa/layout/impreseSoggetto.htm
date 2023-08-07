@@ -1,0 +1,216 @@
+$$head
+
+  <script type="text/javascript" src="../js/checktext.js"></script>
+  <script type="text/javascript" src="../js/messaggistica.js"></script>
+  <script type="text/javascript">
+
+    function submitForm(pagina) {
+      var daAction = document.form1.action;
+      var daTarget = document.form1.target;
+      document.form1.action = pagina;
+      document.form1.submit();
+      document.form1.action = daAction;
+      document.form1.target = daTarget;
+    }
+
+    function dettaglioAzienda() {
+      var lastAction = document.form1.action;
+      var daTarget = document.form1.target;
+      document.form1.action = "impreseSoggetto.htm";
+      document.form1.dettAzienda.value="true";
+      document.form1.submit();
+      document.form1.dettAzienda.value="";
+      document.form1.action = lastAction;
+      document.form1.target = daTarget;
+    }
+
+  </script>
+</head>
+<body id="homeIndice" onload="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+  <form name="form1" method="post" action="../layout/impreseSoggetto.htm">
+    <div id="pagina" class="colonnaUnica">
+      <!-- INTESTAZIONE -->
+      <div id="intestazione##pathProvincia">
+        $$header
+        <!-- menu di navigazione-->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li>
+                <a href="../layout/index.htm" title="Torna alla pagina principale">home</a>
+              </li>
+              <li class="attivo">gestione anagrafe aziende</li>
+              <li>
+                <a href="#" title="contatti">contatti</a>
+              </li>
+              <li>
+                <a href="#" title="help">help</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr/>
+      <div style="clear:left"></div>
+      <!-- CORPO -->
+      <div id="corpo">
+        <div id="Utente">
+          <div id="datiUtente">
+            <strong>utente: </strong>$$utente&nbsp;&nbsp;
+            <strong>ente: </strong>$$ente
+          </div>
+          <div id="chiudisessione">
+            <a href="javascript: logout();">chiudi sessione</a>
+          </div>
+        </div>
+        <hr/>
+        <!--PRIMA COLONNA -->
+        <h3>Ricerca Persona&nbsp;&gt;&nbsp;Aziende Legate al Soggetto
+          <span class="helpFuori">
+            <a href="#">
+              <span class="alt">[help]</span>
+            </a>
+          </span>
+        </h3>
+        <hr/>
+        <div class="box">
+          <div class="menuSX1">
+            <ul>
+              <!-- @@blkElencoAziendeRapLegale -->
+                <li><a href="../layout/elencoAziendeRapLegale.htm">Elenco Aziende</a></li>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <!-- @@blkRicercaAzienda-->
+                <li><a href="../layout/ricerca.htm">Ricerca Azienda</a></li>
+              <!-- @@blkRicercaAzienda-->
+              <!--@@blkRicercaTerreno-->
+                <li>
+                  <a href="../layout/ricercaTerreno.htm">Ricerca Terreno</a>
+                </li>
+              <!--@@blkRicercaTerreno-->
+              <!--@@blkRicercaPersona-->
+                <li><a href="../layout/ricercaPersona.htm" class="on"  >Ricerca Persona</a></li>
+              <!--@@blkRicercaPersona-->
+              <!--@@blkRicercaNotifica-->
+                <li>
+                  <a href="../layout/ricercaNotifica.htm">Ricerca Notifiche</a>
+                </li>
+              <!--@@blkRicercaNotifica-->
+              <!--@@blkVariazioniAzienda-->
+                <li><a href="../layout/ricercaVariazioni.htm" >Ricerca Variazioni</a></li>
+              <!--@@blkVariazioniAzienda-->
+              <!--@@blkRicercaRichiesta-->
+                <li><a href="../layout/ricercaRichiesta.htm">Ricerca richiesta azienda</a></li>
+              <!--@@blkRicercaRichiesta-->
+              <!--@@blkNuova-->
+                <li>
+                  <a href="../layout/nuovaAziendaAnagrafica.htm">Nuova Azienda</a>
+                </li>
+              <!--@@blkNuova-->
+              <!-- @@blkNuovaIscrizione -->
+		          <li>
+		            <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+		          </li>
+		          <!-- @@blkNuovaIscrizione -->
+              <!--@@blkNuovaParticella-->
+              <li>
+                <a href="../layout/inserisciTerreno.htm">Nuova Particella</a>
+              </li>
+              <!--@@blkNuovaParticella-->
+              <!--@@blkServizi-->
+                <li><a href="../layout/servizi.htm" >Servizi</a></li>
+              <!--@@blkServizi--> 
+              <!--@@blkReportistica-->
+                <li>
+                  <a href="../layout/elencoRicerche.htm">Reportistica</a>
+                </li>
+              <!--@@blkReportistica-->
+              <!--@@blkEstrazioneDati-->
+              <li><a href="../layout/macroCategoriaReport.htm">Estrazione dati</a></li>
+              <!--@@blkEstrazioneDati-->
+              <li><a href="../layout/elencoManuali.htm">Scarico Documentazione Tecnica</a></li>          
+            </ul>
+          </div>
+          <div class="menuSX">
+            <ul>
+              <li>
+                <a href="elencoPersone.htm" class="on">Persona</a>
+                <ul>
+                  <li>
+                    <a href class="etichetta">aziende legate al soggetto</a>
+                    <ul>
+                      <li>
+                        <a href="javascript:dettaglioAzienda()">dettaglio azienda</a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <hr/>
+        <!-- SECONDA COLONNA -->
+        <div id="contenuto">
+          <input type="hidden" name="dettAzienda"/>
+          <table cellspacing="3" summary="Questa tabella è costituita da righe">
+            <caption>IL SOGGETTO</caption>
+            <col width="30%"/>
+            <col width="70%"/>
+            <tr>
+              <th>Cognome e nome</th>
+              <td>$$cognome $$nome</td>
+            </tr>
+            <tr>
+              <th rowspan="2">Residenza</th>
+              <td>$$indirizzo</td>
+            </tr>
+            <tr>
+              <td>$$comune ($$siglaProvincia) $$CAP</td>
+            </tr>
+          </table>
+          <table cellspacing="3" summary="Questa tabella è costituita da colonne">
+            <caption>&egrave; legato alle seguenti aziende:</caption>
+            <thead>
+              <tr>
+                <th class="radio" scope="col"></th>
+                <th class="center" scope="col">Ruolo soggetto in azienda</th>
+                <th class="center" scope="col">Dal</th>
+                <th class="center" scope="col">Al</th>
+                <th class="center" scope="col">CUAA/Partita IVA
+                                               <br/>
+                                               Denominazione
+                </th>
+                <th class="center" scope="col">Sede Legale</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+              <!--@@rigaAziende-->
+                <th class="radio" scope="row">
+                  <input type="radio" id="aziende" name="aziende" value="$$aziende"/>
+                  <input type="hidden" name="idSoggetto" value="$$idSoggetto"/>
+                  <input type="hidden" name="idAzienda" value="$$idAzienda"/>
+                  <input type="hidden" name="idAnagAzienda" value="$$idAnagAzienda"/>
+                </th>
+                <td>$$tipoRuolo</td>
+                <td>$$dal</td>
+                <td>$$al</td>
+                <td>$$CUAA / $$PIVA
+                    <br/>
+                    <label for="aziende">$$denominazione</label>
+                </td>
+                <td>$$sedeLegale</td>
+              </tr>
+            <!--@@rigaAziende-->
+          </tbody>
+        </table>
+      <!--  <label for="indietro" class="alt">ricerca</label>
+        <input type="submit" name="indietro" id="indietro" value="indietro" class="inputPulsante"/>-->
+      </div>
+    </div>
+    <hr/>
+    <!-- PIE' DI PAGINA -->
+    $$footer

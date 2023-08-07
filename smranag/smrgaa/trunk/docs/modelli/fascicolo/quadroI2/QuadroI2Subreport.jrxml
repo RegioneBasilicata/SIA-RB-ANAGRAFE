@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 4.1.3  -->
+<!-- 2016-10-11T09:56:22 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="QuadroI2Subreport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="0">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<parameter name="fascicoloDS" class="java.util.List"/>
+	<parameter name="RiepiloghiUnitaVitateSubReport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="RiepilogoI2SubReport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="quadroUnitaVitate" class="it.csi.smranag.smrgaa.dto.jaxb.fascicolo.QuadroUnitaVitate"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="61">
+			<rectangle radius="10">
+				<reportElement x="0" y="0" width="555" height="50" forecolor="#000000" backcolor="#99CCFF"/>
+				<graphicElement>
+					<pen lineColor="#44C2FC"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="10" y="5" width="400" height="30"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[QUADRO I2 - UNITA' VITATE]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="184" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="10" width="555" height="160">
+					<printWhenExpression><![CDATA[$F{quadroUnitaVitate} != null && $F{quadroUnitaVitate}.getRiepiloghiUv()!=null]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="RiepiloghiUnitaVitateSubReport">
+					<subreportParameterExpression><![CDATA[$P{RiepiloghiUnitaVitateSubReport}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="RiepilogoI2SubReport">
+					<subreportParameterExpression><![CDATA[$P{RiepilogoI2SubReport}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{quadroUnitaVitate}.getRiepiloghiUv().getRiepilogoUv(),false)]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{RiepiloghiUnitaVitateSubReport}]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>

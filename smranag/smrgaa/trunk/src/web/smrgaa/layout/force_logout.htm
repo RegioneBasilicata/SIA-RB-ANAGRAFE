@@ -1,0 +1,61 @@
+$$head
+<script language="JavaScript">
+	//Gestione per singolo click su pulsante di submit - Begin
+	var doppioClick = 0;
+	//Gestione per singolo click su pulsante di submit - End
+</script>
+</head>
+<script language="JavaScript" type="text/javascript" src="../js/util.js"></script>
+<body id="homeIndice" onload="$$err_error;">
+	<div id="pagina" class="colonnaUnica">
+		<!-- INTESTAZIONE -->
+      <div id="intestazione##pathProvincia">
+        $$header
+        <!-- menu di navigazione-->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <!-- ul class="menuTendina" id="menu-2">
+              <li><a href="../layout/index.htm"
+                title="Torna alla pagina principale">home</a></li>
+              <li class="attivo">gestione anagrafe aziende</li>
+              <li><a href="#" title="contatti">contatti</a></li>
+              <li><a href="#" title="help">help</a></li>
+            </ul -->
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div style="clear: left"></div>
+      <!-- CORPO -->
+      <div id="corpo">
+        <div id="Utente">
+          <div id="datiUtente">
+            <strong>utente: </strong> $$utente &nbsp; &nbsp; <strong>ente:
+            </strong> $$ente
+          </div>
+          <div id="chiudisessione">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- a href="javascript: logout();">chiudi sessione</a-->
+          </div>
+        </div>
+        <hr />
+      <!--PRIMA COLONNA -->
+			<h3>$$Titolo</h3>
+			<hr />
+			<!-- SECONDA COLONNA -->
+			<p class="errore">$$msg</p>
+			<p>$$messaggioCompleto</p>
+			<div class="pulsanti">
+				<div class="sin">
+					<a href="$$hrefPulsante"
+						onClick="if(doppioClick==1){return(false);}else{doppioClick=1;return(true);}">$$pulsante</a>
+				</div>
+			</div>
+		</div>
+		<!--$$printStackTraceCommentato-->
+		<hr />
+		<!--$$sessionId-->
+		<!-- PIE' DI PAGINA -->
+		$$footer

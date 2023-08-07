@@ -1,0 +1,143 @@
+<porta-delegata name="smrgaaweb.sigopserv.SigopServicePA">
+  <services>
+    <service name="smrgaaweb.sigopserv.SigopServicePA.service" public-interface-class="it.csi.sigop.interfacecsi.services.SigopServiceCSIInterface">
+      <operations>
+        <operation name="serviceScriviNuovoSoggettoRegistroAntimafia" type="synch-call" >
+          <param-list>
+            <param name="idAzienda" type="long"/>
+            <param name="cuaa" type="java.lang.String"/>
+            <param name="ragioneSociale" type="java.lang.String"/>
+            <param name="idAmmCompetenza" type="java.lang.Long"/>
+            <param name="idIntermediario" type="java.lang.Long"/>
+            <param name="siglaPrefettura" type="java.lang.String"/>
+            <param name="numeroProtocollo" type="java.lang.Long"/>
+            <param name="dataProtocollo" type="java.util.Date"/>
+            <param name="dataDocumento" type="java.util.Date"/>
+            <param name="note" type="java.lang.String"/>
+            <param name="extIdProcedimento" type="long"/>
+            <param name="utenteUltimoAggiornamento" type="long"/>
+          </param-list>
+          <ret-val type="it.csi.sigop.dto.services.EsitoServizioVO"/>
+        </operation>
+        <operation name="serviceEstraiFondi" type="synch-call">
+          <param-list />
+          <ret-val type="java.lang.String[]"/>
+        </operation>
+        <operation name="serviceEstraiInterventi" type="synch-call" >
+          <param-list>
+            <param name="settore" type="java.lang.String"/>
+            <param name="anno" type="java.lang.Integer"/>
+          </param-list>
+          <ret-val type="it.csi.sigop.dto.services.InterventoVO[]"/>
+        </operation>
+        <operation name="serviceEstraiDecreti" type="synch-call" >
+          <param-list>
+            <param name="extIdProcedimento" type="java.lang.Integer"/>
+            <param name="sottoProcedimento" type="java.lang.String"/>
+          </param-list>
+          <ret-val type="it.csi.sigop.dto.services.DecretoVO[]"/>
+        </operation>
+        <operation name="testResources" type="synch-call">
+          <param-list />
+          <ret-val type="boolean" />
+        </operation>
+        <operation name="serviceEstraiPagamentiBeneficiari" type="synch-call" >
+          <param-list>
+            <param name="anno" type="java.lang.Integer"/>
+            <param name="settore" type="java.lang.String"/>
+            <param name="interventi" type="java.lang.Integer[]"/>
+            <param name="provincia" type="java.lang.String"/>
+            <param name="comune" type="java.lang.String"/>
+            <param name="denominazione" type="java.lang.String"/>
+            <param name="cuaa" type="java.lang.String"/>
+            <param name="numDomanda" type="java.lang.String"/>
+            <param name="gestoriFascicolo" type="java.lang.String[]"/>
+            <param name="extIdProcedimento" type="java.lang.Integer"/>
+            <param name="sottoProcedimento" type="java.lang.String"/>
+            <param name="organismiDelegati" type="java.lang.Integer[]"/>
+            <param name="decreto" type="java.lang.Integer"/>
+          </param-list>
+          <ret-val type="it.csi.sigop.dto.services.PagamentoBeneficiarioVO[]"/>
+        </operation>
+        <operation name="serviceEstraiPagamentiBeneficiari" type="synch-call" >
+          <param-list>
+            <param name="anno" type="java.lang.Integer"/>
+            <param name="settore" type="java.lang.String"/>
+            <param name="interventi" type="java.lang.Integer[]"/>
+            <param name="provincia" type="java.lang.String"/>
+            <param name="comune" type="java.lang.String"/>
+            <param name="denominazione" type="java.lang.String"/>
+            <param name="cuaa" type="java.lang.String"/>
+            <param name="numDomanda" type="java.lang.String"/>
+            <param name="gestoriFascicolo" type="java.lang.String[]"/>
+            <param name="extIdProcedimento" type="java.lang.Integer"/>
+            <param name="sottoProcedimento" type="java.lang.String"/>
+            <param name="organismiDelegati" type="java.lang.Integer[]"/>
+            <param name="decreto" type="java.lang.Integer"/>
+            <param name="limiteNumRecord" type="java.lang.Integer"/>
+          </param-list>
+          <ret-val type="it.csi.sigop.dto.services.PagamentoBeneficiarioVO[]"/>
+        </operation>
+        <operation name="serviceAggiornaCoordinateBancariePagamento" type="synch-call" >
+          <param-list>
+            <param name="codiceDomanda" type="java.lang.String"/>
+            <param name="extIdSportello" type="java.lang.Long"/>
+            <param name="numContoCorrente" type="java.lang.String"/>
+            <param name="cin" type="java.lang.String"/>
+            <param name="cifraControllo" type="java.lang.String"/>
+            <param name="iban" type="java.lang.String"/>
+            <param name="extIdProcedimento" type="java.lang.Integer"/>
+            <param name="utenteUltimoAggiornamento" type="java.lang.Integer"/>
+          </param-list>
+          <ret-val type="it.csi.sigop.dto.services.EsitoServizioVO"/>
+        </operation>
+        <operation name="serviceVisualizzaDebiti" type="synch-call" >
+          <param-list>
+            <param name="cuaa" type="java.lang.String"/>
+            <param name="tipoOrdinamento1" type="java.lang.Integer"/>
+            <param name="tipoOrdinamento2" type="java.lang.Integer"/>
+            <param name="tipoOrdinamento3" type="java.lang.Integer"/>
+            <param name="tipoOrdinamento4" type="java.lang.Integer"/>
+          </param-list>
+          <ret-val type="it.csi.sigop.dto.services.SchedaCreditoVO[]"/>
+        </operation>
+        <operation name="serviceEstraiPagamentiErogati" type="synch-call" >
+          <param-list>
+          	<param name="cuaa" type="java.lang.String"/>
+          	<param name="settore" type="java.lang.String"/>
+            <param name="anno" type="java.lang.Integer"/>
+          </param-list>
+          <ret-val type="it.csi.sigop.dto.services.PagamentiErogatiVO"/>
+        </operation>
+        <operation name="serviceEstraiRecuperiPregressi" type="synch-call" >
+          <param-list>
+          	<param name="cuaa" type="java.lang.String"/>
+          	<param name="settore" type="java.lang.String"/>
+            <param name="anno" type="java.lang.Integer"/>
+          </param-list>
+          <ret-val type="it.csi.sigop.dto.services.RecuperiPregressiVO"/>
+        </operation>
+      </operations>
+    </service>
+  </services>
+
+  <config>
+    <url-pa>not_used</url-pa>
+    <pluggable-pd-list chooser-class="it.csi.csi.porte.FixedDelegateChooser">
+      <pluggable-pd
+        name="smrgaaweb.sigopserv.SigopServicePA.pd"
+        class="it.csi.csi.porte.ejb.PortaDelegataEJB"
+        url-pa="sigopserv/ejb/SigopServicePA"
+      >
+        <properties>
+          <property name="java.naming.provider.url" value="jnp://tst-spjbosscp09-01.self.csi.it:25100,tst-spjbosscp09-02.self.csi.it:25100" />
+          <property name="java.naming.factory.initial" value="org.jnp.interfaces.NamingContextFactory" />
+        </properties>
+      </pluggable-pd>
+    </pluggable-pd-list>
+    <queue-manager url="not_used"/>
+  </config>
+
+
+</porta-delegata>
+

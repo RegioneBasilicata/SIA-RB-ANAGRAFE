@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report Type="TabularSheet" Top="0.4" Left="0.05" Bottom="0.4" Right="0.05" HeaderFromEdge="0.05" FooterFromEdge="0.4" PageNumbering="0" HorizontalWrap="true" PaperSize="8.267716x11.692913" Orientation="1" TabStops="0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5,6.0,6.5,7.0,7.5,8.0"
+ Prompting="true"><Version>9.5</Version>
+<ReportProperty Name="report.modified">
+<![CDATA[2011-03-30 15:11:57]]>
+</ReportProperty>
+<ReportProperty Name="TextMode">
+<![CDATA[false]]>
+</ReportProperty>
+<ReportProperty Name="live.edit">
+<![CDATA[false]]>
+</ReportProperty>
+<ReportProperty Name="edit.layout">
+<![CDATA[false]]>
+</ReportProperty>
+<ReportProperty Name="report.created">
+<![CDATA[2010-07-12 16:24:34]]>
+</ReportProperty>
+<Parameters>
+</Parameters>
+<ParameterSheets>
+</ParameterSheets>
+<RunningTotals>
+</RunningTotals>
+<dataViews>
+</dataViews>
+<reportAssetRepository>
+</reportAssetRepository>
+<Shapes>
+</Shapes>
+<Grid Rows="2" Cols="3">
+<GR Height="0">
+<GD Borders="0,0,0,0" RowSpan="1" ColSpan="3" Width="175.33334" Repeat="false" CellFitPage="true">
+<Background  BackgroundLayout="1"  Color="-4137792"/>
+<SeparatorElement ID="Separator1" Alignment="2" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Serif-PLAIN-10" Foreground="-16777216" Style="4098" SeparatorAdvance="1">
+</SeparatorElement>
+<TextElement ID="lblQuadro" Alignment="65" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-BOLD-10" Foreground="-16777216" FillStyle="0" TabStops="0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5,6.0,6.5,7.0,7.5,8.0" Justify="false" Orphan="false" TextAdvance="3">
+<![CDATA[QUADRO - Protocollo]]>
+</TextElement>
+<NewlineElement ID="nl1" Alignment="2" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-PLAIN-10" Foreground="-16777216" Count="1" Break="false">
+</NewlineElement>
+<TextElement ID="lblSezione" Alignment="65" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-BOLD-10" Foreground="-16777216" FillStyle="0" TabStops="0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5,6.0,6.5,7.0,7.5,8.0" Justify="false" Orphan="false" TextAdvance="3">
+<![CDATA[Dati identificativi del documento]]>
+</TextElement>
+</GD>
+<GD Width="244.33331" CellFitPage="true">
+</GD>
+<GD Width="414.33334" CellFitPage="true">
+</GD>
+</GR>
+<GR Height="193">
+<GD Borders="0,0,0,0" RowSpan="1" ColSpan="3" Width="175.33334" Repeat="false" CellFitPage="true">
+<NewlineElement ID="Newline19" Alignment="2" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-PLAIN-4" Foreground="-16777216" Count="1" Break="false">
+</NewlineElement>
+<TextBoxElement ID="TextBox12" Alignment="65" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Serif-BOLD-10" Foreground="-16777216" Border="0" Shape="1" Justify="false" TextAlignment="65" Shadow="false" Padding="0,1,0,1" BorderColor="-16777216" Borders="0,0,0,0" Layout="0" Wrapping="3" Rotation="0" Size="1.9x0.22222222" Margin="0,0,0,0">
+<![CDATA[CUAA (Codice fiscale)]]>
+</TextBoxElement>
+<SpaceElement ID="spCuaaDenTitolo" Alignment="1" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-PLAIN-10" Foreground="-16777216" Space="25">
+</SpaceElement>
+<TextBoxElement ID="TextBox13" Alignment="65" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Serif-BOLD-10" Foreground="-16777216" Border="0" Shape="1" Justify="false" TextAlignment="65" Shadow="false" Padding="0,1,0,1" BorderColor="-16777216" Layout="0" Wrapping="3" Rotation="0" Margin="0,0,0,0">
+<![CDATA[Denominazione]]>
+</TextBoxElement>
+<NewlineElement ID="Newline20" Alignment="1" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Serif-PLAIN-10" Foreground="-16777216" Count="1" Break="false">
+</NewlineElement>
+<TextBoxElement ID="txtCuaa" Alignment="65" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Serif-PLAIN-10" Foreground="-16777216" Border="4097" Shape="1" Justify="false" TextAlignment="65" Shadow="false" Padding="0,1,0,1" BorderColor="-16777216" Layout="0" Wrapping="3" Rotation="0" Size="1.9x0.22222222" Margin="0,0,0,0">
+<![CDATA[]]>
+</TextBoxElement>
+<SpaceElement ID="spCuaaDen" Alignment="1" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-PLAIN-10" Foreground="-16777216" Space="25">
+</SpaceElement>
+<TextBoxElement ID="txtDenominazione" Alignment="65" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Serif-PLAIN-10" Foreground="-16777216" Border="4097" Shape="1" Justify="false" TextAlignment="65" Shadow="false" Padding="0,1,0,1" BorderColor="-16777216" Layout="0" Wrapping="3" Rotation="0" Size="5.9x0.22222222" Margin="0,0,0,0">
+<![CDATA[txtDenominazione]]>
+</TextBoxElement>
+<NewlineElement ID="Newline21" Alignment="1" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Serif-PLAIN-10" Foreground="-16777216" Count="1" Break="false">
+</NewlineElement>
+<NewlineElement ID="Newline22" Alignment="1" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-PLAIN-4" Foreground="-16777216" Count="1" Break="false">
+</NewlineElement>
+<TextBoxElement ID="TextBox25" Alignment="65" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Serif-BOLD-10" Foreground="-16777216" Border="0" Shape="1" Justify="false" TextAlignment="65" Shadow="false" Padding="0,1,0,1" BorderColor="-16777216" Layout="0" Wrapping="3" Rotation="0" Margin="0,0,0,0">
+<![CDATA[Tipologia documento]]>
+</TextBoxElement>
+<NewlineElement ID="Newline23" Alignment="1" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Serif-PLAIN-10" Foreground="-16777216" Count="1" Break="false">
+</NewlineElement>
+<TextBoxElement ID="txtTipologiaDocumento" Alignment="65" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Serif-PLAIN-10" Foreground="-16777216" Border="4097" Shape="1" Justify="false" TextAlignment="65" Shadow="false" Padding="0,1,0,1" BorderColor="-16777216" Layout="0" Wrapping="3" Rotation="0" Anchor="0.0,0.013888889" Size="8.15x0.2222" Margin="0,0,0,0">
+<![CDATA[]]>
+</TextBoxElement>
+<NewlineElement ID="Newline25" Alignment="1" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-PLAIN-4" Foreground="-16777216" Count="1" Break="false">
+</NewlineElement>
+<NewlineElement ID="Newline392" Alignment="1" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-PLAIN-4" Foreground="-16777216" Count="1" Break="false">
+</NewlineElement>
+<TextBoxElement ID="TextBox18" Alignment="65" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Serif-BOLD-10" Foreground="-16777216" Border="0" Shape="1" Justify="false" TextAlignment="65" Shadow="false" Padding="0,1,0,1" BorderColor="-16777216" Layout="0" Wrapping="3" Rotation="0" Margin="0,0,0,0">
+<![CDATA[Descrizione]]>
+</TextBoxElement>
+<NewlineElement ID="Newline381" Alignment="1" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Serif-PLAIN-10" Foreground="-16777216" Count="1" Break="false">
+</NewlineElement>
+<TextBoxElement ID="txtDescrizione" Alignment="65" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Serif-PLAIN-10" Foreground="-16777216" Border="4097" Shape="1" Justify="false" TextAlignment="65" Shadow="false" Padding="0,1,0,1" BorderColor="-16777216" Layout="0" Wrapping="3" Rotation="0" Anchor="0.0,0.013888889" Size="8.15x0.22222222" Margin="0,0,0,0">
+<![CDATA[]]>
+</TextBoxElement>
+<NewlineElement ID="Newline384" Alignment="1" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-PLAIN-4" Foreground="-16777216" Count="1" Break="false">
+</NewlineElement>
+<NewlineElement ID="Newline393" Alignment="1" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-PLAIN-4" Foreground="-16777216" Count="1" Break="false">
+</NewlineElement>
+<TextBoxElement ID="TextBox30" Alignment="65" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Serif-BOLD-10" Foreground="-16777216" Border="0" Shape="1" Justify="false" TextAlignment="65" Shadow="false" Padding="0,1,0,1" BorderColor="-16777216" Layout="0" Wrapping="3" Rotation="0" Size="1.0x0.22" Margin="0,0,0,0">
+<![CDATA[Stato]]>
+</TextBoxElement>
+<SpaceElement ID="spStatoDITitolo" Alignment="1" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-PLAIN-10" Foreground="-16777216" Space="148">
+</SpaceElement>
+<TextBoxElement ID="TextBox45" Alignment="65" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Serif-BOLD-10" Foreground="-16777216" Border="0" Shape="1" Justify="false" TextAlignment="9" Shadow="false" Padding="0,1,0,1" BorderColor="-16777216" Layout="0" Wrapping="3" Rotation="0" Size="1.2x0.22" Margin="0,0,0,0">
+<![CDATA[Data inizio validità]]>
+</TextBoxElement>
+<SpaceElement ID="spDIDFTitolo" Alignment="1" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-PLAIN-10" Foreground="-16777216" Space="20">
+</SpaceElement>
+<TextBoxElement ID="TextBox46" Alignment="65" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Serif-BOLD-10" Foreground="-16777216" Border="0" Shape="1" Justify="false" TextAlignment="9" Shadow="false" Padding="0,1,0,1" BorderColor="-16777216" Layout="0" Wrapping="3" Rotation="0" Size="1.1x0.22" Margin="0,0,0,0">
+<![CDATA[Data fine validità]]>
+</TextBoxElement>
+<SpaceElement ID="spDIDATitolo" Alignment="1" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-PLAIN-10" Foreground="-16777216" Space="29">
+</SpaceElement>
+<TextBoxElement ID="TextBox48" Alignment="65" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Serif-BOLD-10" Foreground="-16777216" Border="0" Shape="1" Justify="false" TextAlignment="9" Shadow="false" Padding="0,1,0,1" BorderColor="-16777216" Layout="0" Wrapping="3" Rotation="0" Size="1.8x0.22" Margin="0,0,0,0">
+<![CDATA[Data ultimo aggiornamento]]>
+</TextBoxElement>
+<NewlineElement ID="Newline26" Alignment="1" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Serif-PLAIN-10" Foreground="-16777216" Count="1" Break="false">
+</NewlineElement>
+<TextBoxElement ID="txtStato" Alignment="65" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Serif-PLAIN-10" Foreground="-16777216" Border="4097" Shape="1" Justify="false" TextAlignment="65" Shadow="false" Padding="0,1,0,1" BorderColor="-16777216" Layout="0" Wrapping="3" Rotation="0" Size="2.7x0.22222222" Margin="0,0,0,0">
+<![CDATA[txtStato]]>
+</TextBoxElement>
+<SpaceElement ID="spStatoDI" Alignment="1" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-PLAIN-10" Foreground="-16777216" Space="25">
+</SpaceElement>
+<TextBoxElement ID="txtDataInizioValidita" Alignment="65" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Serif-PLAIN-10" Foreground="-16777216" Border="4097" Shape="1" Justify="false" TextAlignment="9" Shadow="false" Padding="0,1,0,1" BorderColor="-16777216" Layout="0" Wrapping="3" Rotation="0" Size="0.8x0.22" Margin="0,0,0,0">
+<![CDATA[]]>
+</TextBoxElement>
+<SpaceElement ID="spDIDA" Alignment="1" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-PLAIN-10" Foreground="-16777216" Space="50">
+</SpaceElement>
+<TextBoxElement ID="txtDataFineValidita" Alignment="65" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Serif-PLAIN-10" Foreground="-16777216" Border="4097" Shape="1" Justify="false" TextAlignment="9" Shadow="false" Padding="0,1,0,1" BorderColor="-16777216" Layout="0" Wrapping="3" Rotation="0" Size="0.8x0.22" Margin="0,0,0,0">
+<![CDATA[]]>
+</TextBoxElement>
+<SpaceElement ID="spDFDA" Alignment="1" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-PLAIN-10" Foreground="-16777216" Space="50">
+</SpaceElement>
+<TextBoxElement ID="txtDataUltimoAggiornamento" Alignment="65" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Serif-PLAIN-10" Foreground="-16777216" Border="4097" Shape="1" Justify="false" TextAlignment="9" Shadow="false" Padding="0,1,0,1" BorderColor="-16777216" Layout="0" Wrapping="3" Rotation="0" Size="0.8x0.22" Margin="0,0,0,0">
+<![CDATA[]]>
+</TextBoxElement>
+<NewlineElement ID="Newline27" Alignment="1" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Serif-PLAIN-10" Foreground="-16777216" Count="1" Break="false">
+</NewlineElement>
+<NewlineElement ID="Newline28" Alignment="1" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-PLAIN-4" Foreground="-16777216" Count="1" Break="false">
+</NewlineElement>
+<TextBoxElement ID="TextBox34" Alignment="65" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Serif-BOLD-10" Foreground="-16777216" Border="0" Shape="1" Justify="false" TextAlignment="65" Shadow="false" Padding="0,1,0,1" BorderColor="-16777216" Layout="0" Wrapping="3" Rotation="0" Size="1.2x0.22" Margin="0,0,0,0">
+<![CDATA[Numero protocollo]]>
+</TextBoxElement>
+<SpaceElement ID="spNumProtocDataProtocTitolo" Alignment="1" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-PLAIN-10" Foreground="-16777216" Space="133">
+</SpaceElement>
+<TextBoxElement ID="TextBox35" Alignment="65" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Serif-BOLD-10" Foreground="-16777216" Border="0" Shape="1" Justify="false" TextAlignment="65" Shadow="false" Padding="0,1,0,1" BorderColor="-16777216" Layout="0" Wrapping="3" Rotation="0" Size="1.5x0.22" Margin="0,0,0,0">
+<![CDATA[Data protocollo]]>
+</TextBoxElement>
+<NewlineElement ID="Newline29" Alignment="1" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Serif-PLAIN-10" Foreground="-16777216" Count="1" Break="false">
+</NewlineElement>
+<TextBoxElement ID="txtNumeroProtocollo" Alignment="65" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Serif-PLAIN-10" Foreground="-16777216" Border="4097" Shape="1" Justify="false" TextAlignment="65" Shadow="false" Padding="0,1,0,1" BorderColor="-16777216" Layout="0" Wrapping="3" Rotation="0" Size="2.7x0.22222222" Margin="0,0,0,0">
+<![CDATA[]]>
+</TextBoxElement>
+<SpaceElement ID="spNumProtocDataProtoc" Alignment="1" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-PLAIN-10" Foreground="-16777216" Space="25">
+</SpaceElement>
+<TextBoxElement ID="txtDataProtocollo" Alignment="65" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Serif-PLAIN-10" Foreground="-16777216" Border="4097" Shape="1" Justify="false" TextAlignment="65" Shadow="false" Padding="0,1,0,1" BorderColor="-16777216" Layout="0" Wrapping="3" Rotation="0" Size="0.8x0.22222222" Margin="0,0,0,0">
+<![CDATA[]]>
+</TextBoxElement>
+<NewlineElement ID="Newline30" Alignment="1" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Serif-PLAIN-10" Foreground="-16777216" Count="1" Break="false">
+</NewlineElement>
+<NewlineElement ID="Newline394" Alignment="1" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-PLAIN-4" Foreground="-16777216" Count="1" Break="false">
+</NewlineElement>
+<TextBoxElement ID="TextBox49" Alignment="65" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Serif-BOLD-10" Foreground="-16777216" Border="0" Shape="1" Justify="false" TextAlignment="9" Shadow="false" Padding="0,1,0,1" BorderColor="-16777216" Layout="0" Wrapping="3" Rotation="0" Size="1.5x0.22" Margin="0,0,0,0">
+<![CDATA[Protocollo esterno]]>
+</TextBoxElement>
+<SpaceElement ID="spProtoEsternCausaleTitolo" Alignment="1" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-PLAIN-10" Foreground="-16777216" Space="111">
+</SpaceElement>
+<TextBoxElement ID="TextBox50" Alignment="65" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Serif-BOLD-10" Foreground="-16777216" Border="0" Shape="1" Justify="false" TextAlignment="9" Shadow="false" Padding="0,1,0,1" BorderColor="-16777216" Layout="0" Wrapping="3" Rotation="0" Size="1.5x0.22" Margin="0,0,0,0">
+<![CDATA[Causale modifica]]>
+</TextBoxElement>
+<NewlineElement ID="Newline395" Alignment="1" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-PLAIN-10" Foreground="-16777216" Count="1" Break="false">
+</NewlineElement>
+<TextBoxElement ID="txtProtocolloEsterno" Alignment="65" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Serif-PLAIN-10" Foreground="-16777216" Border="4097" Shape="1" Justify="false" TextAlignment="9" Shadow="false" Padding="0,1,0,1" BorderColor="-16777216" Layout="0" Wrapping="3" Rotation="0" Size="2.7x0.22" Margin="0,0,0,0">
+<![CDATA[]]>
+</TextBoxElement>
+<SpaceElement ID="spProtEsternoCasuale" Alignment="1" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-PLAIN-10" Foreground="-16777216" Space="25">
+</SpaceElement>
+<TextBoxElement ID="txtCausaleModifica" Alignment="65" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Serif-PLAIN-10" Foreground="-16777216" Border="4097" Shape="1" Justify="false" TextAlignment="9" Shadow="false" Padding="0,1,0,1" BorderColor="-16777216" Layout="0" Wrapping="3" Rotation="0" Size="5.1x0.22" Margin="0,0,0,0">
+<![CDATA[]]>
+</TextBoxElement>
+<NewlineElement ID="Newline397" Alignment="1" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-PLAIN-10" Foreground="-16777216" Count="1" Break="false">
+</NewlineElement>
+<NewlineElement ID="Newline396" Alignment="1" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-PLAIN-4" Foreground="-16777216" Count="1" Break="false">
+</NewlineElement>
+<TextBoxElement ID="TextBox53" Alignment="65" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Serif-BOLD-10" Foreground="-16777216" Border="0" Shape="1" Justify="false" TextAlignment="9" Shadow="false" Padding="0,1,0,1" BorderColor="-16777216" Layout="0" Wrapping="3" Rotation="0" Size="1.0x0.22" Margin="0,0,0,0">
+<![CDATA[Note]]>
+</TextBoxElement>
+<NewlineElement ID="Newline398" Alignment="1" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-PLAIN-10" Foreground="-16777216" Count="1" Break="false">
+</NewlineElement>
+<TextBoxElement ID="txtNote" Alignment="65" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Serif-PLAIN-10" Foreground="-16777216" Border="4097" Shape="1" Justify="false" TextAlignment="9" Shadow="false" Padding="0,1,0,1" BorderColor="-16777216" Layout="0" Wrapping="3" Rotation="0" Size="8.15x0.22" Margin="0,0,0,0">
+<![CDATA[]]>
+</TextBoxElement>
+<NewlineElement ID="Newline399" Alignment="1" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-PLAIN-10" Foreground="-16777216" Count="1" Break="false">
+</NewlineElement>
+<SpaceElement ID="Space22" Alignment="0" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-PLAIN-10" Foreground="-16777216" Space="20">
+</SpaceElement>
+<NewlineElement ID="Newline391" Alignment="1" Indent="0.0" Hindent="0" Spacing="0" Visible="true" HideOnPrint="false" KeepWithNext="false" Font="Dialog-PLAIN-10" Foreground="-16777216" Count="1" Break="false">
+</NewlineElement>
+</GD>
+<GD Width="244.33331" CellFitPage="true">
+</GD>
+<GD Width="414.33334" CellFitPage="true">
+</GD>
+</GR>
+</Grid>
+</Report>

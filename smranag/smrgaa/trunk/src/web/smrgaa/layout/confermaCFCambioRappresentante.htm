@@ -1,0 +1,52 @@
+<html>
+<head>
+<title>Anagrafe Agricola della Regione TOBECONFIG</title>
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
+<script language="JavaScript" >
+
+function conferma()
+{
+  window.opener.document.form1.submit();
+  window.close();
+}
+function annulla()
+{
+  window.opener.document.form1.controlloCF.value="";
+  window.close();
+}
+
+
+</script>
+  <script src="../js/checktext.js" type="text/javascript"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" href="../../##pathToFollow/css/stile.css">
+</head>
+
+<body bgcolor="#CCCCCC">
+<table width="602" border="0" cellspacing="0" cellpadding="1" align="center" background="../../im/pix_gri.gif">
+  <tr>
+    <td align="center" colspan=3>
+    <span class="testo"><b>Attenzione: i dati inseriti non sono compatibili con il codice fiscale.Se si vuole proseguire premere conferma<br><br><br><br><br></b></span>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <div align="center">
+          <a style="cursor:hand" onClick="javascript: conferma();">
+            <img src="../##pathToFollow/im/b_conferma.gif" width="64" height="16" alt="conferma"></a>
+      </div>
+    </td>
+    <td>
+    </td>
+    <td>
+      <div align="center">
+          <a style="cursor:hand" onClick="javascript: annulla();"  >
+            <img src="../##pathToFollow/im/b_chiudi.gif" width="64" height="16" alt="chiudi"></a>
+      </div>
+    </td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+</body>
+</html>

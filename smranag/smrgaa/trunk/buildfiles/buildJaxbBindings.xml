@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jaxb:bindings version="2.0" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+                             xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <jaxb:globalBindings>
+    <jaxb:javaType name="java.util.Date" xmlType="xs:date"
+                   parseMethod="it.csi.smranag.smrgaa.util.JaxbUtils.parseDate"
+                   printMethod="it.csi.smranag.smrgaa.util.JaxbUtils.formatDate"/>
+  </jaxb:globalBindings>
+</jaxb:bindings>

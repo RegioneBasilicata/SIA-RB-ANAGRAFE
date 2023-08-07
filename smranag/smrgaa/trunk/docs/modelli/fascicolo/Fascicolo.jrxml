@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 4.1.3  -->
+<!-- 2016-10-21T17:06:26 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="mainfascicolo" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="535" leftMargin="20" rightMargin="40" topMargin="20" bottomMargin="20">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<parameter name="quadroFSubReport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="fascicoloDS" class="java.util.List"/>
+	<parameter name="QuadroASubreport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="quadroGSubReport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="quadroBSubReport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="quadroLSubReport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="quadroISubReport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="quadroI2SubReport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="QuadroMSubReport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="QuadroOSubReport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="AssociazioneSubreport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="ContiSubreport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="SoggettiSubreport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="uteSubReport" class="net.sf.jasperreports.engine.JasperReport">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<parameter name="categorieSubReport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="allevamentoSubReport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="riepilogoSubReport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="riepilogoTerreniSubreport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="RiepiloghiUnitaVitateSubReport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="RiepilogoI2SubReport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="FabbricatoSubReport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="ElencoParticelleSubReport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="MacchineSubReport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="DocumentiSubReport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="AllegatiCondSubReport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="QuadroDichSubReport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="AllegatiCondCheckSubReport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="AllegatiNormaliSubReport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="AllegatiNormaliCheckSubReport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="PrimoBloccoSubReport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="DichCheckSubReport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="BloccoFirma2SubReport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="DichFinaliSubReport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="DichSecondoSubReport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="DichCheck2SubReport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="check_cheked" class="java.lang.String"/>
+	<parameter name="check_uncheked" class="java.lang.String"/>
+	<parameter name="BloccoFirmaSubreport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="DichFinali" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="FirmaSubreport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="QuadroATitolareSubreport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="QuadroASoggettiSubreport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="QuadroAAssociazioniSubreport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="QuadroAContiSubreport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="HeaderSubreport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="HeaderLandscapeSubreport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="RiepilogoDettTerreniSubreport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="dichiarazioni" class="it.csi.smranag.smrgaa.dto.jaxb.fascicolo.Dichiarazioni">
+		<fieldDescription><![CDATA[dichiarazioni]]></fieldDescription>
+	</field>
+	<field name="quadroSoggetti" class="it.csi.smranag.smrgaa.dto.jaxb.fascicolo.QuadroSoggetti">
+		<fieldDescription><![CDATA[quadroSoggetti]]></fieldDescription>
+	</field>
+	<field name="quadroMotori" class="it.csi.smranag.smrgaa.dto.jaxb.fascicolo.QuadroMotori">
+		<fieldDescription><![CDATA[quadroMotori]]></fieldDescription>
+	</field>
+	<field name="quadroVariazioneMotori" class="it.csi.smranag.smrgaa.dto.jaxb.fascicolo.QuadroVariazioneMotori">
+		<fieldDescription><![CDATA[quadroVariazioneMotori]]></fieldDescription>
+	</field>
+	<field name="quadroDocumenti" class="it.csi.smranag.smrgaa.dto.jaxb.fascicolo.QuadroDocumenti">
+		<fieldDescription><![CDATA[quadroDocumenti]]></fieldDescription>
+	</field>
+	<field name="introRichVar" class="it.csi.smranag.smrgaa.dto.jaxb.fascicolo.IntroRichVar">
+		<fieldDescription><![CDATA[introRichVar]]></fieldDescription>
+	</field>
+	<field name="allegati" class="it.csi.smranag.smrgaa.dto.jaxb.fascicolo.Allegati">
+		<fieldDescription><![CDATA[allegati]]></fieldDescription>
+	</field>
+	<field name="quadroA" class="it.csi.smranag.smrgaa.dto.jaxb.fascicolo.QuadroA">
+		<fieldDescription><![CDATA[quadroA]]></fieldDescription>
+	</field>
+	<field name="quadroTerreni" class="it.csi.smranag.smrgaa.dto.jaxb.fascicolo.QuadroTerreni">
+		<fieldDescription><![CDATA[quadroTerreni]]></fieldDescription>
+	</field>
+	<field name="quadroFabbricati" class="it.csi.smranag.smrgaa.dto.jaxb.fascicolo.QuadroFabbricati">
+		<fieldDescription><![CDATA[quadroFabbricati]]></fieldDescription>
+	</field>
+	<field name="quadroUnitaVitate" class="it.csi.smranag.smrgaa.dto.jaxb.fascicolo.QuadroUnitaVitate">
+		<fieldDescription><![CDATA[quadroUnitaVitate]]></fieldDescription>
+	</field>
+	<field name="header" class="it.csi.smranag.smrgaa.dto.jaxb.fascicolo.Header">
+		<fieldDescription><![CDATA[header]]></fieldDescription>
+	</field>
+	<field name="headerLandscape" class="it.csi.smranag.smrgaa.dto.jaxb.fascicolo.HeaderLandscape">
+		<fieldDescription><![CDATA[headerLandscape]]></fieldDescription>
+	</field>
+	<field name="quadroAllevamenti" class="it.csi.smranag.smrgaa.dto.jaxb.fascicolo.QuadroAllevamenti">
+		<fieldDescription><![CDATA[quadroAllevamenti]]></fieldDescription>
+	</field>
+	<field name="quadroAssociazioni" class="it.csi.smranag.smrgaa.dto.jaxb.fascicolo.QuadroAssociazioni">
+		<fieldDescription><![CDATA[quadroAssociazioni]]></fieldDescription>
+	</field>
+	<field name="quadroUte" class="it.csi.smranag.smrgaa.dto.jaxb.fascicolo.QuadroUte">
+		<fieldDescription><![CDATA[quadroUte]]></fieldDescription>
+	</field>
+	<field name="headerAllegati" class="it.csi.smranag.smrgaa.dto.jaxb.fascicolo.HeaderAllegati">
+		<fieldDescription><![CDATA[headerAllegati]]></fieldDescription>
+	</field>
+	<field name="quadroManodopera" class="it.csi.smranag.smrgaa.dto.jaxb.fascicolo.QuadroManodopera">
+		<fieldDescription><![CDATA[quadroManodopera]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="87" splitType="Stretch">
+			<subreport>
+				<reportElement x="-9" y="10" width="535" height="40" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{header} != null && $F{header}.isVisibility()]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="fascicoloDS">
+					<subreportParameterExpression><![CDATA[$P{fascicoloDS}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{fascicoloDS},false)]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{HeaderSubreport}]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="-9" y="20" width="535" height="40" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{headerLandscape} != null && $F{headerLandscape}.isVisibility()]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="fascicoloDS">
+					<subreportParameterExpression><![CDATA[$P{fascicoloDS}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{fascicoloDS},false)]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{HeaderLandscapeSubreport}]]></subreportExpression>
+			</subreport>
+		</band>
+	</title>
+	<detail>
+		<band height="50" splitType="Stretch">
+			<subreport>
+				<reportElement x="-9" y="10" width="535" height="40" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{quadroA}!=null && $F{quadroA}.getSezioneAnagrafica() != null &&
+$F{quadroA}.getSezioneAnagrafica().isVisibility()]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="fascicoloDS">
+					<subreportParameterExpression><![CDATA[$P{fascicoloDS}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{fascicoloDS},false)]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{QuadroASubreport}]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="54">
+			<subreport>
+				<reportElement x="-9" y="10" width="535" height="40" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{quadroA}!=null && $F{quadroA}.getSezioneTitolare() != null && $F{quadroA}.getSezioneTitolare()!=null && $F{quadroA}.getSezioneTitolare().isVisibility()]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="fascicoloDS">
+					<subreportParameterExpression><![CDATA[$P{fascicoloDS}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="AssociazioneSubReport">
+					<subreportParameterExpression><![CDATA[$P{AssociazioneSubreport}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ContiSubReport">
+					<subreportParameterExpression><![CDATA[$P{ContiSubreport}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SoggettiSubReport">
+					<subreportParameterExpression><![CDATA[$P{SoggettiSubreport}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{fascicoloDS},false)]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{QuadroATitolareSubreport}]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="57">
+			<subreport>
+				<reportElement x="-9" y="10" width="535" height="40" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{quadroA}!=null && $F{quadroA}.getSezioneSoggetti() !=null && $F{quadroA}.getSezioneSoggetti()!=null && !$F{quadroA}.getSezioneSoggetti().isSezioneVuota()]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="fascicoloDS">
+					<subreportParameterExpression><![CDATA[$P{fascicoloDS}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SoggettiSubreport">
+					<subreportParameterExpression><![CDATA[$P{SoggettiSubreport}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{fascicoloDS},false)]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{QuadroASoggettiSubreport}]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="59">
+			<subreport>
+				<reportElement x="-9" y="10" width="535" height="40" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{quadroA}!=null && $F{quadroA}.getSezioneAssociazioni()!=null && $F{quadroA}.getSezioneAssociazioni() != null &&
+$F{quadroA}.getSezioneAssociazioni().getAssociazioni() != null &&
+!$F{quadroA}.getSezioneAssociazioni().isSezioneVuota()]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="fascicoloDS">
+					<subreportParameterExpression><![CDATA[$P{fascicoloDS}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="AssociazioneSubreport">
+					<subreportParameterExpression><![CDATA[$P{AssociazioneSubreport}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{fascicoloDS},false)]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{QuadroAAssociazioniSubreport}]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="61">
+			<subreport>
+				<reportElement x="-9" y="10" width="535" height="40" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{quadroA}!=null && $F{quadroA}.getSezioneConti() != null && $F{quadroA}.getSezioneConti() != null && 
+$F{quadroA}.getSezioneConti().getContiCorrenti() != null && 
+ $F{quadroA}.getSezioneConti().isVisibility()]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="fascicoloDS">
+					<subreportParameterExpression><![CDATA[$P{fascicoloDS}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ContiSubreport">
+					<subreportParameterExpression><![CDATA[$P{ContiSubreport}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{fascicoloDS},false)]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{QuadroAContiSubreport}]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="62">
+			<subreport>
+				<reportElement x="-9" y="8" width="535" height="40" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{quadroUte}!=null]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="fascicoloDS">
+					<subreportParameterExpression><![CDATA[$P{fascicoloDS}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="UteSubReport">
+					<subreportParameterExpression><![CDATA[$P{uteSubReport}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{fascicoloDS},false)]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{quadroBSubReport}]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="85">
+			<subreport>
+				<reportElement stretchType="RelativeToBandHeight" x="-9" y="20" width="535" height="40" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{quadroManodopera} != null && $F{quadroManodopera}.isVisibility() && !$F{quadroManodopera}.isSezioneVuota()]]></printWhenExpression>
+				</reportElement>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{fascicoloDS},false)]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{quadroFSubReport}]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="50">
+			<subreport>
+				<reportElement key="" x="-9" y="5" width="535" height="40" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{quadroAllevamenti} != null && !$F{quadroAllevamenti}.isSezioneVuota()]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="fascicoloDS">
+					<subreportParameterExpression><![CDATA[$P{fascicoloDS}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="categorieSubReport">
+					<subreportParameterExpression><![CDATA[$P{categorieSubReport}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="allevamentoSubReport">
+					<subreportParameterExpression><![CDATA[$P{allevamentoSubReport}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{fascicoloDS},false)]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{quadroGSubReport}]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="50">
+			<subreport>
+				<reportElement x="-9" y="10" width="535" height="30" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{quadroUnitaVitate}!=null]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="RiepilogoI2SubReport">
+					<subreportParameterExpression><![CDATA[$P{RiepilogoI2SubReport}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="RiepiloghiUnitaVitateSubReport">
+					<subreportParameterExpression><![CDATA[$P{RiepiloghiUnitaVitateSubReport}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="fascicoloDS">
+					<subreportParameterExpression><![CDATA[$P{fascicoloDS}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{fascicoloDS},false)]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{quadroI2SubReport}]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="60">
+			<subreport>
+				<reportElement x="-9" y="10" width="535" height="40" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{quadroTerreni}!=null]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="RiepilogoDettTerreniSubreport">
+					<subreportParameterExpression><![CDATA[$P{RiepilogoDettTerreniSubreport}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="riepilogoTerreniSubreport">
+					<subreportParameterExpression><![CDATA[$P{riepilogoTerreniSubreport}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="fascicoloDS">
+					<subreportParameterExpression><![CDATA[$P{fascicoloDS}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{fascicoloDS},false)]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{quadroISubReport}]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="60">
+			<subreport>
+				<reportElement x="-9" y="10" width="535" height="40" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{quadroFabbricati}!=null && !$F{quadroFabbricati}.isSezioneVuota()]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="FabbricatoSubReport">
+					<subreportParameterExpression><![CDATA[$P{FabbricatoSubReport}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ElencoParticelleSubReport">
+					<subreportParameterExpression><![CDATA[$P{ElencoParticelleSubReport}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="fascicoloDS">
+					<subreportParameterExpression><![CDATA[$P{fascicoloDS}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{fascicoloDS},false)]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{quadroLSubReport}]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="50">
+			<subreport>
+				<reportElement x="-9" y="0" width="535" height="40" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{quadroMotori} != null && !$F{quadroMotori}.isSezioneVuota()]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="MacchineSubReport">
+					<subreportParameterExpression><![CDATA[$P{MacchineSubReport}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="fascicoloDS">
+					<subreportParameterExpression><![CDATA[$P{fascicoloDS}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{fascicoloDS},false)]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{QuadroMSubReport}]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="50">
+			<subreport>
+				<reportElement x="0" y="10" width="535" height="40" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{quadroDocumenti} != null]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="DocumentiSubReport">
+					<subreportParameterExpression><![CDATA[$P{DocumentiSubReport}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="fascicoloDS">
+					<subreportParameterExpression><![CDATA[$P{fascicoloDS}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{fascicoloDS},false)]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{QuadroOSubReport}]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="82">
+			<subreport>
+				<reportElement x="0" y="13" width="535" height="57" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{dichiarazioni} != null]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="fascicoloDS">
+					<subreportParameterExpression><![CDATA[$P{fascicoloDS}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="AllegatiCondSubReport">
+					<subreportParameterExpression><![CDATA[$P{AllegatiCondSubReport}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="AllegatiCondCheckSubReport">
+					<subreportParameterExpression><![CDATA[$P{AllegatiCondCheckSubReport}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="AllegatiNormaliSubReport">
+					<subreportParameterExpression><![CDATA[$P{AllegatiNormaliSubReport}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="AllegatiNormaliCheckSubReport">
+					<subreportParameterExpression><![CDATA[$P{AllegatiNormaliCheckSubReport}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="PrimoBloccoSubReport">
+					<subreportParameterExpression><![CDATA[$P{PrimoBloccoSubReport}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="DichCheckSubReport">
+					<subreportParameterExpression><![CDATA[$P{DichCheckSubReport}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="BloccoFirma2SubReport">
+					<subreportParameterExpression><![CDATA[$P{BloccoFirma2SubReport}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="DichFinaliSubReport">
+					<subreportParameterExpression><![CDATA[$P{DichFinaliSubReport}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="DichSecondoSubReport">
+					<subreportParameterExpression><![CDATA[$P{DichSecondoSubReport}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="DichCheck2SubReport">
+					<subreportParameterExpression><![CDATA[$P{DichCheck2SubReport}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="check_cheked">
+					<subreportParameterExpression><![CDATA[$P{check_cheked}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="check_uncheked">
+					<subreportParameterExpression><![CDATA[$P{check_uncheked}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{fascicoloDS},false)]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{QuadroDichSubReport}]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="84">
+			<subreport>
+				<reportElement x="0" y="13" width="535" height="57" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{dichiarazioni} != null]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="DichFinali">
+					<subreportParameterExpression><![CDATA[$P{DichFinali}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="FirmaSubreport">
+					<subreportParameterExpression><![CDATA[$P{FirmaSubreport}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="fascicoloDS">
+					<subreportParameterExpression><![CDATA[$P{fascicoloDS}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{fascicoloDS},false)]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{BloccoFirmaSubreport}]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>

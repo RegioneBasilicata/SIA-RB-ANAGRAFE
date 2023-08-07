@@ -1,0 +1,1058 @@
+$$head
+<script src="../js/checktext.js" type="text/javascript"></script>
+<script type="text/javascript" src="../js/messaggistica.js"></script>
+<script type="text/javascript">
+  	
+	function calcolaUso() 
+  {
+		document.forms[0].cambio.value = 'cambio';
+		document.forms[0].chiamata.value = 'paginaModifica';
+		document.forms[0].operazione.value = '';
+		document.forms[0].submit();
+	}
+  
+  /*function calcolaTipologiaVino() 
+  {
+    document.forms[0].cambio.value = 'cambio';
+    document.forms[0].cambioVarieta.value = 'cambioVarieta';
+    document.forms[0].chiamata.value = 'paginaModifica';
+    document.forms[0].operazione.value = '';
+    document.forms[0].submit();
+  }*/
+		
+	// Metodo per aprire la pop-up di modifica ed effettuare su di essa il submit del form
+	function newWindowSubmit(mypage, myname, w, h, scroll) 
+  {
+		if(document.forms[0].siglaProvincia.value == '' && document.forms[0].descComune.value == '' &&  document.forms[0].sezione.value == '' && document.forms[0].foglio.value == '' && document.forms[0].particella.value == '') {
+			alert('Indicare almeno un criterio di ricerca');
+			return;
+		}
+		else if(document.forms[0].siglaProvincia.value != '' && document.forms[0].descComune.value == '') 
+    {
+			alert('Valorizzare il comune');
+			return;
+		}
+		else if(document.forms[0].siglaProvincia.value == '' && document.forms[0].descComune.value != '') 
+    {
+			alert('Valorizzare la provincia');
+			return;
+		}
+		else 
+    {
+			var winl = (screen.width - w) / 2;
+  		var wint = (screen.height - h) / 2;
+  		winprops =    'height='+h+',width='+w+',top='+wint+',left='+winl+',scrollbars='+scroll+',resizable';
+  		win = window.open('', myname, winprops);
+  		if (parseInt(navigator.appVersion) >= 4) 
+      {
+    		win.window.focus();
+  		}	
+		  var target1 = document.forms[0].target;
+		  var action1 = document.forms[0].action;
+		  document.forms[0].target = myname;
+		  document.forms[0].action = mypage;
+			document.forms[0].submit();
+			document.forms[0].target = target1;
+  		document.forms[0].action = action1;
+  	}
+	}
+		
+	// Funzione utilizzata per visualizzare la parte relative alla ricerca delle particelle da
+	// associare alla nuova unità vitata o il dettaglio della particella selezionata
+	function evento() {
+		if(document.forms[0].esito.value == 'S') 
+    {
+			document.getElementById("filtro").style.display= "none";
+			document.getElementById("dettaglio").style.display= "";
+			document.getElementById("unitaVitata").style.display= "";
+			document.getElementById("elencoVitigni").style.display= "";
+      document.getElementById("datiVino").style.display= "";
+		  document.getElementById("operazioni").style.display= "";
+		}
+		else {
+			document.getElementById("filtro").style.display= "";
+			document.getElementById("dettaglio").style.display= "none";
+			document.getElementById("unitaVitata").style.display= "none";
+			document.getElementById("elencoVitigni").style.display= "none";
+      document.getElementById("datiVino").style.display= "none";
+			document.getElementById("operazioni").style.display= "none";
+		}
+	}
+		
+	// Funzione utilizzata per calcolare a run-time il valore del numero ceppi
+	// in funzione dei valori inseriti dall'utente
+	function calcolaNumeroCeppi() {
+		var numeroCeppi = document.forms[0].numeroCeppi.value;
+		var area = document.forms[0].area.value.replace(',', '.');
+		var sestoSuFila = document.forms[0].sestoSuFila.value;
+		var sestoTraFile = document.forms[0].sestoTraFile.value;		
+		// Se i campi interessati sono != null e > 0
+		if(area != '' && area > 0 && sestoSuFila != '' && sestoSuFila > 0 && sestoTraFile != '' && sestoTraFile > 0) {
+			var valore = (area * 10000) / ((sestoSuFila / 100) * (sestoTraFile / 100));
+			document.forms[0].numeroCeppi.value =  Math.round(valore);
+		}
+	}
+		
+	// Funzione che serve per ripulire i valori della riga selezionata
+	function cleanRowValue(rowSelected) {
+		if(document.forms[0].numeroAltriVitigni.length) {
+			document.forms[0].idVarietaVitigno[rowSelected].selectedIndex = 0;
+			document.forms[0].percentuale[rowSelected].value = '';
+		}
+		else {
+			document.forms[0].idVarietaVitigno.selectedIndex = 0;
+			document.forms[0].percentuale.value = '';
+		}
+		document.forms[0].pulisci.value = 'pulisci';
+		document.forms[0].cambio.value = '';
+		document.forms[0].chiamata.value = '';
+		document.forms[0].operazione.value = '';
+	}
+    
+    
+  function cambiaTipologiaVino() 
+  {
+    var elencoVinoDoc = document.forms[0].idTipologiaVinoDoc;
+    var hiddenCodiceMipaf = document.forms[0].hiddenCodiceMipaf;
+    var hiddenFlagGestioneVigna = document.forms[0].hiddenFlagGestioneVigna;
+    var hiddenFlagGestioneEtichetta = document.forms[0].hiddenFlagGestioneEtichetta;
+    var hiddenProvVignaRegionale = document.forms[0].hiddenProvVignaRegionale;
+       
+    j = document.forms[0].idTipologiaVino.selectedIndex;
+    k = j-1;
+    
+    if(j==0) //Selezione vuota
+    {
+      document.forms[0].checkVinoDoc.checked = false;
+      document.forms[0].vinoDoc.value= 'N';
+      document.forms[0].codiceMipaf.value = '';
+      document.getElementById("idCodiceMipaf").innerHTML = '';
+      document.getElementById("idProvVignaRegionale").innerHTML = '';
+      document.forms[0].vigna.readOnly = '';
+      document.forms[0].annotazioneEtichetta.readOnly = '';
+    }
+    else
+    {
+      if(elencoVinoDoc[k].value == 'S')
+      {
+        document.forms[0].checkVinoDoc.checked = true;
+        document.forms[0].vinoDoc.value= 'S';
+      }
+      else
+      {
+        document.forms[0].checkVinoDoc.checked = false;
+        document.forms[0].vinoDoc.value= 'N';
+      }
+      
+      if(hiddenFlagGestioneVigna[k].value == 'N')
+      {
+        document.forms[0].vigna.readOnly = 'readOnly';
+        document.forms[0].vigna.value = '';
+      }
+      else
+      {
+        document.forms[0].vigna.readOnly = '';
+      }
+      
+      if(hiddenFlagGestioneEtichetta[k].value == 'N')
+      {
+        document.forms[0].annotazioneEtichetta.readOnly = 'readOnly';
+        document.forms[0].annotazioneEtichetta.value = '';
+      }
+      else
+      {
+        document.forms[0].annotazioneEtichetta.readOnly = '';
+      }
+      
+      document.forms[0].codiceMipaf.value = hiddenCodiceMipaf[k].value;
+      document.getElementById("idProvVignaRegionale").innerHTML = hiddenProvVignaRegionale[k].value;
+      if(document.getElementById("idProvVignaRegionale").innerHTML != '')
+      {
+        document.forms[0].vigna.readOnly = 'readOnly';
+        document.forms[0].vigna.value = '';
+      }
+      document.getElementById("idCodiceMipaf").innerHTML = hiddenCodiceMipaf[k].value;
+    }      
+  }
+		
+	</script>
+</head>
+<body id="homeIndice" onLoad="javascript: evento();cambiaTipologiaVino();$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+  <form id="form1" name="form1" method="post"
+    action="../layout/unitaArboreeInserisci.htm">
+    <input type="hidden" name="cambio" value="$$cambio">
+    <input type="hidden" name="cambioVarieta" value="">
+    <input type="hidden" name="chiamata" value="$$chiamata">
+    <input type="hidden" name="esito" value="$$esito">
+    <input type="hidden" name="pulisci" value="$$pulisci" id="pulisci">
+    <input type="hidden" name="duplica" value="$$duplica" id="duplica">
+    <input type="hidden" name="operazione" value="$$operazione"
+      id="operazione">
+    <div id="pagina" class="colonnaUnica">
+      <div id="intestazione##pathProvincia">
+        $$header
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li>
+                <a href="../layout/index.htm"
+                  title="Torna alla pagina principale">home</a>
+              </li>
+              <li class="attivo">
+                gestione anagrafe aziende
+              </li>
+              <li>
+                <a href="#" title="contatti">contatti</a>
+              </li>
+              <li>
+                <a href="#" title="help">help</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div style="clear: left"></div>
+      <!-- CORPO -->
+      <div id="corpo">
+        <div id="Utente">
+          <div id="datiUtente">
+            <strong>utente:</strong> $$utente &nbsp; &nbsp;
+            <strong>ente:</strong> $$ente
+          </div>
+          <div id="chiudisessione">
+            <a href="javascript:logout();">chiudi sessione</a>
+          </div>
+        </div>
+        <hr />
+        <h3>
+          Gestione Anagrafe
+          Aziende&nbsp;&gt;&nbsp;Unit&agrave;
+          vitate&nbsp;&gt;&nbsp;Inserisci
+          <span class="helpFuori"> <a href="#"> <span
+              class="alt">[help]</span> </a> </span>
+        </h3>
+        <hr />
+        <div class="box">
+          <div class="menuSX1">
+            <ul>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <li>
+                <a href="../layout/elencoAziendeRapLegale.htm">Elenco
+                  Aziende</a>
+              </li>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <!-- @@blkRicercaAzienda-->
+              <li>
+                <a href="../layout/ricerca.htm">Ricerche</a>
+              </li>
+              <!-- @@blkRicercaAzienda-->
+              <!-- @@blkNuova -->
+              <li>
+                <a href="../layout/nuovaAziendaAnagrafica.htm">Nuova
+                  Azienda</a>
+              </li>
+              <!-- @@blkNuova -->
+              <!-- @@blkNuovaIscrizione -->
+              <li>
+                <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+              </li>
+              <!-- @@blkNuovaIscrizione -->
+            </ul>
+          </div>
+          <div class="menuSX">
+            <ul>
+              <li>
+                <a href="../layout/anagrafica.htm">Anagrafica</a>
+              </li>
+              <!-- @@blkAziendeCollegate -->
+              <li>
+                <a href="../layout/aziendeCollegate.htm">$$aziendeCollegateLabel</a>
+              </li>
+              <!-- @@blkAziendeCollegate -->
+              <!-- @@blkSincronizzaFascicolo -->
+               <li>
+               	<a href="../layout/sincronizzaFascicolo.htm">Sincronizza fascicolo</a>
+               </li>
+              <!-- @@blkSincronizzaFascicolo -->
+              <!-- @@blkSoggettiCollegati -->
+              <li>
+                <a href="../layout/contitolari.htm">Soggetti
+                  collegati</a>
+              </li>
+              <!-- @@blkSoggettiCollegati -->
+              <!-- @@blkContiCorrenti -->
+              <li>
+                <a href="../layout/conti_correnti.htm">Conti
+                  Correnti</a>
+              </li>
+              <!-- @@blkContiCorrenti -->
+              <!-- @@blkUnitaProduttive -->
+              <li>
+                <a href="../layout/sedi.htm">Unit&agrave; produttive</a>
+              </li>
+              <!-- @@blkUnitaProduttive -->
+              <!-- @@blkTerreni -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniParticellareElenco.htm">Terreni</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		            <a href="../layout/riepiloghi.htm">Terreni</a>
+		            <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkTerreni -->
+              <!-- @@blkUnitaVitate -->
+              <li>
+                <!-- @@blkLinkElenco -->
+                <a href="../layout/terreniUnitaArboreeElenco.htm" class="on">Unit&agrave; Vitate</a>
+                <!-- @@blkLinkElenco -->
+                <!-- @@blkLinkRiepiloghi -->
+                <a href="../layout/riepiloghiUnitaArboree.htm" class="on">Unit&agrave; Vitate</a>
+                <!-- @@blkLinkRiepiloghi -->               
+                <ul>
+                  <li>
+                    <a href="#">inserisci</a>
+                  </li>
+                </ul>                  
+              </li>
+              <!-- @@blkUnitaVitate -->
+              <!-- @@blkFabbricati -->
+              <li>
+                <a href="../layout/fabbricati.htm">Fabbricati e
+                  Strutture</a>
+              </li>
+              <!-- @@blkFabbricati -->
+              <!-- @@blkAllevamenti -->
+              <li>
+                <a href="../layout/allevamenti.htm">Allevamenti</a>
+              </li>
+              <!-- @@blkAllevamenti -->
+              <!-- @@blkManodopera -->
+              <li>
+                <a href="../layout/manodopera.htm">Manodopera</a>
+              </li>
+              <!-- @@blkManodopera -->
+              <!-- @@blkMotoriAgricoli -->
+              <li>
+                <a href="../layout/motori_agricoli_incarico.htm">Macchine agricole</a>
+              </li>
+              <!-- @@blkMotoriAgricoli -->
+              <!-- @@blkDiritti -->
+              <li>
+                <a href="../layout/diritti.htm">Diritti di
+                  produzione</a>
+              </li>
+              <!-- @@blkDiritti -->
+              <!-- @@blkAttestazioni -->
+              <li>
+                <a href="../layout/attestazioniDettaglio.htm">Dichiarazioni</a>
+              </li>
+              <!-- @@blkAttestazioni -->
+              <!-- @@blkDichiarazioniConsistenza -->
+              <li>
+                <a href="../layout/dichiarazioneConsistenza.htm">Validazioni</a>
+              </li>
+              <!-- @@blkDichiarazioniConsistenza -->
+              <!-- @@blkDocumenti -->
+              <li>
+                <a href="../layout/documentiElenco.htm">Documenti</a>
+              </li>
+              <!-- @@blkDocumenti -->
+              <!-- @@blkFascicoloDematerializzato -->
+              <li>
+                <a href="../layout/fascicoloDematerializzato.htm">Fascicolo<br>elettronico</a>
+              </li>
+              <!-- @@blkFascicoloDematerializzato -->
+              <!-- @@blkGestioneNotifiche -->
+              <li>
+                <a href="../layout/notifiche.htm">Notifiche</a>
+              </li>
+              <!-- @@blkGestioneNotifiche -->
+              <!-- @@blkComunicazione10R -->
+              <li>
+                <a href="../layout/comunicazione10R_dettaglio.htm">Comunicazione
+                  10/R</a>
+              </li>
+              <!-- @@blkComunicazione10R -->
+              <!-- @@blkPratiche -->
+              <li>
+                <a href="../layout/pratiche.htm">Pratiche</a>
+              </li>
+              <!-- @@blkPratiche -->
+              <!-- @@blkStampaFascicolo -->
+              <li>
+                <a href="../layout/scelta_stampa.htm">Stampe</a>
+              </li>
+              <!-- @@blkStampaFascicolo -->
+			  <li><a href="../layout/strumenti.htm">Strumenti</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr />
+        <div id="contenuto">
+          <div id="intesta">
+            <p class="$$aziendaIntestazione" title="$$tooltipIntestazione" >
+              $$CUAAIntestazione  $$denominazioneIntestazione
+            </p>
+          </div>
+          <table
+            summary="Tabella contenente i filtri di ricerca della particella da associare all'unità arborea"
+            id="filtro">
+            <caption>
+              Particella
+            </caption>
+            <tr>
+              <th>
+                <label for="provincia">
+                  Provincia
+                </label>
+              </th>
+              <td>
+                <input name="siglaProvincia" type="text" class="due"
+                  id="siglaProvincia" value="$$siglaProvincia"
+                  maxlength="2" />
+              </td>
+              <th>
+                <label for="comune">
+                  Comune
+                </label>
+              </th>
+              <td>
+                <input name="descComune" type="text" class="trenta"
+                  id="descComune" value="$$descComune" />
+              </td>
+              <td colspan="3">
+                <div class="azioni">
+                  <a
+                    href="javascript: popupComune('../layout/sceltaComune.htm', 'scegliComune', '600', '300', 'yes', document.forms[0].siglaProvincia.value, document.forms[0].descComune.value, 'insParticella', 'territoriale');">cerca</a>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th scope="col">
+                <label for="sezione">
+                  <acronym title="Sezione">Sz.</acronym>
+                </label>
+              </th>
+              <td scope="col">
+                <input type="text" id="sezione" name="sezione"
+                  value="$$sezione" class="textbreve" maxlength="1" />
+              </td>
+              <th scope="col">
+                <label for="foglio">
+                  <acronym title="Foglio">Fgl.</acronym>
+                </label>
+              </th>
+              <td scope="col">
+                <input type="text" id="foglio" name="foglio"
+                  value="$$foglio" class="textbreve" maxlength="4" />
+              </td>
+              <th scope="col">
+                <label for="particella">
+                  <acronym title="Particella">Part.</acronym>
+                </label>
+              </th>
+              <td scope="col">
+                <input type="text" id="particella" name="particella"
+                  value="$$particella" class="textbreve" maxlength="5" />
+              </td>
+              <td scope="col">
+                <div class="azioni">
+                  <a
+                    href="javascript: newWindowSubmit('../layout/popCercaParticelleInsUnar.htm', 'UV', '600', '300', 'yes');"
+                    title="Cerca particelle - Attenzione: questo link si apre in una nuova finestra">cerca</a>
+                </div>
+              </td>
+            </tr>
+          </table>
+          <table id=dettaglio>
+            <tr>
+              <th class="center">
+                Comune
+              </th>
+              <th class="center">
+                <acronym title="Sezione">Sz.</acronym>
+              </th>
+              <th class="center">
+                <acronym title="Foglio">Fgl.</acronym>
+              </th>
+              <th class="center">
+                <acronym title="Particella">Part.</acronym>
+              </th>
+              <th class="center">
+                <acronym title="Subalterno">Sub.</acronym>
+              </th>
+              <th class="center">
+                <acronym title="Superficie catastale">Sup.
+                  Cat.</acronym>
+              </th>
+              <th class="center">
+                <acronym title="Superficie grafica">Sup.
+                  Grafica</acronym>
+              </th>
+            </tr>
+            <tr>
+              <td>
+                $$descComuneUv ($$siglaProvUv)
+              </td>
+              <td>
+                $$sezioneUv
+              </td>
+              <td class="numeridx">
+                $$foglioUv
+              </td>
+              <td class="numeridx">
+                $$particellaUv
+              </td>
+              <td>
+                $$subalternoUv
+              </td>
+              <td class="numeridx">
+                $$supCatastale
+              </td>
+              <td class="numeridx">
+                $$superficieGrafica
+              </td>
+            </tr>
+          </table>
+          
+          <table id="unitaVitata"
+            summary="Tabella contenente i dati dell'unità vitata">
+            <caption>
+              Dati unit&agrave; vitata
+            </caption>
+            <tr>
+              <th class="w15" >
+              </th>
+              <td colspan="3">
+                <select name="idUtilizzo" id="idUtilizzo"
+                  onchange="javascript: calcolaUso();">
+                  <option></option>
+                  <!-- @@blkTipiUsoSuolo -->
+                  <option value="$$idUtilizzo" $$selected>
+                    $$descrizione
+                  </option>
+                  <!-- @@blkTipiUsoSuolo -->
+                </select>&nbsp;Occupazione suolo
+                $$err_idUtilizzo
+                <div>
+                  <select name="idTipoDestinazione" id="idTipoDestinazione"
+                    onchange="javascript: calcolaUso();"  $$disabledVarieta>
+                    <option value=""></option>
+                    <!-- @@blkTipiDestinazione -->
+                    <option value="$$idTipoDestinazione" $$selected>
+                      $$descrizione
+                    </option>
+                    <!-- @@blkTipiDestinazione -->
+                  </select>&nbsp;Destinazione
+                  $$err_idTipoDestinazione
+                </div>
+                <div>
+                  <select name="idTipoDettaglioUso" id="idTipoDettaglioUso"
+                    onchange="javascript: calcolaUso();"  $$disabledVarieta>
+                    <option value=""></option>
+                    <!-- @@blkTipiDettaglioUso -->
+                    <option value="$$idTipoDettaglioUso" $$selected>
+                      $$descrizione
+                    </option>
+                    <!-- @@blkTipiDettaglioUso -->
+                  </select>&nbsp;Uso
+                  $$err_idTipoDettaglioUso
+                </div>
+                <div>
+                  <select name="idTipoQualitaUso" id="idTipoQualitaUso"
+                    onchange="javascript: calcolaUso();"  $$disabledVarieta>
+                    <option value=""></option>
+                    <!-- @@blkTipiQualitaUso -->
+                    <option value="$$idTipoQualitaUso" $$selected>
+                      $$descrizione
+                    </option>
+                    <!-- @@blkTipiQualitaUso -->
+                  </select>&nbsp;Qualit&agrave;
+                  $$err_idTipoQualitaUso
+                </div>
+                <div>
+                  <select name="idVarieta" id="idVarieta"
+	                  onchange="javascript:calcolaUso();" >
+	                  <option></option>
+	                  <!-- @@blkTipiVarieta -->
+	                  <option value="$$idVarieta" $$selected>
+	                    $$descrizione
+	                  </option>
+	                  <!-- @@blkTipiVarieta -->
+	                </select>&nbsp;Vitigno
+	                $$err_idVarieta
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th class="w15">
+                <label for="impianto">
+                  Data Impianto *
+                </label>
+              </th>
+              <td>
+                <input name="dataImpianto" type="text" class="textmedio"
+                  id="dataImpianto" value="$$dataImpianto" maxlength="10" />
+                &nbsp;gg/mm/aaaa&nbsp;$$err_dataImpianto
+              </td>
+              <th class="w15">
+                <label for="sesto">
+                  Anno riferimento *
+                </label>
+              </th>
+              <td>
+                <input name="annoRiferimento" type="text"
+                  class="textbreve" id="annoRiferimento"
+                  value="$$annoRiferimento" maxlength="4" />
+                &nbsp;$$err_annoRiferimento
+              </td>
+            </tr>
+            <tr>
+              <th class="w15">
+                <label for="sup">
+                  <acronym title="Superficie vitata">Sup. Vit.
+                    *</acronym>
+                </label>
+              </th>
+              <td>
+                <input name="area" type="text" class="textmedio"
+                  id="area" value="$$area" maxlength="10"
+                  onkeyup="javascript:calcolaNumeroCeppi();" />
+                &nbsp;(ha)&nbsp;$$err_area
+              </td>
+              <th class="w15">
+                <label for="dataPrimaProduzione">
+                  Data prima produzione *
+                </label>
+              </th>
+              <td>
+                <input name="dataPrimaProduzione" type="text"
+                  class="textmedio" value="$$dataPrimaProduzione"
+                  maxlength="10">
+                &nbsp;gg/mm/aaaa&nbsp;$$err_dataPrimaProduzione
+              </td>
+            </tr>
+            <tr>
+              <th class="w15">
+              </th>
+              <td>
+              </td>
+              <th class="w15">
+                <label for="dataSovrainnesto">
+                  Data sovrainnesto
+                </label>
+              </th>
+              <td>
+                <input name="dataSovrainnesto" type="text"
+                  class="textmedio" value="$$dataSovrainnesto"
+                  maxlength="10" $$disabledDataSovr>
+                &nbsp;gg/mm/aaaa&nbsp;$$err_dataSovrainnesto
+              </td>
+            </tr>
+            <tr>
+              <th class="w15">
+                <label for="percento">
+                  &#37; Vitigno *
+                </label>
+              </th>
+              <td>
+                <input name="percentualeVitigno" type="text"
+                  class="textbreve" id="percentualeVitigno"
+                  value="$$percentualeVitigno" maxlength="3" />
+                $$err_percentualeVitigno
+              </td>
+              <th class="w15">
+                Presenza altri vitigni *
+              </th>
+              <td>
+                <input type="radio" name="altriVitigni"
+                  id="altriVitigni" value="S" $$checkedS />
+                <label for="s">
+                  SI
+                </label>
+                $$err_altroVitignoS
+                <input type="radio" name="altriVitigni"
+                  id="altriVitigni" value="N" $$checkedN />
+                <label for="n">
+                  NO
+                </label>
+                $$err_altroVitignoN
+              </td>
+            </tr>
+            <tr>
+              <th class="w15">
+                <label for="sesto">
+                  Sesto su fila
+                </label>
+              </th>
+              <td>
+                <input name="sestoSuFila" type="text" class="textbreve"
+                  id="sestoSuFila" value="$$sestoSuFila" maxlength="4"
+                  onkeyup="javascript:calcolaNumeroCeppi();" />
+                &nbsp;
+                <acronym title="centimetri">(cm)</acronym>&nbsp;$$err_sestoSuFila
+              </td>
+              <th class="w15">
+                <label for="sestotra">
+                  Sesto tra file
+                </label>
+              </th>
+              <td>
+                <input name="sestoTraFile" type="text" class="textbreve"
+                  id="sestoTraFile" value="$$sestoTraFile"
+                  maxlength="4"
+                  onkeyup="javascript:calcolaNumeroCeppi();" />
+                &nbsp;
+                <acronym title="centimetri">(cm)</acronym>&nbsp;$$err_sestoTraFile
+              </td>
+            </tr>
+            <tr>
+              <th class="w15">
+                <label for="ceppi">
+                  Numero ceppi
+                </label>
+              </th>
+              <td>
+                <input name="numeroCeppi" type="text" class="textbreve"
+                  id="numeroCeppi" value="$$numeroCeppi" maxlength="6" />
+                $$err_numeroCeppi
+              </td>
+              <th class="w15">
+                <label for="percento">
+                  &#37; Fallanza *
+                </label>
+              </th>
+              <td>
+                <input name="percentualeFallanza" type="text"
+                  class="textbreve" id="percentualeFallanza"
+                  value="$$percentualeFallanza" maxlength="3" />
+                $$err_percentualeFallanza
+              </td>
+            </tr>
+            <tr>
+              <th class="w15">
+                Superficie improduttiva *
+              </th>
+              <td>
+                <input type="radio" name="flagImproduttiva"
+                  id="flagImproduttiva" value="S" $$checkedImproduttivaS />
+                <label for="s">
+                  SI
+                </label>
+                $$err_flagImproduttivaS
+                <input type="radio" name="flagImproduttiva"
+                  id="flagImproduttiva" value="N" $$checkedImproduttivaN />
+                <label for="n">
+                  NO
+                </label>
+                $$err_flagImproduttivaN
+              </td>
+              <th class="w15">
+                Coltura specializzata *
+              </th>
+              <td>
+                <input type="radio" name="colturaSpecializzata"
+                  id="colturaSpecializzata" value="S" $$checkedSiSpec />
+                <label for="s">
+                  SI
+                </label>
+                $$err_colturaS
+                <input type="radio" name="colturaSpecializzata"
+                  id="colturaSpecializzata" value="N" $$checkedNoSpec />
+                <label for="n">
+                  NO
+                </label>
+                $$err_colturaN
+              </td>
+              
+            </tr>
+            <tr>
+              <th class="w15">
+                <label for="allevamenti">
+                  Forma allevamento
+                </label>
+              </th>
+              <td>
+                <select name="idFormaAllevamento"
+                  id="idFormaAllevamento">
+                  <option></option>
+                  <!-- @@blkTipiFormaAllevamento -->
+                  <option value="$$idFormaAllevamento" $$selected>
+                    $$descrizione
+                  </option>
+                  <!-- @@blkTipiFormaAllevamento -->
+                </select>
+                $$err_idFormaAllevamento
+              </td>
+              <th class="w15">
+                Ricaduta *
+              </th>
+              <td>
+                <input type="radio" name="ricaduta" id="ricaduta"
+                  value="S" $$checkedSiRicaduta />
+                <label for="s">
+                  SI
+                </label>
+                $$err_ricadutaS
+                <input type="radio" name="ricaduta" id="ricaduta"
+                  value="N" $$checkedNoRicaduta />
+                <label for="n">
+                  NO
+                </label>
+                $$err_ricadutaN
+              </td>
+            </tr>
+            <tr>
+              <th class="w15">
+                <label for="motivo">
+                  Motivo inserimento *
+                </label>
+              </th>
+              <td colspan ="3" >
+                <select name="idCausaleModifica" id="idCausaleModifica">
+                  <option></option>
+                  <!-- @@blkTipiCausaliModifica -->
+                  <option value="$$idCausaleModifica" $$selected>
+                    $$descrizione
+                  </option>
+                  <!-- @@blkTipiCausaliModifica -->
+                </select>
+                $$err_idCausaleModifica
+              </td>
+            </tr>
+          </table>
+          <table id="elencoVitigni" width="100%" border="0"
+            cellspacing="3" cellpadding="0">
+            <caption>
+              Altri vitigni
+            </caption>
+            <tr>
+              <td colspan="4">
+                 <div class="azioni"><input name="inserisci" type="button" value="inserisci"
+                  class="inputPulsante highlighted"
+                  onclick="javascript: goToOperazione(document.forms[0].action, document.forms[0], 'aggiungi');" /></div> 
+              </td>
+            </tr>
+            <!-- @@blkAltriVitigni -->
+            <tr>
+              <th class="radio"></th>
+              <th class="radio"></th>
+              <th scope="col" class="center">
+                Vitigno
+              </th>
+              <th scope="col" class="center">
+                Percentuale
+              </th>
+            </tr>
+            <!-- @@blkElencoAltriVitigni -->
+            <tr>
+              <td class="radio">
+                <input type="checkbox" name="numeroAltriVitigni"
+                  value="$$numeroAltriVitigni" />
+                <input type="hidden" name="contatore"
+                  value="$$contatore" />
+              </td>
+              <td class="radio">
+                <a href="javascript: cleanRowValue($$contatore);"
+                  class="cancella"></a>
+              </td>
+              <td>
+                <label for="Vitigno1" class="alt">
+                  Vitigno
+                </label>
+                <select name="idVarietaVitigno" id="idVarietaVitigno">
+                  <option></option>
+                  <!-- @@blkVarietaVitigno -->
+                  <option value="$$idVarietaVitigno" $$selected>
+                    $$descrizione
+                  </option>
+                  <!-- @@blkVarietaVitigno -->
+                </select>
+                $$err_idVarietaVitigno
+              </td>
+              <td>
+                <label for="Percentuale1" class="alt">
+                  Percentuale
+                </label>
+                <input type="text" name="percentuale" id="percentuale"
+                  class="textmedio" value="$$percentuale" maxlength="3" />
+                $$err_percentuale
+              </td>
+            </tr>
+            <!-- @@blkElencoAltriVitigni -->
+            <tr>
+              <td colspan="4"> <div class="azioni">
+                <input name="elimina" type="button" value="elimina"
+                  class="inputPulsante"
+                  onclick="javascript: goToOperazione(document.forms[0].action, document.forms[0], 'elimina');" /></div>
+              </td>
+            </tr>
+            <!-- @@blkAltriVitigni -->
+          </table>
+          
+          <table id="datiVino" width="100%" border="0"
+            cellspacing="3" cellpadding="0">
+            <caption>
+              Dati Vino
+            </caption>
+            <tr>
+              <th scope="row">
+                <label for="Categoria">
+                  Idoneita'
+                </label>
+              </th>
+              <td>
+                <select name="idTipologiaVino" id="idTipologiaVino"
+                  onchange="javascript:cambiaTipologiaVino()">
+                  <option></option>
+                  <!-- @@blkTipologiaVino -->
+                  <option value="$$idTipologiaVino" $$selected>
+                    $$descrizione
+                  </option>
+                  <!-- @@blkTipologiaVino -->
+                </select>
+                <!-- @@blkTipologiaHiddenVino -->
+                <input type="hidden" id="idTipologiaVinoDoc"
+                  name="idTipologiaVinoDoc" value="$$idTipologiaVinoDoc" />
+                <input type="hidden" id="hiddenCodiceMipaf"
+                  name="hiddenCodiceMipaf" value="$$hiddenCodiceMipaf" />
+                <input type="hidden" id="hiddenFlagGestioneVigna"
+                  name="hiddenFlagGestioneVigna" value="$$hiddenFlagGestioneVigna" />
+                <input type="hidden" id="hiddenProvVignaRegionale"
+                  name="hiddenProvVignaRegionale" value="$$hiddenProvVignaRegionale" />
+                <input type="hidden" id="hiddenFlagGestioneEtichetta"
+                  name="hiddenFlagGestioneEtichetta" value="$$hiddenFlagGestioneEtichetta" />
+                <!-- @@blkTipologiaHiddenVino -->
+                $$err_idTipologiaVino
+              </td>
+              <th scope="row">
+                <label for="anno">
+                  Anno idoneita'
+                </label>
+              </th>
+              <td colspan="3">
+                <input type="text" name="annoIscrizioneAlbo"
+                  id="annoIscrizioneAlbo" value="$$annoIscrizioneAlbo"
+                  class="textmedio" maxlength="4" />
+                (aaaa) $$err_annoIscrizioneAlbo
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">
+                Provincia
+              </th>
+              <td>
+                $$provinciaCCIAA
+                <input type="hidden" name="provinciaCCIAA"
+                  id="provinciaCCIAA" value="$$provinciaCCIAA" />
+              </td>
+              <th scope="row">
+                <label for="Matricola">
+                  Matricola
+                </label>
+              </th>
+              <td>
+                <input type="text" name="matricolaCCIAA"
+                  id="matricolaCCIAA" class="textmediolungo"
+                  value="$$matricolaCCIAA" maxlength="15" />
+                $$err_matricolaCCIAA
+              </td>
+              <th scope="row">
+                <label for="vinoDoc">
+                  Vini Doc
+                </label>
+              </th>
+              <td>
+                <input type="checkbox" id="checkVinoDoc"
+                  name="checkVinoDoc" disabled $$checkedVinoDoc value="" />
+                <input type="hidden" id="vinoDoc" name="vinoDoc"
+                  value="$$vinoDoc" />
+              </td>              
+            </tr>
+            <tr>
+              <th scope="row">
+                <label for="mipaf">
+                  Codice MIPAF
+                </label>
+              </th>
+              <td>
+                <span id="idCodiceMipaf">$$codiceMipaf</span>
+                <input type="hidden" id="codiceMipaf" name="codiceMipaf"
+                  value="$$codiceMipaf" />
+              </td>
+              <th scope="row">
+                <label for="menzioneGeografica">
+                  Menzione geografica
+                </label>
+              </th>
+              <td>
+                <span id="idMenzioneGeografica">$$menzioneGeografica</span>
+              </td>
+              <th scope="row">
+                <label for="annotazioneEtichetta">
+                  Annotazioni in etichetta
+                </label>
+              </th>
+              <td>
+                <textarea name="annotazioneEtichetta"
+                  id="annotazioneEtichetta" cols="40" rows="5" $$readAnnotazioneEtichetta >$$annotazioneEtichetta</textarea>
+                $$err_annotazioneEtichetta
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <label for="vigna">
+                  Vigna
+                </label>
+              </th>
+              <td>
+                <textarea name="vigna"
+                  id="vigna" cols="40" rows="5" $$readVigna >$$vigna</textarea>
+                $$err_vigna
+              </td>
+              <th scope="row">
+                <label for="provVignaRegionale">
+                  Vigna elenco regionale
+                </label>
+              </th>
+              <td colspan="3" >
+                <span id="idProvVignaRegionale">$$provVignaRegionale</span>
+              </td>
+            </tr>
+          </table>
+          
+          
+          <p class="nota">
+            Tutte le superfici sono espresse in ettari (ha)
+          </p>
+          <div class="pulsanti" id="operazioni">
+            <div class="sin">
+              <input name="conferma" type="submit"
+                value="$$valuePulsante" class="inputPulsante" />
+              <!-- @@blkConfermaPA -->
+              <input name="confermaPA" type="submit"
+                value="conferma" class="inputPulsante highlighted" />
+              <!-- @@blkConfermaPA -->
+            </div>
+            <div class="des">
+              <input name="annulla" type="submit" value="annulla"
+                class="inputPulsante annulla" />
+            </div>
+          </div>
+          <script language="javascript1.2">evento()</script>
+        </div>
+        
+        <!-- @@blkErrore -->
+        <p class="errore">
+          $$messaggioErrore
+        </p>
+        <!-- @@blkErrore -->
+      </div>
+  
+  <hr />
+  $$footer

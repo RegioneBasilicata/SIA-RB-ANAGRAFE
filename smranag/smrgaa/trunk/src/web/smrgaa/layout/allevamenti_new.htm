@@ -1,0 +1,1501 @@
+$$head
+<script src="../js/checktext.js" type="text/javascript"></script>
+<script type="text/javascript" src="../js/messaggistica.js"></script>
+<script type="text/javascript">
+     
+
+	function cercaComune(target,provincia,comune,obiettivo,provenienza) 
+	{
+ 		var w = 640;
+ 		var h = 480;
+ 		var winl = (screen.width - w) / 2;
+ 		var wint = (screen.height - h) / 2;
+ 		if(comune == '' && provincia == '') 
+ 		{
+   		alert('Inserire almeno in parte il comune o la provincia');
+ 		}
+ 		else 
+ 		{
+   		if(mappaOggetti(comune) && mappaOggetti(provincia)) 
+   		{
+   			winprops =    'height='+h+',width='+w+',top='+wint+',left='+winl+',scrollbars=yes,resizable';
+   			win = window.open('', target, winprops);
+   			if(parseInt(navigator.appVersion) >= 4) {
+     			win.window.focus();
+   			}
+   			document.form2.comune.value = comune;
+   			document.form2.provincia.value = provincia;
+   			document.form2.obiettivo.value = obiettivo;
+   			document.form2.provenienza.value = provenienza;
+   			document.form2.target = target;
+   			document.form2.submit();
+   		}
+ 		}
+	}
+      
+      
+      
+  // Funzione js per il calcolo del volume (sup. lettiera permanente per altezza)
+  function calcolaVolume() 
+  {
+      var valore1=document.form1.superficieLettieraPermanente.value;
+      var valore2=document.form1.altezza.value;
+      var valore2;
+      var totale='';
+      
+      if (valore1=='' || valore2=='')
+        totale='';
+      else
+      {
+        if(IsNumeric(valore1) && IsNumeric(valore2) && valore1 != '' && valore2 != '')
+        {
+          totale = parseFloat(valore1.replace(',', '.')) * parseFloat(valore2.replace(',', '.'));
+          //Le operazioni seguenti servono ad arrotondare
+          totale = Math.round(totale * 10000);
+          totale = ''+(totale / 10000);
+          totale=totale.replace('.',',');
+        }
+      }
+      document.getElementById('volume').innerHTML=totale;
+  }
+  
+  function abilitaAltezza() 
+  {
+    superficieLettieraPermanente=document.form1.superficieLettieraPermanente.value;
+    if (superficieLettieraPermanente && superficieLettieraPermanente!=null) 
+    {
+      document.form1.altezza.readOnly=false;
+      document.form1.altezza.value='##altezzaDefault';
+      calcolaVolume();
+    }
+    else
+    {
+      document.form1.altezza.value='';
+      document.form1.altezza.readOnly=true;
+    }
+  }
+      
+      
+
+  	
+
+	function onChangeCombo(operazione) 
+  {
+		document.form1.operazione.value = operazione;
+    document.form1.submit();
+	}
+  
+  function calcolaStabulazione() 
+  {
+    document.form1.operazione.value = 'calcolaStabulazione';
+    document.form1.submit();
+  }
+  
+  
+  function calcoloStabulazione(operazione,id) 
+  {
+    if (document.form1.quantitaStab.length)
+    {
+      
+      document.form1.palabile[id].value='';
+      document.form1.nonPalabile[id].value='';
+      document.getElementsByName("escretoAlPascolo")[id].innerHTML='';
+      document.getElementsByName("permanenzaStalla")[id].innerHTML='';
+      document.getElementsByName("azotoPalabile")[id].innerHTML='';
+      document.getElementsByName("azotoNonPalabile")[id].innerHTML='';
+      document.getElementsByName("palabileTAnno")[id].innerHTML='';
+      if (operazione=='quantitaStab') return;
+      document.form1.quantitaStab[id].value='';  
+    }
+    else
+    {
+      
+      document.form1.palabile.value='';
+      document.form1.nonPalabile.value='';
+      document.getElementById("escretoAlPascolo").innerHTML='';
+      document.getElementById("permanenzaStalla").innerHTML='';
+      document.getElementById("azotoPalabile").innerHTML='';
+      document.getElementById("azotoNonPalabile").innerHTML='';    
+      document.getElementById("palabileTAnno").innerHTML='';         
+      if (operazione=='quantitaStab') return;
+      document.form1.quantitaStab.value='';  
+    }
+  }
+  
+  function pulisciStabulazione(idSottocategoria) 
+  {
+    
+    if(document.form1.quantitaStab != null)
+    {
+	    if (document.form1.quantitaStab.length)
+	    {
+	      //vettore di elementi
+	      size=document.form1.quantitaStab.length;
+	      for(i=0;i<size;i++)
+	      {
+	        if (document.form1.idCatSottocatStab[i].value==idSottocategoria)
+	        {
+	          //document.form1.quantitaStab[i].value='';
+	          document.form1.palabile[i].value='';
+	          document.form1.nonPalabile[i].value='';
+	          document.getElementsByName("escretoAlPascolo")[i].innerHTML='';
+	          document.getElementsByName("permanenzaStalla")[i].innerHTML='';
+	          document.getElementsByName("azotoPalabile")[i].innerHTML='';
+            document.getElementsByName("azotoNonPalabile")[i].innerHTML='';
+            document.getElementsByName("palabileTAnno")[i].innerHTML='';   
+	          
+	        }
+	      }
+	    }
+	    else
+	    {
+	      //un solo elemento
+	      if (document.form1.idCatSottocatStab.value==idSottocategoria)
+	      {
+	        //document.form1.quantitaStab.value='';
+	        document.form1.palabile.value='';
+	        document.form1.nonPalabile.value='';
+	        document.getElementById("escretoAlPascolo").innerHTML='';
+	        document.getElementById("permanenzaStalla").innerHTML='';
+	        document.getElementById("azotoPalabile").innerHTML='';
+          document.getElementById("azotoNonPalabile").innerHTML='';    
+          document.getElementById("palabileTAnno").innerHTML=''; 
+	      }
+	    }
+	  }
+  }
+        
+  
+  
+  function inserisciConsistenza() 
+  {
+      document.form1.operazione.value = "inserisciConsistenza";
+      document.form1.submit();
+  }
+  
+  function cancellaConsistenza() 
+  {
+      document.form1.operazione.value = "cancellaConsistenza";
+      document.form1.submit();
+  }
+  
+  function inserisciStabulazione() 
+  {
+      document.form1.operazione.value = "inserisciStabulazione";
+      document.form1.submit();
+  }
+  
+  function cancellaStabulazione() 
+  {
+      document.form1.operazione.value = "cancellaStabulazione";
+      document.form1.submit();
+  }
+  
+		
+
+	function caricaProvAndCom() {
+  		document.form1.operazione.value = 'caricaProvAndCom';
+  		document.form1.submit();
+	}
+	
+	
+	function caricaOrientamenti() 
+  {
+    document.form1.operazione.value = 'caricaOrientamenti';
+    document.form1.submit();
+  }
+  
+  function caricaCosman() 
+  {
+    document.form1.operazione.value = 'caricaCosman';
+    document.form1.submit();
+  }
+	
+	// Funzione js per calcolare il peso totale
+	function calcolaTotalePeso(indice) 
+  {
+    var valore1;
+    var valore2;
+    var totale='';
+    if (document.form1.capiTab.length)
+    {
+      valore1=document.form1.capiTab[indice].value;
+      if(valore1 == 0)
+      {
+        valore1=document.form1.capiProprietaTab[indice].value;
+      }
+      valore2=document.form1.pesoVivoTab[indice].value;
+    }
+    else
+    {
+      valore1=document.form1.capiTab.value;
+      if(valore1 == 0)
+      {
+        valore1=document.form1.capiProprietaTab.value;
+      }
+      valore2=document.form1.pesoVivoTab.value;
+    }
+    
+    if (valore1=='' || valore2=='')
+      totale='';
+    else
+    {
+			if(IsNumeric(valore1) && IsNumeric(valore2) && valore1 != '' && valore2 != '')
+      {
+				totale = parseFloat(valore1.replace(',', '.')) * parseFloat(valore2.replace(',', '.'));
+        //Le operazioni seguenti servono ad arrotondare
+        totale = Math.round(totale * 10);
+        totale = ''+(totale / 10);
+        totale=totale.replace('.',',');
+      }
+      else totale='0';
+    }
+    document.getElementById('pesoVivoTotTab'+indice).innerHTML=totale;
+    
+    calcolaAzotoTotale(indice, totale);
+	}
+	
+	
+	function calcolaTotalePesoProprieta(indice) 
+  {
+    var valore1;
+    var valore2;
+    var totale='';
+    
+    if (document.form1.capiProprietaTab.length)
+    {
+      valore1=document.form1.capiProprietaTab[indice].value;
+      valore2=document.form1.pesoVivoTab[indice].value;
+    }
+    else
+    {
+      valore1=document.form1.capiProprietaTab.value;
+      valore2=document.form1.pesoVivoTab.value;
+    }
+    
+    if (valore1=='' || valore2=='')
+      totale='';
+    else
+    {
+      if(IsNumeric(valore1) && IsNumeric(valore2) && valore1 != '' && valore2 != '')
+      {
+        totale = parseFloat(valore1.replace(',', '.')) * parseFloat(valore2.replace(',', '.'));
+        //Le operazioni seguenti servono ad arrotondare
+        totale = Math.round(totale * 10);
+        totale = ''+(totale / 10);
+        totale=totale.replace('.',',');
+      }
+      else totale='NaN';
+    }
+    document.getElementById('pesoVivoTotTab'+indice).innerHTML=totale;
+    
+    calcolaAzotoTotale(indice, totale);
+  }
+	
+	function calcolaAzotoTotale(indice, pesoVivoTotTab) 
+  {
+    var valore1 = pesoVivoTotTab;
+    var valore2;
+    var totale='';
+    if (document.form1.pesoVivoAzotoTab.length)
+    {
+      valore2=document.form1.pesoVivoAzotoTab[indice].value;
+    }
+    else
+    {
+      valore2=document.form1.pesoVivoAzotoTab.value;
+    }
+    
+    if (valore1=='' || valore2=='')
+      totale='';
+    else
+    {
+      if(IsNumeric(valore1) && IsNumeric(valore2) && valore1 != '' && valore2 != '')
+      {
+        totale = parseFloat(valore1.replace(',', '.')) * parseFloat(valore2.replace(',', '.'));
+        //Le operazioni seguenti servono ad arrotondare
+        totale = ''+(totale / 1000);
+        totale=totale.replace('.',',');
+      }
+      else totale='0';
+    }
+    document.getElementById('azotoZootecnicoTab'+indice).innerHTML=totale;
+  }
+	
+	// Funzione che mi permette di controllare se un campo è numerico
+	function IsNumeric(sText) {
+    if(!sText)
+      return false;
+		var ValidChars = "0123456789.,";
+		var IsNumber=true;
+		var Char;
+		for(i = 0; i < sText.length && IsNumber == true; i++) { 
+  			Char = sText.charAt(i); 
+  			if(ValidChars.indexOf(Char) == -1) {
+     			IsNumber = false;
+     		}
+  		}
+		return IsNumber;
+	}
+	
+	var codFiscDetArray = new Array();
+  @@blkCodFiscDet
+    codFiscDetArray[$$indexDet] = '$$codFiscDetVal';
+  @@blkCodFiscDet
+  
+  var codFiscPropArray = new Array();
+  @@blkCodFiscProp
+    codFiscPropArray[$$indexProp] = '$$codFiscPropVal';
+  @@blkCodFiscProp
+	
+	function duplicaCapi(indice) 
+  {
+    var codFiscDet = document.form1.codiceFiscaleDetentore.value;
+    var codFiscProp = document.form1.codiceFiscaleProprietario.value;
+    
+    
+    var trovatoDet = 'N';
+    for(j=0;j<codFiscDetArray.length;j++)
+    {
+      if((codFiscDet != '') && (codFiscDet == codFiscDetArray[j]))
+      {
+        trovatoDet = 'S';
+      }
+    }
+    
+    var trovatoProp = 'N';
+    for(j=0;j<codFiscPropArray.length;j++)
+    {
+      if((codFiscProp != '') && (codFiscProp == codFiscPropArray[j]))
+      {
+        trovatoProp = 'S';
+      }
+    }   
+    
+    
+    if((codFiscDet != '') && (codFiscProp != '')
+      && ((codFiscProp == codFiscDet)
+        || ((trovatoDet == 'S') && (trovatoProp == 'S'))))
+    {
+	    if (document.form1.capiTab.length)
+	    {
+	      document.form1.capiProprietaTab[indice].value=document.form1.capiTab[indice].value;
+	    }
+	    else
+	    {
+	      document.form1.capiProprietaTab.value=document.form1.capiTab.value;
+	    }
+	  }
+  }
+  
+  function duplicaCapiProprieta(indice) 
+  {
+    var codFiscDet = document.form1.codiceFiscaleDetentore.value;
+    var codFiscProp = document.form1.codiceFiscaleProprietario.value;
+    
+    var trovatoDet = 'N';
+    for(j=0;j<codFiscDetArray.length;j++)
+    {
+      if((codFiscDet != '') && (codFiscDet == codFiscDetArray[j]))
+      {
+        trovatoDet = 'S';
+      }
+    }
+    
+    var trovatoProp = 'N';
+    for(j=0;j<codFiscPropArray.length;j++)
+    {
+      if((codFiscProp != '') && (codFiscProp == codFiscPropArray[j]))
+      {
+        trovatoProp = 'S';
+      }
+    }
+    
+    
+    
+    if((codFiscDet != '') && (codFiscProp != '')
+      && ((codFiscProp == codFiscDet)
+        || ((trovatoDet == 'S') && (trovatoProp == 'S'))))
+    {
+      if (document.form1.capiTab.length)
+      {
+        document.form1.capiTab[indice].value=document.form1.capiProprietaTab[indice].value;
+        calcolaTotalePesoProprieta(indice);
+      }
+      else
+      {
+        document.form1.capiTab.value=document.form1.capiProprietaTab.value;
+        calcolaTotalePesoProprieta(indice);
+      }
+    }
+  }
+
+	</script>
+</head>
+<!-- $$err_cancellaConsistenza -->
+<!-- $$err_calcolaStabulazione -->
+<!-- $$err_cancellaStabulazione -->
+<!-- $$err_descrizioneAltriTrattam -->
+<!-- $$err_flagAcqueEffluenti -->
+<!-- $$err_superficieLettieraPermanente -->
+<!-- $$err_altezza -->
+<body id="homeIndice" onLoad="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+  <form name="form2" id="form2" method="post"
+    action="../layout/sceltaComune.htm">
+    <input type="hidden" name="obiettivo" value="">
+    <input type="hidden" name="provincia" size="6" value="$$provincia">
+    <input type="hidden" name="comune" size="6" value="$$comune">
+    <input type="hidden" name="provenienza" value="$$provenienza">
+  </form>
+  <form name="form1" id="form1" method="post"
+    action="../layout/allevamenti_new.htm">
+    <div id="pagina" class="colonnaUnica">
+      <input type="hidden" name="operazione">
+      <input type="hidden" name="trattamentoIdSelezionato">
+      <input type="hidden" name="descCategoria" value="##descCategoria">
+      <input type="hidden" name="flagStallaPascolo" value="##flagStallaPascolo">
+      <input type="hidden" name="regimeInserisciAllevamento" id="regimeInserisciAllevamento" value="regimeInserisciAllevamento">
+      <!-- INTESTAZIONE -->
+      <div id="intestazione##pathProvincia">
+        <!--#include virtual="/ris/include/smrgaaweb/header.html" -->
+        <!-- menu di navigazione-->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li>
+                <a href="../layout/index.htm"
+                  title="Torna alla pagina principale">home</a>
+              </li>
+              <li class="attivo">
+                gestione anagrafe aziende
+              </li>
+              <li>
+                <a href="#" title="contatti">contatti</a>
+              </li>
+              <li>
+                <a href="#" title="help">help</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div style="clear: left"></div>
+      <!-- CORPO -->
+      <div id="corpo">
+        <div id="Utente">
+          <div id="datiUtente">
+            <strong>utente:</strong>$$utente&nbsp;&nbsp;
+            <strong>ente:</strong>$$ente
+          </div>
+          <div id="chiudisessione">
+            <a href="javascript: logout();">chiudi sessione</a>
+          </div>
+        </div>
+        <hr />
+        <!--PRIMA COLONNA -->
+        <h3>
+          Gestione Anagrafe
+          Aziende&nbsp;&gt;&nbsp;Allevamenti&nbsp;&gt;&nbsp;Inserisci
+          <span class="helpFuori"> <a href="#"> <span
+              class="alt">[help]</span> </a> </span>
+        </h3>
+        <hr />
+        <div class="box">
+          <div class="menuSX1">
+            <ul>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <li>
+                <a href="../layout/elencoAziendeRapLegale.htm">Elenco
+                  Aziende</a>
+              </li>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <!-- @@blkRicercaAzienda-->
+              <li>
+                <a href="../layout/ricerca.htm">Ricerche</a>
+              </li>
+              <!-- @@blkRicercaAzienda-->
+              <!-- @@blkNuova -->
+              <li>
+                <a href="../layout/nuovaAziendaAnagrafica.htm">Nuova
+                  Azienda</a>
+              </li>
+              <!-- @@blkNuova -->
+              <!-- @@blkNuovaIscrizione -->
+		          <li>
+		            <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+		          </li>
+		          <!-- @@blkNuovaIscrizione -->
+            </ul>
+          </div>
+          <div class="menuSX">
+            <ul>
+              <li>
+                <a href="../layout/anagrafica.htm">Anagrafica</a>
+              </li>
+              <!-- @@blkAziendeCollegate -->
+              <li>
+                <a href="../layout/aziendeCollegate.htm">$$aziendeCollegateLabel</a>
+              </li>
+              <!-- @@blkAziendeCollegate -->
+              <!-- @@blkSincronizzaFascicolo -->
+              	  <li>
+                	<a href="../layout/sincronizzaFascicolo.htm">Sincronizza fascicolo</a>
+              	  </li>
+              <!-- @@blkSincronizzaFascicolo -->
+              <!-- @@blkSoggettiCollegati -->
+              <li>
+                <a href="../layout/contitolari.htm">Soggetti
+                  collegati</a>
+              </li>
+              <!-- @@blkSoggettiCollegati -->
+              <!-- @@blkContiCorrenti -->
+              <li>
+                <a href="../layout/conti_correnti.htm">Conti
+                  Correnti</a>
+              </li>
+              <!-- @@blkContiCorrenti -->
+              <!-- @@blkUnitaProduttive -->
+              <li>
+                <a href="../layout/sedi.htm">Unit&agrave; produttive</a>
+              </li>
+              <!-- @@blkUnitaProduttive -->
+              <!-- @@blkTerreni -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniParticellareElenco.htm">Terreni</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		            <a href="../layout/riepiloghi.htm">Terreni</a>
+		            <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkTerreni -->
+		          <!-- @@blkUnitaVitate -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniUnitaArboreeElenco.htm">Unit&agrave; Vitate</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		              <a href="../layout/riepiloghiUnitaArboree.htm">Unit&agrave; Vitate</a>
+		              <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkUnitaVitate -->
+              <!-- @@blkFabbricati -->
+              <li>
+                <a href="../layout/fabbricati.htm">Fabbricati e Strutture</a>
+              </li>
+              <!-- @@blkFabbricati -->
+              <!-- @@blkAllevamenti -->
+              <li>
+                <a href="../layout/allevamenti.htm" class="on">Allevamenti</a>
+                <ul>
+                  <li>
+                    <a href="#">inserisci</a>
+                  </li>
+                </ul>
+              </li>
+              <!-- @@blkAllevamenti -->
+              <!-- @@blkManodopera -->
+              <li>
+                <a href="../layout/manodopera.htm">Manodopera</a>
+              </li>
+              <!-- @@blkManodopera -->
+              <!-- @@blkMotoriAgricoli -->
+              <li>
+                <a href="../layout/motori_agricoli_incarico.htm">Macchine agricole</a>
+              </li>
+              <!-- @@blkMotoriAgricoli -->
+              <!-- @@blkDiritti -->
+              <li>
+                <a href="../layout/diritti.htm">Diritti di
+                  produzione</a>
+              </li>
+              <!-- @@blkDiritti -->
+              <!-- @@blkAttestazioni -->
+              <li>
+                <a href="../layout/attestazioniDettaglio.htm">Dichiarazioni</a>
+              </li>
+              <!-- @@blkAttestazioni -->
+              <!-- @@blkDichiarazioniConsistenza -->
+              <li>
+                <a href="../layout/dichiarazioneConsistenza.htm">Validazioni</a>
+              </li>
+              <!-- @@blkDichiarazioniConsistenza -->
+              <!-- @@blkDocumenti -->
+              <li>
+                <a href="../layout/documentiElenco.htm">Documenti</a>
+              </li>
+              <!-- @@blkDocumenti -->
+              <!-- @@blkFascicoloDematerializzato -->
+		          <li>
+		            <a href="../layout/fascicoloDematerializzato.htm">Fascicolo<br>elettronico</a>
+		          </li>
+		          <!-- @@blkFascicoloDematerializzato -->
+              <!-- @@blkGestioneNotifiche -->
+              <li>
+                <a href="../layout/notifiche.htm">Notifiche</a>
+              </li>
+              <!-- @@blkGestioneNotifiche -->
+              <!-- @@blkComunicazione10R -->
+                <li>
+                  <a href="../layout/comunicazione10R_dettaglio.htm">Comunicazione 10/R</a>
+                </li>
+              <!-- @@blkComunicazione10R -->
+              <!-- @@blkPratiche -->
+              <li>
+                <a href="../layout/pratiche.htm">Pratiche</a>
+              </li>
+              <!-- @@blkPratiche -->
+              <!-- @@blkStampaFascicolo -->
+              <li>
+                <a href="../layout/scelta_stampa.htm">Stampe</a>
+              </li>
+              <!-- @@blkStampaFascicolo -->
+			  <li><a href="../layout/strumenti.htm">Strumenti</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr />
+        <!-- SECONDA COLONNA -->
+        <div id="contenuto">
+          <div id="intesta">
+            <p class="$$aziendaIntestazione" title="$$tooltipIntestazione" >
+              $$CUAAIntestazione  $$denominazioneIntestazione
+            </p>
+          </div>
+          <table cellspacing="3"
+            summary="Questa tabella contiene i dati del rapporto">
+            <col width="30%" />
+            <col width="70%" />
+            <tr>
+              <th>
+                <label for="denominazioneAllevamento">
+                  Denominazione
+                </label>
+              </th>
+              <td>
+                <input type="text" name="denominazioneAllevamento" id="denominazioneAllevamento"
+                  maxlength="250" value="$$denominazioneAllevamento" class="text" />
+                &nbsp;$$err_denominazioneAllevamento
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="idUTE">
+                  Unit&agrave; produttiva (U.T.E) *
+                </label>
+              </th>
+              <td>
+                <select name="idUTE" id="idUTE" class="textmediolungo"
+                  onChange="javascript: caricaProvAndCom();">
+                  <!-- @@blkComboUTE -->
+                  <option value="$$idUTE" $$selected>
+                    $$UTEDesc
+                  </option>
+                  <!-- @@blkComboUTE -->
+                </select>
+                $$err_idUTE
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="codiceAziendaZootecnica">
+                  Codice azienda zootecnica
+                </label>
+              </th>
+              <td>
+                <input type="text" name="codiceAziendaZootecnica"
+                  id="codiceAziendaZootecnica"
+                  value="$$codiceAziendaZootecnica"
+                  class="textmediolungo" maxlength="8" />
+                $$err_codiceAziendaZootecnica
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="idASL">
+                  A.S.L.
+                </label>
+              </th>
+              <td>
+                <select name="idASL" id="idASL" class="textmediolungo">
+                  <option></option>
+                  <!-- @@blkIdASL -->
+                  <option value="$$idASL" $$selected>
+                    $$ASLDesc
+                  </option>
+                  <!-- @@blkIdASL -->
+                </select>
+                $$err_idASL
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="dataInizioAttivita">
+                  Data apertura allevamento
+                </label>
+              </th>
+              <td>
+                <input type="text" name="dataInizioAttivita"
+                  id="dataInizioAttivita" value="$$dataInizioAttivita" class="textmedio" />
+                &nbsp;gg/mm/aaaa &nbsp;$$err_dataInizioAttivita
+              </td>
+            </tr>
+          </table>
+          <table cellspacing="3"
+            summary="Questa tabella contiene i dati del rapporto">
+            <caption>
+              Ubicazione
+            </caption>
+            <tr>
+              <th>
+                <label for="indirizzo">
+                  Indirizzo *
+                </label>
+              </th>
+              <td colspan="4">
+                <input type="text" name="indirizzo" id="indirizzo"
+                  maxlength="100" value="$$indirizzo" class="text" />
+                &nbsp;$$err_indirizzo
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="resProvincia">
+                  Provincia *
+                </label>
+              </th>
+              <td>
+                <input type="text" name="resProvincia" id="resProvincia"
+                  size="4" maxlength="2" value="$$resProvincia"
+                  onChange="document.form1.resComune.value=''"
+                  class="textbreve" />
+                $$err_provincia
+                <input type="hidden" name="resCAP" value="$$resCAP" />
+                <input type="hidden" name="resComune"
+                  value="$$resComune" />
+              </td>
+              <th>
+                <label for="descResComune">
+                  Comune *
+                </label>
+              </th>
+              <td>
+                <input type="text" name="descResComune"
+                  id="descResComune" maxlength="100"
+                  value="$$descResComune"
+                  onChange="document.form1.resComune.value=''"
+                  class="textmediolungo" />
+                $$err_descComune
+              </td>
+              <td>
+                <div class="azioni">
+                  <a
+                    href="javascript: cercaComune('sceltaComune',document.form1.resProvincia.value,document.form1.descResComune.value,'allevamenti', 'inserisciAllevamento');"
+                    class="pulsante">cerca</a>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="cap">
+                  <acronym title="codice avviamento postale" lang="it">C.A.P
+                    *</acronym>
+                </label>
+              </th>
+              <td colspan="5">
+                <input type="text" name="cap" id="cap" maxlength="5"
+                  value="$$cap" class="textbreve" />
+                &nbsp;$$err_cap
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="telefono">
+                  Telefono
+                </label>
+              </th>
+              <td colspan="5">
+                <input type="text" name="telefono" id="telefono"
+                  maxlength="16" value="$$telefono" class="quindici" />
+                &nbsp;$$err_telefono
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="longitudine">
+                  Longitudine
+                </label>
+              </th>
+              <td>
+                <input type="text" name="longitudine" id="longitudine"
+                  maxlength="9" value="$$longitudine" class="textmediolungo" />
+                &nbsp;$$err_longitudine
+              </td>
+              <th>
+                <label for="latitudine">
+                  Latitudine
+                </label>
+              </th>
+              <td colspan="2">
+                <input type="text" name="latitudine" id="latitudine"
+                  maxlength="9" value="$$latitudine" class="textmediolungo" />
+                &nbsp;$$err_latitudine
+              </td>
+            </tr>
+          </table>
+          <table cellspacing="3"
+            summary="Questa tabella contiene i dati del rapporto">
+            <caption>
+              Consistenza
+            </caption>
+            <tr>
+              <th>
+                <label for="idSpecie">
+                  Specie*
+                </label>
+              </th>
+              <td colspan="12">
+                <select name="idSpecie" id="idSpecie" class="textmedio"
+                  onChange="onChangeCombo('comboSpecie')">
+                  <option></option>
+                  <!-- @@blkComboSpecie -->
+                  <option value="$$idSpecie" $$selected>
+                    $$specieDesc
+                  </option>
+                  <!-- @@blkComboSpecie -->
+                </select>
+                $$err_idSpecie
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="Categoria">
+                  Categoria animale *
+                </label>
+              </th>
+              <td colspan="12">
+                <select name="idCategoria" id="idCategoria"
+                  class="textmedio"
+                  onChange="onChangeCombo('comboCategoria')">
+                  <option></option>
+                  <!-- @@blkComboCategoria -->
+                  <option value="$$idCategoria" $$selected>
+                    $$categoriaDesc
+                  </option>
+                  <!-- @@blkComboCategoria -->
+                </select>
+                $$err_idCategoria
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="Sottocat">
+                  Sottocategoria animale *
+                </label>
+              </th>
+              <td colspan="12">
+                <select name="idSottoCategoria" id="idSottoCategoria"
+                  class="textmedio">
+                  <!-- @@blkDefault -->
+                  <option></option>
+                  <!-- @@blkDefault -->
+                  <!-- @@blkComboSottoCategoria -->
+                  <option value="$$idSottoCategoria" $$selected>
+                    $$sottoCategoriaDesc
+                  </option>
+                  <!-- @@blkComboSottoCategoria -->
+                </select>
+                $$err_idSottoCategoria
+              </td>
+            </tr>
+            <tr>
+              <td colspan="13">
+                <div class="azioni">
+                  <a href="javascript:inserisciConsistenza()" class="highlighted">Inserisci</a>
+                </div>
+              </td>
+            </tr>
+            <!-- @@blksottoCategorieAllevamenti -->
+            <tr>
+              <th rowspan="3" class="center" scope="col">
+                Categoria
+              </th>
+              <th rowspan="3" class="center" scope="col">
+                Sottocategoria*
+              </th>
+              <th rowspan="3" class="center" scope="col">
+                $$unitaMisuraSpecie<br>in detenzione*
+              </th>
+              <th rowspan="3" class="center" scope="col">
+                $$unitaMisuraSpecie<br>in propriet&agrave;*
+              </th>
+              <th rowspan="3" class="center" scope="col">
+                Peso vivo medio
+                <br />
+                (kg/capo) *
+              </th>
+              <th rowspan="3" class="center" scope="col">
+                Peso vivo<br>
+                totale (kg)
+              </th>
+              <th colspan="2" class="center" scope="col">
+                Cicli di allevamento (*)
+              </th>
+              <th colspan="4" class="center" scope="col">
+                Permanenza al pascolo
+              </th>
+              <th rowspan="3" class="center" scope="col">
+                Azoto zootecnico<br>
+                (kg/anno)
+              </th>
+            </tr>
+            <tr>
+              <th rowspan="2" class="center" scope="col">
+                n./anno
+              </th>
+              <th rowspan="2" class="center" scope="col">
+                Durata<br>
+                ciclo (gg)
+              </th>
+              <th colspan="2" class="center" scope="col">
+                primavera estate
+              </th>
+              <th colspan="2" class="center" scope="col">
+                autunno inverno
+              </th>
+            </tr>
+            <tr>
+              <th class="center" scope="col">
+                gg
+              </th>
+              <th class="center" scope="col">
+                hh/gg
+              </th>
+              <th class="center" scope="col">
+                gg
+              </th>
+              <th class="center" scope="col">
+                hh/gg
+              </th>
+            </tr>
+            <!-- @@blksottoCategoriaAllevamenti -->
+            <tr  class="evidence">
+              <td>
+                <input name="idCategorieTab" value="$$idCategorieTab"
+                  id="femm1" type="checkbox" />
+                <label for="femm1">
+                  $$descCategoriaTab
+                </label>
+              </td>
+              <td>
+                $$descSottoCategoriaTab
+              </td>
+              <td>
+                <input type="text" name="capiTab" id="capiTab"
+                  value="$$capiTab" maxlength="7"
+                  onkeyup="javascript:calcolaTotalePeso($$idCategorieTab);"
+                  onChange="javascript:pulisciStabulazione($$idSottoCategorieJS);duplicaCapi($$idCategorieTab);"
+                  class="textbreve" />
+                  $$err_capiTab
+                <input type="hidden" name="pesoVivoAzotoTab" id="pesoVivoAzotoTab"
+                  value="$$pesoVivoAzotoTab" />
+              </td>
+              <td>
+                <input type="text" name="capiProprietaTab" id="capiProprietaTab"
+                  value="$$capiProprietaTab" maxlength="7"
+                  onkeyup="javascript:calcolaTotalePeso($$idCategorieTab);"
+                  onChange="javascript:duplicaCapiProprieta($$idCategorieTab);pulisciStabulazione($$idSottoCategorieJS);"
+                  class="textbreve" />
+                  $$err_capiProprietaTab
+              </td>
+              <td>
+                <input type="text" name="pesoVivoTab" id="pesoVivoTab"
+                  value="$$pesoVivoTab" maxlength="6"
+                  onkeyup="javascript:calcolaTotalePeso($$idCategorieTab);"
+                  onChange="javascript:pulisciStabulazione($$idSottoCategorieJS);"
+                  class="textbreve" />
+                  $$err_pesoVivoTab
+              </td>
+              <td class="numeridx" id="pesoVivoTotTab$$idCategorieTab">
+                $$pesoVivoTotTab
+              </td>
+              <td>
+                <input type="text" name="numeroClicliAnnualiTab" id="numeroClicliAnnualiTab" $$tabConReadOnly                  
+                  value="$$numeroClicliAnnualiTab" maxlength="2" class="textbreve" />
+                  $$err_numeroClicliAnnualiTab
+              </td>
+              <td>
+                <input type="text" name="cicliTab" id="cicliTab" $$tabConReadOnly
+                  onChange="javascript:pulisciStabulazione($$idSottoCategorieJS);"
+                  value="$$cicliTab" maxlength="3" class="textbreve" />
+                  $$err_cicliTab
+              </td>
+              <td>
+                <input type="text" name="giorniPascoloEstateTab"
+                  id="giorniPascoloEstateTab" maxlength="3" $$tabConReadOnly
+                  onChange="javascript:pulisciStabulazione($$idSottoCategorieJS);"
+                  value="$$giorniPascoloEstateTab" class="textbreve" />
+                  $$err_giorniPascoloEstateTab
+              </td>
+              <td>
+                <input type="text" name="orePascoloEstateTab" maxlength="2" $$tabConReadOnly
+                  onChange="javascript:pulisciStabulazione($$idSottoCategorieJS);"
+                  id="orePascoloEstateTab" value="$$orePascoloEstateTab"
+                  class="textbreve" />
+                  $$err_orePascoloEstateTab
+              </td>
+              <td>
+                <input type="text" name="giorniPascoloInvernoTab"
+                  id="giorniPascoloInvernoTab" maxlength="3" $$tabConReadOnly
+                  onChange="javascript:pulisciStabulazione($$idSottoCategorieJS);"
+                  value="$$giorniPascoloInvernoTab" class="textbreve" />
+                  $$err_giorniPascoloInvernoTab
+              </td>
+              <td>
+                <input type="text" name="orePascoloInvernoTab"
+                  id="orePascoloInvernoTab" maxlength="2" $$tabConReadOnly
+                  onChange="javascript:pulisciStabulazione($$idSottoCategorieJS);"
+                  value="$$orePascoloInvernoTab" class="textbreve" />
+                  $$err_orePascoloInvernoTab
+              </td>
+              <td class="numeridx" id="azotoZootecnicoTab$$idCategorieTab">
+                $$azotoZootecnicoTab
+              </td>
+            </tr>
+            <!-- @@blksottoCategoriaAllevamenti -->
+            <tr>
+              <td colspan="13">
+                <div class="azioni">
+                  <a href="javascript:cancellaConsistenza()">Elimina</a>
+                </div>
+                ##err_cancellaConsistenza
+              </td>
+            </tr>
+            <!-- @@blksottoCategorieAllevamenti -->
+          </table>
+          
+          <!-- @@blkLegendaAllevamenti -->
+          <p class="legenda">
+	          (*) La cella &quot;Cicli di allevamento&quot; &egrave; solo descrittiva. Il numero di capi 
+	          deve essere imputato come valore medio annuo, gi&agrave; tenuto conto degli eventuali 
+	          cicli e vuoti.
+	        </p>
+	        <!-- @@blkLegendaAllevamenti -->
+	        
+          <div class="scroll">
+            <table cellspacing="3"
+              summary="Questa tabella contiene i dati di stabulazione e trattamenti">
+              <!-- @@blkStabulazioniInsert -->
+              <caption>
+                Stabulazioni
+              </caption>
+              <tr>
+                <td colspan="12">
+                  <div class="azioni">
+                    <a href="javascript:inserisciStabulazione()" class="highlighted">Inserisci</a>
+                  </div>
+                </td>
+              </tr>
+              <!-- @@blkStabulazioniTrattamenti -->
+              <tr>
+                <th colspan="2" rowspan="3" class="center" scope="col">
+                  Categoria - Sottocategoria *
+                </th>
+                <th rowspan="3" class="center" scope="col">
+                  Stabulazione *
+                </th>
+                <th rowspan="3" class="center" scope="col">
+                  $$unitaMisuraSpecie
+                </th>
+                <th rowspan="3" class="center" scope="col">
+                  Permanenza<br>
+                  in stalla (gg)
+                </th>
+                <th rowspan="3" class="center" scope="col">
+                  Azoto escreto<br>
+                  al pascolo (Kg)
+                </th>
+                <th colspan="5" class="center" scope="col">
+                  Effluenti prodotti in stalla
+                </th>         
+              </tr>
+              <tr>
+		            <th colspan="3" class="center" scope="col">
+		              Palabile
+		            </th>
+		            <th colspan="2" class="center" scope="col">
+		              Non Palabile
+		            </th>
+		          </tr>
+		          <tr>
+		            <th class="center" scope="col">
+		              m<sup>3</sup>/anno
+		            </th>
+		            <th class="center" scope="col">
+		              t/anno
+		            </th>
+		            <th class="center" scope="col">
+		              kg N/anno
+		            </th>
+		            <th class="center" scope="col">
+		              m<sup>3</sup>/anno
+		            </th>
+		            <th class="center" scope="col">
+		              kg N/anno
+		            </th>
+		          </tr>
+              <!-- @@blkStabulazioneTrattamento -->
+              <tr  class="evidence">
+                <td class="radio">
+                  <label for="femm9" class="alt">
+                    categoria-sottocategoria
+                  </label>
+                  <input name="idStabulazioneTab" value="$$idStabulazioneTab" id="femm9" type="checkbox" />                                 
+                </td>
+                <td>
+                  <label for="idCatSottocatStab" class="alt">
+                    categoria-sottocategoria
+                  </label>
+                  <select name="idCatSottocatStab" id="idCatSottocatStab" class="textmedio" onChange="onChangeCombo('comboCatSottocatStab')">
+                    <option></option>
+                  <!-- @@blkComboCatSottocatStab -->
+                  <option value="$$idCatSottocatStab" $$selected>
+                    $$catSottocatStabDesc
+                  </option>
+                  <!-- @@blkComboCatSottocatStab -->
+                  </select>
+                   $$err_idCatSottocatStab
+                </td>
+                <td>
+                  <label for="idStabulazione" class="alt">
+                    Stabulazione
+                  </label>
+                  <select name="idStabulazione" id="idStabulazione" class="textmedio" onChange="calcoloStabulazione('comboStabulazione',$$idStabulazioneTab)">
+                    <option></option>
+                  <!-- @@blkComboStabulazione -->
+                  <option value="$$idStabulazione" $$selected>
+                    $$stabulazioneDesc
+                  </option>
+                  <!-- @@blkComboStabulazione -->
+                  </select>
+                   $$err_idStabulazione
+                </td>
+                <td>
+                  <label for="capistab1" class="alt">
+                    n. capi stabulati
+                  </label>
+                  <input type="text" name="quantitaStab" onChange="javascript:calcoloStabulazione('quantitaStab',$$idStabulazioneTab);" id="quantitaStab"
+                    value="$$quantitaStab" class="textbreve" maxlength="6"/>
+                  $$err_quantitaStab  
+                </td>
+                <td name="permanenzaStalla" id="permanenzaStalla" >
+                  $$permanenzaInStalla
+                </td>
+                <td name="escretoAlPascolo" id="escretoAlPascolo">
+                  $$escretoAlPascolo
+                </td>
+                <td>
+		              <input type="text" name="palabile" id="palabile" 
+		                value="$$palabile" class="textbreve" maxlength="8"/>
+		                $$err_palabile
+		            </td>
+		            <td name="palabileTAnno" id="palabileTAnno">      
+		              $$palabileTAnno
+		            </td>
+		            <td name="azotoPalabile" id="azotoPalabile">            
+		              $$azotoPalabile
+		            </td>
+		            <td>
+		              <input type="text" name="nonPalabile" id="nonPalabile" 
+		                value="$$nonPalabile" class="textbreve" maxlength="8"/>
+		                $$err_nonPalabile
+		            </td>            
+		            <td name="azotoNonPalabile" id="azotoNonPalabile">           
+		              $$azotoNonPalabile
+		            </td>
+              </tr>
+              <!-- @@blkStabulazioneTrattamento -->
+              <tr>
+                <td colspan="3">
+                  <div class="azioni">
+                    <a href="javascript:cancellaStabulazione()">Elimina</a>
+                  </div>
+                  ##err_cancellaStabulazione
+                </td>
+                <td colspan="9">
+                  <div class="azioni">
+                    <a href="javascript:calcolaStabulazione()">Calcola</a>
+                  </div>
+                  ##err_calcolaStabulazione
+                </td>
+              </tr>
+              <!-- @@blkStabulazioniTrattamenti -->
+              <!-- @@blkStabulazioniInsert -->
+              <!-- @@blkSoloAvicoli -->
+              <tr>
+                <td colspan="12">
+                  <strong>Le deiezioni degli avicoli sono
+                    essiccate con processo rapido a tenori di sostanza
+                    secca superiori al 65% ? </strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label for="si1">
+                    Sì
+                  </label>
+                  <input type="radio" name="flagDeiezioneAvicoli" id="si1" value="S" $$flagDeiezioneAvicoliCheckedSi/>
+                  <label for="no1">
+                    No
+                  </label>
+                  <input type="radio" name="flagDeiezioneAvicoli" id="no1" value="N" $$flagDeiezioneAvicoliCheckedNo/>
+                </td>  
+              </tr>
+              <!-- @@blkSoloAvicoli -->
+            </table>
+          </div>
+          
+          <table cellspacing="3"
+            summary="Questa tabella contiene i dati relativi al tipo e orientamento produttivi">
+            <caption>
+              Produzione
+            </caption>
+            <tr>
+              <th>
+                <label for="idTipoProduzione">
+                  Tipo produzione
+                </label>
+              </th>
+              <td>
+                <select name="idTipoProduzione" id="idTipoProduzione"
+                  class="textmediolungo"
+                  onChange="javascript: caricaOrientamenti();">
+                  <option></option>
+                  <!-- @@blkComboTipoProduzione -->
+                  <option value="$$idTipoProduzione" $$selected>
+                    $$descTipoProduzione
+                  </option>
+                  <!-- @@blkComboTipoProduzione -->
+                </select>
+                $$err_idTipoProduzione
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="Orient">
+                  Orientamento produttivo
+                </label>
+              </th>
+              <td>
+                <select name="idOrientamentoProduttivo"
+                  id="idOrientamentoProduttivo" class="textmediolungo" onChange="javascript: caricaCosman();">
+                  <option></option>
+                  <!-- @@blkComboOrientamentoProduttivo -->
+                  <option value="$$idOrientamentoProduttivo" $$selected>
+                    $$descOrientamentoProduttivo
+                  </option>
+                  <!-- @@blkComboOrientamentoProduttivo -->
+                </select>
+                $$err_idOrientamentoProduttivo
+              </td>
+            </tr>
+            <tr>
+	            <th>
+	              <label for="idTipoProduzioneCosman">Tipologia produttiva ai fini assicurativi</label>
+	            </th>
+	            <td colspan="2">
+	              <select name="idTipoProduzioneCosman" id="idTipoProduzioneCosman" $$disabledCosman class="textmediolungo" >
+	                <option></option>
+	                <!-- @@blkComboTipoProduzioneCosman -->
+	                  <option value="$$idTipoProduzioneCosman" $$selected>$$descTipoProduzioneCosman</option>
+	                <!-- @@blkComboTipoProduzioneCosman -->
+	              </select>
+	              $$err_idTipoProduzioneCosman
+	            </td>
+	          </tr>       
+          </table>
+          <table cellspacing="3"
+            summary="Questa tabella contiene i dati del rapporto">
+            <caption>
+              Detenzione
+            </caption>
+            <tr>
+              <th>
+                <label for="CF_proprietario">
+                  Codice fiscale proprietario
+                </label>
+              </th>
+              <td colspan="3">
+                <input type="text" name="codiceFiscaleProprietario" id="codiceFiscaleProprietario" value="$$codiceFiscaleProprietario" maxlength="16" class="textmediolungo" />
+                &nbsp;$$err_codiceFiscaleProprietario
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="proprietario">
+                  Denominazione proprietario
+                </label>
+              </th>
+              <td colspan="3">
+                <input type="text" name="denominazioneProprietario"
+                  id="denominazioneProprietario" size="4"
+                  value="$$denominazioneProprietario" class="text" />
+                &nbsp;$$err_denominazioneProprietario
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="CF_detentore">
+                  Codice fiscale detentore
+                </label>
+              </th>
+              <td colspan="3">
+                <input type="text" name="codiceFiscaleDetentore"
+                  id="codiceFiscaleDetentore"
+                  value="$$codiceFiscaleDetentore" maxlength="16"
+                  class="textmediolungo" />
+                &nbsp;$$err_codiceFiscaleDetentore
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="detentore">
+                  Denominazione Detentore
+                </label>
+              </th>
+              <td colspan="3">
+                <input type="text" name="denominazioneDetentore"
+                  id="denominazioneDetentore"
+                  value="$$denominazioneDetentore" class="text" />
+                &nbsp;$$err_denominazioneDetentore
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="data_inizio">
+                  Data inizio detenzione
+                </label>
+              </th>
+              <td>
+                <input type="text" name="dataInizioDetenzione"
+                  id="dataInizioDetenzione"
+                  value="$$dataInizioDetenzione" class="textmedio" />
+                &nbsp;gg/mm/aaaa &nbsp;$$err_dataInizioDetenzione
+              </td>
+
+              <th>
+                <label for="data_fine">
+                  Data fine detenzione
+                </label>
+              </th>
+              <td>
+                <input type="text" name="dataFineDetenzione"
+                  id="dataFineDetenzione" value="$$dataFineDetenzione"
+                  class="textmedio" />
+                &nbsp;gg/mm/aaaa &nbsp;$$err_dataFineDetenzione
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Soccida
+              </th>
+              <td>
+                <label for="si">
+                  Si
+                </label>
+                <input type="radio" name="soccida" id="soccida" value="S"
+                  $$checkedSi />
+                <label for="no">
+                  No
+                </label>
+                <input type="radio" name="soccida" id="soccida" value="N"
+                  $$checkedNo  />
+                  $$err_soccida
+              </td>
+              <th>
+                <label for="motivoSoccida">
+                  Motivo
+                </label>
+              </th>
+              <td>
+                <textarea name="motivoSoccida" id="motivoSoccida" cols="45" rows="4"
+                  class="textmedio">$$motivoSoccida</textarea>
+                $$err_motivoSoccida
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Soggetto assicurato in caso di soccida
+              </th>
+              <td colspan="3">
+                <label for="proprietario">
+                  $$labelProprietario
+                </label>
+                <input type="radio" name="assicuratoSoccida" id="proprietario" value="$$proprietario"
+                  $$checkedProprietario />
+                <label for="detentore">
+                  $$labelDetentore
+                </label>
+                <input type="radio" name="assicuratoSoccida" id="detentore" value="$$detentore"
+                  $$checkedDetentore />
+              </td>
+            </tr>
+          </table>
+          
+
+          <table cellspacing="3" summary="Questa tabella le note">
+          <!-- @@blkLettiera -->
+          <tr>
+            <th>
+              <label for="superficieLettieraPermanente">Superficie lettiera permanente (m<sup>2</sup>)</label></th>
+              <td>
+                <input type="text" name="superficieLettieraPermanente" id="superficieLettieraPermanente" value="$$superficieLettieraPermanente"
+                  maxlength="11" class="textmedio" onChange="javascript:abilitaAltezza();" onKeyUp="javascript:calcolaVolume();" />
+                ##err_superficieLettieraPermanente
+              </td>
+              <th width="5"><label for="altezza">Altezza (m)</label> </th>
+              <td width="9"><input type="text" name="altezza" id="altezza" value="$$altezza" maxlength="6" class="small" onKeyUp="javascript:calcolaVolume();" $$altReadOnly/>
+                  ##err_altezza
+              </td>
+              <th width="40">Volume (m<sup>3</sup>)</th>
+              <td width="40" id="volume">$$volume</td>
+          </tr>
+          <!-- @@blkLettiera -->
+          <tr>
+             <th>
+               <label for="note">
+                 Note
+               </label>
+             </th>
+             <td colspan="5">
+               <textarea name="note" id="note" cols="85" rows="4"
+                 class="textmedio">$$note</textarea>
+               $$err_note
+             </td>
+           </tr>
+          </table>
+          <input type="hidden" name="dal" id="dal" size="20"
+            maxlength="10" value="$$dal" />
+          <p class="nota">
+            I campi contrassegnati con * sono obbligatori
+          </p>
+          <p class="legenda">
+            Si intende per lettiera permanente una lettiera che viene rinnovata con frequenza ridotta (intervallo di rimozione superiore ai due mesi, oppure alla sola conclusione del ciclo di allevamento). 
+          </p>
+          </br>          
+          
+          <div class="pulsanti">
+            <div class="sin">
+              <input type="submit" name="salva" value="conferma"
+                class="inputPulsante highlighted" />
+            </div>
+            <div class="des">
+              <input type="submit" name="annulla" value="annulla"
+                class="inputPulsante annulla" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <!-- PIE' DI PAGINA -->
+      $$footer

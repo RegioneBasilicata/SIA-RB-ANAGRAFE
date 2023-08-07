@@ -1,0 +1,131 @@
+$$head
+	<script src="../js/checktext.js" type="text/javascript"></script>
+</head>
+<body id="popup">
+	<form id="form1"  method="post" action="../layout/popCercaParticelleInsUnarFrazionate.htm">
+		<input name="conferma" type="hidden" class="inputPulsante highlighted" value="conferma" >
+    	<div id="contenutopop">
+      		<!-- @@blkParticelle -->
+        		<div class="pulsanti">
+         			<div class="des">
+           			<a href="javascript:window.close();">chiudi</a>
+         			</div>
+         			<!-- @@blkInserisci -->
+         			<div class="sin">
+           			<a href="javascript: submitSomeElementsForm(document.forms[0].action, document.forms[0], document.forms[0].idStoricoUnitaArborea);" class="highlighted">inserisci</a>
+         			</div>
+         			<!-- @@blkInserisci -->
+        		</div>
+        		<!-- @@blkButton -->
+        		<div class="pulsanti">
+       				<div class="sin">
+         				<a href="javascript: selectAll(document.forms[0].idStoricoUnitaArborea);">seleziona</a>
+       				</div>
+       				<div class="des">
+         				<a href="javascript: deselectAll(document.forms[0].idStoricoUnitaArborea);">deseleziona</a>
+       				</div>
+       			</div>
+       			<!-- @@blkButton -->
+        		<div class="scroll">
+	        		<p class="allineaDx">unit&agrave; vitate trovate:$$numeroRecords</p>
+	       			<table cellspacing="3" summary="Questa tabella contiene i dati delle particelle da associare all'unità arborea">
+	          			<caption>Fonte dati: Schedario Viticolo</caption>
+	          			<tr>
+	            			<th class="center" scope="col">Sel.</th>
+	            				<th class="center" scope="col"><acronym title="Codice univoco azienda agricola">CUAA</acronym></th>
+	            				<th class="center" scope="col">Denominazione</th>
+	            				<th class="center" scope="col"><acronym title="Centro autorizzato assistenza agricola">CAA</acronym></th>
+	            				<th class="center" scope="col">Comune</th>
+	            				<th class="center" scope="col"><acronym title="Sezione">Sz.</acronym></th>
+	            				<th class="center" scope="col"><acronym title="Foglio">Fgl.</acronym></th>
+	            				<th class="center" scope="col"><acronym title="Particella">Part.</acronym></th>
+	            				<th class="center" scope="col"><acronym title="Subalterno">Sub.</acronym></th>
+	            				<th class="center" scope="col"><acronym title="Superficie catastale">Sup. Cat.</acronym></th>
+                      <th class="center" scope="col"><acronym title="Superficie grafica">Sup. Grafica</acronym></th>
+	            				<th class="center" scope="col"><strong><acronym title="Progressivo">Progr.</acronym></strong></th>
+	            				<th class="center" scope="col"><acronym title="Destinazione produttiva">Dest. prod.</acronym></th>
+	            				<th class="center" scope="col">Vitigno</th>
+	            				<th class="center" scope="col"><acronym title="Superficie vitata">Sup. Vit.</acronym></th>
+	            				<th class="center" scope="col">Data Impianto</th>
+                      <th class="center" scope="col">Data Prima Produzione</th>
+	            				<th class="center" scope="col">Sesto su fila</th>
+	            				<th class="center" scope="col">Sesto tra file</th>
+	            				<th class="center" scope="col"><acronym title="Numero">Num.</acronym> Ceppi</th>
+	            				<th class="center" scope="col"><acronym title="Forma allevamento">F. all.</acronym></th>
+	            				<th class="center" scope="col">&#37;<acronym title="Vitigno">Vit.</acronym></th>
+	            				<th class="center" scope="col">Altri vitigni</th>
+	            				<th class="center" scope="col">Data cessazione</th>
+	          			</tr>         
+	          			<!-- @@blkElencoParticelle -->
+	             			<tr>
+	             			  <!-- @@blkOKImport -->
+	            				<td>
+	            				  <input type="checkbox" name="idStoricoUnitaArborea" value="$$idStoricoUnitaArborea" id="idStoricoUnitaArborea"/>
+	            				</td>
+	            				<!-- @@blkOKImport -->
+	            				<!-- @@blkKOImport -->
+                      <td>&nbsp;
+                        
+                      </td>
+                      <!-- @@blkKOImport -->
+	            				<td>$$cuaa</td>
+	            				<td>$$denominazione</td>
+	            				<td>$$codiceFiscaleIntermediario</td>
+	            				<td>$$descComune ($$siglaProvinciaParticella)</td>
+	            				<td>$$sezione</td>
+	            				<td class="numeridx">$$foglio</td>
+	            				<td class="numeridx">$$particella</td>
+	            				<td>$$subalterno</td>
+	            				<td class="numeridx">$$supCatastale</td>
+                      <td class="numeridx">$$superficieGrafica</td>
+	            				<td class="numeridx">$$progrUnar</td>
+	            				<td>$$destinazioneProduttiva</td>
+	            				<td>$$vitigno</td>
+	            				<td class="numeridx">$$area</td>
+	            				<td>$$dataImpianto</td>
+                      <td>$$dataPrimaProduzione</td>
+	            				<td class="numeridx">$$sestoSuFila</td>
+	            				<td class="numeridx">$$sestoTraFile</td>
+	            				<td class="numeridx">$$numeroCeppi</td>
+	            				<td>$$descFormaAllevamento</td>
+	            				<td class="numeridx">$$percentualeVitigno</td>
+	            				<td>$$altriVitigni</td>
+	            				<td>$$dataCessazione</td>
+		    				</tr>
+	          			<!-- @@blkElencoParticelle -->
+	        		</table>
+	        	</div>
+        		<p class="nota">Tutte le superfici sono espresse in ettari (ha).</p>
+        		<!-- @@blkButton -->
+        		<div class="pulsanti">
+	        		<div class="sin">
+	            		<a href="javascript: selectAll(document.forms[0].idStoricoUnitaArborea);">seleziona</a>
+	          		</div>
+	          		<div class="des">
+	            		<a href="javascript: deselectAll(document.forms[0].idStoricoUnitaArborea);">deseleziona</a>
+	          		</div>
+	        	</div>
+	        	<!-- @@blkButton -->
+        		<div class="pulsanti">
+          			<div class="des">
+            			<a href="javascript:window.close();">chiudi</a>
+          			</div>
+          			<!-- @@blkInserisci -->
+          			<div class="sin">
+            			<a href="javascript: submitSomeElementsForm(document.forms[0].action, document.forms[0], document.forms[0].idStoricoUnitaArborea);" class="highlighted">inserisci</a>
+          			</div>
+          			<!-- @@blkInserisci -->
+        		</div>
+      		<!-- @@blkParticelle -->
+      		<!-- @@blkNoParticelle -->
+   				<p class="errore">$$messaggioErrore</p>
+   				<div class="pulsanti">
+          			<div class="des">
+            			<a href="javascript:window.close();">chiudi</a>
+          			</div>
+        		</div>
+      		<!-- @@blkNoParticelle -->
+    	</div>
+    </form>
+</body>
+</html>

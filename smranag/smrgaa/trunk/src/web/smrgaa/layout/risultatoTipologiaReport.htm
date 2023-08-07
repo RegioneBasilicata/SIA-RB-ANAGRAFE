@@ -1,0 +1,104 @@
+$$head
+<script language="JavaScript" type="text/javascript" src="../js/util.js" ></script>
+<script type="text/javascript" src="../js/messaggistica.js"></script>
+
+<script type="text/javascript">
+  function customDoForm(page)
+  {
+    var oldAction = document.form1.action;
+    document.form1.action=page;
+    document.form1.submit();
+    document.form1.action=oldAction;
+  }
+
+	function scarica()
+	{
+		//Download csv
+		var winprops ='toolbar=no,location=no,status=yes,menubar=yes,scrollbars=yes,resizable=yes,width=800,height=430';
+		window.open('risultato_tipologia_report.xls' ,'reportPopupExcel',winprops);
+
+		//window.alert('1');
+	  //var winprops ='toolbar=no,location=no,status=yes,menubar=yes,scrollbars=yes,resizable=yes,width=800,height=430';
+	  //window.alert('2');
+	  //urlPopup = 'risultatoTipologiaReport.htm?excel=excel&idTipologiaReport='+form1.idTipologiaReport.value;
+		//window.alert('3');
+	  //window.open(urlPopup ,'reportPopupExcel',winprops);
+		//window.alert('4');
+	}
+
+	function getExcel()
+	{
+		window.alert('getExcel()');
+		form1.excel.value = 'excel';
+		form1.submit();
+	}
+
+	function chiudi()
+	{
+	  window.close();
+	}
+</script>
+</head>
+<body id="popup" onLoad="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+<h3>$$descrizioneReport</h3>
+<!-- CORPO -->
+<!--@@bloccoPulsanti-->
+<div id="contenutopop">
+<hr />
+<hr />
+<div class="pulsanti">
+<div class="sin"><a href="javascript:window.print();" title="stampa">stampa</a> <a href="javascript:scarica()" title="esporta dati">esporta dati</a></div>
+<!--div class="azioni"><a href="javascript:getExcel()" title="scarica in formato excel">scarica in formato excel</a></div-->
+<div class="des"><a href="javascript:chiudi();" title="chiudi">chiudi</a></div>
+</div>
+<hr />
+<!--@@bloccoPulsanti-->
+<!-- SECONDA COLONNA -->
+<!--div id="contenuto"-->
+<!-- INIZIO TABELLA -->
+<table cellspacing="3">
+<!--tr>
+<th colspan="$$numeroColonneRisultato"><label for="elenco">$$descrizioneReport</label></th>
+</tr-->
+<!-- @@maxRigheRisultato -->
+<br>
+<p class="errore">Attenzione! Il risultato del report selezionato prevede $$numeroRighe righe. A video verranno visualizzate esclusivamente le prime $$numeroMaxRighe.
+Il risultato completo sarà consultabile nel file excel prodotto.<br>n.b. Il numero di righe massimo gestito da excel è 65536.</p>
+<br>
+<!-- @@maxRigheRisultato -->
+<!-- @@noRigheRisultato -->
+<tr>
+<td><label for="elenco">Non sono presenti valori per il report</label></td>
+</tr>
+<!-- @@noRigheRisultato -->
+<!-- @@blkRigaRisultatoHeader -->
+<tr>
+<!-- @@blkColonnaRisultatoHeader -->
+<th scope="col" class="center" ><label for="elenco">$$valoreColonnaHeader</label></th>
+<!-- @@blkColonnaRisultatoHeader -->
+</tr>
+<!-- @@blkRigaRisultatoHeader -->
+<!-- @@blkRigaRisultato -->
+<tr>
+<!-- @@blkColonnaRisultato -->
+<td class="center" ><label for="elenco">$$valoreColonna</label></td>
+<!-- @@blkColonnaRisultato -->
+</tr>
+<!-- @@blkRigaRisultato -->
+</table>
+<!--@@bloccoPulsanti-->
+<!-- FINE TABELLA -->
+<form action="risultatoTipologiaReport.htm" method="post" name="form1">
+	<input type="hidden" name="excel" value="" />
+	<input type="hidden" name="idTipologiaReport" value="$$idTipologiaReport" />
+</form>
+<hr />
+<div class="pulsanti">
+<div class="sin"><a href="javascript:window.print();" title="stampa">stampa</a> <a href="javascript:scarica()" title="esporta dati">esporta dati</a></div>
+<!--div class="azioni"><a href="javascript:getExcel()" title="scarica in formato excel">scarica in formato excel</a></div-->
+<div class="des"><a href="javascript:chiudi();" title="chiudi">chiudi</a></div>
+</div>
+<!--@@bloccoPulsanti-->
+</div>
+</body>
+</html>

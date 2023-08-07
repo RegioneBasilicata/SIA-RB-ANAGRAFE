@@ -1,0 +1,108 @@
+$$head
+</head>
+<script type="text/javascript" src="../js/util.js"></script>
+<script type="text/javascript" src="../js/checktext.js"></script>
+<script type="text/javascript">
+	function conferma() {
+		document.form1.funzione.value = '$$conferma';
+		document.form1.submit();
+		return;
+	}
+
+	function dettaglio(id) {
+		var oldAction = document.form1.action;
+		document.form1.action = 'dett_messaggi_utente_login.htm';
+		document.form1.idElencoMessaggi.value = id;
+		document.form1.submit();
+		document.form1.action = oldAction;
+		return;
+	}
+</script>
+<script type="text/javascript" src="../js/messaggistica.js"></script>
+<body id="homeIndice"	onload="$$err_error; systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+	<div id="pagina" class="colonnaUnica">
+		<!-- INTESTAZIONE -->
+      <div id="intestazione##pathProvincia">
+        $$header
+        <!-- menu di navigazione-->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li><a href="../layout/index.htm"
+                title="Torna alla pagina principale">home</a></li>
+              <li class="attivo">gestione anagrafe aziende</li>
+              <li><a href="#" title="contatti">contatti</a></li>
+              <li><a href="#" title="help">help</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div style="clear: left"></div>
+      <!-- CORPO -->
+      <div id="corpo">
+        <div id="Utente">
+          <div id="datiUtente">
+            <strong>utente: </strong> $$utente &nbsp; &nbsp; <strong>ente:
+            </strong> $$ente
+          </div>
+          <div id="chiudisessione">
+            <a href="javascript: logout();">chiudi sessione</a>
+          </div>
+        </div>
+        <hr />
+      <!--PRIMA COLONNA -->
+			<h3>Messaggi utente</h3>
+			<hr />
+			<div class="box">
+				<div class="menuSX">
+					<ul>
+						<li><a href="#">Messaggi utente</a></li>
+					</ul>
+				</div>
+			</div>
+			<hr />
+
+			<div id="contenuto">
+
+				<form action="messaggi_utente_login.htm" method="post"
+					name="form1">
+					<!-- Campo hidden di appoggio per il ritorno sul folder per revoca delega -->
+					<input type="hidden" name="funzione" value="" /> <input
+						type="hidden" name="idElencoMessaggi" value="" /> <input
+						type="hidden" name="chiamante" value="messaggi_utente_login.htm" />
+
+					<table summary="tabella messaggi di sistema da leggere">
+						<caption>Elenco messaggi con lettura obbligatoria
+							rivolti agli utenti del Sistema Informativo Agricoltura della
+							Regione TOBECONFIG</caption>
+						<tr>
+							<th class="center">Titolo</th>
+							<th class="center">Data inserimento</th>
+							<th class="center">Allegati</th>
+						</tr>
+						<!--@@blkMessaggio-->
+						<tr>
+							<td><a href="javascript:dettaglio('$$idMessaggio');">$$titolo</a></td>
+							<td>$$dataInserimento</td>
+							<td>$$flagAllegati</td>
+						</tr>
+						<!--@@blkMessaggio-->
+					</table>
+					<div class="azioni">
+						<a onclick="conferma()" href="#" title="avanti">avanti</a>
+					</div>
+				</form>
+				<br />
+				<p class="nota">I messaggi riportati sopra devono essere letti
+					obbligatoriamente; fare click sul titolo per aprire un messaggio e
+					confermarne l'avvenuta lettura</p>
+				<br> <br> <br> <br>
+			</div>
+		</div>
+		<hr />
+		<!-- PIE' DI PAGINA -->
+		$$footer

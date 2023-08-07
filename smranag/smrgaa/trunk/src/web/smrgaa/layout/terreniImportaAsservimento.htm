@@ -1,0 +1,377 @@
+$$head
+
+  <script src="../js/checktext.js" type="text/javascript"></script>
+  <script type="text/javascript" src="../js/messaggistica.js"></script>
+  <script type="text/javascript" >
+    function setHiddenOperazione(form, operazione) {
+      form.operazione.value = operazione;
+      form.submit();
+    }
+    
+    function scegliComune(mypage, myname, w, h, scroll,provincia,comune) {
+      NewWindowComuneAnag(mypage, myname, w, h, scroll,provincia,comune);
+    }
+
+    function NewWindowComuneAnag(mypage, myname, w, h, scroll,provincia,comune) {
+      var winl = (screen.width - w) / 2;
+      var wint = (screen.height - h) / 2;
+      if(provincia ==  '' && comune == '') {
+        alert('Inserire una provincia o un comune!');
+      }
+      else if(!mappaOggetti(comune)) {
+      }
+      else {
+        winprops =    'height='+h+',width='+w+',top='+wint+',left='+winl+',scrollbars='+scroll+',resizable';
+        win = window.open(mypage+'?provincia='+provincia+'&comune='+comune, myname, winprops);
+        if (parseInt(navigator.appVersion) >= 4) {
+          win.window.focus();
+        }
+      }
+    }
+  
+    var vetAction=new Array();
+    @@blkblkTitoliPossessoJavaScript
+      vetAction[$$index]="$$value";
+    @@blkblkTitoliPossessoJavaScript
+  
+    function invia() 
+    {
+     if(document.form1.idTitoloPossesso != null)
+     {
+        var indice=document.form1.idTitoloPossesso.selectedIndex;
+        if (indice>=0) 
+        {
+          var action = document.forms[0].action;
+          document.forms[0].action = vetAction[indice];
+          document.forms[0].submit();
+          document.forms[0].action = action;      
+        }
+      }
+    }
+  </script>
+</head>
+<body id="homeIndice" onLoad="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+  <form  method="post" name="form1" id="form1" action="../layout/terreniImportaAsservimento.htm">
+  <input type="hidden" name="operazione" value="$$operazione" id="operazione" />
+    <div id="pagina" class="colonnaUnica">
+      <!-- INTESTAZIONE -->
+      <div id="intestazione">
+      <!--intestazione-->
+	$$header
+        <!-- menu di navigazione-->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li><a href="index.htm" title="Torna alla pagina principale">home</a></li>
+              <li class="attivo">gestione anagrafe aziende</li>
+              <li><a href="#" title="contatti">contatti</a></li>
+              <li><a href="#" title="help">help</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr/>
+      <div style="clear:left">  </div>
+      <!-- CORPO -->
+      <div id="corpo">
+        <div id="Utente">
+          <div id="datiUtente">
+            <strong>utente:</strong>
+            $$utente
+            &nbsp;
+            &nbsp;
+            <strong>ente:</strong>
+            $$ente
+          </div>
+          <div id="chiudisessione">
+            <a href="javascript: logout();">chiudi sessione</a>
+          </div>
+        </div>
+        <hr/>
+        <!--PRIMA COLONNA -->
+        <h3>Gestione Anagrafe Aziende&nbsp;&gt;&nbsp;Terreni&nbsp;&gt;&nbsp;Importa
+        <span class="helpFuori">
+            <a href="#">
+              <span class="alt">[help]</span>
+            </a>
+          </span>
+        </h3>
+        <hr/>
+        <div class="box">
+          <div class="menuSX1">
+            <ul>
+              <!-- @@blkElencoAziendeRapLegale -->
+                <li><a href="../layout/elencoAziendeRapLegale.htm">Elenco Aziende</a></li>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <!-- @@blkRicercaAzienda-->
+                 <li><a href="../layout/ricerca.htm">Ricerche</a></li>
+               <!-- @@blkRicercaAzienda-->
+               <!-- @@blkNuova -->
+               <li>
+                 <a href="../layout/nuovaAziendaAnagrafica.htm">Nuova Azienda</a>
+               </li>
+               <!-- @@blkNuova -->
+               <!-- @@blkNuovaIscrizione -->
+	             <li>
+	               <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+	             </li>
+	             <!-- @@blkNuovaIscrizione -->
+            </ul>
+          </div>
+          <div class="menuSX">
+            <ul>
+              <li>
+                <a href="../layout/anagrafica.htm" >Anagrafica</a>
+              </li>
+              <!-- @@blkAziendeCollegate -->
+              <li>
+                <a href="../layout/aziendeCollegate.htm">$$aziendeCollegateLabel</a>
+              </li>
+              <!-- @@blkAziendeCollegate -->
+              <!-- @@blkSincronizzaFascicolo -->
+               <li>
+               	<a href="../layout/sincronizzaFascicolo.htm">Sincronizza fascicolo</a>
+               </li>
+              <!-- @@blkSincronizzaFascicolo -->
+              <!-- @@blkSoggettiCollegati -->
+              <li>
+                <a href="../layout/contitolari.htm">Soggetti collegati</a>
+              </li>
+              <!-- @@blkSoggettiCollegati -->
+              <!-- @@blkContiCorrenti -->
+              <li>
+                <a href="../layout/conti_correnti.htm">Conti Correnti</a>
+              </li>
+              <!-- @@blkContiCorrenti -->
+              <!-- @@blkUnitaProduttive -->
+              <li>
+                <a href="../layout/sedi.htm">Unit&agrave; produttive</a>
+              </li>
+              <!-- @@blkUnitaProduttive -->
+              <!-- @@blkTerreni -->
+              <li>
+                <!-- @@blkLinkElenco -->
+                <a href="../layout/terreniParticellareElenco.htm" class="on">Terreni</a>
+                <!-- @@blkLinkElenco -->
+                <!-- @@blkLinkRiepiloghi -->
+                <a href="../layout/riepiloghi.htm" class="on" >Terreni</a>
+                <!-- @@blkLinkRiepiloghi -->
+                <ul>
+                  <li>
+                    <a href="#" class="etichetta">importa</a>
+                  </li>                
+                </ul>
+              </li>
+              <!-- @@blkTerreni -->
+              <!-- @@blkUnitaVitate -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniUnitaArboreeElenco.htm">Unit&agrave; Vitate</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		              <a href="../layout/riepiloghiUnitaArboree.htm">Unit&agrave; Vitate</a>
+		              <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkUnitaVitate -->
+              <!-- @@blkFabbricati -->
+              <li>
+                <a href="../layout/fabbricati.htm">Fabbricati e Strutture</a>
+              </li>
+              <!-- @@blkFabbricati -->
+              <!-- @@blkAllevamenti -->
+              <li>
+                <a href="../layout/allevamenti.htm">Allevamenti</a>
+              </li>
+              <!-- @@blkAllevamenti -->
+              <!-- @@blkManodopera -->
+              <li>
+                <a href="../layout/manodopera.htm">Manodopera</a>
+              </li>
+              <!-- @@blkManodopera -->
+              <!-- @@blkMotoriAgricoli -->
+              <li>
+                <a href="../layout/motori_agricoli_incarico.htm">Macchine agricole</a>
+              </li>
+              <!-- @@blkMotoriAgricoli -->
+              <!-- @@blkDiritti -->
+              <li><a href="../layout/diritti.htm">Diritti di produzione</a></li>
+              <!-- @@blkDiritti -->
+              <!-- @@blkAttestazioni -->
+              <li><a href="../layout/attestazioniDettaglio.htm">Dichiarazioni</a></li>
+              <!-- @@blkAttestazioni -->
+              <!-- @@blkDichiarazioniConsistenza -->
+              <li>
+                <a href="../layout/dichiarazioneConsistenza.htm">Validazioni</a>
+              </li>
+              <!-- @@blkDichiarazioniConsistenza -->
+              <!-- @@blkDocumenti -->
+              <li><a href="../layout/documentiElenco.htm">Documenti</a></li>
+              <!-- @@blkDocumenti -->
+              <!-- @@blkFascicoloDematerializzato -->
+              <li>
+                <a href="../layout/fascicoloDematerializzato.htm">Fascicolo<br>elettronico</a>
+              </li>
+              <!-- @@blkFascicoloDematerializzato -->
+              <!-- @@blkGestioneNotifiche -->
+              <li>
+                <a href = "../layout/notifiche.htm">Notifiche</a>
+              </li>
+              <!-- @@blkGestioneNotifiche -->
+              <!-- @@blkComunicazione10R -->
+                <li>
+                  <a href="../layout/comunicazione10R_dettaglio.htm">Comunicazione 10/R</a>
+                </li>
+              <!-- @@blkComunicazione10R -->
+              <!-- @@blkPratiche -->
+              <li><a href="../layout/pratiche.htm">Pratiche</a></li>
+              <!-- @@blkPratiche -->
+              <!-- @@blkStampaFascicolo -->
+              <li>
+                <a href="../layout/scelta_stampa.htm">Stampe</a>
+              </li>
+              <!-- @@blkStampaFascicolo -->
+			  <li>
+                <a href="../layout/strumenti.htm">Strumenti</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <hr/>
+        <!-- SECONDA COLONNA -->
+        <div id="contenuto">
+          <div id="intesta">
+            <p class="$$aziendaIntestazione" title="$$tooltipIntestazione" >
+              $$CUAAIntestazione  $$denominazioneIntestazione
+            </p>
+          </div>
+          <hr/>
+          <table cellspacing="3" summary="Questa tabella è costituita da righe">
+            <tr>
+              <th colspan="2" scope="row">
+                  <label for="possesso">
+                    Titolo di possesso
+                  </label>
+                </th>
+                <td colspan="3">
+                  <select name="idTitoloPossesso" id="idTitoloPossesso" onChange="javascript:invia();">
+                    <!-- @@blkTitoliPossesso -->
+                    <option value="$$idTitoloPossesso" $$selected>
+                      $$descrizione
+                    </option>
+                    <!-- @@blkTitoliPossesso -->
+                  </select>
+                  $$err_idTitoloPossesso
+                </td>
+            </tr>
+          </table>
+          <table cellspacing="3" summary="Questa tabella è costituita da righe">
+            <caption>Ricerca azienda:</caption>
+            <tr>
+              <th>
+                <label for="CUAA">CUAA</label>
+              </th>
+              <td colspan="2">
+                <input name="cuaa" class="textmediolungo" id="cuaa" value="$$cuaa" maxlength="16" />
+                $$err_cuaa
+              </td>
+            </tr>
+          </table>
+          <div class="pulsanti"><div class="sin">
+            <input id="ricercaAzienda" name="ricercaAzienda" type="button" value="ricerca" onClick="javscript:setHiddenOperazione(document.forms[0], 'ricercaAzienda');" class="inputPulsante" />
+          </div></div>
+          <br/>
+          <div @@blkConferimento style="display:none" @@blkConferimento>
+            <table cellspacing="3" summary="Questa tabella è costituita da righe">
+              <caption>Ricerca particelle:</caption>
+              <tr>
+                <th>
+                  <label for="provincia">Provincia</label>
+                </th>
+                <td colspan="2">
+                  <input type="text" id="provincia" name="provincia" class="due" maxlength="2" value="$$sedelegProv" />
+                  $$err_provincia
+                </td>
+                <th>
+                  <label for="comune">Comune</label>
+                </th>
+                <td>
+                  <input type="text" id="comune" name="comune" class="text" value="$$descComune" />
+                  $$err_comune
+                </td>
+                <td>
+                  <div class="azioni"><a href="javascript: scegliComune('../view/sceltaComuneView.jsp','scegli_comune','600','300','yes',document.form1.provincia.value,document.form1.comune.value);" class="pulsante">cerca</a></div>
+                  $$err_descComune
+                  <input type="hidden" name="istatComune" value="$$istatComune" />
+                  <input type="hidden" name="cap" value="$$cap" />
+                </td>
+                <th scope="row"><label for="sezione"><acronym title="Sezione">Sz.</acronym></label></th>
+                <td>
+                  <input type="text" id="sezione" name="sezione" maxlength="1" value="$$sezione" class="textbreve" />
+                  $$err_sezione
+                </td>
+                <th scope="row"><label for="foglio"><acronym title="Foglio">Fgl.</acronym></label></th>
+                <td>
+                  <input type="text" id="foglio" name="foglio" maxlength="4" value="$$foglio" class="textbreve" />
+                  $$err_foglio
+                </td>
+                <th scope="row"><label for="particella"><acronym title="Particella">Part.</acronym></label></th>
+                <td>
+                  <input type="text" id="particella" name="particella" maxlength="5" value="$$particella" class="textbreve" />
+                  $$err_particella
+                </td>
+              </tr>
+            </table>
+            <div class="pulsanti"><div class="sin">
+              <input id="ricercaParticelle" name="ricercaParticelle" type="button" value="ricerca" onClick="javscript:setHiddenOperazione(document.forms[0], 'ricercaParticelle');" class="inputPulsante" />
+              $$err_ricercaParticelle
+            </div></div>
+          </div>  
+          
+          
+          <!-- @@blkErrore -->
+            <p class="errore">$$messaggioErrore</p>
+          <!-- @@blkErrore -->  
+          
+          <!-- @@blkElencoAziende -->
+          <table cellspacing="3" summary="Questa tabella è costituita da righe">
+            <tr>
+              <th rowspan="2" class="center" scope="col">Sel.</th>
+              <th rowspan="2" class="center" scope="col">Partita iva</th>
+              <th rowspan="2" class="center" scope="col">Denominazione</th>
+              <th colspan="2" class="center" scope="col">Sede legale</th>
+            </tr>
+            <tr>
+              <th class="center" scope="col">Comune</th>
+              <th class="center" scope="col">Indirizzo</th>
+            </tr>
+            <!-- @@blkElenco -->
+            <tr>
+              <td class="radio" scope="row">
+                <label for="radiobutton" class="alt">
+                  <span>radiobutton1</span>
+                </label>
+                <input type="radio" id="idAnagraficaAzienda" name="idAnagraficaAzienda" value="$$idAnagraficaAzienda" $$checked/>
+              </td>
+              <td>$$partitaIva</td>
+              <td>$$denominazione</td>
+              <td>$$descComuneSedeLegale $$siglaProvSedeLegale</td>
+              <td>$$indirizzoSedeLegale</td>
+            </tr>
+            <!-- @@blkElenco -->
+          </table>
+          <div class="pulsanti">
+	          <div class="sin">
+              <a href="#" onClick="setHiddenOperazione(document.forms[0], 'avanti')" >avanti</a>
+            </div>
+          </div>
+          <!-- @@blkElencoAziende -->
+      </div>
+ 
+    </div>
+    <hr/>
+    <!-- PIE' DI PAGINA -->
+$$footer
+

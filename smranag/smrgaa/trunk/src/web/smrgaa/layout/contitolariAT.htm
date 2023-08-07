@@ -1,0 +1,402 @@
+$$head
+<script type="text/javascript" src="../js/checktext.js"></script>
+<script type="text/javascript" src="../js/messaggistica.js"></script>
+</head>
+<body id="homeIndice" onload="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+  <form id="form1" name="form1" method="post"
+    action="contitolariAAEP.htm">
+    <div id="pagina" class="colonnaUnica">
+      <!-- INTESTAZIONE -->
+      <div id="intestazione##pathProvincia">
+        $$header
+        <!-- menu di navigazione-->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li>
+                <a href="index.htm" title="Torna alla pagina principale">home</a>
+              </li>
+              <li class="attivo">
+                gestione anagrafe aziende
+              </li>
+              <li>
+                <a href="#" title="contatti">contatti</a>
+              </li>
+              <li>
+                <a href="#" title="help">help</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div style="clear: left"></div>
+      <!-- CORPO -->
+      <div id="corpo">
+        <div id="Utente">
+          <div id="datiUtente">
+            <strong>utente:</strong>$$utente&nbsp;&nbsp;
+            <strong>ente:</strong>$$ente
+          </div>
+          <div id="chiudisessione">
+            <a href="javascript: logout();">chiudi sessione</a>
+          </div>
+        </div>
+        <hr />
+        <!--PRIMA COLONNA -->
+        <h3>
+          Gestione Anagrafe Aziende > Soggetti collegati > Anagrafe
+          tributaria.
+          <span class="helpFuori"> <a href="#"> <span
+              class="alt">[help]</span> </a> </span>
+        </h3>
+        <hr />
+        <div class="box">
+          <div class="menuSX1">
+            <ul>
+              <li>
+                <a href="ricerca.htm">Ricerche</a>
+              </li>
+              <!-- @@blkNuova -->
+              <li>
+                <a href="nuovaAziendaAnagrafica.htm">Nuova Azienda</a>
+              </li>
+              <!-- @@blkNuova -->
+              <!-- @@blkNuovaIscrizione -->
+		          <li>
+		            <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+		          </li>
+		          <!-- @@blkNuovaIscrizione -->
+            </ul>
+          </div>
+          <div class="menuSX">
+            <ul>
+              <li>
+                <a href="anagrafica.htm">Anagrafica</a>
+              </li>
+              <!-- @@blkAziendeCollegate -->
+              <li>
+                <a href="../layout/aziendeCollegate.htm">$$aziendeCollegateLabel</a>
+              </li>
+              <!-- @@blkAziendeCollegate -->
+              <!-- @@blkSincronizzaFascicolo -->
+               <li>
+               	<a href="../layout/sincronizzaFascicolo.htm">Sincronizza fascicolo</a>
+               </li>
+              <!-- @@blkSincronizzaFascicolo -->
+              <!-- @@blkSoggettiCollegati -->
+              <li>
+                <a href="contitolari.htm" class="on">Soggetti
+                  collegati</a>
+                <ul>
+                  <li>
+                    <a href="#" class="etichetta">anagrafe
+                      tributaria</a>
+                  </li>
+                </ul>
+              </li>
+              <!-- @@blkSoggettiCollegati -->
+              <!-- @@blkContiCorrenti -->
+              <li>
+                <a href="conti_correnti.htm">Conti Correnti</a>
+              </li>
+              <!-- @@blkContiCorrenti -->
+              <!-- @@blkUnitaProduttive -->
+              <li>
+                <a href="sedi.htm">Unit&agrave; produttive</a>
+              </li>
+              <!-- @@blkUnitaProduttive -->
+              <!-- @@blkTerreni -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniParticellareElenco.htm">Terreni</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		            <a href="../layout/riepiloghi.htm">Terreni</a>
+		            <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkTerreni -->
+		          <!-- @@blkUnitaVitate -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniUnitaArboreeElenco.htm">Unit&agrave; Vitate</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		              <a href="../layout/riepiloghiUnitaArboree.htm">Unit&agrave; Vitate</a>
+		              <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkUnitaVitate -->
+              <!-- @@blkFabbricati -->
+              <li>
+                <a href="fabbricati.htm">Fabbricati e Strutture</a>
+              </li>
+              <!-- @@blkFabbricati -->
+              <!-- @@blkAllevamenti -->
+              <li>
+                <a href="allevamenti.htm">Allevamenti</a>
+              </li>
+              <!-- @@blkAllevamenti -->
+              <!-- @@blkManodopera -->
+              <li>
+                <a href="manodopera.htm">Manodopera</a>
+              </li>
+              <!-- @@blkManodopera -->
+              <!-- @@blkMotoriAgricoli -->
+              <li>
+                <a href="motori_agricoli_incarico.htm">Macchine agricole</a>
+              </li>
+              <!-- @@blkMotoriAgricoli -->
+              <!-- @@blkDiritti -->
+              <li>
+                <a href="diritti.htm">Diritti di produzione</a>
+              </li>
+              <!-- @@blkDiritti -->
+              <!-- @@blkAttestazioni -->
+              <li>
+                <a href="../layout/attestazioniDettaglio.htm">Dichiarazioni</a>
+              </li>
+              <!-- @@blkAttestazioni -->
+              <!-- @@blkDichiarazioniConsistenza -->
+              <li>
+                <a href="dichiarazioneConsistenza.htm">Validazioni</a>
+              </li>
+              <!-- @@blkDichiarazioniConsistenza -->
+              <!-- @@blkDocumenti -->
+              <li>
+                <a href="documentiElenco.htm">Documenti</a>
+              </li>
+              <!-- @@blkDocumenti -->
+              <!-- @@blkFascicoloDematerializzato -->
+		          <li>
+		            <a href="../layout/fascicoloDematerializzato.htm">Fascicolo<br>elettronico</a>
+		          </li>
+		          <!-- @@blkFascicoloDematerializzato --> 
+              <!-- @@blkGestioneNotifiche -->
+              <li>
+                <a href="notifiche.htm">Notifiche</a>
+              </li>
+              <!-- @@blkGestioneNotifiche -->
+              <!-- @@blkComunicazione10R -->
+              <li>
+                <a href="../layout/comunicazione10R_dettaglio.htm">Comunicazione
+                  10/R</a>
+              </li>
+              <!-- @@blkComunicazione10R -->
+              <!-- @@blkPratiche -->
+              <li>
+                <a href="pratiche.htm">Pratiche</a>
+              </li>
+              <!-- @@blkPratiche -->
+              <!-- @@blkStampaFascicolo -->
+              <li>
+                <a href="scelta_stampa.htm">Stampe</a>
+              </li>
+              <!-- @@blkStampaFascicolo -->
+			  <li><a href="../layout/strumenti.htm">Strumenti</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr />
+        <!-- SECONDA COLONNA -->
+        <div id="contenuto">
+          <div id="intesta">
+            <p class="$$aziendaIntestazione" title="$$tooltipIntestazione" >
+              $$CUAAIntestazione  $$denominazioneIntestazione
+            </p>
+          </div>
+          <!-- @@blkNotifica -->
+          <p class="$$immagine">
+            $$messaggioNotifica
+          </p>
+          <div class="notifica">
+            $$notifica
+          </div>
+          <!-- @@blkNotifica -->
+          <h4 class="titolo">
+            Fonte Dati: Anagrafe Tributaria
+          </h4>
+
+          <!-- @@blkErrore -->
+          <p class="errore">
+            $$messaggio
+          </p>
+          <!-- @@blkErrore -->
+          <!-- @@blkSoggetto -->
+
+          <table cellspacing="3" summary="Tabella dei dati anagrafici">
+            <caption>
+              Dati anagrafici
+            </caption>
+            <tr>
+              <th>
+                Codice fiscale
+              </th>
+              <td>
+                $$codFiscale
+              </td>
+              <th>
+                Partita iva
+              </th>
+              <td>
+                $$partitaIva
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Cognome
+              </th>
+              <td>
+                $$cognome
+              </td>
+              <th>
+                Nome
+              </th>
+              <td>
+                $$nome
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Comune di nascita
+              </th>
+              <td>
+                $$luogoNascita
+              </td>
+              <th>
+                Data di nascita
+              </th>
+              <td>
+                $$dataNascita
+              </td>
+            </tr>
+            <tr>
+		          <th>Data decesso</th>
+		          <td>$$dataDecesso</td>
+		          <th></th>
+		          <td></td>
+		        </tr>
+            <tr>
+              <th>
+                Sesso
+              </th>
+              <td>
+                $$sesso
+              </td>
+              <th>
+                Denominazione
+              </th>
+              <td>
+                $$denominazione
+              </td>
+            </tr>
+            <tr>
+		          <th>Codice ateco 2007</th>
+		          <td>$$codiceAteco</td>
+		          <th>Descrizione ateco 2007</th>
+		          <td>$$descAttivitaAteco</td>
+		        </tr>
+          </table>
+
+
+          <table cellspacing="3" summary="Tabella dei dati di residenza">
+            <caption>
+              Residenza
+            </caption>
+            <tr>
+              <th>
+                Indirizzo
+              </th>
+              <td colspan="3">
+                $$indirizzoResidenza
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Comune
+              </th>
+              <td>
+                $$luogoResidenza
+              </td>
+              <th>
+                Cap
+              </th>
+              <td>
+                $$capResidenza
+              </td>
+            </tr>
+          </table>
+
+
+          <!-- @@blkSedeLegale -->
+          <table cellspacing="3" summary="Tabella della sede legale">
+            <caption>
+              Sede legale
+            </caption>
+            <tr>
+              <th>
+                Indirizzo
+              </th>
+              <td colspan="3">
+                $$indirizzoSedeLegale
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Comune
+              </th>
+              <td>
+                $$comuneSedeLegale
+              </td>
+              <th>
+                Cap
+              </th>
+              <td>
+                $$capSedeLegale
+              </td>
+            </tr>
+          </table>
+          <!-- @@blkSedeLegale -->
+
+          <!-- @@blkDomicilioFiscale -->
+          <table cellspacing="3" summary="Tabella del domicilio fiscale">
+            <caption>
+              Domicilio fiscale
+            </caption>
+            <tr>
+              <th>
+                Indirizzo
+              </th>
+              <td colspan="3">
+                $$indirizzoDomicilioFiscale
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Comune
+              </th>
+              <td>
+                $$comuneDomicilioFiscale
+              </td>
+              <th>
+                Cap
+              </th>
+              <td>
+                $$capDomicilioFiscale
+              </td>
+            </tr>
+          </table>
+          <!-- @@blkDomicilioFiscale -->
+
+          
+          
+         
+
+         
+          <!-- @@blkSoggetto -->
+        </div>
+      </div>
+      <hr />
+      $$footer

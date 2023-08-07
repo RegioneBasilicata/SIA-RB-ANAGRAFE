@@ -1,0 +1,46 @@
+$$head
+	<script src="../js/checktext.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    
+		function elimina(url,form) {
+  			window.opener.document.forms.form1.elements.operazione.value='elimina';
+  			window.opener.document.forms.form1.submit();
+  			window.opener.document.forms.form1.elements.operazione.value='';
+  			window.close();
+		}
+
+	</script>
+</head>
+<body id="homeIndice">
+	<form method="post" id="eliminaUte" name="eliminaUte" action="../layout/$$page.htm">
+		<div id="pagina" class="colonnaUnica">
+			<input type="hidden" name="opVal" value="$$opVal"/>
+			<div id="intestazione##pathProvincia">
+				$$header
+				<div id="titoloEmenu">
+					<h2><span class="alt">Anagrafe agricola della Regione TOBECONFIG</span></h2>
+				</div>
+			</div>
+			<hr />
+			<div style="clear:left"></div>
+			<div id="corpo">
+				<hr />
+				<div id="content">
+					<p class="errore">Attenzione</p>
+					<p>$$msg</p>
+                    
+                    
+                     <div class="pulsanti">
+					<div class="sin">
+						<input type="submit" value="conferma" name="submit" class="inputPulsante highlighted" />
+					</div>
+    				<div class="des">
+    					<input type="submit" value="annulla" name="submit2" class="inputPulsante annulla" />
+    				</div>	
+                    </div>
+                    
+				</div>
+ 			</div>
+			<hr />
+		</form>
+$$footer

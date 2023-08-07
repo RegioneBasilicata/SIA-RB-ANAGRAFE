@@ -1,0 +1,324 @@
+$$head
+</head>
+<script src="../js/checktext.js" type="text/javascript"></script>
+<script type="text/javascript" src="../js/messaggistica.js"></script>
+</head>
+<body id="homeIndice"
+	onload="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+	<form name="form1" id="form1" method="post" action="">
+		<input type="hidden" name="operazione" value="$$operazione" />
+		<div id="pagina" class="colonnaUnica">
+			<!-- INTESTAZIONE -->
+			<div id="intestazione##pathProvincia">
+				$$header
+				<!-- menu di navigazione-->
+				<div id="titoloEmenu">
+					<h2>
+						<span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+					</h2>
+					<div id="menuDiNavigazione" title="Menu di navigazione">
+						<ul class="menuTendina" id="menu-2">
+							<li><a href="../layout/index.htm"
+								title="Torna alla pagina principale">home</a></li>
+							<li class="attivo">gestione anagrafe aziende</li>
+							<li><a href="#" title="contatti">contatti</a></li>
+							<li><a href="#" title="help">help</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<hr />
+			<div style="clear: left"></div>
+			<!-- CORPO -->
+			<div id="corpo">
+				<div id="Utente">
+					<div id="datiUtente">
+						<strong>utente:</strong> $$utente &nbsp; &nbsp; <strong>ente:</strong>
+						$$ente
+					</div>
+					<div id="chiudisessione">
+						<a href="javascript: logout();">chiudi sessione</a>
+					</div>
+				</div>
+				<hr />
+				<!--PRIMA COLONNA -->
+				<h3>
+					Gestione Anagrafe
+					Aziende&nbsp;&gt;&nbsp;Allevamenti&nbsp;&gt;&nbsp;Consistenza media
+					<span class="helpFuori"> <a href="#"> <span class="alt">[help]</span>
+					</a>
+					</span>
+				</h3>
+				<hr />
+				<div class="box">
+					<div class="menuSX1">
+						<ul>
+							<!-- @@blkElencoAziendeRapLegale -->
+							<li><a href="../layout/elencoAziendeRapLegale.htm">Elenco
+									Aziende</a></li>
+							<!-- @@blkElencoAziendeRapLegale -->
+							<!-- @@blkRicercaAzienda-->
+							<li><a href="../layout/ricerca.htm">Ricerche</a></li>
+							<!-- @@blkRicercaAzienda-->
+							<!-- @@blkNuova -->
+							<li><a href="../layout/nuovaAziendaAnagrafica.htm">Nuova
+									Azienda</a></li>
+							<!-- @@blkNuova -->
+							<!-- @@blkNuovaIscrizione -->
+							<li><a href="../layout/newInserimentoAzienda.htm">Nuova
+									Iscrizione</a></li>
+							<!-- @@blkNuovaIscrizione -->
+						</ul>
+					</div>
+					<div class="menuSX">
+						<ul>
+							<li><a href="../layout/anagrafica.htm">Anagrafica</a></li>
+							<!-- @@blkAziendeCollegate -->
+							<li><a href="../layout/aziendeCollegate.htm">$$aziendeCollegateLabel</a>
+							</li>
+							<!-- @@blkAziendeCollegate -->
+							<!-- @@blkSincronizzaFascicolo -->
+			               <li>
+			               	<a href="../layout/sincronizzaFascicolo.htm">Sincronizza fascicolo</a>
+			               </li>
+			              <!-- @@blkSincronizzaFascicolo -->
+							<!-- @@blkSoggettiCollegati -->
+							<li><a href="../layout/contitolari.htm">Soggetti
+									collegati</a></li>
+							<!-- @@blkSoggettiCollegati -->
+							<!-- @@blkContiCorrenti -->
+              <li><a href="../layout/conti_correnti.htm">Conti
+                  Correnti</a></li>
+              <!-- @@blkContiCorrenti -->
+							<!-- @@blkUnitaProduttive -->
+							<li><a href="../layout/sedi.htm">Unit&agrave; produttive</a></li>
+							<!-- @@blkUnitaProduttive -->
+							<!-- @@blkTerreni -->
+							<li>
+								<!-- @@blkLinkElenco --> <a
+								href="../layout/terreniParticellareElenco.htm">Terreni</a> <!-- @@blkLinkElenco -->
+								<!-- @@blkLinkRiepiloghi --> <a href="../layout/riepiloghi.htm">Terreni</a>
+								<!-- @@blkLinkRiepiloghi -->
+							</li>
+							<!-- @@blkTerreni -->
+							<!-- @@blkUnitaVitate -->
+							<li>
+								<!-- @@blkLinkElenco --> <a
+								href="../layout/terreniUnitaArboreeElenco.htm">Unit&agrave;
+									Vitate</a> <!-- @@blkLinkElenco --> <!-- @@blkLinkRiepiloghi --> <a
+								href="../layout/riepiloghiUnitaArboree.htm">Unit&agrave;
+									Vitate</a> <!-- @@blkLinkRiepiloghi -->
+							</li>
+							<!-- @@blkUnitaVitate -->
+							<!-- @@blkFabbricati -->
+							<li><a href="../layout/fabbricati.htm">Fabbricati e
+									Strutture</a></li>
+							<!-- @@blkFabbricati -->
+							<!-- @@blkAllevamenti -->
+							<li><a href="../layout/allevamenti.htm" class="on">Allevamenti</a>
+								<ul>
+									<li><a href="#" class="etichetta">Consistenza media</a></li>
+								</ul>
+						  </li>
+							<!-- @@blkAllevamenti -->
+							<!-- @@blkManodopera -->
+							<li><a href="../layout/manodopera.htm">Manodopera</a></li>
+							<!-- @@blkManodopera -->
+							<!-- @@blkMotoriAgricoli -->
+							<li><a href="../layout/motori_agricoli_incarico.htm">Macchine agricole</a></li>
+							<!-- @@blkMotoriAgricoli -->
+							<!-- @@blkDiritti -->
+							<li><a href="../layout/diritti.htm">Diritti di
+									produzione</a></li>
+							<!-- @@blkDiritti -->
+							<!-- @@blkAttestazioni -->
+							<li><a href="../layout/attestazioniDettaglio.htm">Dichiarazioni</a></li>
+							<!-- @@blkAttestazioni -->
+							<!-- @@blkDichiarazioniConsistenza -->
+							<li><a href="../layout/dichiarazioneConsistenza.htm">Validazioni</a></li>
+							<!-- @@blkDichiarazioniConsistenza -->
+							<!-- @@blkDocumenti -->
+							<li><a href="../layout/documentiElenco.htm">Documenti</a></li>
+							<!-- @@blkDocumenti -->
+							<!-- @@blkFascicoloDematerializzato -->
+              <li>
+                <a href="../layout/fascicoloDematerializzato.htm">Fascicolo<br>elettronico</a>
+              </li>
+              <!-- @@blkFascicoloDematerializzato -->
+							<!-- @@blkGestioneNotifiche -->
+							<li><a href="../layout/notifiche.htm">Notifiche</a></li>
+							<!-- @@blkGestioneNotifiche -->
+							<!-- @@blkComunicazione10R -->
+							<li><a href="../layout/comunicazione10R_dettaglio.htm">Comunicazione
+									10/R</a></li>
+							<!-- @@blkComunicazione10R -->
+							<!-- @@blkPratiche -->
+							<li><a href="../layout/pratiche.htm">Pratiche</a></li>
+							<!-- @@blkPratiche -->
+							<!-- @@blkStampaFascicolo -->
+							<li><a href="../layout/scelta_stampa.htm">Stampe</a></li>
+							<!-- @@blkStampaFascicolo -->
+							<li><a href="../layout/strumenti.htm">Strumenti</a></li>
+						</ul>
+					</div>
+				</div>
+				<hr />
+				<!-- SECONDA COLONNA -->
+				<div id="contenuto">
+					<div id="intesta">
+						<p class="$$aziendaIntestazione" title="$$tooltipIntestazione">
+							$$CUAAIntestazione $$denominazioneIntestazione</p>
+					</div>
+					<h4 class="titolo">Fonte dati: Anagrafe Zootecnica Nazionale</h4>
+					<br/>
+
+					<!-- @@blkBoviniConsistenza -->					
+					<div class="scroll">
+						<table cellspacing="3" summary="Questa tabella contiene i dati del rapporto">
+						  <caption>Consistenza media allevamento</caption>
+							<tr>
+							  <th rowspan="3" scope="col" class="center">Anno</th>
+							  <th rowspan="3" scope="col" class="center">Codice azienda<br>zootecnica</th>
+							  <th rowspan="3" scope="col" class="center">Specie</th>
+							  <th rowspan="3" scope="col" class="center">Media capi<br>totali</th>
+							  <th colspan="8" scope="col" class="center">di cui</th>
+								<th rowspan="3" scope="col" class="center">Proprietario</th>
+                <th rowspan="3" scope="col" class="center">Detentore</th>
+							</tr>
+							<tr>
+							  <th colspan="2" scope="col" class="center">Bovini (0/12 mesi)</th>
+                <th colspan="2" scope="col" class="center">Bovini (12/24 mesi)</th>
+                <th colspan="2" scope="col" class="center">Bufalini (0/12 mesi)</th>
+                <th colspan="2" scope="col" class="center">Bufalini (12/24 mesi)</th>
+							</tr>
+							<tr>
+								<th class="center">Maschi</th>
+								<th class="center">Femmine</th>
+								<th class="center">Maschi</th>
+                <th class="center">Femmine</th>
+                <th class="center">Maschi</th>
+                <th class="center">Femmine</th>
+                <th class="center">Maschi</th>
+                <th class="center">Femmine</th>
+							</tr>
+							<!--@@blkAllevamenti-->
+							<tr>
+							  <td class="center">$$anno</td>
+							  <td>$$codiceAzienda</td>
+                <td>$$descrizioneSpecie</td>
+                <td class="center">$$mediaTotali</td>
+								<td class="center">$$maschiBov0_12</td>
+								<td class="center">$$femmineBov0_12</td>
+								<td class="center">$$maschiBov12_24</td>
+								<td class="center">$$femmineBov12_24</td>
+								<td class="center">$$maschiBuf0_12</td>
+                <td class="center">$$femmineBuf0_12</td>
+                <td class="center">$$maschiBuf12_24</td>
+                <td class="center">$$femmineBuf12_24</td>
+								<td>$$proprietario</td>
+                <td>$$detentore</td>								
+							</tr>
+							<!--@@blkAllevamenti-->
+						</table>
+
+					</div>
+					<!-- @@blkBoviniConsistenza -->
+					
+					<!-- @@blkBoviniErrore -->
+          <p class="errore">$$messaggio</p>
+          <!-- @@blkBoviniErrore -->
+					
+					
+					<!-- @@blkCapriniConsistenza -->
+          <div class="scroll">
+            <table cellspacing="3" summary="Questa tabella contiene i dati del rapporto">
+              <caption>Consistenza media allevamento</caption>
+              <tr>
+                <th rowspan="4" scope="col" class="center">Anno</th>
+                <th rowspan="4" scope="col" class="center">Codice azienda<br>zootecnica</th>
+                <th rowspan="4" scope="col" class="center">Specie</th>
+                <th rowspan="4" scope="col" class="center">Totale<br>ovini</th>
+                <th colspan="9" scope="col" class="center">di cui</th>                
+                <th rowspan="4" scope="col" class="center">Totale<br>caprini</th>
+                <th colspan="9" scope="col" class="center">di cui</th>
+                <th rowspan="4" scope="col" class="center">Data<br>censimento</th>
+                <th rowspan="4" scope="col" class="center">Data<br>comunicazione<br>all'autorit&agrave;<br>competente</th>
+                <th rowspan="4" scope="col" class="center">Proprietario</th>
+                <th rowspan="4" scope="col" class="center">Detentore</th>
+              </tr>
+              <tr>
+                <th colspan="8" scope="col" class="center">Ovini (oltre 12 mesi)</th>
+                <th rowspan="3" scope="col" class="center">Totale agnelli<br>da macello</th>
+                <th colspan="8" scope="col" class="center">Caprini (oltre 12 mesi)</th>
+                <th rowspan="3" scope="col" class="center">Totale caprini<br>da macello</th>
+              </tr>
+              <tr>
+                <th colspan="4" class="center">Maschi</th>
+                <th colspan="4" class="center">Femmine</th>
+                <th colspan="4" class="center">Maschi</th>
+                <th colspan="4" class="center">Femmine</th>
+              </tr>
+              <tr>
+                <th class="center">Adulti</th>
+                <th class="center">Adulti<br>iscritti<br>a libro</th>
+                <th class="center">Da rimonta</th>
+                <th class="center">Da rimonta<br>iscritti<br>a libro</th>
+                <th class="center">Adulte</th>
+                <th class="center">Adulte<br>iscritte<br>a libro</th>
+                <th class="center">Da rimonta</th>
+                <th class="center">Da rimonta<br>iscritte<br>a libro</th>
+                <th class="center">Adulti</th>
+                <th class="center">Adulti<br>iscritti<br>a libro</th>
+                <th class="center">Da rimonta</th>
+                <th class="center">Da rimonta<br>iscritti<br>a libro</th>
+                <th class="center">Adulte</th>
+                <th class="center">Adulte<br>iscritte<br>a libro</th>
+                <th class="center">Da rimonta</th>
+                <th class="center">Da rimonta<br>iscritte<br>a libro</th>
+              </tr>
+              <!--@@blkAllevamenti-->
+              <tr>
+                <td class="center">$$anno</td>
+                <td>$$codiceAzienda</td>
+                <td>$$descrizioneSpecie</td>
+                <td class="center">$$mediaTotaleOvini</td>
+                <td class="center">$$maschiOviAdulti</td>
+                <td class="center">$$maschiOviAdultiLib</td>
+                <td class="center">$$maschiOviRimonta</td>
+                <td class="center">$$maschiOviRimontaLib</td>
+                <td class="center">$$femmineOviAdulti</td>
+                <td class="center">$$femmineOviAdultiLib</td>
+                <td class="center">$$femmineOviRimonta</td>
+                <td class="center">$$femmineOviRimontaLib</td>
+                <td class="center">$$mediaTotaleAgnelliMacello</td>
+                <td class="center">$$mediaTotaleCaprini</td>                                
+                <td class="center">$$maschiCapAdulti</td>
+                <td class="center">$$maschiCapAdultiLib</td>
+                <td class="center">$$maschiCapRimonta</td>
+                <td class="center">$$maschiCapRimontaLib</td>
+                <td class="center">$$femmineCapAdulti</td>
+                <td class="center">$$femmineCapAdultiLib</td>
+                <td class="center">$$femmineCapRimonta</td>
+                <td class="center">$$femmineCapRimontaLib</td>
+                <td class="center">$$mediaTotaleCapriniMacello</td>        
+                <td class="center">$$dataCensimento</td>
+                <td class="center">$$dataComunicazioneAutorita</td>
+                <td>$$proprietario</td>
+                <td>$$detentore</td>               
+              </tr>
+              <!--@@blkAllevamenti-->
+            </table>
+
+          </div>
+          <!-- @@blkCapriniConsistenza -->
+					<!-- @@blkErroreCaprini -->
+					<p class="errore">$$messaggio</p>
+					<!-- @@blkErroreCaprini -->
+					
+
+				</div>
+			</div>
+			<hr />
+	</form>
+	<!-- PIE' DI PAGINA -->
+	$$footer

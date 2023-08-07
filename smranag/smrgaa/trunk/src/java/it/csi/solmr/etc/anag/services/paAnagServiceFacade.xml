@@ -1,0 +1,30 @@
+<porta-applicativa name="AnagService" public-interface-class="it.csi.solmr.interfaceCSI.anag.services.AnagServiceCSIInterface">
+	<listener class="it.csi.csi.porte.ejb.PortaApplicativaBean" listening-url="java:protocol-AnagService" />
+	<adapter class="it.csi.csi.wrapper.StatelessEJBAdapter">
+		<properties>
+			<property name="jndi-name" value="solmr/anag/AnagServiceFacade"/>
+			<property name="home-class" value="it.csi.solmr.business.anag.services.AnagServiceFacadeHome" />
+			<property name="remote-class" value="it.csi.solmr.business.anag.services.AnagServiceFacadeRemote" />
+		</properties>
+	</adapter>
+	<options>
+		<pre-function-handler-list>
+			<pluggable-fh name="PA Chiamante TXID Handler(pre)" class="it.csi.cooptrace.business.handler.PaTracingHandler" >
+				<properties>
+					<property name="componentname" value="smrgaasv" />
+					<property name="callername" value="smrgaasv" />
+					<property name="interfacename" value="AnagServiceCSIInterface" />
+				</properties>
+			</pluggable-fh>
+		</pre-function-handler-list>
+		<post-function-handler-list>
+			<pluggable-fh name="PA Chiamante TXID Handler(post)" class="it.csi.cooptrace.business.handler.PaTracingHandler" >
+				<properties>
+					<property name="componentname" value="smrgaasv" />
+					<property name="callername" value="smrgaasv" />
+					<property name="interfacename" value="AnagServiceCSIInterface" />
+				</properties>
+			</pluggable-fh>
+		</post-function-handler-list>
+	</options>
+</porta-applicativa>

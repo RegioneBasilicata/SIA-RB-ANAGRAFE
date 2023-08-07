@@ -1,0 +1,258 @@
+$$head
+  <script type="text/javascript" src="../js/checktext.js"></script>
+  <script type="text/javascript" src="../js/messaggistica.js"></script>
+  <script type="text/javascript">
+
+    function newWindowComuneSede(mypage, myname, w, h, scroll,comune, provincia) {
+      var winl = (screen.width - w) / 2;
+      var wint = (screen.height - h) / 2;
+      if(comune == '' && provincia == '') {
+        alert('Inserire almeno una parte del comune o la provincia!');
+      }
+      else if(!mappaOggetti(comune) || !mappaOggetti(provincia)) {
+      }
+      else {
+        winprops =    'height='+h+',width='+w+',top='+wint+',left='+winl+',scrollbars='+scroll+',resizable';
+        win = window.open('', myname, winprops);
+        if (parseInt(navigator.appVersion) >= 4) {
+          win.window.focus();
+        }
+        document.form1.comune.value = comune;
+        document.form1.provincia.value = provincia;
+        document.form1.obiettivo.value = 'insSede';
+        document.form1.provenienza.value = 'nonEstinto';
+        var target1 = document.form1.target;
+        var action1 = document.form1.action;
+        document.form1.target = myname;
+        document.form1.action = mypage;
+        document.form1.submit();
+        document.form1.target = target1;
+        document.form1.action = action1;
+      }
+    }
+
+    function newWindowStatoAzienda(mypage, myname, w, h, scroll,stato) {
+      var winl = (screen.width - w) / 2;
+      var wint = (screen.height - h) / 2;
+
+      if(!mappaOggetti(stato)) {
+      }
+      else {
+        winprops =    'height='+h+',width='+w+',top='+wint+',left='+winl+',scrollbars='+scroll+',resizable';
+        win = window.open('', myname, winprops);
+        if (parseInt(navigator.appVersion) >= 4) {
+          win.window.focus();
+        }
+        document.form1.stato.value = stato;
+        var target1 = document.form1.target;
+        var action1 = document.form1.action;
+        document.form1.target = myname;
+        document.form1.action = mypage;
+        document.form1.submit();
+        document.form1.target = target1;
+        document.form1.action = action1;
+      }
+    }
+
+  </script>
+</head>
+<body id="homeIndice" onload="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+  <div id="pagina" class="colonnaUnica">
+    <!-- INTESTAZIONE -->
+    <div id="intestazione##pathProvincia">
+      $$header
+      <!-- menu di navigazione-->
+      <div id="titoloEmenu">
+        <h2>
+          <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+        </h2>
+        <div id="menuDiNavigazione" title="Menu di navigazione">
+          <ul class="menuTendina" id="menu-2">
+            <li>  <a href="../layout/index.htm" title="Torna alla pagina principale">home</a>  </li>
+            <li class="attivo">gestione anagrafe aziende</li>
+            <li>  <a href="#" title="contatti">contatti</a>  </li>
+            <li>  <a href="#" title="help">help</a>  </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <hr/>
+    <div style="clear:left">  </div>
+    <!-- CORPO -->
+    <div id="corpo">
+      <div id="Utente">
+        <div id="datiUtente">
+          <strong>utente:</strong>
+          $$utente
+          &nbsp;&nbsp;
+          <strong>ente:</strong>
+          $$ente
+        </div>
+        <div id="chiudisessione">
+          <a href="javascript: logout();">chiudi sessione</a>
+        </div>
+      </div>
+      <hr/>
+      <!--PRIMA COLONNA -->
+      <h3>      Inserimento azienda
+        <span class="helpFuori">
+          <a href="#">
+            <span class="alt">[help]</span>
+          </a>
+        </span>
+      </h3>
+      <hr/>
+      <div class="box">
+        <div class="menuSX1">
+          <ul>
+            <!-- @@blkElencoAziendeRapLegale -->
+                <li><a href="../layout/elencoAziendeRapLegale.htm">Elenco Aziende</a></li>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <!-- @@blkRicercaAzienda-->
+              <li><a href="../layout/ricerca.htm">Ricerche</a></li>
+            <!-- @@blkRicercaAzienda-->
+            <!-- @@blkNuova -->
+            <li>  <a href="../layout/nuovaAziendaAnagrafica.htm" class="on">Nuova Azienda</a>  </li>
+            <!-- @@blkNuova -->
+            <!-- @@blkNuovaIscrizione -->
+            <li>
+              <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+            </li>
+            <!-- @@blkNuovaIscrizione -->
+          </ul>
+        </div>
+      </div>
+      <hr/>
+      <!-- SECONDA COLONNA -->
+      <div id="contenuto">
+        <hr/>
+        <div id="indice">
+          <span class="voce">
+            <a href="#">anagrafica</a>
+          </span>
+          <span class="bugFix">&nbsp;|&nbsp;</span>
+          <span class="voce">
+            <a href="#">titolare/rappr.legale</a>
+          </span>
+          <span class="bugFix">&nbsp;|&nbsp;</span>
+          <span class="evidenza">sede legale</span>
+          <span class="bugFix">&nbsp;|&nbsp;</span>
+          <span class="voce"> 
+          	<a href="#">indicatori aziendali</a> 
+          </span>
+          <span class="bugFix">&nbsp;|&nbsp;</span>
+          <span class="voce">
+            <a href="#">altre informazioni</a>
+          </span>
+          <span class="bugFix">&nbsp;|&nbsp;</span>
+        </div>
+        <hr/>
+		    <form name="form1" method="post" action="../layout/nuovaAziendaSede.htm">
+      		<input type="hidden" name="radiobuttonAzienda" value="$$radiobuttonAzienda"/>
+      		<input type="hidden" name="cuaaProvenienza" value="$$cuaaProvenienza"/>
+        <table cellspacing="3" summary="Questa tabella è costituita da righe">
+          <col width="30%"/>
+          <col width="70%"/>
+          <tr>
+            <th>
+              <label for="sedelegIndirizzo">Indirizzo*</label>
+            </th>
+            <td colspan="2">
+              <input type="text" id="sedelegIndirizzo" name="sedelegIndirizzo" class="text" maxlength="100" value="$$sedelegIndirizzo"/>
+              &nbsp;&nbsp;
+              $$err_sedelegIndirizzo
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <label for="sedelegProv">Provincia*</label>
+            </th>
+            <td colspan="2">
+              <input type="text" id="sedelegProv" name="sedelegProv" class="textbreve" maxlength="2" value="$$sedelegProv"/>
+              <input type="hidden" id="provincia" name="provincia" value="$$provincia"/>
+              <input type="hidden" id="obiettivo" name="obiettivo" value="$$obiettivo"/>
+              &nbsp;&nbsp;
+              $$err_sedelegProv
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <label for="sedelegComune">Comune*</label>
+            </th>
+            <td>
+              <input type="text" id="sedelegComune" name="sedelegComune" class="textmediolungo" maxlength="100" value="$$sedelegComune"/>
+              <input type="hidden" id="comune" name="comune" value="$$comune"/>
+              <input type="hidden" id="provenienza" name="provenienza" value="$$provenienza"/>
+            </td>
+            <td>
+              <div class="azioni">
+                <a href="javascript: newWindowComuneSede('../layout/sceltaComune.htm','scegliComAndProv','600','300','yes',document.form1.sedelegComune.value,document.form1.sedelegProv.value);">cerca</a>
+              </div>
+              $$err_sedelegComune
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <label for="sedelegCAP">C.A.P.*</label>
+            </th>
+            <td colspan="2">
+              <input type="text" id="sedelegCAP" name="sedelegCAP" class="textbreve" maxlength="5" value="$$sedelegCAP"/>
+              &nbsp;&nbsp;
+              $$err_sedelegCAP
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <label for="sedelegEstero">Stato estero*</label>
+            </th>
+            <td>
+              <input type="text" id="sedelegEstero" name="sedelegEstero" class="textmediolungo" maxlength="100" value="$$sedelegEstero"/>
+              <input type="hidden" id="stato" name="stato" size="6" value="$$stato"/>
+              <input type="hidden" id="istatStatoEstero" name="istatStatoEstero" size="50" maxlength="100" value="$$istatStatoEstero"/>
+            </td>
+            <td>
+              <div class="azioni">
+                <a href="javascript: newWindowStatoAzienda('../layout/sceltaStato.htm','scegliStato','600','300','yes',document.form1.sedelegEstero.value);">cerca</a>
+              </div>
+              $$err_sedelegEstero
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <label for="sedelegCittaEstero">Citt&agrave;</label>
+            </th>
+            <td colspan="2">
+              <input type="text" id="sedelegCittaEstero" name="sedelegCittaEstero" value="$$sedelegCittaEstero" maxlength="50" class="textmediolungo"/>
+              &nbsp;&nbsp;
+              $$err_sedelegCittaEstero
+            </td>
+          </tr>
+          <tr>
+            <th>E' un'unit&agrave; produttiva?</th>
+            <td colspan="2">
+              <label for="unitaProduttiva_si" class="alt">unitaProduttiva_si</label>
+              <input type="radio" id="unitaProduttiva_si" name="unitaProduttiva" checked value="S" checkedSi/>
+              si
+              <label for="unitaProduttiva_no" class="alt">unitaProduttiva_no</label>
+              <input type="radio" id="unitaProduttiva_no" name="unitaProduttiva" value="N" checkedNo/>
+              no
+              &nbsp;&nbsp;
+              $$err_unitaProduttiva
+            </td>
+          </tr>
+        </table>
+        <p id="nota">I campi contrassegnati con * sono obbligatori</p>
+        <div class="pulsanti"><div class="sin">
+          <input name="indietro" id="indietro" class="inputPulsante" type="submit" value="indietro"/>
+        </div>
+        <div class="des">
+          <input name="avanti" id="avanti" class="inputPulsante" type="submit" value="avanti"/>
+        </div></div>  
+      </form>
+      </div>
+    </div>
+    <hr/>
+    <!-- PIE' DI PAGINA -->
+    $$footer
+
+

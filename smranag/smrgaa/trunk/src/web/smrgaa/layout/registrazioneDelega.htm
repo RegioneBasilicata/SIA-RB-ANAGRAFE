@@ -1,0 +1,226 @@
+$$head
+	<script type="text/javascript" src="../js/checktext.js"></script>
+	<script type="text/javascript" src="../js/messaggistica.js"></script>
+  	<script type="text/javascript">
+
+    	function scegliComune(mypage, myname, w, h, scroll,provincia,comune) {
+      		NewWindowComuneAnag(mypage, myname, w, h, scroll,provincia,comune, '');
+    	}
+
+    	function NewWindowComuneAnag(mypage, myname, w, h, scroll,provincia,comune,obiettivo) {
+      		var winl = (screen.width - w) / 2;
+      		var wint = (screen.height - h) / 2;
+      		if(provincia ==  '' && comune == '') {
+        		alert('Inserire una provincia o un comune!');
+      		}
+      		else if(!mappaOggetti(comune) || !mappaOggetti(obiettivo)) {
+      		}
+      		else {
+        		winprops =    'height='+h+',width='+w+',top='+wint+',left='+winl+',scrollbars='+scroll+',resizable';
+        		win = window.open(mypage+'?obiettivo='+obiettivo+'&provincia='+provincia+'&comune='+comune, myname, winprops);
+        		if (parseInt(navigator.appVersion) >= 4) {
+          			win.window.focus();
+        		}
+      		}
+    	}
+
+  	</script>
+</head>
+<body id="homeIndice" onLoad="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+	<form name="form1" method="post" action="../layout/registrazioneDelega.htm">
+    	<input type="hidden" name="operazione" value="$$operazione"/>
+    	<div id="pagina" class="colonnaUnica">
+      		<!-- INTESTAZIONE -->
+      		<div id="intestazione##pathProvincia">
+        		$$header
+        		<!-- menu di navigazione-->
+        		<div id="titoloEmenu">
+          			<h2>
+            			<span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          			</h2>
+          			<div id="menuDiNavigazione" title="Menu di navigazione">
+            			<ul class="menuTendina" id="menu-2">
+              				<li><a href="../layout/index.htm" title="Torna alla pagina principale">home</a></li>
+			              	<li class="attivo">gestione anagrafe aziende</li>
+			              	<li><a href="#" title="contatti">contatti</a></li>
+			              	<li><a href="#" title="help">help</a></li>
+            			</ul>
+          			</div>
+        		</div>
+      		</div>
+      		<hr/>
+      		<div style="clear:left"></div>
+      		<!-- CORPO -->
+      		<div id="corpo">
+        		<div id="Utente">
+          			<div id="datiUtente">
+            			<strong>utente:</strong>
+            			$$utente
+            			&nbsp;
+            			&nbsp;
+            			<strong>ente:</strong>
+            			$$ente
+          			</div>
+          			<div id="chiudisessione">
+            			<a href="javascript: logout();">chiudi sessione</a>
+          			</div>
+        		</div>
+        		<hr/>
+        		<!--PRIMA COLONNA -->
+        		<h3>Azienda&nbsp;&gt;&nbsp;Registrazione mandato
+          			<span class="helpFuori">
+            			<a href="#">
+              				<span class="alt">[help]</span>
+            			</a>
+          			</span>
+        		</h3>
+        		<hr/>
+        		<div class="box">
+          			<div class="menuSX1">
+            			<ul>
+              				<!-- @@blkElencoAziendeRapLegale -->
+                				<li><a href="../layout/elencoAziendeRapLegale.htm">Elenco Aziende</a></li>
+              				<!-- @@blkElencoAziendeRapLegale -->
+              				<!-- @@blkRicercaAzienda-->
+                				<li><a href="../layout/ricerca.htm">Ricerche</a></li>
+              				<!-- @@blkRicercaAzienda-->
+              				<!-- @@blkNuova -->
+              					<li><a href="../layout/nuovaAziendaAnagrafica.htm">Nuova Azienda</a></li>
+              				<!-- @@blkNuova -->
+              				<!-- @@blkNuovaIscrizione -->
+				              <li>
+				                <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+				              </li>
+				              <!-- @@blkNuovaIscrizione -->
+            			</ul>
+          			</div>
+          			<div class="menuSX">
+            			<ul>
+              				<li>
+                				<a href="#" class="on">Azienda</a>
+                				<ul>
+                  					<li>
+                    					<a href="#" class="etichetta">registrazione mandato</a>
+                  					</li>
+                				</ul>
+              				</li>
+            			</ul>
+          			</div>
+        		</div>
+        		<hr/>
+        		<!-- SECONDA COLONNA -->
+        		<div id="contenuto">
+          			<table cellspacing="3" summary="Questa tabella contiene i dati relativi all'azienda">
+            			<caption>L'azienda:</caption>
+            			<tr>
+              				<th>CUAA</th>
+              				<td>$$CUAA</td>
+            			</tr>
+            			<tr>
+              				<th>Partita IVA</th>
+              				<td>$$partitaIVA</td>
+            			</tr>
+            			<tr>
+              				<th>Denominazione</th>
+             	 			<td>$$denominazione</td>
+            			</tr>
+            			<tr>
+              				<th>Sede legale</th>
+              				<td>$$sedeLegale</td>
+            			</tr>
+          			</table>
+		  			<p>CONFERISCE IL MANDATO per la gestione del proprio fascicolo aziendale a:</p>
+          			<table>
+            			<tr>
+              				<th class="allineaSx" colspan="2">$$ente</th>
+            			</tr>
+            			<tr>
+              			<th>
+              				<label for="Mandato">Data inizio Mandato *</label>
+              			</th>
+              			<td>
+              				<input name="dataInizioMandato" id="dataInizioMandato" type="text" value="$$dataInizioMandato" maxlength="10" />gg/mm/aaaa&nbsp;$$err_dataInizioMandato
+              			</td>
+          			</table>
+         			<p>Il Fascicolo aziendale verr&agrave; depositato presso l'ufficio:</p>
+		  			<table cellspacing="3" summary="Questa tabella consente l'inserimento dei dati relativi all'ufficio di deposito del fascicolo aziendale">
+            			<tr>
+              				<th scope="row">Ufficio di zona *</th>
+              				<td>
+                				<label for="idUfficioZonaIntermediario" class="alt">
+                  					<span>idUfficioZonaIntermediario</span>
+                				</label>
+                				<select id="idUfficioZonaIntermediario" name="idUfficioZonaIntermediario" onChange="javascript: goToOperazione('../layout/registrazioneDelega.htm', document.form1, 'changeCombo');">
+                  					<option></option>
+                  					<!-- @@blkElencoUfficiZonaIntermediario -->
+                    					<option value="$$codice" $$selected>$$descrizione</option>
+                  					<!-- @@blkElencoUfficiZonaIntermediario -->
+                				</select>
+                				$$err_idUfficioZonaIntermediario
+              				</td>
+            			</tr>
+            			<tr>
+              				<th>
+                				<label for="codifica">Codifica</label>
+              				</th>
+              				<td>$$codiceAgea</td>
+            			</tr>
+            			<tr>
+              				<th>
+               	 				<label for="ufficioFascicolo">Denominazione</label>
+              				</th>
+              				<td>$$denominazioneUfficio</td>
+            			</tr>
+            			<tr>
+              				<th>
+                				<label for="indirizzo">Indirizzo</label>
+              				</th>
+              				<td>$$indirizzo</td>
+            			</tr>
+            			<tr>
+              				<th>
+                				<label for="provincia">Provincia</label>
+              				</th>
+              				<td>$$siglaProvincia</td>
+            			</tr>
+            			<tr>
+              				<th>
+                				<label for="comune">Comune</label>
+              				</th>
+              				<td>$$descrizioneComune</td>
+            			</tr>
+            			<tr>
+              				<th>
+                				<label for="cap">C.A.P.</label>
+              				</th>
+              				<td>$$cap</td>
+            			</tr>
+            			<tr>
+              				<th>
+                				<label for="recapito">Recapito</label>
+              				</th>
+              				<td>$$recapito</td>
+            			</tr>
+          			</table>
+          			<p>La presente delega ha validit&agrave; a decorrere dalla data odierna fino alla data di esplicita revoca della stessa.</p>
+          			<table cellspacing="3" summary="Questa tabella indica chi effettua l'operazione di conferimento del mandato">
+           				<tr>
+               				<th>Ultima modifica anagrafica</th>
+              				<td>$$ultimaModificaVw</td>
+            			</tr>
+          			</table>
+          			<p id="nota">I campi contrassegnati con * sono obbligatori</p>
+          			<div class="pulsanti">
+            			<div class="sin">
+              				<input name="conferma" type="submit" id="conferma" class="inputPulsante highlighted" value="conferma"/>
+            			</div>
+          			</div>
+        		</div>
+      		</div>
+      		<!-- @@blkErrore -->
+        		<p class="errore">$$messaggio</p>
+      		<!-- @@blkErrore -->
+      		<hr/>
+      	</form>
+      	<!-- PIE' DI PAGINA -->
+      	$$footer

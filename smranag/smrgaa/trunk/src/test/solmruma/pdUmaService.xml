@@ -1,0 +1,123 @@
+<porta-delegata name="smrgaaweb.umaserv.PA_UmaServiceFacade">
+  <services>
+    <service name="smrgaaweb.umaserv.PA_UmaServiceFacade.service" public-interface-class="it.csi.solmr.interfaceCSI.uma.UmaCSIInterface">
+        <operations>
+        <operation name="serviceGetElencoMacchineByIdAzienda" type="synch-call" >
+          <param-list>
+             <param name="idAzienda" type="java.lang.Long" />
+             <param name="storico" type="java.lang.Boolean" />
+             <param name="idGenereMacchina" type="java.lang.Long" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.uma.MacchinaVO[]"/>
+        </operation>
+         <operation name="serviceGetTipiGenereMacchina" type="synch-call" >
+          <param-list>
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.CodeDescription[]"/>
+        </operation>
+         <operation name="serviceGetMacchinaById" type="synch-call" >
+          <param-list>
+             <param name="idMacchina" type="java.lang.Long" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.uma.MacchinaVO"/>
+        </operation>
+         <operation name="serviceGetElencoAziendeUtilizzatrici" type="synch-call" >
+          <param-list>
+             <param name="idMacchina" type="java.lang.Long" />
+          </param-list>
+          <ret-val type="long[]"/>
+        </operation>
+         <operation name="serviceGetUtilizzoByIdMacchinaAndIdAzienda" type="synch-call" >
+          <param-list>
+             <param name="idMacchina" type="java.lang.Long" />
+             <param name="idAzienda" type="java.lang.Long" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.uma.UtilizzoVO"/>
+        </operation>
+         <operation name="serviceGetRottmazioneByIdMacchinaAndIdAzienda" type="synch-call" >
+          <param-list>
+             <param name="idMacchina" type="java.lang.Long" />
+             <param name="idAzienda" type="java.lang.Long" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.uma.RottamazioneVO"/>
+        </operation>
+         <operation name="serviceGetPossessoMacchinaByIdMacchinaAndIdAzienda" type="synch-call" >
+          <param-list>
+             <param name="idMacchina" type="java.lang.Long" />
+             <param name="idAzienda" type="java.lang.Long" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.uma.PossessoVO[]"/>
+        </operation>
+         <operation name="serviceGetElencoMacchineByGnps" type="synch-call" >
+          <param-list>
+             <param name="vIdDatiMacchine" type="long[]" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.uma.MacchinaVO[]"/>
+        </operation>
+         <operation name="serviceGetDittaUmaByIdAzienda" type="synch-call" >
+          <param-list>
+             <param name="idAzienda" type="java.lang.Long" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.uma.DittaUMAVO"/>
+        </operation>
+       </operations>
+    </service>
+  </services>
+  <config>
+    <url-pa>**not used**</url-pa>
+    <pluggable-pd-list chooser-class="it.csi.csi.porte.FixedDelegateChooser">
+	<pluggable-pd name="business" class="it.csi.csi.porte.jaxrpc.PortaDelegataWS" url-pa="***" url-qm="">      
+      <properties>
+         <property name="csi.wrapper.wsinterf.class" value="it.csi.solmr.dto.umaaxis.axisgen.Umaaxis_PortType" />
+		 <property name="csi.http.transport.type" value="commons-http" />
+          <property name="csi.http.timeout" value="10000" />          
+          <property name="class" value="it.csi.solmr.dto.umaaxis.axisgen.UmaaxisServiceLocator" />
+          <!-- l'url dell'endpoint del servizio-->
+ 	      <property name="javax.xml.rpc.service.endpoint.address" value="http://localhost:8080/umaWsfad/services/umaaxis?wsdl" />         
+        </properties>
+      </pluggable-pd>
+    </pluggable-pd-list>    
+    <queue-manager url=""/>
+  	<pre-function-handler-list>
+      <pluggable-fh name="isoint_pre" class="it.csi.csi.porte.jaxrpc.pfh.IsoIntTransformer">
+        <properties>
+          <property name="source.interface" value="it.csi.solmr.interfaceCSI.uma.UmaCSIInterface" />
+          <property name="target.interface" value="it.csi.solmr.dto.umaaxis.axisgen.Umaaxis_PortType" />
+          <property name="pkg-map-1" value="it.csi.solmr.interfaceCSI.uma=it.csi.solmr.dto.umaaxis.axisgen" />          
+          <property name="class-map-1" value="it.csi.solmr.dto.uma.DittaUMAVO=it.csi.solmr.dto.umaaxis.axisgen.DittaUMAVO" />                      
+          <property name="class-map-2" value="it.csi.solmr.dto.uma.AttestatoProprietaVO=it.csi.solmr.dto.umaaxis.axisgen.AttestatoProprietaVO" />
+          <property name="class-map-3" value="it.csi.solmr.dto.uma.DatiMacchinaVO=it.csi.solmr.dto.umaaxis.axisgen.DatiMacchinaVO" />
+          <property name="class-map-4" value="it.csi.solmr.dto.uma.MacchinaVO=it.csi.solmr.dto.umaaxis.axisgen.MacchinaVO" />
+          <property name="class-map-5" value="it.csi.solmr.dto.uma.MatriceVO=it.csi.solmr.dto.umaaxis.axisgen.MatriceVO" />
+          <property name="class-map-6" value="it.csi.solmr.dto.uma.PossessoVO=it.csi.solmr.dto.umaaxis.axisgen.PossessoVO" />
+          <property name="class-map-7" value="it.csi.solmr.dto.uma.RottamazioneVO=it.csi.solmr.dto.umaaxis.axisgen.RottamazioneVO" />
+          <property name="class-map-8" value="it.csi.solmr.dto.uma.TargaVO=it.csi.solmr.dto.umaaxis.axisgen.TargaVO" />
+          <property name="class-map-9" value="it.csi.solmr.dto.uma.UmaBaseVO=it.csi.solmr.dto.umaaxis.axisgen.UmaBaseVO" />
+          <property name="class-map-10" value="it.csi.solmr.dto.uma.UtilizzoVO=it.csi.solmr.dto.umaaxis.axisgen.UtilizzoVO" />
+          <property name="class-map-11" value="it.csi.solmr.dto.uma.TipoCategoriaVO=it.csi.solmr.dto.umaaxis.axisgen.TipoCategoriaVO" />
+        </properties>
+      </pluggable-fh>
+    </pre-function-handler-list>
+    <post-function-handler-list>
+      <pluggable-fh name="isoint_pre" class="it.csi.csi.porte.jaxrpc.pfh.IsoIntTransformer">
+        <properties>
+          <property name="source.interface" value="it.csi.solmr.interfaceCSI.uma.UmaCSIInterface" />
+          <property name="target.interface" value="it.csi.solmr.dto.umaaxis.axisgen.Umaaxis_PortType" />
+          <property name="pkg-map-1" value="it.csi.solmr.interfaceCSI.uma=it.csi.solmr.dto.umaaxis.axisgen" />
+          <property name="class-map-1" value="it.csi.solmr.dto.uma.DittaUMAVO=it.csi.solmr.dto.umaaxis.axisgen.DittaUMAVO" />                      
+          <property name="class-map-2" value="it.csi.solmr.dto.uma.AttestatoProprietaVO=it.csi.solmr.dto.umaaxis.axisgen.AttestatoProprietaVO" />
+          <property name="class-map-3" value="it.csi.solmr.dto.uma.DatiMacchinaVO=it.csi.solmr.dto.umaaxis.axisgen.DatiMacchinaVO" />
+          <property name="class-map-4" value="it.csi.solmr.dto.uma.MacchinaVO=it.csi.solmr.dto.umaaxis.axisgen.MacchinaVO" />
+          <property name="class-map-5" value="it.csi.solmr.dto.uma.MatriceVO=it.csi.solmr.dto.umaaxis.axisgen.MatriceVO" />
+          <property name="class-map-6" value="it.csi.solmr.dto.uma.PossessoVO=it.csi.solmr.dto.umaaxis.axisgen.PossessoVO" />
+          <property name="class-map-7" value="it.csi.solmr.dto.uma.RottamazioneVO=it.csi.solmr.dto.umaaxis.axisgen.RottamazioneVO" />
+          <property name="class-map-8" value="it.csi.solmr.dto.uma.TargaVO=it.csi.solmr.dto.umaaxis.axisgen.TargaVO" />
+          <property name="class-map-9" value="it.csi.solmr.dto.uma.UmaBaseVO=it.csi.solmr.dto.umaaxis.axisgen.UmaBaseVO" />
+          <property name="class-map-10" value="it.csi.solmr.dto.uma.UtilizzoVO=it.csi.solmr.dto.umaaxis.axisgen.UtilizzoVO" />
+          <property name="class-map-11" value="it.csi.solmr.dto.uma.TipoCategoriaVO=it.csi.solmr.dto.umaaxis.axisgen.TipoCategoriaVO" />
+          <property name="class-map-12" value="it.csi.solmr.exception.services.UmaServiceException=it.csi.solmr.dto.umaaxis.axisgen.UmaServiceException" />             
+        </properties>
+      </pluggable-fh>
+    </post-function-handler-list>
+  </config>  
+</porta-delegata>

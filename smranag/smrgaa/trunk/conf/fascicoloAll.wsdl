@@ -1,0 +1,5501 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="FascicoloAllServices" targetNamespace="http://cooperazione.sian.it/wspdd/services" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:egov="http://www.cnipa.it/schemas/2003/eGovIT/Busta1_0/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://cooperazione.sian.it/wspdd/services" xmlns:n5="http://cooperazione.sian.it/schema/fascicolo" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns3="http://cooperazione.sian.it/schema/SoapAutenticazione">
+
+
+	 <types>
+
+	
+		  <xsd:schema targetNamespace="http://cooperazione.sian.it/schema/SoapAutenticazione">
+
+		            <xsd:element name="SOAPAutenticazione" type="tns3:SOAPAutenticazione"/>
+
+		            <xsd:complexType name="SOAPAutenticazione">
+
+			    <xsd:sequence>
+
+				     <xsd:element name="username" type="xsd:string"/>
+
+	       		                  <xsd:element name="password" type="xsd:string"/>
+
+				     <xsd:element name="nomeServizio" type="xsd:string"/>
+
+			    </xsd:sequence>
+
+		          </xsd:complexType>
+
+		  </xsd:schema>
+
+
+
+	<!-- Inizio Xsd -->
+
+		  <xsd:schema targetNamespace="http://cooperazione.sian.it/schema/fascicolo" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:n5="http://cooperazione.sian.it/schema/fascicolo" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+
+	   <xsd:simpleType name="Cuaa">
+
+		    <xsd:restriction base="xsd:string">
+
+       		     <xsd:minLength value="11"/>
+					
+       		     <xsd:maxLength value="16"/>
+
+       	    </xsd:restriction>
+
+	   </xsd:simpleType>
+ 
+
+	   <xsd:simpleType name="Anno">
+
+		    <xsd:restriction base="xsd:string">
+
+       		     <xsd:length value="4"/>
+					
+       	    </xsd:restriction>
+
+	   </xsd:simpleType>
+ 
+
+	   <xsd:simpleType name="Flag">
+
+		    <xsd:restriction base="xsd:string">
+
+       		     <xsd:length value="1"/>
+					       		
+       	    </xsd:restriction>
+
+	   </xsd:simpleType>
+ 
+
+	   <xsd:simpleType name="Data">
+
+		    <xsd:restriction base="xsd:string">
+
+       		     <xsd:length value="8"/>
+					       		
+       	    </xsd:restriction>
+
+	   </xsd:simpleType>
+ 
+
+	   <xsd:simpleType name="Superficie">
+
+		    <xsd:restriction base="xsd:string">
+
+       		     <xsd:maxLength value="10"/>
+					
+       	    </xsd:restriction>
+
+	   </xsd:simpleType>
+ 
+
+	   <xsd:simpleType name="Indirizzo">
+
+		    <xsd:restriction base="xsd:string">
+
+       		     <xsd:minLength value="1"/>
+							
+       		     <xsd:maxLength value="50"/>
+					
+       	    </xsd:restriction>
+
+	   </xsd:simpleType>
+ 
+
+	   <xsd:simpleType name="Cap">
+
+		    <xsd:restriction base="xsd:string">
+
+			     <xsd:length value="5"/>
+
+		    </xsd:restriction>
+
+	   </xsd:simpleType>
+        	        	
+
+	   <xsd:simpleType name="CodiceTipoDetentore">
+
+		    <xsd:restriction base="xsd:string">
+
+   			     <xsd:length value="3"/>
+
+   			     <xsd:enumeration value="001"/>
+    	              			
+   			     <xsd:enumeration value="002"/>
+    	              			    	              			
+   			     <xsd:enumeration value="003"/>
+    	              			    	              			
+   		    </xsd:restriction>
+
+	   </xsd:simpleType>
+        	        	
+
+	   <xsd:simpleType name="Detentore">
+						
+	         <xsd:restriction base="xsd:string">
+
+    		     <xsd:length value="9"/>
+
+    	         </xsd:restriction>
+
+	   </xsd:simpleType>
+        	        	
+
+	   <xsd:simpleType name="Provincia">
+
+	         <xsd:restriction base="xsd:string">
+
+       		     <xsd:length value="3"/>
+					
+       	         </xsd:restriction>
+
+	   </xsd:simpleType>
+ 
+
+	   <xsd:simpleType name="Comune">
+
+		    <xsd:restriction base="xsd:string">
+
+       		     <xsd:length value="3"/>
+					
+       	    </xsd:restriction>
+
+	   </xsd:simpleType>
+ 
+
+	   <xsd:simpleType name="Sezione">
+
+		    <xsd:restriction base="xsd:string">
+
+       		     <xsd:maxLength value="1"/>
+					
+       	    </xsd:restriction>
+
+	   </xsd:simpleType>
+ 
+
+	   <xsd:simpleType name="Foglio">
+
+		    <xsd:restriction base="xsd:string">
+
+       		     <xsd:minLength value="1"/>
+							
+       		     <xsd:maxLength value="4"/>
+					
+       	    </xsd:restriction>
+
+	   </xsd:simpleType>
+ 
+
+	   <xsd:simpleType name="Particella">
+
+		    <xsd:restriction base="xsd:string">
+
+       		     <xsd:minLength value="1"/>
+									
+       		     <xsd:maxLength value="5"/>
+					
+       	    </xsd:restriction>
+
+	   </xsd:simpleType>
+ 
+
+	   <xsd:simpleType name="Subalterno">
+
+		    <xsd:restriction base="xsd:string">
+
+       		     <xsd:maxLength value="4"/>
+					
+       	    </xsd:restriction>
+
+	   </xsd:simpleType>
+ 	      	        	
+
+	   <xsd:simpleType name="TipoConduzione">
+
+		    <xsd:restriction base="xsd:string">
+
+   			     <xsd:enumeration value="1"/>
+    	              			
+   			     <xsd:enumeration value="2"/>
+    	              			    	              			
+   			     <xsd:enumeration value="3"/>
+    	              			    	              			
+  			     <xsd:enumeration value="4"/>
+    
+  			     <xsd:enumeration value="5"/>
+   	              			    	              			
+       	    </xsd:restriction>
+
+	   </xsd:simpleType>
+ 
+
+	   <xsd:simpleType name="CasiParticolari">
+
+		    <xsd:restriction base="xsd:string">
+
+			     <xsd:enumeration value="1"/>
+    	              			
+			     <xsd:enumeration value="2"/>
+    	              			    	              			
+			     <xsd:enumeration value="3"/>
+    	              			    	              			
+	  		     <xsd:enumeration value="4"/>
+    	              			    	              			
+	   		     <xsd:enumeration value="5"/>
+    	              			
+	   		     <xsd:enumeration value="6"/>
+    	              			    	              			
+	   		     <xsd:enumeration value="7"/>
+    	              			    	              			
+		    </xsd:restriction>
+
+	   </xsd:simpleType>
+        	        	
+
+	   <xsd:simpleType name="formalle">
+
+		    <xsd:restriction base="xsd:string">
+
+			     <xsd:enumeration value="4132"/>
+
+			     <xsd:enumeration value="4133"/>
+
+			     <xsd:enumeration value="4134"/>
+
+			     <xsd:enumeration value="4135"/>
+
+			     <xsd:enumeration value="4136"/>
+
+			     <xsd:enumeration value="4137"/>
+
+			     <xsd:enumeration value="4138"/>
+
+			     <xsd:enumeration value="4139"/>
+
+			     <xsd:enumeration value="4140"/>
+
+			     <xsd:enumeration value="4141"/>
+
+			     <xsd:enumeration value="001"/>
+
+			     <xsd:enumeration value="002"/>
+
+			     <xsd:enumeration value="003"/>
+
+			     <xsd:enumeration value="004"/>
+
+			     <xsd:enumeration value="005"/>
+
+			     <xsd:enumeration value="006"/>
+
+			     <xsd:enumeration value="007"/>
+
+			     <xsd:enumeration value="008"/>
+
+			     <xsd:enumeration value="009"/>
+
+			     <xsd:enumeration value="010"/>
+
+			     <xsd:enumeration value="011"/>
+
+			     <xsd:enumeration value="012"/>
+
+			     <xsd:enumeration value="013"/>
+
+			     <xsd:enumeration value="014"/>
+
+			     <xsd:enumeration value="015"/>
+
+			     <xsd:enumeration value="016"/>
+
+			     <xsd:enumeration value="017"/>
+
+			     <xsd:enumeration value="018"/>
+
+			     <xsd:enumeration value="019"/>
+
+			     <xsd:enumeration value="101"/>
+
+			     <xsd:enumeration value="102"/>
+
+			     <xsd:enumeration value="103"/>
+
+			     <xsd:enumeration value="201"/>
+
+			     <xsd:enumeration value="202"/>
+
+			     <xsd:enumeration value="203"/>
+
+			     <xsd:enumeration value="204"/>
+
+			     <xsd:enumeration value="205"/>
+
+			     <xsd:enumeration value="206"/>
+
+			     <xsd:enumeration value="207"/>
+
+			     <xsd:enumeration value="208"/>
+
+			     <xsd:enumeration value="209"/>
+
+			     <xsd:enumeration value="210"/>
+
+			     <xsd:enumeration value="211"/>
+
+			     <xsd:enumeration value="212"/>
+
+			     <xsd:enumeration value="213"/>
+
+			     <xsd:enumeration value="214"/>
+
+			     <xsd:enumeration value="215"/>
+
+			     <xsd:enumeration value="216"/>
+
+			     <xsd:enumeration value="217"/>
+
+			     <xsd:enumeration value="218"/>
+
+			     <xsd:enumeration value="219"/>
+
+			     <xsd:enumeration value="301"/>
+
+			     <xsd:enumeration value="302"/>
+
+			     <xsd:enumeration value="303"/>
+
+			     <xsd:enumeration value="304"/>
+
+			     <xsd:enumeration value="305"/>
+
+			     <xsd:enumeration value="306"/>
+
+			     <xsd:enumeration value="307"/>
+
+			     <xsd:enumeration value="308"/>
+
+			     <xsd:enumeration value="309"/>
+
+		    </xsd:restriction>
+
+	   </xsd:simpleType>
+
+		
+	   <xsd:simpleType name="Giorni">
+
+		    <xsd:restriction base="xsd:int">
+
+			     <xsd:minInclusive value="1"/>
+
+			     <xsd:maxInclusive value="30"/>
+
+		    </xsd:restriction>
+
+	   </xsd:simpleType>
+
+
+	   <xsd:simpleType name="tipoVinc">
+
+		    <xsd:restriction base="xsd:string">
+
+			     <xsd:length value="2"/>
+
+		    </xsd:restriction>
+
+	   </xsd:simpleType>
+
+
+	   <xsd:complexType name="ISWSProprietario">
+
+		    <xsd:sequence>
+
+			     <xsd:element name="proprietario" type="n5:Proprietario"/>
+
+		    </xsd:sequence>
+
+	   </xsd:complexType>
+
+	   <xsd:simpleType name="Proprietario">
+
+		    <xsd:restriction base="xsd:string">
+
+			     <xsd:maxLength value="16"/>
+
+		    </xsd:restriction>
+
+	   </xsd:simpleType>
+
+	
+	   <xsd:element name="Cuaa" type="n5:Cuaa"/>
+
+	   <xsd:element name="Giorni" type="n5:Giorni"/>
+
+	   <xsd:element name="TipoVinc" type="n5:tipoVinc"/>
+
+
+	   <xsd:complexType name="ISWSIscrizioneCC">
+
+                     <xsd:sequence>
+
+                          <xsd:element name="NumeroIscrizione" minOccurs="0" nillable="true">
+
+                             <xsd:simpleType>
+
+                                      <xsd:restriction base="xsd:string">
+
+                                             <xsd:maxLength value="16"/>
+
+                                   </xsd:restriction>
+
+                              </xsd:simpleType>
+
+                           </xsd:element>
+
+                           <xsd:element name="DataInizio" type="n5:Data"/>
+
+                           <xsd:element name="DataCessazione" nillable="true" type="n5:Data"/>
+
+                 </xsd:sequence>
+
+       </xsd:complexType>
+
+        	        	
+       <xsd:complexType name="ISWSCodiceINPS">
+
+                <xsd:sequence>
+
+                    <xsd:element minOccurs="0" name="NumeroIscrizione" nillable="true">
+
+                          <xsd:simpleType>
+
+                              <xsd:restriction base="xsd:string">
+
+                                   <xsd:maxLength value="30"/>
+
+                             </xsd:restriction>
+
+                         </xsd:simpleType>
+
+                   </xsd:element>
+
+                   <xsd:element name="CodiceTipoIscrizione">
+
+                    <xsd:simpleType>
+
+      		              <xsd:restriction base="xsd:string">
+
+			        <xsd:enumeration value="1">
+
+       			            <xsd:annotation>
+
+				          <xsd:documentation>
+COLTIVATORE DIRETTO          </xsd:documentation>
+
+                    	             </xsd:annotation>
+
+          		         </xsd:enumeration>
+
+                                   <xsd:enumeration value="2">
+
+		                    <xsd:annotation>
+
+				          <xsd:documentation>
+IMPRENDITORE AGRICOLO PROFESSIONALE          </xsd:documentation>
+
+         		         </xsd:annotation>
+
+	                        </xsd:enumeration>
+
+			        <xsd:enumeration value="3">
+
+      			                    <xsd:annotation>
+
+					          <xsd:documentation>
+COLONO          </xsd:documentation>
+
+			                     </xsd:annotation>
+
+		                 </xsd:enumeration>
+
+                  	         <xsd:enumeration value="4">
+
+			   	         <xsd:annotation>
+
+					          <xsd:documentation>
+MEZZADRO          </xsd:documentation>
+
+                    		         </xsd:annotation>
+
+		                </xsd:enumeration>
+
+                                  <xsd:enumeration value="5">
+
+                                <xsd:annotation>
+
+                                    <xsd:documentation>
+ALTRO          </xsd:documentation>
+
+                               </xsd:annotation>
+
+			                     </xsd:enumeration>
+
+   	                     </xsd:restriction>
+
+                    </xsd:simpleType>
+
+            </xsd:element>
+
+            <xsd:element name="DataInizio" type="n5:Data"/>
+
+            <xsd:element minOccurs="0" name="DataCessazione" nillable="true" type="n5:Data"/>
+
+          </xsd:sequence>
+
+      </xsd:complexType>
+
+
+	   <xsd:complexType name="ISWSRespAnagFascicolo15">
+
+				    <xsd:sequence>
+
+					     <xsd:element name="CUAA" type="n5:Cuaa"/>
+
+					     <xsd:element minOccurs="0" name="tipoAzienda">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:length value="2"/>
+
+								        <xsd:enumeration value="PF"/>
+
+								        <xsd:enumeration value="PG"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="denominazione">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:minLength value="1"/>
+
+								        <xsd:maxLength value="150"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="nomePF" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:maxLength value="20"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element minOccurs="0" name="sessoPF" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:length value="1"/>
+
+								        <xsd:enumeration value="M"/>
+
+								        <xsd:enumeration value="F"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="dataNascitaPF" nillable="true" type="n5:Data"/>
+
+					     <xsd:element name="comuneNascitaPF" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:length value="4"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element minOccurs="0" name="TipoDocumento" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:enumeration value="1"/>
+
+								        <xsd:enumeration value="2"/>
+
+								        <xsd:enumeration value="3"/>
+
+								        <xsd:enumeration value="4"/>
+
+								        <xsd:enumeration value="5"/>
+
+								        <xsd:enumeration value="6"/>
+
+								        <xsd:enumeration value="7"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="NumeroDocumento" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:maxLength value="16"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="DataDocumento" nillable="true" type="n5:Data"/>
+
+					     <xsd:element name="DataScadDocumento" nillable="true" type="n5:Data"/>
+
+					     <xsd:element name="sedeResidenza" type="n5:ISWSIndirizzo"/>
+
+					     <xsd:element name="recapito" nillable="true" type="n5:ISWSIndirizzo"/>
+
+					     <xsd:element minOccurs="0" name="DescPec" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:maxLength value="100"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element minOccurs="0" name="Email" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:maxLength value="100"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element maxOccurs="unbounded" minOccurs="0" name="iscrizioneRea" nillable="true" type="n5:ISWSIscrizioneCC"/>
+
+					     <xsd:element maxOccurs="unbounded" minOccurs="0" name="iscrizioneRegistroImprese" nillable="true" type="n5:ISWSIscrizioneCC"/>
+
+					     <xsd:element maxOccurs="unbounded" minOccurs="0" name="matricolaINPS" nillable="true" type="n5:ISWSCodiceINPS"/>
+
+					     <xsd:element name="organismoPagatore">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:length value="4"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="dataAperturaFascicolo" type="n5:Data"/>
+
+					     <xsd:element name="dataChiusuraFascicolo" nillable="true" type="n5:Data"/>
+
+					     <xsd:element name="tipoDetentore" nillable="true" type="n5:CodiceTipoDetentore"/>
+
+					     <xsd:element name="detentore" nillable="true" type="n5:Detentore"/>
+
+					     <xsd:element name="dataValidazFascicolo" nillable="true" type="n5:Data"/>
+
+					     <xsd:element name="schedaValidazione" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:maxLength value="30"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="dataSchedaValidazione" nillable="true" type="n5:Data"/>
+
+					     <xsd:element name="dataSottMandato" nillable="true" type="n5:Data"/>
+
+					     <xsd:element name="dataElaborazione" nillable="true" type="n5:Data"/>
+
+				    </xsd:sequence>
+
+			   </xsd:complexType>
+
+			
+
+    	   <xsd:complexType name="ISWSCapoAllevamento">
+
+			    <xsd:sequence>
+
+				     <xsd:element name="IdCnzo">
+
+					      <xsd:simpleType>
+
+						       <xsd:restriction base="xsd:int">
+
+		        		       </xsd:restriction>
+
+					      </xsd:simpleType>
+        	        	
+				     </xsd:element>
+         
+				     <xsd:element name="IdAlleBdn" nillable="true">
+
+					      <xsd:simpleType>
+
+						       <xsd:restriction base="xsd:int">
+
+		        		       </xsd:restriction>
+
+					      </xsd:simpleType>
+        	        	
+				     </xsd:element>
+						
+				     <xsd:element name="NumeCapiPote" nillable="true">
+
+					      <xsd:simpleType>
+
+						       <xsd:restriction base="xsd:int">
+
+		        		       </xsd:restriction>
+
+					      </xsd:simpleType>
+        	        	
+				     </xsd:element>
+						
+		    	     <xsd:element name="NumeGiorniPresPote" nillable="true">
+
+					      <xsd:simpleType>
+
+						       <xsd:restriction base="xsd:int">
+
+		        		       </xsd:restriction>
+
+					      </xsd:simpleType>
+        	        	
+				     </xsd:element>
+	
+				     <xsd:element name="NumeCapiLatte" nillable="true">
+
+					      <xsd:simpleType>
+
+						       <xsd:restriction base="xsd:int">
+
+		        		       </xsd:restriction>
+
+					      </xsd:simpleType>
+        	        	
+				     </xsd:element>
+
+				     <xsd:element name="NumeGiorniPresLatte" nillable="true">
+
+					      <xsd:simpleType>
+
+						       <xsd:restriction base="xsd:int">
+
+		        		       </xsd:restriction>
+
+					      </xsd:simpleType>
+        	        	
+				     </xsd:element>
+
+				     <xsd:element name="DecoRazzaPrev" nillable="true">
+
+					      <xsd:simpleType>
+
+						       <xsd:restriction base="xsd:int">
+
+		        		       </xsd:restriction>
+
+					      </xsd:simpleType>
+        	        	
+				     </xsd:element>
+
+				     <xsd:element name="NumeCapi624" nillable="true">
+
+					      <xsd:simpleType>
+
+						       <xsd:restriction base="xsd:int">
+
+		        		       </xsd:restriction>
+
+					      </xsd:simpleType>
+        	        	
+				     </xsd:element>
+
+				     <xsd:element name="NumeCapiOltre24" nillable="true">
+
+					      <xsd:simpleType>
+
+						       <xsd:restriction base="xsd:int">
+
+		        		       </xsd:restriction>
+
+					      </xsd:simpleType>
+        	        	
+				     </xsd:element>
+
+				     <xsd:element name="NumeVaccheLatte" nillable="true">
+
+					      <xsd:simpleType>
+
+						       <xsd:restriction base="xsd:int">
+
+		        		       </xsd:restriction>
+
+					      </xsd:simpleType>
+        	        	
+				     </xsd:element>
+
+				     <xsd:element name="NumeBufa" nillable="true">
+
+					      <xsd:simpleType>
+
+						       <xsd:restriction base="xsd:int">
+
+		        		       </xsd:restriction>
+
+					      </xsd:simpleType>
+        	        	
+				     </xsd:element>
+	
+				     <xsd:element name="DataInse" type="n5:Data"/>
+						
+				     <xsd:element name="DataIniz" type="n5:Data"/>
+										
+				     <xsd:element name="DataFine" type="n5:Data"/>
+														
+				     <xsd:element name="DataAggi" type="n5:Data"/>
+	
+				     <xsd:element name="NumeCapiTota" nillable="true">
+
+					      <xsd:simpleType>
+
+						       <xsd:restriction base="xsd:int">
+
+		        		       </xsd:restriction>
+
+					      </xsd:simpleType>
+        	        	
+				     </xsd:element>
+
+				     <xsd:element name="DecoLiveVali" nillable="true">
+
+					      <xsd:simpleType>
+
+						       <xsd:restriction base="xsd:int">
+
+		        		       </xsd:restriction>
+
+					      </xsd:simpleType>
+        	        	
+				     </xsd:element>
+
+				     <xsd:element name="IdAlle" nillable="true">
+
+					      <xsd:simpleType>
+
+						       <xsd:restriction base="xsd:int">
+
+		        		       </xsd:restriction>
+
+					      </xsd:simpleType>
+        	        	
+				     </xsd:element>
+
+				     <xsd:element name="NumeViteFino6" nillable="true">
+
+					      <xsd:simpleType>
+
+						       <xsd:restriction base="xsd:int">
+
+		        		       </xsd:restriction>
+
+					      </xsd:simpleType>
+        	        	
+				     </xsd:element>
+
+				     <xsd:element name="Nume624Mace" nillable="true">
+
+					      <xsd:simpleType>
+
+						       <xsd:restriction base="xsd:int">
+
+		        		       </xsd:restriction>
+
+					      </xsd:simpleType>
+        	        	
+				     </xsd:element>
+
+				     <xsd:element name="Nume624MaceFemm" nillable="true">
+
+					      <xsd:simpleType>
+
+						       <xsd:restriction base="xsd:int">
+
+		        		       </xsd:restriction>
+
+					      </xsd:simpleType>
+        	        	
+				     </xsd:element>
+
+				     <xsd:element name="Nume624Alle" nillable="true">
+
+					      <xsd:simpleType>
+
+						       <xsd:restriction base="xsd:int">
+
+		        		       </xsd:restriction>
+
+					      </xsd:simpleType>
+        	        	
+				     </xsd:element>
+
+				     <xsd:element name="Nume624AlleFemm" nillable="true">
+
+					      <xsd:simpleType>
+
+						       <xsd:restriction base="xsd:int">
+
+		        		       </xsd:restriction>
+
+					      </xsd:simpleType>
+        	        	
+				     </xsd:element>
+
+				     <xsd:element name="NumeOltre24Mace" nillable="true">
+
+					      <xsd:simpleType>
+
+						       <xsd:restriction base="xsd:int">
+
+		        		       </xsd:restriction>
+
+					      </xsd:simpleType>
+        	        	
+				     </xsd:element>
+
+				     <xsd:element name="NumeOltre24MaceFemm" nillable="true">
+
+					      <xsd:simpleType>
+
+						       <xsd:restriction base="xsd:int">
+
+		        		       </xsd:restriction>
+
+					      </xsd:simpleType>
+        	        	
+				     </xsd:element>
+
+				     <xsd:element name="NumeOltre24Alle" nillable="true">
+
+					      <xsd:simpleType>
+
+						       <xsd:restriction base="xsd:int">
+
+		        		       </xsd:restriction>
+
+					      </xsd:simpleType>
+        	        	
+				     </xsd:element>
+
+				     <xsd:element name="NumeOltre24AlleFemm" nillable="true">
+
+					      <xsd:simpleType>
+
+						       <xsd:restriction base="xsd:int">
+
+		        		       </xsd:restriction>
+
+					      </xsd:simpleType>
+        	        	
+				     </xsd:element>
+
+				     <xsd:element name="NumeFino10" nillable="true">
+
+					      <xsd:simpleType>
+
+						       <xsd:restriction base="xsd:int">
+
+		        		       </xsd:restriction>
+
+					      </xsd:simpleType>
+        	        	
+				     </xsd:element>
+
+				     <xsd:element name="NumeOltre10" nillable="true">
+
+					      <xsd:simpleType>
+
+						       <xsd:restriction base="xsd:int">
+
+		        		       </xsd:restriction>
+
+					      </xsd:simpleType>
+        	        	
+				     </xsd:element>
+
+				     <xsd:element name="NumeFino6" nillable="true">
+
+					      <xsd:simpleType>
+
+						       <xsd:restriction base="xsd:int">
+
+		        		       </xsd:restriction>
+
+					      </xsd:simpleType>
+        	        	
+				     </xsd:element>
+
+				     <xsd:element name="NumeOltre6" nillable="true">
+
+					      <xsd:simpleType>
+
+						       <xsd:restriction base="xsd:int">
+
+		        		       </xsd:restriction>
+
+					      </xsd:simpleType>
+        	        	
+				     </xsd:element>
+																					
+			    </xsd:sequence>
+
+		   </xsd:complexType>
+
+
+	       <xsd:complexType name="ISWSIndirizzo">
+
+		    <xsd:sequence>
+
+			     <xsd:element name="Provincia" type="n5:Provincia" minOccurs="0"/>
+
+			     <xsd:element name="Comune" type="n5:Comune" minOccurs="0"/>
+					
+			     <xsd:element name="Indirizzo" type="n5:Indirizzo" minOccurs="0"/>
+
+			     <xsd:element name="Cap" type="n5:Cap" minOccurs="0"/>
+
+			     <xsd:element name="CodiceStatoEstero" minOccurs="0" nillable="true">
+
+				      <xsd:simpleType>
+
+					       <xsd:restriction base="xsd:string">
+
+              			        <xsd:length value="3"/>
+
+   	        		       </xsd:restriction>
+
+				      </xsd:simpleType>
+        	        	
+			     </xsd:element>
+					
+		    </xsd:sequence>
+
+	      </xsd:complexType>
+
+
+	   <xsd:element name="SoggettoWS">
+
+		    <xsd:complexType>
+
+			     <xsd:sequence>
+
+				      <xsd:element name="CUAA" type="n5:Cuaa"/>
+
+				      <xsd:element name="Flag_pers_fisi">
+
+					       <xsd:simpleType>
+
+						        <xsd:restriction base="xsd:int">
+
+	              			         <xsd:enumeration value="0"/>
+    	              			
+	              			         <xsd:enumeration value="1"/>
+    	              			    	              			
+		        		        </xsd:restriction>
+
+					       </xsd:simpleType>
+       
+				      </xsd:element>
+										 	        	
+				      <xsd:element name="Codi_sess" nillable="true">
+
+					       <xsd:simpleType>
+						
+						        <xsd:restriction base="xsd:string">
+
+	           				         <xsd:length value="1"/>
+
+		           			         <xsd:enumeration value="M"/>
+    	              			
+	              			         <xsd:enumeration value="F"/>
+    	              			    	              			
+	       	    		        </xsd:restriction>
+
+					       </xsd:simpleType>
+        	        	
+				      </xsd:element>
+						
+				      <xsd:element name="Data_nasc" nillable="true" type="n5:Data"/>
+						
+				      <xsd:element name="Data_iniz_atti" nillable="true" type="n5:Data"/>
+										
+				      <xsd:element name="Data_fine_atti" nillable="true" type="n5:Data"/>
+														
+				      <xsd:element name="Data_aggi" type="n5:Data"/>
+										
+				      <xsd:element name="Desc_cogn" nillable="true">
+
+					       <xsd:simpleType>
+						
+						        <xsd:restriction base="xsd:string">
+
+	           				         <xsd:maxLength value="30"/>
+
+	       	    		        </xsd:restriction>
+
+					       </xsd:simpleType>
+        	        	
+				      </xsd:element>
+						
+				      <xsd:element name="Desc_nome" nillable="true">
+
+					       <xsd:simpleType>
+						
+						        <xsd:restriction base="xsd:string">
+
+	           				         <xsd:maxLength value="50"/>
+
+	       	    		        </xsd:restriction>
+
+					       </xsd:simpleType>
+        	        	
+				      </xsd:element>
+						
+				      <xsd:element name="Desc_natu_giur" nillable="true">
+
+					       <xsd:simpleType>
+						
+						        <xsd:restriction base="xsd:string">
+
+	           				         <xsd:maxLength value="100"/>
+
+	       	    		        </xsd:restriction>
+
+					       </xsd:simpleType>
+        	        	
+				      </xsd:element>
+						
+				      <xsd:element name="Desc_ragi_soci" minOccurs="0" nillable="true">
+
+					       <xsd:simpleType>
+						
+						        <xsd:restriction base="xsd:string">
+
+	           				         <xsd:maxLength value="150"/>
+
+	       	    		        </xsd:restriction>
+
+					       </xsd:simpleType>
+        	        	
+				      </xsd:element>
+						
+				      <xsd:element name="Codi_fisc_luna" nillable="true">
+
+					       <xsd:simpleType>
+						
+						        <xsd:restriction base="xsd:string">
+
+	           				         <xsd:length value="4"/>
+
+	       	    		        </xsd:restriction>
+
+					       </xsd:simpleType>
+        	        	
+				      </xsd:element>
+						
+				      <xsd:element name="Codi_sigl_prov_nasc" nillable="true">
+
+					       <xsd:simpleType>
+
+						        <xsd:restriction base="xsd:string">
+
+	           				         <xsd:length value="2"/>
+
+		        		        </xsd:restriction>
+
+					       </xsd:simpleType>
+        	        	
+				      </xsd:element>
+						
+				      <xsd:element name="Desc_prov_nasc" nillable="true">
+
+					       <xsd:simpleType>
+						
+						        <xsd:restriction base="xsd:string">
+
+	           				         <xsd:maxLength value="100"/>
+
+	       	    		        </xsd:restriction>
+
+					       </xsd:simpleType>
+        	        	
+				      </xsd:element>
+						
+				      <xsd:element name="Desc_comu_nasc" minOccurs="0" nillable="true">
+
+					       <xsd:simpleType>
+						
+						        <xsd:restriction base="xsd:string">
+
+	           				         <xsd:maxLength value="100"/>
+
+	       	    		        </xsd:restriction>
+
+					       </xsd:simpleType>
+        	        	
+				      </xsd:element>
+						
+				      <xsd:element name="Codi_came_ciaa_reaa" minOccurs="0" nillable="true">
+
+					       <xsd:simpleType>
+						
+						        <xsd:restriction base="xsd:string">
+
+	           				         <xsd:maxLength value="16"/>
+
+	       	    		        </xsd:restriction>
+
+					       </xsd:simpleType>
+        	        	
+				      </xsd:element>
+						
+				      <xsd:element name="Codi_came_ciaa_riii" minOccurs="0" nillable="true">
+
+					       <xsd:simpleType>
+						
+						        <xsd:restriction base="xsd:string">
+
+	           				         <xsd:maxLength value="16"/>
+
+	       	    		        </xsd:restriction>
+
+					       </xsd:simpleType>
+        	        	
+				      </xsd:element>
+						
+				      <xsd:element name="Codi_part_ivaa" minOccurs="0" nillable="true">
+
+					       <xsd:simpleType>
+						
+						        <xsd:restriction base="xsd:string">
+
+	           				         <xsd:maxLength value="11"/>
+
+	       	    		        </xsd:restriction>
+
+					       </xsd:simpleType>
+        	        	
+				      </xsd:element>
+						
+				      <xsd:element name="Desc_inte" minOccurs="0" nillable="true">
+
+					       <xsd:simpleType>
+						
+						        <xsd:restriction base="xsd:string">
+
+	           				         <xsd:maxLength value="150"/>
+
+	       	    		        </xsd:restriction>
+
+					       </xsd:simpleType>
+        	        	
+				      </xsd:element>
+						
+				      <xsd:element name="Data_iniz_part_ivaa" minOccurs="0" nillable="true" type="n5:Data"/>
+										
+				      <xsd:element name="Data_fine_part_ivaa" minOccurs="0" nillable="true" type="n5:Data"/>
+														
+			     </xsd:sequence>
+
+		    </xsd:complexType>
+
+	   </xsd:element>
+	
+
+	   <xsd:element name="ContoCorrenteWS">
+
+		    <xsd:complexType>
+
+			     <xsd:sequence>
+
+				      <xsd:element name="Codi_abii" nillable="true">
+
+					       <xsd:simpleType>
+
+						        <xsd:restriction base="xsd:string">
+
+	           				         <xsd:length value="5"/>
+
+		        		        </xsd:restriction>
+
+					       </xsd:simpleType>
+        	        	
+				      </xsd:element>
+						
+				      <xsd:element name="Desc_abii" nillable="true">
+
+					       <xsd:simpleType>
+
+						        <xsd:restriction base="xsd:string">
+
+	           				         <xsd:maxLength value="80"/>
+
+		        		        </xsd:restriction>
+
+					       </xsd:simpleType>
+        	        	
+				      </xsd:element>
+						
+				      <xsd:element name="Codi_cabb" nillable="true">
+
+					       <xsd:simpleType>
+
+						        <xsd:restriction base="xsd:string">
+
+	           				         <xsd:length value="5"/>
+
+		        		        </xsd:restriction>
+
+					       </xsd:simpleType>
+        	        	
+				      </xsd:element>
+						
+				      <xsd:element name="Desc_cabb" nillable="true">
+
+					       <xsd:simpleType>
+
+						        <xsd:restriction base="xsd:string">
+
+	           				         <xsd:maxLength value="50"/>
+
+		        		        </xsd:restriction>
+
+					       </xsd:simpleType>
+        	        	
+				      </xsd:element>
+						
+				      <xsd:element name="Codi_sigl_prov" nillable="true">
+
+					       <xsd:simpleType>
+
+						        <xsd:restriction base="xsd:string">
+
+	           				         <xsd:length value="2"/>
+
+		        		        </xsd:restriction>
+
+					       </xsd:simpleType>
+        	        	
+				      </xsd:element>
+						
+				      <xsd:element name="Desc_prov" nillable="true">
+
+					       <xsd:simpleType>
+
+						        <xsd:restriction base="xsd:string">
+
+	           				         <xsd:maxLength value="100"/>
+
+		        		        </xsd:restriction>
+
+					       </xsd:simpleType>
+        	        	
+				      </xsd:element>
+						
+				      <xsd:element name="Desc_comu" nillable="true">
+
+					       <xsd:simpleType>
+
+						        <xsd:restriction base="xsd:string">
+
+	           				         <xsd:maxLength value="100"/>
+
+		        		        </xsd:restriction>
+
+					       </xsd:simpleType>
+        	        	
+				      </xsd:element>
+						
+				      <xsd:element name="Data_iniz" type="n5:Data"/>
+
+				      <xsd:element name="Data_fine" type="n5:Data"/>
+				
+				      <xsd:element name="Codi_capp" nillable="true" type="n5:Cap"/>
+
+				      <xsd:element name="Codi_nume_ccor">
+
+					       <xsd:simpleType>
+
+						        <xsd:restriction base="xsd:string">
+
+	           				         <xsd:maxLength value="30"/>
+
+		        		        </xsd:restriction>
+
+					       </xsd:simpleType>
+        	        	
+				      </xsd:element>
+						
+				      <xsd:element name="Codi_nazi" nillable="true">
+
+					       <xsd:simpleType>
+
+						        <xsd:restriction base="xsd:string">
+
+	           				         <xsd:maxLength value="2"/>
+
+		        		        </xsd:restriction>
+
+					       </xsd:simpleType>
+        	        	
+				      </xsd:element>
+						
+				      <xsd:element name="Check_digit" nillable="true">
+
+					       <xsd:simpleType>
+
+						        <xsd:restriction base="xsd:string">
+
+	           				         <xsd:maxLength value="2"/>
+
+		        		        </xsd:restriction>
+
+					       </xsd:simpleType>
+        	        	
+				      </xsd:element>
+						
+				      <xsd:element name="Codi_pin" nillable="true">
+
+					       <xsd:simpleType>
+
+						        <xsd:restriction base="xsd:string">
+
+	           				         <xsd:length value="1"/>
+
+		        		        </xsd:restriction>
+
+					       </xsd:simpleType>
+        	        	
+				      </xsd:element>
+						
+				      <xsd:element name="Deco_tipo_cont" minOccurs="0" nillable="true">
+
+					       <xsd:simpleType>
+
+						        <xsd:restriction base="xsd:int">
+
+		        		        </xsd:restriction>
+
+					       </xsd:simpleType>
+        	        	
+				      </xsd:element>
+						
+			     </xsd:sequence>
+
+		    </xsd:complexType>
+
+	   </xsd:element>
+		
+
+	   <xsd:element name="RecapitoWS">
+
+		    <xsd:complexType>
+
+			     <xsd:sequence>
+
+				      <xsd:element name="Deco_tipo_reca">
+
+					       <xsd:simpleType>
+
+						        <xsd:restriction base="xsd:int">
+
+		        		        </xsd:restriction>
+
+					       </xsd:simpleType>
+        	        	
+				      </xsd:element>
+						
+				      <xsd:element name="Data_iniz" minOccurs="0" nillable="true" type="n5:Data"/>
+
+				      <xsd:element name="Data_fine" minOccurs="0" nillable="true" type="n5:Data"/>
+				
+				      <xsd:element name="Desc_tele" minOccurs="0" nillable="true">
+
+					       <xsd:simpleType>
+
+						        <xsd:restriction base="xsd:string">
+
+	           				         <xsd:maxLength value="20"/>
+
+		        		        </xsd:restriction>
+
+					       </xsd:simpleType>
+        	        	
+				      </xsd:element>
+						
+				      <xsd:element name="Desc_indi" minOccurs="0" nillable="true">
+
+					       <xsd:simpleType>
+
+						        <xsd:restriction base="xsd:string">
+
+	           				         <xsd:maxLength value="100"/>
+
+		        		        </xsd:restriction>
+
+					       </xsd:simpleType>
+        	        	
+				      </xsd:element>
+						
+				      <xsd:element name="Desc_fax_inte" minOccurs="0" nillable="true">
+
+					       <xsd:simpleType>
+
+						        <xsd:restriction base="xsd:string">
+
+	           				         <xsd:maxLength value="20"/>
+
+		        		        </xsd:restriction>
+
+					       </xsd:simpleType>
+        	        	
+				      </xsd:element>
+						
+				      <xsd:element name="Desc_mail_inte" minOccurs="0" nillable="true">
+
+					       <xsd:simpleType>
+
+						        <xsd:restriction base="xsd:string">
+
+	           				         <xsd:maxLength value="100"/>
+
+		        		        </xsd:restriction>
+
+					       </xsd:simpleType>
+        	        	
+				      </xsd:element>
+						
+				      <xsd:element name="Deco_font_dato" minOccurs="0" nillable="true">
+
+					       <xsd:simpleType>
+
+						        <xsd:restriction base="xsd:int">
+
+		        		        </xsd:restriction>
+
+					       </xsd:simpleType>
+        	        	
+				      </xsd:element>
+						
+				      <xsd:element name="Codi_fisc_reca" minOccurs="0" nillable="true">
+
+					       <xsd:simpleType>
+
+						        <xsd:restriction base="xsd:string">
+
+	           				         <xsd:length value="4"/>
+
+		        		        </xsd:restriction>
+
+					       </xsd:simpleType>
+        	        	
+				      </xsd:element>
+						
+				      <xsd:element name="Codi_capp" type="n5:Cap" minOccurs="0" nillable="true"/>
+
+				      <xsd:element name="Codi_sigl_prov_reca" minOccurs="0" nillable="true">
+
+					       <xsd:simpleType>
+
+						        <xsd:restriction base="xsd:string">
+
+	           				         <xsd:length value="2"/>
+
+		        		        </xsd:restriction>
+
+					       </xsd:simpleType>
+        	        	
+				      </xsd:element>
+						
+				      <xsd:element name="Desc_prov_reca" minOccurs="0" nillable="true">
+
+					       <xsd:simpleType>
+
+						        <xsd:restriction base="xsd:string">
+
+	           				         <xsd:maxLength value="100"/>
+
+		        		        </xsd:restriction>
+
+					       </xsd:simpleType>
+        	        	
+				      </xsd:element>
+						
+				      <xsd:element name="Desc_comu_reca" minOccurs="0" nillable="true">
+
+					       <xsd:simpleType>
+
+						        <xsd:restriction base="xsd:string">
+
+	           				         <xsd:maxLength value="100"/>
+
+		        		        </xsd:restriction>
+
+					       </xsd:simpleType>
+        	        	
+				      </xsd:element>
+						
+			     </xsd:sequence>
+
+		    </xsd:complexType>
+
+	   </xsd:element>
+		
+
+	   <xsd:element name="RappresentanteLegaleWS">
+
+		    <xsd:complexType>
+
+			     <xsd:sequence>
+
+		    	      <xsd:sequence minOccurs="0" maxOccurs="1">
+													
+					       <xsd:element ref="n5:SoggettoWS"/>
+
+				      </xsd:sequence>
+																				
+		    	      <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+													
+					       <xsd:element ref="n5:RecapitoWS"/>
+
+				      </xsd:sequence>
+																				
+		    	      <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+													
+					       <xsd:element ref="n5:ContoCorrenteWS"/>
+
+				      </xsd:sequence>
+																				
+				      <xsd:element name="Data_iniz_rapp" minOccurs="0" type="n5:Data"/>
+
+				      <xsd:element name="Deco_tipo_cari" minOccurs="0" nillable="true">
+
+					       <xsd:simpleType>
+
+						        <xsd:restriction base="xsd:int">
+
+		        		        </xsd:restriction>
+
+					       </xsd:simpleType>
+        	        	
+				      </xsd:element>
+						
+				      <xsd:element name="Data_fine_rapp" minOccurs="0" type="n5:Data"/>
+				
+				      <xsd:element name="Deco_font_dato" minOccurs="0" nillable="true">
+
+					       <xsd:simpleType>
+
+						        <xsd:restriction base="xsd:int">
+
+		        		        </xsd:restriction>
+
+					       </xsd:simpleType>
+        	        	
+				      </xsd:element>
+						
+			     </xsd:sequence>
+
+		    </xsd:complexType>
+
+	   </xsd:element>
+		
+	
+	 
+		
+  	      <xsd:complexType name="DettaglioSoggettoWS">
+
+		    <xsd:sequence>
+
+			     <xsd:sequence minOccurs="1" maxOccurs="1">
+													
+				      <xsd:element ref="n5:SoggettoWS"/>
+
+			     </xsd:sequence>
+																				
+			     <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+													
+				      <xsd:element ref="n5:RecapitoWS"/>
+
+			     </xsd:sequence>
+																				
+	    	     <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+													
+				      <xsd:element ref="n5:ContoCorrenteWS"/>
+
+			     </xsd:sequence>
+																				
+	    	     <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+													
+				      <xsd:element ref="n5:RappresentanteLegaleWS"/>
+
+			     </xsd:sequence>
+																				
+		    </xsd:sequence>
+
+	       </xsd:complexType>
+
+
+
+	   <xsd:complexType name="ISWSUtilizzoFabbricato">
+
+		    <xsd:sequence>
+
+			     <xsd:element name="CUAA" type="n5:Cuaa"/>
+
+			     <xsd:element name="Qualifica" nillable="true">
+
+				      <xsd:simpleType>
+
+					       <xsd:restriction base="xsd:string">
+
+              			        <xsd:enumeration value="1"/>
+    	              			
+              			        <xsd:enumeration value="2"/>
+    	              			    	              			
+              			        <xsd:enumeration value="3"/>
+    	              			    	              			
+              			        <xsd:enumeration value="4"/>
+    	              			    	              			
+              			        <xsd:enumeration value="5"/>
+    	              			    	              			
+              			        <xsd:enumeration value="6"/>
+    	              			    	              			
+              			        <xsd:enumeration value="7"/>
+    	              			
+              			        <xsd:enumeration value="8"/>
+    	              			
+              			        <xsd:enumeration value="9"/>
+    	              			    	              			
+              			        <xsd:enumeration value="10"/>
+    	              			    	              			
+              			        <xsd:enumeration value="11"/>
+    	              			    	              			
+              			        <xsd:enumeration value="12"/>
+    	              			    	              			
+   	   				       </xsd:restriction>
+
+				      </xsd:simpleType>
+        	        	
+			     </xsd:element>
+
+		    </xsd:sequence>
+
+	   </xsd:complexType>
+
+	
+		
+<!-- Consistenza zootecnica -->
+
+
+			   <xsd:complexType name="ISWSAllevamento15">
+
+				    <xsd:sequence>
+
+					     <xsd:element name="IdAlleBDN" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="CodiceAzienda" type="n5:Data"/>
+
+					     <xsd:element name="CodiceSpecie" type="n5:Anno"/>
+
+					     <xsd:element name="CodFiscaleProp" type="n5:Cuaa"/>
+
+					     <xsd:element name="DenomProp" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:maxLength value="128"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="TipoProd" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:maxLength value="5"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="AutorizLatte">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:enumeration value="0">
+
+									         <xsd:annotation>
+
+										          <xsd:documentation>
+Non autorizzato          </xsd:documentation>
+
+									         </xsd:annotation>
+
+								        </xsd:enumeration>
+
+								        <xsd:enumeration value="1">
+
+									         <xsd:annotation>
+
+										          <xsd:documentation>
+Autorizzato          </xsd:documentation>
+
+									         </xsd:annotation>
+
+								        </xsd:enumeration>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="IscrLibriGene" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="DataIniziAtti" type="n5:Data"/>
+
+					     <xsd:element name="DataFineAtti" nillable="true" type="n5:Data"/>
+
+					     <xsd:element name="MetodoAllevamento" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int">
+
+								<!--ESTENSIVO -->
+
+								        <xsd:enumeration value="1"/>
+
+								<!--SEMIESTENSIVO -->
+
+								        <xsd:enumeration value="2"/>
+
+								<!--INTENSIVO -->
+
+								        <xsd:enumeration value="3"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="DestinazioneAllev" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								<!--NON BIOLOGICO -->
+
+								        <xsd:enumeration value="0"/>
+
+								<!--BIOLOGICO -->
+
+								        <xsd:enumeration value="1"/>
+
+								<!--IN CONVERSIONE -->
+
+								        <xsd:enumeration value="2"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="StalAllev" nillable="true" type="n5:ISWSStallaAllevamento"/>
+
+					     <xsd:element maxOccurs="unbounded" minOccurs="0" name="PropAllev" nillable="true" type="n5:ISWSPropAllevamento"/>
+
+					     <xsd:element maxOccurs="unbounded" minOccurs="0" name="DeteAllev" nillable="true" type="n5:ISWSPropAllevamento"/>
+
+					     <xsd:element name="ConsAllev" nillable="true" type="n5:ISWSCapoAllevamento2"/>
+
+				    </xsd:sequence>
+
+			   </xsd:complexType>
+
+			   <xsd:complexType name="ISWSStallaAllevamento">
+
+				    <xsd:sequence>
+
+					     <xsd:element name="DataIniziStal" type="n5:Data"/>
+
+					     <xsd:element name="DataFineStal" nillable="true" type="n5:Data"/>
+
+					     <xsd:element name="Indirizzo" nillable="true" type="n5:Indirizzo"/>
+
+					     <xsd:element name="Localita" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:maxLength value="128"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="Cap" nillable="true" type="n5:Cap"/>
+
+					     <xsd:element name="Provincia" nillable="true" type="n5:Provincia"/>
+
+					     <xsd:element name="Comune" nillable="true" type="n5:Comune"/>
+
+				    </xsd:sequence>
+
+			   </xsd:complexType>
+
+			   <xsd:complexType name="ISWSPropAllevamento">
+
+				    <xsd:sequence>
+
+					     <xsd:element name="CodFiscale" type="n5:Cuaa"/>
+
+					     <xsd:element name="FlagSocc" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:enumeration value="0"/>
+
+								        <xsd:enumeration value="1"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+				    </xsd:sequence>
+
+			   </xsd:complexType>
+
+
+			
+			   <xsd:complexType name="ISWSCapoAllevamento2">
+
+				    <xsd:sequence>
+
+					     <xsd:element name="IdAlleBdn" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					<!--dati certificati -->
+
+					     <xsd:element name="NumeCapiLatte" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="DecoRazzaPrev" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="NumeCapi624" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="NumeCapiOltre24" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="NumeVaccheLatte" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="NumeBufa" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="DataIniz" type="n5:Data"/>
+
+					     <xsd:element name="DataFine" type="n5:Data"/>
+
+					     <xsd:element name="NumeCapiTota" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					<!--dichiarati -->
+
+					     <xsd:element name="NumeViteFino6" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="Nume624Mace" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="Nume624MaceFemm" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="Nume624Alle" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="Nume624AlleFemm" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="NumeOltre24Mace" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="NumeOltre24MaceFemm" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="NumeOltre24Alle" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="NumeOltre24AlleFemm" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					<!--CAVALLI -->
+
+					     <xsd:element name="NumeFino6" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="NumeOltre6" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					<!--OVINI CAPRINI -->
+
+					     <xsd:element name="NumeOltre12" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="NumeOltre12Femm" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="NumeCapiRimonta" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="NumeCapiRimontaFemm" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="NumeTori" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="NumeAltreVacche" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="NumeAltreVaccheDich" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+				    </xsd:sequence>
+
+			   </xsd:complexType>
+
+
+<!-- Consistenza zootecnica 2  -->
+
+			   <xsd:complexType name="ISWSAllevamento16">
+
+				    <xsd:sequence>
+
+					     <xsd:element name="IdAlleBDN" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="CodiceAzienda" type="n5:Data"/>
+
+					     <xsd:element name="CodiceSpecie" type="n5:Anno"/>
+
+					     <xsd:element name="CodFiscaleProp" type="n5:Cuaa"/>
+
+					     <xsd:element name="DenomProp" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:maxLength value="128"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="TipoProd" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:maxLength value="5"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="AutorizLatte">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:enumeration value="0">
+
+									         <xsd:annotation>
+
+										          <xsd:documentation>
+Non autorizzato          </xsd:documentation>
+
+									         </xsd:annotation>
+
+								        </xsd:enumeration>
+
+								        <xsd:enumeration value="1">
+
+									         <xsd:annotation>
+
+										          <xsd:documentation>
+Autorizzato          </xsd:documentation>
+
+									         </xsd:annotation>
+
+								        </xsd:enumeration>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="IscrLibriGene" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int">
+
+								<!--NON ISCRITTO -->
+
+								        <xsd:enumeration value="0"/>
+
+								<!--ISCRITTO -->
+
+								        <xsd:enumeration value="1"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="DataIniziAtti" type="n5:Data"/>
+
+					     <xsd:element name="DataFineAtti" nillable="true" type="n5:Data"/>
+
+					     <xsd:element name="MetodoAllevamento" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int">
+
+								<!--ESTENSIVO -->
+
+								        <xsd:enumeration value="1"/>
+
+								<!--SEMIESTENSIVO -->
+
+								        <xsd:enumeration value="2"/>
+
+								<!--INTENSIVO -->
+
+								        <xsd:enumeration value="3"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="DestinazioneAllev" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								<!--NON BIOLOGICO -->
+
+								        <xsd:enumeration value="0"/>
+
+								<!--BIOLOGICO -->
+
+								        <xsd:enumeration value="1"/>
+
+								<!--IN CONVERSIONE -->
+
+								        <xsd:enumeration value="2"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="StalAllev" nillable="true" type="n5:ISWSStallaAllevamento"/>
+
+					     <xsd:element maxOccurs="unbounded" minOccurs="0" name="PropAllev" nillable="true" type="n5:ISWSPropAllevamento"/>
+
+					     <xsd:element maxOccurs="unbounded" minOccurs="0" name="DeteAllev" nillable="true" type="n5:ISWSPropAllevamento"/>
+
+					     <xsd:element name="ConsAllev" nillable="true" type="n5:ISWSCapoAllevamento16"/>
+
+				    </xsd:sequence>
+
+			   </xsd:complexType>
+
+			
+			   <xsd:complexType name="ISWSCapoAllevamento16">
+
+				    <xsd:sequence>
+
+					     <xsd:element name="IdAlleBdn" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="NumeCapiLatte" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="DecoRazzaPrev" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="NumeCapi624" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="NumeCapiOltre24" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="NumeVaccheLatte" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="NumeBufa" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="DataIniz" type="n5:Data"/>
+
+					     <xsd:element name="DataFine" type="n5:Data"/>
+
+					     <xsd:element name="NumeCapiTota" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="NumeViteFino6" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="Nume624Mace" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="Nume624MaceFemm" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="Nume624Alle" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="Nume624AlleFemm" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="NumeOltre24Mace" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="NumeOltre24MaceFemm" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="NumeOltre24Alle" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="NumeOltre24AlleFemm" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="NumeFino6" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="NumeOltre6" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="NumeOltre12" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="NumeOltre12Femm" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="NumeCapiRimonta" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="NumeCapiRimontaFemm" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="NumeCapiRimontaUBA" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="NumeTori" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="NumeAltreVacche" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="NumeAltreVaccheDich" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+
+					     <xsd:element name="Suini" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="Lattonzoli" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="Magroni" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="Scrofe" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="Verre" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="Scrofette" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="Magroncelli" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+
+				    </xsd:sequence>
+
+			   </xsd:complexType>
+
+				
+			<!--manodopera-->
+
+			   <xsd:complexType name="ISWSLavoro">
+
+				    <xsd:sequence>
+
+					     <xsd:element name="CUAA" type="n5:Cuaa"/>
+
+					     <xsd:element minOccurs="0" name="TipoLavoroPrevalente" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:length value="1"/>
+
+								        <xsd:enumeration value="0"/>
+
+								        <xsd:enumeration value="1"/>
+
+								        <xsd:enumeration value="2"/>
+
+								        <xsd:enumeration value="3"/>
+
+								        <xsd:enumeration value="4"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element minOccurs="0" name="TipoCollaborazione" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:length value="1"/>
+
+								        <xsd:enumeration value="0"/>
+
+								        <xsd:enumeration value="1"/>
+
+								        <xsd:enumeration value="2"/>
+
+								        <xsd:enumeration value="3"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element minOccurs="0" name="TipoLavoratori" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:length value="1"/>
+
+								        <xsd:enumeration value="0"/>
+
+								        <xsd:enumeration value="1"/>
+
+								        <xsd:enumeration value="2"/>
+
+								        <xsd:enumeration value="3"/>
+
+								        <xsd:enumeration value="4"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element minOccurs="0" name="UnitaMisura" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:length value="1"/>
+
+								        <xsd:enumeration value="0"/>
+
+								        <xsd:enumeration value="1"/>
+
+								        <xsd:enumeration value="2"/>
+
+								        <xsd:enumeration value="3"/>
+
+								        <xsd:enumeration value="4"/>
+
+								        <xsd:enumeration value="5"/>
+
+								        <xsd:enumeration value="6"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="Quantita" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:maxLength value="7"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+				    </xsd:sequence>
+
+			   </xsd:complexType>
+
+
+<!--mezzi di produzione-->
+
+			   <xsd:complexType name="ISWSMacchina">
+
+				    <xsd:sequence>
+
+					     <xsd:element name="CUAA" type="n5:Cuaa"/>
+
+					     <xsd:element name="TipoMacchina" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:maxLength value="5"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element minOccurs="0" name="FormaPossesso" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:maxLength value="2"/>
+
+								        <xsd:enumeration value="L"/>
+
+								        <xsd:enumeration value="P"/>
+
+								        <xsd:enumeration value="N"/>
+
+								        <xsd:enumeration value="PU"/>
+
+								        <xsd:enumeration value="U"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="Targa" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:maxLength value="10"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element minOccurs="0" name="TipoTarga">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:length value="1"/>
+
+								        <xsd:enumeration value="F"/>
+
+								        <xsd:enumeration value="S"/>
+
+								        <xsd:enumeration value="R"/>
+
+								        <xsd:enumeration value="T"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="Marca" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:maxLength value="20"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="Modello" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:maxLength value="20"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="Telaio" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:maxLength value="20"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element minOccurs="0" name="Carburante" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:length value="1"/>
+
+								        <xsd:enumeration value="B"/>
+
+								        <xsd:enumeration value="G"/>
+
+								        <xsd:enumeration value="P"/>
+
+								        <xsd:enumeration value="N"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element minOccurs="0" name="Trazione" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:maxLength value="2"/>
+
+								        <xsd:enumeration value="C"/>
+
+								        <xsd:enumeration value="DT"/>
+
+								        <xsd:enumeration value="F"/>
+
+								        <xsd:enumeration value="M"/>
+
+								        <xsd:enumeration value="R"/>
+
+								        <xsd:enumeration value="SC"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="DataIscrizione" nillable="true" type="n5:Data"/>
+
+					     <xsd:element name="DataCessazione" nillable="true" type="n5:Data"/>
+
+				    </xsd:sequence>
+
+			   </xsd:complexType>
+
+
+	
+			   <xsd:complexType name="ISWSFabbricatoFS6">
+
+				    <xsd:sequence>
+
+					     <xsd:element name="CUAA" type="n5:Cuaa"/>
+
+					     <xsd:element name="Provincia" type="n5:Provincia"/>
+
+					     <xsd:element name="Comune" type="n5:Comune"/>
+
+					     <xsd:element name="Sezione" nillable="true" type="n5:Sezione"/>
+
+					     <xsd:element name="Foglio" type="n5:Foglio"/>
+
+					     <xsd:element name="Particella" type="n5:Particella"/>
+
+					     <xsd:element name="Subalterno" nillable="true" type="n5:Subalterno"/>
+
+					     <xsd:element name="Tipo" nillable="false">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:enumeration value="301"/>
+
+								        <xsd:enumeration value="302"/>
+
+								        <xsd:enumeration value="303"/>
+
+								        <xsd:enumeration value="304"/>
+
+								        <xsd:enumeration value="305"/>
+
+								        <xsd:enumeration value="306"/>
+
+								        <xsd:enumeration value="307"/>
+
+								        <xsd:enumeration value="308"/>
+
+								        <xsd:enumeration value="309"/>
+
+								        <xsd:enumeration value="310"/>
+
+								        <xsd:enumeration value="311"/>
+
+								        <xsd:enumeration value="312"/>
+
+								        <xsd:enumeration value="313"/>
+
+								        <xsd:enumeration value="314"/>
+
+								        <xsd:enumeration value="315"/>
+
+								        <xsd:enumeration value="316"/>
+
+								        <xsd:enumeration value="317"/>
+
+								        <xsd:enumeration value="318"/>
+
+								        <xsd:enumeration value="319"/>
+
+								        <xsd:enumeration value="320"/>
+
+								        <xsd:enumeration value="321"/>
+
+								        <xsd:enumeration value="322"/>
+
+								        <xsd:enumeration value="323"/>
+
+								        <xsd:enumeration value="324"/>
+
+								        <xsd:enumeration value="325"/>
+
+								        <xsd:enumeration value="326"/>
+
+								        <xsd:enumeration value="327"/>
+
+								        <xsd:enumeration value="328"/>
+
+								        <xsd:enumeration value="329"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="Destinazione" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:enumeration value="1"/>
+
+								        <xsd:enumeration value="2"/>
+
+								        <xsd:enumeration value="3"/>
+
+								        <xsd:enumeration value="4"/>
+
+								        <xsd:enumeration value="5"/>
+
+								        <xsd:enumeration value="6"/>
+
+								        <xsd:enumeration value="7"/>
+
+								        <xsd:enumeration value="8"/>
+
+								        <xsd:enumeration value="9"/>
+
+								        <xsd:enumeration value="10"/>
+
+								        <xsd:enumeration value="11"/>
+
+								        <xsd:enumeration value="12"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element maxOccurs="1" minOccurs="0" name="CasiParticolari" nillable="true" type="n5:CasiParticolari"/>
+
+					     <xsd:element name="SuperficieCoperta" nillable="true" type="n5:Superficie"/>
+
+					     <xsd:element name="SuperficieScoperta" nillable="true" type="n5:Superficie"/>
+
+					     <xsd:element name="Volume" nillable="true" type="xsd:string"/>
+
+					     <xsd:element name="NumeroPosti" nillable="true" type="xsd:string"/>
+
+					     <xsd:element name="TipoConduzione" nillable="true" type="n5:TipoConduzione"/>
+
+					     <xsd:element name="DataInizioConduzione" nillable="true" type="n5:Data"/>
+
+					     <xsd:element name="DataFineConduzione" nillable="true" type="n5:Data"/>
+
+					     <xsd:element maxOccurs="unbounded" minOccurs="0" name="Uso" nillable="true" type="n5:ISWSUtilizzoFabbricato"/>
+
+					     <xsd:element maxOccurs="5" minOccurs="0" name="Proprietari" nillable="true" type="n5:ISWSProprietario"/>
+
+					     <xsd:element minOccurs="0" name="CodiceLivello" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:length value="3"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					<!-- CODI_OCCU -->
+
+					     <xsd:element name="CodiceOccupazioneSuolo">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="CodiceDestinazioneUso">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:length value="3"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="CodiceUso">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:length value="3"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="CodiceQualita">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:length value="3"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					<!-- CODI_OCCU_VARI -->
+
+					     <xsd:element name="CodiceOccupazioneVarieta" nillable="true" minOccurs="0">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+				    </xsd:sequence>
+
+			   </xsd:complexType>
+
+
+			   <xsd:element name="ISWSAgricoltoreAttivo">
+
+				    <xsd:complexType>
+
+					     <xsd:sequence>
+
+						      <xsd:element name="Cuaa" type="n5:Cuaa"/>
+
+						      <xsd:element name="DataVali" type="n5:Data"/>
+
+						      <xsd:element name="FlagIndicatori" nillable="true">
+
+							       <xsd:simpleType>
+
+								        <xsd:restriction base="xsd:string">
+
+									         <xsd:enumeration value="0"/>
+
+									         <xsd:enumeration value="1"/>
+
+								        </xsd:restriction>
+
+							       </xsd:simpleType>
+
+						      </xsd:element>
+
+					     </xsd:sequence>
+
+				    </xsd:complexType>
+
+			   </xsd:element>
+
+
+			   <xsd:complexType name="WsDocumenti">
+
+				    <xsd:sequence>
+
+					     <xsd:element minOccurs="0" name="TipoDocumento" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:maxLength value="3"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="NumeroDocumento" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:maxLength value="100"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="DataRilascio" nillable="true" type="n5:Data"/>
+
+					     <xsd:element name="DataScadenza" nillable="true" type="n5:Data"/>
+
+				    </xsd:sequence>
+
+			   </xsd:complexType>
+
+
+	   <xsd:complexType name="ISWSBaseTerritorio1">
+
+		    <xsd:sequence>
+
+			     <xsd:element name="Sezione" nillable="true" type="n5:Sezione"/>
+
+			     <xsd:element name="Foglio" type="n5:Foglio"/>
+
+			     <xsd:element name="Particella" type="n5:Particella"/>
+
+			     <xsd:element name="Subalterno" nillable="true" type="n5:Subalterno"/>
+
+					     <xsd:element minOccurs="0" name="codiceTipoConduzione" nillable="true" type="n5:TipoConduzione"/>
+
+			     <xsd:element name="DataInizioConduzione" type="n5:Data"/>
+
+					     <xsd:element name="DataFineConduzione" nillable="true" type="n5:Data"/>
+
+					     <xsd:element maxOccurs="5" minOccurs="0" name="Proprietari" nillable="true" type="n5:ISWSProprietario"/>
+
+			     <xsd:element name="SuperficieCatastale" type="n5:Superficie"/>
+
+			     <xsd:element name="SuperficieCondotta" type="n5:Superficie"/>
+
+					     <xsd:element minOccurs="0" name="SuperficieGrafica" nillable="true" type="n5:Superficie"/>
+
+		    </xsd:sequence>
+
+	   </xsd:complexType>
+
+
+
+		   <xsd:complexType name="ISWSTerritorioFS6">
+
+				    <xsd:complexContent>
+
+					     <xsd:extension base="n5:ISWSBaseTerritorio1">
+
+						      <xsd:sequence>
+
+							       <xsd:element name="CUAA" type="n5:Cuaa"/>
+
+							       <xsd:element name="Comune" type="n5:Comune"/>
+
+							       <xsd:element name="Provincia" type="n5:Provincia"/>
+
+							       <xsd:element name="UtilizzoSuolo" nillable="true" minOccurs="0" maxOccurs="unbounded" type="n5:WsUtilizzoTerraCaba"/>
+
+							       <xsd:element name="Documento" nillable="true" minOccurs="0" maxOccurs="unbounded" type="n5:WsDocumenti"/>
+
+							       <xsd:element name="FlagIrrigua" nillable="true">
+
+								        <xsd:simpleType>
+
+									         <xsd:restriction base="n5:Flag">
+
+										          <xsd:enumeration value="0"/>
+
+										          <xsd:enumeration value="1"/>
+
+										          <xsd:enumeration value="2"/>
+
+									         </xsd:restriction>
+
+								        </xsd:simpleType>
+
+							       </xsd:element>
+
+							       <xsd:element name="FlagTerrazzata" nillable="false">
+
+								        <xsd:simpleType>
+
+									         <xsd:restriction base="n5:Flag">
+
+										          <xsd:enumeration value="0"/>
+
+										          <xsd:enumeration value="1"/>
+
+										          <xsd:enumeration value="2"/>
+
+										          <xsd:enumeration value="3"/>
+
+									         </xsd:restriction>
+
+								        </xsd:simpleType>
+
+							       </xsd:element>
+
+							       <xsd:element name="RotazioneColtureOrtive" nillable="true">
+
+								        <xsd:simpleType>
+
+									         <xsd:restriction base="n5:Flag">
+
+										          <xsd:enumeration value="0"/>
+
+										          <xsd:enumeration value="1"/>
+
+										          <xsd:enumeration value="2"/>
+
+										          <xsd:enumeration value="3"/>
+
+									         </xsd:restriction>
+
+								        </xsd:simpleType>
+
+							       </xsd:element>
+
+							       <xsd:element name="EffluentiZootecnici" nillable="true">
+
+								        <xsd:simpleType>
+
+									         <xsd:restriction base="n5:Flag">
+
+										          <xsd:enumeration value="0"/>
+
+										          <xsd:enumeration value="1"/>
+
+									         </xsd:restriction>
+
+								        </xsd:simpleType>
+
+							       </xsd:element>
+
+							       <xsd:element name="SostanzePericolose" nillable="true">
+
+								        <xsd:simpleType>
+
+									         <xsd:restriction base="n5:Flag">
+
+										          <xsd:enumeration value="0"/>
+
+										          <xsd:enumeration value="1"/>
+
+									         </xsd:restriction>
+
+								        </xsd:simpleType>
+
+							       </xsd:element>
+
+							       <xsd:element name="CasiParticolari" nillable="true" type="n5:CasiParticolari"/>
+
+							       <xsd:element name="FlagGiust" nillable="true" type="n5:Flag"/>
+
+							       <xsd:element minOccurs="0" name="CodiZVN" nillable="true" type="xsd:string">
+
+								        <xsd:annotation>
+
+									         <xsd:documentation>
+Soltanto in consultazione         </xsd:documentation>
+
+								        </xsd:annotation>
+
+							       </xsd:element>
+
+						      </xsd:sequence>
+
+					     </xsd:extension>
+
+				    </xsd:complexContent>
+
+			   </xsd:complexType>
+
+
+			   <xsd:complexType name="WsUtilizzoTerraCaba">
+
+				    <xsd:sequence>
+
+					     <xsd:element name="CodiceLivello" nillable="true" minOccurs="0">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:length value="3"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					<!-- CODI_OCCU -->
+
+					     <xsd:element name="CodiceOccupazioneSuolo">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="CodiceDestinazioneUso">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:length value="3"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="CodiceUso">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:length value="3"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="CodiceQualita">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:length value="3"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					<!-- CODI_OCCU_VARI -->
+
+					     <xsd:element name="CodiceOccupazioneVarieta" nillable="true" minOccurs="0">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="SuperficieUtilizzata">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="CodiceMacrouso" nillable="true" minOccurs="0">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:length value="3"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="CodiceProdotto" nillable="true" minOccurs="0">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:length value="3"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="CodiceVarieta" nillable="true" minOccurs="0">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:length value="3"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="SuperficieEleggibile" nillable="true" minOccurs="0">
+
+						      <xsd:annotation>
+
+							       <xsd:documentation>
+Soltanto in consultazione       </xsd:documentation>
+
+						      </xsd:annotation>
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="CodiceColtivazioneBiologica" nillable="true" minOccurs="0">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:enumeration value="1">
+
+									         <xsd:annotation>
+
+										          <xsd:documentation>
+biologico          </xsd:documentation>
+
+									         </xsd:annotation>
+
+								        </xsd:enumeration>
+
+								        <xsd:enumeration value="0">
+
+									         <xsd:annotation>
+
+										          <xsd:documentation>
+coltivazione non biologica          </xsd:documentation>
+
+									         </xsd:annotation>
+
+								        </xsd:enumeration>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="CodiceTipoSemina" nillable="true" minOccurs="0">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:enumeration value="1">
+
+									         <xsd:annotation>
+
+										          <xsd:documentation>
+TRADIZIONALE          </xsd:documentation>
+
+									         </xsd:annotation>
+
+								        </xsd:enumeration>
+
+								        <xsd:enumeration value="2">
+
+									         <xsd:annotation>
+
+										          <xsd:documentation>
+SU SODO          </xsd:documentation>
+
+									         </xsd:annotation>
+
+								        </xsd:enumeration>
+
+								        <xsd:enumeration value="3">
+
+									         <xsd:annotation>
+
+										          <xsd:documentation>
+MINIMUM TILLAGE          </xsd:documentation>
+
+									         </xsd:annotation>
+
+								        </xsd:enumeration>
+
+								        <xsd:enumeration value="4">
+
+									         <xsd:annotation>
+
+										          <xsd:documentation>
+PRATICHE EQUIVALENTI          </xsd:documentation>
+
+									         </xsd:annotation>
+
+								        </xsd:enumeration>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="CodiceTipoIrrigazione" nillable="true" minOccurs="0">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:enumeration value="1">
+
+									         <xsd:annotation>
+
+										          <xsd:documentation>
+SOMMERSIONE          </xsd:documentation>
+
+									         </xsd:annotation>
+
+								        </xsd:enumeration>
+
+								        <xsd:enumeration value="2">
+
+									         <xsd:annotation>
+
+										          <xsd:documentation>
+SCORRIMENTO          </xsd:documentation>
+
+									         </xsd:annotation>
+
+								        </xsd:enumeration>
+
+								        <xsd:enumeration value="3">
+
+									         <xsd:annotation>
+
+										          <xsd:documentation>
+ASPERSIONE O A PIOGGIA          </xsd:documentation>
+
+									         </xsd:annotation>
+
+								        </xsd:enumeration>
+
+								        <xsd:enumeration value="4">
+
+									         <xsd:annotation>
+
+										          <xsd:documentation>
+MICROPORTATE O A GOCCIA          </xsd:documentation>
+
+									         </xsd:annotation>
+
+								        </xsd:enumeration>
+
+								        <xsd:enumeration value="5">
+
+									         <xsd:annotation>
+
+										          <xsd:documentation>
+SUBIRRIGAZIONE          </xsd:documentation>
+
+									         </xsd:annotation>
+
+								        </xsd:enumeration>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="CodiceProtezioneColture" nillable="true" minOccurs="0">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:enumeration value="1">
+
+									         <xsd:annotation>
+
+										          <xsd:documentation>
+RETI ANTIGRANDINE          </xsd:documentation>
+
+									         </xsd:annotation>
+
+								        </xsd:enumeration>
+
+								        <xsd:enumeration value="2">
+
+									         <xsd:annotation>
+
+										          <xsd:documentation>
+RETI ANTIACQUA          </xsd:documentation>
+
+									         </xsd:annotation>
+
+								        </xsd:enumeration>
+
+								        <xsd:enumeration value="3">
+
+									         <xsd:annotation>
+
+										          <xsd:documentation>
+SERRE E TUNNEL FISSI          </xsd:documentation>
+
+									         </xsd:annotation>
+
+								        </xsd:enumeration>
+
+								        <xsd:enumeration value="4">
+
+									         <xsd:annotation>
+
+										          <xsd:documentation>
+OMBRAI          </xsd:documentation>
+
+									         </xsd:annotation>
+
+								        </xsd:enumeration>
+
+								        <xsd:enumeration value="5">
+
+									         <xsd:annotation>
+
+										          <xsd:documentation>
+IMPIANTI ANTIBRINA          </xsd:documentation>
+
+									         </xsd:annotation>
+
+								        </xsd:enumeration>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="CodiceFaseAllevamento" nillable="true" minOccurs="0">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:enumeration value="1">
+
+									         <xsd:annotation>
+
+										          <xsd:documentation>
+PRODUTTIVO          </xsd:documentation>
+
+									         </xsd:annotation>
+
+								        </xsd:enumeration>
+
+								        <xsd:enumeration value="2">
+
+									         <xsd:annotation>
+
+										          <xsd:documentation>
+NON PRODUTTIVO          </xsd:documentation>
+
+									         </xsd:annotation>
+
+								        </xsd:enumeration>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="CodiceFormaAllevamento" nillable="true" minOccurs="0" type="n5:formalle"/>
+
+					     <xsd:element name="FlagColtPrincipale" nillable="true" minOccurs="0">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:enumeration value="0"/>
+
+								        <xsd:enumeration value="1"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="DataInizioUtilizzo" type="n5:Data"/>
+
+					     <xsd:element name="DataFineUtilizzo" nillable="true" type="n5:Data"/>
+
+					     <xsd:element name="MantPratiPermanente" nillable="true" minOccurs="0">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:enumeration value="1">
+
+									         <xsd:annotation>
+
+										          <xsd:documentation>
+Pascolamento con animali propri          </xsd:documentation>
+
+									         </xsd:annotation>
+
+								        </xsd:enumeration>
+
+								        <xsd:enumeration value="2">
+
+									         <xsd:annotation>
+
+										          <xsd:documentation>
+Pascolamento con animali di terzi          </xsd:documentation>
+
+									         </xsd:annotation>
+
+								        </xsd:enumeration>
+
+								        <xsd:enumeration value="3">
+
+									         <xsd:annotation>
+
+										          <xsd:documentation>
+Sfalcio manuale          </xsd:documentation>
+
+									         </xsd:annotation>
+
+								        </xsd:enumeration>
+
+								        <xsd:enumeration value="4">
+
+									         <xsd:annotation>
+
+										          <xsd:documentation>
+Sfalcio meccanizzato          </xsd:documentation>
+
+									         </xsd:annotation>
+
+								        </xsd:enumeration>
+
+								        <xsd:enumeration value="5">
+
+									         <xsd:annotation>
+
+										          <xsd:documentation>
+Pratiche colturali volte al miglioramento          </xsd:documentation>
+
+									         </xsd:annotation>
+
+								        </xsd:enumeration>
+
+								        <xsd:enumeration value="6">
+
+									         <xsd:annotation>
+
+										          <xsd:documentation>
+SFALCIO CON CADENZA BIENNALE          </xsd:documentation>
+
+									         </xsd:annotation>
+
+								        </xsd:enumeration>
+
+								        <xsd:enumeration value="7">
+
+									         <xsd:annotation>
+
+										          <xsd:documentation>
+PASCOLAMENTO E SFALCIO          </xsd:documentation>
+
+									         </xsd:annotation>
+
+								        </xsd:enumeration>
+
+								        <xsd:enumeration value="8">
+
+									         <xsd:annotation>
+
+										          <xsd:documentation>
+NESSUNA PRATICA          </xsd:documentation>
+
+									         </xsd:annotation>
+
+								        </xsd:enumeration>
+
+								        <xsd:enumeration value="10">
+
+									         <xsd:annotation>
+
+										          <xsd:documentation>
+PRATICA STABILITA           </xsd:documentation>
+
+									         </xsd:annotation>
+
+								        </xsd:enumeration>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="MantenSupAgricola" nillable="true" minOccurs="0">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:enumeration value="1">
+
+									         <xsd:annotation>
+
+										          <xsd:documentation>
+Nessuna pratica          </xsd:documentation>
+
+									         </xsd:annotation>
+
+								        </xsd:enumeration>
+
+								        <xsd:enumeration value="2">
+
+									         <xsd:annotation>
+
+										          <xsd:documentation>
+Pratica ordinaria          </xsd:documentation>
+
+									         </xsd:annotation>
+
+								        </xsd:enumeration>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element minOccurs="0" name="SuperficieEleggibileOP" nillable="true">
+
+						      <xsd:annotation>
+
+							       <xsd:documentation>
+Soltanto in trasmissione        </xsd:documentation>
+
+						      </xsd:annotation>
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="NumeroPiante" nillable="true" minOccurs="0">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="SestoImpiantoSuFila" nillable="true" minOccurs="0">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:maxLength value="8"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="SestoImpiantoTraFile" nillable="true" minOccurs="0">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:maxLength value="8"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="AnnoImpianto" nillable="true" minOccurs="0">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:length value="4"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="TipoImpianto" nillable="true" minOccurs="0">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:enumeration value="1"/>
+
+								        <xsd:enumeration value="2"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="TipoCertificazione" nillable="true" minOccurs="0">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:enumeration value="0">
+
+									         <xsd:annotation>
+
+										          <xsd:documentation>
+NESSUNA          </xsd:documentation>
+
+									         </xsd:annotation>
+
+								        </xsd:enumeration>
+
+								        <xsd:enumeration value="1">
+
+									         <xsd:annotation>
+
+										          <xsd:documentation>
+DOP          </xsd:documentation>
+
+									         </xsd:annotation>
+
+								        </xsd:enumeration>
+
+								        <xsd:enumeration value="2">
+
+									         <xsd:annotation>
+
+										          <xsd:documentation>
+IGP          </xsd:documentation>
+
+									         </xsd:annotation>
+
+								        </xsd:enumeration>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="Percentuale" nillable="true" minOccurs="0">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:maxLength value="3"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="Menzione" nillable="true" minOccurs="0">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="TipoUtilizzoOlivo" nillable="true" minOccurs="0">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:enumeration value="0"/>
+
+								        <xsd:enumeration value="1"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="CapacitaProduttiva" nillable="true" minOccurs="0">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:maxLength value="8"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="Altitudine" nillable="true" minOccurs="0">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="FlagProduzioneIntegrata" nillable="true" minOccurs="0">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:enumeration value="1"/>
+
+								        <xsd:enumeration value="0"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+				    </xsd:sequence>
+
+			   </xsd:complexType>
+
+
+                                         <xsd:complexType name="ISWSRespOA">
+
+
+                                                                   <xsd:sequence>
+
+
+                                                                                    <xsd:element name="CuaaAzieOA" type="n5:Cuaa"/>
+
+
+                                                                                    <xsd:element name="DenomAzieOA">
+
+
+                                                                                                    <xsd:simpleType>
+
+
+                                                                                                                     <xsd:restriction base="xsd:string">
+
+
+                                                                                                                                      <xsd:minLength value="1"/>
+
+
+                                                                                                                                      <xsd:maxLength value="150"/>
+
+
+                                                                                                                     </xsd:restriction>
+
+
+                                                                                                    </xsd:simpleType>
+
+
+                                                                                    </xsd:element>
+
+
+                                                                                    <xsd:element name="TipoLegaAsso">
+
+
+                                                                                                    <xsd:simpleType>
+
+
+                                                                                                                     <xsd:restriction base="xsd:string">
+
+
+                                                                                                                              <!--  <xsd:enumeration value="70013"/>
+
+                                                                                                                              <xsd:enumeration value="70012"/>
+
+                                                                                                                              <xsd:enumeration value="3332"/>
+
+                                                                                                                              <xsd:enumeration value="3333"/>
+
+                                                                                                                              <xsd:enumeration value="3334"/>
+
+                                                                                                                              <xsd:enumeration value="3335"/>
+
+                                                                                                                              <xsd:enumeration value="3336"/>
+
+                                                                                                                              <xsd:enumeration value="3337"/>-->
+
+
+                                                                                                                     </xsd:restriction>
+
+
+                                                                                                    </xsd:simpleType>
+
+
+                                                                                    </xsd:element>
+
+
+                                                                                    <xsd:element name="DescrLegaAsso">
+
+
+                                                                                                    <xsd:simpleType>
+
+
+                                                                                                                     <xsd:restriction base="xsd:string">
+
+
+                                                                                                                                      <xsd:minLength value="1"/>
+
+
+                                                                                                                                      <xsd:maxLength value="200"/>
+
+
+                                                                                                                     </xsd:restriction>
+
+
+                                                                                                    </xsd:simpleType>
+
+
+                                                                                    </xsd:element>
+
+
+                                                                                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="Socio" nillable="true" type="n5:ISWSRespSoci"/>
+
+
+                                                                   </xsd:sequence>
+
+
+                                                  </xsd:complexType>
+
+
+
+                                                  <xsd:complexType name="ISWSRespSoci">
+
+
+                                                                   <xsd:sequence>
+
+
+                                                                                    <xsd:element name="CuaaSocio" type="n5:Cuaa"/>
+
+
+                                                                                    <xsd:element name="DenomSocio">
+
+
+                                                                                                    <xsd:simpleType>
+
+
+                                                                                                                     <xsd:restriction base="xsd:string">
+
+
+                                                                                                                                      <xsd:minLength value="1"/>
+
+
+                                                                                                                                      <xsd:maxLength value="150"/>
+
+
+                                                                                                                     </xsd:restriction>
+
+
+                                                                                                    </xsd:simpleType>
+
+
+                                                                                    </xsd:element>
+
+
+                                                                                    <xsd:element name="DataInizioAsso" type="n5:Data"/>
+
+
+                                                                                    <xsd:element name="DataFineAsso" type="n5:Data"/>
+
+
+                                                                   </xsd:sequence>
+
+
+                                                  </xsd:complexType>
+
+
+	
+	   <xsd:complexType name="ISWSAgricoltoreAttivoResp">
+
+				    <xsd:sequence>
+
+					     <xsd:element name="AgricoltoreAttivo" nillable="false">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:enumeration value="SI"/>
+
+								        <xsd:enumeration value="ND"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element maxOccurs="unbounded" minOccurs="0" name="Indicatori" nillable="true" type="n5:ISWSIndicatori"/>
+
+				    </xsd:sequence>
+
+			   </xsd:complexType>
+
+
+	   <xsd:complexType name="ISWSIndicatori">
+
+				    <xsd:sequence>
+
+					     <xsd:element name="CodiceNormativa" nillable="true" minOccurs="0" type="n5:Particella"/>
+
+					     <xsd:element name="NormativaRiferimento" nillable="true" minOccurs="0">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="Descrizione" nillable="true" minOccurs="0">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="DataValidita" nillable="true" minOccurs="0" type="n5:Data"/>
+
+					     <xsd:element name="StatoIndicatore" nillable="true" minOccurs="0">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:int"/>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+				    </xsd:sequence>
+
+			   </xsd:complexType>
+
+
+			   <xsd:complexType name="ISWSGiovaneAgricoltoreResp">
+
+				    <xsd:sequence>
+
+					     <xsd:element name="GiovaneAgricoltore" nillable="false">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:enumeration value="SI"/>
+
+								        <xsd:enumeration value="NO"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element maxOccurs="unbounded" minOccurs="0" name="Indicatori" nillable="true" type="n5:ISWSIndicatori"/>
+
+				    </xsd:sequence>
+
+			   </xsd:complexType>
+
+
+			<!--<xsd:element name="ISWSAgricoltoreAttivoISOP">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="CUAA" type="n5:Cuaa" />
+						<xsd:element name="AnnoCampagna">
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:gYear"/>
+							</xsd:simpleType>
+						</xsd:element>
+						<xsd:element name="TipoSoggetto" nillable="true"
+							minOccurs="0">
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:string">
+									<xsd:enumeration value="B02" />
+									<xsd:enumeration value="I01" />
+									<xsd:enumeration value="I02" />
+									<xsd:enumeration value="I03" />
+									<xsd:enumeration value="I04" />
+									<xsd:enumeration value="I05" />
+									<xsd:enumeration value="I06" />
+									<xsd:enumeration value="I07" />
+									<xsd:enumeration value="I08" />
+									<xsd:enumeration value="I09" />
+									<xsd:enumeration value="I10" />
+									<xsd:enumeration value="I11" />
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:element>
+						<xsd:element name="TipoEntePPAA" nillable="true"
+							minOccurs="0">
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:string">
+									<xsd:enumeration value="AA4a" />
+									<xsd:enumeration value="AA4b" />
+									<xsd:enumeration value="AA4c" />
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:element>
+						<xsd:element name="AnnoFiscale">
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:gYear"/>
+							</xsd:simpleType>
+						</xsd:element>
+						<xsd:element name="ProventiTotNAg" nillable="true"
+							minOccurs="0">
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:string">
+									<xsd:maxLength value="8" />
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:element>
+						<xsd:element name="ProventiTotAg" nillable="true"
+							minOccurs="0">
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:string">
+									<xsd:maxLength value="8" />
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:element>
+						<xsd:element name="ProventiTotAgNAg" nillable="true"
+							minOccurs="0">
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:string">
+									<xsd:maxLength value="8" />
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:element>
+						<xsd:element name="TipoControllo1" nillable="true"
+							minOccurs="0">
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:string">
+									<xsd:enumeration value="AA7" />
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:element>
+						<xsd:element name="TipoControllo2" nillable="true"
+							minOccurs="0">
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:string">
+									<xsd:enumeration value="AA8" />
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>-->
+
+
+			   <xsd:complexType name="ISWSRespOTE">
+
+				    <xsd:sequence>
+
+					     <xsd:element name="CuaaAzienda" minOccurs="1" nillable="false" type="n5:Cuaa"/>
+
+					     <xsd:element name="NumSchedaValidazione" minOccurs="1" nillable="true" type="xsd:string"/>
+
+					     <xsd:element name="DataSchedaValidazione" minOccurs="1" nillable="true" type="n5:Data"/>
+
+					     <xsd:element name="codiOTE" minOccurs="1" nillable="true" type="xsd:string"/>
+
+					     <xsd:element name="DescrOTE" minOccurs="1" nillable="true" type="xsd:string"/>
+
+					     <xsd:element name="DimensioneEconomica" minOccurs="1" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:decimal">
+
+								        <xsd:totalDigits value="18"/>
+
+								        <xsd:fractionDigits value="2"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="numCapiTot" nillable="true" type="xsd:string"/>
+
+					     <xsd:element name="SupeTot" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:decimal">
+
+								        <xsd:totalDigits value="18"/>
+
+								        <xsd:fractionDigits value="2"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="ColtureSpecie" minOccurs="0" maxOccurs="unbounded" nillable="true" type="n5:ISWS_OTE_CS"/>
+
+				    </xsd:sequence>
+
+			   </xsd:complexType>
+
+
+			   <xsd:complexType name="ISWS_OTE_CS">
+
+				    <xsd:sequence>
+
+					     <xsd:element name="codiRUAP" nillable="true" type="xsd:string"/>
+
+					     <xsd:element name="DescrizioneRUAP" nillable="true" type="xsd:string"/>
+
+					     <xsd:element name="UnitaMisuraRUAP" nillable="true" type="xsd:string"/>
+
+					     <xsd:element name="Superficie" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:decimal">
+
+								        <xsd:totalDigits value="18"/>
+
+								        <xsd:fractionDigits value="2"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="Capi" nillable="true" type="xsd:string"/>
+
+					     <xsd:element name="ImpProduzione" nillable="true">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:decimal">
+
+								        <xsd:totalDigits value="18"/>
+
+								        <xsd:fractionDigits value="2"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="FlagAttiPrev" nillable="true" type="xsd:string"/>
+
+				    </xsd:sequence>
+
+			   </xsd:complexType>
+
+
+	   <xsd:complexType name="ISWSSegnalazione">
+
+		    <xsd:sequence>
+
+			     <xsd:element name="CUAA" type="n5:Cuaa"/>
+
+			     <xsd:element name="provincia" type="n5:Provincia"/>
+
+			     <xsd:element name="comune" type="n5:Comune"/>
+
+			     <xsd:element name="sezione" nillable="true" type="n5:Sezione"/>
+
+			     <xsd:element name="foglio" type="n5:Foglio"/>
+
+			     <xsd:element name="particella" type="n5:Particella"/>
+
+			     <xsd:element name="subalterno" nillable="true" type="n5:Subalterno"/>
+
+			     <xsd:element name="CodiceMacrouso" nillable="false">
+
+				      <xsd:simpleType>
+
+					       <xsd:restriction base="xsd:string">
+
+						        <xsd:length value="3"/>
+
+					       </xsd:restriction>
+
+				      </xsd:simpleType>
+
+			     </xsd:element>
+
+			     <xsd:element name="CodiceTipoSegnalazione" nillable="false">
+
+				      <xsd:simpleType>
+
+					       <xsd:restriction base="xsd:string">
+
+						        <xsd:length value="3"/>
+
+					       </xsd:restriction>
+
+				      </xsd:simpleType>
+
+			     </xsd:element>
+
+			     <xsd:element name="CodiceSegnalazione" nillable="false">
+
+				      <xsd:simpleType>
+
+					       <xsd:restriction base="xsd:string">
+
+						        <xsd:length value="2"/>
+
+					       </xsd:restriction>
+
+				      </xsd:simpleType>
+
+			     </xsd:element>
+
+		    </xsd:sequence>
+
+	   </xsd:complexType>
+
+
+
+			   <xsd:complexType name="ISWDATIRICHIESTI">
+
+				     <xsd:sequence>
+	
+					     <xsd:element name="Flag_AA" minOccurs="1" nillable="false">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:length value="1"/>
+
+								        <xsd:enumeration value="0"/>
+
+								        <xsd:enumeration value="1"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="Flag_GA" minOccurs="1" nillable="false">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:length value="1"/>
+
+								        <xsd:enumeration value="0"/>
+
+								        <xsd:enumeration value="1"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="Flag_OTE" minOccurs="1" nillable="false">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:length value="1"/>
+
+								        <xsd:enumeration value="0"/>
+
+								        <xsd:enumeration value="1"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="Flag_cons" minOccurs="1" nillable="false">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:length value="1"/>
+
+								        <xsd:enumeration value="0"/>
+
+								        <xsd:enumeration value="1"/>
+
+								        <xsd:enumeration value="2"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="Flag_fabb" minOccurs="1" nillable="false">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:length value="1"/>
+
+								        <xsd:enumeration value="0"/>
+
+								        <xsd:enumeration value="1"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="Flag_legass" minOccurs="1" nillable="false">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:length value="1"/>
+
+								        <xsd:enumeration value="0"/>
+
+								        <xsd:enumeration value="1"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="Flag_manod" minOccurs="1" nillable="false">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:length value="1"/>
+
+								        <xsd:enumeration value="0"/>
+
+								        <xsd:enumeration value="1"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="Flag_macch" minOccurs="1" nillable="false">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:length value="1"/>
+
+								        <xsd:enumeration value="0"/>
+
+								        <xsd:enumeration value="1"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="Flag_allev" minOccurs="1" nillable="false">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:length value="1"/>
+
+								        <xsd:enumeration value="0"/>
+
+								        <xsd:enumeration value="1"/>
+
+						                                  <xsd:enumeration value="2"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+					     <xsd:element name="Flag_anom" minOccurs="1" nillable="false">
+
+						      <xsd:simpleType>
+
+							       <xsd:restriction base="xsd:string">
+
+								        <xsd:length value="1"/>
+
+								        <xsd:enumeration value="0"/>
+
+								        <xsd:enumeration value="1"/>
+
+							       </xsd:restriction>
+
+						      </xsd:simpleType>
+
+					     </xsd:element>
+
+				     </xsd:sequence>
+
+			   </xsd:complexType>
+
+
+
+			   <xsd:complexType name="ISWSFASCALL">
+
+				    <xsd:sequence>
+
+					     <xsd:element name="CUAA" minOccurs="1" nillable="false" type="n5:Cuaa"/>
+
+					     <xsd:element name="DataRife" minOccurs="0" nillable="true" type="n5:Data"/>
+
+					     <xsd:element name="DatiRichiesti" minOccurs="1" nillable="false" type="n5:ISWDATIRICHIESTI"/>
+
+				    </xsd:sequence>
+
+			   </xsd:complexType>
+
+					
+
+			   <xsd:element name="RichiestaFascicolo">
+
+			        <xsd:complexType>
+
+	   		            <xsd:sequence>
+
+	                           <xsd:element name="ISWSFASC_ALL" type="n5:ISWSFASCALL" minOccurs="1" nillable="false"/>
+   		       
+		                </xsd:sequence>
+
+		            </xsd:complexType>
+
+		       </xsd:element>
+
+	
+	 	       <xsd:element name="IDXML" nillable="true" type="xsd:string"/>
+ 
+	
+			   <xsd:element name="ISWSResponse">
+
+				    <xsd:complexType>
+
+					     <xsd:sequence>
+
+						      <xsd:element name="codRet" type="xsd:string"/>
+
+						      <xsd:element name="Segnalazione" type="xsd:string"/>
+
+					     </xsd:sequence>
+
+				    </xsd:complexType>
+
+			   </xsd:element>
+
+	
+			   <xsd:element name="FascicoloAllResponse">
+
+			        <xsd:complexType>
+
+			               <xsd:sequence>
+
+				               <xsd:element ref="n5:ISWSResponse"/>
+
+				               <xsd:element ref="n5:IDXML"/>
+	
+			              </xsd:sequence>
+
+			       </xsd:complexType>
+
+			   </xsd:element>
+
+
+	   <xsd:element name="ISWSFASCICOLO" nillable="true">
+
+	       <xsd:complexType>
+
+   	          <xsd:sequence>
+
+                             <xsd:element name="AnagraficaFascicolo" type="n5:ISWSRespAnagFascicolo15" minOccurs="1" maxOccurs="1"/>
+
+                             <xsd:element name="AnagraficaSoggetto" type="n5:DettaglioSoggettoWS" minOccurs="1" maxOccurs="1"/>
+
+                             <xsd:element name="AgricoltoreAttivo" type="n5:ISWSAgricoltoreAttivoResp" minOccurs="0" maxOccurs="1" nillable="true"/>
+
+                             <xsd:element name="GiovaneAgricoltore" type="n5:ISWSGiovaneAgricoltoreResp" minOccurs="0" maxOccurs="1" nillable="true"/>
+
+                             <xsd:element name="OTE" type="n5:ISWSRespOTE" minOccurs="0" maxOccurs="unbounded" nillable="true"/>
+
+  	                <xsd:element name="ConsistenzaTerreni" type="n5:ISWSTerritorioFS6" minOccurs="0" maxOccurs="unbounded" nillable="true"/>
+
+                             <xsd:element name="Fabbricati" type="n5:ISWSFabbricatoFS6" minOccurs="0" maxOccurs="unbounded" nillable="true"/>
+
+                             <xsd:element name="LegamiAssociativi" type="n5:ISWSRespOA" minOccurs="0" maxOccurs="unbounded" nillable="true"/>
+
+                             <xsd:element name="Manodopera" type="n5:ISWSLavoro" minOccurs="0" maxOccurs="unbounded" nillable="true"/>
+
+                             <xsd:element name="MezziProduzione" type="n5:ISWSMacchina" minOccurs="0" maxOccurs="unbounded" nillable="true"/>
+
+                             <xsd:choice minOccurs="0">
+
+                                    <xsd:element name="ConsistenzaZootecnica" type="n5:ISWSAllevamento15" minOccurs="0" maxOccurs="unbounded" nillable="true"/>
+
+                                    <xsd:element name="ConsistenzaZootecnica2" type="n5:ISWSAllevamento16" minOccurs="0" maxOccurs="unbounded" nillable="true"/>
+
+                             </xsd:choice>
+
+                             <xsd:element name="Segnalazioni" type="n5:ISWSSegnalazione" minOccurs="0" maxOccurs="unbounded" nillable="true"/>
+ 
+ 	           </xsd:sequence>
+
+	       </xsd:complexType>
+
+	   </xsd:element>
+			
+			
+	
+	   <xsd:complexType name="ISWSEsitoFascicoloAll">
+
+			    <xsd:sequence>
+
+				     <xsd:element name="CUAA" type="n5:Cuaa"/>
+
+				     <xsd:element name="Servizio" nillable="false">
+
+					      <xsd:simpleType>
+
+						       <xsd:restriction base="xsd:string">
+
+							        <xsd:enumeration value="LeggiFascicoloAll"/>
+
+						       </xsd:restriction>
+
+					      </xsd:simpleType>
+
+				     </xsd:element>
+
+				     <xsd:element name="Idxml" nillable="false" type="xsd:string"/>
+
+			    </xsd:sequence>
+
+	   </xsd:complexType>
+
+
+	   <xsd:element name="EsitoServiziAsync" type="n5:ISWSEsitoFascicoloAll"/>
+
+
+	   <xsd:complexType name="ISWSMessaggio">
+
+		    <xsd:sequence>
+
+			     <xsd:element name="codice" type="xsd:string"/>
+
+			     <xsd:element name="messaggio" type="xsd:string"/>
+
+		    </xsd:sequence>
+
+	   </xsd:complexType>
+
+	
+               <xsd:complexType name="msg">
+
+	         <xsd:sequence>
+
+	                <xsd:element name="codice" type="xsd:string"/>
+
+	                <xsd:element name="descrizione" type="xsd:string"/>
+
+	         </xsd:sequence>
+
+	   </xsd:complexType>
+
+
+	
+	   <xsd:element name="ISWSMessaggi" nillable="true">
+
+	       <xsd:complexType>
+
+   	            <xsd:sequence>
+
+                             <xsd:element name="AgricoltoreAttivo" type="n5:msg" minOccurs="0" maxOccurs="1"/>
+
+                             <xsd:element name="GiovaneAgricoltore" type="n5:msg" minOccurs="0" maxOccurs="1"/>
+
+                             <xsd:element name="OTE" type="n5:msg" minOccurs="0" maxOccurs="1"/>
+
+  	                <xsd:element name="ConsistenzaTerreni" type="n5:msg" minOccurs="0" maxOccurs="1"/>
+
+                             <xsd:element name="Fabbricati" type="n5:msg" minOccurs="0" maxOccurs="1"/>
+
+                             <xsd:element name="LegamiAssociativi" type="n5:msg" minOccurs="0" maxOccurs="1"/>
+
+                             <xsd:element name="Manodopera" type="n5:msg" minOccurs="0" maxOccurs="1"/>
+
+                             <xsd:element name="MezziProduzione" type="n5:msg" minOccurs="0" maxOccurs="1"/>
+
+                             <xsd:element name="ConsistenzaZootecnica" type="n5:msg" minOccurs="0" maxOccurs="1"/>
+
+                             <xsd:element name="Segnalazioni" type="n5:msg" minOccurs="0" maxOccurs="1"/>
+ 
+	           </xsd:sequence>
+
+	       </xsd:complexType>
+
+	   </xsd:element>
+
+	
+	   <xsd:element name="EsitoFascicoloAllResponse">
+
+	        <xsd:complexType>
+
+	               <xsd:sequence>
+
+		               <xsd:element ref="n5:ISWSResponse"/>
+
+		               <xsd:element ref="n5:ISWSMessaggi"/>
+			         
+		               <xsd:element ref="n5:ISWSFASCICOLO"/>
+	
+	              </xsd:sequence>
+
+	       </xsd:complexType>
+
+	   </xsd:element>
+
+
+	
+  </xsd:schema>
+
+<!-- Fine Xsd -->
+
+		
+	 </types>
+
+	
+	 <message name="intestazione">
+
+		  <part element="tns3:SOAPAutenticazione" name="header"/>
+
+	 </message>
+
+
+	 <message name="IWSFascicoloAllService_LeggiFascicoloAll_InputMessage">
+
+		  <part name="body" element="n5:RichiestaFascicolo"/>
+
+	 </message>
+
+	 <message name="IWSFascicoloAllService_LeggiFascicoloAll_OutputMessage">
+
+		  <part name="body" element="n5:FascicoloAllResponse"/>
+
+	 </message>
+
+
+	 <message name="EsitoFascicoloAllService_EsitoFascicoloAllAsync_InputMessage">
+
+		  <part name="body" element="n5:EsitoServiziAsync"/>
+
+	 </message>
+
+	 <message name="EsitoFascicoloAllService_EsitoFascicoloAllAsync_OutputMessage">
+
+		  <part name="body" element="n5:EsitoFascicoloAllResponse"/>
+
+	 </message>
+
+
+	 <portType name="WSFascicoloAllService">
+
+
+			  <operation name="LeggiFascicoloAll">
+
+				   <input message="tns:IWSFascicoloAllService_LeggiFascicoloAll_InputMessage"/>
+
+				   <output message="tns:IWSFascicoloAllService_LeggiFascicoloAll_OutputMessage"/>
+
+			  </operation>
+
+  
+			  <operation name="EsitoFascicoloAllAsync">
+
+				   <input message="tns:EsitoFascicoloAllService_EsitoFascicoloAllAsync_InputMessage"/>
+
+				   <output message="tns:EsitoFascicoloAllService_EsitoFascicoloAllAsync_OutputMessage"/>
+
+			  </operation>
+
+	 </portType>
+
+
+       <binding name="BasicHttpBinding_WSFascicoloAllService" type="tns:WSFascicoloAllService">
+
+		  <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+
+		  <operation name="LeggiFascicoloAll">
+
+                                         <soap:operation soapAction=""/>
+
+			   <input>
+
+				    <soap:header message="tns:intestazione" part="header" use="literal"/>
+
+				    <soap:body parts="body" use="literal"/>
+
+			   </input>
+
+			   <output>
+
+				    <soap:body parts="body" use="literal"/>
+
+			   </output>
+
+		  </operation>
+
+
+		  <operation name="EsitoFascicoloAllAsync">
+
+			   <soap:operation soapAction=""/>
+
+			   <input>
+
+				    <soap:header message="tns:intestazione" part="header" use="literal"/>
+
+				    <soap:body parts="body" use="literal"/>
+
+			   </input>
+
+			   <output>
+
+				    <soap:body parts="body" use="literal"/>
+
+			   </output>
+
+		  </operation>
+
+
+    </binding>
+
+
+    <service name="FascicoloAll">
+
+         <port name="BasicHttpBinding_IWSFascicoloAllService" binding="tns:BasicHttpBinding_WSFascicoloAllService">
+
+                <soap:address location="https://cooperazione.sian.it/wsTOAST/services/FascicoloAll"/>
+
+         </port>
+
+   </service>
+
+
+</definitions>

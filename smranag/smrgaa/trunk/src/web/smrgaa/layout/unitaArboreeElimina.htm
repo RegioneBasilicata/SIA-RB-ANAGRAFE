@@ -1,0 +1,369 @@
+$$head
+<script src="../js/checktext.js" type="text/javascript"></script>
+<script type="text/javascript" src="../js/messaggistica.js"></script>
+</head>
+<body id="homeIndice" onLoad="systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+  <form id="form1" name="form1" method="post"
+    action="../layout/unitaArboreeElimina.htm">
+    <div id="pagina" class="colonnaUnica">
+      <div id="intestazione##pathProvincia">
+        $$header
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li>
+                <a href="../layout/index.htm"
+                  title="Torna alla pagina principale">home</a>
+              </li>
+              <li class="attivo">
+                gestione anagrafe aziende
+              </li>
+              <li>
+                <a href="#" title="contatti">contatti</a>
+              </li>
+              <li>
+                <a href="#" title="help">help</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div style="clear: left"></div>
+      <div id="corpo">
+        <div id="Utente">
+          <div id="datiUtente">
+            <strong>utente:</strong> $$utente &nbsp; &nbsp;
+            <strong>ente:</strong> $$ente
+          </div>
+          <div id="chiudisessione">
+            <a href="javascript:logout();">chiudi sessione</a>
+          </div>
+        </div>
+        <hr />
+        <h3>
+          Gestione Anagrafe
+          Aziende&nbsp;&gt;&nbsp;Unit&agrave;
+          vitate&nbsp;&gt;&nbsp;Cessazione
+          <span class="helpFuori"> <a href="#"> <span
+              class="alt">[help]</span> </a> </span>
+        </h3>
+        <hr />
+        <div class="box">
+          <div class="menuSX1">
+            <ul>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <li>
+                <a href="../layout/elencoAziendeRapLegale.htm">Elenco
+                  Aziende</a>
+              </li>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <!-- @@blkRicercaAzienda-->
+              <li>
+                <a href="../layout/ricerca.htm">Ricerche</a>
+              </li>
+              <!-- @@blkRicercaAzienda-->
+              <!-- @@blkNuova -->
+              <li>
+                <a href="../layout/nuovaAziendaAnagrafica.htm">Nuova
+                  Azienda</a>
+              </li>
+              <!-- @@blkNuova -->
+              <!-- @@blkNuovaIscrizione -->
+              <li>
+                <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+              </li>
+              <!-- @@blkNuovaIscrizione -->
+            </ul>
+          </div>
+          <div class="menuSX">
+            <ul>
+              <li>
+                <a href="../layout/anagrafica.htm">Anagrafica</a>
+              </li>
+              <!-- @@blkAziendeCollegate -->
+              <li>
+                <a href="../layout/aziendeCollegate.htm">$$aziendeCollegateLabel</a>
+              </li>
+              <!-- @@blkAziendeCollegate -->
+              <!-- @@blkSincronizzaFascicolo -->
+               <li>
+               	<a href="../layout/sincronizzaFascicolo.htm">Sincronizza fascicolo</a>
+               </li>
+              <!-- @@blkSincronizzaFascicolo -->
+              <!-- @@blkSoggettiCollegati -->
+              <li>
+                <a href="../layout/contitolari.htm">Soggetti
+                  collegati</a>
+              </li>
+              <!-- @@blkSoggettiCollegati -->
+              <!-- @@blkContiCorrenti -->
+              <li>
+                <a href="../layout/conti_correnti.htm">Conti
+                  Correnti</a>
+              </li>
+              <!-- @@blkContiCorrenti -->
+              <!-- @@blkUnitaProduttive -->
+              <li>
+                <a href="../layout/sedi.htm">Unit&agrave; produttive</a>
+              </li>
+              <!-- @@blkUnitaProduttive -->
+              <!-- @@blkTerreni -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniParticellareElenco.htm">Terreni</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		            <a href="../layout/riepiloghi.htm">Terreni</a>
+		            <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkTerreni -->
+              <!-- @@blkUnitaVitate -->
+              <li>
+                <!-- @@blkLinkElenco -->
+                <a href="../layout/terreniUnitaArboreeElenco.htm" class="on">Unit&agrave; Vitate</a>
+                <!-- @@blkLinkElenco -->
+                <!-- @@blkLinkRiepiloghi -->
+                <a href="../layout/riepiloghiUnitaArboree.htm" class="on">Unit&agrave; Vitate</a>
+                <!-- @@blkLinkRiepiloghi -->                
+                <ul>
+                  <li>
+                    <a href="#" class="etichetta">cessazione</a>
+                  </li>
+                </ul>                  
+              </li>
+              <!-- @@blkUnitaVitate -->
+              <!-- @@blkFabbricati -->
+              <li>
+                <a href="../layout/fabbricati.htm">Fabbricati e
+                  Strutture</a>
+              </li>
+              <!-- @@blkFabbricati -->
+              <!-- @@blkAllevamenti -->
+              <li>
+                <a href="../layout/allevamenti.htm">Allevamenti</a>
+              </li>
+              <!-- @@blkAllevamenti -->
+              <!-- @@blkManodopera -->
+              <li>
+                <a href="../layout/manodopera.htm">Manodopera</a>
+              </li>
+              <!-- @@blkManodopera -->
+              <!-- @@blkMotoriAgricoli -->
+              <li>
+                <a href="../layout/motori_agricoli_incarico.htm">Macchine agricole</a>
+              </li>
+              <!-- @@blkMotoriAgricoli -->
+              <!-- @@blkDiritti -->
+              <li>
+                <a href="../layout/diritti.htm">Diritti di
+                  produzione</a>
+              </li>
+              <!-- @@blkDiritti -->
+              <!-- @@blkAttestazioni -->
+              <li>
+                <a href="../layout/attestazioniDettaglio.htm">Dichiarazioni</a>
+              </li>
+              <!-- @@blkAttestazioni -->
+              <!-- @@blkDichiarazioniConsistenza -->
+              <li>
+                <a href="../layout/dichiarazioneConsistenza.htm">Validazioni</a>
+              </li>
+              <!-- @@blkDichiarazioniConsistenza -->
+              <!-- @@blkDocumenti -->
+              <li>
+                <a href="../layout/documentiElenco.htm">Documenti</a>
+              </li>
+              <!-- @@blkDocumenti -->
+              <!-- @@blkFascicoloDematerializzato -->
+              <li>
+                <a href="../layout/fascicoloDematerializzato.htm">Fascicolo<br>elettronico</a>
+              </li>
+              <!-- @@blkFascicoloDematerializzato -->
+              <!-- @@blkGestioneNotifiche -->
+              <li>
+                <a href="../layout/notifiche.htm">Notifiche</a>
+              </li>
+              <!-- @@blkGestioneNotifiche -->
+              <!-- @@blkComunicazione10R -->
+              <li>
+                <a href="../layout/comunicazione10R_dettaglio.htm">Comunicazione
+                  10/R</a>
+              </li>
+              <!-- @@blkComunicazione10R -->
+              <!-- @@blkPratiche -->
+              <li>
+                <a href="../layout/pratiche.htm">Pratiche</a>
+              </li>
+              <!-- @@blkPratiche -->
+              <!-- @@blkStampaFascicolo -->
+              <li>
+                <a href="../layout/scelta_stampa.htm">Stampe</a>
+              </li>
+              <!-- @@blkStampaFascicolo -->
+			  <li><a href="../layout/strumenti.htm">Strumenti</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr />
+        <div id="contenuto">
+          <div id="intesta">
+            <p class="$$aziendaIntestazione" title="$$tooltipIntestazione" >
+              $$CUAAIntestazione  $$denominazioneIntestazione
+            </p>
+          </div>
+          <!-- @@blkOperazioneCessazione -->
+          <p>
+            Procedere con la cessazione delle unit&agrave; vitate
+            elencate?
+          </p>
+          <table cellspacing="3" summary="Indicazioni della cessazione">
+            <caption>
+              Motivo e note cessazione
+            </caption>
+            <tr>
+              <th>
+                <label for="motivo">
+                  Motivo *
+                </label>
+              </th>
+              <td>
+                <select name="idCessazionUnar" id="idCessazionUnar">
+                  <option></option>
+                  <!-- @@blkTipiCessazioneUnar -->
+                  <option value="$$idCessazionUnar" $$selected>
+                    $$descrizione
+                  </option>
+                  <!-- @@blkTipiCessazioneUnar -->
+                </select>
+                $$err_idCessazionUnar
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="note">
+                  Note
+                </label>
+              </th>
+              <td>
+                <textarea name="note" id="note" cols="85" rows="4"
+                  class="textmedio">$$note</textarea>
+                $$err_note
+              </td>
+            </tr>
+          </table>
+          <div class="scroll">
+            <table cellspacing="3"
+              summary="Elenco unita arboree da cessare">
+              <caption>
+                Unit&agrave; arboree da cessare
+              </caption>
+              <tr>
+                <th class="center" scope="col">
+                </th>
+                <th class="center" scope="col">
+                  Comune
+                </th>
+                <th class="center" scope="col">
+                  <acronym title="Sezione">Sz.</acronym>
+                </th>
+                <th class="center" scope="col">
+                  <acronym title="Foglio">Fgl.</acronym>
+                </th>
+                <th class="center" scope="col">
+                  <acronym title="Particella">Part.</acronym>
+                </th>
+                <th class="center" scope="col">
+                  <acronym title="Subalterno">Sub.</acronym>
+                </th>
+                <th class="center" scope="col">
+                  <acronym title="Superficie Catastale">Sup.
+                    cat.</acronym>
+                </th>
+                <th class="center" scope="col">
+                  <acronym title="Superficie Grafica">Sup.
+                    grafica</acronym>
+                </th>
+                <th class="center" scope="col">
+                  <acronym title="Progressivo">Progr.</acronym>
+                </th>
+                <th class="center" scope="col">
+                  <acronym title="Destinazione produttiva">Dest.
+                    prod.</acronym>
+                </th>
+                <th class="center" scope="col">
+                  Vitigno
+                </th>
+                <th class="center" scope="col">
+                  <acronym title="Superficie vitata">Sup. vit.</acronym>
+                </th>
+              </tr>
+              <!-- @@blkElenco -->
+              <tr>
+                <td class="center">
+                  $$pratiche
+                </td>
+                <td>
+                  $$descComuneParticella ($$siglaProvinciaParticella)
+                </td>
+                <td>
+                  $$sezione
+                </td>
+                <td class="numeridx">
+                  $$foglio
+                </td>
+                <td class="numeridx">
+                  $$particella
+                </td>
+                <td>
+                  $$subalterno
+                </td>
+                <td class="numeridx">
+                  $$supCatastale
+                </td>
+                <td class="numeridx">
+                  $$superficieGrafica
+                </td>
+                <td class="numeridx">
+                  $$progressivo
+                </td>
+                <td>
+                  $$destinazioneProduttiva
+                </td>
+                <td>
+                  $$vitigno
+                </td>
+                <td class="numeridx">
+                  $$area
+                </td>
+              </tr>
+              <!-- @@blkElenco -->
+            </table>
+          </div>
+          <p id="nota">
+            Tutte le superfici sono espresse in ettari (ha).
+          </p>
+          <div class="pulsanti">
+            <div class="sin">
+              <input name="conferma" type="submit" value="conferma"
+                class="inputPulsante highlighted" />
+            </div>
+            <div class="des">
+              <input name="annulla" type="submit" value="annulla"
+                class="inputPulsante annulla" />
+            </div>
+          </div>
+          <!-- @@blkOperazioneCessazione -->
+          <!-- @@blkErrore -->
+          <p class="errore">
+            $$messaggioErrore
+          </p>
+          <!-- @@blkErrore -->
+        </div>
+      </div>
+      <hr />
+  </form>
+  $$footer

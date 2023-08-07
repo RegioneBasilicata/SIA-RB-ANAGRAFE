@@ -1,0 +1,294 @@
+$$head
+  <script type="text/javascript" src="../js/checktext.js"></script>
+  <script type="text/javascript" src="../js/messaggistica.js"></script>
+  <script type="text/javascript">
+
+    function controlloLunghezza(note) {
+      if(note.value.length > 300) {
+        alert('Il campo note non può contenere più di trecento caratteri');
+      }
+    }
+
+    function ricaricaCombo() {
+      var action1 = document.form1.action;
+      document.form1.action="../layout/nuovaAziendaAnagraficaReload.htm"
+      document.form1.submit();
+      document.form1.action = action1;
+    }
+
+  </script>
+</head>
+<body id="homeIndice" onload="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+  <form name="form1" method="post" action="../layout/nuovaAziendaAnagraficaForward.htm">
+    <div id="pagina" class="colonnaUnica">
+      <input type="hidden" id="CUAASubentro" name="CUAASubentro" value="$$CUAASubentro"/>
+      <input type="hidden" id="radiobuttonAzienda" name="radiobuttonAzienda" value="$$radiobuttonAzienda"/>
+      <input type="hidden" id="idAziendaSubentro" name="idAziendaSubentro" value="$$idAziendaSubentro"/>
+      <input type="hidden" id="idAziendaProvenienza" name="idAziendaProvenienza" value="$$idAziendaProvenienza"/>
+      <input type="hidden" id="cuaaProvenienza" name="cuaaProvenienza" value="$$cuaaProvenienza"/>
+      <!-- INTESTAZIONE -->
+      <div id="intestazione##pathProvincia">
+        $$header
+        <!-- menu di navigazione-->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li>
+                <a href="../layout/index.htm" title="Torna alla pagina principale">home</a>
+              </li>
+              <li class="attivo">gestione anagrafe aziende</li>
+              <li>
+                <a href="#" title="contatti">contatti</a>
+              </li>
+              <li>
+                <a href="#" title="help">help</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr/>
+      <div style="clear:left"></div>
+      <!-- CORPO -->
+        <div id="corpo">
+          <div id="Utente">
+            <div id="datiUtente">
+              <strong>utente:</strong>$$utente&nbsp;&nbsp;
+              <strong>ente:</strong>$$ente
+            </div>
+            <div id="chiudisessione">
+              <a href="javascript: logout();">chiudi sessione</a>
+            </div>
+          </div>
+          <hr/>
+          <!--PRIMA COLONNA -->
+          <h3>Inserimento azienda
+            <span class="helpFuori">
+              <a href="#">
+                <span class="alt">[help]</span>
+              </a>
+            </span>
+          </h3>
+          <hr/>
+          <div class="box">
+            <div class="menuSX1">
+              <ul>
+                <!-- @@blkElencoAziendeRapLegale -->
+                <li><a href="../layout/elencoAziendeRapLegale.htm">Elenco Aziende</a></li>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <!-- @@blkRicercaAzienda-->
+                  <li><a href="../layout/ricerca.htm">Ricerche</a></li>
+                <!-- @@blkRicercaAzienda-->
+                <!-- @@blkNuova -->
+                  <li>
+                    <a href="../layout/nuovaAziendaAnagrafica.htm" class="on">Nuova Azienda</a>
+                  </li>
+                <!-- @@blkNuova -->
+                <!-- @@blkNuovaIscrizione -->
+	              <li>
+	                <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+	              </li>
+	              <!-- @@blkNuovaIscrizione -->
+              </ul>
+            </div>
+          </div>
+          <hr/>
+          <!-- SECONDA COLONNA -->
+          <div id="contenuto">
+            <hr/>
+            <div id="indice">
+              <span class="evidenza">anagrafica</span>
+              <span class="bugFix">&nbsp;|&nbsp;</span>
+              <span class="voce">
+                <a href="#">titolare/rappr.legale</a>
+              </span>
+              <span class="bugFix">&nbsp;|&nbsp;</span>
+              <span class="voce">
+                <a href="#">sede legale</a>
+	            </span>
+	            <span class="bugFix">&nbsp;|&nbsp;</span>
+	            <span class="voce"> 
+	              <a href="#">indicatori aziendali</a> 
+	            </span>
+	            <span class="bugFix">&nbsp;|&nbsp;</span>
+	            <span class="voce">
+	              <a href="#">altre informazioni</a>
+	            </span>
+	            <span class="bugFix">&nbsp;|&nbsp;</span>
+            </div>
+            <hr/>
+            <table cellspacing="3" summary="Questa tabella è costituita da righe">
+              <col width="30%"/>
+              <col width="70%"/>
+              <tr>
+                <th>
+                  <label for="val_cuaa">CUAA (Codice fiscale)*</label>
+                </th>
+                <td colspan="2">
+                  <input type="hidden" id="CUAA" name="CUAA" value="$$CUAA"/>
+                  <input type="text" id="val_cuaa" disabled="disabled" class="textmediolungo" maxlength="16" value="$$CUAA"/>
+                  $$err_CUAA
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  <label for="partitaIVA">Partita IVA*</label>
+                </th>
+                <td colspan="2">
+                  <input type="text" id="partitaIVA" name="partitaIVA" class="textmediolungo" maxlength="11" value="$$partitaIVA"/>
+                  $$err_partitaIVA
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  <label for="denominazione">Denominazione*</label>
+                </th>
+                <td colspan="2">
+                  <input type="text" id="denominazione" name="denominazione" class="text" maxlength="1000" value="$$denominazione"/>
+                  $$err_denominazione
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  <label for="intestazionePartitaIva">Intestazione azienda</label>
+                </th>
+                <td colspan="2">
+                  <input type="text" id="intestazionePartitaIva" name="intestazionePartitaIva" class="text" maxlength="1000" value="$$intestazionePartitaIva"/>
+                  $$err_intestazionePartitaIva
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  <label for="tipiAzienda">Tipo azienda*</label>
+                </th>
+                <td colspan="2">
+                  <select id="tipiAzienda" name="tipiAzienda" class="lista" onchange="ricaricaCombo();">
+                    <option value=""></option>
+                    @@cmbTipiAzienda
+                      <option value="$$idTipiAzienda" $$selected>$$descTipiAzienda</option>
+                    @@cmbTipiAzienda
+                  </select>
+                  $$err_tipiAzienda
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  <label for="tipiFormaGiuridica">Forma giuridica*</label>
+                </th>
+                <td colspan="2">
+                  <select id="tipiFormaGiuridica" name="tipiFormaGiuridica" class="lista">
+                    <option value=""></option>
+                    @@cmbTipoFormaGiuridica
+                      <option value="$$idTipiFormaGiuridica" $$selected>$$descTipiFormaGiuridica</option>
+                    @@cmbTipoFormaGiuridica
+                  </select>
+                  $$err_tipiFormaGiuridica
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  <label for="provincePiemonte">##labelProvCompetenza</label>
+                  <!-- @@bloccoProvinceIntermediario -->
+                    *
+                  <!-- @@bloccoProvinceIntermediario -->
+                </th>
+                <td colspan="2">
+                  <!-- @@bloccoComboProvinceIntermediario -->
+                    <select id="provincePiemonte" name="provincePiemonte">
+                      <option value=""></option>
+                      <!-- @@codiceProvince -->
+                        <option value="$$idCodice" $$check>$$descrizione</option>
+                      <!-- @@codiceProvince -->
+                    </select>
+                  <!-- @@bloccoComboProvinceIntermediario -->
+                  <!-- @@bloccoProvinceProvinciale -->
+                    $$provinciaCompetenza
+                  <!-- @@bloccoProvinceProvinciale -->
+                  $$err_provincePiemonte
+                </td>
+              </tr>
+              <tr>
+		            <th>
+		              <label for="telefono">Telefono</label>
+		            </th>
+		            <td colspan="2">
+		              <input type="text" id="telefono" name="telefono" class="textmediolungo" maxlength="20" value="$$telefono"/>
+		              $$err_telefono
+		            </td>
+		          </tr>
+		          <tr>
+		            <th>
+		              <label for="fax">Fax</label>
+		            </th>
+		            <td colspan="2">
+		              <input type="text" id="fax" name="fax" class="textmediolungo" maxlength="20" value="$$fax"/>
+		              $$err_fax
+		            </td>
+		          </tr>
+		          <tr>
+		            <th>
+		              <label for="sitoWEB">Sito Web</label>
+		            </th>
+		            <td colspan="2">
+		              <input type="text" id="sitoWEB" name="sitoWEB" class="textmediolungo" maxlength="100" value="$$sitoWEB"/>
+		              $$err_sitoWEB
+		            </td>
+		          </tr>
+		          <tr>
+		            <th>
+		              <label for="mail">E-mail</label>
+		            </th>
+		            <td colspan="2">
+		              <input type="text" id="mail" name="mail" class="text" maxlength="50" value="$$mail"/>
+		              $$err_mail
+		            </td>
+		          </tr>
+		          <tr>
+              <th scope="row">
+	                <label for="mail">PEC</label>
+	              </th>
+	              <td colspan="2">
+	                <input type="text" id="pec" name="pec" maxlength="50" class="text" value="$$pec"/>
+	                $$err_pec
+	              </td>
+	            </tr>
+              <tr>
+                <th>
+                  <label for="note">Note</label>
+                </th>
+                <td colspan="2">
+                  <textarea rows="4" id="note" name="note" cols="85" onblur="javascript: controlloLunghezza(document.form1.note)">$$note</textarea>
+                  $$err_note
+                </td>
+              </tr>
+              <!-- @@bloccoIntermediario -->
+                <tr>
+                  <th>
+                    <label for="idIntermediario">Intermediario delegato</label>
+                  </th>
+                  <td colspan="2">
+                    <select id="idIntermediario" name="idIntermediario">
+                      <option value=""></option>
+                      <!-- @@codiceIntermediario -->
+                        <option value="$$idCodice" $$check>$$descrizione</option>
+                      <!-- @@codiceIntermediario -->
+                    </select>
+                  </td>
+                </tr>
+              <!-- @@bloccoIntermediario -->
+            </table>
+            <p id="nota">I campi contrassegnati con * sono obbligatori</p>
+            <div class="pulsanti"><div class="sin">
+              <input name="indietro" class="inputPulsante" type="submit" value="indietro" />
+            </div>
+            <div class="des">
+              <input name="avanti" class="inputPulsante" type="submit" value="avanti" />
+            </div></div>  
+          </div>
+        </div>
+        <hr/>
+        <!-- PIE' DI PAGINA -->
+        $$footer

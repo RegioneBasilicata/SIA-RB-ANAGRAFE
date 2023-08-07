@@ -1,0 +1,224 @@
+$$head
+  <script type="text/javascript" src="../js/checktext.js"></script>
+  <script type="text/javascript" src="../js/messaggistica.js"></script>
+  <script type="text/javascript">
+
+    function submitForm(pagina) {
+      var daAction = document.form1.action;
+      var daTarget = document.form1.target;
+      document.form1.action = pagina;
+      document.form1.submit();
+      document.form1.action = daAction;
+      document.form1.target = daTarget;
+    }
+
+    function funzionalita() {
+      var operazione = "funzionalita"
+      document.form1.funzionalitaSelezionata.value = operazione;
+      document.form1.target = '';
+      document.form1.submit();
+    }
+
+    function valorizzaSoggetto() {
+      document.form1.selectedSoggetto.value="";
+      if (document.form1.idPersonaFisica.checked==true) {
+        document.form1.selectedSoggetto.value = document.form1.idSoggetto.value;
+      }
+      else {
+        for (i=0;i<document.form1.idPersonaFisica.length;i++) {
+          if (document.form1.idPersonaFisica[i].checked==true) {
+            document.form1.selectedSoggetto.value = document.form1.idSoggetto[i].value;
+            break;
+          }
+        }
+      }
+    }
+
+  </script>
+</head>
+<body id="homeIndice" onload="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+  <form name="form1" method="post" action="../layout/elencoPersone.htm">
+    <input type="hidden" name="funzionalitaSelezionata" value="$$funzionalitaSelezionata">
+      <input type="hidden" name="operazione" value="$$operazione">
+
+    <div id="pagina" class="colonnaUnica">
+      <!-- INTESTAZIONE -->
+      <div id="intestazione##pathProvincia">
+        $$header
+        <!-- menu di navigazione-->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li>
+                <a href="../layout/index.htm" title="Torna alla pagina principale">home</a>
+              </li>
+              <li class="attivo">gestione anagrafe aziende</li>
+              <li>
+                <a href="#" title="contatti">contatti</a>
+              </li>
+              <li>
+                <a href="#" title="help">help</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr/>
+      <div style="clear:left"></div>
+      <!-- CORPO -->
+      <div id="corpo">
+        <div id="Utente">
+          <div id="datiUtente">
+            <strong>utente: </strong>$$utente&nbsp;&nbsp;
+            <strong>ente: </strong>$$ente
+          </div>
+          <div id="chiudisessione">
+            <a href="javascript: logout();">chiudi sessione</a>
+          </div>
+        </div>
+        <hr/>
+        <!--PRIMA COLONNA -->
+        <h3>Ricerca Persona&nbsp;&gt;&nbsp;Elenco Persone
+          <span class="helpFuori">
+            <a href="#">
+              <span class="alt">[help]</span>
+            </a>
+          </span>
+        </h3>
+        <hr/>
+        <div class="box">
+          <div class="menuSX1">
+            <ul>
+              <!-- @@blkElencoAziendeRapLegale -->
+                <li><a href="../layout/elencoAziendeRapLegale.htm">Elenco Aziende</a></li>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <!-- @@blkRicercaAzienda-->
+                <li><a href="../layout/ricerca.htm">Ricerca Azienda</a></li>
+              <!-- @@blkRicercaAzienda-->
+              <!--@@blkRicercaTerreno-->
+                <li>
+                  <a href="../layout/ricercaTerreno.htm">Ricerca Terreno</a>
+                </li>
+              <!--@@blkRicercaTerreno-->
+              <!--@@blkRicercaPersona-->
+                <li><a href="../layout/ricercaPersona.htm" class="on" >Ricerca Persona</a></li>
+              <!--@@blkRicercaPersona-->
+              <!--@@blkRicercaNotifica-->
+                <li>
+                  <a href="../layout/ricercaNotifica.htm">Ricerca Notifiche</a>
+                </li>
+              <!--@@blkRicercaNotifica-->
+              <!--@@blkVariazioniAzienda-->
+                <li><a href="../layout/ricercaVariazioni.htm" >Ricerca Variazioni</a></li>
+              <!--@@blkVariazioniAzienda-->
+              <!--@@blkRicercaRichiesta-->
+                <li><a href="../layout/ricercaRichiesta.htm">Ricerca richiesta azienda</a></li>
+              <!--@@blkRicercaRichiesta-->
+              <!--@@blkNuova-->
+                <li>
+                  <a href="../layout/nuovaAziendaAnagrafica.htm">Nuova Azienda</a>
+                </li>
+              <!--@@blkNuova-->
+              <!-- @@blkNuovaIscrizione -->
+		          <li>
+		            <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+		          </li>
+		          <!-- @@blkNuovaIscrizione -->
+              <!--@@blkNuovaParticella-->
+              <li>
+                <a href="../layout/inserisciTerreno.htm">Nuova Particella</a>
+              </li>
+              <!--@@blkNuovaParticella-->
+              <!--@@blkServizi-->
+                <li><a href="../layout/servizi.htm" >Servizi</a></li>
+              <!--@@blkServizi--> 
+              <!--@@blkReportistica-->
+                <li>
+                  <a href="../layout/elencoRicerche.htm">Reportistica</a>
+                </li>
+              <!--@@blkReportistica-->
+              <!--@@blkEstrazioneDati-->
+              <li><a href="../layout/macroCategoriaReport.htm">Estrazione dati</a></li>
+              <!--@@blkEstrazioneDati-->
+              <li><a href="../layout/elencoManuali.htm">Scarico Documentazione Tecnica</a></li>	          
+            </ul>
+          </div>
+          <div class="menuSX">
+            <ul>
+              <li>
+                <a href="../layout/ricercaPersona.htm" class="on">Persona</a>
+                <ul>
+                  <li>
+                    <a href="javascript:valorizzaSoggetto();submitForm('../layout/impreseSoggetto.htm')">aziende legate al soggetto</a>
+                  </li>
+                  <li>
+                    <a href="javascript:submitForm('../layout/persona_det.htm')">dati anagrafici</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <hr/>
+        <!-- SECONDA COLONNA -->
+        <div id="contenuto">
+          <input type="hidden" id="paginaCorrente" name="paginaCorrente" value="$$currPage"/>
+          <input type="hidden" id="totalePagine" name="totalePagine" value="$$totPage"/>
+          <input type="hidden" id="numeroRecord" name="numeroRecord" value="$$numeroRecord"/>
+          <p class="allineaDx">Soggetti estratti : $$numeroRecord
+            <span>
+              <!--@@bottoneIndietro-->
+                <a href="javascript: goToOperazione('../layout/elencoPersone.htm', document.form1, 'indietro');">indietro</a>
+              <!--@@bottoneIndietro-->
+              pagina $$currPage di $$totPage
+              <!--@@bottoneAvanti-->
+                <a href="javascript: goToOperazione('../layout/elencoPersone.htm', document.form1, 'avanti');">avanti</a>
+              <!--@@bottoneAvanti-->
+            </span>
+          </p>
+          <table cellspacing="3" summary="Questa tabella è costituita da righe">
+            <col width="8%"/>
+            <col width="23%"/>
+            <col width="23%"/>
+            <col width="23%"/>
+            <col width="23%"/>
+            <tr>
+              <th class="radio" scope="col"></th>
+              <th class="center" scope="col">Cognome e nome</th>
+              <th class="center" scope="col">Codice fiscale</th>
+              <th class="center" scope="col">Nascita</th>
+              <th class="center" scope="col">Residenza</th>
+            </tr>
+            <tr>
+              <input type="hidden" id="selectedSoggetto" name="selectedSoggetto" value=""/>
+              <!--@@rigaPersone-->
+                <th class="radio" scope="row">
+                  <input type="radio" id="idPersonaFisica" name="idPersonaFisica" value="$$idPersonaFisica">
+                </th>
+                <input type="hidden" id="idSoggetto" name="idSoggetto" value="$$idSoggetto"/>
+                <td>
+                  <label for="idPersonaFisica">$$cognomeNome</label>
+                </td>
+                <td>$$codFiscale</td>
+                <td>$$dataNascita
+                    <br/>
+                    $$comuneNascita
+                    <br/>
+                    $$cittaNascita
+                </td>
+                <td>$$residenza
+                    <br/>
+                    $$cittaResidenza
+                    $$indirizzo
+                </td>
+              </tr>
+            <!--@@rigaPersone-->
+          </table>
+        </div>
+      </div>
+      <hr/>
+      <!-- PIE' DI PAGINA -->
+      $$footer

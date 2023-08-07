@@ -1,0 +1,295 @@
+$$head
+  <script src="../js/checktext.js" type="text/javascript"></script>
+  <script type="text/javascript" src="../js/messaggistica.js"></script>
+  <script type="text/javascript">
+
+  function selezionaTutto() {
+      if(document.form1.idConduzioneParticella.length) {
+        for(var i = 0; i < document.form1.idConduzioneParticella.length; i++) {
+          document.form1.idConduzioneParticella[i].checked = true;
+        }
+      }
+      else {
+        document.form1.idConduzioneParticella.checked = true;
+      }
+    }
+
+    function deselezionaTutto() {
+      if(document.form1.idConduzioneParticella.length) {
+        for(var i = 0; i < document.form1.idConduzioneParticella.length; i++) {
+          document.form1.idConduzioneParticella[i].checked = false;
+        }
+      }
+      else {
+        document.form1.idConduzioneParticella.checked = false;
+      }
+    }
+
+  </script>
+</head>
+<body id="homeIndice" onload="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+<form id="form1" name="form1" method="post" action="../layout/particellareTerreniImporta.htm">
+    <div id="pagina" class="colonnaUnica">
+      <!-- INTESTAZIONE -->
+      <div id="intestazione##pathProvincia">
+        $$header
+        <!-- menu di navigazione-->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li><a href="../layout/index.htm" title="Torna alla pagina principale">home</a></li>
+              <li class="attivo">gestione anagrafe aziende</li>
+              <li><a href="#" title="contatti">contatti</a></li>
+              <li><a href="#" title="help">help</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr/>
+      <div style="clear:left"></div>
+      <!-- CORPO -->
+      <div id="corpo">
+        <div id="Utente">
+          <div id="datiUtente">
+            <strong>utente:</strong>
+            $$utente
+            &nbsp;
+            &nbsp;
+            <strong>ente:</strong>
+            $$ente
+          </div>
+          <div id="chiudisessione">
+            <a href="javascript: logout();">chiudi sessione</a>
+          </div>
+        </div>
+        <hr/>
+        <!--PRIMA COLONNA -->
+        <h3>Gestione Anagrafe Aziende&nbsp;&gt;&nbsp;Terreni&nbsp;&gt;&nbsp;Importa
+          <span class="helpFuori">
+            <a href="#">
+              <span class="alt">[help]</span>
+            </a>
+          </span>
+        </h3>
+        <hr/>
+        <div class="box">
+          <div class="menuSX1">
+            <ul>
+              <!-- @@blkElencoAziendeRapLegale -->
+                <li><a href="../layout/elencoAziendeRapLegale.htm">Elenco Aziende</a></li>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <!-- @@blkRicercaAzienda-->
+                <li><a href="../layout/ricerca.htm">Ricerche</a></li>
+              <!-- @@blkRicercaAzienda-->
+              <!--@@blkNuova-->
+              <li><a href="../layout/nuovaAziendaAnagrafica.htm">Nuova Azienda</a></li>
+              <!--@@blkNuova-->
+              <!-- @@blkNuovaIscrizione -->
+              <li>
+                <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+              </li>
+              <!-- @@blkNuovaIscrizione -->
+            </ul>
+          </div>
+          <div class="menuSX">
+            <ul>
+              <li><a href="../layout/anagrafica.htm">Anagrafica</a></li>
+              <!-- @@blkAziendeCollegate -->
+	          			<li>
+	          					<a href="../layout/aziendeCollegate.htm">$$aziendeCollegateLabel</a>
+	          			</li>
+	          	<!-- @@blkAziendeCollegate -->
+	          <!-- @@blkSincronizzaFascicolo -->
+               <li>
+               	<a href="../layout/sincronizzaFascicolo.htm">Sincronizza fascicolo</a>
+               </li>
+              <!-- @@blkSincronizzaFascicolo -->	
+              <!-- @@blkSoggettiCollegati -->
+              <li><a href="../layout/contitolari.htm">Soggetti collegati</a></li>
+              <!-- @@blkSoggettiCollegati -->
+              <!-- @@blkContiCorrenti -->
+              <li><a href="../layout/conti_correnti.htm">Conti Correnti</a></li>
+              <!-- @@blkContiCorrenti -->
+              <!-- @@blkUnitaProduttive -->
+              <li><a href="../layout/sedi.htm">Unit&agrave; produttive</a></li>
+              <!-- @@blkUnitaProduttive -->
+              <!-- @@blkTerreni -->
+              <li>
+                <!-- @@blkLinkElenco -->
+                <a href="../layout/terreniParticellareElenco.htm" class="on">Terreni</a>
+                <!-- @@blkLinkElenco -->
+                <!-- @@blkLinkRiepiloghi -->
+                  <a href="../layout/riepiloghi.htm" class="on" >Terreni</a>
+                  <!-- @@blkLinkRiepiloghi -->
+                <ul>
+                  <li>
+                    <a href="#" class="etichetta">importa</a>
+                  </li>
+                </ul>
+              </li>
+              <!-- @@blkTerreni -->
+              <!-- @@blkUnitaVitate -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniUnitaArboreeElenco.htm">Unit&agrave; Vitate</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		              <a href="../layout/riepiloghiUnitaArboree.htm">Unit&agrave; Vitate</a>
+		              <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkUnitaVitate -->
+              <!-- @@blkFabbricati -->
+              <li><a href="../layout/fabbricati.htm">Fabbricati e Strutture</a></li>
+              <!-- @@blkFabbricati -->
+              <!-- @@blkAllevamenti -->
+              <li><a href="../layout/allevamenti.htm">Allevamenti</a></li>
+              <!-- @@blkAllevamenti -->
+              <!-- @@blkManodopera -->
+              <li><a href="../layout/manodopera.htm">Manodopera</a></li>
+              <!-- @@blkManodopera -->
+              <!-- @@blkMotoriAgricoli -->
+              <li><a href="../layout/motori_agricoli_incarico.htm">Macchine agricole</a></li>
+              <!-- @@blkMotoriAgricoli -->
+              <!-- @@blkDiritti -->
+              <li><a href="../layout/titoli.htm">Diritti di produzione</a></li>
+              <!-- @@blkDiritti -->
+              <!-- @@blkAttestazioni -->
+              	<li><a href="../layout/attestazioniDettaglio.htm">Dichiarazioni</a></li>
+              <!-- @@blkAttestazioni -->
+              <!-- @@blkDichiarazioniConsistenza -->
+              <li><a href="../layout/dichiarazioneConsistenza.htm">Validazioni</a></li>
+              <!-- @@blkDichiarazioniConsistenza -->
+              <!-- @@blkDocumenti -->
+              <li><a href="../layout/documentiElenco.htm">Documenti</a></li>
+              <!-- @@blkDocumenti -->
+              <!-- @@blkFascicoloDematerializzato -->
+              <li>
+                <a href="../layout/fascicoloDematerializzato.htm">Fascicolo<br>elettronico</a>
+              </li>
+              <!-- @@blkFascicoloDematerializzato -->
+              <!-- @@blkGestioneNotifiche -->
+              <li><a href="../layout/notifiche.htm">Notifiche</a></li>
+              <!-- @@blkGestioneNotifiche -->
+              <!-- @@blkComunicazione10R -->
+                <li>
+                  <a href="../layout/comunicazione10R_dettaglio.htm">Comunicazione 10/R</a>
+                </li>
+              <!-- @@blkComunicazione10R -->
+              <!-- @@blkPratiche -->
+              <li><a href="../layout/pratiche.htm">Pratiche</a></li>
+              <!-- @@blkPratiche -->
+              <!-- @@blkStampaFascicolo -->
+              <li><a href="../layout/scelta_stampa.htm">Stampe</a></li>
+              <!-- @@blkStampaFascicolo -->
+			  <li><a href="../layout/strumenti.htm">Strumenti</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr/>
+        <!-- SECONDA COLONNA -->
+        <div id="contenuto">
+          <div id="intesta">
+            <p class="$$aziendaIntestazione" title="$$tooltipIntestazione" >
+              $$CUAAIntestazione  $$denominazioneIntestazione
+            </p>
+          </div>
+          <hr/>
+          
+          <table cellspacing="3" summary="Questa tabella è costituita da righe">
+            <tr>
+              <th colspan="2" scope="row">
+                  <label for="possesso">
+                    Titolo di possesso
+                  </label>
+                </th>
+                <td colspan="3">
+                $$descrizioneTitoloPossesso
+                </td>
+                <input type="hidden" name="idTitoloPossesso" id="idTitoloPossesso" value="$$idTitoloPossesso"/>
+            </tr>
+          </table>
+          
+          
+          <table border="0" cellspacing="3" summary="riepilogo delle particelle">
+            <tr>
+              <th scope="row">
+                <label for="ordinamento">Tutte le particelle selezionate saranno associate all'unit&agrave; produttiva di :</label>
+              </th>
+              <td>
+                <select id="idUte" name="idUte">
+                  <option></option>
+                  <!-- @@blkElencoUte -->
+                  <option value="$$codice" $$selected>$$descrizione</option>
+                  <!-- @@blkElencoUte -->
+                </select>
+                $$err_idUte
+              </td>
+              <td>
+               <div class="azioni">  <input id="importa" name="importa" type="submit" value="importa ora" class="inputPulsante"/></div>
+              </td>
+            </tr>
+          </table>
+          <p class="allineaDx">Record trovati: $$numeroRecord</p>
+          <div class="pulsanti">
+            <div class="sin">
+              <input name="seleziona" class="inputPulsante" type="button" value="seleziona" onclick="javascript: selezionaTutto();"/>
+            </div>
+            <div class="des">
+              <input name="deseleziona" class="inputPulsante" type="button" value="deseleziona" onclick="javascript: deselezionaTutto();"/>
+            </div>
+          </div>
+          <table border="0" cellspacing="3" summary="riepilogo delle particelle da importare">
+            <tr>
+              <th rowspan="2" class="radio"></th>
+              <th rowspan="2" class="center">Comune</th>
+              <th rowspan="2" class="center">Sz.</th>
+              <th rowspan="2" class="center">Fgl.</th>
+              <th rowspan="2" class="center">Part.</th>
+              <th rowspan="2" class="center">Sub.</th>
+              <th rowspan="2" class="center">Sup. Catastale</th>
+              <th rowspan="2" class="center">Sup. Grafica</th>
+              <th colspan="2" class="center">Conduzione</th>
+            </tr>
+            <tr>
+              <th class="center">&nbsp;</th>
+              <th class="center">%</th>
+            </tr>
+            <!-- @@blkElencoParticelle -->
+              <tr>
+                <td class="radio">
+                  <input type="checkbox" id="idConduzioneParticella" name="idConduzioneParticella" value="$$idConduzioneParticella"/>
+                </td>
+                <td>$$descComuneParticella ($$siglaProvinciaParticella)</td>
+                <td class="data">$$sezione</td>
+                <td class="data">$$foglio</td>
+                <td class="data">$$particella</td>
+                <td class="data">$$subalterno</td>
+                <td class="numeridx">$$supCatastale</td>
+                <td class="numeridx">$$superficieGrafica</td>
+                <td class="numeridx">$$idTitoloPossesso</td>
+                <td class="data">$$percentualePossesso</td>
+              </tr>
+            <!-- @@blkElencoParticelle -->
+          </table>
+          <div class="pulsanti">
+            <div class="sin">
+              <input name="seleziona" class="inputPulsante" type="button" value="seleziona" onclick="javascript: selezionaTutto();"/>
+            </div>
+            <div class="des">
+              <input name="deseleziona" class="inputPulsante" type="button" value="deseleziona" onclick="javascript: deselezionaTutto();"/>
+            </div>
+          </div>
+          <p id="nota">Tutte le superfici sono espresse in ettari (ha)</p>
+          <p class="legenda"><strong>Conduzione</strong>:
+            <!-- @@blkLegendaConduzione -->
+             $$idTitoloPossesso $$descTitoloPossesso
+            <!-- @@blkLegendaConduzione -->
+          </p>
+        </div>
+      </div>
+      <hr/>
+      <!-- PIE' DI PAGINA -->
+      $$footer

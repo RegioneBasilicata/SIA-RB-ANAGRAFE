@@ -1,0 +1,760 @@
+$$head
+<script src="../js/checktext.js" type="text/javascript"></script>
+<script type="text/javascript" src="../js/messaggistica.js"></script>
+<script type="text/javascript">
+	
+	// Funzione per aprire una pop-up per l'help della ricerca della particella
+	function popupParticella(mypage, myname, w, h, scroll) 
+  {
+		var winl = (screen.width - w) / 2;
+		var wint = (screen.height - h) / 2;
+		if(document.forms[0].provvisoria.checked) {
+			alert('Non è possibile indicare un numero particella per le particelle provvisorie');
+			return;
+		}
+		else 
+    {
+			if(document.forms[0].descComune.value != '' && document.forms[0].siglaProvincia.value != '' && document.forms[0].descStatoEstero.value != '' ) {
+  			alert('Valorizzare provincia e comune o stato estero');
+  			return;
+			}
+			else if(document.forms[0].descComune.value == '' && document.forms[0].siglaProvincia.value == '' && document.forms[0].descStatoEstero.value == '' && document.forms[0].foglio.value) {
+  			alert('Controllare che siano stati valorizzati il foglio, il comune e la provincia o lo stato estero');
+  			return;
+			}
+			else {
+  			if(document.forms[0].descStatoEstero.value == '') {
+    				if(document.forms[0].descComune.value == '' || document.forms[0].siglaProvincia.value == '') {
+      				alert('Se lo stato estero non è valorizzato, specificare provincia e comune');
+      				return;
+    				}	
+  			}
+  			if(document.forms[0].foglio.value == '') {
+     	 			alert('Specificare il foglio');
+      			return;
+    			}
+			}
+			if(!mappaOggetti(document.forms[0].descComune.value) || !mappaOggetti(document.forms[0].siglaProvincia.value)) {
+			}
+			else {
+  			winprops = 'height='+h+',width='+w+',top='+wint+',left='+winl+',scrollbars='+scroll+',resizable';
+  			win = window.open(mypage+'?siglaProvinciaParticella='+document.forms[0].siglaProvincia.value+'&descComuneParticella='+document.forms[0].descComune.value+'&descStatoEsteroParticella='+document.forms[0].descStatoEstero.value+'&sezione='+document.forms[0].sezione.value+'&foglio='+document.forms[0].foglio.value+'&particella='+document.forms[0].particella.value, myname, winprops);
+  			if(parseInt(navigator.appVersion) >= 4) {
+    				win.window.focus();
+  			}
+			}
+		}
+	}
+  
+  var eventoArray = new Array();
+  var eventoTmp;
+  
+  function CodeDescription(code, secondaryCode)
+  {
+    this.code = code;
+    this.secondaryCode = secondaryCode;
+  }
+  
+  @@blkEventoCessare
+    eventoTmp = new CodeDescription($$codeEvento, "$$flagCessare" );
+    eventoArray[$$index] = eventoTmp;
+  @@blkEventoCessare
+  
+  
+		
+	// Funzione utilizzata per visualizzare la parte relative alle particelle
+	// che ne hanno generato una nuova mediante operazioni di accorpamento o
+	// frazionamento
+	function evento() 
+  {
+		if(document.forms[0].idEvento.value == 0) 
+    {
+			document.getElementById("eventoRicerca").style.display= "none";
+			if(document.getElementById("elencoRicerca") != null) {
+				document.getElementById("elencoRicerca").style.display= "none";
+			}
+      if(document.getElementById("tastoElimina") != null) {
+        document.getElementById("tastoElimina").style.display= "none";
+      }
+      
+		}
+		else 
+    {
+			document.getElementById("eventoRicerca").style.display= "";
+			document.forms[0].provinciaEvento.value = document.forms[0].siglaProvincia.value;
+			document.forms[0].comuneEvento.value = document.forms[0].descComune.value;
+			document.forms[0].sezioneEvento.value = document.forms[0].sezione.value;
+			document.forms[0].foglioEvento.value = document.forms[0].foglio.value;
+			
+			if(document.getElementById("elencoRicerca") != null) 
+			{
+				document.getElementById("elencoRicerca").style.display= "";
+			}
+      if(document.getElementById("tastoElimina") != null) 
+      {
+        document.getElementById("tastoElimina").style.display= "";
+      }
+		}
+    
+    
+    for(idx=0; idx<eventoArray.length; idx++)
+    {
+      eventoElemento = eventoArray[idx];
+
+      if(document.forms[0].idEvento.value == eventoElemento.code)
+      {
+        if(eventoElemento.secondaryCode == 'S' )
+        {
+          show_hide_column('tdParticellaDaCessare', true);
+          return;
+        }
+        else
+        {
+          show_hide_column('tdParticellaDaCessare', false);
+          return;
+        } 
+      }
+    }
+	}
+		
+	// Funzione per aprire una pop-up per l'help della ricerca della/e particella/e
+	// che hanno generato una nuova particella
+	function popupParticellaEvento(mypage, myname, w, h, scroll) 
+  {
+		var winl = (screen.width - w) / 2;
+		var wint = (screen.height - h) / 2;
+		if(document.forms[0].comuneEvento.value == '' || document.forms[0].provinciaEvento.value == '') {
+  		alert('Valorizzare provincia e comune');
+  		return;
+		}
+		else  if(!mappaOggetti(document.forms[0].comuneEvento.value) || !mappaOggetti(document.forms[0].provinciaEvento.value)) {
+		}
+		else {
+  		winprops = 'height='+h+',width='+w+',top='+wint+',left='+winl+',scrollbars='+scroll+',resizable';
+  		win = window.open('', myname, winprops);
+  		if(parseInt(navigator.appVersion) >= 4) {
+    			win.window.focus();
+  		}
+  		window.name = 'PADRE';
+  		var target1 = document.forms[0].target;
+			var action1 = document.forms[0].action;
+			document.forms[0].target = myname;
+			document.forms[0].action = mypage;
+			document.forms[0].submit();
+			document.forms[0].target = target1;
+			document.forms[0].action = action1;
+		}
+	}
+      
+      
+  function show_hide_column(nameColumn, do_show) 
+  {
+
+    var stl;
+    if (do_show) stl = ''
+    else         stl = 'none';
+
+    var columns  = document.getElementsByName(nameColumn);
+    
+    if(columns != null)
+    {
+      for (var count=0; count<columns.length;count++) {
+        columns[count].style.display=stl;
+      }
+    }
+    
+    if(!do_show)
+    {
+      deselectAllKeys();
+    }
+  }
+    
+  function deselectAllKeys() 
+  {
+    var array = document.forms[0].idParticellaDaCessare;
+    if(array != null) 
+    {
+      if(array.length) 
+      {
+        for(var i = 0; i < array.length; i++) 
+        {
+          array[i].checked = false;
+        }
+      }
+      else 
+      {
+        array.checked = false;
+      }
+    }
+  }
+  
+	
+	</script>
+</head>
+<body id="homeIndice" onLoad="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+  <form name="form1" method="post"
+    action="../layout/terreniParticellareInserisci.htm">
+    <input type="hidden" name="regimeParticellareInserimento" id="regimeParticellareInserimento" value="true">
+    <input type="hidden" id="indietro" name="indietro" value="$$indietro">
+    <div id="pagina" class="colonnaUnica">
+      <div id="intestazione##pathProvincia">
+        $$header
+        <!-- menu di navigazione-->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li>
+                <a href="../layout/index.htm"
+                  title="Torna alla pagina principale">home</a>
+              </li>
+              <li class="attivo">
+                gestione anagrafe aziende
+              </li>
+              <li>
+                <a href="#" title="contatti">contatti</a>
+              </li>
+              <li>
+                <a href="#" title="help">help</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div style="clear: left"></div>
+      <!-- CORPO -->
+      <div id="corpo">
+        <div id="Utente">
+          <div id="datiUtente">
+            <strong>utente:</strong> $$utente &nbsp; &nbsp;
+            <strong>ente:</strong> $$ente
+          </div>
+          <div id="chiudisessione">
+            <a href="javascript: logout();">chiudi sessione</a>
+          </div>
+        </div>
+        <hr />
+        <!--PRIMA COLONNA -->
+        <h3>
+          Gestione Anagrafe
+          Aziende&nbsp;&gt;&nbsp;Terreni&nbsp;&gt;&nbsp;Inserisci
+          <span class="helpFuori"> <a href="#"> <span
+              class="alt">[help]</span> </a> </span>
+        </h3>
+        <hr />
+        <div class="box">
+          <div class="menuSX1">
+            <ul>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <li>
+                <a href="../layout/elencoAziendeRapLegale.htm">Elenco
+                  Aziende</a>
+              </li>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <!-- @@blkRicercaAzienda-->
+              <li>
+                <a href="../layout/ricerca.htm">Ricerche</a>
+              </li>
+              <!-- @@blkRicercaAzienda-->
+              <!-- @@blkNuova -->
+              <li>
+                <a href="../layout/nuovaAziendaAnagrafica.htm">Nuova
+                  Azienda</a>
+              </li>
+              <!-- @@blkNuova -->
+              <!-- @@blkNuovaIscrizione -->
+              <li>
+                <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+              </li>
+              <!-- @@blkNuovaIscrizione -->
+            </ul>
+          </div>
+          <div class="menuSX">
+            <ul>
+              <li>
+                <a href="../layout/anagrafica.htm">Anagrafica</a>
+              </li>
+              <!-- @@blkAziendeCollegate -->
+              <li>
+                <a href="../layout/aziendeCollegate.htm">$$aziendeCollegateLabel</a>
+              </li>
+              <!-- @@blkAziendeCollegate -->
+              <!-- @@blkSincronizzaFascicolo -->
+               <li>
+               	<a href="../layout/sincronizzaFascicolo.htm">Sincronizza fascicolo</a>
+               </li>
+              <!-- @@blkSincronizzaFascicolo -->
+              <!-- @@blkSoggettiCollegati -->
+              <li>
+                <a href="../layout/contitolari.htm">Soggetti
+                  collegati</a>
+              </li>
+              <!-- @@blkSoggettiCollegati -->
+              <!-- @@blkContiCorrenti -->
+              <li>
+                <a href="../layout/conti_correnti.htm">Conti
+                  Correnti</a>
+              </li>
+              <!-- @@blkContiCorrenti -->
+              <!-- @@blkUnitaProduttive -->
+              <li>
+                <a href="../layout/sedi.htm">Unit&agrave; produttive</a>
+              </li>
+              <!-- @@blkUnitaProduttive -->
+              <!-- @@blkTerreni -->
+              <li>
+                <!-- @@blkLinkElenco -->
+                <a href="../layout/terreniParticellareElenco.htm" class="on">Terreni</a>
+                <!-- @@blkLinkElenco -->
+                <!-- @@blkLinkRiepiloghi -->
+                <a href="../layout/riepiloghi.htm" class="on" >Terreni</a>
+                <!-- @@blkLinkRiepiloghi -->
+                <ul>
+                  <li>
+                    <a href="#">inserisci</a>
+                  </li>
+                </ul>
+              </li>
+              <!-- @@blkTerreni -->
+              <!-- @@blkUnitaVitate -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniUnitaArboreeElenco.htm">Unit&agrave; Vitate</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		              <a href="../layout/riepiloghiUnitaArboree.htm">Unit&agrave; Vitate</a>
+		              <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkUnitaVitate -->
+              <!-- @@blkFabbricati -->
+              <li>
+                <a href="../layout/fabbricati.htm">Fabbricati e
+                  Strutture</a>
+              </li>
+              <!-- @@blkFabbricati -->
+              <!-- @@blkAllevamenti -->
+              <li>
+                <a href="../layout/allevamenti.htm">Allevamenti</a>
+              </li>
+              <!-- @@blkAllevamenti -->
+              <!-- @@blkManodopera -->
+              <li>
+                <a href="../layout/manodopera.htm">Manodopera</a>
+              </li>
+              <!-- @@blkManodopera -->
+              <!-- @@blkMotoriAgricoli -->
+              <li>
+                <a href="../layout/motori_agricoli_incarico.htm">Macchine agricole</a>
+              </li>
+              <!-- @@blkMotoriAgricoli -->
+              <!-- @@blkDiritti -->
+              <li>
+                <a href="../layout/diritti.htm">Diritti di
+                  produzione</a>
+              </li>
+              <!-- @@blkDiritti -->
+              <!-- @@blkAttestazioni -->
+              <li>
+                <a href="../layout/attestazioniDettaglio.htm">Dichiarazioni</a>
+              </li>
+              <!-- @@blkAttestazioni -->
+              <!-- @@blkDichiarazioniConsistenza -->
+              <li>
+                <a href="../layout/dichiarazioneConsistenza.htm">Validazioni</a>
+              </li>
+              <!-- @@blkDichiarazioniConsistenza -->
+              <!-- @@blkDocumenti -->
+              <li>
+                <a href="../layout/documentiElenco.htm">Documenti</a>
+              </li>
+              <!-- @@blkDocumenti -->
+              <!-- @@blkFascicoloDematerializzato -->
+              <li>
+                <a href="../layout/fascicoloDematerializzato.htm">Fascicolo<br>elettronico</a>
+              </li>
+              <!-- @@blkFascicoloDematerializzato -->
+              <!-- @@blkGestioneNotifiche -->
+              <li>
+                <a href="../layout/notifiche.htm">Notifiche</a>
+              </li>
+              <!-- @@blkGestioneNotifiche -->
+              <!-- @@blkComunicazione10R -->
+              <li>
+                <a href="../layout/comunicazione10R_dettaglio.htm">Comunicazione
+                  10/R</a>
+              </li>
+              <!-- @@blkComunicazione10R -->
+              <!-- @@blkPratiche -->
+              <li>
+                <a href="../layout/pratiche.htm">Pratiche</a>
+              </li>
+              <!-- @@blkPratiche -->
+              <!-- @@blkStampaFascicolo -->
+              <li>
+                <a href="../layout/scelta_stampa.htm">Stampe</a>
+              </li>
+              <!-- @@blkStampaFascicolo -->
+			  <li><a href="../layout/strumenti.htm">Strumenti</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr />
+        <!-- SECONDA COLONNA -->
+        <div id="contenuto">
+          <div id="intesta">
+            <p class="$$aziendaIntestazione" title="$$tooltipIntestazione" >
+              $$CUAAIntestazione  $$denominazioneIntestazione
+            </p>
+          </div>
+          <hr />
+          <table cellspacing="3"
+            summary="Questa tabella contiene i dati relativi all'unità produttiva">
+            <tr>
+              <th>
+                <label for="unita">
+                  Unit&agrave; produttiva *
+                </label>
+              </th>
+              <td>
+                <select name="idUte" id="idUte">
+                  <option></option>
+                  <!-- @@blkUte -->
+                  <option value="$$idUte" $$selected>
+                    $$descUte
+                  </option>
+                  <!-- @@blkUte -->
+                </select>
+                $$err_idUte
+              </td>
+            </tr>
+          </table>
+          <div id="indice">
+            <span class="evidenza">particella</span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+            <span class="voce"><a href="#">conduzione e uso</a> </span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+          </div>
+          <table cellspacing="3"
+            summary="Questa tabella contiene la chiave logica della particella">
+            <caption>
+              Dati catastali
+            </caption>
+            <tr>
+              <th>
+                <label for="Provincia">
+                  Provincia
+                </label>
+              </th>
+              <td>
+                <input name="siglaProvincia" class="due"
+                  id="siglaProvincia" value="$$siglaProvincia"
+                  maxlength="2" />
+                $$err_siglaProvincia
+              </td>
+              <th>
+                <label for="Comune">
+                  Comune
+                </label>
+              </th>
+              <td>
+                <input name="descComune" class="text" id="descComune"
+                  value="$$descComune" />
+                $$err_descComune
+              </td>
+              <td>
+                <div class="azioni"> <input type="button" name="cerca" value="cerca"
+                  class="inputPulsante"
+                  onclick="javascript: popupComune('../layout/sceltaComune.htm', 'scegliComune', '600', '300', 'yes', document.forms[0].siglaProvincia.value, document.forms[0].descComune.value, 'insParticella', 'territoriale');" /></div>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="Stato">
+                  Stato
+                </label>
+              </th>
+              <td colspan="3">
+                <input name="descStatoEstero" class="text"
+                  id="descStatoEstero" value="$$descStatoEstero" />
+                $$err_descStatoEstero
+              </td>
+              <td>
+                 <div class="azioni"><input type="button" name="cerca" value="cerca"
+                  class="inputPulsante"
+                  onclick="javascript: popupStato('../layout/sceltaStato.htm', 'scegliStato', '600', '300', 'yes', document.forms[0].descStatoEstero.value, 'insParticella', 'territoriale');" /></div>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="Sez">
+                  Sezione
+                </label>
+              </th>
+              <td colspan="3">
+                <input name="sezione" class="textmedio" id="sezione"
+                  value="$$sezione" maxlength="1" />
+                $$err_sezione
+              </td>
+              <td> <div class="azioni">
+                <input type="button" name="cerca" value="cerca"
+                  class="inputPulsante"
+                  onclick="javascript: popupSezione('../layout/sceltaSezione.htm', 'scegliSezione', '600', '300', 'yes', document.forms[0].siglaProvincia.value, document.forms[0].descComune.value, document.forms[0].descStatoEstero.value, document.forms[0].sezione.value);" /></div>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="Foglio">
+                  Foglio *
+                </label>
+              </th>
+              <td colspan="3">
+                <input name="foglio" class="textmedio" id="foglio"
+                  value="$$foglio" maxlength="4" />
+                $$err_foglio
+              </td>
+              <td> <div class="azioni">
+                <input type="button" name="cerca" value="cerca"
+                  class="inputPulsante"
+                  onclick="javascript: popupFoglio('../layout/sceltaFoglio.htm', 'scegliFoglio', '600', '300', 'yes', document.forms[0].siglaProvincia.value, document.forms[0].descComune.value, document.forms[0].descStatoEstero.value, document.forms[0].sezione.value, document.forms[0].foglio.value);" /></div>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="Particella">
+                  Particella
+                </label>
+              </th>
+              <td>
+                <input name="particella" class="textmedio"
+                  id="particella" value="$$particella" maxlength="5" />
+                $$err_particella
+              </td>
+              <th>
+                <label for="provvisoria">
+                  particella provvisoria
+                </label>
+              </th>
+              <td>
+                <input name="provvisoria" id="provvisoria"
+                  type="checkbox" value="S" $$checkedProvvisoria />
+              </td>
+              <td> <div class="azioni">
+                <input type="button" name="cerca" value="cerca"
+                  class="inputPulsante"
+                  onclick="javascript: popupParticella('../layout/sceltaParticella.htm', 'scegliParticella', '600', '300', 'yes');" /></div>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="Subalterno">
+                  Subalterno
+                </label>
+              </th>
+              <td colspan="4">
+                <input name="subalterno" class="textmedio"
+                  id="subalterno" value="$$subalterno" maxlength="3" />
+                $$err_subalterno
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="Motivazione">
+                  Motivazione
+                </label>
+              </th>
+              <td colspan="4">
+                <select name="idEvento" id="idEvento" class="textmedio"
+                  onchange="javascript: evento();">
+                  <!-- @@blkTipiEvento -->
+                  <option value="$$idEvento" $$selected>
+                    $$descrizione
+                  </option>
+                  <!-- @@blkTipiEvento -->
+                </select>
+                $$err_idEvento
+              </td>
+            </tr>
+          </table>
+          <table cellspacing="3"
+            summary="Questa tabella contiene i filtri di ricerca per le particelle che hanno generato la nuova particella per frazionamento o accorpamento"
+            id="eventoRicerca">
+            <caption>
+              Indicare gli estremi della particella
+            </caption>
+            <tr>
+              <th>
+                <label for="Provincia">
+                  Provincia *
+                </label>
+              </th>
+              <td>
+                <input name="provinciaEvento" class="due"
+                  id="provinciaEvento" value="$$provinciaEvento"
+                  maxlength="2" />
+              </td>
+              <th>
+                <label for="Comune">
+                  Comune *
+                </label>
+              </th>
+              <td colspan="2">
+                <input name="comuneEvento" class="text"
+                  id="comuneEvento" value="$$comuneEvento" />
+              </td>
+              <td>
+                <div class="azioni">
+                  <a
+                    href="javascript: popupParticellaEvento('../layout/popCercaParticelleInserimento.htm', 'scegliParticellaInserimento', '600', '300', 'yes');"
+                    title="[Attenzione: questo link si apre in una nuova finestra]">Cerca</a>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="Sez">
+                  Sezione
+                </label>
+              </th>
+              <td>
+                <input name="sezioneEvento" class="textmedio"
+                  id="sezioneEvento" value="$$sezioneEvento"
+                  maxlength="1" />
+              </td>
+              <th>
+                <label for="Foglio">
+                  Foglio
+                </label>
+              </th>
+              <td>
+                <input name="foglioEvento" class="textmedio"
+                  id="foglioEvento" value="$$foglioEvento" maxlength="4" />
+              </td>
+              <th>
+                <label for="Particella">
+                  Particella
+                </label>
+              </th>
+              <td>
+                <input name="particellaEvento" class="textmedio"
+                  id="particellaEvento" value="$$particellaEvento"
+                  maxlength="5" />
+              </td>
+            </tr>
+            <tr>
+              <td colspan="6">
+                <div class="azioni">
+                  <input type="submit" id="inserisci" name="inserisci"
+                    value="inserisci" class="inputPulsante highlighted" />
+                </div>
+                &nbsp;$$err_motivazione
+              </td>
+            </tr>
+          </table>
+          <!-- @@blkParticelleEvento -->
+          <table cellspacing="3"
+            summary="Questa tabella contiene i dati relativi alle particelle accorpate o frazionate"
+            id="elencoRicerca">
+            <tr>
+              <th class="radio">&nbsp;
+                
+              </th>
+              <th class="center">
+                Comune
+              </th>
+              <th class="center">
+                Sezione
+              </th>
+              <th class="center">
+                Foglio
+              </th>
+              <th class="center">
+                Particella
+              </th>
+              <th class="center">
+                Subalterno
+              </th>
+              <th class="center">
+                Sup. Catastale (ha)
+              </th>
+              <th class="center">
+                Sup. Grafica (ha)
+              </th>
+              
+              <th class="center" id="tdParticellaDaCessare"
+                name="tdParticellaDaCessare">
+                Particella
+                <br>
+                da cessare
+              </th>
+              
+            </tr>
+            <!-- @@blkElencoParticelle -->
+            <tr>
+              <td class="radio">
+                <input type="checkbox" name="idParticella"
+                  id="idParticella" value="$$idParticella" />
+              </td>
+              <td>
+                $$descComuneParticellaEvento
+                ($$siglaProvParticellaEvento)
+              </td>
+              <td>
+                $$sezioneEvento
+              </td>
+              <td>
+                $$foglioEvento
+              </td>
+              <td>
+                $$particellaEvento
+              </td>
+              <td>
+                $$subalternoEvento
+              </td>
+              <td class="numeridx">
+                $$supCatastaleEvento
+              </td>
+              <td class="numeridx">
+                $$superficieGraficaEvento
+              </td>
+              
+              <td class="center" id="tdParticellaDaCessare"
+                name="tdParticellaDaCessare">
+                <input type="checkbox" name="idParticellaDaCessare"
+                  id="idParticellaDaCessare"
+                  value="$$idParticellaDaCessare"
+                  $$checkedParticellaDaCessare $$disabled/>
+              </td>
+              
+            </tr>
+            <!-- @@blkElencoParticelle -->
+          </table>
+          <div class="pulsanti" id="tastoElimina">
+            <div class="sin">
+              <input type="submit" id="elimina" name="elimina"
+                value="elimina" class="inputPulsante" />
+            </div>
+          </div>
+
+
+          <!-- @@blkParticelleEvento -->
+          <script language="javascript1.2">evento()</script>
+          <div class="pulsanti">
+            <div class="sin">
+              <input id="avanti" name="avanti" type="submit"
+                value="avanti" class="inputPulsante" />
+            </div>
+          </div>
+          <!-- @@blkErrore -->
+          <p class="errore">
+            $$messaggioErrore
+          </p>
+          <!-- @@blkErrore -->
+        </div>
+      </div>
+      <hr />
+  </form>
+  <!-- PIE' DI PAGINA -->
+  $$footer

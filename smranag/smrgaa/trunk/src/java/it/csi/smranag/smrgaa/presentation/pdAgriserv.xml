@@ -1,0 +1,87 @@
+<porta-delegata name="smrgaaweb.agriserv.PA_smrgaaFacade">
+  <services>
+    <service name="smrgaaweb.agriserv.PA_smrgaaFacade.service" public-interface-class="it.csi.smranag.smrgaa.interfacecsi.agriserv.IAgriservCSIInterface">
+     <operations>
+        <operation name="agriservSearchPraticheProcedimento" type="synch-call" >
+          <param-list>
+             <param name="elencoIdStoricoParticella" type="long[]" />
+             <param name="idAzienda" type="java.lang.Long" />
+             <param name="tipologiaStati" type="int" />
+             <param name="idDichiarazioneConsistenza" type="java.lang.Long" />
+             <param name="idProcedimento" type="java.lang.Long" />
+             <param name="annoCampagna" type="java.lang.Long" />
+             <param name="tipoOrdinamento" type="int" />
+          </param-list>
+          <ret-val type="it.csi.smranag.smrgaa.dto.agriserv.praticaprocedimento.PraticaProcedimentoVO[]"/>
+        </operation>
+        <operation name="agriservSearchPraticheProcedimentoCC" type="synch-call" >
+          <param-list>
+             <param name="elencoIdContoCorrente" type="long[]" />
+             <param name="tipologiaStati" type="int" />
+             <param name="idDichiarazioneConsistenza" type="java.lang.Long" />
+             <param name="idProcedimento" type="java.lang.Long" />
+             <param name="annoCampagna" type="java.lang.Long" />
+             <param name="tipoOrdinamento" type="int" />
+          </param-list>
+          <ret-val type="it.csi.smranag.smrgaa.dto.agriserv.praticaprocedimento.PraticaProcedimentoCCVO[]"/>
+        </operation>
+     </operations>
+    </service>
+  </services>
+  <config>
+    <url-pa>**not used**</url-pa>
+    <pluggable-pd-list chooser-class="it.csi.csi.porte.FixedDelegateChooser">
+	<pluggable-pd name="business" class="it.csi.csi.porte.jaxrpc.PortaDelegataWS" url-pa="***" url-qm="">
+	     <properties>
+         <property name="csi.wrapper.wsinterf.class" value="it.csi.smruma.agriserv.dto.axisgen.AgriservService_PortType" />
+		 <property name="csi.http.transport.type" value="commons-http" />
+          <property name="csi.http.timeout" value="10000" />          
+          <property name="class" value="it.csi.smruma.agriserv.dto.axisgen.AgriservServiceServiceLocator" />
+          <!-- l'url dell'endpoint del servizio-->
+ 	      <property name="javax.xml.rpc.service.endpoint.address" value="da_cambiare_a_runtime" />         
+        </properties>                                 
+    </pluggable-pd>
+    </pluggable-pd-list>
+    <queue-manager url=""/>
+  <pre-function-handler-list>
+      <pluggable-fh name="isoint_pre" class="it.csi.csi.porte.jaxrpc.pfh.IsoIntTransformer">
+        <properties>
+          <property name="source.interface" value="it.csi.smranag.smrgaa.interfacecsi.agriserv.IAgriservCSIInterface" />
+          <property name="target.interface" value="it.csi.smruma.agriserv.dto.axisgen.AgriservService_PortType" />
+          <property name="pkg-map-1" value="it.csi.smranag.smrgaa.interfacecsi.agriserv=it.csi.smruma.agriserv.dto.axisgen" />                		          
+          <property name="class-map-1" value="it.csi.smranag.smrgaa.dto.agriserv.domande.DecodificaEstesaVO=it.csi.smruma.agriserv.dto.axisgen.DecodificaEstesaVO" />
+          <property name="class-map-2" value="it.csi.smranag.smrgaa.dto.agriserv.domande.DecodificaVO=it.csi.smruma.agriserv.dto.axisgen.DecodificaVO" />
+          <property name="class-map-3" value="it.csi.smranag.smrgaa.dto.agriserv.domande.DomandaVO=it.csi.smruma.agriserv.dto.axisgen.DomandaVO" />
+          <property name="class-map-4" value="it.csi.smranag.smrgaa.dto.agriserv.domande.DomandeVO=it.csi.smruma.agriserv.dto.axisgen.DomandeVO" />
+          <property name="class-map-5" value="it.csi.smranag.smrgaa.dto.agriserv.praticaprocedimento.PPUtilizzoVO=it.csi.smruma.agriserv.dto.axisgen.PPUtilizzoVO" />
+          <property name="class-map-6" value="it.csi.smranag.smrgaa.dto.agriserv.praticaprocedimento.PraticaProcedimentoCCVO=it.csi.smruma.agriserv.dto.axisgen.PraticaProcedimentoCCVO" />
+          <property name="class-map-7" value="it.csi.smranag.smrgaa.dto.agriserv.praticaprocedimento.PraticaProcedimentoVO=it.csi.smruma.agriserv.dto.axisgen.PraticaProcedimentoVO" />
+          <property name="class-map-8" value="it.csi.smranag.smrgaa.dto.agriserv.domande.StatoPraticaVO=it.csi.smruma.agriserv.dto.axisgen.StatoPraticaVO" />
+          <property name="class-map-9" value="it.csi.smranag.smrgaa.exception.agriserv.AgriservInternalException=it.csi.smruma.agriserv.dto.axisgen.AgriservInternalException" />
+          <property name="class-map-10" value="it.csi.smranag.smrgaa.exception.agriserv.AgriservInvalidParameterException=it.csi.smruma.agriserv.dto.axisgen.AgriservInvalidParameterException" />
+          <property name="class-map-11" value="it.csi.smranag.smrgaa.exception.agriserv.AgriservQueryTimeOutException=it.csi.smruma.agriserv.dto.axisgen.AgriservQueryTimeOutException" />          
+        </properties>
+      </pluggable-fh>
+    </pre-function-handler-list>
+    <post-function-handler-list>
+      <pluggable-fh name="isoint_pre" class="it.csi.csi.porte.jaxrpc.pfh.IsoIntTransformer">
+        <properties>
+         <property name="source.interface" value="it.csi.smranag.smrgaa.interfacecsi.agriserv.IAgriservCSIInterface" />
+          <property name="target.interface" value="it.csi.smruma.agriserv.dto.axisgen.AgriservService_PortType" />
+          <property name="pkg-map-1" value="it.csi.smranag.smrgaa.interfacecsi.agriserv=it.csi.smruma.agriserv.dto.axisgen" />                		          
+          <property name="class-map-1" value="it.csi.smranag.smrgaa.dto.agriserv.domande.DecodificaEstesaVO=it.csi.smruma.agriserv.dto.axisgen.DecodificaEstesaVO" />
+          <property name="class-map-2" value="it.csi.smranag.smrgaa.dto.agriserv.domande.DecodificaVO=it.csi.smruma.agriserv.dto.axisgen.DecodificaVO" />
+          <property name="class-map-3" value="it.csi.smranag.smrgaa.dto.agriserv.domande.DomandaVO=it.csi.smruma.agriserv.dto.axisgen.DomandaVO" />
+          <property name="class-map-4" value="it.csi.smranag.smrgaa.dto.agriserv.domande.DomandeVO=it.csi.smruma.agriserv.dto.axisgen.DomandeVO" />
+          <property name="class-map-5" value="it.csi.smranag.smrgaa.dto.agriserv.praticaprocedimento.PPUtilizzoVO=it.csi.smruma.agriserv.dto.axisgen.PPUtilizzoVO" />
+          <property name="class-map-6" value="it.csi.smranag.smrgaa.dto.agriserv.praticaprocedimento.PraticaProcedimentoCCVO=it.csi.smruma.agriserv.dto.axisgen.PraticaProcedimentoCCVO" />
+          <property name="class-map-7" value="it.csi.smranag.smrgaa.dto.agriserv.praticaprocedimento.PraticaProcedimentoVO=it.csi.smruma.agriserv.dto.axisgen.PraticaProcedimentoVO" />
+          <property name="class-map-8" value="it.csi.smranag.smrgaa.dto.agriserv.domande.StatoPraticaVO=it.csi.smruma.agriserv.dto.axisgen.StatoPraticaVO" />
+          <property name="class-map-9" value="it.csi.smranag.smrgaa.exception.agriserv.AgriservInternalException=it.csi.smruma.agriserv.dto.axisgen.AgriservInternalException" />
+          <property name="class-map-10" value="it.csi.smranag.smrgaa.exception.agriserv.AgriservInvalidParameterException=it.csi.smruma.agriserv.dto.axisgen.AgriservInvalidParameterException" />
+          <property name="class-map-11" value="it.csi.smranag.smrgaa.exception.agriserv.AgriservQueryTimeOutException=it.csi.smruma.agriserv.dto.axisgen.AgriservQueryTimeOutException" />                         
+        </properties>
+      </pluggable-fh>
+    </post-function-handler-list>    
+  </config>
+</porta-delegata>

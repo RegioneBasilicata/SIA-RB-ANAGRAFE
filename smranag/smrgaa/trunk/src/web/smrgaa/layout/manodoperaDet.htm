@@ -1,0 +1,365 @@
+$$head
+
+  <script src="../js/checktext.js" type="text/javascript"></script>
+  <script type="text/javascript" src="../js/messaggistica.js"></script>
+  <script type="text/javascript">
+
+    function elimina() {
+      customDoForm('../layout/confermaEliminaManodopera.htm');
+    }
+
+    function modifica() {
+      customDoForm('../layout/manodoperaMod.htm');
+    }
+
+    function customDoForm(page) {
+      var oldAction = document.form1.action;
+      document.form1.action=page;
+      document.form1.submit();
+      document.form1.action=oldAction;
+    }
+
+  </script>
+</head>
+<body id="homeIndice" onload="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+  <form method="post" id="form1" name="form1" action="../layout/manodoperaDet.htm">
+    <div id="pagina" class="colonnaUnica">
+      <input type="hidden" id="idManodopera" name="idManodopera" value="$$idManodopera"/>
+      <input type="hidden" id="pageFrom" name="pageFrom" value="dettaglio"/>
+      <!-- INTESTAZIONE -->
+      <div id="intestazione##pathProvincia">
+        $$header
+        <!-- menu di navigazione-->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li>
+                <a href="../layout/index.htm" title="Torna alla pagina principale">home</a>
+              </li>
+              <li class="attivo">gestione anagrafe aziende</li>
+              <li>
+                <a href="#" title="contatti">contatti</a>
+              </li>
+              <li>
+                <a href="#" title="help">help</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr/>
+      <div style="clear:left"></div>
+      <!-- CORPO -->
+      <div id="corpo">
+        <div id="Utente">
+          <div id="datiUtente">
+            <strong>utente:</strong>$$utente&nbsp;&nbsp;
+            <strong>ente:</strong>$$ente
+          </div>
+          <div id="chiudisessione">
+            <a href="javascript: logout();">chiudi sessione</a>
+          </div>
+        </div>
+        <hr/>
+        <!--PRIMA COLONNA -->
+        <h3>Gestione Anagrafe Aziende&nbsp;&gt;&nbsp;Manodopera&nbsp;&gt;&nbsp;Dettaglio
+          <span class="helpFuori">
+            <a href="#">
+              <span class="alt">[help]</span>
+            </a>
+          </span>
+        </h3>
+        <hr/>
+        <div class="box">
+          <div class="menuSX1">
+            <ul>
+              <!-- @@blkElencoAziendeRapLegale -->
+                <li><a href="../layout/elencoAziendeRapLegale.htm">Elenco Aziende</a></li>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <!-- @@blkRicercaAzienda-->
+                <li><a href="../layout/ricerca.htm">Ricerche</a></li>
+              <!-- @@blkRicercaAzienda-->
+              <!-- @@blkNuova -->
+                <li>
+                  <a href="../layout/nuovaAziendaAnagrafica.htm">Nuova Azienda</a>
+                </li>
+              <!-- @@blkNuova -->
+              <!-- @@blkNuovaIscrizione -->
+              <li>
+                <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+              </li>
+              <!-- @@blkNuovaIscrizione -->
+            </ul>
+          </div>
+          <div class="menuSX">
+            <ul>
+              <li>
+                <a href="../layout/anagrafica.htm">Anagrafica</a>
+              </li>
+              <!-- @@blkAziendeCollegate -->
+	          			<li>
+	          					<a href="../layout/aziendeCollegate.htm">$$aziendeCollegateLabel</a>
+	          			</li>
+	          	<!-- @@blkAziendeCollegate -->
+	          	<!-- @@blkSincronizzaFascicolo -->
+               <li>
+               	<a href="../layout/sincronizzaFascicolo.htm">Sincronizza fascicolo</a>
+               </li>
+              <!-- @@blkSincronizzaFascicolo -->
+              <!-- @@blkSoggettiCollegati -->
+                <li>
+                  <a href="../layout/contitolari.htm">Soggetti collegati</a>
+                </li>
+              <!-- @@blkSoggettiCollegati -->
+              <!-- @@blkContiCorrenti -->
+              <li><a href="../layout/conti_correnti.htm">Conti Correnti</a></li>
+              <!-- @@blkContiCorrenti -->
+              <!-- @@blkUnitaProduttive -->
+                <li>
+                  <a href="../layout/sedi.htm">Unit&agrave; produttive</a>
+                </li>
+              <!-- @@blkUnitaProduttive -->
+              <!-- @@blkTerreni -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniParticellareElenco.htm">Terreni</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		            <a href="../layout/riepiloghi.htm">Terreni</a>
+		            <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkTerreni -->
+		          <!-- @@blkUnitaVitate -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniUnitaArboreeElenco.htm">Unit&agrave; Vitate</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		              <a href="../layout/riepiloghiUnitaArboree.htm">Unit&agrave; Vitate</a>
+		              <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkUnitaVitate -->
+              <!-- @@blkFabbricati -->
+                <li>
+                  <a href="../layout/fabbricati.htm">Fabbricati e Strutture</a>
+                </li>
+              <!-- @@blkFabbricati -->
+              <!-- @@blkAllevamenti -->
+                <li>
+                  <a href="../layout/allevamenti.htm">Allevamenti</a>
+                </li>
+              <!-- @@blkAllevamenti -->
+              <!-- @@blkManodopera -->
+                <li>
+                  <a href="../layout/manodopera.htm" class="on">Manodopera</a>
+                  <ul>
+                    <li>
+                      <a href="#" class="etichetta">dettaglio</a>
+                    </li>
+                    <!--@@blkModifica-->
+                      <li>
+                        <a href="javascript: modifica()">modifica</a>
+                      </li>
+                    <!--@@blkModifica-->
+                    <!--@@blkElimina-->
+                      <li>
+                        <a href="javascript: elimina()">elimina</a>
+                      </li>
+                    <!--@@blkElimina-->
+                  </ul>
+                </li>
+              <!-- @@blkManodopera -->
+              <!-- @@blkMotoriAgricoli -->
+                <li>
+                  <a href="../layout/motori_agricoli_incarico.htm">Macchine agricole</a>
+                </li>
+              <!-- @@blkMotoriAgricoli -->
+              <!-- @@blkDiritti -->
+                <li><a href="../layout/diritti.htm">Diritti di produzione</a></li>
+              <!-- @@blkDiritti -->
+              <!-- @@blkAttestazioni -->
+                <li><a href="../layout/attestazioniDettaglio.htm">Dichiarazioni</a></li>
+              <!-- @@blkAttestazioni -->
+              <!-- @@blkDichiarazioniConsistenza -->
+              <li><a href="../layout/dichiarazioneConsistenza.htm">Validazioni</a></li>
+              <!-- @@blkDichiarazioniConsistenza -->
+              <!-- @@blkDocumenti -->
+              <li><a href="../layout/documentiElenco.htm">Documenti</a></li>
+              <!-- @@blkDocumenti -->
+              <!-- @@blkFascicoloDematerializzato -->
+              <li>
+                <a href="../layout/fascicoloDematerializzato.htm">Fascicolo<br>elettronico</a>
+              </li>
+              <!-- @@blkFascicoloDematerializzato -->
+              <!-- @@blkGestioneNotifiche -->
+              <li><a href="../layout/notifiche.htm">Notifiche</a></li>
+              <!-- @@blkGestioneNotifiche -->
+              <!-- @@blkComunicazione10R -->
+                <li>
+                  <a href="../layout/comunicazione10R_dettaglio.htm">Comunicazione 10/R</a>
+                </li>
+              <!-- @@blkComunicazione10R -->
+              <!-- @@blkPratiche -->
+              <li><a href="../layout/pratiche.htm">Pratiche</a></li>
+              <!-- @@blkPratiche -->
+              <!-- @@blkStampaFascicolo -->
+              <li><a href="../layout/scelta_stampa.htm">Stampe</a></li>
+              <!-- @@blkStampaFascicolo -->
+			  <li><a href="../layout/strumenti.htm">Strumenti</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr/>
+        <!-- SECONDA COLONNA -->
+        <div id="contenuto">
+          <div id="intesta">
+            <p class="$$aziendaIntestazione" title="$$tooltipIntestazione" >
+              $$CUAAIntestazione  $$denominazioneIntestazione
+            </p>
+          </div>
+          <table cellspacing="3" class="detailTable" summary="Questa tabella è costituita da righe">
+            <col width="30%"/>
+            <col width="70%"/>
+            <tr>
+              <th scope="row">Matricola INAIL</th>
+              <td>$$matricolaInail</td>
+            </tr>
+            <tr>
+              <th scope="row">Forma di conduzione</th>
+              <td>$$formaConduzione - $$desConduzione</td>
+            </tr>
+          </table>
+          <table cellspacing="3" class="detailTable" summary="Questa tabella è costituita da righe">
+            <caption>Informazioni INPS:</caption>
+            <col width="30%"/>
+            <col width="70%"/>
+            <tr>
+              <th>Tipo iscrizione</th>
+              <td>$$descTipoIscrizioneINPS</td>
+            </tr>
+            <tr>
+              <th scope="row">N&deg;iscrizione</th>
+              <td>$$codiceInps</td>
+            </tr>
+            <tr>
+              <th>Data iscrizione</th>
+              <td>$$dataInizioIscrizione</td>
+            </tr>
+            <tr>
+              <th>Data cessazione</th>
+              <td>$$dataCessazzioneIscrizione</td>
+            </tr>            
+          </table>
+          <table cellspacing="3" summary="Questa tabella è costituita da righe">
+            <caption>Manodopera:</caption>
+            <col width="10%"/>
+            <col width="15%"/>
+            <col width="15%"/>
+            <col width="15%"/>
+            <col width="15%"/>
+            <col width="15%"/>
+            <col width="15%"/>
+            <tr>
+              <th rowspan="2">&nbsp;</th>
+              <th colspan="3" class="center" id="col1">Tempo pieno</th>
+              <th colspan="3" class="center" id="col2">Tempo parziale</th>
+            </tr>
+            <tr>
+              <th class="center" id="col11" headers="col1">N. Uomini</th>
+              <th class="center" id="col12" headers="col1">N. Donne</th>
+              <th class="center" id="col13" headers="col1">Totale persone</th>
+              <th class="center" id="col21" headers="col2">N. Uomini</th>
+              <th class="center" id="col22" headers="col2">N. Donne</th>
+              <th class="center" id="col23" headers="col2">Totale persone</th>
+            </tr>
+            <tr>
+              <th id="r1">Familiari</th>
+              <td headers="col1 col11 r1">$$famUominiTempoPieno</td>
+              <td headers="col1 col12 r1">$$famDonneTempoPieno</td>
+              <td headers="col1 col13 r1">$$famTotaleTempoPieno</td>
+              <td headers="col2 col21 r1">$$famUominiTempoParziale</td>
+              <td headers="col2 col22 r1">$$famDonneTempoParziale</td>
+              <td headers="col2 col23 r1">$$famTotaleTempoParziale</td>
+            </tr>
+            <tr>
+              <th id="r2">Salariati fissi</th>
+              <td headers="col1 col11 r2">$$salFisUominiTempoPieno</td>
+              <td headers="col1 col12 r2">$$salFisDonneTempoPieno</td>
+              <td headers="col1 col13 r2">$$salFisTotaleTempoPieno</td>
+              <td headers="col2 col21 r2">$$salFisUominiTempoParziale</td>
+              <td headers="col2 col22 r2">$$salFisDonneTempoParziale</td>
+              <td headers="col2 col23 r2">$$salFisTotaleTempoParziale</td>
+            </tr>
+            <tr>
+              <th id="r3">Totale</th>
+              <td headers="col1 col11 r3">$$totUominiTempoPieno</td>
+              <td headers="col1 col12 r3">$$totDonneTempoPieno</td>
+              <td headers="col1 col13 r3">$$totTotaleTempoPieno</td>
+              <td headers="col2 col21 r3">$$totUominiTempoParziale</td>
+              <td headers="col2 col22 r3">$$totDonneTempoParziale</td>
+              <td headers="col2 col23 r3">$$totTotaleTempoParziale</td>
+            </tr>
+          </table>
+          <table cellspacing="3" summary="Questa tabella è costituita da righe">
+            <col width="20%"/>
+            <col width="20%"/>
+            <col width="20%"/>
+            <col width="20%"/>
+            <col width="20%"/>
+            <tr>
+              <th>&nbsp;</th>
+              <th class="center" scope="col">N. Uomini</th>
+              <th class="center" scope="col">N. Donne</th>
+              <th class="center" scope="col">Totale persone</th>
+              <th class="center" scope="col">N. giornate/anno</th>
+            </tr>
+            <tr>
+              <th>Salariati avventizi</th>
+              <td>$$salAvvUomini</td>
+              <td>$$salAvvDonne</td>
+              <td>$$salAvvTotale</td>
+              <td>$$salAvvGiornateAnnue</td>
+            </tr>
+          </table>
+          <table cellspacing="3" summary="Questa tabella è costituita da righe">
+            <caption>Attivit&agrave; complementari svolte in azienda:</caption>
+            <col width="50%"/>
+            <col width="50%"/>
+            <tr>
+              <th class="center" scope="col">Tipologia</th>
+              <th class="center" scope="col">Descrizione</th>
+            </tr>
+            <!--@@blkTipoAttivita-->
+              <tr>
+                <td>$$desTipoAttivita</td>
+                <!--@@blkDettaglioAttivita-->
+                  <td>$$desDettaglioAttivita</td>
+                <!--@@blkDettaglioAttivita-->
+              </tr>
+            <!--@@blkTipoAttivita-->
+          </table>
+          <table cellspacing="3" class="detailTable" summary="Questa tabella è costituita da righe">
+            <caption>Validit&agrave;:</caption>
+            <col width="30%"/>
+            <col width="70%"/>
+            <tr>
+              <th scope="row">Data inizio validit&agrave;</th>
+              <td>$$dataInizioValidita</td>
+            </tr>
+            <tr>
+              <th scope="row">Data fine validit&agrave;</th>
+              <td>$$dataFineValidita</td>
+            </tr>
+            <tr>
+              <th scope="row">Ultima modifica manodopera</th>
+              <td>$$ultimaModificaVw</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <hr/>
+      <!-- PIE' DI PAGINA -->
+      $$footer

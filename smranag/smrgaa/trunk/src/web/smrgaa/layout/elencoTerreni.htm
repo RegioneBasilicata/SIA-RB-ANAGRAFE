@@ -1,0 +1,522 @@
+$$head
+<script type="text/javascript" src="../js/checktext.js"></script>
+<script type="text/javascript" src="../js/messaggistica.js"></script>
+<script type="text/javascript" language="javascript1.">
+    function vaiAPagina(pagina)
+    {
+      document.paginazioneUp.paginaCorrente.value=pagina;
+      document.paginazioneDown.paginaCorrente.value=pagina;
+      document.paginazioneUp.submit();
+    }
+    
+    function toggle(checked)
+    {
+      $elenco=document.elenco.idParticella;
+      if ($elenco==null)
+      {
+        return;
+      }
+      if ($elenco.length!=null)
+      {
+        for($i=0;$i<$elenco.length;++$i)
+        {
+          $elenco[$i].checked=checked;
+        }
+      }
+      else
+      {
+        $elenco.checked=checked;
+      }
+      return false;
+    }
+    function cessazione()
+    {
+		  url="cessazioneTerreno.htm";
+		  form=document.elenco;
+		  radio=document.elenco.idParticella;
+		  var coll = radio;
+		  var count = 0;
+		  if(coll != null) {
+		    if(coll.length) {
+		      for(i=0; i < coll.length; i++) {
+		        if(coll[i].checked) {
+		          count++;
+		        }
+		      }
+		      if(count == 0) {
+		        alert("Selezionare almeno una voce dall'elenco");
+		      }
+		      else {
+		        form.action = url;
+		        form.submit();
+		      }
+		    }
+		    else {
+		      if(coll.checked) {
+		        count++;
+		      }
+		      if(count == 0) {
+		        alert("Selezionare almeno una voce dall'elenco");
+		      }
+		      else {
+		        form.action = url;
+		        form.submit();
+		      }
+		    }
+		  }
+		  else {
+		    alert('Non esistono elementi su cui effettuare operazioni');
+		  }
+		}
+  </script>
+</head>
+<body id="homeIndice" onLoad="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+  <div id="pagina" class="colonnaUnica">
+    <!-- INTESTAZIONE -->
+    <!--intestazione-->
+    $$header
+    <!--intestazione-->
+    <h1>
+      <span class="alt"><a name="A-inizio" id="A-inizio"></a>intranet.ruparpiemonte.it</span>
+    </h1>
+
+    <div class="nascosto">
+      <ul>
+        <li>
+          <a href="#A-contenuti">vai ai contenuti</a>
+        </li>
+      </ul>
+    </div>
+
+    <span class="spaziatore">&nbsp;</span>
+
+    <noscript>
+      <div id="avvisoJavascript">
+        <p>
+          <strong>ATTENZIONE! Il browser in uso non supporta le
+            applicazioni Javascript.</strong>
+          <br />
+          Per usufruire in maniera completa di alcuni servizi presenti , potrebbe essere necessario l'utilizzo dei Javascript.
+        </p>
+      </div>
+    </noscript>
+    <hr />
+    <!-- menu di navigazione-->
+    <div id="titoloEmenu">
+      <h2>
+        <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+      </h2>
+      <div id="menuDiNavigazione" title="Menu di navigazione">
+        <ul class="menuTendina" id="menu-2">
+          <li>
+            <a href="index.htm" title="Torna alla pagina principale">home</a>
+          </li>
+          <li class="attivo">
+            gestione anagrafe aziende
+          </li>
+          <li>
+            <a href="#" title="contatti">contatti</a>
+          </li>
+          <li>
+            <a href="#" title="help">help</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <hr />
+    <div style="clear: left">
+    </div>
+    <!-- CORPO -->
+    <div id="corpo">
+      <div id="Utente">
+        <div id="datiUtente">
+          <strong>utente:</strong>$$utente&nbsp;&nbsp;
+          <strong>ente:</strong>$$ente
+        </div>
+        <div id="chiudisessione">
+          <a href="javascript: logout();">chiudi sessione</a>
+        </div>
+      </div>
+      <hr />
+      <!--PRIMA COLONNA -->
+      <h3>
+        Ricerca terreno > Risultato
+        <span class="helpFuori"> <a href="#"> <span
+            class="alt">[help]</span> </a> </span>
+      </h3>
+      <hr />
+      <div class="box">
+        <div class="menuSX1">
+          <ul>
+            <!-- @@blkRicercaAzienda-->
+            <li>
+              <a href="../layout/ricerca.htm">Ricerca Azienda</a>
+            </li>
+            <!-- @@blkRicercaAzienda-->
+            <!--@@blkRicercaPersona-->
+            <li>
+              <a href="../layout/ricercaPersona.htm">Ricerca Persona</a>
+            </li>
+            <!--@@blkRicercaPersona-->
+            <!--@@blkRicercaTerreno-->
+            <li>
+              <a href="../layout/ricercaTerreno.htm" class="on">Ricerca
+                Terreno</a>
+            </li>
+            <!--@@blkRicercaTerreno-->
+            <!--@@blkRicercaNotifica-->
+            <li>
+              <a href="../layout/ricercaNotifica.htm">Ricerca
+                Notifiche</a>
+            </li>
+            <!--@@blkRicercaNotifica-->
+            <!--@@blkVariazioniAzienda-->
+            <li>
+              <a href="../layout/ricercaVariazioni.htm">Ricerca
+                Variazioni</a>
+            </li>
+            <!--@@blkVariazioniAzienda-->
+            <!--@@blkRicercaRichiesta-->
+              <li><a href="../layout/ricercaRichiesta.htm">Ricerca richiesta azienda</a></li>
+            <!--@@blkRicercaRichiesta-->
+            <!-- @@blkNuova -->
+            <li>
+              <a href="../layout/nuovaAziendaAnagrafica.htm">Nuova
+                Azienda</a>
+            </li>
+            <!-- @@blkNuova -->
+            <!-- @@blkNuovaIscrizione -->
+	          <li>
+	            <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+	          </li>
+	          <!-- @@blkNuovaIscrizione -->
+            <!--@@blkNuovaParticella-->
+            <li>
+              <a href="../layout/inserisciTerreno.htm">Nuova
+                Particella</a>
+            </li>
+            <!--@@blkNuovaParticella-->
+            <!--@@blkServizi-->
+            <li>
+              <a href="../layout/servizi.htm">Servizi</a>
+            </li>
+            <!--@@blkServizi-->
+            <!--@@blkReportistica-->
+            <li>
+              <a href="../layout/elencoRicerche.htm">Reportistica</a>
+            </li>
+            <!--@@blkReportistica-->
+            <!--@@blkEstrazioneDati-->
+            <li><a href="../layout/macroCategoriaReport.htm">Estrazione dati</a></li>
+            <!--@@blkEstrazioneDati-->
+            <li><a href="../layout/elencoManuali.htm">Scarico Documentazione Tecnica</a></li>            
+          </ul>
+
+        </div>
+        <div class="menuSX">
+          <ul>
+            <li>
+              <a href="#" class="on">Terreno</a>
+              <ul>
+                <li>
+                  <a
+                    href="javascript: submitForm('ricercaTerrenoDettaglioPratiche.htm', document.elenco, document.elenco.idParticella);">dettaglio</a>
+                </li>
+                <li>
+                  <!--@@blkCessazioneTerreno-->
+                  <a href="javascript:cessazione()">cessazione</a>
+                  <!--@@blkCessazioneTerreno-->
+                </li>
+                <!--@@blkInserisciTerreno-->
+                <li>
+                  <a href="../layout/inserisciTerreno.htm">inserisci</a>
+                </li>
+                <!--@@blkInserisciTerreno-->
+                <!-- @@blkSigmater -->
+                <li>
+                  <a href="javascript:submitForm('../layout/ricercaTerrenoSigmater.htm', document.elenco, document.elenco.idParticella);">SIGMATER</a>
+                </li>
+                <!-- @@blkSigmater -->
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <hr />
+      <!-- SECONDA COLONNA -->
+      <div id="contenuto">
+
+        <table cellspacing="3"
+          summary="Questa tabella contiene i dati del rapporto">
+          <caption>
+            Parametri di ricerca
+          </caption>
+          <tr>
+            <th scope="col" class="center">
+              <!--@@blkLabelFiltroComune-->
+              Comune
+              <!--@@blkLabelFiltroComune-->
+              <!--@@blkLabelFiltroStato-->
+              Stato
+              <!--@@blkLabelFiltroStato-->
+            </th>
+            <th scope="col" class="center">
+              Sz.
+            </th>
+            <th scope="col" class="center">
+              Foglio
+            </th>
+            <th scope="col" class="center">
+              Part.
+            </th>
+            <th scope="col" class="center">
+              Sub.
+            </th>
+          </tr>
+          <tr>
+            <td>
+              <!--@@blkFiltroComune-->
+              $$descComuneParticella ($$siglaProvinciaParticella)
+              <!--@@blkFiltroComune-->
+              <!--@@blkFiltroStato-->
+              $$descStatoEsteroParticella
+              <!--@@blkFiltroStato-->
+            </td>
+            <td class="numeridx">
+              $$sezione
+            </td>
+            <td class="numeridx">
+              $$foglio
+            </td>
+            <td class="numeridx">
+              $$particella
+            </td>
+            <td class="numeridx">
+              $$subalterno
+            </td>
+          </tr>
+        </table>
+
+        <!-- $$err_paginaCorrente -->
+        <!--@@blkElenco-->
+
+        <div class="pulsanti">
+
+          <div class="sin">
+            <input id="seleziona" name="seleziona" type="button"
+              value="seleziona" onClick="toggle(true)"
+              class="inputPulsante" />
+          </div>
+          <div class="des">
+            <input id="deseleziona" name="deseleziona" type="button"
+              value="deseleziona" onClick="toggle(false)"
+              class="inputPulsante" />
+
+          </div>
+        </div>
+        <div class="paginazione">
+          <span class="sx">$$totaleRighe risultati trovati</span>
+
+          <form name="paginazioneUp" method="post"
+            action="elencoTerreni.htm">
+            <div class="dx">
+              <label for="paginaCorrente">
+                pagina
+              </label>
+              <input type="text" name="paginaCorrente"
+                value="$$paginaCorrente" maxlength="4"
+                id="paginaCorrente"
+                onkeyup="document.paginazioneDown.paginaCorrente.value=this.value" />
+              ##err_paginaCorrente di $$totalePagine
+              <span class="vai"> <input type="submit" name="vai"
+                  value="vai" class="vaiInput" /> </span>
+              <!--@@blkGruppoPrecedente-->
+              <span class="bugFix">&nbsp;|&nbsp;</span>
+              <a href="#" onClick="vaiAPagina($$value)" class="$$class"
+                title="$$tooltip"> $$text </a>
+              <!--@@blkGruppoPrecedente-->
+              <!--@@blkGruppoCorrente-->
+              <span class="evidenziato"> $$paginaCorrente </span>
+              <!--@@blkGruppoCorrente-->
+              <!--@@blkGruppoSuccessivo-->
+              <span class="bugFix">&nbsp;|&nbsp;</span>
+              <a href="#" onClick="vaiAPagina($$value)" class="$$class"
+                title="$$tooltip"> $$text </a>
+              <!--@@blkGruppoSuccessivo-->
+              <!--@@blkPaginaPrecedente-->
+              <span class="bugFix">&nbsp;|&nbsp;</span>
+              <a href="#" onClick="vaiAPagina($$pagina)"
+                title="vai alla pagina precedente">&lt;&lt; prec</a>
+              <span class="bugFix">&nbsp;|&nbsp;</span>
+              <!--@@blkPaginaPrecedente-->
+              <!--@@blkPaginaSuccessiva-->
+              <span class="bugFix">&nbsp;|&nbsp;</span>
+              <a href="#" onClick="vaiAPagina($$pagina)"
+                title="vai alla pagina successiva">succ &gt;&gt;</a>
+              <span class="bugFix">&nbsp;|&nbsp;</span>
+              <!--@@blkPaginaSuccessiva-->
+            </div>
+          </form>
+        </div>
+        <div class="scroll">
+          <form name="elenco" method="post" action="elencoTerreni.htm">
+            <input type="hidden" name="from"
+              value="/layout/elencoTerreni.htm" />
+            <table cellspacing="3"
+              summary="Questa tabella contiene i dati del rapporto">
+
+              <tr>
+                <th class="radio" scope="col"></th>
+                <!--@@blkIntestazioneComune-->
+                <th class="center" scope="col">
+                  Comune
+                </th>
+                <!--@@blkIntestazioneComune-->
+                <!--@@blkIntestazioneStato-->
+                <th class="center" scope="col">
+                  Stato
+                </th>
+                <!--@@blkIntestazioneStato-->
+                <th class="center" scope="col">
+                  Sz.
+                </th>
+                <th class="center" scope="col">
+                  Fgl.
+                </th>
+                <th class="center" scope="col">
+                  Part.
+                </th>
+                <th class="center" scope="col">
+                  Sub.
+                </th>
+                <th class="center" scope="col">
+                  <b>Sup. Catastale</b>
+                </th>
+                <th class="center" scope="col">
+                  <b>Sup. Grafica</b>
+                </th>
+                <th class="center" scope="col">
+                  <b>Data inizio decorrenza</b>
+                </th>
+                <th class="center" scope="col">
+                  Data cessazione
+                </th>
+              </tr>
+              <!--@@blkRiga-->
+              <tr>
+                <th class="radio" scope="row">
+                  <input type="checkbox" id="idParticella"
+                    name="idParticella" value="$$idParticella" />
+                </th>
+                <!--@@blkComuneItalia-->
+                <td>
+                  $$descrizioneComune ($$siglaProvincia)
+                </td>
+                <!--@@blkComuneItalia-->
+                <!--@@blkStatoEstero-->
+                <td>
+                  $$statoEstero
+                </td>
+                <!--@@blkStatoEstero-->
+                <td class="numeridx">
+                  $$sezione
+                </td>
+                <td class="numeridx">
+                  $$foglio
+                </td>
+                <td class="numeridx">
+                  $$particella
+                </td>
+                <td class="numeridx">
+                  $$subalterno
+                </td>
+                <td class="numeridx">
+                  $$supCatastale
+                </td>
+                <td class="numeridx">
+                  $$superficieGrafica
+                </td>
+                <td>
+                  $$dataInizioDecorrenza
+                </td>
+                <td>
+                  $$dataCessazione
+                </td>
+              </tr>
+              <!--@@blkRiga-->
+            </table>
+          </form>
+          <div class="paginazione">
+            <span class="sx">$$totaleRighe risultati trovati</span>
+            <form name="paginazioneDown" method="post"
+              action="elencoTerreni.htm">
+              <div class="dx">
+                <label for="paginaCorrente">
+                  pagina
+                </label>
+                <input type="text" name="paginaCorrente"
+                  value="$$paginaCorrente" maxlength="4"
+                  id="paginaCorrente"
+                  onkeyup="document.paginazioneUp.paginaCorrente.value=this.value" />
+                ##err_paginaCorrente di $$totalePagine
+                <span class="vai"> <input type="submit"
+                    name="vai" value="vai" class="vaiInput" /> </span>
+                <!--@@blkGruppoPrecedente-->
+                <span class="bugFix">&nbsp;|&nbsp;</span>
+                <a href="#" onClick="vaiAPagina($$value)"
+                  class="$$class" title="$$tooltip"> $$text </a>
+                <!--@@blkGruppoPrecedente-->
+                <!--@@blkGruppoCorrente-->
+                <span class="evidenziato"> $$paginaCorrente </span>
+                <!--@@blkGruppoCorrente-->
+                <!--@@blkGruppoSuccessivo-->
+                <span class="bugFix">&nbsp;|&nbsp;</span>
+                <a href="#" onClick="vaiAPagina($$value)"
+                  class="$$class" title="$$tooltip"> $$text </a>
+                <!--@@blkGruppoSuccessivo-->
+                <!--@@blkPaginaPrecedente-->
+                <span class="bugFix">&nbsp;|&nbsp;</span>
+                <a href="#" onClick="vaiAPagina($$pagina)"
+                  title="vai alla pagina precedente">&lt;&lt; prec</a>
+                <span class="bugFix">&nbsp;|&nbsp;</span>
+                <!--@@blkPaginaPrecedente-->
+                <!--@@blkPaginaSuccessiva-->
+                <span class="bugFix">&nbsp;|&nbsp;</span>
+                <a href="#" onClick="vaiAPagina($$pagina)"
+                  title="vai alla pagina successiva">succ &gt;&gt;</a>
+                <span class="bugFix">&nbsp;|&nbsp;</span>
+                <!--@@blkPaginaSuccessiva-->
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="pulsanti">
+
+          <div class="sin">
+            <input id="seleziona1" name="seleziona" type="button"
+              value="seleziona" onClick="toggle(true)"
+              class="inputPulsante" />
+          </div>
+          <div class="des">
+            <input id="deseleziona1" name="deseleziona" type="button"
+              value="deseleziona" onClick="toggle(false)"
+              class="inputPulsante" />
+
+          </div>
+        </div>
+        <!--@@blkElenco-->
+        <!-- @@blkSiTerreni -->
+        <p id="nota">
+          Tutte le superfici sono espresse in ettari (ha).
+        </p>
+        <!-- @@blkSiTerreni -->
+        <!-- @@blkNoTerreni -->
+        <p class="errore">
+          Non esistono particelle che soddisfino i parametri di ricerca
+          impostati
+        </p>
+        <!-- @@blkNoTerreni -->
+      </div>
+    </div>
+    <hr />
+    $$footer

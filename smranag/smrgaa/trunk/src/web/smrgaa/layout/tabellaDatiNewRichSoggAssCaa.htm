@@ -1,0 +1,94 @@
+    <table cellspacing="3" summary="Questa tabella è costituita da righe">
+      <caption>Elenco aziende associate</caption>
+      <tr>
+        <th class="center" scope="col" rowspan="2">
+        </th>
+        <th class="center" scope="col" rowspan="2">
+          CUAA
+        </th>
+        <th class="center" scope="col" rowspan="2">
+          Partita iva
+        </th>
+        <th class="center" scope="col" rowspan="2">
+          Denominazione
+        </th>
+        <th class="center" scope="col" rowspan="2">
+          Codie ente
+        </th>
+        <th class="center" scope="col" colspan="4">
+          Sede legale
+        </th>
+        <th class="center" scope="col" rowspan="2">
+          Data ingresso*
+        </th>
+        <th class="center" scope="col" rowspan="2">
+          Data uscita
+        </th>
+      </tr>
+      <tr>
+        <th class="center" scope="col" >
+          Comune
+        </th>
+        <th class="center" scope="col" >
+          Provincia
+        </th>
+        <th class="center" scope="col" >
+          Indirizzo
+        </th>
+        <th class="center" scope="col" >
+          Cap
+        </th>
+      </tr>
+      <!--@@blkElencoAzAssociate -->
+      <tr>   
+        <td>
+          <a href="javascript:modificaRigaDati('elimina', '$$idRiga')" class="cancella" title="elimina Az Ass"></a>
+        </td>
+        <td>
+          $$cuaa
+        </td>
+        <td>  
+          $$partitaIva         
+        </td>
+        <td>
+          $$denominazione
+        </td>
+        <td>
+          $$codiceEnte
+          <input type="hidden" name="codiceEnte" value="$$codiceEnte" />
+        </td>
+        <td>
+          $$desCom
+        </td>
+        <td>
+          $$siglaProvincia
+        </td>
+        <td>
+          $$indirizzo
+        </td>
+        <td>
+          $$cap
+        </td>
+        <td>
+          <input type="text" name="dataIngresso" class="textmedio"
+              value="$$dataIngresso" />
+          $$err_dataIngresso
+        </td>
+        <td>
+          <input type="text" name="dataUscita" class="textmedio"
+              value="$$dataUscita" />
+          $$err_dataUscita
+        </td>
+      </tr>
+      
+      <!--@@blkElencoAzAssociate -->
+    </table>
+    
+    <!-- @@blkNoElenco -->
+    <p class="errore">
+      $$messaggioErrore
+    </p>
+    <!-- @@blkNoElenco -->
+       
+          
+          

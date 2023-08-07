@@ -1,0 +1,446 @@
+$$head
+  <script type="text/javascript" src="../js/checktext.js"></script>
+  <script type="text/javascript" src="../js/messaggistica.js"></script>
+</head>
+<body id="homeIndice" onLoad="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+  <form id="form1" name="form1" method="post" action="../layout/chiusuraNotifica.htm">
+    <div id="pagina" class="colonnaUnica">
+      <input type="hidden" id="idNotifica" name="idNotifica" value="$$idNotifica"/>
+      <input type="hidden" id="paginaChiamante" name="paginaChiamante" value="$$paginaChiamante"/>
+      <!-- INTESTAZIONE -->
+      <div id="intestazione##pathProvincia">
+        $$header
+        <!-- menu di navigazione-->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li><a href="../layout/index.htm" title="Torna alla pagina principale">home</a></li>
+              <li class="attivo">gestione anagrafe aziende</li>
+              <li><a href="#" title="contatti">contatti</a></li>
+              <li><a href="#" title="help">help</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr/>
+      <div style="clear:left">  </div>
+      <!-- CORPO -->
+      <div id="corpo">
+        <div id="Utente">
+          <div id="datiUtente">
+            <strong>utente:</strong>
+            $$utente
+            &nbsp;
+            &nbsp;
+            <strong>ente:</strong>
+            $$ente
+          </div>
+          <div id="chiudisessione">
+            <a href="javascript: logout();">chiudi sessione</a>
+          </div>
+        </div>
+        <hr/>
+        <!--PRIMA COLONNA -->
+        <h3>Gestione Anagrafe Aziende&nbsp;&gt;&nbsp;Notifiche&nbsp;&gt;&nbsp;Chiusura della notifica
+          <span class="helpFuori">
+            <a href="#">
+              <span class="alt">[help]</span>
+            </a>
+          </span>
+        </h3>
+        <hr/>
+        <div class="box">
+          <div class="menuSX1">
+            <ul>
+              <!-- @@blkElencoAziendeRapLegale -->
+                <li><a href="../layout/elencoAziendeRapLegale.htm">Elenco Aziende</a></li>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <!-- @@blkRicercaAzienda-->
+                <li><a href="../layout/ricerca.htm">Ricerche</a></li>
+              <!-- @@blkRicercaAzienda-->
+              <!-- @@blkNuova -->
+              <li><a href="../layout/nuovaAziendaAnagrafica.htm">Nuova Azienda</a></li>
+              <!-- @@blkNuova -->
+              <!-- @@blkNuovaIscrizione -->
+		          <li>
+		            <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+		          </li>
+		          <!-- @@blkNuovaIscrizione -->
+            </ul>
+          </div>
+          <div class="menuSX">
+            <ul>
+              <li><a href="../layout/anagrafica.htm">Anagrafica</a></li>
+              <!-- @@blkAziendeCollegate -->
+            			<li>
+            					<a href="../layout/aziendeCollegate.htm">$$aziendeCollegateLabel</a>
+            			</li>
+            	<!-- @@blkAziendeCollegate -->
+              <!-- @@blkSincronizzaFascicolo -->
+              <li>
+               	<a href="../layout/sincronizzaFascicolo.htm">Sincronizza fascicolo</a>
+              </li>
+              <!-- @@blkSincronizzaFascicolo -->
+              <!-- @@blkSoggettiCollegati -->
+              <li><a href="../layout/contitolari.htm">Soggetti collegati</a></li>
+              <!-- @@blkSoggettiCollegati -->
+              <!-- @@blkContiCorrenti -->
+              <li><a href="../layout/conti_correnti.htm">Conti Correnti</a></li>
+              <!-- @@blkContiCorrenti -->
+              <!-- @@blkUnitaProduttive -->
+              <li><a href="../layout/sedi.htm">Unit&agrave; produttive</a></li>
+              <!-- @@blkUnitaProduttive -->
+              <!-- @@blkTerreni -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniParticellareElenco.htm">Terreni</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		            <a href="../layout/riepiloghi.htm">Terreni</a>
+		            <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkTerreni -->
+		          <!-- @@blkUnitaVitate -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniUnitaArboreeElenco.htm">Unit&agrave; Vitate</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		              <a href="../layout/riepiloghiUnitaArboree.htm">Unit&agrave; Vitate</a>
+		              <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkUnitaVitate -->
+              <!-- @@blkFabbricati -->
+              <li><a href="../layout/fabbricati.htm">Fabbricati e Strutture</a></li>
+              <!-- @@blkFabbricati -->
+              <!-- @@blkAllevamenti -->
+              <li><a href="../layout/allevamenti.htm">Allevamenti</a></li>
+              <!-- @@blkAllevamenti -->
+              <!-- @@blkManodopera -->
+              <li><a href="../layout/manodopera.htm">Manodopera</a></li>
+              <!-- @@blkManodopera -->
+              <!-- @@blkMotoriAgricoli -->
+              <li><a href="../layout/motori_agricoli_incarico.htm">Macchine agricole</a></li>
+              <!-- @@blkMotoriAgricoli -->
+              <!-- @@blkDiritti -->
+                <li><a href="../layout/diritti.htm">Diritti di produzione</a></li>
+              <!-- @@blkDiritti -->
+              <!-- @@blkAttestazioni -->
+              	<li><a href="../layout/attestazioniDettaglio.htm">Dichiarazioni</a></li>
+              <!-- @@blkAttestazioni -->
+              <!-- @@blkDichiarazioniConsistenza -->
+              <li><a href="../layout/dichiarazioneConsistenza.htm">Validazioni </a></li>
+              <!-- @@blkDichiarazioniConsistenza -->
+              <!-- @@blkDocumenti -->
+              <li><a href="../layout/documentiElenco.htm">Documenti</a></li>
+              <!-- @@blkDocumenti -->
+              <!-- @@blkFascicoloDematerializzato -->
+		          <li>
+		            <a href="../layout/fascicoloDematerializzato.htm">Fascicolo<br>elettronico</a>
+		          </li>
+		          <!-- @@blkFascicoloDematerializzato --> 
+              <!-- @@blkGestioneNotifiche -->
+                <li>
+                  <a href="../layout/notifiche.htm" class="on">Notifiche</a>
+                  <ul>
+                    <li>
+                      <a href="#" class="etichetta">chiusura</a>
+                    </li>
+                  </ul>
+                </li>
+              <!-- @@blkGestioneNotifiche -->
+              <!-- @@blkComunicazione10R -->
+                <li>
+                  <a href="../layout/comunicazione10R_dettaglio.htm">Comunicazione 10/R</a>
+                </li>
+              <!-- @@blkComunicazione10R -->
+              <!-- @@blkPratiche -->
+                <li><a href="../layout/pratiche.htm">Pratiche</a></li>
+              <!-- @@blkPratiche -->
+              <!-- @@blkStampaFascicolo -->
+              <li><a href="../layout/scelta_stampa.htm">Stampe</a></li>
+              <!-- @@blkStampaFascicolo -->
+			  <li><a href="../layout/strumenti.htm">Strumenti</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr/>
+        <!-- SECONDA COLONNA -->
+        <div id="contenuto">
+          <div id="intesta">
+            <p class="$$aziendaIntestazione" title="$$tooltipIntestazione" >
+              $$CUAAIntestazione  $$denominazioneIntestazione
+            </p>
+          </div>
+          <br/>
+          <table cellspacing="3" summary="Questa tabella è costituita da righe">
+            <tr>
+              <th scope="row">Tipo</th>
+              <td>$$descTipologiaNotifica</td>
+            </tr>
+            <tr>
+              <th scope="row">Categoria</th>
+              <td>$$descCategoriaNotifica</td>
+            </tr>
+            <tr>
+              <th scope="row">Data</th>
+              <td>$$strDataInserimento</td>
+            </tr>
+            <tr>
+              <th scope="row">Utente</th>
+              <td>$$ultimaModificaVw</td>
+            </tr>
+            <tr>
+              <th scope="row">Descrizione</th>
+              <td>$$descrizione</td>
+            </tr>
+          </table>
+          <table cellspacing="3" summary="Questa tabella è costituita da righe">
+            <tr>
+              <th scope="row">
+                <label for="noteChiusura">Motivo chiusura</label>
+              </th>
+              <td>
+                <textarea id="noteChiusura" name="noteChiusura" rows="10" cols="40">$$noteChiusura</textarea>
+                $$err_noteChiusura
+              </td>
+            </tr>
+          </table>
+          
+          
+          
+          <!-- @@blkUv -->
+          <table cellspacing="3"
+            summary="Questa tabella contiene le particelle associate al documento">
+            <caption>
+              Selezionare le unit&agrave; vitate per le quali chiudere la notifica 
+            </caption>
+            <tr>
+              <th class="center" scope="col" >
+                Sel
+              </th>
+              <th class="center" scope="col" >
+                Comune
+                <acronym title="Provincia">(Prov.)</acronym>
+              </th>
+              <th class="center" scope="col" >
+                <acronym title="Sezione">Sz.</acronym>
+              </th>
+              <th class="center" scope="col" >
+                <acronym title="Foglio">Fgl.</acronym>
+              </th>
+              <th class="center" scope="col" >
+                <acronym title="Particella">Part.</acronym>
+              </th>
+              <th class="center" scope="col" >
+                <acronym title="Subalterno">Sub.</acronym>
+              </th>
+              <th class="center" scope="col" >
+                <acronym title="Progressivo unar">Progr.<br>unar</acronym>
+              </th>
+              <th class="center" scope="col" >
+                Destinazione produttiva
+              </th>
+              <th class="center" scope="col">
+                Vitigno
+              </th>
+              <th class="center" scope="col" >
+                Anno<br>impianto
+              </th>
+              <th class="center" scope="col" >
+                Idoneit&agrave;
+              </th>
+              <th class="center" scope="col" >
+                Anno<br>idoneit&agrave;
+              </th>
+              <th class="center" scope="col" >
+                Sup.<br>vitata
+              </th>
+              <th class="center" scope="col" >
+                Motivo chiusura
+              </th>
+            </tr>          
+            
+            <!-- @@blkElencoUv -->
+            <tr>
+              <td>
+                <input name="idStoricoUnitaArborea"
+                  id="idStoricoUnitaArborea" type="checkbox"
+                  value="$$idStoricoUnitaArborea" $$checkedStorico />
+              </td>
+              <td>
+                $$descComuneParticella ($$siglaProvinciaParticella)
+              </td>
+              <td class="center">
+                $$sezione
+              </td>
+              <td class="center" >
+                $$foglio
+              </td>
+              <td class="center" >
+                $$particella
+              </td>
+              <td class="center" >
+                $$subalterno
+              </td>
+              <td class="center" >
+                $$progrUnar
+              </td>
+              <td>
+                $$destProd
+              </td>
+              <td>
+                $$descVitigno
+              </td>
+              <td class="center" >
+                $$annoImpianto
+              </td>
+              <td>
+                $$descIdoneita
+              </td>
+              <td class="center" >
+                $$annoIdoneita
+              </td>
+              <td class="numeridx">
+                $$supVitata
+              </td>
+              <td class="center">
+                <textarea name="noteChiusuraUV" id="noteChiusuraUV" cols="40">$$noteChiusuraUV</textarea>
+                $$err_noteChiusuraUV
+              </td>              
+            </tr>
+            <!-- @@blkElencoUv -->
+          </table>
+          
+          <div class="pulsanti">
+            <div class="sin">
+              <a
+                href="javascript:selectAll(document.form1.idStoricoUnitaArborea);">seleziona</a>
+            </div>
+            <div class="des">
+              <a
+                href="javascript:deselectAll(document.form1.idStoricoUnitaArborea);">deseleziona</a>            </div>
+          </div>
+          
+          <!-- @@blkUv -->
+          
+          <!-- @@blkParticelle -->
+          <table cellspacing="3"
+            summary="Questa tabella contiene le particelle associate al documento">
+            <caption>
+              Selezionare le particelle per le quali chiudere la notifica
+            </caption>
+            <tr>
+              <th class="center" scope="col" rowspan="2">Sel</th>
+              <th class="center" scope="col" rowspan="2">Comune<acronym title="Provincia">(Prov.)</acronym></th>
+              <th class="center" scope="col" rowspan="2"><acronym title="Sezione">Sz.</acronym></th>
+              <th class="center" scope="col" rowspan="2"><acronym title="Foglio">Fgl.</acronym></th>
+              <th class="center" scope="col" rowspan="2"><acronym title="Particella">Part.</acronym></th>
+              <th class="center" scope="col" rowspan="2"><acronym title="Subalterno">Sub.</acronym></th>
+              <th class="center" scope="col" colspan="2"><acronym title="Conduzione">Cond.</acronym></th>
+              <th class="center" scope="col" rowspan="2">Uso del suolo / variet&agrave;</th>
+              <th class="center" scope="col" rowspan="2">Sup. util.</th>
+              <th class="center" scope="col" rowspan="2" >Motivo chiusura</th>
+            </tr>
+            <tr>
+              <th class="center" scope="col"></th>
+              <th class="center" scope="col">%</th>
+            </tr>
+            
+            <!-- @@blkElencoParticelle -->
+            <tr>
+            <!-- @@blkChiaveParticelle -->
+              <td rowspan="$$rowTot" >
+                <input type="checkbox" name="idStoricoParticella" value="$$idStoricoParticella" id="idStoricoParticella" />
+              </td>
+              <td rowspan="$$rowTot" >
+                $$descComuneParticella ($$siglaProvinciaParticella)
+              </td>
+              <td class="center" rowspan="$$rowTot" >
+                $$sezione
+              </td>
+              <td class="center" rowspan="$$rowTot" >
+                $$foglio
+              </td>
+              <td class="center" rowspan="$$rowTot" >
+                $$particella
+              </td>
+              <td class="center" rowspan="$$rowTot" >
+                $$subalterno
+              </td>
+              <td class="center" rowspan="$$rowCond">
+                $$idTitoloPosseso
+              </td>
+              <td class="center" rowspan="$$rowCond">
+                $$percentualPossesso
+              </td>
+              <td>
+                $$descTipologiaProduttiva
+              </td>
+              <td class="center" >
+                $$supUtilizzo
+              </td>
+              <td class="center" rowspan="$$rowTot">
+                <textarea name="noteChiusuraParticelle" id="noteChiusuraParticelle" cols="40">$$noteChiusuraParticelle</textarea>
+                $$err_noteChiusuraParticelle
+              </td>
+            <!-- @@blkChiaveParticelle -->
+            <!-- @@blkChiaveConduzione -->
+              <td class="center" rowspan="$$rowCond">
+                $$idTitoloPosseso
+              </td>
+              <td class="center" rowspan="$$rowCond">
+                $$percentualPossesso
+              </td>
+              <td>
+                $$descTipologiaProduttiva
+              </td>
+              <td class="center" >
+                $$supUtilizzo
+              </td>
+            <!-- @@blkChiaveConduzione -->
+            <!-- @@blkChiaveUtilizzo -->
+              <td>
+                $$descTipologiaProduttiva
+              </td>
+              <td class="center" >
+                $$supUtilizzo
+              </td>
+            <!-- @@blkChiaveUtilizzo -->
+            </tr>
+            <!-- @@blkElencoParticelle -->           
+          </table>
+          
+          <div class="pulsanti">
+            <div class="sin">
+              <a
+                href="javascript:selectAll(document.form1.idStoricoParticella);">seleziona</a>
+            </div>
+            <div class="des">
+              <a
+                href="javascript:deselectAll(document.form1.idStoricoParticella);">deseleziona</a>            </div>
+          </div>
+          
+          <!-- @@blkParticelle -->
+          
+          
+          
+          
+          
+          <div class="pulsanti">
+            <div class="sin">
+              <input type="submit" name="salva" value="salva" class="inputPulsante highlighted"/>
+              $$err_salva
+            </div>
+            <div class="des">
+              <input type="submit" name="annulla" value="annulla" class="inputPulsante annulla"/>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr/>
+      <!-- PIE' DI PAGINA -->
+      $$footer

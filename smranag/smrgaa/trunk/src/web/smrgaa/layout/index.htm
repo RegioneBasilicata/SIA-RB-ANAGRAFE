@@ -1,0 +1,171 @@
+$$head
+  <title>Anagrafe Agricola della Regione TOBECONFIG</title>
+  <script type="text/javascript" src="../js/checktext.js"></script>
+  <script  type="text/javascript" src="../js/messaggistica.js"></script>
+</head>
+<body id="homeIndice" onLoad="systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+  <div id="pagina" class="colonnaUnica">
+    <!-- INTESTAZIONE -->
+    <div id="intestazione##pathProvincia">
+      $$header
+      <!-- menu di navigazione-->
+      <div id="titoloEmenu">
+        <h2>
+          <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+        </h2>
+        <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li class="attivo">home</li>
+              <li><a href="#" title="contatti">contatti</a></li>
+              <li><a href="#" title="help">help</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr/>
+      <div style="clear:left"></div>
+      <!-- CORPO -->
+      <div id="corpo">
+        <div id="Utente">
+          <div id="datiUtente">
+            <strong>utente:</strong>
+            $$utente
+            &nbsp;
+            &nbsp;
+            <strong>ente:</strong>
+            $$ente
+          </div>
+          <div id="chiudisessione">
+            <a href="javascript: logout();">chiudi sessione</a>
+          </div>
+        </div>
+        <hr/>
+        <!-- PRIMA COLONNA -->
+        <div id="content">
+          <h3>Gestione anagrafe aziende</h3>
+          <!-- @@blkElencoAziendeRapLegale -->
+            <h4 class="vaiTit">
+                <a href="../layout/elencoAziendeRapLegale.htm">Ricerca Azienda</a>
+            </h4>
+           <p class="desc">Funzionalit&agrave; per la ricerca di un'azienda all'interno dell'Anagrafe Agricola Unica.
+               Di ogni azienda &egrave; possibile visualizzare
+               sia i dati anagrafici che i dati inerenti la sua consistenza.
+            </p>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <!-- @@blkRicercaAzienda-->
+            <h4 class="vaiTit">
+              <a href="../layout/ricerca.htm">Ricerca Azienda</a>
+            </h4>
+            <p class="desc">Funzionalit&agrave; per la ricerca di un'azienda all'interno dell'Anagrafe Agricola Unica.
+               La ricerca pu&ograve; essere sia di tipo
+               puntuale (mediante CUAA dell'azienda), sia di tipo avanzato (mediante
+               numerosi filtri quali la denominazione e l'ubicazione dell'azienda). Di
+               ogni azienda &egrave; possibile visualizzare ed  aggiornare sia i dati anagrafici
+               che i dati inerenti la sua consistenza.
+            </p>
+          <!-- @@blkRicercaAzienda-->
+          <!--@@blkRicercaTerreno-->
+            <h4 class="vaiTit">
+              <a href="../layout/ricercaTerreno.htm">Ricerca Terreno</a>
+            </h4>
+            <p class="desc">Funzionalit&agrave; per la ricerca di particelle catastali. Di ogni mappale &egrave;
+               possibile  visualizzare le informazioni di dettaglio, quali i dati
+               territoriali, le aziende che lo hanno in conduzione nonch&egrave; l'indicazione
+               sull'uso del suolo. &Egrave; inoltre possibile effettuare operazioni di
+               aggiornamento dei dati inerenti la singola particella catastale.
+            </p>
+          <!--@@blkRicercaTerreno-->
+          <!--@@blkRicercaPersona-->
+            <h4 class="vaiTit">
+              <a href="../layout/ricercaPersona.htm">Ricerca Persona</a>
+            </h4>
+            <p class="desc">Funzionalit&agrave; per la ricerca di un'azienda mediante i dati di una persona
+               fisica ad essa collegata, sia con ruolo attivo che con ruolo ormai chiuso.
+            </p>
+          <!--@@blkRicercaPersona-->
+          <!--@@blkRicercaNotifica-->
+            <h4 class="vaiTit">
+              <a href="../layout/ricercaNotifica.htm">Ricerca Notifiche</a>
+            </h4>
+            <p class="desc">Funzionalit&agrave; per la ricerca e gestione delle comunicazioni tra la PA di
+               competenza ed il gestore del fascicolo di un'azienda.
+            </p>
+          <!--@@blkRicercaNotifica-->
+          <!--@@blkVariazioniAzienda-->
+            <h4 class="vaiTit">
+              <a href="../layout/ricercaVariazioni.htm">Ricerca variazioni</a>
+            </h4>
+            <p class="desc">Funzionalit&agrave; per la visualizzazione delle variazioni sulle Aziende dell'Anagrafe Agricola Unica.
+            </p>
+          <!--@@blkVariazioniAzienda-->
+          <!--@@blkRicercaRichiesta-->
+             <h4 class="vaiTit">
+              <a href="../layout/ricercaRichiesta.htm">Ricerca richiesta azienda</a>
+            </h4>
+            <p class="desc">Funzionalit&agrave; per la visualizzazione e la gestione delle richieste inserite dalle aziende sul sistema.
+            </p>
+          <!--@@blkRicercaRichiesta-->
+          <!--@@bloccoInserimento-->
+            <h4 class="vaiTit">
+              <a href="../layout/nuovaAziendaAnagrafica.htm">Nuova azienda</a>
+            </h4>
+            <p class="desc">Funzionalit&agrave; per l'inserimento di una nuova azienda all'interno
+               dell'Anagrafe Agricola Unica.
+            </p>
+          <!--@@bloccoInserimento-->
+          <!-- @@blkNuovaIscrizione -->
+            <h4 class="vaiTit">
+              <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+            </h4>
+            <p class="desc">Funzionalit&agrave; per l'inserimento di una richiesta di iscrizione di una nuova azienda all'Anagrafe Agricola Unica
+            </p>
+          <!-- @@blkNuovaIscrizione -->
+          <!--@@blkNuovaParticella-->
+            <h4 class="vaiTit">
+              <a href="../layout/inserisciTerreno.htm">Nuova particella</a>
+            </h4>
+            <p class="desc">Funzionalit&agrave; per l'inserimento di una nuova particella all'interno 
+               dell'Anagrafe Agricola Unica.
+            </p>
+          <!--@@blkNuovaParticella-->
+          <!--@@blkServizi-->
+            <h4 class="vaiTit">
+              <a href="../layout/servizi.htm" >Servizi</a>
+            </h4>
+            <p class="desc">Funzionalit&agrave; di supporto  dell'Anagrafe Agricola Unica.
+            </p>
+          <!--@@blkServizi--> 
+          <!--@@blkReportistica-->
+            <h4 class="vaiTit">
+              <a href="../layout/elencoRicerche.htm">Reportistica</a>
+            </h4>
+            <p class="desc">Funzionalit&agrave; per la creazione di report.</p>
+          <!--@@blkReportistica-->
+          <!--@@blkEstrazioneDati-->
+            <h4 class="vaiTit">
+              <a href="../layout/macroCategoriaReport.htm">Estrazione dati</a>
+            </h4>
+            <p class="desc">Funzionalit&agrave; atta all'estrazione dei dati.</p>
+          <!--@@blkEstrazioneDati-->
+          <!--@@blkBiologico-->
+            <h4 class="vaiTit">
+              <a href="../layout/biologicoFiltri.htm">Operatori Biologici</a>
+            </h4>
+            <p class="desc">Funzionalit&agrave; per ricercare e estrarre l'elenco degli operatori biologici</p>
+          <!--@@blkBiologico-->	
+          <h4 class="vaiTit">
+            <a href="../layout/elencoManuali.htm">Scarico Documentazione Tecnica</a>
+          </h4>
+          <p class="desc">Funzionalit&agrave; per la visualizzazione e lo scarico dei documento tecnici in formato pdf
+          </p>
+          <h4 class="vaiTit">
+            <a href="../layout/messaggi_utente.htm">Gestione messaggi del Sistema Informativo Agricoltura della TOBECONFIG</a>
+          </h4>
+          <p class="desc">Funzionalit&agrave; per la visualizzazione delle variazioni sulle Aziende dell'Anagrafe Agricola Unica.
+          </p>
+        </div>
+        <!-- SECONDA COLONNA -->
+      </div>
+      <hr/>
+      <!-- PIE' DI PAGINA -->
+      $$footer

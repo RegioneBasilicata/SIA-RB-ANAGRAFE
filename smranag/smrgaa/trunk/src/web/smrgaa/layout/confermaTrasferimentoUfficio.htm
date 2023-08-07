@@ -1,0 +1,96 @@
+$$head
+  <script type="text/javascript">
+    function abbandona()
+    {
+      var lastAction = document.form1.action;
+      document.form1.action = "../layout/trasferimentoUfficio.htm";
+      document.form1.operazione.value = "annullaDaConferma";
+      document.form1.submit();
+      document.form1.action = lastAction;
+    }
+    
+    function goToOperazioneBlockedAll(url, form, operazione, obj) {
+      obj.onclick = '';
+      form.annulla.onclick = '';
+      form.operazione.value = operazione;
+      form.action = url;
+      form.submit();
+    }
+    
+    function setBlocked(form, obj) {
+      obj.onclick = '';
+      form.annulla.onclick = '';
+  }
+  </script>
+  <script type="text/javascript" src="../js/checktext.js"></script>
+  <script type="text/javascript" src="../js/gestioneUtiliti.js"></script>
+  <script type="text/javascript" src="../js/messaggistica.js"></script>
+</head>
+<body id="homeIndice" onLoad="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+  <div id="pagina" class="colonnaUnica">
+    <form id="form1" name="form1" action="../layout/confermaTrasferimentoUfficio.htm" method="post">
+      <input type="hidden" name="operazione" value="" id="operazione" />
+    <!-- INTESTAZIONE -->
+      <div id="intestazione##pathProvincia">	
+    <!--intestazione-->
+$$header
+      <!-- menu di navigazione-->
+        <div id="titoloEmenu">
+          <h2><span class="alt">Anagrafe agricola della Regione TOBECONFIG</span></h2>
+        </div>
+      </div>
+      <hr/>
+
+      <!-- CORPO -->
+      <div id="corpo">
+        <hr/>
+        <!-- PRIMA COLONNA -->
+        <div id="content">
+			    <p class="errore">Attenzione</p>
+			    <p>Confermando tutte le aziende elencate saranno trasferite dall'ufficio di zona $$nomeIntermediario_1 <br>
+			       all'ufficio di zona $$nomeIntermediario_2. Sei sicuro di voler proseguire?</p>
+             
+             
+          <!-- @@blkErrore -->
+            <p class="errore">$$messaggioErrore</p>
+          <!-- @@blkErrore --> 
+          
+          
+          <!-- @@blkAziende -->
+          <table cellspacing="3" summary="Tabella ">
+            <caption>Elenco aziende</caption>
+            <tr>
+              <th scope="col" class="center" >CUAA</th>
+              <th scope="col" class="center" >Partita IVA</th>
+              <th scope="col" class="center" >Denominazione</th>
+              <th scope="col" class="center" >Sede Legale</th>
+            </tr>
+            <!-- @@blkElencoAziende -->
+            <tr>
+              <td>$$cuaa
+                <input type="hidden" name="idAzienda" value="$$idAzienda">
+              </td>
+              <td>$$partitaIva</td>
+              <td>$$nomeAzienda</td>
+              <td>$$sedeLegale</td>
+            </tr>
+            <!-- @@blkElencoAziende -->
+          </table>
+          <!-- @@blkAziende -->
+          
+          <div class="pulsanti">
+          <div class="sin">
+            <input type="button" id="conferma" value="conferma" name="conferma" class="inputPulsante highlighted" onClick="javascript:setBlocked(document.forms[0], this);goToOperazione('../layout/confermaTrasferimentoUfficio.htm', document.form1, 'attenderePrego');" />
+          </div>
+          <div class="des">
+            <input type="button" value="annulla" name="annulla" class="inputPulsante" onClick="javascript:abbandona();" />
+          </div>
+           </div>
+          
+          
+        </div>
+        
+      </div>
+      <hr/>
+    </form>
+$$footer

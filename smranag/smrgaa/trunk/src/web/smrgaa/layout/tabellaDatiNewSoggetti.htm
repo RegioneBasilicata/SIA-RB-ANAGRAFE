@@ -1,0 +1,184 @@
+    <table cellspacing="3" summary="Questa tabella è costituita da righe">
+      <caption>Soggetti collegati</caption>
+      <tr>
+        <th class="center" scope="col" rowspan="2">
+          <a href="javascript:modificaRigaDati('inserisci','')" class="aggiungi" title="inserisci Soggetti"></a>
+        </th>
+        <th class="center" scope="col" rowspan="2">
+          Ruolo*
+        </th>
+        <th class="center" scope="col" rowspan="2">
+          Data inizio ruolo*
+        </th>
+        <th class="center" scope="col" rowspan="2">
+          Codice fiscale*
+        </th>
+        <th class="center" scope="col" rowspan="2">
+          Cognome*
+        </th>
+        <th class="center" scope="col" rowspan="2">
+          Nome*
+        </th>
+        <th scope="col" class="center" colspan="4">
+          Residenza
+        </th>
+        <th class="center" scope="col" rowspan="2">
+          Telefono
+        </th>
+        <th class="center" scope="col" rowspan="2">
+          Email*
+        </th>
+      </tr>
+      <tr>
+        <th class="center" scope="col">
+          Prov*
+        </th>
+        <th class="center" scope="col">
+          Comune*
+        </th>
+        <th class="center" scope="col">
+          Indirizzo*
+        </th>
+        <th class="center" scope="col">
+          CAP*
+        </th>
+      </tr>
+      <!--@@blkElencoSoggetti -->
+      <!--@@blkRapLegale -->
+      <tr>   
+        <td></td>
+        <td>
+          RAPPRESENTANTE LEGALE / TITOLARE
+        </td>
+        <td>
+          $$dataInizioRuolo
+        </td>
+        <td>
+          $$codiceFiscale
+        </td>
+        <td>
+          $$cognome
+        </td>
+        <td>
+          $$nome
+        </td>
+        <td>
+          $$sglProv
+        </td>
+        <td>
+          $$desCom
+        </td>
+        <td>
+          $$indirizzo
+        </td>
+        <td>
+          $$cap
+        </td>
+        <td>
+          $$telefono
+        </td>
+        <td>
+          $$email
+        </td>                              
+      </tr>
+      <!--@@blkRapLegale -->
+      <!--@@blkAltroSoggetto -->
+      <tr>   
+        <td>
+          <a href="javascript:modificaRigaDati('elimina', '$$idRiga')" class="cancella" title="elimina soggetto"></a>
+          $$err_generico
+        </td>
+        <td>
+          <select name="idRuolo" id="idRuolo" >
+            <option value="" ></option>
+            <!-- @@blkElencoRuoli -->
+            <option value="$$idRuolo" $$selected>
+              $$descRuolo
+            </option>
+            <!-- @@blkElencoRuoli -->
+          </select>
+          $$err_idRuolo
+        </td>
+        <td>
+          <input type="text" name="dataInizioRuolo" class="textmedio"
+            value="$$dataInizioRuolo" />
+          $$err_dataInizioRuolo
+        </td>
+        <td>
+          <input type="text" name="codiceFiscale" class="textmediolungo"
+            value="$$codiceFiscale" />
+          $$err_codiceFiscale
+        </td>
+        <td>
+          <input type="text" name="cognome" class="textmediolungo"
+            value="$$cognome" />
+          $$err_cognome
+        </td>
+        <td>
+          <input type="text" name="nome" class="textmediolungo"
+            value="$$nome" />
+          $$err_nome
+        </td>
+        <td>
+          <select name="istatProvincia" id="istatProvincia"
+            onchange="javascript: modificaComboComune('$$idRiga');">
+            <option value="" ></option>
+            <!-- @@blkElencoProvince -->
+            <option value="$$istatProvincia" $$selected>
+              $$sglProv
+            </option>
+            <!-- @@blkElencoProvince -->
+          </select>
+          $$err_istatProvincia
+        </td>
+        <td>
+          <div id="idComune$$idRiga">
+            <select name="istatComune" id="istatComune"
+              onchange="javascript: modificaCap('$$idRiga');">
+              <!-- @@blkElencoComuni -->
+              <option value="$$istatComune" $$selected>
+                $$desCom
+              </option>
+              <!-- @@blkElencoComuni -->
+              <!-- @@blkNoComuni -->
+              <option value="" ></option>
+              <!-- @@blkNoComuni -->
+            </select>
+            $$err_istatComune
+          </div>
+        </td>
+        <td>
+          <input type="text" name="indirizzo" class="textmediolungo"
+            value="$$indirizzo" />
+          $$err_indirizzo
+        </td>
+        <td>
+          <div id="idCap$$idRiga">
+	          <input type="text" name="cap" class="textmedio"
+	            value="$$cap" />
+	          $$err_cap
+	        </div>
+        </td>
+        <td>
+          <input type="text" name="telefono" class="textmedio"
+            value="$$telefono" />
+          $$err_telefono
+        </td>
+        <td>
+          <input type="text" name="email" class="textmedio"
+            value="$$email" />
+          $$err_email
+        </td>                                 
+      </tr>
+      <!--@@blkAltroSoggetto -->              
+      <!--@@blkElencoSoggetti -->
+    </table>
+    
+    <!-- @@blkNoElenco -->
+    <p class="errore">
+      $$messaggioErrore
+    </p>
+    <!-- @@blkNoElenco -->
+       
+          
+          

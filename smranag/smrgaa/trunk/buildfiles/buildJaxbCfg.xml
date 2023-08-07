@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+
+<!--
+ Copyright 2003 Sun Microsystems, Inc. All rights reserved.
+-->
+
+<project basedir="../" default="run">
+
+    <property file="buildfiles/buildJaxbCfg.properties"/>
+
+    <path id="classpath">
+        <fileset dir="lib" includes="*.jar"/>
+        <!-- pathelement location="."/ -->
+        <!-- pathelement location="build/classes"/-->
+    </path>
+
+    <taskdef name="xjc" classname="com.sun.tools.xjc.XJCTask">
+        <classpath refid="classpath"/>
+    </taskdef>
+
+    <!-- compile Java source files -->
+    <target name="compile">
+
+        <antcall target="fascicolo" />
+        <!-- antcall target="altrastampa" / -->
+
+    </target>
+
+    <target name="run" depends="compile">
+        <!--
+        <echo message="Running the sample application..."/>
+        <java classname="Main" fork="true">
+            <classpath refid="classpath" />
+        </java>
+        -->
+    </target>
+    
+    <target name="fascicolo" if="fascicolo">
+        <echo message="[fascicolo] Elimino i vecchi file"/>
+        <delete failonerror="false">
+          <fileset dir="${basedir}/src/java/${fascicolo.srcpath}" includes="*"/>
+        </delete>
+        <echo message="[fascicolo] Sto compilando lo schema xsd"/>
+        <xjc schema="${basedir}/conf/resources/schemas/${fascicolo.schema}"
+             binding="${jaxbBinding}"
+             destdir="${destdir}"
+             package="${fascicolo.srcpackage}" />
+    </target>
+    
+    <target name="altrastampa" if="altrastampa">
+      <!-- copiare, incollare ed adattare il contenuto del target 'fascicolo' -->
+    </target>
+
+</project>
+
+
+

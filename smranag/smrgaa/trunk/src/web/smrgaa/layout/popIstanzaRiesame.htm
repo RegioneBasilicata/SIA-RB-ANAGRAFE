@@ -1,0 +1,109 @@
+$$head
+	<script src="../js/checktext.js" type="text/javascript"></script>
+</head>
+<body id="popup">
+	<form id="form1" name="form1" method="post" action="../layout/popIstanzaRiesame.htm">
+    <div id="contenutopop">
+     	<table cellspacing="3" summary="Questa tabella contiene i dati della chiave logica della particella selezionata">
+       	<tr>
+     			<th class="center" scope="col">Comune (Prov.)</th>
+     			<th class="center" scope="col">Sez.</th>
+     			<th class="center" scope="col">Foglio</th>
+     			<th class="center" scope="col">Part.</th>
+     			<th class="center" scope="col">Sub.</th>
+     			<th class="center" scope="col">Sup. catastale (ha)</th>
+          <th class="center" scope="col">Sup. grafica (ha)</th>
+     		</tr>
+     		<tr>
+    			<td>$$descComuneParticella $$siglaProvinciaParticella</td>
+     			<td>$$sezione</td>
+     			<td class="numeridx">$$foglio</td>
+     			<td class="numeridx">$$particella</td>
+     			<td>$$subalterno</td>
+     			<td class="numeridx">$$supCatastale</td>
+          <td class="numeridx">$$superficieGrafica</td>
+     		</tr>
+      </table>
+      <!-- @@blkElencoFasiIstanza -->     
+		  <table cellspacing="3" summary="Questa tabella contiene i dati dell'istanza di riesame">
+        <caption>
+          Istanza di riesame
+        </caption>
+				<tr>
+				  <th class="center" >
+            Anno
+          </th>
+          <th class="center" >
+            Repertorio istanza
+          </th>
+          <th class="center" >
+            Fase
+          </th>
+          <th class="center" >
+            Data richiesta
+          </th>
+          <th class="center" >
+            Data evasione
+          </th>
+          <th class="center" >
+            Data foto<br>interpretazione
+          </th>
+          <th class="center" >
+            Data invio<br>GIS
+          </th>
+          <th class="center" >
+            Data convocazione
+          </th>
+          <th class="center" >
+            Sospensione<br>scaduta il
+          </th>
+          <th class="center" >
+            Data annullamento
+          </th>
+          <th class="center" >
+            Note
+          </th>          
+        </tr>
+        <!-- @@blkFaseIstanza -->
+        <tr>
+          <td class="center">
+            $$anno
+          </td>
+          <td>
+            $$protocolloIstanza
+          </td>    
+          <td>
+            $$descFase
+          </td>  
+          <td class="center">
+            $$dataRichiesta
+          </td>
+          <td class="center" >
+            $$dataEvasione
+          </td>
+          <td class="center" >
+            $$dataFotointerpretazione
+          </td>
+          <td class="center" >
+            $$dataInvioGis
+          </td>
+          <td class="center" >
+            $$dataSitiConvoca
+          </td>
+          <td class="center" >
+            $$dataSospensioneScaduta
+          </td>
+          <td class="center" >
+            $$dataAnnullamento
+          </td>
+          <td>
+            $$note
+          </td>
+        </tr>
+        <!-- @@blkFaseIstanza -->
+			</table>
+			<!-- @@blkElencoFasiIstanza -->
+    </div>
+	</form>
+</body>
+</html>

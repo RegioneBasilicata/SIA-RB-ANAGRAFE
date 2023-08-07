@@ -1,0 +1,51 @@
+$$head
+  <script src="../js/checktext.js" type="text/javascript"></script>
+  <script type="text/javascript">
+
+    function modifica() {
+      document.form1.operazione.value = 'modificaResidenzaSoggetto';
+      document.form1.submit();
+    }
+
+    function storicizza() {
+      document.form1.operazione.value = 'storicizzaResidenzaSoggetto';
+      document.form1.submit();
+    }
+
+  </script>
+</head>
+<body id="popup">
+  <form method="post" id="form1" name="form1" action="$$form">
+    <input type="hidden" id="operazione" name="operazione" value="$$operazione"/>
+    <div id="contenutopop">
+      <div id="content">
+        <p class="errore">Attenzione: &egrave; stata modificata la residenza del soggetto</p>
+        <table cellspacing="3" summary="Questa tabella contiene i dati del rapporto">
+          <tr>
+            <td class="intestazione2">Se la modifica &egrave; dovuta alla correzione di errori di digitazione premere:</td>
+          </tr>
+          <tr>
+            <td>
+              <div class="azioni"><input class="inputPulsante" type="button" value="modifica" onClick="javascript: modifica();"/></div>
+            </td>
+          </tr>
+          <tr>
+            <td class="intestazione2">Se la modifica corrisponde ad un cambio di residenza del soggetto premere:</td>
+          </tr>
+          <tr>
+            <td><div class="pulsanti">  
+              <div class="sin">
+                <input class="inputPulsante" type="button" value="storicizza" onClick="javascript: storicizza();"/>
+              </div>
+              <div class="des">
+                <input type="submit" id="indietroModificaResidenza" name="indietroModificaResidenza" value="annulla" class="inputPulsante annulla"/>
+              </div></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</form>
+</body>
+</html>

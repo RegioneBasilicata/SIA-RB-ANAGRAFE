@@ -1,0 +1,55 @@
+$$head
+  <script src="../js/checktext.js" type="text/javascript"></script>
+  <script type="text/javascript">
+
+    function goTo(url) {
+      document.form1.action = url;
+      document.form1.submit();
+    }
+
+  </script>
+</head>
+<body id="homeIndice">
+  <form id="form1" name="form1" method="post" action="">
+    <div id="pagina" class="colonnaUnica">
+      <input type="hidden" id="CUAA" name="CUAA" value="$$CUAA"/>
+      <input type="hidden" id="CUAASubentro" name="CUAASubentro" value="$$CUAASubentro"/>
+      <input type="hidden" id="radiobuttonAzienda" name="radiobuttonAzienda" value="$$radiobuttonAzienda"/>
+      <input type="hidden" id="idAziendaSubentro" name="idAziendaSubentro" value="$$idAziendaSubentro"/>
+      <input type="hidden" id="cuaaProvenienza" name="cuaaProvenienza" value="$$cuaaProvenienza"/>
+      <!-- INTESTAZIONE -->
+      <div id="intestazione##pathProvincia">
+        $$header
+        <!-- menu di navigazione-->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+        </div>
+      </div>
+      <hr/>
+      <div style="clear:left"></div>
+      <!-- CORPO -->
+      <div id="corpo">
+        <hr/>
+        <!-- PRIMA COLONNA -->
+        <div id="content">
+          <p class="errore">Attenzione</p>
+          <p>$$domanda</p>
+          
+          <div class="pulsanti">
+          <div class="sin">
+            <input type="button" value="conferma" name="conferma" class="inputPulsante highlighted" onClick="javascript: goTo('$$pageNext')"/>
+          </div>
+          <div class="des">
+            <input type="button" value="annulla" name="annulla" class="inputPulsante" onClick="javascript: goTo('$$pageBack')"/>
+          </div>
+          </div>
+          
+        </div>
+        <!-- SECONDA COLONNA -->
+      </div>
+      <hr/>
+    </form>
+    <!-- PIE' DI PAGINA -->
+    $$footer

@@ -1,0 +1,29 @@
+/* AGRICOLTURA  NOMESERVIZIO*/
+
+@import "/css_rupar/strutturaGeneraleFluido.css";	/* impostazione della struttura della pagina */
+@import "/css_rupar/cavalieriniServizi.css";		/* gestione dei cavalierini */
+@import "/css_rupar/menuTendinaServizi.css";		/* gestione dei menu a tendina */
+@import "/css_rupar/cavalieriniOrizzServizi.css";		/* gestione dei cavalierini (elimina errore js)*/
+@import "/css_rupar/menuTendinaOrizzServizi.css";		/* gestione dei menu a tendina elimina errore js)*/
+@import "/css_rupar/agricoltura/skinAgricolturaFluido.css";	/*caratteristiche generali dei servizi agricoltura*/	
+
+/* !!! inizio SOSTITUIRE ALLO SKIN DI SERVIZIO !!!*/
+@import "/css_rupar/agricoltura/templateBASE/skin_templateBASE.css"; 
+@import "/sandbox/template/repository/patterns/css/skinPatterns.css";
+/* !!! fine SOSTITUIRE ALLO SKIN DI SERVIZIO !!! */
+
+
+/*caratteristiche del servizio*/
+
+/*regola per ovviare ad un incongruenza tra la classe attivo e on */
+.menuTendina li.attivo {
+	color		: #444;
+	padding		: 0 14px;
+	font-weight:bold;	
+	background	: #fff;
+	color		: #4f4f4c;
+	border:1px solid #4f4f4c;
+	border-bottom:1px solid #fff
+}
+
+.menuTendina {margin: -1px 0 0 0;}

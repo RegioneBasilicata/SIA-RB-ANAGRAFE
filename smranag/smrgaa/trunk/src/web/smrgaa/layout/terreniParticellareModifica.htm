@@ -1,0 +1,1687 @@
+$$head
+<script src="../js/checktext.js" type="text/javascript"></script>
+<script src="../js/checkdata.js" type="text/javascript"></script>
+<script type="text/javascript" src="../js/messaggistica.js"></script>
+<script type="text/javascript">
+		
+	// Metodo per aprire una pop-up ed effettuare su di essa il submit del form
+	function newWindowSubmit(mypage, myname, w, h, scroll, type, indice, numTotaleUtilizzo, provenienza) {
+		var winl = (screen.width - w) / 2;
+			var wint = (screen.height - h) / 2;
+			winprops =    'height='+h+',width='+w+',top='+wint+',left='+winl+',scrollbars='+scroll+',resizable';
+			win = window.open('', myname, winprops);
+
+			if (parseInt(navigator.appVersion) >= 4) {
+  			win.window.focus();
+			}	
+	  	var target1 = document.forms[0].target;
+	  	var action1 = document.forms[0].action;
+	  	document.forms[0].target = myname;
+	  	document.forms[0].action = mypage;
+	  	document.forms[0].type.value = type;
+	  	document.forms[0].indice.value = indice;
+	  	document.forms[0].provenienza.value = provenienza;
+      document.forms[0].numTotaleUtilizzo.value = numTotaleUtilizzo;
+      //document.forms[0].idParticellaCertificata.value = idParticellaCertificata;
+		  document.forms[0].submit();
+		  document.forms[0].target = target1;
+			document.forms[0].action = action1;
+	}
+		
+	function onLoad() {
+		if(document.forms[0].onLoad.value != '') {
+			if(confirm('Alcune delle particelle modificate sono legate a documenti attivi.Proseguendo saranno '+
+			           'aggiornate automaticamente le conduzioni su tali documenti.Vuoi proseguire?')) {
+				document.forms[0].confermoOperazione.value = 'confermoOperazione';
+			    document.forms[0].conferma.click();
+			}
+		}
+	}
+		
+	// Metodo per aprire la pop-up di modifica ed effettuare su di essa il submit del form
+	function newWindowSubmitModifica(mypage, idConduzione, numero, myname, w, h, scroll) {
+		var winl = (screen.width - w) / 2;
+			var wint = (screen.height - h) / 2;
+			winprops =    'height='+h+',width='+w+',top='+wint+',left='+winl+',scrollbars='+scroll+',resizable';
+			win = window.open('', myname, winprops);
+
+			if (parseInt(navigator.appVersion) >= 4) {
+  			win.window.focus();
+			}	
+	  	var target1 = document.forms[0].target;
+	  	var action1 = document.forms[0].action;
+	  	document.forms[0].target = myname;
+	  	document.forms[0].action = mypage;
+	  	document.forms[0].idConduzioneParticella.value = idConduzione;
+	  	document.forms[0].numero.value = numero;
+		  document.forms[0].submit();
+		  document.forms[0].target = target1;
+			document.forms[0].action = action1;
+	}
+  
+  
+  function calcolaSupNetta(indice) 
+  {
+    var totale='';
+    
+    var valore1 = document.getElementById('supUtilizzata'+indice).value;
+    var valore2 = document.getElementById('coefficienteRiduzione'+indice).value;
+    
+    
+    if (valore1=='' || valore2=='')
+      totale='';
+    else
+    {
+      if(IsNumeric(valore1) && IsNumeric(valore2) && valore1 != '' && valore2 != '')
+      {
+        totale = parseFloat(valore1.replace(',', '.')) * parseFloat(valore2.replace(',', '.'));
+        totale = arrotonda(totale,4);
+        totale = ''+totale;
+        totale=totale.replace('.',',');
+        
+        //Aggiunge gli zeri
+        totale = aggiungiZeri(totale);
+        
+      }
+      else totale='NaN';
+    }
+    
+    
+    document.getElementById('supNetta_'+indice).innerHTML=totale;
+  }
+  
+  
+  function calcolaPercentualePossesso(indice, superficieGrafica, supCatastale) 
+  {
+    var valore1;
+    var valore2 = supCatastale;
+    var totale='';
+    
+    valore1=document.getElementById('supCondotta'+indice).value;
+    
+    
+    if (valore1=='')
+      totale='';
+    else
+    {
+      if(IsNumeric(valore1) && valore1 != '' && (IsNumeric(supCatastale) || IsNumeric(superficieGrafica)) )
+      {
+        if(IsNumeric(superficieGrafica))
+        {
+          if(superficieGrafica != '0,0000')
+            valore2 = superficieGrafica;
+        }
+        
+        totale = parseFloat(valore1.replace(',', '.')) * 100;
+        totale = totale / parseFloat(valore2.replace(',', '.'))
+        totale = arrotonda(totale,2);
+        if(totale == 0)
+          totale = 0.01
+        if(totale > 100)
+          totale = 100
+        totale = ''+totale;
+        
+        
+        document.getElementById('percentualePossesso'+indice).value = totale.replace('.', ',');
+        
+        
+           
+      }
+      else totale='NaN';
+    }
+  }		
+</script>
+<script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../js/jquery-ui-1.8.21.custom/jquery-ui-1.8.21.custom.min.js"></script>
+<script type="text/javascript">
+
+  function modificaComboDestinazione(indice)
+  {
+  
+    var idCombo = '#idTipoDestinazioneDiv'+indice;
+    var idUtilizzoPar = document.getElementById('idTipoUtilizzo'+indice).value;         
+    
+    var dataInv = {
+      idUtilizzo: idUtilizzoPar,
+      indice: indice,
+      provenienza: "modificaTerreni"
+    };
+     
+    dataInv = $.param(dataInv);    
+    
+    
+    $.ajax({
+      url: "../layout/popolaComboDestinazione.htm",
+      type: "POST",
+      data: dataInv,
+      success: function( data ) 
+              { 
+                $(idCombo).html( data );
+                modificaComboDettaglioUso(indice);              
+              },
+       dataType: 'html'
+      
+    }); 
+  
+  }
+  
+  function modificaComboDettaglioUso(indice)
+  {
+  
+    var idCombo = '#idTipoDettaglioUsoDiv'+indice;
+    var idUtilizzoPar = document.getElementById('idTipoUtilizzo'+indice).value;
+    var idTipoDestinazionePar = document.getElementById('idTipoDestinazione'+indice).value;        
+    
+    
+    var dataInv = {
+      idUtilizzo: idUtilizzoPar,
+      idTipoDestinazione: idTipoDestinazionePar,
+      indice: indice,
+      provenienza: "modificaTerreni"
+    };
+     
+    dataInv = $.param(dataInv);    
+    
+    
+    $.ajax({
+      url: "../layout/popolaComboDettaglioUso.htm",
+      type: "POST",
+      data: dataInv,
+      success: function( data ) 
+              { 
+                $(idCombo).html( data );
+                modificaComboQualitaUso(indice);                  
+              },
+       dataType: 'html'
+      
+    }); 
+  }
+  
+  function modificaComboQualitaUso(indice)
+  {
+  
+    var idCombo = '#idTipoQualitaUsoDiv'+indice;
+    var idUtilizzoPar = document.getElementById('idTipoUtilizzo'+indice).value;
+    var idTipoDestinazionePar = document.getElementById('idTipoDestinazione'+indice).value; 
+    var idTipoDettaglioUsoPar = document.getElementById('idTipoDettaglioUso'+indice).value;        
+        
+    var dataInv = {
+      idUtilizzo: idUtilizzoPar,
+      idTipoDestinazione: idTipoDestinazionePar,
+      idTipoDettaglioUso: idTipoDettaglioUsoPar,
+      indice: indice,
+      provenienza: "modificaTerreni"
+    };
+     
+    dataInv = $.param(dataInv);    
+    
+    
+    $.ajax({
+      url: "../layout/popolaComboQualitaUso.htm",
+      type: "POST",
+      data: dataInv,
+      success: function( data ) 
+              { 
+                $(idCombo).html( data );
+                modificaComboVarieta(indice);                  
+              },
+       dataType: 'html'
+      
+    }); 
+  }
+  
+  function modificaComboVarieta(indice)
+  {    
+    
+    var idCombo = '#idVarietaDiv'+indice;
+    var idUtilizzoPar = document.getElementById('idTipoUtilizzo'+indice).value;
+    var idTipoDestinazionePar = document.getElementById('idTipoDestinazione'+indice).value; 
+    var idTipoDettaglioUsoPar = document.getElementById('idTipoDettaglioUso'+indice).value; 
+    var idTipoQualitaUsoPar = document.getElementById('idTipoQualitaUso'+indice).value; 
+    
+    
+    
+    var dataInv = {
+      idUtilizzo: idUtilizzoPar,
+      idTipoDestinazione: idTipoDestinazionePar,
+      idTipoDettaglioUso: idTipoDettaglioUsoPar,
+      idTipoQualitaUso: idTipoQualitaUsoPar,
+      provenienza: "modificaTerreni",
+      indice: indice
+    };
+     
+    dataInv = $.param(dataInv);    
+    
+    
+    $.ajax({
+      url: "../layout/popolaComboVarieta.htm",
+      type: "POST",
+      data: dataInv,
+      success: function( data ) 
+              { 
+                $(idCombo).html( data );
+                calcolaSupNetta(indice);
+                replaceSupElegg(indice);
+                modificaSezioneSemina(indice);
+                modificaSezioneMantenimento(indice);
+              },
+       dataType: 'html'
+      
+    });   
+  }
+  
+  function replaceSupElegg(indice) 
+  {   
+    document.getElementById('supEleggibile_'+indice).innerHTML=document.getElementById('supEleggibileTmp'+indice).value;
+    document.getElementById('supEleggibileNetta_'+indice).innerHTML=document.getElementById('supEleggibileNettaTmp'+indice).value;
+  }
+  
+  
+  function modificaSezioneSemina(indice)
+  {    
+    
+    var idCombo = '#idSezioneSeminaDiv'+indice;
+    var idUtilizzoPar = document.getElementById('idTipoUtilizzo'+indice).value;
+    var idTipoDestinazionePar = document.getElementById('idTipoDestinazione'+indice).value; 
+    var idTipoDettaglioUsoPar = document.getElementById('idTipoDettaglioUso'+indice).value; 
+    var idTipoQualitaUsoPar = document.getElementById('idTipoQualitaUso'+indice).value;
+    var idVarietaPar = document.getElementById('idVarieta'+indice).value;
+    var idParticellaCertificataPar = document.getElementById('idParticellaCertificata'+indice).value;
+    
+    
+    
+    var dataInv = {
+      idUtilizzo: idUtilizzoPar,
+      idTipoDestinazione: idTipoDestinazionePar,
+      idTipoDettaglioUso: idTipoDettaglioUsoPar,
+      idTipoQualitaUso: idTipoQualitaUsoPar,
+      idVarieta: idVarietaPar,
+      idParticellaCertificata: idParticellaCertificataPar,
+      provenienza: "modificaTerreni",
+      indice: indice
+    };
+     
+    dataInv = $.param(dataInv);    
+    
+    
+    $.ajax({
+      url: "../layout/popolaSezioneSemina.htm",
+      type: "POST",
+      data: dataInv,
+      success: function( data ) 
+              { 
+                $(idCombo).html( data );
+                modificaSezioneDateSemina(indice);     
+              },
+       dataType: 'html'
+      
+    });   
+  }
+  
+  function modificaSezioneDateSemina(indice)
+  {    
+    
+    var idCombo = '#idSezioneDateSeminaDiv'+indice;
+    var idUtilizzoPar = document.getElementById('idTipoUtilizzo'+indice).value;
+    var idTipoDestinazionePar = document.getElementById('idTipoDestinazione'+indice).value; 
+    var idTipoDettaglioUsoPar = document.getElementById('idTipoDettaglioUso'+indice).value; 
+    var idTipoQualitaUsoPar = document.getElementById('idTipoQualitaUso'+indice).value;
+    var idVarietaPar = document.getElementById('idVarieta'+indice).value;
+    var idTipoPeriodoSeminaPar = document.getElementById('idTipoPeriodoSemina'+indice).value;
+    
+    
+    var dataInv = {
+      idUtilizzo: idUtilizzoPar,
+      idTipoDestinazione: idTipoDestinazionePar,
+      idTipoDettaglioUso: idTipoDettaglioUsoPar,
+      idTipoQualitaUso: idTipoQualitaUsoPar,
+      idVarieta: idVarietaPar,
+      idTipoPeriodoSemina: idTipoPeriodoSeminaPar,
+      provenienza: "modificaTerreni",
+      indice: indice
+    };
+     
+    dataInv = $.param(dataInv);    
+    
+    
+    $.ajax({
+      url: "../layout/popolaSezioneDateSemina.htm",
+      type: "POST",
+      data: dataInv,
+      success: function( data ) 
+              { 
+                $(idCombo).html( data );     
+              },
+       dataType: 'html'
+      
+    });   
+  }
+  
+  
+  function modificaSezioneMantenimento(indice)
+  {    
+    
+    var idCombo = '#idSezioneMantenimentoDiv'+indice;
+    var idUtilizzoPar = document.getElementById('idTipoUtilizzo'+indice).value;
+    var idTipoDestinazionePar = document.getElementById('idTipoDestinazione'+indice).value; 
+    var idTipoDettaglioUsoPar = document.getElementById('idTipoDettaglioUso'+indice).value; 
+    var idTipoQualitaUsoPar = document.getElementById('idTipoQualitaUso'+indice).value;
+    var idVarietaPar = document.getElementById('idVarieta'+indice).value;
+   
+    
+    var dataInv = {
+      idUtilizzo: idUtilizzoPar,
+      idTipoDestinazione: idTipoDestinazionePar,
+      idTipoDettaglioUso: idTipoDettaglioUsoPar,
+      idTipoQualitaUso: idTipoQualitaUsoPar,
+      idVarieta: idVarietaPar,
+      provenienza: "modificaTerreni",
+      indice: indice
+    };
+     
+    dataInv = $.param(dataInv);    
+    
+    
+    $.ajax({
+      url: "../layout/popolaSezioneMantenimento.htm",
+      type: "POST",
+      data: dataInv,
+      success: function( data ) 
+              { 
+                $(idCombo).html( data );     
+              },
+       dataType: 'html'
+      
+    });   
+  }
+  
+  
+  function aggiungiUsoPrimario(idUtilizzoPar,descUtilizzoPar,numTotaleUtilizzo)
+  {
+    var confronto = 'idTipoUtilizzo'+numTotaleUtilizzo;
+    $('.clsIdTipoUtilizzo').each(function() 
+    {
+      var recupero_id = $(this).attr("id");
+      if(recupero_id == confronto)
+      {
+        $(this).find('option').removeAttr("selected");
+        $(this).append($("<option value='"+idUtilizzoPar+"' selected=\"selected\">"+descUtilizzoPar+"</option>"));
+        modificaComboDestinazione(numTotaleUtilizzo);
+      }
+      else
+      {
+        $(this).append($("<option value='"+idUtilizzoPar+"'>"+descUtilizzoPar+"</option>"));
+      }
+    });     
+    
+  }
+  
+  
+  function modificaComboDestinazioneSecondario(indice)
+  {
+    var idCombo = '#idTipoDestinazioneSecondarioDiv'+indice;
+    var idUtilizzoPar = document.getElementById('idTipoUtilizzoSecondario'+indice).value;
+    
+    
+    var dataInv = {
+      idUtilizzo: idUtilizzoPar,
+      provenienza: "modificaTerreni",
+      indice: indice
+    };
+     
+    dataInv = $.param(dataInv);    
+    
+    
+    $.ajax({
+      url: "../layout/popolaComboDestinazioneSecondario.htm",
+      type: "POST",
+      data: dataInv,
+      success: function( data ) 
+              { 
+                $(idCombo).html( data );
+                modificaComboDettaglioUsoSecondario(indice);                 
+              },
+       dataType: 'html'
+      
+    });
+  
+  
+  }
+  
+  
+  
+  function modificaComboDettaglioUsoSecondario(indice)
+  {
+    var idCombo = '#idTipoDettaglioUsoSecondarioDiv'+indice;
+    var idUtilizzoPar = document.getElementById('idTipoUtilizzoSecondario'+indice).value;   
+    var idTipoDestinazionePar = document.getElementById('idTipoDestinazioneSecondario'+indice).value;   
+            
+    
+    var dataInv = {
+      idUtilizzo: idUtilizzoPar,   
+      idTipoDestinazione: idTipoDestinazionePar,
+      provenienza: "modificaTerreni",
+      indice: indice
+    };
+     
+    dataInv = $.param(dataInv);    
+    
+    
+    $.ajax({
+      url: "../layout/popolaComboDettaglioUsoSecondario.htm",
+      type: "POST",
+      data: dataInv,
+      success: function( data ) 
+              { 
+                $(idCombo).html( data );
+                modificaComboQualitaUsoSecondario(indice);                 
+              },
+       dataType: 'html'
+      
+    }); 
+  }
+  
+  function modificaComboQualitaUsoSecondario(indice)
+  {
+    var idCombo = '#idTipoQualitaUsoSecondarioDiv'+indice;
+    var idUtilizzoPar = document.getElementById('idTipoUtilizzoSecondario'+indice).value;   
+    var idTipoDestinazionePar = document.getElementById('idTipoDestinazioneSecondario'+indice).value;   
+    var idTipoDettaglioUsoPar = document.getElementById('idTipoDettaglioUsoSecondario'+indice).value;   
+     
+    
+    var dataInv = {
+      idUtilizzo: idUtilizzoPar,
+      idTipoDestinazione: idTipoDestinazionePar,
+      idTipoDettaglioUso: idTipoDettaglioUsoPar,
+      provenienza: "modificaTerreni",
+      indice: indice
+    };
+     
+    dataInv = $.param(dataInv);    
+    
+    
+    $.ajax({
+      url: "../layout/popolaComboQualitaUsoSecondario.htm",
+      type: "POST",
+      data: dataInv,
+      success: function( data ) 
+              { 
+                $(idCombo).html( data );
+                modificaComboVarietaSecondaria(indice);                 
+              },
+       dataType: 'html'
+      
+    });
+  
+  
+  }
+  
+  function modificaComboVarietaSecondaria(indice)
+  {    
+    
+    var idCombo = '#idVarietaSecondariaDiv'+indice;
+    var idUtilizzoPar = document.getElementById('idTipoUtilizzoSecondario'+indice).value;   
+    var idTipoDestinazionePar = document.getElementById('idTipoDestinazioneSecondario'+indice).value;   
+    var idTipoDettaglioUsoPar = document.getElementById('idTipoDettaglioUsoSecondario'+indice).value;   
+    var idTipoQualitaUsoPar = document.getElementById('idTipoQualitaUsoSecondario'+indice).value;   
+    
+    
+    
+    
+    var dataInv = {
+      idUtilizzo: idUtilizzoPar,
+      idTipoDestinazione: idTipoDestinazionePar,
+      idTipoDettaglioUso: idTipoDettaglioUsoPar,
+      idTipoQualitaUso: idTipoQualitaUsoPar,
+      provenienza: "modificaTerreni",
+      indice: indice
+    };
+     
+    dataInv = $.param(dataInv);    
+    
+    
+    $.ajax({
+      url: "../layout/popolaComboVarietaSecondaria.htm",
+      type: "POST",
+      data: dataInv,
+      success: function( data ) 
+              { 
+                $(idCombo).html( data );
+                modificaSezioneSeminaSecondario(indice);              
+              },
+       dataType: 'html'
+      
+    });   
+  }
+  
+  
+  function modificaSezioneSeminaSecondario(indice)
+  {    
+    
+    var idCombo = '#idSezioneSeminaSecondarioDiv'+indice;
+    var idUtilizzoPar = document.getElementById('idTipoUtilizzoSecondario'+indice).value;   
+    var idTipoDestinazionePar = document.getElementById('idTipoDestinazioneSecondario'+indice).value;   
+    var idTipoDettaglioUsoPar = document.getElementById('idTipoDettaglioUsoSecondario'+indice).value;   
+    var idTipoQualitaUsoPar = document.getElementById('idTipoQualitaUsoSecondario'+indice).value;   
+    var idVarietaPar = document.getElementById('idVarietaSecondaria'+indice).value;   
+    
+    
+    
+    var dataInv = {
+      idUtilizzo: idUtilizzoPar,
+      idTipoDestinazione: idTipoDestinazionePar,
+      idTipoDettaglioUso: idTipoDettaglioUsoPar,
+      idTipoQualitaUso: idTipoQualitaUsoPar,
+      idVarieta: idVarietaPar,
+      provenienza: "modificaTerreni",
+      indice: indice
+    };
+     
+    dataInv = $.param(dataInv);    
+    
+    
+    $.ajax({
+      url: "../layout/popolaSezioneSeminaSecondario.htm",
+      type: "POST",
+      data: dataInv,
+      success: function( data ) 
+              { 
+                $(idCombo).html( data );
+                modificaSezioneDateSeminaSecondario(indice);     
+              },
+       dataType: 'html'
+      
+    });   
+  }
+  
+  
+  function modificaSezioneDateSeminaSecondario(indice)
+  {    
+    
+    var idCombo = '#idSezioneDateSeminaSecondarioDiv'+indice;
+    var idUtilizzoPar = document.getElementById('idTipoUtilizzoSecondario'+indice).value;   
+    var idTipoDestinazionePar = document.getElementById('idTipoDestinazioneSecondario'+indice).value;   
+    var idTipoDettaglioUsoPar = document.getElementById('idTipoDettaglioUsoSecondario'+indice).value;   
+    var idTipoQualitaUsoPar = document.getElementById('idTipoQualitaUsoSecondario'+indice).value;   
+    var idVarietaPar = document.getElementById('idVarietaSecondaria'+indice).value;
+    var idTipoPeriodoSeminaPar = document.getElementById('idTipoPeriodoSeminaSecondario'+indice).value;
+    
+    
+    
+    var dataInv = {
+      idUtilizzo: idUtilizzoPar,
+      idTipoDestinazione: idTipoDestinazionePar,
+      idTipoDettaglioUso: idTipoDettaglioUsoPar,
+      idTipoQualitaUso: idTipoQualitaUsoPar,
+      idVarieta: idVarietaPar,
+      idTipoPeriodoSemina: idTipoPeriodoSeminaPar,
+      provenienza: "modificaTerreni",
+      indice: indice
+    };
+     
+    dataInv = $.param(dataInv);    
+    
+    
+    $.ajax({
+      url: "../layout/popolaSezioneDateSeminaSecondario.htm",
+      type: "POST",
+      data: dataInv,
+      success: function( data ) 
+              { 
+                $(idCombo).html( data );     
+              },
+       dataType: 'html'
+      
+    });   
+  }
+  
+  function aggiungiUsoSecondario(idUtilizzoPar,descUtilizzoPar,numTotaleUtilizzo)
+  {
+    
+    var confronto = 'idTipoUtilizzoSecondario'+numTotaleUtilizzo;
+    $('.clsIdTipoUtilizzoSecondario').each(function() 
+    {
+      var recupero_id = $(this).attr("id");
+      if(recupero_id == confronto)
+      {
+        $(this).find('option').removeAttr("selected");
+        $(this).append("<option value='"+idUtilizzoPar+"' selected=\"selected\">"+descUtilizzoPar+"</option>");
+        modificaComboDestinazioneSecondario(numTotaleUtilizzo);
+      }
+      else
+      {
+        $(this).append($("<option value='"+idUtilizzoPar+"'>"+descUtilizzoPar+"</option>"));
+      }
+    });     
+    
+  }
+  
+  
+  
+  function aggiungiRigaDaPopUp(numeroRiga)
+  {
+    var idRiga = '#idTbody'+numeroRiga;
+        
+    
+    var dataInv = {
+      numeroRiga: numeroRiga
+    };
+     
+    dataInv = $.param(dataInv);    
+    
+    
+    $.ajax({
+      url: "../layout/rigaDatiModificaTerreni.htm",
+      type: "POST",
+      data: dataInv,
+      success: function( data ) 
+              { 
+                $(idRiga).html( data );                
+              },
+       dataType: 'html'
+      
+    }); 
+    
+  }
+  
+  
+  
+  
+</script>
+</head>
+<body id="homeIndice" onLoad="javascript: onLoad();$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+  <form id="form1" name="form1" method="post"
+    action="../layout/terreniParticellareModifica.htm">
+    <input type="hidden" name="remove" value="remove" id="remove" />
+    <input type="hidden" name="abaco" value="abaco" id="abaco" />
+    <input type="hidden" name="type" value="$$type" />
+    <input type="hidden" name="chiamata" value="$$chiamata" />
+    <input type="hidden" name="indice" value="$$indice" />
+    <input type="hidden" name="numTotaleUtilizzo" value="$$numTotaleUtilizzo" />
+    <input type="hidden" name="provenienza" value="modificaTerreni" />
+    <!-- input type="hidden" name="idParticellaCertificata" value="$$idParticellaCertificata" /-->
+    <input type="hidden" name="regimeTerreniModifica" id="regimeTerreniModifica" value="true" />
+    <input type="hidden" name="confermoOperazione"
+      value="$$confermoOperazione" />
+    <input type="hidden" name="onLoad" value="$$onLoad" />
+    <input type="hidden" name="idConduzioneParticella"
+      value="$$idConduzioneParticella" />
+    <input type="hidden" name="numero" value="$$numero" />
+    <div id="pagina" class="colonnaUnica">
+      <!-- INTESTAZIONE -->
+      <div id="intestazione##pathProvincia">
+        <!--#include virtual="/ris/include/smrgaaweb/header.html" -->
+        <!-- menu di navigazione-->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li>
+                <a href="../layout/index.htm"
+                  title="Torna alla pagina principale">home</a>
+              </li>
+              <li class="attivo">
+                gestione anagrafe aziende
+              </li>
+              <li>
+                <a href="#" title="contatti">contatti</a>
+              </li>
+              <li>
+                <a href="#" title="help">help</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div style="clear: left"></div>
+      <!-- CORPO -->
+      <div id="corpo">
+        <div id="Utente">
+          <div id="datiUtente">
+            <strong>utente:</strong> $$utente &nbsp; &nbsp;
+            <strong>ente:</strong> $$ente
+          </div>
+          <div id="chiudisessione">
+            <a href="javascript:logout();">chiudi sessione</a>
+          </div>
+        </div>
+        <hr />
+        <!--PRIMA COLONNA -->
+        <h3>
+          Gestione Anagrafe
+          Aziende&nbsp;&gt;&nbsp;Terreni&nbsp;&gt;&nbsp;Modifica
+          <span class="helpFuori"> <a href="#"> <span
+              class="alt">[help]</span> </a> </span>
+        </h3>
+        <hr />
+        <div class="box">
+          <div class="menuSX1">
+            <ul>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <li>
+                <a href="../layout/elencoAziendeRapLegale.htm">Elenco
+                  Aziende</a>
+              </li>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <!-- @@blkRicercaAzienda-->
+              <li>
+                <a href="../layout/ricerca.htm">Ricerche</a>
+              </li>
+              <!-- @@blkRicercaAzienda-->
+              <!-- @@blkNuova -->
+              <li>
+                <a href="../layout/nuovaAziendaAnagrafica.htm">Nuova
+                  Azienda</a>
+              </li>
+              <!-- @@blkNuova -->
+              <!-- @@blkNuovaIscrizione -->
+              <li>
+                <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+              </li>
+              <!-- @@blkNuovaIscrizione -->
+            </ul>
+          </div>
+          <div class="menuSX">
+            <ul>
+              <li>
+                <a href="../layout/anagrafica.htm">Anagrafica</a>
+              </li>
+              <!-- @@blkAziendeCollegate -->
+              <li>
+                <a href="../layout/aziendeCollegate.htm">$$aziendeCollegateLabel</a>
+              </li>
+              <!-- @@blkAziendeCollegate -->
+              <!-- @@blkSincronizzaFascicolo -->
+               <li>
+               	<a href="../layout/sincronizzaFascicolo.htm">Sincronizza fascicolo</a>
+               </li>
+              <!-- @@blkSincronizzaFascicolo -->
+              <!-- @@blkSoggettiCollegati -->
+              <li>
+                <a href="../layout/contitolari.htm">Soggetti
+                  collegati</a>
+              </li>
+              <!-- @@blkSoggettiCollegati -->
+              <!-- @@blkContiCorrenti -->
+              <li>
+                <a href="../layout/conti_correnti.htm">Conti
+                  Correnti</a>
+              </li>
+              <!-- @@blkContiCorrenti -->
+              <!-- @@blkUnitaProduttive -->
+              <li>
+                <a href="../layout/sedi.htm">Unit&agrave; produttive</a>
+              </li>
+              <!-- @@blkUnitaProduttive -->
+              <!-- @@blkTerreni -->
+              <li>
+                <!-- @@blkLinkElenco -->
+                <a href="../layout/terreniParticellareElenco.htm"
+                  class="on">Terreni</a>
+                <ul>
+                  <li>
+                    <a href="../layout/riepiloghi.htm">riepiloghi</a>
+                  </li>
+                <!-- @@blkLinkElenco -->
+                <!-- @@blkLinkRiepiloghi -->
+                <a href="../layout/riepiloghi.htm"
+                  class="on">Terreni</a>
+                <ul>
+                  <li>
+                    <a href="../layout/terreniParticellareElenco.htm">elenco</a>
+                  </li>
+                <!-- @@blkLinkRiepiloghi -->
+                  <li>
+                    <a href="#" class="etichetta">modifica</a>
+                  </li>
+                  <!--@@blkInserisci-->
+                  <li>
+                    <a href="../layout/terreniParticellareInserisci.htm">inserisci</a>
+                  </li>
+                  <!--@@blkInserisci-->
+                  <!-- @@blkImportaParticelle -->
+                  <li>
+                    <a href="../layout/importaTerreniGenerico.htm">importa</a>
+                  </li>
+                  <!-- @@blkImportaParticelle -->
+                  <!-- @@blkVerifiche -->
+                  <li>
+                    <a href="../layout/terreniVerifica.htm">controlli</a>
+                  </li>
+                  <!-- @@blkVerifiche -->
+                </ul>
+              </li>
+              <!-- @@blkTerreni -->
+              <!-- @@blkUnitaVitate -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniUnitaArboreeElenco.htm">Unit&agrave; Vitate</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		              <a href="../layout/riepiloghiUnitaArboree.htm">Unit&agrave; Vitate</a>
+		              <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkUnitaVitate -->
+              <!-- @@blkFabbricati -->
+              <li>
+                <a href="../layout/fabbricati.htm">Fabbricati e
+                  Strutture</a>
+              </li>
+              <!-- @@blkFabbricati -->
+              <!-- @@blkAllevamenti -->
+              <li>
+                <a href="../layout/allevamenti.htm">Allevamenti</a>
+              </li>
+              <!-- @@blkAllevamenti -->
+              <!-- @@blkManodopera -->
+              <li>
+                <a href="../layout/manodopera.htm">Manodopera</a>
+              </li>
+              <!-- @@blkManodopera -->
+              <!-- @@blkMotoriAgricoli -->
+              <li>
+                <a href="../layout/motori_agricoli_incarico.htm">Macchine agricole</a>
+              </li>
+              <!-- @@blkMotoriAgricoli -->
+              <!-- @@blkDiritti -->
+              <li>
+                <a href="../layout/diritti.htm">Diritti di
+                  produzione</a>
+              </li>
+              <!-- @@blkDiritti -->
+              <!-- @@blkAttestazioni -->
+              <li>
+                <a href="../layout/attestazioniDettaglio.htm">Dichiarazioni</a>
+              </li>
+              <!-- @@blkAttestazioni -->
+              <!-- @@blkDichiarazioniConsistenza -->
+              <li>
+                <a href="../layout/dichiarazioneConsistenza.htm">Validazioni</a>
+              </li>
+              <!-- @@blkDichiarazioniConsistenza -->
+              <!-- @@blkDocumenti -->
+              <li>
+                <a href="../layout/documentiElenco.htm">Documenti</a>
+              </li>
+              <!-- @@blkDocumenti -->
+              <!-- @@blkFascicoloDematerializzato -->
+              <li>
+                <a href="../layout/fascicoloDematerializzato.htm">Fascicolo<br>elettronico</a>
+              </li>
+              <!-- @@blkFascicoloDematerializzato -->
+              <!-- @@blkGestioneNotifiche -->
+              <li>
+                <a href="../layout/notifiche.htm">Notifiche</a>
+              </li>
+              <!-- @@blkGestioneNotifiche -->
+              <!-- @@blkComunicazione10R -->
+              <li>
+                <a href="../layout/comunicazione10R_dettaglio.htm">Comunicazione
+                  10/R</a>
+              </li>
+              <!-- @@blkComunicazione10R -->
+              <!-- @@blkPratiche -->
+              <li>
+                <a href="../layout/pratiche.htm">Pratiche</a>
+              </li>
+              <!-- @@blkPratiche -->
+              <!-- @@blkStampaFascicolo -->
+              <li>
+                <a href="../layout/scelta_stampa.htm">Stampe</a>
+              </li>
+              <!-- @@blkStampaFascicolo -->
+			  <li><a href="../layout/strumenti.htm">Strumenti</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr />
+        <!-- SECONDA COLONNA -->
+        <div id="contenuto">
+          <div id="intesta">
+            <p class="$$aziendaIntestazione" title="$$tooltipIntestazione" >
+              $$CUAAIntestazione  $$denominazioneIntestazione
+            </p>
+          </div>
+          <!-- @@blkDati -->
+          <div class="scroll">
+            <table class="evidence"  cellspacing="3"
+              summary="Questa tabella contiene i dati relativi alla particella">
+              <tr>
+                <!--<th colspan="3" rowspan="2" class="center" scope="col"></th>-->
+                <th colspan="2" rowspan="2" class="center" scope="col"></th>
+                <th rowspan="2" class="center" scope="col">
+                  Comune
+                </th>
+                <th rowspan="2" class="center" scope="col">
+                  Sz.
+                </th>
+                <th rowspan="2" class="center" scope="col">
+                  Fogl.
+                </th>
+                <th rowspan="2" class="center" scope="col">
+                  Part.
+                </th>
+                <th rowspan="2" class="center" scope="col">
+                  Sub
+                </th>
+                <th rowspan="2" class="center" scope="col">
+                  Sup. Cat.
+                </th>
+                <th rowspan="2" class="center" scope="col">
+                  Sup. graf.
+                </th>
+                <th rowspan="2" class="center" scope="col">
+                  Classi eleggibilit&agrave;
+                </th>
+                <th colspan="3" class="center" scope="col">
+                  Conduzione*
+                </th>
+                <th rowspan="2" class="center" scope="col">
+                  <acronym title="Superficie uso agronomico">Sup.
+                    Uso Agron.</acronym>
+                </th>
+                <th colspan="7" class="center" scope="col">
+                 Uso primario*
+                </th>
+                <th rowspan="2" class="center" scope="col">
+                  Mantenimento
+                </th>
+                <th colspan="4" class="center" scope="col">
+                  Uso secondario
+                </th>
+                <th rowspan="2" class="center" scope="col">
+                  C.P.
+                </th>
+              </tr>
+              <tr>
+                <th class="center" scope="col">&nbsp;                  
+                </th>
+                <th class="center" scope="col">
+                  Sup.
+                </th>
+                <th class="center" scope="col">
+                  %
+                </th>
+                <th colspan="2" class="center" scope="col">&nbsp;                  
+                </th>
+                <th class="center" scope="col">
+                  Semina
+                </th>
+                <th class="center" scope="col">
+                  Sup.
+                </th>
+                <th class="center" scope="col">
+                  Sup.<br>netta
+                </th>
+                <th class="center" scope="col">
+                  Sup.<br>elegg.
+                </th>
+                <th class="center" scope="col">
+                  Sup.<br>elegg.<br>netta
+                </th>
+                <th colspan="2" class="center" scope="col">&nbsp;                  
+                </th>
+                <th class="center" scope="col">
+                  Semina
+                </th>
+                <th class="center" scope="col">
+                  Sup.
+                </th>
+              </tr>
+              <!-- @@blkElencoDati -->
+              <tbody id="idTbody$$numero">
+              <tr>
+                <td class="radio" rowspan="$$rowspan">
+                  <a
+                    href="javascript: newWindowDoForm('$$urlRSDI?idConduzione=$$idConduzione&idAzienda=$$idAzienda', 'abaco', '1000','700','yes', 'GIS');"
+                    title="$$controlliP" class="$$immaginiControlliP">
+                  </a>
+                </td>                
+                <td class="radio" rowspan="$$rowspan">
+                  <a
+                    href="javascript: newWindowSubmitModifica('../layout/popModificaTerritorialeCondUso.htm', '$$idConduzione', '$$numero', 'modificaTerritoriale', '1000','700','yes');"
+                    title="[Attenzione: questo link si apre in una nuova finestra]"
+                    class="dettaglio"></a>
+                </td>
+                <td rowspan="$$rowspan">
+                  $$descComuneParticella $$siglaProvinciaParticella
+                </td>
+                <td rowspan="$$rowspan">
+                  $$sezione
+                </td>
+                <td class="numeridx" rowspan="$$rowspan">
+                  $$foglio
+                </td>
+                <td class="numeridx" rowspan="$$rowspan">
+                  $$particella
+                </td>
+                <td rowspan="$$rowspan">
+                  $$subalterno
+                </td>
+                <td class="numeridx" rowspan="$$rowspan">
+                  <input name="supCatastale" type="hidden" value="$$supCatastale" />
+                  $$supCatastale
+                </td>
+                <td class="numeridx" rowspan="$$rowspan" title="$$tooltipDescElegFit">
+                  $$superficieGrafica
+                </td>
+                <td class="numeridx" rowspan="$$rowspan" >
+                  $$classiEleggibilita
+                </td>
+                <td rowspan="$$rowspan">
+                  <select name="idTitoloPossesso" id="idTitoloPossesso">
+                    <option></option>
+                    <!-- @@blkTitoliPossesso -->
+                    <option value="$$idTitoloPossesso" title="$$descTitoloPossesso" $$selected>
+                      $$descrizione
+                    </option>
+                    <!-- @@blkTitoliPossesso -->
+                  </select>
+                  $$err_idTitoloPossesso
+                </td>
+                <td rowspan="$$rowspan">
+                  <input name="supCondotta" type="text" id="supCondotta$$numero"
+                    class="textmedio" value="$$supCondotta"
+                    maxlength="10" onKeyUp="javascript:calcolaPercentualePossesso('$$numero','$$superficieGrafica','$$supCatastale');" />
+                  $$err_supCondotta
+                </td>
+                <td rowspan="$$rowspan">
+                  <input name="percentualePossesso" type="text" id="percentualePossesso$$numero"
+                    class="textmedio" value="$$percentualePossesso" maxlength="5" />
+                  $$err_percentualePossesso
+                </td>
+                <td rowspan="$$rowspan">
+                  <input name="superficieAgronomica" type="text"
+                    class="textmedio" value="$$superficieAgronomica"
+                    maxlength="10" />
+                  $$err_superficieAgronomica
+                </td>
+                <td>
+                  <input type="hidden" name="idParticellaCertificata" id="idParticellaCertificata$$numTotaleUtilizzo" value="$$idParticellaCertificata" />
+                  <select name="idTipoUtilizzo" id="idTipoUtilizzo$$numTotaleUtilizzo" class="clsIdTipoUtilizzo"
+                    onchange="javascript: modificaComboDestinazione('$$numTotaleUtilizzo');" $$disabledUt >
+                    <option value=""></option>
+                    <!-- @@blkTipiUsoSuolo -->
+                    <option value="$$idTipoUtilizzo" title="$$descCompleta" $$selected>
+                      $$descrizione
+                    </option>
+                    <!-- @@blkTipiUsoSuolo -->
+                  </select>
+                  $$err_idTipoUtilizzo
+                  <div id="idTipoDestinazioneDiv$$numTotaleUtilizzo">
+                    <select name="idTipoDestinazione" id="idTipoDestinazione$$numTotaleUtilizzo" 
+                      onchange="javascript: modificaComboDettaglioUso('$$numTotaleUtilizzo');" $$disabledUt>
+                      <!-- @@blkTipiDestinazione -->
+                      <option value="$$idTipoDestinazione" title="$$descCompleta" $$selected>
+                        $$descrizione
+                      </option>
+                      <!-- @@blkTipiDestinazione -->
+                      <!-- @@blkNoTipiDestinazione -->
+                      <option value=""></option>
+                      <!-- @@blkNoTipiDestinazione -->
+                    </select>
+                    $$err_idTipoDestinazione
+                  </div>
+                  <div id="idTipoDettaglioUsoDiv$$numTotaleUtilizzo">
+                    <select name="idTipoDettaglioUso" id="idTipoDettaglioUso$$numTotaleUtilizzo" 
+                      onchange="javascript: modificaComboQualitaUso('$$numTotaleUtilizzo');" $$disabledUt>
+                      <!-- @@blkTipiDettaglioUso -->
+                      <option value="$$idTipoDettaglioUso" title="$$descCompleta" $$selected>
+                        $$descrizione
+                      </option>
+                      <!-- @@blkTipiDettaglioUso -->
+                      <!-- @@blkNoTipiDettaglioUso -->
+                      <option value=""></option>
+                      <!-- @@blkNoTipiDettaglioUso -->
+                    </select>                    
+                  </div>
+                  <div id="idTipoQualitaUsoDiv$$numTotaleUtilizzo">
+                    <select name="idTipoQualitaUso" id="idTipoQualitaUso$$numTotaleUtilizzo" 
+                      onchange="javascript: modificaComboVarieta('$$numTotaleUtilizzo');" $$disabledUt>
+                      <!-- @@blkTipiQualitaUso -->
+                      <option value="$$idTipoQualitaUso" title="$$descCompleta" $$selected>
+                        $$descrizione
+                      </option>
+                      <!-- @@blkTipiQualitaUso -->
+                      <!-- @@blkNoTipiQualitaUso -->
+                      <option value=""></option>
+                      <!-- @@blkNoTipiQualitaUso -->
+                    </select>
+                    $$err_idTipoQualitaUso
+                  </div>
+                  <div id="idVarietaDiv$$numTotaleUtilizzo">
+                    <select name="idVarieta" id="idVarieta$$numTotaleUtilizzo" 
+                      onchange="javascript: modificaSezioneSemina('$$numTotaleUtilizzo');modificaSezioneMantenimento('$$numTotaleUtilizzo');" $$disabledUt>
+                      <!-- @@blkTipiVarieta -->
+                      <option value="$$idVarieta" title="$$descCompleta" $$selected>
+                        $$descrizione
+                      </option>
+                      <!-- @@blkTipiVarieta -->
+                      <!-- @@blkNoTipiVarieta -->
+                      <option value=""></option>
+                      <!-- @@blkNoTipiVarieta -->
+                    </select>
+                    $$err_idVarieta
+                  </div>
+                </td>
+                <td>
+                  <!--  @@blkNoDisabled -->
+                  <a
+                    href="javascript: newWindowSubmit('../layout/popAggiungiUso.htm', 'aggiungiUso', 600, 300, 'yes', 'Primario', '$$numeroUtilizzi', '$$numTotaleUtilizzo', 'modificaTerreni');"
+                    title="[Attenzione: questo link si apre in una nuova finestra]"
+                    class="modifica" id="associaIdUtilizzo"></a>
+                  <!--  @@blkNoDisabled -->
+                </td>
+                <td>                
+                  <div id="idSezioneSeminaDiv$$numTotaleUtilizzo" >
+                    <input name="supEleggibileTmp" id="supEleggibileTmp$$numTotaleUtilizzo" type="hidden" value="$$supEleggibile" />
+                    <input name="supEleggibileNettaTmp" id="supEleggibileNettaTmp$$numTotaleUtilizzo" type="hidden" value="$$supEleggibileNetta" />
+                    <input name="coefficienteRiduzione" id="coefficienteRiduzione$$numTotaleUtilizzo" type="hidden"  value="$$coefficienteRiduzione" />
+                    <select name="idTipoPeriodoSemina" id="idTipoPeriodoSemina$$numTotaleUtilizzo" 
+                        onchange="javascript: modificaSezioneDateSemina($$numTotaleUtilizzo);" $$disabledUt >
+                      <!-- @@blkTipoPeriodoSemina -->
+                      <option value="$$idTipoPeriodoSemina" $$selected>
+                        $$descrizione
+                      </option>
+                      <!-- @@blkTipoPeriodoSemina -->
+                      <!-- @@blkNoTipoPeriodoSemina -->
+                      <option value=""></option>
+                      <!-- @@blkNoTipoPeriodoSemina -->
+                    </select>
+                    $$err_idTipoPeriodoSemina
+                    <br>
+                    <select name="idTipoSemina" $$disabledUt>
+                      <!-- @@blkTipoSemina -->
+                      <option value="$$idTipoSemina" $$selected>
+                        $$descrizione
+                      </option>
+                      <!-- @@blkTipoSemina -->
+                      <!-- @@blkNoTipoSemina -->
+                      <option value=""></option>
+                      <!-- @@blkNoTipoSemina -->
+                    </select>
+                    $$err_idTipoSemina
+                    <br>
+                  </div>
+                  <div id="idSezioneDateSeminaDiv$$numTotaleUtilizzo" >
+                    <input type="text" name="dataInizioDestinazione" class="textmedio"
+                      value="$$dataInizioDestinazione" $$disabledUt $$readOnlyDataInizioDestinazione />&nbsp;inizio
+                    $$err_dataInizioDestinazione
+                    <br>
+                    <input type="text" name="dataFineDestinazione" class="textmedio"
+                      value="$$dataFineDestinazione" $$disabledUt $$readOnlyDataFineDestinazione />&nbsp;fine
+                    $$err_dataFineDestinazione
+                  </div>
+                </td>
+                <td>
+                  <input name="supUtilizzata" id="supUtilizzata$$numTotaleUtilizzo" type="text"
+                    class="textmedio" value="$$supUtilizzata" 
+                    onkeyup="javascript:calcolaSupNetta($$numTotaleUtilizzo);" $$disabledUt />
+                  $$err_supUtilizzata
+                  <br>
+                </td>
+                <td id="supNetta_$$numTotaleUtilizzo">
+                  $$supNetta
+                </td>
+                <td id="supEleggibile_$$numTotaleUtilizzo">
+                  $$supEleggibile
+                </td>
+                <td id="supEleggibileNetta_$$numTotaleUtilizzo" >
+                  $$supEleggibileNetta
+                </td>
+                <td>
+                  <div id="idSezioneMantenimentoDiv$$numTotaleUtilizzo" >
+                    <select name="idPraticaMantenimento" $$disabledUt>
+                      <!-- @@blkTipoPraticaMantenimento -->
+                      <option value="$$idPraticaMantenimento" $$selected>
+                        $$descrizione
+                      </option>
+                      <!-- @@blkTipoPraticaMantenimento -->
+                      <!-- @@blkNoTipoPraticaMantenimento -->
+                      <option value=""></option>
+                      <!-- @@blkNoTipoPraticaMantenimento -->
+                    </select>
+                    $$err_idPraticaMantenimento
+                  </div>
+                </td>
+                <td>
+                  <select name="idTipoUtilizzoSecondario" id="idTipoUtilizzoSecondario$$numTotaleUtilizzo" class="clsIdTipoUtilizzoSecondario"
+                    onchange="javascript: modificaComboDestinazioneSecondario('$$numTotaleUtilizzo');" $$disabledUt >
+                    <option value=""></option>
+                    <!-- @@blkTipiUsoSuoloSecondario -->
+                    <option value="$$idTipoUtilizzoSecondario" title="$$descCompleta"  $$selected>
+                      $$descrizione
+                    </option>
+                    <!-- @@blkTipiUsoSuoloSecondario -->
+                  </select>
+                  $$err_idTipoUtilizzoSecondario
+                  <div id="idTipoDestinazioneSecondarioDiv$$numTotaleUtilizzo">
+                    <select name="idTipoDestinazioneSecondario" id="idTipoDestinazioneSecondario$$numTotaleUtilizzo" 
+                      onchange="javascript: modificaComboDettaglioUsoSecondario('$$numTotaleUtilizzo');" $$disabledUt>
+                      <!-- @@blkTipiDestinazioneSecondario -->
+                      <option value="$$idTipoDestinazioneSecondario" title="$$descCompleta" $$selected>
+                        $$descrizione
+                      </option>
+                      <!-- @@blkTipiDestinazioneSecondario -->
+                      <!-- @@blkNoTipiDestinazioneSecondario -->
+                      <option value=""></option>
+                      <!-- @@blkNoTipiDestinazioneSecondario -->
+                    </select>
+                    $$err_idTipoDestinazioneSecondario
+                  </div> 
+                  <div id="idTipoDettaglioUsoSecondarioDiv$$numTotaleUtilizzo">
+                    <select name="idTipoDettaglioUsoSecondario" id="idTipoDettaglioUsoSecondario$$numTotaleUtilizzo" 
+                      onchange="javascript: modificaComboQualitaUsoSecondario('$$numTotaleUtilizzo');" $$disabledUt>
+                      <!-- @@blkTipiDettaglioUsoSecondario -->
+                      <option value="$$idTipoDettaglioUsoSecondario" title="$$descCompleta" $$selected>
+                        $$descrizione
+                      </option>
+                      <!-- @@blkTipiDettaglioUsoSecondario -->
+                      <!-- @@blkNoTipiDettaglioUsoSecondario -->
+                      <option value=""></option>
+                      <!-- @@blkNoTipiDettaglioUsoSecondario -->
+                    </select>               
+                    $$err_idTipoDettaglioUsoSecondario
+                 </div>
+                 <div id="idTipoQualitaUsoSecondarioDiv$$numTotaleUtilizzo">
+                    <select name="idTipoQualitaUsoSecondario" id="idTipoQualitaUsoSecondario$$numTotaleUtilizzo" 
+                      onchange="javascript: modificaComboVarietaSecondaria('$$numTotaleUtilizzo');" $$disabledUt>
+                      <!-- @@blkTipiQualitaUsoSecondario -->
+                      <option value="$$idTipoQualitaUsoSecondario" title="$$descCompleta" $$selected>
+                        $$descrizione
+                      </option>
+                      <!-- @@blkTipiQualitaUsoSecondario -->
+                      <!-- @@blkNoTipiQualitaUsoSecondario -->
+                      <option value=""></option>
+                      <!-- @@blkNoTipiQualitaUsoSecondario -->
+                    </select>
+                    $$err_idTipoQualitaUsoSecondario
+                  </div>       
+                  <div id="idVarietaSecondariaDiv$$numTotaleUtilizzo">
+                    <select name="idVarietaSecondaria" id="idVarietaSecondaria$$numTotaleUtilizzo" 
+                      onchange="javascript: modificaSezioneSeminaSecondario('$$numTotaleUtilizzo');" $$disabledUt>
+                      <!-- @@blkTipiVarietaSecondaria -->
+                      <option value="$$idVarietaSecondaria" title="$$descCompleta" $$selected>
+                        $$descrizione
+                      </option>
+                      <!-- @@blkTipiVarietaSecondaria -->
+                      <!-- @@blkNoTipiQualitaUsoSecondario -->
+                      <option value=""></option>
+                      <!-- @@blkNoTipiQualitaUsoSecondario -->
+                    </select>
+                    $$err_idVarietaSecondaria
+                  </div>                                  
+                </td>
+                <td>
+                  <!--  @@blkNoDisabled -->
+                  <a
+                    href="javascript: newWindowSubmit('../layout/popAggiungiUso.htm', 'aggiungiUso', 600, 300, 'yes', 'Secondario', '$$numeroUtilizzi', '$$numTotaleUtilizzo', 'modificaTerreni');"
+                    title="[Attenzione: questo link si apre in una nuova finestra]"
+                    class="modifica" id="associaIdUtilizzoSecondario"></a>
+                  <!--  @@blkNoDisabled -->
+                </td>
+                <td>
+                  <div id="idSezioneSeminaSecondarioDiv$$numTotaleUtilizzo" >
+	                  <select name="idTipoPeriodoSeminaSecondario" id="idTipoPeriodoSeminaSecondario$$numTotaleUtilizzo" 
+	                    onchange="javascript: modificaSezioneDateSeminaSecondario('$$numTotaleUtilizzo');" $$disabledUt>
+	                    <!-- @@blkTipoPeriodoSeminaSecondario -->
+	                    <option value="$$idTipoPeriodoSeminaSecondario" $$selected>
+	                      $$descrizione
+	                    </option>
+	                    <!-- @@blkTipoPeriodoSeminaSecondario -->
+	                    <!-- @@blkNoTipoPeriodoSeminaSecondario -->
+                      <option value=""></option>
+                      <!-- @@blkNoTipoPeriodoSeminaSecondario -->
+	                  </select>
+	                  $$err_idTipoPeriodoSeminaSecondario
+	                  <br>
+	                  <select name="idTipoSeminaSecondario" $$disabledUt>
+	                    <!-- @@blkTipoSeminaSecondario -->
+	                    <option value="$$idTipoSeminaSecondario" $$selected>
+	                      $$descrizione
+	                    </option>
+	                    <!-- @@blkTipoSeminaSecondario -->
+	                    <!-- @@blkNoTipoSeminaSecondario -->
+                      <option value=""></option>
+                      <!-- @@blkNoTipoSeminaSecondario -->
+	                  </select>
+	                  $$err_idTipoSeminaSecondario
+	                  <br>
+	                </div>
+	                <div id="idSezioneDateSeminaSecondarioDiv$$numTotaleUtilizzo" >
+	                  <input type="text" name="dataInizioDestinazioneSec" class="textmedio"
+	                    value="$$dataInizioDestinazioneSec" $$disabledUt $$readOnlyDataInizioDestinazioneSec />&nbsp;inizio
+	                  $$err_dataInizioDestinazioneSec
+	                  <br>
+	                  <input type="text" name="dataFineDestinazioneSec" class="textmedio"
+	                    value="$$dataFineDestinazioneSec" $$disabledUt $$readOnlyDataFineDestinazioneSec />&nbsp;fine
+	                  $$err_dataFineDestinazioneSec
+	                </div>
+                </td>
+                <td>
+                  <input name="supUtilizzataSecondaria" type="text"
+                    class="textmedio" value="$$supUtilizzataSecondaria" $$disabledUt />
+                  $$err_supUtilizzataSecondaria
+                </td>
+                <td rowspan="$$rowspan">
+                  <select name="idCasoParticolare" id="idCasoParticolare">
+                    <option></option>
+                    <!-- @@blkTipiCasoParticolare -->
+                    <option value="$$idCasoParticolare" title="$$descCasiParticolari" $$selected>
+                      $$descrizione
+                    </option>
+                    <!-- @@blkTipiCasoParticolare -->
+                  </select>
+                  $$err_idCasoParticolare
+                </td>
+              </tr>
+              <!-- righe da aggiungere nel caso in cui rowspan sia diverso da uno  -->
+              <!-- @@blkElencoUtilizzi -->
+              <tr>
+                <td>
+                  <input type="hidden" name="idParticellaCertificata" id="idParticellaCertificata$$numTotaleUtilizzo" value="$$idParticellaCertificata" />
+                  <select name="idTipoUtilizzo" id="idTipoUtilizzo$$numTotaleUtilizzo" class="clsIdTipoUtilizzo"
+                    onchange="javascript: modificaComboDestinazione('$$numTotaleUtilizzo');" $$disabledUt >
+                    <option value=""></option>
+                    <!-- @@blkTipiUsoSuolo -->
+                    <option value="$$idTipoUtilizzo" title="$$descCompleta" $$selected>
+                      $$descrizione
+                    </option>
+                    <!-- @@blkTipiUsoSuolo -->
+                  </select>
+                  $$err_idTipoUtilizzo
+                  <div id="idTipoDestinazioneDiv$$numTotaleUtilizzo">
+                    <select name="idTipoDestinazione" id="idTipoDestinazione$$numTotaleUtilizzo" 
+                      onchange="javascript: modificaComboDettaglioUso('$$numTotaleUtilizzo');" $$disabledUt>
+                      <!-- @@blkTipiDestinazione -->
+                      <option value="$$idTipoDestinazione" title="$$descCompleta" $$selected>
+                        $$descrizione
+                      </option>
+                      <!-- @@blkTipiDestinazione -->
+                      <!-- @@blkNoTipiDestinazione -->
+                      <option value=""></option>
+                      <!-- @@blkNoTipiDestinazione -->
+                    </select>
+                    $$err_idTipoDestinazione
+                  </div>
+                  <div id="idTipoDettaglioUsoDiv$$numTotaleUtilizzo">
+                    <select name="idTipoDettaglioUso" id="idTipoDettaglioUso$$numTotaleUtilizzo" 
+                      onchange="javascript: modificaComboQualitaUso('$$numTotaleUtilizzo');" $$disabledUt>
+                      <!-- @@blkTipiDettaglioUso -->
+                      <option value="$$idTipoDettaglioUso" title="$$descCompleta" $$selected>
+                        $$descrizione
+                      </option>
+                      <!-- @@blkTipiDettaglioUso -->
+                      <!-- @@blkNoTipiDettaglioUso -->
+                      <option value=""></option>
+                      <!-- @@blkNoTipiDettaglioUso -->
+                    </select>                    
+                  </div>
+                  <div id="idTipoQualitaUsoDiv$$numTotaleUtilizzo">
+                    <select name="idTipoQualitaUso" id="idTipoQualitaUso$$numTotaleUtilizzo" 
+                      onchange="javascript: modificaComboVarieta('$$numTotaleUtilizzo');" $$disabledUt>
+                      <!-- @@blkTipiQualitaUso -->
+                      <option value="$$idTipoQualitaUso" title="$$descCompleta" $$selected>
+                        $$descrizione
+                      </option>
+                      <!-- @@blkTipiQualitaUso -->
+                      <!-- @@blkNoTipiQualitaUso -->
+                      <option value=""></option>
+                      <!-- @@blkNoTipiQualitaUso -->
+                    </select>
+                    $$err_idTipoQualitaUso
+                  </div>
+                  <div id="idVarietaDiv$$numTotaleUtilizzo">
+                    <select name="idVarieta" id="idVarieta$$numTotaleUtilizzo" 
+                      onchange="javascript: modificaSezioneSemina('$$numTotaleUtilizzo');modificaSezioneMantenimento('$$numTotaleUtilizzo');" $$disabledUt>
+                      <!-- @@blkTipiVarieta -->
+                      <option value="$$idVarieta" title="$$descCompleta" $$selected>
+                        $$descrizione
+                      </option>
+                      <!-- @@blkTipiVarieta -->
+                      <!-- @@blkNoTipiVarieta -->
+                      <option value=""></option>
+                      <!-- @@blkNoTipiVarieta -->
+                    </select>
+                    $$err_idVarieta
+                  </div>
+                </td>
+                <td>
+                  <!--  @@blkNoDisabled -->
+                  <a
+                    href="javascript: newWindowSubmit('../layout/popAggiungiUso.htm', 'aggiungiUso', 600, 300, 'yes', 'Primario', '$$numeroUtilizzi', '$$numTotaleUtilizzo', 'modificaTerreni');"
+                    title="[Attenzione: questo link si apre in una nuova finestra]"
+                    class="modifica" id="associaIdUtilizzo"></a>
+                  <!--  @@blkNoDisabled -->
+                </td>
+                <td>                
+                  <div id="idSezioneSeminaDiv$$numTotaleUtilizzo" >
+                    <input name="supEleggibileTmp" id="supEleggibileTmp$$numTotaleUtilizzo" type="hidden" value="$$supEleggibile" />
+                    <input name="supEleggibileNettaTmp" id="supEleggibileNettaTmp$$numTotaleUtilizzo" type="hidden" value="$$supEleggibileNetta" />
+                    <input name="coefficienteRiduzione" id="coefficienteRiduzione$$numTotaleUtilizzo" type="hidden"  value="$$coefficienteRiduzione" />
+                    <select name="idTipoPeriodoSemina" id="idTipoPeriodoSemina$$numTotaleUtilizzo" 
+                        onchange="javascript: modificaSezioneDateSemina($$numTotaleUtilizzo);" $$disabledUt >
+                      <!-- @@blkTipoPeriodoSemina -->
+                      <option value="$$idTipoPeriodoSemina" $$selected>
+                        $$descrizione
+                      </option>
+                      <!-- @@blkTipoPeriodoSemina -->
+                      <!-- @@blkNoTipoPeriodoSemina -->
+                      <option value=""></option>
+                      <!-- @@blkNoTipoPeriodoSemina -->
+                    </select>
+                    $$err_idTipoPeriodoSemina
+                    <br>
+                    <select name="idTipoSemina" $$disabledUt>
+                      <!-- @@blkTipoSemina -->
+                      <option value="$$idTipoSemina" $$selected>
+                        $$descrizione
+                      </option>
+                      <!-- @@blkTipoSemina -->
+                      <!-- @@blkNoTipoSemina -->
+                      <option value=""></option>
+                      <!-- @@blkNoTipoSemina -->
+                    </select>
+                    $$err_idTipoSemina
+                    <br>
+                  </div>
+                  <div id="idSezioneDateSeminaDiv$$numTotaleUtilizzo" >
+                    <input type="text" name="dataInizioDestinazione" class="textmedio"
+                      value="$$dataInizioDestinazione" $$disabledUt $$readOnlyDataInizioDestinazione />&nbsp;inizio
+                    $$err_dataInizioDestinazione
+                    <br>
+                    <input type="text" name="dataFineDestinazione" class="textmedio"
+                      value="$$dataFineDestinazione" $$disabledUt $$readOnlyDataFineDestinazione />&nbsp;fine
+                    $$err_dataFineDestinazione
+                  </div>
+                </td>
+                <td>
+                  <input name="supUtilizzata" id="supUtilizzata$$numTotaleUtilizzo" type="text"
+                    class="textmedio" value="$$supUtilizzata" 
+                    onkeyup="javascript:calcolaSupNetta($$numTotaleUtilizzo);" $$disabledUt />
+                  $$err_supUtilizzata
+                  <br>
+                </td>
+                <td id="supNetta_$$numTotaleUtilizzo">
+                  $$supNetta
+                </td>
+                <td id="supEleggibile_$$numTotaleUtilizzo">
+                  $$supEleggibile
+                </td>
+                <td id="supEleggibileNetta_$$numTotaleUtilizzo" >
+                  $$supEleggibileNetta
+                </td>
+                <td>
+                  <div id="idSezioneMantenimentoDiv$$numTotaleUtilizzo" >
+                    <select name="idPraticaMantenimento" $$disabledUt>
+                      <!-- @@blkTipoPraticaMantenimento -->
+                      <option value="$$idPraticaMantenimento" $$selected>
+                        $$descrizione
+                      </option>
+                      <!-- @@blkTipoPraticaMantenimento -->
+                      <!-- @@blkNoTipoPraticaMantenimento -->
+                      <option value=""></option>
+                      <!-- @@blkNoTipoPraticaMantenimento -->
+                    </select>
+                    $$err_idPraticaMantenimento
+                  </div>
+                </td>
+                <td>
+                  <select name="idTipoUtilizzoSecondario" id="idTipoUtilizzoSecondario$$numTotaleUtilizzo" class="clsIdTipoUtilizzoSecondario"
+                    onchange="javascript: modificaComboDestinazioneSecondario('$$numTotaleUtilizzo');" $$disabledUt >
+                    <option value=""></option>
+                    <!-- @@blkTipiUsoSuoloSecondario -->
+                    <option value="$$idTipoUtilizzoSecondario" title="$$descCompleta"  $$selected>
+                      $$descrizione
+                    </option>
+                    <!-- @@blkTipiUsoSuoloSecondario -->
+                  </select>
+                  $$err_idTipoUtilizzoSecondario
+                  <div id="idTipoDestinazioneSecondarioDiv$$numTotaleUtilizzo">
+                    <select name="idTipoDestinazioneSecondario" id="idTipoDestinazioneSecondario$$numTotaleUtilizzo" 
+                      onchange="javascript: modificaComboDettaglioUsoSecondario('$$numTotaleUtilizzo');" $$disabledUt>
+                      <!-- @@blkTipiDestinazioneSecondario -->
+                      <option value="$$idTipoDestinazioneSecondario" title="$$descCompleta" $$selected>
+                        $$descrizione
+                      </option>
+                      <!-- @@blkTipiDestinazioneSecondario -->
+                      <!-- @@blkNoTipiDestinazioneSecondario -->
+                      <option value=""></option>
+                      <!-- @@blkNoTipiDestinazioneSecondario -->
+                    </select>
+                    $$err_idTipoDestinazioneSecondario
+                  </div> 
+                  <div id="idTipoDettaglioUsoSecondarioDiv$$numTotaleUtilizzo">
+                    <select name="idTipoDettaglioUsoSecondario" id="idTipoDettaglioUsoSecondario$$numTotaleUtilizzo" 
+                      onchange="javascript: modificaComboQualitaUsoSecondario('$$numTotaleUtilizzo');" $$disabledUt>
+                      <!-- @@blkTipiDettaglioUsoSecondario -->
+                      <option value="$$idTipoDettaglioUsoSecondario" title="$$descCompleta" $$selected>
+                        $$descrizione
+                      </option>
+                      <!-- @@blkTipiDettaglioUsoSecondario -->
+                      <!-- @@blkNoTipiDettaglioUsoSecondario -->
+                      <option value=""></option>
+                      <!-- @@blkNoTipiDettaglioUsoSecondario -->
+                    </select>               
+                    $$err_idTipoDettaglioUsoSecondario
+                 </div>
+                 <div id="idTipoQualitaUsoSecondarioDiv$$numTotaleUtilizzo">
+                    <select name="idTipoQualitaUsoSecondario" id="idTipoQualitaUsoSecondario$$numTotaleUtilizzo" 
+                      onchange="javascript: modificaComboVarietaSecondaria('$$numTotaleUtilizzo');" $$disabledUt>
+                      <!-- @@blkTipiQualitaUsoSecondario -->
+                      <option value="$$idTipoQualitaUsoSecondario" title="$$descCompleta" $$selected>
+                        $$descrizione
+                      </option>
+                      <!-- @@blkTipiQualitaUsoSecondario -->
+                      <!-- @@blkNoTipiQualitaUsoSecondario -->
+                      <option value=""></option>
+                      <!-- @@blkNoTipiQualitaUsoSecondario -->
+                    </select>
+                    $$err_idTipoQualitaUsoSecondario
+                  </div>       
+                  <div id="idVarietaSecondariaDiv$$numTotaleUtilizzo">
+                    <select name="idVarietaSecondaria" id="idVarietaSecondaria$$numTotaleUtilizzo" 
+                      onchange="javascript: modificaSezioneSeminaSecondario('$$numTotaleUtilizzo');" $$disabledUt>
+                      <!-- @@blkTipiVarietaSecondaria -->
+                      <option value="$$idVarietaSecondaria" title="$$descCompleta" $$selected>
+                        $$descrizione
+                      </option>
+                      <!-- @@blkTipiVarietaSecondaria -->
+                      <!-- @@blkNoTipiVarietaSecondaria -->
+                      <option value=""></option>
+                      <!-- @@blkNoTipiVarietaSecondaria -->
+                    </select>
+                    $$err_idVarietaSecondaria
+                  </div>                                  
+                </td>
+                <td>
+                  <!--  @@blkNoDisabled -->
+                  <a
+                    href="javascript: newWindowSubmit('../layout/popAggiungiUso.htm', 'aggiungiUso', 600, 300, 'yes', 'Secondario', '$$numeroUtilizzi', '$$numTotaleUtilizzo', 'modificaTerreni');"
+                    title="[Attenzione: questo link si apre in una nuova finestra]"
+                    class="modifica" id="associaIdUtilizzoSecondario"></a>
+                  <!--  @@blkNoDisabled -->
+                </td>
+                <td>
+                  <div id="idSezioneSeminaSecondarioDiv$$numTotaleUtilizzo" >
+                    <select name="idTipoPeriodoSeminaSecondario" id="idTipoPeriodoSeminaSecondario$$numTotaleUtilizzo" 
+                      onchange="javascript: modificaSezioneDateSeminaSecondario('$$numTotaleUtilizzo');" $$disabledUt >
+                      <!-- @@blkTipoPeriodoSeminaSecondario -->
+                      <option value="$$idTipoPeriodoSeminaSecondario" $$selected>
+                        $$descrizione
+                      </option>
+                      <!-- @@blkTipoPeriodoSeminaSecondario -->
+                      <!-- @@blkNoTipoPeriodoSeminaSecondario -->
+                      <option value=""></option>
+                      <!-- @@blkNoTipoPeriodoSeminaSecondario -->
+                    </select>
+                    $$err_idTipoPeriodoSeminaSecondario
+                    <br>
+                    <select name="idTipoSeminaSecondario" $$disabledUt>
+                      <!-- @@blkTipoSeminaSecondario -->
+                      <option value="$$idTipoSeminaSecondario" $$selected>
+                        $$descrizione
+                      </option>
+                      <!-- @@blkTipoSeminaSecondario -->
+                      <!-- @@blkNoTipoSeminaSecondario -->
+                      <option value=""></option>
+                      <!-- @@blkNoTipoSeminaSecondario -->
+                    </select>
+                    $$err_idTipoSeminaSecondario
+                    <br>
+                  </div>
+                  <div id="idSezioneDateSeminaSecondarioDiv$$numTotaleUtilizzo" >
+                    <input type="text" name="dataInizioDestinazioneSec" class="textmedio"
+                      value="$$dataInizioDestinazioneSec" $$disabledUt $$readOnlyDataInizioDestinazioneSec />&nbsp;inizio
+                    $$err_dataInizioDestinazioneSec
+                    <br>
+                    <input type="text" name="dataFineDestinazioneSec" class="textmedio"
+                      value="$$dataFineDestinazioneSec" $$disabledUt $$readOnlyDataFineDestinazioneSec />&nbsp;fine
+                    $$err_dataFineDestinazioneSec
+                  </div>
+                </td>
+                <td>
+                  <input name="supUtilizzataSecondaria" type="text"
+                    class="textmedio" value="$$supUtilizzataSecondaria" $$disabledUt />
+                  $$err_supUtilizzataSecondaria
+                </td>
+              </tr>
+              <!-- @@blkElencoUtilizzi -->
+              </tbody>
+              <!-- @@blkElencoDati -->
+              <!-- righe da aggiungere nel caso in cui $$rowspan sia diverso da uno 
+								 devono essere n <tr> con n = $$rowspan-1 -->
+            </table>
+          </div>
+          <p id="nota">
+            Tutte le superfici sono espresse in ettari (ha).
+          </p>
+          <div class="pulsanti">
+            <div class="sin">
+              <input name="conferma" type="submit" value="conferma"
+                class="inputPulsante highlighted" />
+            </div>
+            <div class="des">
+              <input name="annulla" type="submit" value="annulla"
+                class="inputPulsante annulla" />
+            </div>
+          </div>
+          <p class="legenda">
+            <strong>Casi particolari</strong>:
+            <!-- @@blkLegendaCasiParticolari -->
+            $$idCasoParticolare $$descCasoParticolare
+            <!-- @@blkLegendaCasiParticolari -->
+          </p>
+          <!-- @@blkDati -->
+          <!-- @@blkErrore -->
+          <p class="errore">
+            $$messaggioErrore
+          </p>
+          <!-- @@blkErrore -->
+        </div>
+      </div>
+      <hr />
+      $$footer

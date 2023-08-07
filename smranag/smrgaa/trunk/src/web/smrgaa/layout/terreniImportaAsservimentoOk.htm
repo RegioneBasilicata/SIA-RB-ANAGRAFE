@@ -1,0 +1,260 @@
+$$head
+
+<script type="text/javascript" src="../js/messaggistica.js"></script>
+</head>
+<body id="homeIndice" onload="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+  <form  method="post" action="terreniImporta.htm">
+    <div id="pagina" class="colonnaUnica">
+      <!-- INTESTAZIONE -->
+      <div id="intestazione">
+        	<!--intestazione-->
+$$header
+        <!-- menu di navigazione-->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li><a href="index.htm" title="Torna alla pagina principale">home</a></li>
+              <li class="attivo">gestione anagrafe aziende</li>
+              <li><a href="#" title="contatti">contatti</a></li>
+              <li><a href="#" title="help">help</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr/>
+      <div style="clear:left">  </div>
+      <!-- CORPO -->
+      <div id="corpo">
+        <div id="Utente">
+          <div id="datiUtente">
+            <strong>utente:</strong>
+            $$utente
+            &nbsp;
+            &nbsp;
+            <strong>ente:</strong>
+            $$ente
+          </div>
+          <div id="chiudisessione">
+            <a href="javascript: logout();">chiudi sessione</a>
+          </div>
+        </div>
+        <hr/>
+        <!--PRIMA COLONNA -->
+        <h3>Gestione Anagrafe Aziende&nbsp;&gt;&nbsp;Terreni&nbsp;&gt;&nbsp;Importa
+        <span class="helpFuori">
+            <a href="#">
+              <span class="alt">[help]</span>
+            </a>
+          </span>
+        </h3>
+        <hr/>
+        <div class="box">
+          <div class="menuSX1">
+            <ul>
+              <!-- @@blkElencoAziendeRapLegale -->
+                <li><a href="../layout/elencoAziendeRapLegale.htm">Elenco Aziende</a></li>
+              <!-- @@blkElencoAziendeRapLegale -->
+               <!-- @@blkRicercaAzienda-->
+               <li><a href="../layout/ricerca.htm">Ricerche</a></li>
+               <!-- @@blkRicercaAzienda-->
+               <!-- @@blkNuova -->
+               <li>
+                 <a href="../layout/nuovaAziendaAnagrafica.htm">Nuova Azienda</a>
+               </li>
+               <!-- @@blkNuova -->
+               <!-- @@blkNuovaIscrizione -->
+	             <li>
+	               <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+	             </li>
+	             <!-- @@blkNuovaIscrizione -->
+            </ul>
+          </div>
+          <div class="menuSX">
+            <ul>
+              <li>
+                <a href="../layout/anagrafica.htm" >Anagrafica</a>
+              </li>
+              <!-- @@blkAziendeCollegate -->
+              <li>
+                <a href="../layout/aziendeCollegate.htm">$$aziendeCollegateLabel</a>
+              </li>
+              <!-- @@blkAziendeCollegate -->
+              <!-- @@blkSincronizzaFascicolo -->
+               <li>
+               	<a href="../layout/sincronizzaFascicolo.htm">Sincronizza fascicolo</a>
+               </li>
+              <!-- @@blkSincronizzaFascicolo -->
+              <!-- @@blkSoggettiCollegati -->
+              <li>
+                <a href="../layout/contitolari.htm">Soggetti collegati</a>
+              </li>
+              <!-- @@blkSoggettiCollegati -->
+              <!-- @@blkContiCorrenti -->
+              <li>
+                <a href="../layout/conti_correnti.htm">Conti Correnti</a>
+              </li>
+              <!-- @@blkContiCorrenti -->
+              <!-- @@blkUnitaProduttive -->
+              <li>
+                <a href="../layout/sedi.htm">Unit&agrave; produttive</a>
+              </li>
+              <!-- @@blkUnitaProduttive -->
+              <!-- @@blkTerreni -->
+              <li>
+                <!-- @@blkLinkElenco -->
+                <a href="../layout/terreniParticellareElenco.htm" class="on">Terreni</a>
+                <!-- @@blkLinkElenco -->
+                <!-- @@blkLinkRiepiloghi -->
+                <a href="../layout/riepiloghi.htm" class="on" >Terreni</a>
+                <!-- @@blkLinkRiepiloghi -->
+                <ul>
+                  <li>
+                    <a href="#" class="etichetta">importa</a>
+                  </li>                
+                </ul>
+              </li>
+              <!-- @@blkTerreni -->
+              <!-- @@blkUnitaVitate -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniUnitaArboreeElenco.htm">Unit&agrave; Vitate</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		              <a href="../layout/riepiloghiUnitaArboree.htm">Unit&agrave; Vitate</a>
+		              <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkUnitaVitate -->
+              <!-- @@blkFabbricati -->
+              <li>
+                <a href="../layout/fabbricati.htm">Fabbricati e Strutture</a>
+              </li>
+              <!-- @@blkFabbricati -->
+              <!-- @@blkAllevamenti -->
+              <li>
+                <a href="../layout/allevamenti.htm">Allevamenti</a>
+              </li>
+              <!-- @@blkAllevamenti -->
+              <!-- @@blkManodopera -->
+              <li>
+                <a href="../layout/manodopera.htm">Manodopera</a>
+              </li>
+              <!-- @@blkManodopera -->
+              <!-- @@blkMotoriAgricoli -->
+              <li>
+                <a href="../layout/motori_agricoli_incarico.htm">Macchine agricole</a>
+              </li>
+              <!-- @@blkMotoriAgricoli -->
+              <!-- @@blkDiritti -->
+              <li><a href="../layout/diritti.htm">Diritti di produzione</a></li>
+              <!-- @@blkDiritti -->
+              <!-- @@blkAttestazioni -->
+              <li><a href="../layout/attestazioniDettaglio.htm">Dichiarazioni</a></li>
+              <!-- @@blkAttestazioni -->
+              <!-- @@blkDichiarazioniConsistenza -->
+              <li>
+                <a href="../layout/dichiarazioneConsistenza.htm">Validazioni</a>
+              </li>
+              <!-- @@blkDichiarazioniConsistenza -->
+              <!-- @@blkDocumenti -->
+              <li><a href="../layout/documentiElenco.htm">Documenti</a></li>
+              <!-- @@blkDocumenti -->
+              <!-- @@blkFascicoloDematerializzato -->
+              <li>
+                <a href="../layout/fascicoloDematerializzato.htm">Fascicolo<br>elettronico</a>
+              </li>
+              <!-- @@blkFascicoloDematerializzato -->
+              <!-- @@blkGestioneNotifiche -->
+              <li>
+                <a href = "../layout/notifiche.htm">Notifiche</a>
+              </li>
+              <!-- @@blkGestioneNotifiche -->
+              <!-- @@blkComunicazione10R -->
+                <li>
+                  <a href="../layout/comunicazione10R_dettaglio.htm">Comunicazione 10/R</a>
+                </li>
+              <!-- @@blkComunicazione10R -->
+              <!-- @@blkPratiche -->
+              <li><a href="../layout/pratiche.htm">Pratiche</a></li>
+              <!-- @@blkPratiche -->
+              <!-- @@blkStampaFascicolo -->
+              <li>
+                <a href="../layout/scelta_stampa.htm">Stampe</a>
+              </li>
+              <!-- @@blkStampaFascicolo -->
+			  <li>
+                <a href="../layout/strumenti.htm">Strumenti</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <hr/>
+        <!-- SECONDA COLONNA -->
+        <div id="contenuto">
+          <div id="intesta">
+            <p class="$$aziendaIntestazione" title="$$tooltipIntestazione" >
+              $$CUAAIntestazione  $$denominazioneIntestazione
+            </p>
+          </div>
+          <hr/>
+         <p class="errore">IMPORTAZIONE COMPLETATA</p>
+          <div class="scroll">
+          <!-- @@blkParticelleImportate -->
+            <table cellspacing="3" summary="Questa tabella è costituita da righe">
+              <caption>Particelle importate:</caption>
+              <tr>
+                <th class="center" scope="col">Comune</th>
+                <th class="center" scope="col">
+                  <abbr title="Sezione">Sez.</abbr>
+                </th>
+                <th class="center" scope="col">Foglio</th>
+                <th class="center" scope="col">
+                  <abbr title="Particella">Part.</abbr>
+                </th>
+                <th class="center" scope="col">Sub</th>
+              </tr>
+              <!-- @@blkElencoParticelleImportate -->
+              <tr>
+                <td>$$descComuneParticella ($$siglaProvinciaParticella)</td>
+                <td>$$sezione</td>
+                <td class="numeridx">$$foglio</td>
+                <td class="numeridx">$$particella</td>
+                <td>$$subalterno</td>
+              </tr>
+              <!-- @@blkElencoParticelleImportate -->
+            </table>
+          <!-- @@blkParticelleImportate -->
+          <!-- @@blkParticelleNonImportate -->
+            <table cellspacing="3" summary="Questa tabella è costituita da righe">
+              <caption>Particelle non importate:</caption>
+              <tr>
+                <th class="center" scope="col">Comune</th>
+                <th class="center" scope="col">
+                  <abbr title="Sezione">Sez.</abbr>
+                </th>
+                <th class="center" scope="col">Foglio</th>
+                <th class="center" scope="col">
+                  <abbr title="Particella">Part.</abbr>
+                </th>
+                <th class="center" scope="col">Sub</th>
+              </tr>
+              <!-- @@blkElencoParticelleNonImportate -->
+              <tr>
+                <td>$$descComuneParticella ($$siglaProvinciaParticella)</td>
+                <td>$$sezione</td>
+                <td class="numeridx">$$foglio</td>
+                <td class="numeridx">$$particella</td>
+                <td>$$subalterno</td>
+              </tr>
+              <!-- @@blkElencoParticelleNonImportate -->
+            </table>
+          <!-- @@blkParticelleNonImportate -->
+          </div>
+        </div>
+ 
+      </div>
+      <hr/>
+      <!-- PIE' DI PAGINA -->
+$$footer

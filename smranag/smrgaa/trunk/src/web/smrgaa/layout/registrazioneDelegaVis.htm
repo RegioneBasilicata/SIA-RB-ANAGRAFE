@@ -1,0 +1,171 @@
+$$head
+<script type="text/javascript" src="../js/checktext.js"></script>
+<script type="text/javascript" src="../js/messaggistica.js"></script>
+</head>
+<body id="homeIndice" onLoad="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+	<form name="form1" method="post"
+		action="../layout/registrazioneDelega.htm">
+		<div id="pagina" class="colonnaUnica">
+			<!-- INTESTAZIONE -->
+			<div id="intestazione##pathProvincia">
+				$$header
+				<!-- menu di navigazione-->
+				<div id="titoloEmenu">
+					<h2>
+						<span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+					</h2>
+					<div id="menuDiNavigazione" title="Menu di navigazione">
+						<ul class="menuTendina" id="menu-2">
+							<li><a href="index.htm" title="Torna alla pagina principale">home</a></li>
+							<li class="attivo">gestione anagrafe aziende</li>
+							<li><a href="#" title="contatti">contatti</a></li>
+							<li><a href="#" title="help">help</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<hr />
+			<div style="clear: left"></div>
+			<!-- CORPO -->
+			<div id="corpo">
+				<div id="Utente">
+					<div id="datiUtente">
+						<strong>utente:</strong> $$utente &nbsp; &nbsp; <strong>ente:</strong>
+						$$ente
+					</div>
+					<div id="chiudisessione">
+						<a href="javascript: logout();">chiudi sessione</a>
+					</div>
+				</div>
+				<hr />
+				<!--PRIMA COLONNA -->
+				<h3>
+					Azienda &gt; Registrazione mandato<span class="helpFuori"><a
+						href="#"><span class="alt"> [help]</span></a></span>
+				</h3>
+				<hr />
+				<div class="box">
+					<div class="menuSX1">
+						<ul>
+							<!-- @@blkElencoAziendeRapLegale -->
+							<li><a href="../layout/elencoAziendeRapLegale.htm">Elenco
+									Aziende</a></li>
+							<!-- @@blkElencoAziendeRapLegale -->
+							<!-- @@blkRicercaAzienda-->
+							<li><a href="../layout/ricerca.htm">Ricerche</a></li>
+							<!-- @@blkRicercaAzienda-->
+							<!-- @@blkNuova -->
+							<li><a href="../layout/nuovaAziendaAnagrafica.htm">Nuova
+									Azienda</a></li>
+							<!-- @@blkNuova -->
+							<!-- @@blkNuovaIscrizione -->
+							<li><a href="../layout/newInserimentoAzienda.htm">Nuova
+									Iscrizione</a></li>
+							<!-- @@blkNuovaIscrizione -->
+						</ul>
+					</div>
+
+					<div class="menuSX">
+						<ul>
+							<li><a href="elenco.shtml" class="on">Azienda</a>
+								<ul>
+									<li><a href="#" class="etichetta">registrazione
+											mandato</a></li>
+								</ul></li>
+						</ul>
+					</div>
+				</div>
+				<hr />
+				<!-- SECONDA COLONNA -->
+				<div id="contenuto">
+					<div id="intesta">
+						<p class="$$aziendaIntestazione" title="$$tooltipIntestazione" >$$CUAA - $$denominazione</p>
+					</div>
+					<table cellspacing="3"
+						summary="Questa tabella contiene i dati relativi titolare dell'impresa">
+						<tr>
+							<th>Il sottoscitto</th>
+							<td>ROSSI MARIO</td>
+						</tr>
+						<tr>
+							<th>Codice fiscale</th>
+							<td>RSSMRCS3230429</td>
+						</tr>
+						<tr>
+							<th>Nato a</th>
+							<td>Torino</td>
+						</tr>
+						<tr>
+							<th>Il</th>
+							<td>12/05/1963</td>
+						</tr>
+					</table>
+					<p>in qualit&agrave; di titolare/rappresentante legale
+						dell'impresa</p>
+					<table cellspacing="3"
+						summary="Questa tabella contiene i dati relativi all'azienda">
+						<tr>
+							<th>CUAA</th>
+							<td>VRDGVN73F64H323O</td>
+						</tr>
+						<tr>
+							<th>Partita IVA</th>
+							<td>xxxxxxxxx</td>
+						</tr>
+						<tr>
+							<th>Denominazione</th>
+							<td>Azienda Agricola Rossi e Verdi</td>
+						</tr>
+					</table>
+					<p>CONFERISCE IL MANDATO per la gestione del proprio fascicolo
+						aziendale a:</p>
+					<table>
+						<tr>
+							<th class="allineaSx" colspan="2">CAA XXXXXXX</th>
+						</tr>
+					</table>
+					<p>Il fascicolo verr&agrave; depositato presso l'ufficio:</p>
+					<table>
+						<tr>
+							<th>Denominazione</th>
+							<td>xxxxx</td>
+						</tr>
+						<tr>
+							<th>Indirizzo</th>
+							<td>via xxxxxxx</td>
+						</tr>
+						<tr>
+							<th>Comune</th>
+							<td>CUNEO (CN)</td>
+						</tr>
+						<tr>
+							<th>Recapito</th>
+							<td>0171 15155</td>
+						</tr>
+					</table>
+					<table cellspacing="3"
+						summary="Questa tabella contiene i dati relativi alla validità della delega">
+						<tr>
+							<th>Delega valida dal</th>
+							<td>gg/mm/aaaa hh:mm</td>
+						</tr>
+						<tr>
+							<th>Operazione effettuata da</th>
+							<td>Pincopallo-CAA xxxxx il giorno gg/mm/aaa hh:mm</td>
+						</tr>
+					</table>
+					<p>Entrambe le parti si impegnano a rispettare il
+						$$riferimenti_regolamento</p>
+					<div class="pulsanti">
+						<div class="sin">
+							<input name="stampa" type="submit" id="stampa" value="stampa"
+								onClick="if(radiobutton.value=='NO') location='pdf/conferimento_mandato.pdf'; else location='pdf/conferimento_mandato.pdf';"
+								onKeyPress="if(radiobutton.value=='NO') location='pdf/conferimento_mandato.pdf'; else location='pdf/conferimento_mandato.pdf';"
+								href="pdf/conferimento_mandato.pdf" class="inputPulsante" />
+						</div>
+					</div>
+				</div>
+			</div>
+			<hr />
+			<!-- PIE' DI PAGINA -->
+			$$footer

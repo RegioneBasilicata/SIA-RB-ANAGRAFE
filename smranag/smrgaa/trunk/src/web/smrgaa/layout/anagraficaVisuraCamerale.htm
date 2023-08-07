@@ -1,0 +1,990 @@
+$$head
+<script src="../js/checktext.js" type="text/javascript"></script>
+<script type="text/javascript" src="../js/messaggistica.js"></script>
+<script type="text/javascript">
+
+   function cessa() {
+     var lastAction = document.form1.action;
+     document.form1.action = "../layout/anagrafica.htm";
+     document.form1.cessazione.value="true";
+     document.form1.submit();
+     document.form1.cessazione.value="";
+     document.form1.action = lastAction;
+   }
+
+   function selezionaCheckBox(form)
+   {
+       form.denominazione.checked=true;
+       form.formaGiuridica.checked=true;
+       form.partitaIVA.checked=true;
+       form.descrizioneAteco.checked=true;
+       form.provinciaREA.checked=true;
+       form.numeroREA.checked=true;
+       form.annoIscrizione.checked=true;
+       form.numeroRegistroImprese.checked=true;
+       if ($$selezionaSedeLegale)
+        form.sedeLegale.checked=true;
+       if ($$selezionaTitolareRappresentante)
+        form.titolareRappresentante.checked=true;
+   }
+   
+   function setBlocked(form, obj) 
+   {
+     obj.onclick = '';
+     goToOperazione('../layout/anagraficaVisuraCameraleImport.htm', form, 'attenderePrego');
+   }
+
+  </script>
+</head>
+<body id="homeIndice" onLoad="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+  <form id="form1" name="form1" method="post"
+    action="../layout/anagraficaVisuraCameraleImport.htm">
+    <input type="hidden" name="operazione" value="$$operazione" />
+    <input type="hidden" name="cessazione" value="$$cessazione" />
+    <div id="pagina" class="colonnaUnica">
+      <!-- INTESTAZIONE -->
+      <div id="intestazione##pathProvincia">
+        $$header
+        <!-- menu di navigazione-->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li>
+                <a href="../layout/index.htm"
+                  title="Torna alla pagina principale">home</a>
+              </li>
+              <li class="attivo">
+                gestione anagrafe aziende
+              </li>
+              <li>
+                <a href="#" title="contatti">contatti</a>
+              </li>
+              <li>
+                <a href="#" title="help">help</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div style="clear: left">
+      </div>
+      <!-- CORPO -->
+      <div id="corpo">
+        <div id="Utente">
+          <div id="datiUtente">
+            <strong>utente:</strong> $$utente &nbsp; &nbsp;
+            <strong>ente:</strong> $$ente
+          </div>
+          <div id="chiudisessione">
+            <a href="javascript: logout();">chiudi sessione</a>
+          </div>
+        </div>
+        <hr />
+        <!--PRIMA COLONNA -->
+        <h3>
+          Gestione Anagrafe
+          Aziende&nbsp;&gt;&nbsp;Anagrafica&nbsp;&gt;&nbsp;Infocamere
+          <span class="helpFuori"> <a href="#"> <span
+              class="alt">[help]</span> </a> </span>
+        </h3>
+        <hr />
+        <div class="box">
+          <div class="menuSX1">
+            <ul>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <li>
+                <a href="../layout/elencoAziendeRapLegale.htm">Elenco
+                  Aziende</a>
+              </li>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <!-- @@blkRicercaAzienda-->
+              <li>
+                <a href="../layout/ricerca.htm">Ricerche</a>
+              </li>
+              <!-- @@blkRicercaAzienda-->
+              <!-- @@blkNuova -->
+              <li>
+                <a href="../layout/nuovaAziendaAnagrafica.htm">Nuova
+                  Azienda</a>
+              </li>
+              <!-- @@blkNuova -->
+              <!-- @@blkNuovaIscrizione -->
+		          <li>
+		            <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+		          </li>
+		          <!-- @@blkNuovaIscrizione -->
+            </ul>
+          </div>
+          <div class="menuSX">
+            <ul>
+              <li>
+                <a href="../layout/anagrafica.htm" class="on">Anagrafica</a>
+                <ul>
+                  <li>
+                    <a href="../layout/anagrafica.htm">dettaglio</a>
+                  </li>
+                  <li>
+                    <a href="../layout/fonti.htm" class="etichetta">fonti
+                      certificate</a>
+                    <ul>
+                      <li>
+                        <a href="#" class="on">Infocamere</a>
+                      </li>
+                      <li>
+                        <a
+                          href="javascript: goToOperazione('../layout/sianAnagrafeTributaria.htm', document.form1, 'attenderePrego');">anagrafe
+                          tributaria</a>
+                      </li>
+                      <li>
+                        <a href="javascript: goToOperazione('../layout/sianAltriDati.htm', document.form1, 'attenderePrego');">Sian</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <!--@@linkModifica-->
+                  <li>
+                    <a href="../layout/anagrafica_mod.htm">modifica</a>
+                  </li>
+                  <!--@@linkModifica-->
+                  <!--@@linkCessa-->
+                  <li>
+                    <a href="javascript:cessa()">cessazione</a>
+                  </li>
+                  <!--@@linkCessa-->
+                  <!--@@linkCambioRappresentante-->
+                  <li>
+                    <a
+                      href="../layout/anagraficaSocieta_cambiaRappresentante.htm">cambio
+                      rappr. legale</a>
+                  </li>
+                  <!--@@linkCambioRappresentante-->
+                  <!--@@linkDichiarazioneInsediamento-->
+                  <li>
+                    <a href="../layout/insediamento.htm">dichiarazione
+                      insediamento</a>
+                  </li>
+                  <!--@@linkDichiarazioneInsediamento-->
+                  <!--@@linkGestoreFascicolo-->
+                  <li>
+                    <a href="../layout/gestoreFascicolo.htm">gestore
+                      fascicolo</a>
+                  </li>
+                  <!--@@linkGestoreFascicolo-->
+                  <!--@@linkRevocaDelega-->
+                  <li>
+                    <a href="../layout/revocaDelega.htm">revoca
+                      mandato</a>
+                  </li>
+                  <!--@@linkRevocaDelega-->
+                  <!--@@blkStoricoAzienda-->
+                  <li>
+                    <a href="../layout/listaStoricoAzienda.htm">storico
+                      azienda</a>
+                  </li>
+                  <!--@@blkStoricoAzienda-->
+                </ul>
+              </li>
+              <!-- @@blkAziendeCollegate -->
+              <li>
+                <a href="../layout/aziendeCollegate.htm">$$aziendeCollegateLabel</a>
+              </li>
+              <!-- @@blkAziendeCollegate -->
+              <!-- @@blkSincronizzaFascicolo -->
+               <li>
+               	<a href="../layout/sincronizzaFascicolo.htm">Sincronizza fascicolo</a>
+               </li>
+              <!-- @@blkSincronizzaFascicolo -->
+              <!-- @@blkSoggettiCollegati -->
+              <li>
+                <a href="../layout/contitolari.htm">Soggetti
+                  collegati</a>
+              </li>
+              <!-- @@blkSoggettiCollegati -->
+              <!-- @@blkContiCorrenti -->
+              <li>
+                <a href="../layout/conti_correnti.htm">Conti
+                  Correnti</a>
+              </li>
+              <!-- @@blkContiCorrenti -->
+              <!-- @@blkUnitaProduttive -->
+              <li>
+                <a href="../layout/sedi.htm">Unit&agrave; produttive</a>
+              </li>
+              <!-- @@blkUnitaProduttive -->
+              <!-- @@blkTerreni -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniParticellareElenco.htm">Terreni</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		            <a href="../layout/riepiloghi.htm">Terreni</a>
+		            <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkTerreni -->
+		          <!-- @@blkUnitaVitate -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniUnitaArboreeElenco.htm">Unit&agrave; Vitate</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		              <a href="../layout/riepiloghiUnitaArboree.htm">Unit&agrave; Vitate</a>
+		              <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkUnitaVitate -->
+              <!-- @@blkFabbricati -->
+              <li>
+                <a href="../layout/fabbricati.htm">Fabbricati e
+                  Strutture</a>
+              </li>
+              <!-- @@blkFabbricati -->
+              <!-- @@blkAllevamenti -->
+              <li>
+                <a href="../layout/allevamenti.htm">Allevamenti</a>
+              </li>
+              <!-- @@blkAllevamenti -->
+              <!-- @@blkComunicazione10R -->
+              <li>
+                <a href="../layout/comunicazione10R_dettaglio.htm">Comunicazione
+                  10/R</a>
+              </li>
+              <!-- @@blkComunicazione10R -->
+              <!-- @@blkManodopera -->
+              <li>
+                <a href="../layout/manodopera.htm">Manodopera</a>
+              </li>
+              <!-- @@blkManodopera -->
+              <!-- @@blkMotoriAgricoli -->
+              <li>
+                <a href="../layout/motori_agricoli_incarico.htm">Macchine agricole</a>
+              </li>
+              <!-- @@blkMotoriAgricoli -->
+              <!-- @@blkDiritti -->
+              <li>
+                <a href="../layout/diritti.htm">Diritti di
+                  produzione</a>
+              </li>
+              <!-- @@blkDiritti -->
+              <!-- @@blkAttestazioni -->
+              <li>
+                <a href="../layout/attestazioniDettaglio.htm">Dichiarazioni</a>
+              </li>
+              <!-- @@blkAttestazioni -->
+              <!-- @@blkDichiarazioniConsistenza -->
+              <li>
+                <a href="../layout/dichiarazioneConsistenza.htm">Validazioni</a>
+              </li>
+              <!-- @@blkDichiarazioniConsistenza -->
+              <!-- @@blkDocumenti -->
+              <li>
+                <a href="../layout/documentiElenco.htm">Documenti</a>
+              </li>
+              <!-- @@blkDocumenti -->
+              <!-- @@blkFascicoloDematerializzato -->
+		          <li>
+		            <a href="../layout/fascicoloDematerializzato.htm">Fascicolo<br>elettronico</a>
+		          </li>
+		          <!-- @@blkFascicoloDematerializzato --> 
+              <!-- @@blkGestioneNotifiche -->
+              <li>
+                <a href="../layout/notifiche.htm">Notifiche</a>
+              </li>
+              <!-- @@blkGestioneNotifiche -->
+              <!-- @@blkComunicazione10R -->
+              <li>
+                <a href="../layout/comunicazione10R_dettaglio.htm">Comunicazione
+                  10/R</a>
+              </li>
+              <!-- @@blkComunicazione10R -->
+              <!-- @@blkPratiche -->
+              <li>
+                <a href="../layout/pratiche.htm">Pratiche</a>
+              </li>
+              <!-- @@blkPratiche -->
+              <!-- @@blkStampaFascicolo -->
+              <li>
+                <a href="../layout/scelta_stampa.htm">Stampe</a>
+              </li>
+              <!-- @@blkStampaFascicolo -->
+			  <li><a href="../layout/strumenti.htm">Strumenti</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr />
+        <!-- SECONDA COLONNA -->
+        <div id="contenuto">
+          <div id="intesta">
+            <p class="$$aziendaIntestazione" title="$$tooltipIntestazione" >
+              $$CUAAIntestazione  $$denominazioneIntestazione
+            </p>
+          </div>
+          <p>
+	          <h4 class="titolo">
+	            Fonte dati: InfoCamere
+	          </h4>
+          </p>
+          
+          
+          <!-- @@blkErrore -->
+          <p class="errore">
+            $$messaggioErrore
+          </p>
+          <!-- @@blkErrore -->
+          
+          
+          <table cellspacing="3"
+            summary="Questa tabella contiene i dati del rapporto">
+            <tr>
+              <!-- @@blkButtons -->
+              <th class="radio" scope="col">
+                Sel.
+              </th>
+              <!-- @@blkButtons -->
+              <th>
+                &nbsp;
+              </th>
+              <th class="center" scope="col">
+                Dati Infocamere (*)
+              </th>
+              <th class="center" scope="col">
+                Dati in anagrafe
+              </th>
+            </tr>
+            <tr>
+              <!-- @@blkButtons -->
+              <th class="radio">
+                &nbsp;
+              </th>
+              <!-- @@blkButtons -->
+              <th colspan="3" class="left">
+                Dati anagrafici
+              </th>
+            </tr>
+            <tr>
+              <!-- @@blkButtons -->
+              <td>
+                &nbsp;
+              </td>
+              <!-- @@blkButtons -->
+              <td>
+                C.U.A.A. (Codice fiscale)
+              </td>
+              <td>
+                $$codFisAAEP
+              </td>
+              <td>
+                $$codFisAnagrafe
+              </td>
+            </tr>
+            <tr>
+              <!-- @@blkButtons -->
+              <td class="radio" scope="row">
+                <input type="checkbox" id="denominazione"
+                  name="denominazione" value="true" />
+              </td>
+              <!-- @@blkButtons -->
+              <td>
+                <label for="denominazione">
+                  Denominazione
+                </label>
+              </td>
+              <td class="$$denominazioneColor">
+                $$denominazioneAAEP
+              </td>
+              <td>
+                $$denominazioneAnagrafe
+              </td>
+            </tr>
+            <tr>
+              <!-- @@blkButtons -->
+              <td class="radio" scope="row">
+                <input type="checkbox" id="partitaIVA" name="partitaIVA"
+                  value="true" />
+              </td>
+              <!-- @@blkButtons -->
+              <td>
+                <label for="partitaIVA">
+                  Partita IVA
+                </label>
+              </td>
+              <td class="$$partitaIVAColor">
+                $$partitaIVAAAEP
+              </td>
+              <td>
+                $$partitaIVAAnagrafe
+              </td>
+            </tr>
+            <tr>
+              <!-- @@blkButtons -->
+              <td class="radio" scope="row">
+                <input type="checkbox" id="formaGiuridica"
+                  name="formaGiuridica" value="true" />
+              </td>
+              <!-- @@blkButtons -->
+              <td>
+                <label for="formaGiuridica">
+                  Forma giuridica
+                </label>
+              </td>
+              <td class="$$formaGiuridicaColor">
+                $$formaGiuridicaAAEP
+              </td>
+              <td>
+                $$formaGiuridicaAnagrafe
+              </td>
+            </tr>
+            <tr>
+              <!-- @@blkButtons -->
+              <td class="radio" scope="row">
+                <input type="checkbox" id="sezione"
+                  name="sezione" value="true" />
+              </td>
+              <!-- @@blkButtons -->
+              <td>
+                <label for="sezione">
+                  Sezione (*)
+                </label>
+              </td>
+              <td class="$$tipoSezioneAAEPColor">
+                $$descrizioneTipoSezioneAAEP
+              </td>
+              <td>
+                $$descrizioneTipoSezioneAnagrafe
+              </td>
+            </tr>
+            <tr>
+              <!-- @@blkButtons -->
+              <td>
+                &nbsp;
+              </td>
+              <!-- @@blkButtons -->
+              <td>
+                <label for="coltivatore diretto">
+                  Coltivatore diretto
+                </label>
+              </td>
+              <td>
+                $$coltivatoreDirettoAAEP
+              </td>
+              <td>
+                $$coltivatoreDirettoAnagrafe
+              </td>
+            </tr>
+            <tr>
+              <!-- @@blkButtons -->
+              <td class="radio" scope="row">
+                <input type="checkbox" id="descrizioneAteco"
+                  name="descrizioneAteco" value="true" />
+              </td>
+              <!-- @@blkButtons -->
+              <td>
+                <label for="descrizioneAteco">
+                  ATECO principale (**)
+                </label>
+              </td>
+              <td class="$$idAtecoColor">
+                $$descrizioneAtecoAAEP
+              </td>
+              <td>
+                $$descrizioneAtecoAnagrafe
+              </td>
+            </tr>
+            <tr>
+              <!-- @@blkButtons -->
+              <td class="radio" scope="row">
+                <input type="checkbox" id="descrizioneAtecoSec"
+                  name="descrizioneAtecoSec" value="true" />
+              </td>
+              <!-- @@blkButtons -->
+              <td>
+                <label for="descrizioneAtecoSec">
+                  ATECO secondari (**)
+                </label>
+              </td>
+              <td class="$$atecoSecColor">
+                $$descrizioneAtecoSecAAEP
+              </td>
+              <td>
+                $$descrizioneAtecoSecAnagrafe
+              </td>
+            </tr>
+            <tr>
+              <!-- @@blkButtons -->
+              <td class="radio" scope="row">
+                <input type="checkbox" id="provinciaREA"
+                  name="provinciaREA" value="true" />
+              </td>
+              <!-- @@blkButtons -->
+              <td>
+                <label for="provinciaREA">
+                  Provincia REA
+                </label>
+              </td>
+              <td class="$$provinciaREAColor">
+                $$provinciaREAAAEP
+              </td>
+              <td>
+                $$provinciaREAAnagrafe
+              </td>
+            </tr>
+            <tr>
+              <!-- @@blkButtons -->
+              <td class="radio" scope="row">
+                <input type="checkbox" id="numeroREA" name="numeroREA"
+                  value="true" />
+              </td>
+              <!-- @@blkButtons -->
+              <td>
+                <label for="numeroREA">
+                  Numero REA
+                </label>
+              </td>
+              <td class="$$numeroREAColor">
+                $$numeroREAAAEP
+              </td>
+              <td>
+                $$numeroREAAnagrafe
+              </td>
+            </tr>
+            <tr>
+              <!-- @@blkButtons -->
+              <td class="radio" scope="row">
+                <input type="checkbox" id="dataIscrizioneREA" name="dataIscrizioneREA"
+                  value="true" />
+              </td>
+              <!-- @@blkButtons -->
+              <td>
+                <label for="dataIscrizioneRea">
+                  Data iscrizione REA
+                </label>
+              </td>
+              <td class="$$dataIscrizioneREAColor">
+                $$dataIscrizioneREAAAEP
+              </td>
+              <td>
+                $$dataIscrizioneREAAnagrafe
+              </td>
+            </tr>
+            <tr>
+              <!-- @@blkButtons -->
+              <td class="radio" scope="row">
+                <input type="checkbox" id="dataCancellazioneREA" name="dataCancellazioneREA"
+                  value="true" />
+              </td>
+              <!-- @@blkButtons -->
+              <td>
+                <label for="dataCancellazioneREA">
+                  Data cancellazione REA
+                </label>
+              </td>
+              <td class="$$dataCancellazioneREAColor">
+                $$dataCancellazioneREAAAEP
+              </td>
+              <td>
+                $$dataCancellazioneREAAnagrafe
+              </td>
+            </tr>
+            <tr>
+              <!-- @@blkButtons -->
+              <td class="radio" scope="row">
+                <input type="checkbox" id="dataIscrizioneRI" name="dataIscrizioneRI"
+                  value="true" />
+              </td>
+              <!-- @@blkButtons -->
+              <td>
+                <label for="dataIscrizioneRI">
+                  Data iscrizione registro imprese
+                </label>
+              </td>
+              <td class="$$dataIscrizioneRIColor">
+                $$dataIscrizioneRIAAEP
+              </td>
+              <td>
+                $$dataIscrizioneRIAnagrafe
+              </td>
+            </tr>
+            <tr>
+              <!-- @@blkButtons -->
+              <td class="radio" scope="row">
+                <input type="checkbox" id="annoIscrizione"
+                  name="annoIscrizione" value="true" />
+              </td>
+              <!-- @@blkButtons -->
+              <td>
+                <label for="annoIscrizione">
+                  Anno Iscrizione Registro Imprese
+                </label>
+              </td>
+              <td class="$$annoIscrizioneColor">
+                $$annoIscrizioneAAEP
+              </td>
+              <td>
+                $$annoIscrizioneAnagrafe
+              </td>
+            </tr>
+            <tr>
+              <!-- @@blkButtons -->
+              <td class="radio" scope="row">
+                <input type="checkbox" id="numeroRegistroImprese"
+                  name="numeroRegistroImprese" value="true" />
+              </td>
+              <!-- @@blkButtons -->
+              <td>
+                <label for="numeroRegistroImprese">
+                  Numero Registro Imprese
+                </label>
+              </td>
+              <td class="$$numeroRegistroImpreseColor">
+                $$numeroRegistroImpreseAAEP
+              </td>
+              <td>
+                $$numeroRegistroImpreseAnagrafe
+              </td>
+            </tr>
+            <tr>
+              <!-- @@blkButtons -->
+              <td class="radio" scope="row">
+                <input type="checkbox" id="pec"
+                  name="pec" value="true" />
+              </td>
+              <!-- @@blkButtons -->
+              <td>
+                <label for="pec">
+                  PEC
+                </label>
+              </td>
+              <td class="$$pecColor">
+                $$pecAAEP
+              </td>
+              <td>
+                $$pecAnagrafe
+              </td>
+            </tr>
+            <tr>
+              <!-- @@blkButtons -->
+              <td>
+                &nbsp;
+              </td>
+              <!-- @@blkButtons -->
+              <td>
+                Data fondazione
+              </td>
+              <td>
+                $$dataFondazioneAAEP
+              </td>
+              <td>
+                &nbsp;
+              </td>
+            </tr>
+            <tr>
+              <!-- @@blkButtons -->
+              <td>
+                &nbsp;
+              </td>
+              <!-- @@blkButtons -->
+              <td>
+                Stato impresa
+              </td>
+              <td>
+                $$statoImpresaAAEP
+              </td>
+              <td>
+                &nbsp;
+              </td>
+            </tr>
+            <tr>
+              <!-- @@blkButtons -->
+              <td>
+                &nbsp;
+              </td>
+              <!-- @@blkButtons -->
+              <td>
+                Vigenza
+              </td>
+              <td>
+                $$vigenzaAAEP
+              </td>
+              <td>
+                &nbsp;
+              </td>
+            </tr>
+            <tr>
+              <!-- @@blkButtons -->
+              <td>
+                &nbsp;
+              </td>
+              <!-- @@blkButtons -->
+              <td>
+                Data cessazione
+              </td>
+              <td class="$$dataCessazioneColor">
+                $$dataCessazioneAAEP
+              </td>
+              <td>
+                $$dataCessazioneAnagrafe
+              </td>
+            </tr>
+            <tr>
+              <!-- @@blkButtons -->
+              <td>
+                &nbsp;
+              </td>
+              <!-- @@blkButtons -->
+              <td>
+                Causale cessazione
+              </td>
+              <td>
+                $$causaleCessazioneAAEP
+              </td>
+              <td>
+                $$causaleCessazioneAnagrafe
+              </td>
+            </tr>
+            <tr>
+              <!-- @@blkButtons -->
+              <th class="radio" scope="row">
+                <input type="checkbox" ##checkSedeLegale id="sedeLegale"
+                  name="sedeLegale" value="true" />
+              </th>
+              <!-- @@blkButtons -->
+              <th colspan="3" class="left">
+                <label for="sedeLegale">
+                  Sede legale
+                </label>
+              </th>
+            </tr>
+            <tr>
+              <!-- @@blkButtons -->
+              <td>
+                &nbsp;
+              </td>
+              <!-- @@blkButtons -->
+              <td>
+                Indirizzo
+              </td>
+              <td class="$$sedeLegaleIndirizzoColor">
+                $$sedeLegaleIndirizzoAAEP
+              </td>
+              <td>
+                $$sedeLegaleIndirizzoAnagrafe
+              </td>
+            </tr>
+            <tr>
+              <!-- @@blkButtons -->
+              <td>
+                &nbsp;
+              </td>
+             <!-- @@blkButtons -->
+              <td>
+                Comune/Stato estero
+              </td>
+              <td class="$$sedeLegaleComuneColor">
+                $$sedeLegaleComuneAAEP
+              </td>
+              <td>
+                $$sedeLegaleComuneAnagrafe
+              </td>
+            </tr>
+            <tr>
+              <!-- @@blkButtons -->
+              <td>
+                &nbsp;
+              </td>
+              <!-- @@blkButtons -->
+              <td>
+                C.A.P.
+              </td>
+              <td class="$$sedeLegaleCAPColor">
+                $$sedeLegaleCAPAAEP
+              </td>
+              <td>
+                $$sedeLegaleCAPAnagrafe
+              </td>
+            </tr>
+
+            <tr>
+              <!-- @@blkButtons -->
+              <td>
+                &nbsp;
+              </td>
+              <!-- @@blkButtons -->
+              <td>
+                e-mail
+              </td>
+              <td class="$$sedeLegaleEmailColor">
+                $$sedeLegaleEmailAAEP
+              </td>
+              <td>
+                $$sedeLegaleEmailAnagrafe
+              </td>
+            </tr>
+            <tr>
+              <!-- @@blkButtons -->
+              <th class="radio" scope="row">
+                <input type="checkbox" ##checkTitolareRappresentante
+                  id="titolareRappresentante"
+                  name="titolareRappresentante" value="true" />
+              </th>
+              <!-- @@blkButtons -->
+              <th colspan="3" class="left">
+                <label for="titolareRappresentante">
+                  Titolare/Rappresentante legale
+                </label>
+              </th>
+            </tr>
+            <tr>
+              <!-- @@blkButtons -->
+              <td>
+                &nbsp;
+              </td>
+              <!-- @@blkButtons -->
+              <td>
+                Ruolo
+              </td>
+              <td>
+                Titolare/Rappr.Legale
+              </td>
+              <td>
+                Titolare/Rappr.Legale
+              </td>
+            </tr>
+            <tr>
+              <!-- @@blkButtons -->
+              <td>
+                &nbsp;
+              </td>
+              <!-- @@blkButtons -->
+              <td>
+                Codice Fiscale
+              </td>
+              <td class="$$rapLegCodFisColor">
+                $$rapLegCodFisAAEP
+              </td>
+              <td>
+                $$rapLegCodFisAnagrafe
+              </td>
+            </tr>
+            <tr>
+              <!-- @@blkButtons -->
+              <td>
+                &nbsp;
+              </td>
+              <!-- @@blkButtons -->
+              <td>
+                Cognome
+              </td>
+              <td class="$$rapLegCognomeColor">
+                $$rapLegCognomeAAEP
+              </td>
+              <td>
+                $$rapLegCognomeAnagrafe
+              </td>
+            </tr>
+            <tr>
+              <!-- @@blkButtons -->
+              <td>
+                &nbsp;
+              </td>
+              <!-- @@blkButtons -->
+              <td>
+                Nome
+              </td>
+              <td class="$$rapLegNomeColor">
+                $$rapLegNomeAAEP
+              </td>
+              <td>
+                $$rapLegNomeAnagrafe
+              </td>
+            </tr>
+            <tr>
+              <!-- @@blkButtons -->
+              <td>
+                &nbsp;
+              </td>
+              <!-- @@blkButtons -->
+              <td>
+                Sesso
+              </td>
+              <td class="$$rapLegSessoColor">
+                $$rapLegSessoAAEP
+              </td>
+              <td>
+                $$rapLegSessoAnagrafe
+              </td>
+            </tr>
+            <tr>
+              <!-- @@blkButtons -->
+              <td>
+                &nbsp;
+              </td>
+              <!-- @@blkButtons -->
+              <td>
+                Data di nascita
+              </td>
+              <td class="$$rapLegDataNascitaColor">
+                $$rapLegDataNascitaAAEP
+              </td>
+              <td>
+                $$rapLegDataNascitaAnagrafe
+              </td>
+            </tr>
+            <tr>
+              <!-- @@blkButtons -->
+              <td>
+                &nbsp;
+              </td>
+              <!-- @@blkButtons -->
+              <td>
+                Luogo di nascita
+              </td>
+              <td class="$$rapLegLuogoNascitaColor">
+                $$rapLegLuogoNascitaAAEP
+              </td>
+              <td>
+                $$rapLegLuogoNascitaAnagrafe
+              </td>
+            </tr>
+            <tr>
+              <!-- @@blkButtons -->
+              <td>
+                &nbsp;
+              </td>
+              <!-- @@blkButtons -->
+              <td>
+                Residenza
+              </td>
+              <td class="$$rapLegResidenzaColor">
+                $$rapLegResidenzaAAEP
+              </td>
+              <td>
+                $$rapLegResidenzaAnagrafe
+              </td>
+            </tr>
+          </table>
+          <!-- @@blkButtons -->
+          <div class="pulsanti">
+            <div class="sin">
+              <input type="button" value="Seleziona tutti"
+                onclick="selezionaCheckBox(document.form1)"
+                class="inputPulsante" />
+            </div>
+            <div class="des">
+              <input type="button" value="Importa dati"
+                onclick="javascript:setBlocked(document.forms[0], this);" class="inputPulsante" />
+            </div>
+          </div>
+          <!-- @@blkButtons -->
+          <p>
+            (*)Infocamere = dati provenienti dalla fonte Infocamere
+            <br />
+            (**) Il codice Ateco restituito da Fonte Infocamere è la
+            codifica ISTAT Ateco 2007.
+          </p>
+          <!-- fine della tabella a due colonne -->
+        </div>
+      </div>
+      <hr />
+      <!-- PIE' DI PAGINA -->
+      $$footer

@@ -1,0 +1,100 @@
+/*** print.css ***/
+
+body {
+font-size: 90%;
+font-family:"Times New Roman", Times, serif;
+color:#000;
+/*background:#fff url(im/stampaSfondo.gif) center no-repeat;*/
+}
+a, a:link,a:visited {
+color:#036;
+text-decoration:none;
+font-weight:bold;
+}
+h1, h2 {
+font-family:"Times New Roman", Times, serif;
+font-size: 1.4em;
+color: #000336;
+text-transform:uppercase;
+/*font-stretch:expanded;*/
+}
+h3{
+font-family:"Times New Roman", Times, serif;
+font-size: 1.3em;
+text-transform:uppercase;
+padding:1em 0 0 0;
+border-bottom:1px solid #333;
+}
+h4{
+font-family:"Times New Roman", Times, serif;
+font-size: 1em;
+text-transform:uppercase;
+padding:0 0 0 1em;
+}
+h5, h6{
+font-family:"Times New Roman", Times, serif;
+font-size: 0.9em;
+text-transform:uppercase;
+}
+p, a, ul, li, div{
+font-family:"Times New Roman", Times, serif;
+}
+.errore {
+font-weight: bold;
+text-transform: uppercase;
+color: #CC0000;
+text-decoration: none;
+text-align: center;
+padding:6px 0px;
+}
+table {
+width:100%;
+border:1px solid #ccc;
+margin:.1em;
+}
+table td{
+text-align:left;
+border:1px solid #ccc;
+}
+table th{
+text-align:left;
+text-transform:uppercase;
+border:1px solid #ccc;
+}
+img {
+clear:both;
+float:none;
+margin:0.5em;
+display:block;
+}
+caption {
+font-size:1.2em;
+padding-top:1.2em;
+font-weight:bold;
+text-align:left;
+}
+#intestazione h1.navigazionePagina {
+display:inline;
+}
+#colonna-2Strumenti, 
+#pulsanti, 
+#testoDX, 
+.guida,
+#indice, 
+.noprint, 
+#piedipagina, 
+.navigazionePagina, 
+#intestazione, 
+#piedipagina, 
+#colonna-2, 
+.alt,
+#chiudisessione,
+#object1,
+#menuOrizz,
+.boxCertificato,
+.barra,
+.pulsanti,
+.azioni {
+display:none;
+}
+.print{display:inline;}

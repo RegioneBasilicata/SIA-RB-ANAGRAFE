@@ -1,0 +1,353 @@
+$$head
+<script type="text/javascript" src="../js/checktext.js"></script>
+<script type="text/javascript" src="../js/messaggistica.js"></script>
+<script language="javascript1.2" type="text/javascript">
+  function setBlocked(form, obj, operazione) 
+  {
+    obj.onclick = '';
+    form.operazione.value = operazione
+    form.submit();
+  }
+
+
+</script>
+</head>
+<body id="homeIndice" onLoad="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+  <form id="form1" name="form1" method="post" action="../layout/schedulaInvioASian.htm">
+    <input type="hidden" name="idDichiarazioneConsistenza"  value="$$idDichiarazioneConsistenza" id="idDichiarazioneConsistenza">
+    <input type="hidden" name="operazione"  value="$$operazione" id="operazione">
+    <input type="hidden" name="regimeSchedulaInvioASian"  value="regimeSchedulaInvioASian" id="regimeSchedulaInvioASian">
+    <div id="pagina" class="colonnaUnica">
+      <div id="intestazione##pathProvincia">
+        $$header
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li>
+                <a href="../layout/index.htm"  title="Torna alla pagina principale">home</a>
+              </li>
+              <li class="attivo">
+                gestione anagrafe aziende
+              </li>
+              <li>
+                <a href="#" title="contatti">contatti</a>
+              </li>
+              <li>
+                <a href="#" title="help">help</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div style="clear: left"></div>
+      <div id="corpo">
+        <div id="Utente">
+          <div id="datiUtente">
+            <strong>utente:</strong> $$utente &nbsp;&nbsp;
+            <strong>ente:</strong> $$ente
+          </div>
+          <div id="chiudisessione">
+            <a href="javascript: logout();">chiudi sessione</a>
+          </div>
+        </div>
+        <hr />
+        <h3>
+          Gestione Anagrafe
+          Aziende&nbsp;&gt;&nbsp;Validazioni&nbsp;&gt;&nbsp;Schedula invio a SIAN
+          <span class="helpFuori"> <a href="#"> <span
+              class="alt">[help]</span> </a> </span>
+        </h3>
+        <hr />
+        <div class="box">
+          <div class="menuSX1">
+            <ul>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <li>
+                <a href="../layout/elencoAziendeRapLegale.htm">Elenco
+                  Aziende</a>
+              </li>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <!-- @@blkRicercaAzienda-->
+              <li>
+                <a href="../layout/ricerca.htm">Ricerche</a>
+              </li>
+              <!-- @@blkRicercaAzienda-->
+              <!-- @@blkNuova -->
+              <li>
+                <a href="../layout/nuovaAziendaAnagrafica.htm">Nuova
+                  Azienda</a>
+              </li>
+              <!-- @@blkNuova -->
+              <!-- @@blkNuovaIscrizione -->
+              <li>
+                <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+              </li>
+              <!-- @@blkNuovaIscrizione -->
+            </ul>
+          </div>
+          <div class="menuSX">
+            <ul>
+              <li>
+                <a href="../layout/anagrafica.htm">Anagrafica</a>
+              </li>
+              <!-- @@blkAziendeCollegate -->
+              <li>
+                <a href="../layout/aziendeCollegate.htm">$$aziendeCollegateLabel</a>
+              </li>
+              <!-- @@blkAziendeCollegate -->
+              <!-- @@blkSincronizzaFascicolo -->
+               <li>
+               	<a href="../layout/sincronizzaFascicolo.htm">Sincronizza fascicolo</a>
+               </li>
+              <!-- @@blkSincronizzaFascicolo -->
+              <!-- @@blkSoggettiCollegati -->
+              <li>
+                <a href="../layout/contitolari.htm">Soggetti
+                  collegati</a>
+              </li>
+              <!-- @@blkSoggettiCollegati -->
+              <!-- @@blkContiCorrenti -->
+              <li>
+                <a href="../layout/conti_correnti.htm">Conti
+                  Correnti</a>
+              </li>
+              <!-- @@blkContiCorrenti -->
+              <!-- @@blkUnitaProduttive -->
+              <li>
+                <a href="../layout/sedi.htm">Unit&agrave; produttive</a>
+              </li>
+              <!-- @@blkUnitaProduttive -->
+              <!-- @@blkTerreni -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniParticellareElenco.htm">Terreni</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		            <a href="../layout/riepiloghi.htm">Terreni</a>
+		            <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkTerreni -->
+		          <!-- @@blkUnitaVitate -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniUnitaArboreeElenco.htm">Unit&agrave; Vitate</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		              <a href="../layout/riepiloghiUnitaArboree.htm">Unit&agrave; Vitate</a>
+		              <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkUnitaVitate -->
+              <!-- @@blkFabbricati -->
+              <li>
+                <a href="../layout/fabbricati.htm">Fabbricati e
+                  Strutture</a>
+              </li>
+              <!-- @@blkFabbricati -->
+              <!-- @@blkAllevamenti -->
+              <li>
+                <a href="../layout/allevamenti.htm">Allevamenti</a>
+              </li>
+              <!-- @@blkAllevamenti -->
+              <!-- @@blkManodopera -->
+              <li>
+                <a href="../layout/manodopera.htm">Manodopera</a>
+              </li>
+              <!-- @@blkManodopera -->
+              <!-- @@blkMotoriAgricoli -->
+              <li>
+                <a href="../layout/motori_agricoli_incarico.htm">Macchine agricole</a>
+              </li>
+              <!-- @@blkMotoriAgricoli -->
+              <!-- @@blkDiritti -->
+              <li>
+                <a href="../layout/diritti.htm">Diritti di
+                  produzione</a>
+              </li>
+              <!-- @@blkDiritti -->
+              <!-- @@blkAttestazioni -->
+              <li>
+                <a href="../layout/attestazioniDettaglio.htm">Dichiarazioni</a>
+              </li>
+              <!-- @@blkAttestazioni -->
+              <!-- @@blkDichiarazioniConsistenza -->
+              <li>
+                <a href="../layout/dichiarazioneConsistenza.htm"
+                  class="on">Validazioni</a>
+                <ul>
+                  <li>
+                    <a href="#" class="etichetta">schedula invio a SIAN</a>
+                  </li>
+                </ul>
+              </li>
+              <!-- @@blkDichiarazioniConsistenza -->
+              <!-- @@blkDocumenti -->
+              <li>
+                <a href="../layout/documentiElenco.htm">Documenti</a>
+              </li>
+              <!-- @@blkDocumenti -->
+              <!-- @@blkFascicoloDematerializzato -->
+              <li>
+                <a href="../layout/fascicoloDematerializzato.htm">Fascicolo<br>elettronico</a>
+              </li>
+              <!-- @@blkFascicoloDematerializzato -->
+              <!-- @@blkGestioneNotifiche -->
+              <li>
+                <a href="../layout/notifiche.htm">Notifiche</a>
+              </li>
+              <!-- @@blkGestioneNotifiche -->
+              <!-- @@blkComunicazione10R -->
+              <li>
+                <a href="../layout/comunicazione10R_dettaglio.htm">Comunicazione
+                  10/R</a>
+              </li>
+              <!-- @@blkComunicazione10R -->
+              <!-- @@blkPratiche -->
+              <li>
+                <a href="../layout/pratiche.htm">Pratiche</a>
+              </li>
+              <!-- @@blkPratiche -->
+              <!-- @@blkStampaFascicolo -->
+              <li>
+                <a href="../layout/scelta_stampa.htm">Stampe</a>
+              </li>
+              <!-- @@blkStampaFascicolo -->
+			  <li>
+                <a href="../layout/strumenti.htm">Strumenti</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <hr />
+        <div id="contenuto">
+          <div id="intesta">
+            <p class="$$aziendaIntestazione" title="$$tooltipIntestazione" >
+              $$CUAAIntestazione  $$denominazioneIntestazione
+            </p>
+          </div>
+          <table cellspacing="3"
+            summary="Questa tabella contiene i dati del rapporto">
+            <tr>
+              <th rowspan="2" class="center" scope="col">
+                Anno
+              </th>
+              <th rowspan="2" class="center" scope="col">
+                Data
+              </th>
+              <th colspan="2" class="center" scope="col">
+                Repertorio
+              </th>
+              <th rowspan="2" class="center" scope="col">
+                Motivo
+              </th>
+              <th rowspan="2" class="center" scope="col">
+                Stato richiesta
+              </th>
+              <th rowspan="2" class="center" scope="col">
+                Nr tentativi<br>di invio
+              </th>
+            </tr>
+            <tr>
+              <th class="center" scope="col">
+                Numero
+              </th>
+              <th class="center" scope="col">
+                Data  
+              </th>
+            </tr>
+            <tr>
+              <td>$$anno</td>
+              <td>$$data</td>
+              <td>$$numeroProtocollo</td>
+              <td>$$dataProtocollo</td>
+              <td>$$motivo</td>
+              <td>$$statoInvio</td>
+              <td>$$numTentativi</td>
+            </tr>
+          </table>
+          <div class="pulsanti">
+            <div class="des">
+              <input id="annullaInvio" name="annullaInvio" type="button" value="annulla Invio" onClick="javascript:setBlocked(document.forms[0], this, 'annullaInvio');" class="inputPulsante" />
+            </div>
+          </div>
+          
+          <table cellspacing="3" summary="Questa tabella è costituita da righe">
+            <caption>Selezionare le voci di consistenza aziendale che si desidera inviare a SIAN</caption>         
+            <tr>
+              <th class="radio" scope="row">
+                <input type="checkbox" id="datiAnagrafici"
+                  name="datiAnagrafici"
+                  value="true" disabled="true" checked="true" />
+              </th>
+              <td>
+                Dati anagrafici
+              </td>
+            </tr>
+            <tr>
+              <th class="radio" scope="row">
+                <input type="checkbox" id="datiTerritoriali"
+                  name="datiTerritoriali"
+                  value="true" $$checkedTerritoriali />
+              </th>
+              <td>
+                Dati territoriali
+              </td>
+            </tr>
+            <tr>
+              <th class="radio" scope="row">
+                <input type="checkbox" id="datiUnitaVitate"
+                  name="datiUnitaVitate"
+                  value="true" $$checkedVitate disabled="true" />
+              </th>
+              <td>
+                Unit&agrave vitate
+              </td>
+            </tr>
+            <tr>
+              <th class="radio" scope="row">
+                <input type="checkbox" id="datiFabbricati"
+                  name="datiFabbricati"
+                  value="true" $$checkedFabbricati />
+              </th>
+              <td>
+                Fabbricati
+              </td>
+            </tr>
+            <tr>
+              <th class="radio" scope="row">
+                <input type="checkbox" id="datiContiCorrenti"
+                  name="datiContiCorrenti"
+                  value="true" $$checkedContiCorrenti />
+              </th>
+              <td>
+                Conti correnti
+              </td>
+            </tr>
+          </table>
+          
+          
+          <div class="pulsanti">
+            <div class="sin">
+              <input type="button" id="conferma" value="conferma"
+                name="conferma" class="inputPulsante highlighted"
+                onclick="javascript:setBlocked(document.forms[0], this, 'conferma');" />
+            </div>
+            <div class="des">
+              <input type="button" value="indietro" name="indietro" class="inputPulsante"
+                onclick="javascript:goTo('../layout/dichiarazioneConsistenza.htm', document.form1);" />
+            </div>
+          </div>
+          
+          <!-- @@blkErrore -->
+          <p class="errore">
+            $$messaggioErrore
+          </p>
+          <!-- @@blkErrore -->
+        </div>
+      </div>
+      <hr />
+  </form>
+  $$footer

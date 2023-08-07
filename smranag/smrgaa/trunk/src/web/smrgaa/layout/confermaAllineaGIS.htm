@@ -1,0 +1,60 @@
+$$head
+	<script src="../js/checktext.js" type="text/javascript"></script>
+  <script>
+  
+    function setHiddenAction(form) {
+      form.action = '../layout/terreniParticellareElenco.htm';
+      form.submit();
+    }
+  </script>
+</head>
+<body id="homeIndice">
+    	<div id="pagina" class="colonnaUnica">
+	<form id="form1" name="form1" method="post" action="../layout/confermaAllineaGIS.htm">
+    		<div id="intestazione##pathProvincia">
+      			$$header
+      			<div id="titoloEmenu">
+        			<h2>
+          				<span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+        			</h2>
+      			</div>
+    		</div>
+    		<hr/>
+    		<div style="clear:left"></div>
+      		<div id="corpo">
+        		<hr/>
+        		<div id="content">
+              <!-- @@blkNoErrore -->
+          			<p class="errore">Attenzione</p>
+          			<p>Attenzione! Proseguendo tutte le particelle con superficie eleggibile GIS maggiore di 0 verranno aggiornate.<br>
+          			 Le particelle presenti sul registro storico dei pascoli non verranno aggiornate.<br>Sei sicuro di voler proseguire?</p>
+                
+                
+                
+                <div class="pulsanti">
+                <div class="sin">
+            			<input type="submit" value="conferma" name="conferma" class="inputPulsante highlighted" />
+          			</div>
+          			<div class="des">
+            			<input type="submit" value="annulla" name="annulla" class="inputPulsante annulla" />
+          			</div>
+                </div>    
+                    
+                    
+              <!-- @@blkNoErrore -->
+                
+              <!-- @@blkErrore -->
+                <p class="errore">$$messaggioErrore</p>
+                <div class="pulsanti">
+                <div class="sin">
+                  <input id="continua" name="continua" type="button"
+                    value="continua"
+                    onclick="javascript: setHiddenAction(document.forms[0]);"
+                    class="inputPulsante" />
+                </div></div>  
+              <!-- @@blkErrore --> 
+        		</div>
+      		</div>
+      		<hr/>
+    	</form>
+    	$$footer

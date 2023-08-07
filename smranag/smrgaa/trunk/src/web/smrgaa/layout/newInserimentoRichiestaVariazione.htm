@@ -1,0 +1,172 @@
+$$head
+
+<script type="text/javascript" src="../js/checktext.js"></script>
+<script type="text/javascript" src="../js/messaggistica.js"></script>
+<script language="javascript1.2" type="text/javascript">
+  function goTo(url) 
+  {
+    document.form1.action = url;
+    document.form1.submit();
+  }
+  
+  function ricarica()
+  {
+    var action1 = document.form1.action;
+    document.form1.action="../layout/newInserimentoRichiestaVariazione.htm"
+    document.form1.submit();
+  }  
+</script>
+</head>
+<body id="homeIndice" onload="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+	<form action="../layout/newInserimentoRichiestaVariazione.htm" method="post" name="form1"
+		id="form1">
+		<input type="hidden" id="regimeInserimentoRichiestaVariazione" name="regimeInserimentoRichiestaVariazione" value="regimeInserimentoRichiestaVariazione"/>
+		<input type="hidden" id="idAzienda" name="idAzienda" value="$$idAzienda"/>
+		<div id="pagina" class="colonnaUnica">
+			<!-- INTESTAZIONE -->
+			<div id="intestazione##pathProvincia">
+				$$header
+				<!-- menu di navigazione-->
+				<div id="titoloEmenu">
+					<h2>
+						<span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+					</h2>
+					<div id="menuDiNavigazione" title="Menu di navigazione">
+						<ul class="menuTendina" id="menu-2">
+							<li><a href="../layout/index.htm"
+								title="Torna alla pagina principale">home</a></li>
+							<li class="attivo">gestione anagrafe aziende</li>
+							<li><a href="#" title="contatti">contatti</a></li>
+							<li><a href="#" title="help">help</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<hr />
+			<div style="clear: left"></div>
+			<!-- CORPO -->
+			<div id="corpo">
+				<div id="Utente">
+					<div id="datiUtente">
+						<strong>utente: </strong> $$utente &nbsp; &nbsp; <strong>ente:
+						</strong> $$ente
+					</div>
+					<div id="chiudisessione">
+						<a href="javascript: logout();">chiudi sessione</a>
+					</div>
+				</div>
+				<hr />
+				<!--PRIMA COLONNA -->
+				<h3>
+					Richiesta variazione <span class="helpFuori"> <a href="#"> <span
+							class="alt"> [help]</span>
+					</a>
+					</span>
+				</h3>
+				<hr />
+				<div class="box">
+          <div class="menuSX1">
+            <!--@@blkGestoreCaa -->
+            <ul>
+              <li><a href="../layout/ricerca.htm">Ricerca Azienda</a></li>
+            </ul>
+            <!--@@blkGestoreCaa -->
+            <!--@@blkAltro -->
+            <ul>
+              <li><a href="../layout/elencoAziendeRapLegale.htm">Elenco Aziende</a></li>
+            </ul>
+            <!--@@blkAltro -->
+          </div>
+          <div class="menuSX">
+            <ul>               
+              <li><a href="#" class="on">Nuova richiesta variazione</a></li>
+            </ul>
+          </div>
+        </div>
+				<hr />
+				<!-- SECONDA COLONNA -->
+				<div id="contenuto">
+				  <br>
+          <div>
+            <p id="istruzioni">$$testoHelp</p>            
+          </div>
+          <br>
+          <table cellspacing="3"
+						summary="Questa tabella è costituita da righe">
+						<caption>Inserisci i dati della richiesta:</caption>
+						<col width="20%"/>
+            <col width="80%"/>
+						<tr>
+							<th>Cuaa</th>
+							<td>
+							  $$cuaa
+							</td>
+						</tr>
+						<tr>
+              <th>Denominazione</th>
+              <td>
+                $$denominazione
+              </td>              
+            </tr>
+            <tr>
+              <th>Tipo richiesta</th>
+              <td>
+                <select name="idTipoRichiesta" id="idTipoRichiesta" onChange="ricarica();">
+                  <option value=""></option>
+                  <!-- @@blkElencoTipoRichiesta -->
+                  <option value="$$idTipoRichiesta"
+                    $$selected>
+                    $$descrizione
+                  </option>
+                  <!-- @@blkElencoTipoRichiesta -->
+                </select>
+                $$err_idTipoRichiesta
+              </td>              
+            </tr>
+            <!--  @@blkFlagNoTutte -->
+            <tr>
+              <th>Aggiunta di nuove associate senza visualizzazione di quelle gi&agrave; registrate a sistema</th>
+              <td>
+                <input type="checkbox" name="chkSoloAggiunta" id="chkSoloAggiunta" value="S" $$checkedSoloAggiunta />
+              </td>              
+            </tr>
+            <!--  @@blkFlagNoTutte -->                
+            <tr>
+	            <th>
+	              <label for="note">
+	                Note
+	              </label>
+	            </th>
+	            <td>
+	              <textarea name="note"
+	                id="note" cols="55" rows="5">$$note</textarea>
+	              $$err_note
+	            </td>
+	          </tr>
+					</table>
+			    <div class="pulsanti">
+        		<div class="sin">
+        		  <input type="button" value="indietro" name="indietro" class="inputPulsante" onclick="javascript: goTo('../layout/ricerca.htm')"/>
+        		</div>
+        		<div class="des">
+              <input type="submit" name="avantiInsAzienda" id="avantiInsAzienda"
+                value="Avanti" alt="avanti" class="inputPulsante" autofocus />
+              $$exc
+            </div>
+       		</div>
+          
+          
+          </br>
+          </br>
+          </br>
+          
+          <!-- @@blkErrore -->
+            <p class="errore">$$messaggioErrore</p>
+          <!-- @@blkErrore --> 
+          
+          
+				</div>
+			</div>
+			<hr />
+			<!-- PIE' DI PAGINA -->
+			$$footer

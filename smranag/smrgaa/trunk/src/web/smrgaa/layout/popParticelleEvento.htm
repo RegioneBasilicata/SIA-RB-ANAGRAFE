@@ -1,0 +1,142 @@
+$$head
+  <script src="../js/checktext.js" type="text/javascript"></script>
+  <script type="text/javascript">
+    function inserisci() {
+        var coll = document.forms[0].idStoricoParticella;
+        var count = 0;
+        if(coll != null) {
+          if(coll.length) {
+              for(i = 0; i < coll.length; i++) {
+                if(coll[i].checked) {
+                    count++;
+                }
+              }
+              if(count == 0) {
+                alert("Selezionare una voce dall'elenco");
+              }
+              else {
+                document.forms[0].target = window.opener.name;
+                document.forms[0].operazione.value = 'inserisci';
+                document.forms[0].submit();
+                window.close();
+                return false;
+              }
+          }
+          else {
+              if(coll.checked) {
+                count++;
+              }
+              if(count == 0) {
+                alert("Selezionare una voce dall'elenco");
+              }
+              else {
+                document.forms[0].target = window.opener.name;
+                document.forms[0].operazione.value = 'inserisci';
+                document.forms[0].submit();
+                window.close();
+                return false;
+              }
+          }
+        }
+        else {
+            window.close();
+            return false;
+        }
+    }
+  </script>
+</head>
+<body id="popup">
+  <form id="form1" name="form1" method="post" action="../layout/popParticelleEvento.htm">
+    <input type="hidden" name="idTipologiaDocumento" value="$$idTipologiaDocumento"/>
+      <input type="hidden" name="idCategoriaDocumento" value="$$idCategoriaDocumento"/>
+      <input type="hidden" name="operazione" value="operazione"/>
+      <input type="hidden" name="idTipoDocumento" value="$$idTipoDocumento"/>
+      <input type="hidden" name="dataInizioValidita" value="$$dataInizioValidita"/>
+      <input type="hidden" name="dataFineValidita" value="$$dataFineValidita"/>
+      <input type="hidden" name="protocolla" value="$$protocolla"/>
+      <input type="hidden" name="numeroProtocolloEsterno" value="$$numeroProtocolloEsterno"/>
+      <input type="hidden" name="note" value="$$note"/>
+      <input type="hidden" name="urlChiamante" value="$$urlChiamante"/>
+      <input type="hidden" name="siglaProvinciaParticella" value="$$siglaProvinciaParticella"/>
+      <input type="hidden" name="comune" value="$$comune"/>
+      <input type="hidden" name="idTitoloPossesso" value="$$idTitoloPossesso"/>
+      <input type="hidden" name="idCasoParticolare" value="$$idCasoParticolare"/>
+      <input type="hidden" name="idPianoRiferimento" value="$$idPianoRiferimento"/>
+      <input type="hidden" name="provenienza" value="popup"/>
+ 
+    <div id="contenutopop">
+    <!-- @@blkParticelle -->
+        <div class="pulsanti">
+          <div class="des">
+              <a href="javascript:window.close();">chiudi</a>
+          </div>
+          <div class="sin">
+              <a href="javascript: inserisci();">associa al documento</a>
+          </div>
+        </div>
+<div class="pulsanti">
+          <div class="sin">
+              <a href="javascript: selectAll(document.forms[0].idStoricoParticella);">seleziona</a>
+          </div>
+          <div class="des">
+              <a href="javascript: deselectAll(document.forms[0].idStoricoParticella);">deseleziona</a>
+          </div>
+      </div>
+        
+    <table cellspacing="3" summary="Questa tabella contiene i dati delle particelle da associare al documento">
+          <tr>
+            <th class="center" scope="col">Sel.</th>
+            <th class="center" scope="col">Comune (Pv)</th>
+            <th class="center" scope="col">Sz.</th>
+            <th class="center" scope="col">Fgl.</th>
+            <th class="center" scope="col">Part.</th>
+            <th class="center" scope="col">Sub.</th>
+            <th class="center" scope="col">Sup. catastale</th>
+            <th class="center" scope="col">Evento </th>
+          </tr>
+          <!-- @@blkElencoParticelle -->
+            <tr>
+              <td>
+              	<input type="checkbox" name="idStoricoParticella" value="$$idParticelleAssociate" id="idStoricoParticella"/>
+              </td>
+              <td>$$descComuneParticella ($$siglaProvinciaParticella)</td>        
+              <td class="numeridx">$$sezione</td>
+              <td class="numeridx">$$foglio</td>
+              <td class="numeridx">$$particella</td>
+              <td class="numeridx">$$subalterno</td>
+              <td class="numeridx">$$supCatastale</td>
+              <td class="numeridx">$$descEvento</td>
+            </tr>
+            <!-- @@blkElencoParticelle -->
+        </table>
+      <p class="nota">Tutte le superfici sono espresse in ettari (ha).</p>
+<div class="pulsanti">
+          <div class="sin">
+                  <a href="javascript: selectAll(document.forms[0].idStoricoParticella);">seleziona</a>
+              </div>
+              <div class="des">
+                  <a href="javascript: deselectAll(document.forms[0].idStoricoParticella);">deseleziona</a>
+              </div>
+            </div>  
+<div class="pulsanti">
+          <div class="des">
+                  <a href="javascript:window.close();">chiudi</a>
+              </div>
+              <div class="sin">
+                  <a href="javascript: inserisci();">associa al documento</a>
+              </div>
+        </div>
+        <!-- @@blkParticelle -->
+        
+        <!-- @@blkNoParticelle -->
+	    <div class="pulsanti">
+	      <div class="des">
+	          <a href="javascript:window.close();">chiudi</a>
+	      </div>
+	    </div>
+	    <p class="errore">$$messaggioErrore</p>
+	  <!-- @@blkNoParticelle -->
+        
+</div>
+    </body>
+    </html>

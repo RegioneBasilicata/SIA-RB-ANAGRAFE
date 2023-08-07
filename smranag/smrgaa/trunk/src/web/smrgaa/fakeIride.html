@@ -1,0 +1,161 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+    <title>Rupar - Anagrafe Aziende</title>
+    <meta name="author" content="TOBECONFIG" />
+    <link href="http://andromeda.csi.it:9053/css_rupar/avviso.css" rel="stylesheet" type="text/css" />
+    <link href="http://andromeda.csi.it:9053/css_rupar/NN4.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="http://andromeda.csi.it:9053/css_rupar/AnagrafeAziende/ruraleAnagrafeAziende.css" rel="stylesheet" type="text/css"  media="screen" id="skin" />
+    <link href="http://andromeda.csi.it:9053/css_rupar/print.css" rel="stylesheet" type="text/css" media="print" />
+    <script type="text/javascript" src="http://andromeda.csi.it:9053/js_rupar/menu.js"></script>
+    <script language="JavaScript">
+
+      function profChanged() {
+        var tuid = getSelectedProfile();
+        var lasttuid = document.fakeForm.lastTUID.value;
+        if(isIntermediario(lasttuid)&&
+          (isProvinciale(tuid)||isRegionale(tuid))) {
+            document.fakeForm.iFUID.value = document.fakeForm.FUID.value;
+        }
+        else if ((isProvinciale(lasttuid)||isRegionale(lasttuid))&&
+	          isIntermediario(tuid)) {
+          document.fakeForm.FUID.value = document.fakeForm.iFUID.value;
+        }
+        document.fakeForm.lastTUID.value = tuid;
+      }
+
+      function getSelectedProfile() {
+        var tuid;
+        for (i=0; i< document.fakeForm.TUID.length; i++) {
+          if (document.fakeForm.TUID[i].checked)
+            tuid = document.fakeForm.TUID[i].value;
+        }
+        return tuid;
+      }
+
+      function isProvinciale(tuid) {
+        if (tuid=="APA1"||tuid=="APA2"||tuid=="PARW"||
+            tuid=="PARN"||tuid=="PAWN")
+          return true;
+        else
+          return false;
+      }
+
+      function isIntermediario(tuid) {
+        if (tuid=="ASP1"||tuid=="ASP2"||tuid=="SPRW"||
+            tuid=="SPNW"||tuid=="SPNR")
+          return true;
+        else
+          return false;
+      }
+
+      function isRegionale(tuid) {
+        if (tuid=="RERR"||tuid=="PAWR") {
+          return true;
+        }
+        else
+          return false;
+      }
+
+    </script>
+  </head>
+  <body>
+      <tr>
+        <td align="center">
+          <table>
+            <tr>
+              <td>
+                <h1>EMULATORE DI IRIDE</h1>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr align=center>
+        <td align=center>
+          <form name="fakeForm" action="fakeIride.jsp" method="POST">
+            <table class="data" width="725" bgcolor="#DFDFDF" text="#000000">
+              <tr>
+                <th align="right">
+                  <label for="UserID">UserID:<br>(USERID)</label>
+                </th>
+                <td>
+                  <input type="text" name="USERID" value="69-John Doe" class="textmediolungo"/>
+                </td>
+                <th align="right">
+                  <label for="Codice fiscale">Codice fiscale:(UID)</label>
+                </th>
+                <td>
+                  <input type="text" name="UID" value="AAABBB00C00H000H" class="textmediolungo"/>
+                </td>
+              </tr>
+              <tr>
+                <th align="right">
+                  <label for="UserID">E-mail:<br>(SUID)</label>
+                </th>
+                <td>
+                  <input type="text" name="SUID" value="JohnDoe@csi.it" class="textmediolungo"/>
+                </td>
+              </tr>
+              <tr>
+                <th align="right">
+                  <label for="Profilo">Profilo:<br>(TUID)</label>
+                </th>
+                <td colspan="4">
+                  <table cellpadding="5" cellspacing="2">
+                    <tr>
+                      <td><input type="radio" name="TUID" value="APA1" checked onClick="profChanged()">APA1: PROVINCIALE - RW su Anagrafe</td>
+                      <td><input type="radio" name="TUID" value="APA2" onClick="profChanged()">APA2: PROVINCIALE - RO su Anagrafe</td>
+                    </tr>
+                    <tr>
+                      <td><input type="radio" name="TUID" value="ASP1" onClick="profChanged()">ASP1: INTERMEDIARIO - RW su Anagrafe</td>
+                      <td><input type="radio" name="TUID" value="ASP2" onClick="profChanged()">ASP2: INTERMEDIARIO - RO su Anagrafe</td>
+                    </tr>
+                    <tr>
+                      <td><input type="radio" name="TUID" value="RERR" onClick="profChanged()">RERR: REGIONE - RO su Anagrafe</td>
+                      <td><input type="radio" name="TUID" value="PAWR" onClick="profChanged()">PAWR: REGIONE - RW su Anagrafe</td>
+                    </tr>
+                    <tr>
+                      <td><input type="radio" name="TUID" value="PARX" onClick="profChanged()">PARX: OPR e CM - RO su Anagrafe</td>
+                    </tr>
+                    <!--tr>
+                      <td><input type="radio" name="TUID" value="PAWR" onClick="profChanged()">PAWR: PROVINCIALE - RW su Anagrafe</td>
+                      <td><input type="radio" name="TUID" value="PAWN" onClick="profChanged()">PAWN: PROVINCIALE - RW su Anagrafe</td>
+                    </tr>
+                    <tr>
+                      <td><input type="radio" name="TUID" value="PARW" onClick="profChanged()">PARW: PROVINCIALE - RO su Anagrafe</td>
+                      <td><input type="radio" name="TUID" value="PARN" onClick="profChanged()">PARN: PROVINCIALE - RO su Anagrafe</td>
+                    </tr>
+                    <tr>
+                      <td><input type="radio" name="TUID" value="SPRW" onClick="profChanged()">SPRW: INTERMEDIARIO - RO su Anagrafe</td>
+                      <td><input type="radio" name="TUID" value="SPNR" onClick="profChanged()">SPNW: INTERMEDIARIO - NO su Anagrafe</td>
+                    </tr-->
+                  </table>
+                <input type=hidden name="lastTUID" value="APA1">
+                </td>
+              </tr>
+              <tr>
+                <th align="right" valign="middle">
+                  <label for="Cod.Fiscale Intermediario/Istat Provincia">Cod.Fiscale Intermediario/Istat Provincia<br>(FUID)</label>
+                </th>
+                <td>
+                  <input type=text name="FUID" value="001">
+                  <input type=hidden name="iFUID">
+                </td>
+              </tr>
+            </table>
+            <br />
+            <table>
+              <tr>
+                <div class="center">
+                  <input name="conferma" class="inputPulsante" type="submit" value="conferma" />
+                </div>
+              </tr>
+            </table>
+          </form>
+        </td>
+      </tr>
+    </div>
+  </body>
+</html>

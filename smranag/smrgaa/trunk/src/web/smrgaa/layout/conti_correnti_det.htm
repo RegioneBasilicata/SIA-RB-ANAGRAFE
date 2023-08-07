@@ -1,0 +1,335 @@
+$$head
+  <script src="../js/checktext.js" type="text/javascript"></script>
+  <script type="text/javascript" src="../js/messaggistica.js"></script>
+  <script type="text/javascript">
+
+    function elimina() {
+      doForm(document.contiCorrenti,"eliminaDett");
+    }
+
+  </script>
+</head>
+<body id="homeIndice" onLoad="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+  <form id="contiCorrenti" name="contiCorrenti" method="post" action="../layout/conti_correnti.htm">
+    <div id="pagina" class="colonnaUnica">
+      <input type="hidden" name="idContoCorrente" value="$$idContoCorrente"/>
+      <!-- INTESTAZIONE -->
+      <div id="intestazione##pathProvincia">
+        $$header
+        <!-- menu di navigazione-->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li>
+                <a href="../layout/index.htm" title="Torna alla pagina principale">home</a>
+              </li>
+              <li class="attivo">gestione anagrafe aziende</li>
+              <li>
+                <a href="#" title="contatti">contatti</a>
+              </li>
+              <li>
+                <a href="#" title="help">help</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr/>
+      <div style="clear:left"></div>
+      <!-- CORPO -->
+        <div id="corpo">
+          <div id="Utente">
+            <div id="datiUtente">
+              <strong>utente:</strong>$$utente&nbsp;&nbsp;
+              <strong>ente:</strong>$$ente
+            </div>
+            <div id="chiudisessione">
+              <a href="javascript: logout();">chiudi sessione</a>
+            </div>
+          </div>
+          <hr/>
+          <!--PRIMA COLONNA -->
+          <h3>Gestione Anagrafe Aziende&nbsp;&gt;&nbsp;Conti Correnti&nbsp;&gt;&nbsp;Dettaglio
+            <span class="helpFuori">
+              <a href="#">
+                <span class="alt">[help]</span>
+              </a>
+            </span>
+          </h3>
+          <hr/>
+          <div class="box">
+            <div class="menuSX1">
+              <ul>
+                <!-- @@blkElencoAziendeRapLegale -->
+                <li><a href="../layout/elencoAziendeRapLegale.htm">Elenco Aziende</a></li>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <!-- @@blkRicercaAzienda-->
+                  <li><a href="../layout/ricerca.htm">Ricerche</a></li>
+                <!-- @@blkRicercaAzienda-->
+                <!-- @@blkNuova -->
+                  <li>
+                    <a href="../layout/nuovaAziendaAnagrafica.htm">Nuova Azienda</a>
+                  </li>
+                <!-- @@blkNuova -->
+                <!-- @@blkNuovaIscrizione -->
+			          <li>
+			            <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+			          </li>
+			          <!-- @@blkNuovaIscrizione -->
+              </ul>
+            </div>
+            <div class="menuSX">
+              <ul>
+                <li>
+                  <a href="../layout/anagrafica.htm">Anagrafica</a>
+                </li>
+                <!-- @@blkAziendeCollegate -->
+              			<li>
+              					<a href="../layout/aziendeCollegate.htm">$$aziendeCollegateLabel</a>
+              			</li>
+              	<!-- @@blkAziendeCollegate -->
+              	<!-- @@blkSincronizzaFascicolo -->
+                <li>
+               	  <a href="../layout/sincronizzaFascicolo.htm">Sincronizza fascicolo</a>
+                </li>
+                <!-- @@blkSincronizzaFascicolo -->
+                <!-- @@blkSoggettiCollegati -->
+                  <li>
+                    <a href="../layout/contitolari.htm">Soggetti collegati</a>
+                  </li>
+                <!-- @@blkSoggettiCollegati -->
+                <!-- @@blkContiCorrenti -->
+                  <li>
+                    <a href="../layout/conti_correnti.htm" class="on">Conti Correnti</a>
+                    <ul>
+                      <li>
+                        <a href="#" class="etichetta">dettaglio</a>
+                      </li>
+                      <!--@@blkModifica-->
+                        <li>
+                          <a href="javascript: doForm(document.contiCorrenti,'modificaDett');">modifica</a>
+                        </li>
+                      <!--@@blkModifica-->
+                      <!--@@blkElimina-->
+                        <li>
+                          <a href="javascript: elimina();">elimina</a>
+                        </li>
+                      <!--@@blkElimina-->
+                    </ul>
+                  </li>
+                <!-- @@blkContiCorrenti -->
+                <!-- @@blkUnitaProduttive -->
+                  <li>
+                    <a href="../layout/sedi.htm">Unit&agrave; produttive</a>
+                  </li>
+                <!-- @@blkUnitaProduttive -->
+                <!-- @@blkTerreni -->
+			          <li>
+			            <!-- @@blkLinkElenco -->
+			            <a href="../layout/terreniParticellareElenco.htm">Terreni</a>
+			            <!-- @@blkLinkElenco -->
+			            <!-- @@blkLinkRiepiloghi -->
+			            <a href="../layout/riepiloghi.htm">Terreni</a>
+			            <!-- @@blkLinkRiepiloghi -->
+			          </li>
+			          <!-- @@blkTerreni -->
+			          <!-- @@blkUnitaVitate -->
+			          <li>
+			            <!-- @@blkLinkElenco -->
+			            <a href="../layout/terreniUnitaArboreeElenco.htm">Unit&agrave; Vitate</a>
+			            <!-- @@blkLinkElenco -->
+			            <!-- @@blkLinkRiepiloghi -->
+			              <a href="../layout/riepiloghiUnitaArboree.htm">Unit&agrave; Vitate</a>
+			              <!-- @@blkLinkRiepiloghi -->
+			          </li>
+			          <!-- @@blkUnitaVitate -->
+                <!-- @@blkFabbricati -->
+                  <li>
+                    <a href="../layout/fabbricati.htm">Fabbricati e Strutture</a>
+                  </li>
+                <!-- @@blkFabbricati -->
+                <!-- @@blkAllevamenti -->
+                  <li>
+                    <a href="../layout/allevamenti.htm">Allevamenti</a>
+                  </li>
+                <!-- @@blkAllevamenti -->
+                <!-- @@blkManodopera -->
+                  <li>
+                    <a href="../layout/manodopera.htm">Manodopera</a>
+                  </li>
+                <!-- @@blkManodopera -->
+                <!-- @@blkMotoriAgricoli -->
+                  <li>
+                    <a href="../layout/motori_agricoli_incarico.htm">Macchine agricole</a>
+                  </li>
+                <!-- @@blkMotoriAgricoli -->
+                <!-- @@blkDiritti -->
+                  <li><a href="../layout/diritti.htm">Diritti di produzione</a></li>
+                <!-- @@blkDiritti -->
+                <!-- @@blkAttestazioni -->
+                	<li><a href="../layout/attestazioniDettaglio.htm">Dichiarazioni</a></li>
+              	<!-- @@blkAttestazioni -->
+                <!-- @@blkDichiarazioniConsistenza -->
+                  <li>
+                    <a href="../layout/dichiarazioneConsistenza.htm">Validazioni</a>
+                  </li>
+                <!-- @@blkDichiarazioniConsistenza -->
+                <!-- @@blkDocumenti -->
+                <li><a href="../layout/documentiElenco.htm">Documenti</a></li>
+                <!-- @@blkDocumenti -->
+                <!-- @@blkFascicoloDematerializzato -->
+			          <li>
+			            <a href="../layout/fascicoloDematerializzato.htm">Fascicolo<br>elettronico</a>
+			          </li>
+			          <!-- @@blkFascicoloDematerializzato --> 
+                <!-- @@blkGestioneNotifiche -->
+                  <li>
+                    <a href = "../layout/notifiche.htm">Notifiche</a>
+                  </li>
+                <!-- @@blkGestioneNotifiche -->
+                <!-- @@blkComunicazione10R -->
+                  <li>
+                    <a href="../layout/comunicazione10R_dettaglio.htm">Comunicazione 10/R</a>
+                  </li>
+                <!-- @@blkComunicazione10R -->
+                <!-- @@blkPratiche -->
+                <li><a href="../layout/pratiche.htm">Pratiche</a></li>
+                <!-- @@blkPratiche -->
+                <!-- @@blkStampaFascicolo -->
+                  <li>
+                    <a href="../layout/scelta_stampa.htm">Stampe</a>
+                  </li>
+                <!-- @@blkStampaFascicolo -->
+				<li><a href="../layout/strumenti.htm">Strumenti</a></li>
+              </ul>
+            </div>
+          </div>
+          <hr/>
+          <!-- SECONDA COLONNA -->
+          <div id="contenuto">
+            <div id="intesta">
+              <p class="$$aziendaIntestazione" title="$$tooltipIntestazione" >
+                $$CUAAIntestazione  $$denominazioneIntestazione
+              </p>
+            </div>
+            <table cellspacing="3" class="detailTable" summary="Questa tabella contiene i dati del rapporto">
+              <caption>Banca:</caption>
+              <col width="30%"/>
+              <col width="70%"/>
+              <tr>
+                <th>ABI</th>
+                <td>$$abi</td>
+              </tr>
+              <tr>
+                <th>Denominazione</th>
+                <td>$$denominazioneBanca</td>
+              </tr>
+              <tr>
+                <th>BIC/SWIFT</th>
+                <td>$$bic</td>
+              </tr>              
+            </table>
+            <table cellspacing="3" class="detailTable" summary="Questa tabella contiene i dati del rapporto">
+              <caption>Filiale/Sportello:</caption>
+              <col width="30%"/>
+              <col width="70%"/>
+              <tr>
+                <th>CAB</th>
+                <td>$$cab</td>
+              </tr>
+              <tr>
+                <th>Denominazione</th>
+                <td>$$denominazioneSportello</td>
+              </tr>
+              <tr>
+                <th>Indirizzo</th>
+                <td>$$indirizzoSportello</td>
+              </tr>
+              <tr>
+                <th>Comune</th>
+                <td>$$descrizioneComuneSportello</td>
+              </tr>
+              <tr>
+                <th>C.A.P.</th>
+                <td>$$capSportello</td>
+              </tr>
+            </table>
+            <table cellspacing="3" class="detailTable" summary="Questa tabella contiene i dati del rapporto">
+              <caption>Conto Corrente:</caption>
+              <col width="30%"/>
+              <col width="70%"/>
+              <tr>
+                <th>CIN</th>
+                <td>$$cin</td>
+              </tr>
+              <tr>
+                <th>Codice Paese</th>
+                <td>$$codpaese</td>
+              </tr>
+              <tr>
+                <th>Cifra di Controllo</th>
+                <td>$$cctrl</td>
+              </tr>
+              <tr>
+                <th>Numero conto</th>
+                <td>$$numeroContoCorrente</td>
+              </tr>
+              <!-- @@blkCCSpeciale -->
+              <tr>
+                <th>Contabilit&agrave; speciale</th>
+                <td>$$flagContoGf</td>
+              </tr>
+              <!-- @@blkCCSpeciale -->
+              <tr>
+                <th>Intestatario</th>
+                <td>$$intestazione</td>
+              </tr>
+              <!-- @@iban -->
+                <tr>
+                  <th>IBAN</th>
+                  <td>$$iban</td>
+                </tr>
+              <!-- @@iban -->
+            </table>
+            <table cellspacing="3" class="detailTable" summary="Questa tabella contiene i dati del rapporto">
+              <caption>Validit&agrave;:</caption>
+              <col width="30%"/>
+              <col width="70%"/>
+              <tr>
+                <th>Dal</th>
+                <td>$$dataInizioValiditaContoCorrente</td>
+              </tr>
+              <tr>
+                <th>Al</th>
+                <td>$$dataEstinzione</td>
+              </tr>
+              <tr>
+                <th>Ultima modifica conti correnti</th>
+                <td>$$ultimaModificaVw</td>
+              </tr>
+              <tr>
+                <th>Conto corrente esclusivo</th>
+                <td>$$flagContoVincolatoPag</td>
+              </tr>
+              <tr>
+                <th>Causale Invalidazione</th>
+                <td>$$causale</td>
+              </tr>
+              <tr>
+                <th>Note Invalidazione</th>
+                <td>$$note</td>
+              </tr>
+              <tr>
+                <th>Motivo Rivalidazione</th>
+                <td>$$motivoValidazione</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <hr/>
+        <div id="hiddenElement"><!-- necessario per l'invio dei dati --></div>
+        <!-- PIE' DI PAGINA -->
+        $$footer

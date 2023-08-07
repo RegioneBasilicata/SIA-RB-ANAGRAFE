@@ -1,0 +1,41 @@
+$$head
+<script src="../js/checktext.js" type="text/javascript"></script></head><body id="homeIndice">
+<script language="javascript1.2">
+  var gobackCount='$$gobackCount';
+  if ((Number(gobackCount)==Number.NaN) || (gobackCount == ''))  
+  {
+    gobackCount=-1;
+  }
+</script>
+<form method="post" id="form1" action="">
+<div id="pagina" class="colonnaUnica">
+  <!-- INTESTAZIONE -->
+  <div id="intestazione##pathProvincia">    $$header
+    <!-- menu di navigazione-->
+    <div id="titoloEmenu">
+      <h2>
+        <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+      </h2>
+    </div>
+  </div>
+  <hr/>
+  <div style="clear:left">  </div>
+  <!-- CORPO -->
+  <div id="corpo">
+    <hr/>
+    <!-- PRIMA COLONNA -->
+    <div id="content">
+      <p class="errore">$$errore</p>
+
+      <div class="pulsanti"><div class="sin">
+            <input type="button" value="indietro" name="indietro" class="inputPulsante" onclick="history.go(gobackCount)"/>
+       </div></div>
+      <!--     Torna indietro-->
+    </div>
+    <!-- SECONDA COLONNA -->
+  </div>
+  <hr/>
+</form>
+<!-- PIE' DI PAGINA -->
+$$footer
+

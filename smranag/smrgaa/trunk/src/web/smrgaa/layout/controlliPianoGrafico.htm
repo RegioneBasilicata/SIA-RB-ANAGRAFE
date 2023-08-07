@@ -1,0 +1,55 @@
+ <!-- @@blkTabAnomalia -->   
+ <table cellspacing="3" summary="Questa tabella contiene i dati del rapporto">
+   <caption>$$descrizioneAnomalia</caption>
+   <col width="50%"/>
+   <col width="50%"/>
+   <tr>
+     <th class="center" scope="col">Tipologia</th>
+     <th class="center" scope="col">Descrizione</th>
+     <th class="center" scope="col">Esito</th>
+   </tr>
+   <!-- @@blkAnomalia -->
+   <tr>
+     <td>$$tipologia</td>
+     <td>$$descrizione</td>
+     <td>
+	     <a href="#">
+	       <img src="$$immagine" onclick="alert('$$descImmagine')" title="$$descImmagine"/>
+	     </a>
+	   </td>       
+   </tr>
+   <!-- @@blkAnomalia -->
+ </table>
+ <!-- @@blkTabAnomalia --> 
+ 
+<!-- @@blkEsitoTastino -->
+ <table summary="Questa tabella contiene i motivi della dichiarazione">
+   <tr>
+     <th><label for="motivo">Esito piano grafico</label></th>
+     <td>
+       $$messaggio
+     </td>
+   </tr>
+ </table>
+<!-- @@blkTastino -->
+<div class="pulsanti">
+  <div class="sin">
+    <input id="nuovaPagina" name="nuovaPagina" type="button"
+      value="$$labelTastino" onClick="javascript:newWindowPianoGrafico('../layout/popPianoGrafico.htm', 'Piano Grafico', '1000','700','yes', document.forms[0]);"
+      class="inputPulsante" />
+  </div>
+</div>
+<!-- @@blkTastino -->
+<!-- @@blkEsitoTastino -->
+          
+      
+      
+      
+    <!-- @@blkNoElenco -->
+    <p class="errore">
+      $$messaggioErrore
+    </p>
+    <!-- @@blkNoElenco -->
+       
+          
+          

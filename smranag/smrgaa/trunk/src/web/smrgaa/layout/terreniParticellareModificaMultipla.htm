@@ -1,0 +1,2444 @@
+$$head
+<script src="../js/checktext.js" type="text/javascript"></script>
+<script  type="text/javascript" src="../js/messaggistica.js"></script>
+<script type="text/javascript">
+		
+ 	// Funzione javascript utilizzata per ottenere la data odierna formattata
+  // in dd/mm/yyyy
+ 	function getToday() 
+  {
+ 		var mozilla = document.getElementById && !document.all;
+		var ie = document.all;
+ 		var now = new Date();
+		var day = now.getDate();
+		// Aggiungo 1 perchè in javascript il calcolo dei mesi parte da 0
+		var month = now.getMonth()+1;
+		var year = now.getFullYear();
+		
+		var today;
+		if(day <= 9) {
+			day = '0'+day;
+		}
+		if(month <= 9) {
+			month = '0'+month;
+		}
+		today = day + '/' + month + '/'+year;
+		return today;
+	}
+	
+	// Funzione javascript che si occupa di gestire i campi della pagina in funzione
+	// dell'operazione selezionata dall'utente
+	function gestisciOperazioni(daErrori) 
+  {
+    
+		var elencoOperazioni = document.forms[0].funzione;
+		var elencoSupUtilizzate = document.forms[0].supUtilizzata;
+		var elencoSupAgronomiche = document.forms[0].superficieAgronomica;
+    var elencoSupEleggibile = document.forms[0].supEleggibile;
+		var operazione;
+		for(i = 0; i < elencoOperazioni.length; i++) 
+    {
+			if(elencoOperazioni[i].checked) 
+      {
+				operazione = elencoOperazioni[i].value;
+			}
+		}
+    
+		if(operazione == 'Associa') 
+    {
+      //nel caso caricato come onload non deve ripristinare
+      if(daErrori != 'noRipristina')
+      {
+        ripristinaUtilizzi();
+        ripristinaUtilizziEleggibilita();
+      } 
+      
+      show_hide_column('tdSupAgronomica', false);
+      show_hide_column('tdSupEleggibile', false);
+			document.forms[0].idTipoUtilizzo.disabled = false;
+			document.forms[0].idVarieta.disabled = false;
+			document.forms[0].idTipoDestinazione.disabled = false;
+			document.forms[0].idTipoDettaglioUso.disabled = false;
+			document.forms[0].idTipoQualitaUso.disabled = false;
+			document.getElementById("associaIdUtilizzo").style.display= "";
+			document.forms[0].idTipoUtilizzoSecondario.disabled = false;
+			document.forms[0].idVarietaSecondaria.disabled = false;
+			document.forms[0].idTipoDestinazioneSecondario.disabled = false;
+			document.forms[0].idTipoDettaglioUsoSecondario.disabled = false;
+			document.forms[0].idTipoQualitaUsoSecondario.disabled = false;
+			document.getElementById("associaIdUtilizzoSecondario").style.display= "";
+			document.forms[0].idTitoloPossesso.disabled = true;
+			document.forms[0].idTitoloPossesso.selectedIndex = 0;
+			document.forms[0].dataCessazione.value = '';
+			document.forms[0].dataCessazione.disabled = true;
+			document.forms[0].idUnitaProduttiva.disabled = true;
+			document.forms[0].idUnitaProduttiva.selectedIndex = 0;
+			document.forms[0].percentualePossessoIn.value = "";
+			document.forms[0].percentualePossessoIn.disabled = true;
+			document.forms[0].idDocumento.disabled = true;
+			document.forms[0].idDocumento.selectedIndex = 0;
+			if(elencoSupUtilizzate.length) 
+      {
+				for(a = 0; a < elencoSupUtilizzate.length; a++) {      
+					document.forms[0].supUtilizzata[a].disabled = false;
+					document.forms[0].supUtilizzataSecondaria[a].disabled = false;
+          
+          if(document.forms[0].idTitoloPossessoHi[a].value == 5)
+          {
+            document.forms[0].supUtilizzata[a].readOnly = true;
+          }
+				}
+			}
+			else 
+      {
+				document.forms[0].supUtilizzata.disabled = false;
+				document.forms[0].supUtilizzataSecondaria.disabled = false;
+        
+        if(document.forms[0].idTitoloPossessoHi.value == 5)
+        {
+          document.forms[0].supUtilizzata[a].readOnly = true;
+        }
+        
+        
+			}
+			document.forms[0].controlloData.value = '';
+			// Disabilito i campi relativi alla superficie agronomica
+			if(elencoSupAgronomiche.length) 
+      { 
+				for(a = 0; a < elencoSupAgronomiche.length; a++) {
+					document.forms[0].superficieAgronomica[a].disabled = true;
+					document.forms[0].superficieAgronomica[a].value = document.forms[0].oldSuperficieAgronomica[a].value;
+				}
+			}
+			else 
+      {
+				document.forms[0].superficieAgronomica.disabled = true;
+				document.forms[0].superficieAgronomica.value = document.forms[0].oldSuperficieAgronomica.value;
+			}
+      document.forms[0].idTipoDichiarazioneUsoAgronomico.value="0";
+      document.forms[0].idTipoDichiarazioneUsoAgronomico.disabled = true;
+      
+      document.forms[0].idTipoIrrigazione.disabled = true;
+      document.forms[0].idTipoIrrigazione.selectedIndex = 0;
+      
+      var elencoIrrigate = document.forms[0].irrigata;      
+      for(i = 0; i < elencoIrrigate.length; i++) 
+      {
+        elencoIrrigate[i].checked = false;
+        elencoIrrigate[i].disabled = true;
+      }
+      
+      
+		}
+    else if(operazione == 'eleggibilitaGIS') 
+    {
+      ripristinaUtilizziEleggibilita();
+      show_hide_column('tdSupAgronomica', false);
+      show_hide_column('tdSupEleggibile', true);
+      document.forms[0].idTipoUtilizzo.selectedIndex = 0;
+      document.forms[0].idTipoUtilizzo.disabled = true;
+      document.forms[0].idVarieta.options.length = 0;
+      document.forms[0].idVarieta.disabled = true;
+      document.forms[0].idTipoDestinazione.options.length = 0;
+      document.forms[0].idTipoDestinazione.disabled = true;
+      document.forms[0].idTipoDettaglioUso.options.length = 0;
+      document.forms[0].idTipoDettaglioUso.disabled = true;
+      document.forms[0].idTipoQualitaUso.options.length = 0;
+      document.forms[0].idTipoQualitaUso.disabled = true;
+      document.getElementById("associaIdUtilizzo").style.display= "none";
+      document.forms[0].idTipoUtilizzoSecondario.selectedIndex = 0;
+      document.forms[0].idTipoUtilizzoSecondario.disabled = true;
+      document.forms[0].idVarietaSecondaria.options.length = 0;
+      document.forms[0].idVarietaSecondaria.disabled = true;
+      document.forms[0].idTipoDestinazioneSecondario.options.length = 0;
+      document.forms[0].idTipoDestinazioneSecondario.disabled = true;
+      document.forms[0].idTipoDettaglioUsoSecondario.options.length = 0;
+      document.forms[0].idTipoDettaglioUsoSecondario.disabled = true;
+      document.forms[0].idTipoQualitaUsoSecondario.options.length = 0;
+      document.forms[0].idTipoQualitaUsoSecondario.disabled = true;
+      document.getElementById("associaIdUtilizzoSecondario").style.display= "none";
+      document.forms[0].idTitoloPossesso.disabled = true;
+      document.forms[0].idTitoloPossesso.selectedIndex = 0;
+      document.forms[0].dataCessazione.value = '';
+      document.forms[0].dataCessazione.disabled = true;
+      document.forms[0].idUnitaProduttiva.disabled = true;
+      document.forms[0].idUnitaProduttiva.selectedIndex = 0;
+      document.forms[0].percentualePossessoIn.value = "";
+      document.forms[0].percentualePossessoIn.disabled = true;
+      document.forms[0].idDocumento.disabled = true;
+      document.forms[0].idDocumento.selectedIndex = 0;
+      
+      
+      
+      if(elencoSupUtilizzate.length) 
+      {
+        for(a = 0; a < elencoSupUtilizzate.length; a++) {
+          document.forms[0].supUtilizzata[a].disabled = false;
+          document.forms[0].supUtilizzataSecondaria[a].disabled = false;
+        }
+      }
+      else 
+      {
+        document.forms[0].supUtilizzata.disabled = false;
+        document.forms[0].supUtilizzataSecondaria.disabled = false;
+      }
+      
+      
+      //Gestione eleggibiltà
+      if(elencoSupEleggibile.length) 
+      {
+        for(a = 0; a < elencoSupEleggibile.length; a++) 
+        {
+          var supElegTmp = elencoSupEleggibile[a].value;
+          if(supElegTmp != '0,0000')
+          {
+            if(document.forms[0].idTitoloPossessoHi[a].value != 5)
+            { 
+              if(daErrori == 'elegGis')
+              {          
+                document.forms[0].supUtilizzata[a].value = elencoSupEleggibile[a].value;
+              }                
+            }
+          }
+          
+          
+          //gestione supnetta
+          var valore1 = document.forms[0].supUtilizzata[a].value;
+          var valore2 = document.form1.coefficienteRiduzione[a].value;
+          if (valore1=='' || valore2=='')
+            totale='';
+          else
+          {
+            if(IsNumeric(valore1) && IsNumeric(valore2) && valore1 != '' && valore2 != '')
+            {
+              totale = parseFloat(valore1.replace(',', '.')) * parseFloat(valore2.replace(',', '.'));
+              totale = arrotonda(totale,4);
+              totale = ''+totale;
+              totale=totale.replace('.',',');
+              
+              //Aggiunge gli zeri
+              //totale = aggiungiZeri(totale);
+            }
+            else totale='NaN';
+          }        
+          document.getElementById('supNetta_'+a).innerHTML=totale;
+          
+          
+          
+          if(document.forms[0].idTitoloPossessoHi[a].value == 5)
+          {
+            document.forms[0].supUtilizzata[a].readOnly = true;
+          }
+        }
+      }
+      else
+      {
+        var supElegTmp = elencoSupEleggibile.value;
+        if(supElegTmp != '0,0000')
+        {
+          if(document.forms[0].idTitoloPossessoHi.value != 5)
+          { 
+            if(daErrori == 'elegGis')
+            {       
+              document.forms[0].supUtilizzata.value = elencoSupEleggibile.value;
+            }
+          }
+        }
+        
+        
+        var valore1 = document.forms[0].supUtilizzata.value;
+        var valore2 = document.form1.coefficienteRiduzione.value;
+        if (valore1=='' || valore2=='')
+          totale='';
+        else
+        {
+          if(IsNumeric(valore1) && IsNumeric(valore2) && valore1 != '' && valore2 != '')
+          {
+            totale = parseFloat(valore1.replace(',', '.')) * parseFloat(valore2.replace(',', '.'));
+            totale = arrotonda(totale,4);
+            totale = ''+totale;
+            totale=totale.replace('.',',');
+            
+            //Aggiunge gli zeri
+            //totale = aggiungiZeri(totale);
+          }
+          else totale='NaN';
+        }        
+        document.getElementById('supNetta_0').innerHTML=totale;
+        
+        
+        if(document.forms[0].idTitoloPossessoHi.value == 5)
+        {
+          document.forms[0].supUtilizzata[a].readOnly = true;
+        }
+      }
+      
+      
+      document.forms[0].controlloData.value = '';
+      // Disabilito i campi relativi alla superficie agronomica
+      if(elencoSupAgronomiche.length) {
+        for(a = 0; a < elencoSupAgronomiche.length; a++) {
+          document.forms[0].superficieAgronomica[a].disabled = true;
+          document.forms[0].superficieAgronomica[a].value = document.forms[0].oldSuperficieAgronomica[a].value;
+        }
+      }
+      else {
+        document.forms[0].superficieAgronomica.disabled = true;
+        document.forms[0].superficieAgronomica.value = document.forms[0].oldSuperficieAgronomica.value;
+      }
+      document.forms[0].idTipoDichiarazioneUsoAgronomico.value="0";
+      document.forms[0].idTipoDichiarazioneUsoAgronomico.disabled = true;
+      if(document.forms[0].onLoad.value != '') {
+        if(confirm('Alcune delle particelle modificate sono legate a documenti attivi.Proseguendo tali '+
+                     'documenti verranno modificati automaticamente.Vuoi proseguire?')) {
+                 document.forms[0].confermoOperazione.value = 'confermoOperazione';
+                 document.forms[0].conferma.click();
+        }
+      }
+      
+      document.forms[0].idTipoIrrigazione.disabled = true;
+      document.forms[0].idTipoIrrigazione.selectedIndex = 0;
+      
+      var elencoIrrigate = document.forms[0].irrigata;      
+      for(i = 0; i < elencoIrrigate.length; i++) 
+      { 
+        elencoIrrigate[i].checked = false;
+        elencoIrrigate[i].disabled = true;
+      }
+    }
+		else if(operazione == 'cambia') 
+    {
+      ripristinaUtilizzi();
+      ripristinaUtilizziEleggibilita();
+      show_hide_column('tdSupAgronomica', false);
+      show_hide_column('tdSupEleggibile', false);
+			document.forms[0].idTipoUtilizzo.selectedIndex = 0;
+      document.forms[0].idTipoUtilizzo.disabled = true;
+      document.forms[0].idVarieta.options.length = 0;
+      document.forms[0].idVarieta.disabled = true;
+      document.forms[0].idTipoDestinazione.options.length = 0;
+      document.forms[0].idTipoDestinazione.disabled = true;
+      document.forms[0].idTipoDettaglioUso.options.length = 0;
+      document.forms[0].idTipoDettaglioUso.disabled = true;
+      document.forms[0].idTipoQualitaUso.options.length = 0;
+      document.forms[0].idTipoQualitaUso.disabled = true;
+			document.getElementById("associaIdUtilizzo").style.display= "none";
+			document.forms[0].idTipoUtilizzoSecondario.selectedIndex = 0;
+      document.forms[0].idTipoUtilizzoSecondario.disabled = true;
+      document.forms[0].idVarietaSecondaria.options.length = 0;
+      document.forms[0].idVarietaSecondaria.disabled = true;
+      document.forms[0].idTipoDestinazioneSecondario.options.length = 0;
+      document.forms[0].idTipoDestinazioneSecondario.disabled = true;
+      document.forms[0].idTipoDettaglioUsoSecondario.options.length = 0;
+      document.forms[0].idTipoDettaglioUsoSecondario.disabled = true;
+      document.forms[0].idTipoQualitaUsoSecondario.options.length = 0;
+      document.forms[0].idTipoQualitaUsoSecondario.disabled = true;
+			document.getElementById("associaIdUtilizzoSecondario").style.display= "none";
+			document.forms[0].idTitoloPossesso.disabled = false;
+			document.forms[0].dataCessazione.value = '';
+			document.forms[0].dataCessazione.disabled = true;
+			document.forms[0].idUnitaProduttiva.disabled = true;
+			document.forms[0].idUnitaProduttiva.selectedIndex = 0;
+			document.forms[0].percentualePossessoIn.value = "";
+			document.forms[0].percentualePossessoIn.disabled = true;
+			document.forms[0].idDocumento.disabled = true;
+			document.forms[0].idDocumento.selectedIndex = 0;
+			if(elencoSupUtilizzate.length) {
+				for(a = 0; a < elencoSupUtilizzate.length; a++) {
+					document.forms[0].supUtilizzata[a].disabled = true;
+					document.forms[0].supUtilizzataSecondaria[a].disabled = true;
+				}
+			}
+			else {
+				document.forms[0].supUtilizzata.disabled = true;
+				document.forms[0].supUtilizzataSecondaria.disabled = true;
+			}
+			document.forms[0].controlloData.value = '';
+			// Disabilito i campi relativi alla superficie agronomica
+			if(elencoSupAgronomiche.length) {
+				for(a = 0; a < elencoSupAgronomiche.length; a++) {
+					document.forms[0].superficieAgronomica[a].disabled = true;
+					document.forms[0].superficieAgronomica[a].value = document.forms[0].oldSuperficieAgronomica[a].value;
+				}
+			}
+			else {
+				document.forms[0].superficieAgronomica.disabled = true;
+				document.forms[0].superficieAgronomica.value = document.forms[0].oldSuperficieAgronomica.value;
+			}
+      document.forms[0].idTipoDichiarazioneUsoAgronomico.value="0";
+      document.forms[0].idTipoDichiarazioneUsoAgronomico.disabled = true;
+			if(document.forms[0].onLoad.value != '') {
+				if(confirm('Alcune delle particelle modificate sono legate a documenti attivi.Proseguendo tali '+
+			               'documenti verranno modificati automaticamente.Vuoi proseguire?')) {
+			           document.forms[0].confermoOperazione.value = 'confermoOperazione';
+			           document.forms[0].conferma.click();
+				}
+			}
+      
+      document.forms[0].idTipoIrrigazione.disabled = true;
+      document.forms[0].idTipoIrrigazione.selectedIndex = 0;
+      
+      var elencoIrrigate = document.forms[0].irrigata;      
+      for(i = 0; i < elencoIrrigate.length; i++) 
+      { 
+        elencoIrrigate[i].checked = false;
+        elencoIrrigate[i].disabled = true;
+      }
+		}
+		else if(operazione == 'cessazione') 
+    {
+      ripristinaUtilizzi();
+      ripristinaUtilizziEleggibilita();
+      show_hide_column('tdSupAgronomica', false);
+      show_hide_column('tdSupEleggibile', false);
+			document.forms[0].idTipoUtilizzo.selectedIndex = 0;
+      document.forms[0].idTipoUtilizzo.disabled = true;
+      document.forms[0].idVarieta.options.length = 0;
+      document.forms[0].idVarieta.disabled = true;
+      document.forms[0].idTipoDestinazione.options.length = 0;
+      document.forms[0].idTipoDestinazione.disabled = true;
+      document.forms[0].idTipoDettaglioUso.options.length = 0;
+      document.forms[0].idTipoDettaglioUso.disabled = true;
+      document.forms[0].idTipoQualitaUso.options.length = 0;
+      document.forms[0].idTipoQualitaUso.disabled = true;
+			document.getElementById("associaIdUtilizzo").style.display= "none";
+			document.forms[0].idTipoUtilizzoSecondario.selectedIndex = 0;
+      document.forms[0].idTipoUtilizzoSecondario.disabled = true;
+      document.forms[0].idVarietaSecondaria.options.length = 0;
+      document.forms[0].idVarietaSecondaria.disabled = true;
+      document.forms[0].idTipoDestinazioneSecondario.options.length = 0;
+      document.forms[0].idTipoDestinazioneSecondario.disabled = true;
+      document.forms[0].idTipoDettaglioUsoSecondario.options.length = 0;
+      document.forms[0].idTipoDettaglioUsoSecondario.disabled = true;
+      document.forms[0].idTipoQualitaUsoSecondario.options.length = 0;
+      document.forms[0].idTipoQualitaUsoSecondario.disabled = true;
+			document.getElementById("associaIdUtilizzoSecondario").style.display= "none";
+			document.forms[0].idTitoloPossesso.disabled = true;
+			document.forms[0].idTitoloPossesso.selectedIndex = 0;
+			if(document.forms[0].controlloData.value == '') {
+				document.forms[0].dataCessazione.value = getToday();
+			}
+			document.forms[0].dataCessazione.disabled = false;
+			document.forms[0].idUnitaProduttiva.disabled = true;
+			document.forms[0].idUnitaProduttiva.selectedIndex = 0;
+			document.forms[0].percentualePossessoIn.value = "";
+			document.forms[0].percentualePossessoIn.disabled = true;
+			document.forms[0].idDocumento.disabled = true;		
+			document.forms[0].idDocumento.selectedIndex = 0;
+			if(elencoSupUtilizzate.length) {
+				for(a = 0; a < elencoSupUtilizzate.length; a++) {
+					document.forms[0].supUtilizzata[a].disabled = true;
+					document.forms[0].supUtilizzataSecondaria[a].disabled = true;
+				}
+			}
+			else {
+				document.forms[0].supUtilizzata.disabled = true;
+				document.forms[0].supUtilizzataSecondaria.disabled = true;
+			}
+			// Disabilito i campi relativi alla superficie agronomica
+			if(elencoSupAgronomiche.length) {
+				for(a = 0; a < elencoSupAgronomiche.length; a++) {
+					document.forms[0].superficieAgronomica[a].disabled = true;
+					document.forms[0].superficieAgronomica[a].value = document.forms[0].oldSuperficieAgronomica[a].value;
+				}
+			}
+			else {
+				document.forms[0].superficieAgronomica.disabled = true;
+				document.forms[0].superficieAgronomica.value = document.forms[0].oldSuperficieAgronomica.value;
+			}
+      document.forms[0].idTipoDichiarazioneUsoAgronomico.value="0";
+      document.forms[0].idTipoDichiarazioneUsoAgronomico.disabled = true;
+			if(document.forms[0].loadFabbricati.value != '') {
+				if(confirm('Alcune delle particelle cessate sono legate a fabbricati.Proseguendo tali '+
+			               'particelle saranno storicizzate/eliminate dal fabbricato in esame.Vuoi proseguire?')) {
+			           document.forms[0].confermoFabbricati.value = 'confermoOperazione';
+			           document.forms[0].conferma.click();
+				}
+			}
+			if(document.forms[0].onLoad.value != '') {
+				if(confirm('Alcune delle particelle cessate sono legate a documenti attivi.Proseguendo tali '+
+			               'conduzioni saranno cessate automaticamente anche sui documenti.Vuoi proseguire?')) {
+			           document.forms[0].confermoOperazione.value = 'confermoOperazione';
+			           document.forms[0].conferma.click();
+				}
+			}
+      
+      document.forms[0].idTipoIrrigazione.disabled = true;
+      document.forms[0].idTipoIrrigazione.selectedIndex = 0;
+      
+      var elencoIrrigate = document.forms[0].irrigata;      
+      for(i = 0; i < elencoIrrigate.length; i++) 
+      {
+        elencoIrrigate[i].checked = false;
+        elencoIrrigate[i].disabled = true;
+      }
+		}
+		else if(operazione == 'cambiaUte') 
+    {
+      ripristinaUtilizzi();
+      ripristinaUtilizziEleggibilita();
+      show_hide_column('tdSupAgronomica', false);
+      show_hide_column('tdSupEleggibile', false);
+			document.forms[0].idTipoUtilizzo.selectedIndex = 0;
+      document.forms[0].idTipoUtilizzo.disabled = true;
+      document.forms[0].idVarieta.options.length = 0;
+      document.forms[0].idVarieta.disabled = true;
+      document.forms[0].idTipoDestinazione.options.length = 0;
+      document.forms[0].idTipoDestinazione.disabled = true;
+      document.forms[0].idTipoDettaglioUso.options.length = 0;
+      document.forms[0].idTipoDettaglioUso.disabled = true;
+      document.forms[0].idTipoQualitaUso.options.length = 0;
+      document.forms[0].idTipoQualitaUso.disabled = true;
+			document.getElementById("associaIdUtilizzo").style.display= "none";
+			document.forms[0].idTipoUtilizzoSecondario.selectedIndex = 0;
+      document.forms[0].idTipoUtilizzoSecondario.disabled = true;
+      document.forms[0].idVarietaSecondaria.options.length = 0;
+      document.forms[0].idVarietaSecondaria.disabled = true;
+      document.forms[0].idTipoDestinazioneSecondario.options.length = 0;
+      document.forms[0].idTipoDestinazioneSecondario.disabled = true;
+      document.forms[0].idTipoDettaglioUsoSecondario.options.length = 0;
+      document.forms[0].idTipoDettaglioUsoSecondario.disabled = true;
+      document.forms[0].idTipoQualitaUsoSecondario.options.length = 0;
+      document.forms[0].idTipoQualitaUsoSecondario.disabled = true;
+			document.getElementById("associaIdUtilizzoSecondario").style.display= "none";
+			document.forms[0].idTitoloPossesso.disabled = true;
+			document.forms[0].idTitoloPossesso.selectedIndex = 0;
+			document.forms[0].dataCessazione.value = '';
+			document.forms[0].dataCessazione.disabled = true;
+			document.forms[0].idUnitaProduttiva.disabled = false;
+			document.forms[0].percentualePossessoIn.value = "";
+			document.forms[0].percentualePossessoIn.disabled = true;
+			document.forms[0].idDocumento.disabled = true;
+			document.forms[0].idDocumento.selectedIndex = 0;
+			if(elencoSupUtilizzate.length) {
+				for(a = 0; a < elencoSupUtilizzate.length; a++) {
+					document.forms[0].supUtilizzata[a].disabled = true;
+					document.forms[0].supUtilizzataSecondaria[a].disabled = true;
+				}
+			}
+			else {
+				document.forms[0].supUtilizzata.disabled = true;
+				document.forms[0].supUtilizzataSecondaria.disabled = true;
+			}
+			document.forms[0].controlloData.value = '';
+			// Disabilito i campi relativi alla superficie agronomica
+			if(elencoSupAgronomiche.length) {
+				for(a = 0; a < elencoSupAgronomiche.length; a++) {
+					document.forms[0].superficieAgronomica[a].disabled = true;
+					document.forms[0].superficieAgronomica[a].value = document.forms[0].oldSuperficieAgronomica[a].value;
+				}
+			}
+			else {
+				document.forms[0].superficieAgronomica.disabled = true;
+				document.forms[0].superficieAgronomica.value = document.forms[0].oldSuperficieAgronomica.value;
+			}
+      document.forms[0].idTipoDichiarazioneUsoAgronomico.value="0";
+      document.forms[0].idTipoDichiarazioneUsoAgronomico.disabled = true;
+      
+      document.forms[0].idTipoIrrigazione.disabled = true;
+      document.forms[0].idTipoIrrigazione.selectedIndex = 0;
+      
+      var elencoIrrigate = document.forms[0].irrigata;      
+      for(i = 0; i < elencoIrrigate.length; i++) 
+      {
+        elencoIrrigate[i].checked = false;
+        elencoIrrigate[i].disabled = true;
+      }
+		}
+		// Dichiarazione uso agronomico
+		else if(operazione == 'dichiarazioneUsoAgronomico') 
+    {
+      ripristinaUtilizzi();
+      ripristinaUtilizziEleggibilita();
+      show_hide_column('tdSupAgronomica', true);
+      show_hide_column('tdSupEleggibile', false); 
+			document.forms[0].idTipoUtilizzo.selectedIndex = 0;
+      document.forms[0].idTipoUtilizzo.disabled = true;
+      document.forms[0].idVarieta.options.length = 0;
+      document.forms[0].idVarieta.disabled = true;
+      document.forms[0].idTipoDestinazione.options.length = 0;
+      document.forms[0].idTipoDestinazione.disabled = true;
+      document.forms[0].idTipoDettaglioUso.options.length = 0;
+      document.forms[0].idTipoDettaglioUso.disabled = true;
+      document.forms[0].idTipoQualitaUso.options.length = 0;
+      document.forms[0].idTipoQualitaUso.disabled = true;
+			document.getElementById("associaIdUtilizzo").style.display= "none";
+			document.forms[0].idTipoUtilizzoSecondario.selectedIndex = 0;
+      document.forms[0].idTipoUtilizzoSecondario.disabled = true;
+      document.forms[0].idVarietaSecondaria.options.length = 0;
+      document.forms[0].idVarietaSecondaria.disabled = true;
+      document.forms[0].idTipoDestinazioneSecondario.options.length = 0;
+      document.forms[0].idTipoDestinazioneSecondario.disabled = true;
+      document.forms[0].idTipoDettaglioUsoSecondario.options.length = 0;
+      document.forms[0].idTipoDettaglioUsoSecondario.disabled = true;
+      document.forms[0].idTipoQualitaUsoSecondario.options.length = 0;
+      document.forms[0].idTipoQualitaUsoSecondario.disabled = true;
+			document.getElementById("associaIdUtilizzoSecondario").style.display= "none";
+			document.forms[0].idTitoloPossesso.disabled = true;
+			document.forms[0].idTitoloPossesso.selectedIndex = 0;
+			document.forms[0].dataCessazione.value = '';
+			document.forms[0].dataCessazione.disabled = true;
+			document.forms[0].idUnitaProduttiva.disabled = true;
+			document.forms[0].idUnitaProduttiva.selectedIndex = 0;
+			document.forms[0].percentualePossessoIn.value = "";
+			document.forms[0].percentualePossessoIn.disabled = true;
+			document.forms[0].idDocumento.disabled = true;
+			if(elencoSupUtilizzate.length) {
+				for(a = 0; a < elencoSupUtilizzate.length; a++) {
+					document.forms[0].supUtilizzata[a].disabled = true;
+					document.forms[0].supUtilizzataSecondaria[a].disabled = true;
+				}
+			}
+			else {
+				document.forms[0].supUtilizzata.disabled = true;
+				document.forms[0].supUtilizzataSecondaria.disabled = true;
+			}
+			// Abilito i campi relativi alla superficie agronomica
+			if(elencoSupAgronomiche.length) {
+				for(a = 0; a < elencoSupAgronomiche.length; a++) {
+					document.forms[0].superficieAgronomica[a].disabled = false;
+				}
+			}
+			else {
+				document.forms[0].superficieAgronomica.disabled = false;
+			}
+      document.forms[0].idTipoDichiarazioneUsoAgronomico.disabled = false;
+			document.forms[0].controlloData.value = '';
+      
+      document.forms[0].idTipoIrrigazione.disabled = true;
+      document.forms[0].idTipoIrrigazione.selectedIndex = 0;
+      document.forms[0].idDocumento.selectedIndex = 0;
+      
+      
+      var elencoIrrigate = document.forms[0].irrigata;      
+      for(i = 0; i < elencoIrrigate.length; i++) 
+      {
+        elencoIrrigate[i].checked = false;
+        elencoIrrigate[i].disabled = true;
+      }
+		}
+    //Irrigazione
+    else if(operazione == 'irrigazione') 
+    {
+      ripristinaUtilizzi();
+      ripristinaUtilizziEleggibilita();
+      show_hide_column('tdSupAgronomica', false);
+      show_hide_column('tdSupEleggibile', false); 
+      document.forms[0].idTipoUtilizzo.selectedIndex = 0;
+      document.forms[0].idTipoUtilizzo.disabled = true;
+      document.forms[0].idVarieta.options.length = 0;
+      document.forms[0].idVarieta.disabled = true;
+      document.forms[0].idTipoDestinazione.options.length = 0;
+      document.forms[0].idTipoDestinazione.disabled = true;
+      document.forms[0].idTipoDettaglioUso.options.length = 0;
+      document.forms[0].idTipoDettaglioUso.disabled = true;
+      document.forms[0].idTipoQualitaUso.options.length = 0;
+      document.forms[0].idTipoQualitaUso.disabled = true;
+      document.getElementById("associaIdUtilizzo").style.display= "none";
+      document.forms[0].idTipoUtilizzoSecondario.selectedIndex = 0;
+      document.forms[0].idTipoUtilizzoSecondario.disabled = true;
+      document.forms[0].idVarietaSecondaria.options.length = 0;
+      document.forms[0].idVarietaSecondaria.disabled = true;
+      document.forms[0].idTipoDestinazioneSecondario.options.length = 0;
+      document.forms[0].idTipoDestinazioneSecondario.disabled = true;
+      document.forms[0].idTipoDettaglioUsoSecondario.options.length = 0;
+      document.forms[0].idTipoDettaglioUsoSecondario.disabled = true;
+      document.forms[0].idTipoQualitaUsoSecondario.options.length = 0;
+      document.forms[0].idTipoQualitaUsoSecondario.disabled = true;
+      document.getElementById("associaIdUtilizzoSecondario").style.display= "none";
+      document.forms[0].idTitoloPossesso.disabled = true;
+      document.forms[0].idTitoloPossesso.selectedIndex = 0;
+      document.forms[0].dataCessazione.value = '';
+      document.forms[0].controlloData.value = '';
+      document.forms[0].dataCessazione.disabled = true;
+      document.forms[0].idUnitaProduttiva.disabled = true;
+      document.forms[0].idUnitaProduttiva.selectedIndex = 0;
+      document.forms[0].percentualePossessoIn.value = "";
+      document.forms[0].percentualePossessoIn.disabled = true;
+      document.forms[0].idDocumento.disabled = true;
+      document.forms[0].idDocumento.selectedIndex = 0;
+      if(elencoSupUtilizzate.length) {
+        for(a = 0; a < elencoSupUtilizzate.length; a++) {
+          document.forms[0].supUtilizzata[a].disabled = true;
+          document.forms[0].supUtilizzataSecondaria[a].disabled = true;
+        }
+      }
+      else {
+        document.forms[0].supUtilizzata.disabled = true;
+        document.forms[0].supUtilizzataSecondaria.disabled = true;
+      }
+      document.forms[0].controlloData.value = '';
+      // Disabilito i campi relativi alla superficie agronomica
+      if(elencoSupAgronomiche.length) {
+        for(a = 0; a < elencoSupAgronomiche.length; a++) {
+          document.forms[0].superficieAgronomica[a].disabled = true;
+          document.forms[0].superficieAgronomica[a].value = document.forms[0].oldSuperficieAgronomica[a].value;
+        }
+      }
+      else {
+        document.forms[0].superficieAgronomica.disabled = true;
+        document.forms[0].superficieAgronomica.value = document.forms[0].oldSuperficieAgronomica.value;
+      }
+      document.forms[0].idTipoDichiarazioneUsoAgronomico.value="0";
+      document.forms[0].idTipoDichiarazioneUsoAgronomico.disabled = true;
+      
+      document.forms[0].idTipoIrrigazione.disabled = true;
+      document.forms[0].idTipoIrrigazione.selectedIndex = 0;
+              
+      var elencoIrrigate = document.forms[0].irrigata;      
+      for(i = 0; i < elencoIrrigate.length; i++) 
+      {
+        elencoIrrigate[i].disabled = false;
+        if(elencoIrrigate[i].value == "no")
+        {
+          elencoIrrigate[i].checked = true;
+        }
+      }
+    }
+    else if(operazione == 'allineaPercPoss') 
+    {
+      ripristinaUtilizzi();
+      ripristinaUtilizziEleggibilita();
+      show_hide_column('tdSupAgronomica', false);
+      show_hide_column('tdSupEleggibile', false);
+      document.forms[0].idTipoUtilizzo.selectedIndex = 0;
+      document.forms[0].idTipoUtilizzo.disabled = true;
+      document.forms[0].idVarieta.options.length = 0;
+      document.forms[0].idVarieta.disabled = true;
+      document.forms[0].idTipoDestinazione.options.length = 0;
+      document.forms[0].idTipoDestinazione.disabled = true;
+      document.forms[0].idTipoDettaglioUso.options.length = 0;
+      document.forms[0].idTipoDettaglioUso.disabled = true;
+      document.forms[0].idTipoQualitaUso.options.length = 0;
+      document.forms[0].idTipoQualitaUso.disabled = true;
+      document.getElementById("associaIdUtilizzo").style.display= "none";
+      document.forms[0].idTipoUtilizzoSecondario.selectedIndex = 0;
+      document.forms[0].idTipoUtilizzoSecondario.disabled = true;
+      document.forms[0].idVarietaSecondaria.options.length = 0;
+      document.forms[0].idVarietaSecondaria.disabled = true;
+      document.forms[0].idTipoDestinazioneSecondario.options.length = 0;
+      document.forms[0].idTipoDestinazioneSecondario.disabled = true;
+      document.forms[0].idTipoDettaglioUsoSecondario.options.length = 0;
+      document.forms[0].idTipoDettaglioUsoSecondario.disabled = true;
+      document.forms[0].idTipoQualitaUsoSecondario.options.length = 0;
+      document.forms[0].idTipoQualitaUsoSecondario.disabled = true;
+      document.getElementById("associaIdUtilizzoSecondario").style.display= "none";
+      document.forms[0].idTitoloPossesso.disabled = true;
+      document.forms[0].idTitoloPossesso.selectedIndex = 0;
+      document.forms[0].dataCessazione.value = '';
+      document.forms[0].dataCessazione.disabled = true;
+      document.forms[0].idUnitaProduttiva.disabled = true;
+      document.forms[0].idUnitaProduttiva.selectedIndex = 0;
+      document.forms[0].percentualePossessoIn.disabled = false;
+      document.forms[0].idDocumento.disabled = true;
+      document.forms[0].idDocumento.selectedIndex = 0;
+      if(elencoSupUtilizzate.length) {
+        for(a = 0; a < elencoSupUtilizzate.length; a++) {
+          document.forms[0].supUtilizzata[a].disabled = true;
+          document.forms[0].supUtilizzataSecondaria[a].disabled = true;
+        }
+      }
+      else {
+        document.forms[0].supUtilizzata.disabled = true;
+        document.forms[0].supUtilizzataSecondaria.disabled = true;
+      }
+      document.forms[0].controlloData.value = '';
+      // Disabilito i campi relativi alla superficie agronomica
+      if(elencoSupAgronomiche.length) {
+        for(a = 0; a < elencoSupAgronomiche.length; a++) {
+          document.forms[0].superficieAgronomica[a].disabled = true;
+          document.forms[0].superficieAgronomica[a].value = document.forms[0].oldSuperficieAgronomica[a].value;
+        }
+      }
+      else {
+        document.forms[0].superficieAgronomica.disabled = true;
+        document.forms[0].superficieAgronomica.value = document.forms[0].oldSuperficieAgronomica.value;
+      }
+      document.forms[0].idTipoDichiarazioneUsoAgronomico.value="0";
+      document.forms[0].idTipoDichiarazioneUsoAgronomico.disabled = true;
+      
+      document.forms[0].idTipoIrrigazione.disabled = true;
+      document.forms[0].idTipoIrrigazione.selectedIndex = 0;
+      
+      var elencoIrrigate = document.forms[0].irrigata;      
+      for(i = 0; i < elencoIrrigate.length; i++) 
+      {
+        elencoIrrigate[i].checked = false;
+        elencoIrrigate[i].disabled = true;
+      }
+    }
+    else if(operazione == 'allineaSupUtilPercPoss') 
+    {
+      ripristinaUtilizzi();
+      ripristinaUtilizziEleggibilita();
+      show_hide_column('tdSupAgronomica', false);
+      show_hide_column('tdSupEleggibile', false);
+      document.forms[0].idTipoUtilizzo.selectedIndex = 0;
+      document.forms[0].idTipoUtilizzo.disabled = true;
+      document.forms[0].idVarieta.options.length = 0;
+      document.forms[0].idVarieta.disabled = true;
+      document.forms[0].idTipoDestinazione.options.length = 0;
+      document.forms[0].idTipoDestinazione.disabled = true;
+      document.forms[0].idTipoDettaglioUso.options.length = 0;
+      document.forms[0].idTipoDettaglioUso.disabled = true;
+      document.forms[0].idTipoQualitaUso.options.length = 0;
+      document.forms[0].idTipoQualitaUso.disabled = true;
+      document.getElementById("associaIdUtilizzo").style.display= "none";
+      document.forms[0].idTipoUtilizzoSecondario.selectedIndex = 0;
+      document.forms[0].idTipoUtilizzoSecondario.disabled = true;
+      document.forms[0].idVarietaSecondaria.options.length = 0;
+      document.forms[0].idVarietaSecondaria.disabled = true;
+      document.forms[0].idTipoDestinazioneSecondario.options.length = 0;
+      document.forms[0].idTipoDestinazioneSecondario.disabled = true;
+      document.forms[0].idTipoDettaglioUsoSecondario.options.length = 0;
+      document.forms[0].idTipoDettaglioUsoSecondario.disabled = true;
+      document.forms[0].idTipoQualitaUsoSecondario.options.length = 0;
+      document.forms[0].idTipoQualitaUsoSecondario.disabled = true;
+      document.getElementById("associaIdUtilizzoSecondario").style.display= "none";
+      document.forms[0].idTitoloPossesso.disabled = true;
+      document.forms[0].idTitoloPossesso.selectedIndex = 0;
+      document.forms[0].dataCessazione.value = '';
+      document.forms[0].dataCessazione.disabled = true;
+      document.forms[0].idUnitaProduttiva.disabled = true;
+      document.forms[0].idUnitaProduttiva.selectedIndex = 0;
+      document.forms[0].percentualePossessoIn.value = "";
+      document.forms[0].percentualePossessoIn.disabled = true;
+      document.forms[0].idDocumento.disabled = true;
+      document.forms[0].idDocumento.selectedIndex = 0;
+      if(elencoSupUtilizzate.length) {
+        for(a = 0; a < elencoSupUtilizzate.length; a++) {
+          document.forms[0].supUtilizzata[a].disabled = true;
+          document.forms[0].supUtilizzataSecondaria[a].disabled = true;
+        }
+      }
+      else {
+        document.forms[0].supUtilizzata.disabled = true;
+        document.forms[0].supUtilizzataSecondaria.disabled = true;
+      }
+      document.forms[0].controlloData.value = '';
+      // Disabilito i campi relativi alla superficie agronomica
+      if(elencoSupAgronomiche.length) {
+        for(a = 0; a < elencoSupAgronomiche.length; a++) {
+          document.forms[0].superficieAgronomica[a].disabled = true;
+          document.forms[0].superficieAgronomica[a].value = document.forms[0].oldSuperficieAgronomica[a].value;
+        }
+      }
+      else {
+        document.forms[0].superficieAgronomica.disabled = true;
+        document.forms[0].superficieAgronomica.value = document.forms[0].oldSuperficieAgronomica.value;
+      }
+      document.forms[0].idTipoDichiarazioneUsoAgronomico.value="0";
+      document.forms[0].idTipoDichiarazioneUsoAgronomico.disabled = true;
+      
+      document.forms[0].idTipoIrrigazione.disabled = true;
+      document.forms[0].idTipoIrrigazione.selectedIndex = 0;
+      
+      var elencoIrrigate = document.forms[0].irrigata;      
+      for(i = 0; i < elencoIrrigate.length; i++) 
+      {
+        elencoIrrigate[i].checked = false;
+        elencoIrrigate[i].disabled = true;
+      }
+    }
+		else 
+    {
+      ripristinaUtilizzi();
+      ripristinaUtilizziEleggibilita();
+      show_hide_column('tdSupAgronomica', false);
+			document.forms[0].idTipoUtilizzo.selectedIndex = 0;
+      document.forms[0].idTipoUtilizzo.disabled = true;
+      document.forms[0].idVarieta.options.length = 0;
+      document.forms[0].idVarieta.disabled = true;
+      document.forms[0].idTipoDestinazione.options.length = 0;
+      document.forms[0].idTipoDestinazione.disabled = true;
+      document.forms[0].idTipoDettaglioUso.options.length = 0;
+      document.forms[0].idTipoDettaglioUso.disabled = true;
+      document.forms[0].idTipoQualitaUso.options.length = 0;
+      document.forms[0].idTipoQualitaUso.disabled = true;
+			document.getElementById("associaIdUtilizzo").style.display= "none";
+			document.forms[0].idTipoUtilizzoSecondario.selectedIndex = 0;
+      document.forms[0].idTipoUtilizzoSecondario.disabled = true;
+      document.forms[0].idVarietaSecondaria.options.length = 0;
+      document.forms[0].idVarietaSecondaria.disabled = true;
+      document.forms[0].idTipoDestinazioneSecondario.options.length = 0;
+      document.forms[0].idTipoDestinazioneSecondario.disabled = true;
+      document.forms[0].idTipoDettaglioUsoSecondario.options.length = 0;
+      document.forms[0].idTipoDettaglioUsoSecondario.disabled = true;
+      document.forms[0].idTipoQualitaUsoSecondario.options.length = 0;
+      document.forms[0].idTipoQualitaUsoSecondario.disabled = true;
+			document.getElementById("associaIdUtilizzoSecondario").style.display= "none";
+			document.forms[0].idTitoloPossesso.disabled = true;
+			document.forms[0].idTitoloPossesso.selectedIndex = 0;
+			document.forms[0].dataCessazione.value = '';
+			document.forms[0].dataCessazione.disabled = true;
+			document.forms[0].idUnitaProduttiva.disabled = true;
+			document.forms[0].idUnitaProduttiva.selectedIndex = 0;
+			document.forms[0].percentualePossessoIn.value = "";
+			document.forms[0].percentualePossessoIn.disabled = true;
+			document.forms[0].idDocumento.disabled = false;
+			if(elencoSupUtilizzate.length) {
+				for(a = 0; a < elencoSupUtilizzate.length; a++) {
+					document.forms[0].supUtilizzata[a].disabled = true;
+					document.forms[0].supUtilizzataSecondaria[a].disabled = true;
+				}
+			}
+			else {
+				document.forms[0].supUtilizzata.disabled = true;
+				document.forms[0].supUtilizzataSecondaria.disabled = true;
+			}
+			document.forms[0].controlloData.value = '';
+			// Disabilito i campi relativi alla superficie agronomica
+			if(elencoSupAgronomiche.length) {
+				for(a = 0; a < elencoSupAgronomiche.length; a++) {
+					document.forms[0].superficieAgronomica[a].disabled = true;
+				}
+			}
+			else {
+				document.forms[0].superficieAgronomica.disabled = true;
+			}
+      document.forms[0].idTipoDichiarazioneUsoAgronomico.disabled = true;
+      
+      document.forms[0].idTipoIrrigazione.disabled = true;
+      document.forms[0].idTipoIrrigazione.selectedIndex = 0;
+      
+      var elencoIrrigate = document.forms[0].irrigata;      
+      for(i = 0; i < elencoIrrigate.length; i++) 
+      {
+        elencoIrrigate[i].checked = false;
+        elencoIrrigate[i].disabled = true;
+      }
+		}
+    
+    
+	}
+
+	
+	
+	// Metodo per aprire una pop-up ed effettuare su di essa il submit del form
+	function newWindowSubmit(mypage, myname, w, h, scroll, type, provenienza) {
+		var winl = (screen.width - w) / 2;
+			var wint = (screen.height - h) / 2;
+			winprops =    'height='+h+',width='+w+',top='+wint+',left='+winl+',scrollbars='+scroll+',resizable';
+			win = window.open('', myname, winprops);
+
+			if (parseInt(navigator.appVersion) >= 4) {
+  			win.window.focus();
+			}	
+	  	var target1 = document.forms[0].target;
+	  	var action1 = document.forms[0].action;
+	  	document.forms[0].target = myname;
+	  	document.forms[0].action = mypage;
+	  	document.forms[0].type.value = type;
+	  	document.forms[0].provenienza.value = provenienza;
+	  	document.forms[0].idTipoUtilizzoPrimario.value = document.forms[0].idTipoUtilizzo.value;
+		  document.forms[0].submit();
+		  document.forms[0].target = target1;
+			document.forms[0].action = action1;
+	}
+	
+	// Funzione per sovrascrivere la superficie agronomica con la superficie condotta
+	function calcolaSupAgronomica() 
+  {
+		var elencoSupAgronomiche = document.forms[0].superficieAgronomica;
+		//var elencoSupCondotte = document.forms[0].supCondotta;
+    //di tutta la superfifice spandibile
+		if(document.forms[0].idTipoDichiarazioneUsoAgronomico.value == 1 ) 
+    {
+			if(elencoSupAgronomiche.length) 
+      {
+				for(a = 0; a < elencoSupAgronomiche.length; a++) 
+        {
+          if(document.forms[0].idTitoloPossessoHi[a].value == 5 )
+          {
+            document.forms[0].superficieAgronomica[a].value = 0;
+            document.forms[0].superficieAgronomica[a].readOnly = true;
+          }
+          else
+          {
+					  document.forms[0].superficieAgronomica[a].value = document.forms[0].supSpandibile[a].value;
+          }
+				}
+			}
+			else 
+      {
+        if(document.forms[0].idTitoloPossessoHi.value == 5 )
+        {
+          document.forms[0].superficieAgronomica.value = 0;
+          document.forms[0].superficieAgronomica.readOnly = true;
+        }
+        else
+        {
+				  document.forms[0].superficieAgronomica.value = document.forms[0].supSpandibile.value;
+        }
+			}
+		}
+    //Superficie agronomica
+		else if(document.forms[0].idTipoDichiarazioneUsoAgronomico.value == 0 )
+    {
+			if(elencoSupAgronomiche.length) 
+      {
+				for(a = 0; a < elencoSupAgronomiche.length; a++) 
+        {
+          document.forms[0].superficieAgronomica[a].readOnly = false;
+					document.forms[0].superficieAgronomica[a].value = document.forms[0].oldSuperficieAgronomica[a].value;
+				}
+			}
+			else 
+      {
+        document.forms[0].superficieAgronomica.readOnly = false;
+				document.forms[0].superficieAgronomica.value = document.forms[0].oldSuperficieAgronomica.value;
+			}
+		}
+    //Azzero
+    else if(document.forms[0].idTipoDichiarazioneUsoAgronomico.value == 2 )
+    {
+      if(elencoSupAgronomiche.length) 
+      {
+        for(a = 0; a < elencoSupAgronomiche.length; a++) 
+        {
+          document.forms[0].superficieAgronomica[a].value = "0";
+        }
+      }
+      else 
+      {
+        document.forms[0].superficieAgronomica.value = "0";
+      }
+    }
+	}
+	
+	// Funzione che si occupa di mantenere allineate, in fase di input, le
+	// superfici agronomiche relative alle stesse conduzioni che vengono
+	// ripetute nella stessa pagina per consentire il corretto funzionamento
+	// dell'associa uso
+	function gestisciSupAgronomica(idConduzioneParticella, indice) {
+		var elencoConduzioni = document.forms[0].idConduzioneParticella;
+		var oldId = '';
+		for(i = 0; i < elencoConduzioni.length; i++) {
+			var idConduzione = elencoConduzioni[i].value;
+			if(idConduzioneParticella == idConduzione) {
+				document.forms[0].superficieAgronomica[i].value = document.forms[0].superficieAgronomica[indice].value
+			}
+			oldId = idConduzione;
+		}
+	}
+  
+  function gestisciComboIrrigazione()
+  {
+    var elencoIrrigata = document.forms[0].irrigata;
+    var operazione;
+    
+    for(i = 0; i < elencoIrrigata.length; i++) 
+    {
+      if(elencoIrrigata[i].checked) 
+      {
+        operazione = elencoIrrigata[i].value;
+      }
+    }
+    if(operazione == 'si') 
+    {      
+      document.forms[0].idTipoIrrigazione.disabled = false;
+    }
+    else
+    {
+      document.forms[0].idTipoIrrigazione.disabled = true;
+      document.forms[0].idTipoIrrigazione.selectedIndex = 0;
+    }
+  }
+  
+  
+  function show_hide_column(nameColumn, do_show) 
+  {
+
+    var stl;
+    if (do_show) stl = ''
+    else         stl = 'none';
+
+    var columns  = document.getElementsByName(nameColumn);
+
+    for (var count=0; count<columns.length;count++) {
+      columns[count].style.display=stl;
+    }
+  }
+  
+  function ripristinaUtilizzi() 
+  {
+    var elencoSupUtilizzate = document.forms[0].supUtilizzata;
+    var elencoOldSupUtilizzate = document.forms[0].oldSupUtilizzata;
+    var elencoSupUtilizzateSecondarie = document.forms[0].supUtilizzataSecondaria;
+    var elencoOldSupUtilizzateSecondarie = document.forms[0].oldSupUtilizzataSecondaria;
+       
+    if(elencoSupUtilizzate.length) 
+    {
+      for(a = 0; a < elencoSupUtilizzate.length; a++) 
+      {
+        document.forms[0].supUtilizzata[a].value = elencoOldSupUtilizzate[a].value;
+        
+        //gestione supnetta
+        var valore1 = elencoOldSupUtilizzate[a].value;
+        var valore2 = document.form1.coefficienteRiduzione[a].value;
+        if (valore1=='' || valore2=='')
+          totale='';
+        else
+        {
+          if(IsNumeric(valore1) && IsNumeric(valore2) && valore1 != '' && valore2 != '')
+          {
+            totale = parseFloat(valore1.replace(',', '.')) * parseFloat(valore2.replace(',', '.'));
+            totale = arrotonda(totale,4);
+            totale = ''+totale;
+            totale=totale.replace('.',',');
+            
+            //Aggiunge gli zeri
+            //totale = aggiungiZeri(totale);
+          }
+          else totale='NaN';
+        }        
+        document.getElementById('supNetta_'+a).innerHTML=totale;
+      }        
+    }
+    else
+    {
+      document.forms[0].supUtilizzata.value = elencoOldSupUtilizzate.value;
+      //gestione supnetta
+      var valore1 = elencoOldSupUtilizzate.value;
+      var valore2 = document.form1.coefficienteRiduzione.value;
+      if (valore1=='' || valore2=='')
+        totale='';
+      else
+      {
+        if(IsNumeric(valore1) && IsNumeric(valore2) && valore1 != '' && valore2 != '')
+        {
+          totale = parseFloat(valore1.replace(',', '.')) * parseFloat(valore2.replace(',', '.'));
+          totale = arrotonda(totale,4);
+          totale = ''+totale;
+          totale=totale.replace('.',',');
+          
+          //Aggiunge gli zeri
+          //totale = aggiungiZeri(totale);
+        }
+        else totale='NaN';
+      }        
+      document.getElementById('supNetta_0').innerHTML=totale;
+    }
+      
+    if(elencoSupUtilizzateSecondarie.length) 
+    {
+      for(a = 0; a < elencoSupUtilizzateSecondarie.length; a++) {
+        document.forms[0].supUtilizzataSecondaria[a].value = elencoOldSupUtilizzateSecondarie[a].value;
+      }
+    }
+    else
+    {
+      document.forms[0].supUtilizzataSecondaria.value = elencoOldSupUtilizzateSecondarie.value;
+    }     
+  }
+  
+  
+  function ripristinaUtilizziEleggibilita() 
+  {
+    var elencoOldSupUtilizzoEleggibile = document.forms[0].oldSupUtilizzoEleggibile;
+    var elencoOldSupUtilizzoEleggibileNetta = document.forms[0].oldSupUtilizzoEleggibileNetta;
+       
+    if(elencoOldSupUtilizzoEleggibile.length) 
+    {
+      for(a = 0; a < elencoOldSupUtilizzoEleggibile.length; a++) 
+      {
+        document.getElementById('supUtilizzoEleggibile_'+a).innerHTML=elencoOldSupUtilizzoEleggibile[a].value;
+        document.getElementById('supUtilizzoEleggibileNetta_'+a).innerHTML=elencoOldSupUtilizzoEleggibileNetta[a].value;
+      }        
+    }
+    else
+    {
+      document.getElementById('supUtilizzoEleggibile_0').innerHTML=elencoOldSupUtilizzoEleggibile.value;
+      document.getElementById('supUtilizzoEleggibileNetta_0').innerHTML=elencoOldSupUtilizzoEleggibileNetta.value;
+    }
+  }  
+  
+  
+  function calcolaSupNetta(indice) 
+  {
+    var valore1;
+    var valore2;
+    var totale='';
+    
+    if (document.form1.supUtilizzata.length)
+    {
+      valore1=document.form1.supUtilizzata[indice].value;
+      
+      if(document.form1.coefficienteRiduzioneCombo.value != '')
+      {
+        valore2=document.form1.coefficienteRiduzioneCombo.value; 
+      }
+      else
+      {
+        valore2=document.form1.coefficienteRiduzione[indice].value;  
+      }
+      
+    }
+    else
+    {
+      valore1=document.form1.supUtilizzata.value;
+      
+      if(document.form1.coefficienteRiduzioneCombo.value != '')
+      {
+        valore2=document.form1.coefficienteRiduzioneCombo.value; 
+      }
+      else
+      {
+         valore2=document.form1.coefficienteRiduzione.value;
+      }
+      
+    }
+    
+    if (valore1=='' || valore2=='')
+      totale='';
+    else
+    {
+      if(IsNumeric(valore1) && IsNumeric(valore2) && valore1 != '' && valore2 != '')
+      {
+        totale = parseFloat(valore1.replace(',', '.')) * parseFloat(valore2.replace(',', '.'));
+        totale = arrotonda(totale,4);
+        totale = ''+totale;
+        totale=totale.replace('.',',');
+        
+        //Aggiunge gli zeri
+        //totale = aggiungiZeri(totale);
+        
+      }
+      else totale='NaN';
+    }
+    document.getElementById('supNetta_'+indice).innerHTML=totale;
+  }
+  
+  
+  // Funzione che mi permette di controllare se un campo è numerico
+  function IsNumeric(sText) {
+    if(!sText)
+      return false;
+    var ValidChars = "0123456789.,";
+    var IsNumber=true;
+    var Char;
+    for(i = 0; i < sText.length && IsNumber == true; i++) { 
+        Char = sText.charAt(i); 
+        if(ValidChars.indexOf(Char) == -1) {
+          IsNumber = false;
+        }
+      }
+    return IsNumber;
+  }
+  
+  function arrotonda(numero, numeroDecimali)
+  { 
+    var modificatore = '1'; 
+    for(var i=0;i<numeroDecimali;i++)
+      modificatore += "0"; 
+    modificatore = parseInt(modificatore,10)
+    
+    return Math.round(numero*(modificatore))/(modificatore);   
+  } 
+  
+  function aggiungiZeri(totale)
+  {
+    if(totale.lastIndexOf(',') != -1 )
+    {
+      var str = totale.split(',');
+      var numZeri = 4 - str[1].length;
+      for(a=0;a<numZeri;a++)
+      {
+        totale = totale+'0';
+      } 
+    }
+    else
+    {
+      totale = totale+',0000';
+    }  
+    
+    return totale;  
+  }
+    
+    
+		
+	</script>
+	<script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../js/jquery-ui-1.8.21.custom/jquery-ui-1.8.21.custom.min.js"></script>
+<script type="text/javascript">
+  
+  
+  function aggiungiUsoPrimario(idUtilizzoPar,descUtilizzoPar)
+  {
+    $('.clsIdTipoUtilizzo').each(function() 
+    {
+      $(this).append("<option value='"+idUtilizzoPar+"' selected=\"selected\">"+descUtilizzoPar+"</option>");
+      modificaComboDestinazione();
+    });     
+    
+  }
+  
+  
+  function modificaComboDestinazione()
+  {    
+    
+    var idCombo = '#idTipoDestinazioneDiv';
+    var idUtilizzoPar = '';
+    
+    //mi serve per capire se ho più righe!!!
+    idUtilizzoPar = document.form1.idTipoUtilizzo.value;
+       
+    
+    var dataInv = {
+      idUtilizzo: idUtilizzoPar,
+      provenienza: "modificaMultiplaTerreni"
+    };
+     
+    dataInv = $.param(dataInv);    
+    
+    
+    $.ajax({
+      url: "../layout/popolaComboDestinazione.htm",
+      type: "POST",
+      data: dataInv,
+      success: function( data ) 
+              { 
+                $(idCombo).html( data );
+                modificaComboDettaglioUso();
+    
+                //aggiungere cambio sup netta qui
+                var i=0;
+                if (document.form1.supUtilizzata.length)
+                {
+                  var k = document.form1.supUtilizzata.length;
+                  
+                  $('.clsSupUtilizzata').each(function() 
+                  {
+                    calcolaSupNetta(''+i);        
+                    i++;
+                  });     
+                }
+                else
+                {
+                  calcolaSupNetta(''+i);
+                }                                  
+              },
+       dataType: 'html'
+      
+    });
+    
+    
+    
+  }  
+  
+  function modificaComboDettaglioUso()
+  {
+    var idCombo = '#idTipoDettaglioUsoDiv';
+    var idUtilizzoPar = document.form1.idTipoUtilizzo.value; 
+    var idTipoDestinazionePar = document.form1.idTipoDestinazione.value;       
+    
+    var dataInv = {
+      idUtilizzo: idUtilizzoPar,
+      idTipoDestinazione: idTipoDestinazionePar,
+      provenienza: "modificaMultiplaTerreni"
+    };
+     
+    dataInv = $.param(dataInv);    
+    
+    
+    $.ajax({
+      url: "../layout/popolaComboDettaglioUso.htm",
+      type: "POST",
+      data: dataInv,
+      success: function( data ) 
+              { 
+                $(idCombo).html( data );
+                modificaComboQualitaUso();                 
+              },
+       dataType: 'html'
+      
+    });
+  
+  
+  }
+  
+  function modificaComboQualitaUso()
+  {
+    var idCombo = '#idTipoQualitaUsoDiv';
+    var idUtilizzoPar = document.form1.idTipoUtilizzo.value;
+    var idTipoDestinazionePar = document.form1.idTipoDestinazione.value;
+    var idTipoDettaglioUsoPar = document.form1.idTipoDettaglioUso.value; 
+    
+    var dataInv = {
+      idUtilizzo: idUtilizzoPar,
+      idTipoDestinazione: idTipoDestinazionePar,
+      idTipoDettaglioUso: idTipoDettaglioUsoPar,
+      provenienza: "modificaMultiplaTerreni"
+    };
+     
+    dataInv = $.param(dataInv);    
+    
+    
+    $.ajax({
+      url: "../layout/popolaComboQualitaUso.htm",
+      type: "POST",
+      data: dataInv,
+      success: function( data ) 
+              { 
+                $(idCombo).html( data );
+                modificaComboVarieta();                 
+              },
+       dataType: 'html'
+      
+    });
+  
+  
+  }
+  
+  
+  function modificaComboVarieta()
+  {
+    var idCombo = '#idVarietaDiv';
+    var idUtilizzoPar = document.form1.idTipoUtilizzo.value;
+    var idTipoDestinazionePar = document.form1.idTipoDestinazione.value;
+    var idTipoDettaglioUsoPar = document.form1.idTipoDettaglioUso.value;
+    var idTipoQualitaUsoPar = document.form1.idTipoQualitaUso.value;        
+    
+    var dataInv = {
+      idUtilizzo: idUtilizzoPar,
+      idTipoDestinazione: idTipoDestinazionePar,
+      idTipoDettaglioUso: idTipoDettaglioUsoPar,
+      idTipoQualitaUso: idTipoQualitaUsoPar,   
+      provenienza: "modificaMultiplaTerreni"
+    };
+     
+    dataInv = $.param(dataInv);    
+    
+    
+    $.ajax({
+      url: "../layout/popolaComboVarieta.htm",
+      type: "POST",
+      data: dataInv,
+      success: function( data ) 
+              { 
+                $(idCombo).html( data );
+              },
+       dataType: 'html'
+      
+    });
+  
+  
+  }
+  
+  
+  
+  
+  function modificaComboDestinazioneSecondario()
+  {
+    var idCombo = '#idTipoDestinazioneSecondarioDiv';
+    var idUtilizzoPar = document.form1.idTipoUtilizzoSecondario.value;     
+    
+    var dataInv = {
+      idUtilizzo: idUtilizzoPar,
+      provenienza: "modificaMultiplaTerreni"
+    };
+     
+    dataInv = $.param(dataInv);    
+    
+    
+    $.ajax({
+      url: "../layout/popolaComboDestinazioneSecondario.htm",
+      type: "POST",
+      data: dataInv,
+      success: function( data ) 
+              { 
+                $(idCombo).html( data );
+                modificaComboDettaglioUsoSecondario();                 
+              },
+       dataType: 'html'
+      
+    });
+  
+  
+  }
+  
+  
+  
+  function modificaComboDettaglioUsoSecondario()
+  {
+    var idCombo = '#idTipoDettaglioUsoSecondarioDiv';
+    var idUtilizzoPar = document.form1.idTipoUtilizzoSecondario.value;   
+    var idTipoDestinazionePar = document.form1.idTipoDestinazioneSecondario.value;       
+    
+    var dataInv = {
+      idUtilizzo: idUtilizzoPar,
+      idTipoDestinazione: idTipoDestinazionePar,
+      provenienza: "modificaMultiplaTerreni"
+    };
+     
+    dataInv = $.param(dataInv);    
+    
+    
+    $.ajax({
+      url: "../layout/popolaComboDettaglioUsoSecondario.htm",
+      type: "POST",
+      data: dataInv,
+      success: function( data ) 
+              { 
+                $(idCombo).html( data );
+                modificaComboQualitaUsoSecondario();                 
+              },
+       dataType: 'html'
+      
+    });
+  
+  
+  }
+  
+  function modificaComboQualitaUsoSecondario()
+  {
+    var idCombo = '#idTipoQualitaUsoSecondarioDiv';
+    var idUtilizzoPar = document.form1.idTipoUtilizzoSecondario.value;
+    var idTipoDestinazionePar = document.form1.idTipoDestinazioneSecondario.value;
+    var idTipoDettaglioUsoPar = document.form1.idTipoDettaglioUsoSecondario.value;       
+    
+    var dataInv = {
+      idUtilizzo: idUtilizzoPar,
+      idTipoDestinazione: idTipoDestinazionePar,
+      idTipoDettaglioUso: idTipoDettaglioUsoPar,
+      provenienza: "modificaMultiplaTerreni"
+    };
+     
+    dataInv = $.param(dataInv);    
+    
+    
+    $.ajax({
+      url: "../layout/popolaComboQualitaUsoSecondario.htm",
+      type: "POST",
+      data: dataInv,
+      success: function( data ) 
+              { 
+                $(idCombo).html( data );
+                modificaComboVarietaSecondaria();                 
+              },
+       dataType: 'html'
+      
+    });
+  
+  
+  }
+  
+  
+  function modificaComboVarietaSecondaria()
+  {    
+    
+    var idCombo = '#idVarietaSecondaria';
+    var idUtilizzoPar = document.form1.idTipoUtilizzoSecondario.value;
+    var idTipoDestinazionePar = document.form1.idTipoDestinazioneSecondario.value;
+    var idTipoDettaglioUsoPar = document.form1.idTipoDettaglioUsoSecondario.value;
+    var idTipoQualitaUsoPar = document.form1.idTipoQualitaUsoSecondario.value;
+    
+    
+    
+    var dataInv = {
+      idUtilizzo: idUtilizzoPar,
+      idTipoDestinazione: idTipoDestinazionePar,
+      idTipoDettaglioUso: idTipoDettaglioUsoPar,
+      idTipoQualitaUso: idTipoQualitaUsoPar,
+      provenienza: "modificaMultiplaTerreni"
+    };
+     
+    dataInv = $.param(dataInv);    
+    
+    
+    $.ajax({
+      url: "../layout/popolaComboVarietaSecondaria.htm",
+      type: "POST",
+      data: dataInv,
+      success: function( data ) 
+              { 
+                $(idCombo).html( data );             
+              },
+       dataType: 'html'
+      
+    });   
+  }
+  
+  function aggiungiUsoSecondario(idUtilizzoPar,descUtilizzoPar)
+  {
+    $('.clsIdTipoUtilizzoSecondario').each(function() 
+    {
+      $(this).append("<option value='"+idUtilizzoPar+"' selected=\"selected\">"+descUtilizzoPar+"</option>");
+      modificaComboDestinazioneSecondario();
+    });     
+    
+  }
+</script>
+	
+	
+</head>
+<body id="homeIndice" onLoad="javascript: gestisciOperazioni('noRipristina');systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+  <form id="form1" name="form1" method="post"
+    action="../layout/terreniParticellareModificaMultipla.htm">
+    <input type="hidden" name="remove" value="remove" id="remove" />
+    <input type="hidden" name="onLoad" value="$$onLoad" id="onLoad" />
+    <input type="hidden" name="controlloData" value="$$controlloData"
+      id="controlloData" />
+    <input type="hidden" name="confermoOperazione"
+      value="$$confermoOperazione" id="confermoOperazione" />
+    <input type="hidden" name="loadFabbricati" value="$$loadFabbricati"
+      id="loadFabbricati" />
+    <input type="hidden" name="confermoFabbricati"
+      value="$$confermoFabbricati" id="confermoFabbricati" />
+    <input type="hidden" name="type" value="$$type" id="type" />
+    <input type="hidden" name="provenienza" value="$$provenienza" id="provenienza" />
+    <input type="hidden" name="idTipoUtilizzoPrimario"
+      value="$$idTipoUtilizzoPrimario" id="idTipoUtilizzoPrimario" />
+    <input type="hidden" name="regimeTerreniModificaMultipla"
+      value="true" id="regimeTerreniModificaMultipla" />
+    <div id="pagina" class="colonnaUnica">
+      <!-- INTESTAZIONE -->
+      <div id="intestazione##pathProvincia">
+        $$header
+        <!-- menu di navigazione-->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li>
+                <a href="../layout/index.htm"
+                  title="Torna alla pagina principale">home</a>
+              </li>
+              <li class="attivo">
+                gestione anagrafe aziende
+              </li>
+              <li>
+                <a href="#" title="contatti">contatti</a>
+              </li>
+              <li>
+                <a href="#" title="help">help</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div style="clear: left">
+      </div>
+      <!-- CORPO -->
+      <div id="corpo">
+        <div id="Utente">
+          <div id="datiUtente">
+            <strong>utente:</strong> $$utente &nbsp; &nbsp;
+            <strong>ente:</strong> $$ente
+          </div>
+          <div id="chiudisessione">
+            <a href="javascript:logout();">chiudi sessione</a>
+          </div>
+        </div>
+        <hr />
+        <!--PRIMA COLONNA -->
+        <h3>
+          Gestione Anagrafe
+          Aziende&nbsp;&gt;&nbsp;Terreni&nbsp;&gt;&nbsp;Modifica
+          multipla
+          <span class="helpFuori"> <a href="#"> <span
+              class="alt">[help]</span> </a> </span>
+        </h3>
+        <hr />
+        <div class="box">
+          <div class="menuSX1">
+            <ul>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <li>
+                <a href="../layout/elencoAziendeRapLegale.htm">Elenco
+                  Aziende</a>
+              </li>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <!-- @@blkRicercaAzienda-->
+              <li>
+                <a href="../layout/ricerca.htm">Ricerche</a>
+              </li>
+              <!-- @@blkRicercaAzienda-->
+              <!-- @@blkNuova -->
+              <li>
+                <a href="../layout/nuovaAziendaAnagrafica.htm">Nuova
+                  Azienda</a>
+              </li>
+              <!-- @@blkNuova -->
+              <!-- @@blkNuovaIscrizione -->
+              <li>
+                <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+              </li>
+              <!-- @@blkNuovaIscrizione -->
+            </ul>
+          </div>
+          <div class="menuSX">
+            <ul>
+              <li>
+                <a href="../layout/anagrafica.htm">Anagrafica</a>
+              </li>
+              <!-- @@blkAziendeCollegate -->
+              <li>
+                <a href="../layout/aziendeCollegate.htm">$$aziendeCollegateLabel</a>
+              </li>
+              <!-- @@blkAziendeCollegate -->
+              <!-- @@blkSincronizzaFascicolo -->
+               <li>
+               	<a href="../layout/sincronizzaFascicolo.htm">Sincronizza fascicolo</a>
+               </li>
+              <!-- @@blkSincronizzaFascicolo -->
+              <!-- @@blkSoggettiCollegati -->
+              <li>
+                <a href="../layout/contitolari.htm">Soggetti
+                  collegati</a>
+              </li>
+              <!-- @@blkSoggettiCollegati -->
+              <!-- @@blkContiCorrenti -->
+              <li>
+                <a href="../layout/conti_correnti.htm">Conti
+                  Correnti</a>
+              </li>
+              <!-- @@blkContiCorrenti -->
+              <!-- @@blkUnitaProduttive -->
+              <li>
+                <a href="../layout/sedi.htm">Unit&agrave; produttive</a>
+              </li>
+              <!-- @@blkUnitaProduttive -->
+              <!-- @@blkTerreni -->
+              <li>
+                <!-- @@blkLinkElenco -->
+                <a href="../layout/terreniParticellareElenco.htm"
+                  class="on">Terreni</a>
+                <ul>
+                  <li>
+                    <a href="../layout/riepiloghi.htm">riepiloghi</a>
+                  </li>
+                <!-- @@blkLinkElenco -->
+                <!-- @@blkLinkRiepiloghi -->
+                <a href="../layout/riepiloghi.htm"
+                  class="on">Terreni</a>
+                <ul>
+                  <li>
+                    <a href="../layout/terreniParticellareElenco.htm">elenco</a>
+                  </li>
+                <!-- @@blkLinkRiepiloghi -->
+                  <li>
+                    <a href="#" class="etichetta">modifica multipla</a>
+                  </li>
+                  <!--@@blkInserisci-->
+                  <li>
+                    <a href="../layout/terreniParticellareInserisci.htm">inserisci</a>
+                  </li>
+                  <!--@@blkInserisci-->
+                  <!-- @@blkImportaParticelle -->
+                  <li>
+                    <a href="../layout/importaTerreniGenerico.htm">importa</a>
+                  </li>
+                  <!-- @@blkImportaParticelle -->
+                  <!-- @@blkVerifiche -->
+                  <li>
+                    <a href="../layout/terreniVerifica.htm">controlli</a>
+                  </li>
+                  <!-- @@blkVerifiche -->
+                </ul>
+              </li>
+              <!-- @@blkTerreni -->
+              <!-- @@blkUnitaVitate -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniUnitaArboreeElenco.htm">Unit&agrave; Vitate</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		              <a href="../layout/riepiloghiUnitaArboree.htm">Unit&agrave; Vitate</a>
+		              <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkUnitaVitate -->
+              <!-- @@blkFabbricati -->
+              <li>
+                <a href="../layout/fabbricati.htm">Fabbricati e
+                  Strutture</a>
+              </li>
+              <!-- @@blkFabbricati -->
+              <!-- @@blkAllevamenti -->
+              <li>
+                <a href="../layout/allevamenti.htm">Allevamenti</a>
+              </li>
+              <!-- @@blkAllevamenti -->
+              <!-- @@blkManodopera -->
+              <li>
+                <a href="../layout/manodopera.htm">Manodopera</a>
+              </li>
+              <!-- @@blkManodopera -->
+              <!-- @@blkMotoriAgricoli -->
+              <li>
+                <a href="../layout/motori_agricoli_incarico.htm">Macchine agricole</a>
+              </li>
+              <!-- @@blkMotoriAgricoli -->
+              <!-- @@blkDiritti -->
+              <li>
+                <a href="../layout/diritti.htm">Diritti di
+                  produzione</a>
+              </li>
+              <!-- @@blkDiritti -->
+              <!-- @@blkAttestazioni -->
+              <li>
+                <a href="../layout/attestazioniDettaglio.htm">Dichiarazioni</a>
+              </li>
+              <!-- @@blkAttestazioni -->
+              <!-- @@blkDichiarazioniConsistenza -->
+              <li>
+                <a href="../layout/dichiarazioneConsistenza.htm">Validazioni</a>
+              </li>
+              <!-- @@blkDichiarazioniConsistenza -->
+              <!-- @@blkDocumenti -->
+              <li>
+                <a href="../layout/documentiElenco.htm">Documenti</a>
+              </li>
+              <!-- @@blkDocumenti -->
+              <!-- @@blkFascicoloDematerializzato -->
+              <li>
+                <a href="../layout/fascicoloDematerializzato.htm">Fascicolo<br>elettronico</a>
+              </li>
+              <!-- @@blkFascicoloDematerializzato -->
+              <!-- @@blkGestioneNotifiche -->
+              <li>
+                <a href="../layout/notifiche.htm">Notifiche</a>
+              </li>
+              <!-- @@blkGestioneNotifiche -->
+              <!-- @@blkComunicazione10R -->
+              <li>
+                <a href="../layout/comunicazione10R_dettaglio.htm">Comunicazione
+                  10/R</a>
+              </li>
+              <!-- @@blkComunicazione10R -->
+              <!-- @@blkPratiche -->
+              <li>
+                <a href="../layout/pratiche.htm">Pratiche</a>
+              </li>
+              <!-- @@blkPratiche -->
+              <!-- @@blkStampaFascicolo -->
+              <li>
+                <a href="../layout/stampe.htm">Stampe</a>
+              </li>
+              <!-- @@blkStampaFascicolo -->
+			  <li><a href="../layout/strumenti.htm">Strumenti</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr />
+        <!-- SECONDA COLONNA -->
+        <div id="contenuto">
+          <div id="intesta">
+            <p class="$$aziendaIntestazione" title="$$tooltipIntestazione" >
+              $$CUAAIntestazione  $$denominazioneIntestazione
+            </p>
+          </div>
+          <!-- @@blkOperazioniModifica -->
+          <div class="scroll">
+            <table cellspacing="3"
+              summary="Questa contiene le operazioni effettuabili e i dati ad esse necessari">
+              <caption>
+                Selezionare l'operazione desiderata
+              </caption>
+              <tr>
+                <th rowspan="2" class="radio" scope="row">
+                  <input name="funzione" type="radio" value="Associa"
+                    id="Associa" checked="checked"
+                    onclick="javascript:gestisciOperazioni('');" />
+                </th>
+                <th rowspan="2" class="w15">
+                  <label for="Associa">
+                    Associa uso
+                  </label>
+                </th>
+                <th class="w15">
+                  <label for="uso">
+                    Uso primario*
+                  </label>
+                </th>
+                <td>
+                  <div>
+	                  <select name="idTipoUtilizzo" id="idTipoUtilizzo" class="clsIdTipoUtilizzo"
+	                    onchange="javascript: modificaComboDestinazione();">
+	                    <option></option>
+	                    <!-- @@blkTipiUsoSuolo -->
+	                    <option value="$$idTipoUtilizzo" title="$$descCompleta" $$selected>
+	                      $$descrizione
+	                    </option>
+	                    <!-- @@blkTipiUsoSuolo -->
+	                  </select>&nbsp;Occupazione suolo
+	                  $$err_idTipoUtilizzo
+                  </div>
+                  <div id="idTipoDestinazioneDiv">
+                    <select name="idTipoDestinazione" id="idTipoDestinazione" 
+                      onchange="javascript: modificaComboDettaglioUso();">
+                      <!-- @@blkTipiDestinazione -->
+                      <option value="$$idTipoDestinazione" title="$$descCompleta" $$selected>
+                        $$descrizione
+                      </option>
+                      <!-- @@blkTipiDestinazione -->
+                    </select>&nbsp;Destinazione
+                    <input name="coefficienteRiduzioneCombo" id="coefficienteRiduzioneCombo" type="hidden"
+                        value="$$coefficienteRiduzioneCombo" />
+                    $$err_idTipoDestinazione
+                  </div>
+                  <div id="idTipoDettaglioUsoDiv">
+                    <select name="idTipoDettaglioUso" id="idTipoDettaglioUso" 
+                      onchange="javascript: modificaComboQualitaUso();">
+                      <!-- @@blkTipiDettaglioUso -->
+                      <option value="$$idTipoDettaglioUso" title="$$descCompleta" $$selected>
+                        $$descrizione
+                      </option>
+                      <!-- @@blkTipiDettaglioUso -->
+                    </select>&nbsp;Uso
+                    $$err_idTipoDettaglioUso
+                  </div>
+                  <div id="idTipoQualitaUsoDiv">
+                    <select name="idTipoQualitaUso" id="idTipoQualitaUso" 
+                      onchange="javascript: modificaComboVarieta();">
+                      <!-- @@blkTipiQualitaUso -->
+                      <option value="$$idTipoQualitaUso" title="$$descCompleta" $$selected>
+                        $$descrizione
+                      </option>
+                      <!-- @@blkTipiQualitaUso -->
+                    </select>&nbsp;Qualit&agrave;
+                    $$err_idTipoQualitaUso
+                  </div>
+                  <div id="idVarietaDiv">
+                    <select name="idVarieta" id="idVarieta">
+                      <!-- @@blkTipiVarieta -->
+                      <option value="$$idVarieta" title="$$descCompleta" $$selected>
+                        $$descrizione
+                      </option>
+                      <!-- @@blkTipiVarieta -->
+                    </select>&nbsp;Variet&agrave;
+                  </div>
+                </td>
+                <td>
+                  <a
+                    href="javascript: newWindowSubmit('../layout/popAggiungiUso.htm', 'aggiungiUso', 600, 300, 'yes', 'Primario', 'modificaMultipla');"
+                    title="[Attenzione: questo link si apre in una nuova finestra]"
+                    class="modifica" id="associaIdUtilizzo"></a>
+                </td>
+              </tr>
+              <tr>
+                <th class="w15" >
+                  <label for="usoSec">
+                    Uso secondario
+                  </label>
+                </th>
+                <td>
+                  <div>
+	                  <select name="idTipoUtilizzoSecondario" id="idTipoUtilizzoSecondario" class="clsIdTipoUtilizzoSecondario"
+	                    onchange="javascript: modificaComboDestinazioneSecondario();">
+	                    <option value=""></option>
+	                    <!-- @@blkTipiUsoSuoloSecondario -->
+	                    <option value="$$idTipoUtilizzoSecondario" title="$$descCompleta"  $$selected>
+	                      $$descrizione
+	                    </option>
+	                    <!-- @@blkTipiUsoSuoloSecondario -->
+	                  </select>&nbsp;Occupazione suolo
+	                  $$err_idTipoUtilizzoSecondario
+	                </div>
+                  <div id="idTipoDestinazioneSecondarioDiv">
+                    <select name="idTipoDestinazioneSecondario" id="idTipoDestinazioneSecondario" 
+                      onchange="javascript: modificaComboDettaglioUsoSecondario();">
+                      <!-- @@blkTipiDestinazioneSecondario -->
+                      <option value="$$idTipoDestinazioneSecondario" title="$$descCompleta" $$selected>
+                        $$descrizione
+                      </option>
+                      <!-- @@blkTipiDestinazioneSecondario -->
+                    </select>&nbsp;Destinazione
+                    $$err_idTipoDestinazioneSecondario
+                  </div>
+                  <div id="idTipoDettaglioUsoSecondarioDiv">
+                    <select name="idTipoDettaglioUsoSecondario" id="idTipoDettaglioUsoSecondario" 
+                      onchange="javascript: modificaComboQualitaUsoSecondario();">
+                      <!-- @@blkTipiDettaglioUsoSecondario -->
+                      <option value="$$idTipoDettaglioUsoSecondario" title="$$descCompleta" $$selected>
+                        $$descrizione
+                      </option>
+                      <!-- @@blkTipiDettaglioUsoSecondario -->
+                    </select>&nbsp;Uso
+                    $$err_idTipoDettaglioUsoSecondario
+                  </div>
+                  <div id="idTipoQualitaUsoSecondarioDiv">
+                    <select name="idTipoQualitaUsoSecondario" id="idTipoQualitaUsoSecondario" 
+                      onchange="javascript: modificaComboVarietaSecondaria();">
+                      <!-- @@blkTipiQualitaUsoSecondario -->
+                      <option value="$$idTipoQualitaUsoSecondario" title="$$descCompleta" $$selected>
+                        $$descrizione
+                      </option>
+                      <!-- @@blkTipiQualitaUsoSecondario -->
+                    </select>&nbsp;Qualit&agrave;
+                    $$err_idTipoDettaglioUsoSecondario
+                  </div>
+                  <div id="idVarietaSecondaria">
+                    <select name="idVarietaSecondaria" id="idVarietaSecondaria" >
+                      <!-- @@blkTipiVarietaSecondaria -->
+                      <option value="$$idVarietaSecondaria" title="$$descCompleta" $$selected>
+                        $$descrizione
+                      </option>
+                      <!-- @@blkTipiVarietaSecondaria -->
+                    </select>&nbsp;Variet&agrave;
+                    $$err_idVarietaSecondaria
+                  </div>
+                </td>
+                <td>
+                  <a
+                    href="javascript: newWindowSubmit('../layout/popAggiungiUso.htm', 'aggiungiUso', 600, 300, 'yes', 'Secondario', 'modificaMultipla');"
+                    title="[Attenzione: questo link si apre in una nuova finestra]"
+                    class="modifica" id="associaIdUtilizzoSecondario"></a>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row" class="radio">
+                  <input name="funzione" type="radio" value="eleggibilitaGIS"
+                    id="cambia"
+                    onclick="javascript:gestisciOperazioni('elegGis');"
+                    $$checkedEleggibilitaGIS />
+                  <label for="Eleggibilita GIS" class="alt">
+                    Eleggibilita GIS
+                  </label>
+                </th>
+                <th class="right" colspan="2" scope="row">
+                  <label for="eleggibilitaGis">
+                    Allinea a superficie eleggibile GIS
+                  </label>
+                </th>
+                <td colspan="2" scope="row">
+                </td>
+              </tr>
+              <tr>
+                <th scope="row" class="radio">
+                  <input name="funzione" type="radio" value="cambia"
+                    id="cambia"
+                    onclick="javascript:gestisciOperazioni('');"
+                    $$checkedCambia />
+                  <label for="Cambia" class="alt">
+                    Cambia
+                  </label>
+                </th>
+                <th colspan="2" scope="row">
+                  <label for="possesso">
+                    Cambia Titolo di possesso*
+                  </label>
+                </th>
+                <td colspan="2">
+                  <select name="idTitoloPossesso" id="idTitoloPossesso">
+                    <option></option>
+                    <!-- @@blkTitoliPossesso -->
+                    <option value="$$idTitoloPossesso" $$selected>
+                      $$descrizione
+                    </option>
+                    <!-- @@blkTitoliPossesso -->
+                  </select>
+                  $$err_idTitoloPossesso
+                </td>
+              </tr>
+              <tr>
+                <th scope="row" class="radio">
+                  <input name="funzione" type="radio" value="allineaPercPoss"
+                    id="allineaPercPoss"
+                    onclick="javascript:gestisciOperazioni('');"
+                    $$checkedAllineaPercPoss />
+                  <label for="allineaPercPoss" class="alt">
+                    Allinea la percentuale di possesso al
+                  </label>
+                </th>
+                <th colspan="2" scope="row">
+                  <label for="percentualePossessoIn">
+                    Allinea la percentuale di possesso al*
+                  </label>
+                </th>
+                <td colspan="2">
+                  <input name="percentualePossessoIn" id="percentualePossessoIn"
+                    class="textbreve" type="text"
+                    value="$$percentualePossessoIn" />&nbsp;&nbsp;%
+                  $$err_percentualePossessoIn
+                </td>
+              </tr>
+              <tr>
+                <th scope="row" class="radio">
+                  <input name="funzione" type="radio" value="allineaSupUtilPercPoss"
+                    id="allineaSupUtilPercPoss"
+                    onclick="javascript:gestisciOperazioni('');"
+                    $$checkedAllineaSupUtilPercPoss />
+                  <label for="allineaSupUtilPercPoss" class="alt">
+                    Allinea la percentuale di possesso rispetto alla superficie utilizzata
+                  </label>
+                </th>
+                <th colspan="2" scope="row">
+                  <label for="allineaSupUtilPercPoss">
+                    Allinea la percentuale di possesso rispetto alla superficie utilizzata
+                  </label>
+                   $$err_allineaSupUtilPercPoss
+                </th>
+                <td colspan="2" scope="row">
+                </td>
+              </tr>
+              <tr>
+                <th scope="row" class="radio">
+                  <input name="funzione" type="radio" value="cessazione"
+                    id="Cessazione"
+                    onclick="javascript:gestisciOperazioni('');"
+                    $$checkedCessa />
+                  <label for="Cessazione" class="alt">
+                    Cessazione
+                  </label>
+                </th>
+                <th colspan="2" scope="row">
+                  <label for="cessazione">
+                    Cessazione in data*
+                  </label>
+                </th>
+                <td colspan="2">
+                  <input name="dataCessazione" id="dataCessazione"
+                    class="textmedio" type="text"
+                    value="$$dataCessazione" />
+                  gg/mm/aaaa&nbsp;$$err_dataCessazione
+                </td>
+              </tr>
+              <tr>
+                <th scope="row" class="radio">
+                  <input name="funzione" type="radio" value="cambiaUte"
+                    id="produttiva"
+                    onclick="javascript:gestisciOperazioni('');"
+                    $$checkedUte />
+                  <label for="produttiva" class="alt">
+                    produttiva
+                  </label>
+                </th>
+                <th colspan="2" scope="row">
+                  <label for="unita">
+                    Cambia unit&agrave; produttiva*
+                  </label>
+                </th>
+                <td colspan="2">
+                  <select name="idUnitaProduttiva"
+                    id="idUnitaProduttiva">
+                    <option></option>
+                    <!-- @@blkUte -->
+                    <option value="$$idUnitaProduttiva" $$selected>
+                      $$descrizione
+                    </option>
+                    <!-- @@blkUte -->
+                  </select>
+                  $$err_idUnitaProduttiva
+                </td>
+              </tr>
+              <tr>
+                <th scope="row" class="radio">
+                  <input name="funzione" type="radio"
+                    value="associaDocumento" id="documento"
+                    onclick="javascript:gestisciOperazioni('');"
+                    $$checkedDocumento />
+                  <label for="documento" class="alt">
+                    documento
+                  </label>
+                </th>
+                <th colspan="2" scope="row">
+                  <label for="Associa">
+                    Associa documento*
+                  </label>
+                </th>
+                <td colspan="2">
+                  <select name="idDocumento" id="idDocumento">
+                    <option></option>
+                    <!-- @@blkElencoDocumenti -->
+                    <option value="$$idDocumento" $$selected>
+                      $$descrizione
+                    </option>
+                    <!-- @@blkElencoDocumenti -->
+                  </select>
+                  $$err_idDocumento
+                </td>
+              </tr>
+              <tr>
+                <th scope="row" class="radio">
+                  <input name="funzione" type="radio"
+                    value="dichiarazioneUsoAgronomico"
+                    id="dichiarazioneUsoAgronomico"
+                    onclick="javascript:gestisciOperazioni('');"
+                    $$checkedDichiarazioneUsoAgronomico />
+                  <label for="dichiarazioneUsoAgronomico" class="alt">
+                    dichiarazioneUsoAgronomico
+                  </label>
+                </th>
+                <th colspan="2" scope="row">
+                  <label for="dichiarazioneUsoAgronomico">
+                    Dichiarazione uso agronomico
+                  </label>
+                </th>
+                <td scope="row" colspan="2">
+                  <select name="idTipoDichiarazioneUsoAgronomico"
+                    id="idTipoDichiarazioneUsoAgronomico"
+                    onchange="javascript:calcolaSupAgronomica();">
+                    <option value="0"></option>
+                    <!-- @@blkTipoDichiarazioneUsoAgronomico -->
+                    <option value="$$idTipoDichiarazioneUsoAgronomico"
+                      $$selected >
+                      $$descrizione
+                    </option>
+                    <!-- @@blkTipoDichiarazioneUsoAgronomico -->
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row" class="radio">
+                  <input name="funzione" type="radio"
+                    value="irrigazione" id="irrigazione" 
+                    onclick="javascript:gestisciOperazioni('');"
+                    $$checkedIrrigazione />
+                  <label for="irrigazione" class="alt">
+                    irrigazione
+                  </label>
+                </th>
+                <th colspan="2" scope="row">
+                  <label for="irrigazione">
+                    Irrigata
+                  </label>
+                </th>
+                <td colspan="2" >
+                  <input name="irrigata" type="radio" value="si"
+                    id="irrisi" onClick="javascript:gestisciComboIrrigazione();" />
+                  <label for="irrisi">
+                    s&igrave;
+                  </label>
+                  <input name="irrigata" type="radio" value="no"
+                    id="irrino" onClick="javascript:gestisciComboIrrigazione();" />
+                  <label for="irrino">
+                    no
+                  </label>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <select name="idTipoIrrigazione"
+                    id="idTipoIrrigazione">
+                    <option></option>
+                    <!-- @@blkIrrigazione -->
+                    <option value="$$idTipoIrrigazione" $$selected>
+                      $$descrizione
+                    </option>
+                    <!-- @@blkIrrigazione -->
+                  </select>
+                  &nbsp;
+                  <label for="idTipoIrrigazione">
+                    tipo irrigazione
+                  </label>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="scroll">
+            <table cellspacing="3"
+              summary="Questa tabella contiene l'elenco delle particelle selezionate per la modifica">
+              <tr>
+                <th rowspan="2" class="center" scope="col">
+                </th>
+                <th rowspan="2" class="center" scope="col">
+                  Comune
+                </th>
+                <th rowspan="2" class="center" scope="col">
+                  Sz.
+                </th>
+                <th rowspan="2" class="center" scope="col">
+                  Foglio
+                </th>
+                <th rowspan="2" class="center" scope="col">
+                  Part.
+                </th>
+                <th rowspan="2" class="center" scope="col">
+                  Sub
+                </th>
+                <th rowspan="2" class="center" scope="col">
+                  Sup. cat.
+                </th>
+                <th rowspan="2" class="center" scope="col">
+                  Sup. grafica
+                </th>
+                 <th rowspan="2" class="center" scope="col">
+                  Classi eleggibilit&agrave;
+                </th>
+                <th colspan="2" class="center" scope="col">
+                  Conduzione
+                </th>
+                <th rowspan="2" id="tdSupEleggibile" name="tdSupEleggibile" class="center" scope="col">
+                  <acronym title="Superficie Eleggibile">Sup.</acronym>Elegg.
+                </th>
+                <th rowspan="2" id="tdSupAgronomica" name="tdSupAgronomica" class="center" scope="col">
+                  <acronym title="Superficie">Sup.</acronym> uso
+                  agronomico
+                </th>
+                <th colspan="2" class="center" scope="col">
+                  Sup. Uso Primario / sup. utilizzata
+                </th>
+                <th rowspan="2" class="center" scope="col">
+                  Sup.<br>netta
+                </th>
+                <th rowspan="2" class="center" scope="col">
+                  Sup.<br>elegg.
+                </th>
+                <th rowspan="2" class="center" scope="col">
+                  Sup.<br>elegg.<br>netta
+                </th>
+              </tr>
+              <tr>
+                <th class="center" scope="col">&nbsp;
+                  
+                </th>
+                <th class="center" scope="col">
+                  <acronym title="Percentuale Possesso">%</acronym>
+                </th>
+                <th colspan="2" class="center" scope="col">
+                  Sup. Uso Secondario / sup. utilizzata
+                </th>
+              </tr>
+              <!-- @@blkElencoParticelle -->
+              <tr>
+                <td rowspan="2">
+                  $$pratiche
+                </td>
+                <input type="hidden" name="idConduzioneParticella"
+                  value="$$idConduzioneParticella" />
+                <td rowspan="2">
+                  $$descComuneParticella $$siglaProvinciaParticella
+                </td>
+                <td rowspan="2">
+                  $$sezione
+                </td>
+                <td rowspan="2" class="numeridx">
+                  $$foglio
+                </td>
+                <td rowspan="2" class="numeridx">
+                  $$particella
+                </td>
+                <td rowspan="2">
+                  $$subalterno
+                </td>
+                <td rowspan="2" class="numeridx">
+                  $$supCatastale
+                </td>
+                <td rowspan="2" class="numeridx" title="$$tooltipDescElegFit">
+                  $$superficieGrafica
+                </td>
+                <td class="numeridx" rowspan="2" >
+                  $$classiEleggibilita
+                </td>
+                <td rowspan="2" class="numeridx">
+                  $$idTitoloPossesso
+                  <input type="hidden" id="idTitoloPossessoHi"
+                    name="idTitoloPossessoHi" value="$$idTitoloPossesso">
+                </td>
+                <td rowspan="2" class="center">
+                  $$percentualePossesso
+                  <input type="hidden" id="supSpandibile"
+                    name="supSpandibile" value="$$supSpandibile">
+                  <input type="hidden" id="supCatastale"
+                    name="supCatastale" value="$$supCatastale">
+                </td>
+                <td rowspan="2" id="tdSupEleggibile" name="tdSupEleggibile" class="numeridx">
+                  $$supEleggibile
+                  <input type="hidden" id="supEleggibile"
+                    name="supEleggibile" value="$$supEleggibile">
+                </td>
+                <td class="data" id="tdSupAgronomica" name="tdSupAgronomica" rowspan="2">
+                  <label for="superficieAgronomica" class="alt">
+                    superficieAgronomica
+                  </label>
+                  <input name="superficieAgronomica"
+                    id="superficieAgronomica" class="textmedio"
+                    type="text" $$supAgrReadOnly
+                    value="$$superficieAgronomica" maxlength="10"
+                    onkeyup="javascript: gestisciSupAgronomica('$$idConduzioneParticella', '$$indice');" />
+                  $$err_superficieAgronomica
+                  <input name="oldSuperficieAgronomica"
+                    id="oldSuperficieAgronomica" class="textmedio"
+                    type="hidden" value="$$oldSuperficieAgronomica" />
+                </td>
+                <td>
+                  $$usoPrimario
+                  $$err_usoPrimario
+                  $$err_dettUso
+                </td>
+                <td class="data">
+                  <label for="Primario" class="alt">
+                    Primario
+                  </label>
+                  <input name="supUtilizzata" id="supUtilizzata"
+                    class="textmedio clsSupUtilizzata" type="text"
+                    value="$$supUtilizzata" 
+                    onkeyup="javascript:calcolaSupNetta($$numTotaleUtilizzo);" />
+                  <input name="oldSupUtilizzata"
+                    id="oldSupUtilizzata" class="textmedio"
+                    type="hidden" value="$$oldSupUtilizzata" />
+                  <input name="idUtilizzoPrimario"
+                    id="idUtilizzoPrimario" class="textmedio"
+                    type="hidden" value="$$idUtilizzoPrimario" />
+                  $$err_supUtilizzata
+                  <input name="coefficienteRiduzione" id="coefficienteRiduzione" type="hidden"
+                      value="$$coefficienteRiduzione" />
+                </td>
+                <td rowspan="2" class="numeridx" id="supNetta_$$numTotaleUtilizzo" >
+                  $$supNetta
+                </td>
+                <td rowspan="2" class="numeridx" id="supUtilizzoEleggibile_$$numTotaleUtilizzo">
+                  $$supUtilizzoEleggibile
+                </td>
+                <input name="oldSupUtilizzoEleggibile"
+                  id="oldSupUtilizzoEleggibile" class="textmedio"
+                  type="hidden" value="$$oldSupUtilizzoEleggibile" />
+                <td rowspan="2" class="numeridx" id="supUtilizzoEleggibileNetta_$$numTotaleUtilizzo" >
+                  $$supUtilizzoEleggibileNetta
+                </td>
+                <input name="oldSupUtilizzoEleggibileNetta"
+                  id="oldSupUtilizzoEleggibileNetta" class="textmedio"
+                  type="hidden" value="$$oldSupUtilizzoEleggibileNetta" />
+              </tr>
+              <tr>
+                <td>
+                  $$usoSecondario
+                </td>
+                <td class="data">
+                  <label for="Secondario" class="alt">
+                    Secondario
+                  </label>
+                  <input name="supUtilizzataSecondaria"
+                    id="supUtilizzataSecondaria" class="textmedio"
+                    type="text" value="$$supUtilizzataSecondaria"
+                    maxlength="10" />
+                  <input name="oldSupUtilizzataSecondaria"
+                    id="oldSupUtilizzataSecondaria" class="textmedio"
+                    type="hidden" value="$$oldSupUtilizzataSecondaria" />
+                  <input name="idUtilizzoSecondario"
+                    id="idUtilizzoSecondario" class="textmedio"
+                    type="hidden" value="$$idUtilizzoSecondario" />
+                  $$err_supUtilizzataSecondaria
+                </td>
+              </tr>
+              <!-- @@blkElencoParticelle -->
+            </table>
+          </div>
+          <p class="legenda">
+            campi contrassegnati con * sono obbligatori
+          </p>
+          <p id="nota">
+            Tutte le superfici sono espresse in ettari (ha).
+          </p>
+          <div class="pulsanti">
+            <div class="sin">
+              <input name="conferma" type="submit" value="conferma"
+                class="inputPulsante highlighted" />
+            </div>
+            <div class="des">
+              <input name="annulla" type="submit" value="annulla"
+                class="inputPulsante annulla" />
+            </div>
+          </div>
+          <!-- @@blkOperazioniModifica -->
+          <!-- @@blkErrore -->
+          <p class="errore">
+            $$messaggioErrore
+          </p>
+          <!-- @@blkErrore -->
+        </div>
+      </div>
+      <hr />
+  </form>
+  $$footer

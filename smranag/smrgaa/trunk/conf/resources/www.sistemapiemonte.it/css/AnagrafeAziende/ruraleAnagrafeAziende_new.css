@@ -1,0 +1,38 @@
+
+@import "/staticresources/css/strutturaGeneraleFluido.css";	/* impostazione della struttura della pagina */
+@import "/staticresources/css/cavalierini.css";		/* gestione dei cavalierini */
+@import "/staticresources/css/menuTendina.css";		/* gestione dei menu a tendina */
+@import "/staticresources/css/cavalieriniOrizz.css";		/* gestione dei cavalierini (elimina errore js)*/
+@import "/staticresources/css/menuTendinaOrizz.css";		/* gestione dei menu a tendina elimina errore js)*/
+@import "/staticresources/css/agricoltura/skinAgricolturaFluido.css";	/*caratteristiche generali dei servizi agricoltura*/	
+@import "newanagrafe_fluido.css";	/*caratteristiche di anagrafe aziende*/
+
+
+/*regola per ovviare ad un incongruenza tra la classe attivo e on */
+.menuTendina li.attivo {
+	color		: #444;
+	padding		: 0 14px;
+	font-weight:bold;	
+	background	: #fff;
+	color		: #4f4f4c;
+	border:1px solid #4f4f4c;
+	border-bottom:1px solid #fff;
+}
+/*.menuTendina  {
+	margin		: -1px 0 0 0;
+}*/
+
+/* formatta icona "CLESSIDRA" */
+#contenuto table td.ico_clessidra, #contenutopop table td.ico_clessidra {
+text-align:center;width:30px;padding:2px 6px 2px 6px;}
+#contenuto a.clessidra, #contenutopop a.clessidra {
+	height:28px;
+	width:24px;
+	background: url(/ris/css/smrgaaweb/im/clessidra.gif) 50% 50% no-repeat;
+	display:block;
+}
+
+
+
+
+

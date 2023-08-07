@@ -1,0 +1,528 @@
+<porta-delegata name="smrgaaweb.smrcommsrv.PA_ComuneServiceFacade">
+  <services>
+    <service name="smrgaaweb.smrcommsrv.PA_ComuneServiceFacade.service" public-interface-class="it.csi.solmr.interfaceCSI.comune.services.ComuneServiceCSIInterface">
+     <operations>
+       <operation name="serviceGetAmministrazioneCompetenzaById" type="synch-call" >
+         <param-list>
+            <param name="idAmmCompetenza" type="java.lang.Long" />
+         </param-list>
+         <ret-val type="it.csi.solmr.dto.profile.CodeDescription"/>
+       </operation>
+       <operation name="serviceGetRuoloUtenzaByIdUtente" type="synch-call" >
+         <param-list>
+            <param name="idUtente" type="java.lang.Long" />
+         </param-list>
+         <ret-val type="it.csi.solmr.dto.profile.RuoloUtenza"/>
+       </operation>
+       <operation name="serviceGetTipiAmmComp" type="synch-call" >
+         <ret-val type="it.csi.solmr.dto.profile.CodeDescription[]"/>
+       </operation>
+       <operation name="serviceGetTipiIntermediario" type="synch-call" >
+         <ret-val type="it.csi.solmr.dto.profile.CodeDescription[]"/>
+       </operation>
+       <operation name="serviceGetAmmCompetenzaByLivello" type="synch-call" >
+         <param-list>
+            <param name="livello" type="java.lang.Long" />
+         </param-list>
+         <ret-val type="it.csi.solmr.dto.comune.AmmCompetenzaVO[]"/>
+       </operation>
+       <operation name="serviceGetAmmCompetenzaByLivelloTipoValidita" type="synch-call" >
+         <param-list>
+            <param name="livello" type="long" />
+            <param name="tipoAmministrazione" type="java.lang.String" />
+            <param name="validita" type="boolean" />
+         </param-list>
+         <ret-val type="it.csi.solmr.dto.comune.AmmCompetenzaVO[]"/>
+       </operation>
+       <operation name="serviceGetAmmCompetenzaByLivelloCD" type="synch-call" >
+         <param-list>
+            <param name="livello" type="java.lang.Long" />
+         </param-list>
+         <ret-val type="it.csi.solmr.dto.profile.CodeDescription[]"/>
+       </operation>
+       <operation name="serviceFindAmmCompetenzaByCodiceAmm" type="synch-call" >
+         <param-list>
+            <param name="codiceAmministrazione" type="java.lang.String" />
+         </param-list>
+         <ret-val type="it.csi.solmr.dto.comune.AmmCompetenzaVO"/>
+       </operation>
+       <operation name="serviceFindAmmCompetenzaById" type="synch-call" >
+         <param-list>
+            <param name="idAmministrazione" type="java.lang.Long" />
+         </param-list>
+         <ret-val type="it.csi.solmr.dto.comune.AmmCompetenzaVO"/>
+       </operation>
+       <operation name="serviceFindAmmCompetenzaBySigla" type="synch-call" >
+         <param-list>
+            <param name="siglaAmministrazione" type="java.lang.String" />
+         </param-list>
+         <ret-val type="it.csi.solmr.dto.comune.AmmCompetenzaVO"/>
+       </operation>
+       <operation name="serviceGetListAmmCompetenzaByTipoRange" type="synch-call" >
+         <param-list>
+            <param name="tipoAmmCompentenza" type="java.lang.String[]" />
+            <param name="isPadre" type="boolean" />
+         </param-list>
+         <ret-val type="it.csi.solmr.dto.comune.AmmCompetenzaVO[]"/>
+       </operation>
+       <operation name="serviceFindPersonaFisicaByIdSoggetto" type="synch-call" >
+         <param-list>
+            <param name="idSoggetto" type="java.lang.Long" />
+            <param name="dataSituazioneAl" type="java.util.Date" />
+         </param-list>
+         <ret-val type="it.csi.solmr.dto.comune.PersonaFisicaVO"/>
+       </operation>
+       <operation name="serviceFindPersonaFisicaByCodiceFiscale" type="synch-call" >
+         <param-list>
+            <param name="codiceFiscale" type="java.lang.String" />
+            <param name="dataSituazioneAl" type="java.util.Date" />
+         </param-list>
+         <ret-val type="it.csi.solmr.dto.comune.PersonaFisicaVO"/>
+       </operation>
+       <operation name="serviceGetUtenteIride2ById" type="synch-call" >
+         <param-list>
+            <param name="idUtente" type="java.lang.Long" />
+         </param-list>
+         <ret-val type="it.csi.solmr.dto.profile.UtenteIride2VO"/>
+       </operation>
+       <operation name="serviceFindAmmCompFigliByCodiceAmmPadre" type="synch-call" >
+         <param-list>
+            <param name="codiceAmmPadre" type="java.lang.String" />
+         </param-list>
+         <ret-val type="it.csi.solmr.dto.comune.AmmCompetenzaVO[]"/>
+       </operation>
+       <operation name="serviceGetDelegaByAziendaAndProcedimento" type="synch-call" >
+         <param-list>
+            <param name="idAzienda" type="java.lang.Long" />
+            <param name="RuoloUtenza" type="it.csi.solmr.dto.profile.RuoloUtenza" />
+         </param-list>
+         <ret-val type="it.csi.solmr.dto.comune.DelegaVO"/>
+       </operation>
+       <operation name="serviceGetDelegaByAziendaAndProcedimentoAndDate" type="synch-call" >
+         <param-list>
+            <param name="idAzienda" type="java.lang.Long" />
+            <param name="RuoloUtenza" type="it.csi.solmr.dto.profile.RuoloUtenza" />
+            <param name="dataRiferimento" type="java.util.Date" />
+         </param-list>
+         <ret-val type="it.csi.solmr.dto.comune.DelegaVO"/>
+       </operation>
+       <operation name="serviceGetDelegheByAziendaAndProcedimento" type="synch-call" >
+         <param-list>
+            <param name="idAzienda" type="java.lang.Long" />
+            <param name="idProcedimento" type="java.lang.Long" />
+         </param-list>
+         <ret-val type="it.csi.solmr.dto.comune.DelegaVO"/>
+       </operation>
+       <operation name="serviceFindDelegaScadutaByAziendaAndProcedimento" type="synch-call" >
+         <param-list>
+            <param name="idAzienda" type="java.lang.Long" />
+            <param name="idProcedimento" type="java.lang.Long" />
+         </param-list>
+         <ret-val type="it.csi.solmr.dto.comune.DelegaVO"/>
+       </operation>
+       <operation name="serviceInsertDelegaByAziendaAndProcedimento" type="synch-call" >
+         <param-list>
+            <param name="delega" type="it.csi.solmr.dto.comune.DelegaVO" />
+         </param-list>
+         <ret-val type="java.lang.Void"/>
+       </operation>
+       <operation name="serviceUpdateDelegaByAziendaAndProcedimento" type="synch-call" >
+         <param-list>
+            <param name="delega" type="it.csi.solmr.dto.comune.DelegaVO" />
+         </param-list>
+         <ret-val type="java.lang.Void"/>
+       </operation>
+       <operation name="serviceRevocaDelegaByAziendaAndProcedimento" type="synch-call" >
+         <param-list>
+            <param name="delega" type="it.csi.solmr.dto.comune.DelegaVO" />
+            <param name="ruoloUtenza" type="it.csi.solmr.dto.profile.RuoloUtenza" />
+         </param-list>
+         <ret-val type="java.lang.Void"/>
+       </operation>
+       <operation name="serviceUpdatePersonaFisicaComune" type="synch-call" >
+         <param-list>
+            <param name="personaFisicaVO" type="it.csi.solmr.dto.comune.PersonaFisicaVO" />
+            <param name="updateDataInizioResidenza" type="java.lang.Boolean" />
+         </param-list>
+         <ret-val type="java.lang.Long"/>
+       </operation>
+       <operation name="serviceInsertSoggettoComune" type="synch-call" >
+         <ret-val type="java.lang.Long"/>
+       </operation>
+       <operation name="serviceInsertPersonaFisicaComune" type="synch-call" >
+         <param-list>
+            <param name="personaFisicaVO" type="it.csi.solmr.dto.comune.PersonaFisicaVO" />
+         </param-list>
+         <ret-val type="java.lang.Long"/>
+       </operation>
+       <operation name="serviceInsertStoricoResidenzaComune" type="synch-call" >
+         <param-list>
+            <param name="personaFisicaVO" type="it.csi.solmr.dto.comune.PersonaFisicaVO" />
+         </param-list>
+         <ret-val type="java.lang.Long"/>
+       </operation>
+       <operation name="serviceUpdateDomicilioPersonaFisicaComune" type="synch-call" >
+         <param-list>
+            <param name="personaFisicaVO" type="it.csi.solmr.dto.comune.PersonaFisicaVO" />
+         </param-list>
+         <ret-val type="java.lang.Void"/>
+       </operation>
+       <operation name="serviceUpdateResidenzaPersonaFisicaComune" type="synch-call" >
+         <param-list>
+            <param name="personaFisicaVO" type="it.csi.solmr.dto.comune.PersonaFisicaVO" />
+            <param name="updateDataInizioResidenza" type="java.lang.Boolean" />
+         </param-list>
+         <ret-val type="java.lang.Void"/>
+       </operation>
+       <operation name="serviceUpdateTitoloStudioPersonaFisicaComune" type="synch-call" >
+         <param-list>
+            <param name="personaFisicaVO" type="it.csi.solmr.dto.comune.PersonaFisicaVO" />
+         </param-list>
+         <ret-val type="java.lang.Void"/>
+       </operation>
+       <operation name="serviceFindAmmCompPadreByCodiceAmmFiglio" type="synch-call" >
+         <param-list>
+            <param name="codiceAmministrazione" type="java.lang.String" />
+         </param-list>
+         <ret-val type="it.csi.solmr.dto.comune.AmmCompetenzaVO"/>
+       </operation>
+       <operation name="serviceFindOrigineDato" type="synch-call" >
+         <param-list>
+            <param name="idOrigineDato" type="java.lang.Long" />
+         </param-list>
+         <ret-val type="it.csi.solmr.dto.comune.OrigineDatoVO"/>
+       </operation>
+       <operation name="serviceGetOrigineDato" type="synch-call" >
+         <ret-val type="it.csi.solmr.dto.comune.OrigineDatoVO[]"/>
+       </operation>
+       <operation name="serviceFindIntermediarioByCodiceFiscale" type="synch-call" >
+        <param-list>
+          <param name="codiceFiscale" type="java.lang.String" />
+        </param-list>
+        <ret-val type="it.csi.solmr.dto.comune.IntermediarioVO"/>
+       </operation>
+       <operation name="serviceFindIntermediarioByIdIntermediario" type="synch-call" >
+        <param-list>
+          <param name="idIntermediario" type="java.lang.Long" />
+        </param-list>
+        <ret-val type="it.csi.solmr.dto.comune.IntermediarioVO"/>
+       </operation>
+       <operation name="serviceFindResponsabileByIdIntermediarioAndIdProcToDateRiferimento" type="synch-call" >
+        <param-list>
+          <param name="idIntermediario" type="java.lang.Long" />
+          <param name="idProcedimento" type="java.lang.Long" />
+          <param name="dataRiferimento" type="java.util.Date" />
+        </param-list>
+        <ret-val type="it.csi.solmr.dto.comune.IntermediarioVO"/>
+       </operation>
+       <operation name="serviceFindIntermediarioByIdIntermediarioRange" type="synch-call" >
+        <param-list>
+          <param name="aIdIntermediario" type="long[]" />
+        </param-list>
+        <ret-val type="it.csi.solmr.dto.comune.IntermediarioVO[]"/>
+       </operation>
+       <operation name="serviceGetUtentiIntermediariByPartitaIVA" type="synch-call" >
+        <param-list>
+          <param name="partitaIVA" type="java.lang.String" />
+        </param-list>
+        <ret-val type="it.csi.solmr.dto.profile.UtenteIride2VO[]"/>
+       </operation>
+       <operation name="serviceGetUtentiIntermediariFigliByPIVAPadreAndIdProc" type="synch-call" >
+        <param-list>
+          <param name="partitaIVA" type="java.lang.String" />
+          <param name="idProcedimento" type="java.lang.Long" />
+        </param-list>
+        <ret-val type="it.csi.solmr.dto.profile.UtenteIride2VO[]"/>
+       </operation>
+       <operation name="serviceGetListaIntermediari" type="synch-call" >
+        <param-list>
+          <param name="idIntermediario" type="java.lang.Long" />
+          <param name="codiceFiscale" type="java.lang.String" />
+          <param name="tipoIntermediario" type="java.lang.String" />
+          <param name="livelloIntermediario" type="java.lang.String" />
+        </param-list>
+        <ret-val type="it.csi.solmr.dto.comune.IntermediarioVO[]"/>
+       </operation>
+       <operation name="serviceFindIntermediarioFiglioTipoByCodiceFiscale" type="synch-call" >
+        <param-list>
+          <param name="partitaIVA" type="java.lang.String" />
+          <param name="tipoIntermediario" type="java.lang.String" />
+        </param-list>
+        <ret-val type="it.csi.solmr.dto.comune.IntermediarioVO"/>
+       </operation>
+       <operation name="serviceFindIntermediarioFiglioTipoById" type="synch-call" >
+        <param-list>
+          <param name="idIntermediario" type="java.lang.Long" />
+          <param name="tipoIntermediario" type="java.lang.String" />
+        </param-list>
+        <ret-val type="it.csi.solmr.dto.comune.IntermediarioVO"/>
+       </operation>
+       <operation name="serviceGetUfficioZonaByIdAmmCompetenza" type="synch-call" >
+        <param-list>
+          <param name="idAmmCompetenza" type="java.lang.Long" />
+        </param-list>
+        <ret-val type="it.csi.solmr.dto.comune.UfficioZonaVO[]"/>
+       </operation>
+       <operation name="serviceFindUfficioZonaById" type="synch-call" >
+        <param-list>
+          <param name="idUfficioZona" type="java.lang.Long" />
+        </param-list>
+        <ret-val type="it.csi.solmr.dto.comune.UfficioCCIAAVO"/>
+       </operation>
+       <operation name="serviceGetUfficioCCIAAByIdAmmCompetenza" type="synch-call" >
+        <param-list>
+          <param name="idAmmCompetenza" type="java.lang.Long" />
+        </param-list>
+        <ret-val type="it.csi.solmr.dto.comune.UfficioCCIAAVO[]"/>
+       </operation>
+       <operation name="serviceFindUfficioCCIAAById" type="synch-call" >
+        <param-list>
+          <param name="idUfficioCCIAA" type="java.lang.Long" />
+        </param-list>
+        <ret-val type="it.csi.solmr.dto.comune.UfficioCCIAAVO"/>
+       </operation>
+       <operation name="serviceGetTecnicoAmmByIdAmmCompAndIdProcedimento" type="synch-call" >
+        <param-list>
+          <param name="idAmmCompetenza" type="java.lang.Long" />
+          <param name="idProcedimento" type="java.lang.Long" />
+        </param-list>
+        <ret-val type="it.csi.solmr.dto.comune.TecnicoAmministrazioneVO[]"/>
+       </operation>
+       <!-- <operation name="serviceGetTecnicoAmmByIdAmmCompAndIdProcedimento" type="synch-call" >
+        <param-list>
+          <param name="idAmmCompetenza" type="long" />
+          <param name="idProcedimento" type="long" />
+          <param name="tipoRisultato" type="java.lang.Long" />
+        </param-list>
+        <ret-val type="it.csi.solmr.dto.comune.TecnicoAmministrazioneVO[]"/>
+       </operation>-->
+       <operation name="serviceGetTecnicoAmmByIdAmmCompIdProcedimentoAndTipoRisultato" type="synch-call" >
+        <param-list>
+          <param name="idAmmCompetenza" type="long" />
+          <param name="idProcedimento" type="long" />
+          <param name="tipoRisultato" type="java.lang.Long" />
+        </param-list>
+        <ret-val type="it.csi.solmr.dto.comune.TecnicoAmministrazioneVO[]"/>
+       </operation>
+       <operation name="serviceGetRecapitoAmmByIdAmmCompAndIdProcedimento" type="synch-call" >
+        <param-list>
+          <param name="idAmmCompetenza" type="long" />
+          <param name="idProcedimento" type="long" />
+          <param name="idTipoRecapito" type="java.lang.Long" />
+        </param-list>
+        <ret-val type="it.csi.solmr.dto.comune.RecapitoAmministrazioneVO[]"/>
+       </operation>
+       <operation name="isUtenteConRuoloSuProcedimento" type="synch-call" >
+        <param-list>
+          <param name="codiceFiscale" type="java.lang.String" />
+          <param name="idProcedimento" type="java.lang.Long" />
+        </param-list>
+        <ret-val type="java.lang.Boolean"/>
+       </operation>
+       <operation name="isUtenteAbilitatoProcedimento" type="synch-call" >
+        <param-list>
+          <param name="utenteIride2VO" type="it.csi.solmr.dto.profile.UtenteIride2VO" />
+        </param-list>
+        <ret-val type="java.lang.Boolean"/>
+       </operation>
+       <operation name="login" type="synch-call" >
+        <param-list>
+           <param name="utenteIride2VO" type="it.csi.solmr.dto.profile.UtenteIride2VO" />
+        </param-list>
+        <ret-val type="it.csi.solmr.dto.profile.RuoloUtenza"/>
+       </operation>
+       <operation name="writeAccessLogUser" type="synch-call" >
+        <param-list>
+           <param name="utenteIride2VO" type="it.csi.solmr.dto.profile.UtenteIride2VO" />
+        </param-list>
+        <ret-val type="java.lang.Long"/>
+       </operation>
+       <operation name="loadRoleUser" type="synch-call" >
+        <param-list>
+           <param name="utenteIride2VO" type="it.csi.solmr.dto.profile.UtenteIride2VO" />
+        </param-list>
+        <ret-val type="it.csi.solmr.dto.profile.RuoloUtenza"/>
+       </operation>
+       <operation name="serviceFindTecnicoByIdTecnico" type="synch-call" >
+        <param-list>
+           <param name="idTecnico" type="java.lang.Long" />
+        </param-list>
+        <ret-val type="it.csi.solmr.dto.comune.TecnicoAmministrazioneVO"/>
+       </operation>
+       <operation name="serviceFindTipoProcedimentoByDescrizioneProcedimento" type="synch-call" >
+        <param-list>
+           <param name="descrizione" type="java.lang.String" />
+        </param-list>
+        <ret-val type="it.csi.solmr.dto.profile.TipoProcedimentoVO"/>
+       </operation>
+       <operation name="serviceGetSAVCompetenzaByIstatProvincia" type="synch-call" >
+        <param-list>
+           <param name="istatProvincia" type="java.lang.String" />
+        </param-list>
+         <ret-val type="it.csi.solmr.dto.comune.AmmCompetenzaVO[]"/>
+       </operation>
+       <operation name="serviceGetListSoggettiByIdSoggettoRange" type="synch-call" >
+          <param-list>
+             <param name="idSoggetto" type="long[]" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.comune.PersonaFisicaVO[]"/>
+        </operation>
+        <operation name="serviceGetListEnteByIdUtenteIride2Range" type="synch-call" >
+          <param-list>
+             <param name="idUtenteIride2" type="java.lang.String[]" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.profile.CodeDescription[]"/>
+        </operation>
+        <operation name="serviceFindAmmCompetenzaByIdRange" type="synch-call" >
+          <param-list>
+             <param name="idAmmCompetenza" type="java.lang.String[]" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.comune.AmmCompetenzaVO[]"/>
+        </operation>
+        <operation name="serviceGetListAmmCompetenzaByComuneCollegato" type="synch-call" >
+          <param-list>
+             <param name="istatComune" type="java.lang.String" />
+             <param name="tipoAmministrazione" type="java.lang.String" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.comune.AmmCompetenzaVO[]"/>
+        </operation>
+        <operation name="serviceGetUtenteProcedimento" type="synch-call" >
+          <param-list>
+             <param name="codiceFiscale" type="java.lang.String" />
+             <param name="idProcedimento" type="java.lang.Long" />
+             <param name="ruolo" type="java.lang.String" />
+             <param name="codiceEnte" type="java.lang.String" />
+             <param name="dirittoAccesso" type="java.lang.String" />
+             <param name="idLivello" type="java.lang.Long" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.profile.UtenteProcedimento[]"/>
+        </operation>
+        <operation name="serviceVerificaGerarchia" type="synch-call" >
+          <param-list>
+             <param name="idUtenteConnesso" type="java.lang.Long" />
+             <param name="idUtentePratica"  type="java.lang.Long" />
+          </param-list>
+          <ret-val type="boolean"/>
+        </operation>
+        <operation name="serviceVerificaGerarchiaByIdIntermediario" type="synch-call" >
+          <param-list>
+             <param name="idUtenteConnesso" type="java.lang.Long" />
+             <param name="idIntermediarioPratica"  type="java.lang.Long" />
+          </param-list>
+          <ret-val type="boolean"/>
+        </operation>
+        <operation name="serviceGetListAmmCompetenza" type="synch-call" >
+          <ret-val type="it.csi.solmr.dto.comune.AmmCompetenzaVO[]"/>
+        </operation>
+        <operation name="serviceFindAmmCompetenzaByIdProcAndTipoAmm" type="synch-call" >
+          <param-list>
+             <param name="idProcedimento" type="java.lang.String"/>
+             <param name="tipoAmmCompetenza"  type="java.lang.String"/>
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.comune.AmmCompetenzaVO[]"/>
+        </operation>
+       	<operation name="serviceGetEreditaAmmCompetenzaById" type="synch-call" >
+         	<param-list>
+            <param name="idAmmCompetenza" type="java.lang.Long" />
+         	</param-list>
+         	<ret-val type="it.csi.solmr.dto.comune.StructAmmCompetenzaVO"/>
+       	</operation>
+        <operation name="serviceSearchListIdTecnicoByTipoAmministrazione" type="synch-call" >
+          <param-list>
+             <param name="tipoAmministrazione" type="java.lang.String"/>
+             <param name="tecnicoFiltroVO"  type="it.csi.solmr.dto.comune.TecnicoFiltroVO"/>
+          </param-list>
+          <ret-val type="long[]"/>
+        </operation>
+        <operation name="serviceGetTecniciByIdRange" type="synch-call" >
+          <param-list>
+             <param name="idTecnico" type="long[]"/>
+             <param name="flagRecapiti"  type="boolean"/>
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.comune.TecnicoVO[]"/>
+        </operation>
+		<operation name="testResources" type="synch-call" >
+        	<ret-val type="boolean"/>
+       	</operation>
+       	<operation name="isAlive" type="synch-call" >
+        	<ret-val type="boolean"/>
+       	</operation>
+     </operations>
+    </service>
+  </services>
+   <config>
+    <url-pa>**not used**</url-pa>
+    <pluggable-pd-list chooser-class="it.csi.csi.porte.FixedDelegateChooser">
+	<pluggable-pd name="business" class="it.csi.csi.porte.jaxrpc.PortaDelegataWS" url-pa="***" url-qm="">      
+      <properties>
+         <property name="csi.wrapper.wsinterf.class" value="it.csi.smrcomms.smrcomm.dto.comune.axisgen.SmrcommsrvComuneService_PortType" />
+		 <property name="csi.http.transport.type" value="commons-http" />
+          <property name="csi.http.timeout" value="10000" />          
+          <property name="class" value="it.csi.smrcomms.smrcomm.dto.comune.axisgen.SmrcommsrvComuneServiceServiceLocator" />
+          <!-- l'url dell'endpoint del servizio-->
+ 	      <property name="javax.xml.rpc.service.endpoint.address" value="@COMUNESERVICE_SERVICE_ENDPOINT_URL@" />         
+        </properties>
+      </pluggable-pd>
+    </pluggable-pd-list>    
+    <queue-manager url=""/>
+  	<pre-function-handler-list>
+      <pluggable-fh name="isoint_pre" class="it.csi.csi.porte.jaxrpc.pfh.IsoIntTransformer">
+        <properties>
+          <property name="source.interface" value="it.csi.solmr.interfaceCSI.comune.services.ComuneServiceCSIInterface" />
+          <property name="target.interface" value="it.csi.smrcomms.smrcomm.dto.comune.axisgen.SmrcommsrvComuneService_PortType" />
+          <property name="pkg-map-1" value="it.csi.solmr.interfaceCSI.comune.services=it.csi.smrcomms.smrcomm.dto.comune.axisgen" />      
+          <property name="class-map-2" value="it.csi.solmr.dto.comune.AmmCompetenzaVO=it.csi.smrcomms.smrcomm.dto.comune.axisgen.AmmCompetenzaVO" />
+			<property name="class-map-3" value="it.csi.solmr.dto.comune.AziendaAmmCompetenza=it.csi.smrcomms.smrcomm.dto.comune.axisgen.AziendaAmmCompetenza" />
+			<property name="class-map-4" value="it.csi.solmr.dto.comune.DelegaVO=it.csi.smrcomms.smrcomm.dto.comune.axisgen.DelegaVO" />
+			<property name="class-map-5" value="it.csi.solmr.dto.comune.IntermediarioVO=it.csi.smrcomms.smrcomm.dto.comune.axisgen.IntermediarioVO" />
+			<property name="class-map-6" value="it.csi.solmr.dto.comune.OrigineDatoVO=it.csi.smrcomms.smrcomm.dto.comune.axisgen.OrigineDatoVO" />
+			<property name="class-map-7" value="it.csi.solmr.dto.comune.PersonaFisicaVO=it.csi.smrcomms.smrcomm.dto.comune.axisgen.PersonaFisicaVO" />
+			<property name="class-map-8" value="it.csi.solmr.dto.comune.RecapitoAmministrazioneVO=it.csi.smrcomms.smrcomm.dto.comune.axisgen.RecapitoAmministrazioneVO" />
+			<property name="class-map-9" value="it.csi.solmr.dto.comune.RecapitoTecnicoVO=it.csi.smrcomms.smrcomm.dto.comune.axisgen.RecapitoTecnicoVO" />
+			<property name="class-map-10" value="it.csi.solmr.dto.comune.StructAmmCompetenzaVO=it.csi.smrcomms.smrcomm.dto.comune.axisgen.StructAmmCompetenzaVO" />
+			<property name="class-map-11" value="it.csi.solmr.dto.comune.TecnicoAmministrazioneVO=it.csi.smrcomms.smrcomm.dto.comune.axisgen.TecnicoAmministrazioneVO" />
+			<property name="class-map-12" value="it.csi.solmr.dto.comune.TecnicoFiltroVO=it.csi.smrcomms.smrcomm.dto.comune.axisgen.TecnicoFiltroVO" />
+			<property name="class-map-13" value="it.csi.solmr.dto.comune.TecnicoVO=it.csi.smrcomms.smrcomm.dto.comune.axisgen.TecnicoVO" />
+			<property name="class-map-14" value="it.csi.solmr.dto.comune.UfficioCCIAAVO=it.csi.smrcomms.smrcomm.dto.comune.axisgen.UfficioCCIAAVO" />
+			<property name="class-map-15" value="it.csi.solmr.dto.comune.UfficioZonaVO=it.csi.smrcomms.smrcomm.dto.comune.axisgen.UfficioZonaVO" />
+			<property name="class-map-16" value="it.csi.solmr.dto.profile.CodeDescription=it.csi.smrcomms.smrcomm.dto.comune.axisgen.CodeDescription" />
+			<property name="class-map-17" value="it.csi.solmr.dto.profile.RuoloUtenza=it.csi.smrcomms.smrcomm.dto.comune.axisgen.RuoloUtenza" />
+			<property name="class-map-18" value="it.csi.solmr.dto.profile.TipoProcedimentoVO=it.csi.smrcomms.smrcomm.dto.comune.axisgen.TipoProcedimentoVO" />
+			<property name="class-map-19" value="it.csi.solmr.dto.profile.UtenteIride2VO=it.csi.smrcomms.smrcomm.dto.comune.axisgen.UtenteIride2VO" />
+			<property name="class-map-20" value="it.csi.solmr.dto.UfficioZonaIntermediarioVO=it.csi.smrcomms.smrcomm.dto.comune.axisgen.UfficioZonaIntermediarioVO" />
+			<property name="class-map-21" value="it.csi.solmr.util.services.AbstractValueObject=it.csi.smrcomms.smrcomm.dto.comune.axisgen.AbstractValueObject" />
+        </properties>
+      </pluggable-fh>
+    </pre-function-handler-list>
+    <post-function-handler-list>
+      <pluggable-fh name="isoint_pre" class="it.csi.csi.porte.jaxrpc.pfh.IsoIntTransformer">
+        <properties>
+          <property name="source.interface" value="it.csi.solmr.interfaceCSI.comune.services.ComuneServiceCSIInterface" />
+          <property name="target.interface" value="it.csi.smrcomms.smrcomm.dto.comune.axisgen.SmrcommsrvComuneService_PortType" />
+            <property name="pkg-map-1" value="it.csi.solmr.interfaceCSI.comune.services=it.csi.smrcomms.smrcomm.dto.comune.axisgen" />      
+            <property name="class-map-2" value="it.csi.solmr.dto.comune.AmmCompetenzaVO=it.csi.smrcomms.smrcomm.dto.comune.axisgen.AmmCompetenzaVO" />
+			<property name="class-map-3" value="it.csi.solmr.dto.comune.AziendaAmmCompetenza=it.csi.smrcomms.smrcomm.dto.comune.axisgen.AziendaAmmCompetenza" />
+			<property name="class-map-4" value="it.csi.solmr.dto.comune.DelegaVO=it.csi.smrcomms.smrcomm.dto.comune.axisgen.DelegaVO" />
+			<property name="class-map-5" value="it.csi.solmr.dto.comune.IntermediarioVO=it.csi.smrcomms.smrcomm.dto.comune.axisgen.IntermediarioVO" />
+			<property name="class-map-6" value="it.csi.solmr.dto.comune.OrigineDatoVO=it.csi.smrcomms.smrcomm.dto.comune.axisgen.OrigineDatoVO" />
+			<property name="class-map-7" value="it.csi.solmr.dto.comune.PersonaFisicaVO=it.csi.smrcomms.smrcomm.dto.comune.axisgen.PersonaFisicaVO" />
+			<property name="class-map-8" value="it.csi.solmr.dto.comune.RecapitoAmministrazioneVO=it.csi.smrcomms.smrcomm.dto.comune.axisgen.RecapitoAmministrazioneVO" />
+			<property name="class-map-9" value="it.csi.solmr.dto.comune.RecapitoTecnicoVO=it.csi.smrcomms.smrcomm.dto.comune.axisgen.RecapitoTecnicoVO" />
+			<property name="class-map-10" value="it.csi.solmr.dto.comune.StructAmmCompetenzaVO=it.csi.smrcomms.smrcomm.dto.comune.axisgen.StructAmmCompetenzaVO" />
+			<property name="class-map-11" value="it.csi.solmr.dto.comune.TecnicoAmministrazioneVO=it.csi.smrcomms.smrcomm.dto.comune.axisgen.TecnicoAmministrazioneVO" />
+			<property name="class-map-12" value="it.csi.solmr.dto.comune.TecnicoFiltroVO=it.csi.smrcomms.smrcomm.dto.comune.axisgen.TecnicoFiltroVO" />
+			<property name="class-map-13" value="it.csi.solmr.dto.comune.TecnicoVO=it.csi.smrcomms.smrcomm.dto.comune.axisgen.TecnicoVO" />
+			<property name="class-map-14" value="it.csi.solmr.dto.comune.UfficioCCIAAVO=it.csi.smrcomms.smrcomm.dto.comune.axisgen.UfficioCCIAAVO" />
+			<property name="class-map-15" value="it.csi.solmr.dto.comune.UfficioZonaVO=it.csi.smrcomms.smrcomm.dto.comune.axisgen.UfficioZonaVO" />
+			<property name="class-map-16" value="it.csi.solmr.dto.profile.CodeDescription=it.csi.smrcomms.smrcomm.dto.comune.axisgen.CodeDescription" />
+			<property name="class-map-17" value="it.csi.solmr.dto.profile.RuoloUtenza=it.csi.smrcomms.smrcomm.dto.comune.axisgen.RuoloUtenza" />
+			<property name="class-map-18" value="it.csi.solmr.dto.profile.TipoProcedimentoVO=it.csi.smrcomms.smrcomm.dto.comune.axisgen.TipoProcedimentoVO" />
+			<property name="class-map-19" value="it.csi.solmr.dto.profile.UtenteIride2VO=it.csi.smrcomms.smrcomm.dto.comune.axisgen.UtenteIride2VO" />
+			<property name="class-map-20" value="it.csi.solmr.dto.UfficioZonaIntermediarioVO=it.csi.smrcomms.smrcomm.dto.comune.axisgen.UfficioZonaIntermediarioVO" />
+			<property name="class-map-21" value="it.csi.solmr.util.services.AbstractValueObject=it.csi.smrcomms.smrcomm.dto.comune.axisgen.AbstractValueObject" />         
+            <property name="class-map-22" value="it.csi.smrcomms.smrcomm.exception.InvalidParameterException=it.csi.smrcomms.smrcomm.dto.comune.axisgen.InvalidParameterException"/>
+        </properties>
+      </pluggable-fh>
+    </post-function-handler-list>
+  </config>
+</porta-delegata>

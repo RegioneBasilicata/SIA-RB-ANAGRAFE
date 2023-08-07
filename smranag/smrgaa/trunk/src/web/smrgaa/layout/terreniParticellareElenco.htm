@@ -1,0 +1,1751 @@
+$$head
+
+<!--ex menu' flottante-->
+
+ <script src="../js/checktext.js" type="text/javascript"></script>
+ <script type="text/javascript" src="../js/messaggistica.js"></script>
+ <script type="text/javascript">
+  
+  
+  var documentoSel='$$documentoSel';
+
+  var documentoArray = new Array();
+  var documentoTmp;
+  
+  
+  var protocolloDocumentoSel='$$protocolloDocumentoSel';
+  
+  var protocolloDocumentoArray = new Array();
+  var protocolloDocumentoTmp;
+
+  function go_page(pagina, value, operazione) 
+  {
+    pagina.value = value;
+    goToOperazione(document.forms[0].action, document.forms[0], operazione);
+  }
+
+  // Funzione javascript che si occupa di gestire le modalità di iterazione
+  // tra la combo degli usi e i checkbox relativi all'uso primario e secondario
+  function disabledCheckedUsi() 
+  {
+    if(document.forms[0].idTipoUtilizzo.value == 0) 
+    {
+      document.forms[0].primario.disabled = true;
+      document.forms[0].secondario.disabled = true;
+      document.forms[0].idMacroUso.selectedIndex = 0;
+      document.forms[0].idMacroUso.disabled = true
+      document.forms[0].primario.checked = false;
+      document.forms[0].secondario.checked = false;
+    }
+    else 
+    {
+      document.forms[0].primario.disabled = false;
+      document.forms[0].secondario.disabled = false;
+      document.forms[0].idMacroUso.disabled = false;
+    }
+  }
+  
+  function deselezionaSoloAsservite(check) 
+  {
+    if(check.checked) document.forms[0].soloAsservite.checked = false;
+  }
+  
+  function deselezionaSoloConferite(check) 
+  {
+    if(check.checked)  document.forms[0].soloConferite.checked = false;
+  }
+
+  // Funzione javascript che si occupa di far visualizzare o meno il pulsante "esegui controlli"
+  // e le informazioni ad esso relative e in più gestisce la parte relativa alle chiavi
+  // presenti nel checkbox visibile e in quello nascosto
+  function visualizzaEseguiControlli() 
+  {
+    // Nascondo il checkbox relativo all'id_utilizzo_particella
+    var collObjects = document.getElementsByName("idUtilizzo");
+    for(i = 0; i < collObjects.length; i++) 
+    {
+      var objects = collObjects[i];
+      objects.style.display= "none";
+    }
+    // Gestisco il mantenimento dei valori selezionati in modo che non vengano
+    // persi durante la navigazione tra le pagine
+    var coll = document.forms[0].idConduzione;
+    var collUtilizzi = document.forms[0].idUtilizzo;
+    var count = 0;
+    if(coll != null) 
+    {
+      if(coll.length) 
+      {
+        for(i=0; i < coll.length; i++) 
+        {
+          if(coll[i].checked) 
+          {
+            collUtilizzi[i].checked = true;
+          }
+        }
+      }
+      else 
+      {
+        if(coll.checked) 
+        {
+          collUtilizzi.checked = true;
+        }
+      }
+    }
+    // Gestisco la sezione relativa al pulsante e al messaggio dell'esegui controlli
+    if(document.forms[0].idDichiarazioneConsistenza.value == 0 || document.forms[0].idDichiarazioneConsistenza.value == -1) 
+    {
+      document.getElementById("blkEseguiControlli").style.display= "";
+      document.getElementById("blkEseguiControlli1").style.display= "";
+      document.getElementById("blkNoEseguiControlli").style.display= "none";
+    }
+    else 
+    {
+      document.getElementById("blkEseguiControlli").style.display= "none";
+      document.getElementById("blkEseguiControlli1").style.display= "none";
+      document.getElementById("blkNoEseguiControlli").style.display= "";
+    }
+  }
+
+  // Funzione javascript che si occupa di "checkare" automaticamente il campo
+  // checkbox/hidden relativo all'id_utilizzo_particella corrispondente
+  // all'id_conduzione_particella selezionato dall'utente
+  function selectUtilizzoCorrispondente() {
+    var coll = document.forms[0].idConduzione;
+    var collUtilizzi = document.forms[0].idUtilizzo;
+    var count = 0;
+    if(coll.length) {
+      for(i = 0; i < coll.length; i++) {
+        if(coll[i].checked) {
+          collUtilizzi[i].checked = true;
+        }
+        else {
+          collUtilizzi[i].checked = false;
+        }
+      }
+    }
+    else {
+      if(coll.checked) {
+        collUtilizzi.checked = true;
+      }
+      else {
+        collUtilizzi.checked = false;
+      }
+    }
+  }
+
+  // Funzione che intercetta il pulsante invio e simula il click sul pulsante indicato come parametro
+  function simulateButtonViaByInvio(document, objectSubmit, event) {
+    var mozilla = document.getElementById && !document.all;
+    var ie = document.all;
+    if(mozilla) {
+      if(event.keyCode == 13) {
+        document.forms[0].operazioneDefault.value = 'operazioneDefault';
+        document.forms[0].submit();
+      }
+    }
+    else if(ie) {
+      if(event.keyCode == 13) {
+        objectSubmit.click();
+      }
+    }
+  }
+
+  // Funzione per selezionare tutti i checkbox dell'elenco più la chiave nascosta
+  // relativa all'id_utilizzo_particella
+  function selectAllKeys() {
+    var array = document.forms[0].idConduzione;
+    var arrayUtilizzi = document.forms[0].idUtilizzo;
+     if(array != null) {
+     if(array.length) {
+        for(var i = 0; i < array.length; i++) {
+        if(array[i].disabled == false) {
+           array[i].checked = true;
+           arrayUtilizzi[i].checked = true;
+        }
+        }
+     }
+     else {
+        if(array.disabled == false) {
+        array.checked = true;
+        arrayUtilizzi.checked = true;
+        }
+     }
+     }
+  }
+
+  // Funzione per deselezionare tutti i checkbox dell'elenco più la chiave nascosta
+  // relativa all'id_utilizzo_particella
+  function deselectAllKeys() {
+    var array = document.forms[0].idConduzione;
+    var arrayUtilizzi = document.forms[0].idUtilizzo;
+     if(array != null) {
+     if(array.length) {
+        for(var i = 0; i < array.length; i++) {
+        array[i].checked = false;
+        arrayUtilizzi[i].checked = false;
+        }
+     }
+     else {
+        array.checked = false;
+        arrayUtilizzi.checked = false;
+     }
+     }
+  }
+
+  // Funzione utilizzata per la gestione del num pagina della doppia paginazione
+  function duplicaNumPagina(argument) {
+    if(document.forms[0].paginaCorrente != null) {
+      if(argument == 'duplicato') {
+        document.forms[0].paginaCorrente.value = document.forms[0].paginaCorrenteDup.value;
+      }
+      else {
+        document.forms[0].paginaCorrenteDup.value = document.forms[0].paginaCorrente.value;
+      }
+    }
+  }
+
+  // Funzione utilizzata per la gestione della coerenza tra i valori della combo "titolo possesso" e il checkbox
+  // relativo all' "escludi asservimento"
+  function gestioneConduzioniAsservimento() 
+  {
+    if(document.forms[0].idTitoloPossesso.selectedIndex == 0) 
+    {
+      document.forms[0].escludiAsservimento.disabled = false;
+      document.forms[0].escludiConferimento.disabled = false;
+    }
+    else 
+    {
+      document.forms[0].escludiAsservimento.disabled = true;
+      document.forms[0].escludiAsservimento.checked = false;
+      document.forms[0].escludiConferimento.disabled = true;
+      document.forms[0].escludiConferimento.checked = false;
+    }
+  }
+  
+    // Metodo per aprire una pop-up ed effettuare su di essa il submit del form
+  function newWindowDoFormAbaco3D(mypage, myname, w, h, scroll) 
+  {
+      var target1 = document.form1.target;
+      var action1 = document.form1.action;
+      var elencoIdConduzione = document.form1.idConduzione;
+      //Se sono nel caso della dichiarazione di consistenza devo leggere i dati da idConduzioneParticella
+      var elencoIdConduzioneParticella = document.form1.idConduzioneParticella;
+      
+      
+      
+      var count = 0;
+      var idConduzione = '';
+      
+      if(elencoIdConduzione.length) 
+      {
+        for(a = 0; a < elencoIdConduzione.length; a++) 
+        {
+          
+          if(elencoIdConduzione[a].checked)
+          {
+          
+            idConduzione = elencoIdConduzione[a].value;
+            if (elencoIdConduzioneParticella)
+              idConduzione = elencoIdConduzioneParticella[a].value;
+            count = count + 1;
+          }
+          
+        }
+      }
+      else 
+      {
+        if(elencoIdConduzione.checked)
+        {
+          idConduzione = elencoIdConduzione.value;
+          if (elencoIdConduzioneParticella)
+              idConduzione = elencoIdConduzioneParticella.value;
+          count = count + 1;
+        }
+      }
+      
+      if(count > 1) 
+      {
+        alert('Selezionare una sola voce dall\'elenco');
+      }
+      else if(count == 0)
+      {
+        alert('Selezionare una voce dall\'elenco');
+      }
+      else
+      {
+        var winl = (screen.width - w) / 2;
+        var wint = (screen.height - h) / 2;
+    
+        winprops =    'height='+h+',width='+w+',top='+wint+',left='+winl+',scrollbars='+scroll+',resizable';
+        win = window.open('', myname, winprops);
+        if (myname=='abaco') {
+          win.close();
+          win = window.open('', myname, winprops);
+        }
+    
+        if (parseInt(navigator.appVersion) >= 4) {
+          win.window.focus();
+        }
+          
+        document.form1.target = myname;
+        document.form1.action = mypage+'?idConduzione='+idConduzione;
+        document.form1.submit();
+        document.form1.target = target1;
+        document.form1.action = action1;
+      }
+  }
+  
+  function gestisciFasciaFluviale() 
+  {
+    if((document.forms[0].idAreaE.value == 3)
+      ||  (document.forms[0].idAreaE.value == 4))
+    {
+      document.forms[0].idFasciaFluviale.selectedIndex = 0;
+      document.forms[0].idFasciaFluviale.disabled = true;
+    }
+    else 
+    {
+      document.forms[0].idFasciaFluviale.disabled = false;
+    }
+  }
+  
+  function CodeDescription(code, secondaryCode, description)
+  {
+    this.code = code;
+    this.secondaryCode = secondaryCode;
+    this.description = description;
+  }
+
+  @@blkComboDocumento
+    documentoTmp = new CodeDescription($$idDocumento, $$idTipoDocumento, "$$descDocumento");
+    documentoArray[$$index] = documentoTmp;
+  @@blkComboDocumento
+  
+  @@blkProtocolloComboDocumento
+    protocolloDocumentoTmp = new CodeDescription($$idDocumento, $$extIdDocumento, "$$descProtocolloDocumento");
+    protocolloDocumentoArray[$$index] = protocolloDocumentoTmp;
+  @@blkProtocolloComboDocumento
+  
+  function onChangeDocumento()
+  {
+    var tipoDocumentoCombo = document.form1.idTipoDocumento;
+    var documentoCombo = document.form1.idDocumento;
+
+    if(tipoDocumentoCombo.selectedIndex == 0)
+    {
+      documentoCombo.options.length = 0;
+      documentoCombo.options[0] = new Option("","");
+      onChangeProtocolloDocumento();
+      return;
+    }
+
+    documentoCombo.options.length = 0;
+    documentoCombo.options[0] = new Option("","");
+    var effectiveCnt = 1;
+    for(idx=0; idx<documentoArray.length; idx++)
+    {
+      documento = documentoArray[idx];
+
+      if(tipoDocumentoCombo.value == documento.secondaryCode)
+      {
+        documentoCombo.options[effectiveCnt] = new Option(documento.description, documento.code);
+        if(documentoSel == documento.code)
+        {
+          documentoCombo.options[effectiveCnt].selected = true;
+        }
+        effectiveCnt++;
+      }
+    }
+    onChangeProtocolloDocumento();
+    documentoSel='';
+  }
+  
+  function onChangeProtocolloDocumento()
+  {
+    var documentoCombo = document.form1.idDocumento;
+    var protocolloDocumentoCombo = document.form1.idProtocolloDocumento;
+
+    if(documentoCombo.selectedIndex == 0)
+    {
+      protocolloDocumentoCombo.options.length = 0;
+      protocolloDocumentoCombo.options[0] = new Option("","");
+      return;
+    }
+
+    protocolloDocumentoCombo.options.length = 0;
+    protocolloDocumentoCombo.options[0] = new Option("","");
+    var effectiveCnt = 1;
+    for(idx=0; idx<protocolloDocumentoArray.length; idx++)
+    {
+      protocolloDocumento = protocolloDocumentoArray[idx];
+
+      if(documentoCombo.value == protocolloDocumento.secondaryCode)
+      {
+        protocolloDocumentoCombo.options[effectiveCnt] = new Option(protocolloDocumento.description, protocolloDocumento.code);
+        if(protocolloDocumentoSel == protocolloDocumento.code)
+        {
+          protocolloDocumentoCombo.options[effectiveCnt].selected = true;
+        }
+        effectiveCnt++;
+      }
+    }
+    protocolloDocumentoSel='';
+  }
+  
+  
+  
+  function eliminaColonneAzienda()
+  {
+    if(document.forms[0].colonneLimitate.value !='')
+    {
+      document.getElementById('thImmagini').colSpan = "2";
+      document.getElementById('thUsoPrimario').colSpan= "6";
+      
+      
+      if(document.getElementById('thSupElegg') !=null)
+      {
+	      show_hide_column('thSupElegg', false);
+	      show_hide_column('thSupEleggNetta', false);
+	      show_hide_column('tdSupElegg', false);
+        show_hide_column('tdSupEleggNetta', false);
+        show_hide_column('totaleSupElegg', false);
+        show_hide_column('totaleSupEleggNetta', false);
+        show_hide_column('totaleCp', false);     
+	    }
+	    
+	    show_hide_column('thMacroUso',false);
+	    show_hide_column('thSupGrafica',false);
+      show_hide_column('thCasoParticolare', false);      
+      show_hide_column('tdCasoParticolare', false); 
+      show_hide_column('tdSupGrafica',false);   
+      show_hide_column('tdIstanzaRiesame', false);      
+      show_hide_column('tdDocumento', false);
+      show_hide_column('tdSchedario', false);      
+      show_hide_column('tdBiologico', false);
+      show_hide_column('tdNotifica', false);
+      show_hide_column('tdMacroUso',false);
+      document.getElementById('totali1').colSpan = "8";
+      show_hide_column('totaleMacroUso', false);
+      
+      show_hide_column('totSupGrafica',false);   
+      
+    }
+  
+  }
+  
+  function show_hide_column(nameColumn, do_show) 
+  {
+
+    var stl;
+    if (do_show) stl = ''
+    else         stl = 'none';
+
+    var columns  = document.getElementsByName(nameColumn);
+
+    for (var count=0; count<columns.length;count++) {
+      columns[count].style.display=stl;
+    }
+  }
+  
+  
+   //Notifiche  
+  var categoriaSel='$$categoriaSel';
+  var categoriaArray = new Array();
+  var categoriaTmp;
+  
+  
+  
+  @@blkCategoriaCombo
+    categoriaTmp = new CodeDescription($$idCategoriaNotifica, $$idTipologiaNotifica, "$$descCategoriaNotifica");
+    categoriaArray[$$index] = categoriaTmp;
+  @@blkCategoriaCombo
+  
+  
+  function onChangeTipologia()
+  {
+    var tipologiaCombo = document.form1.idTipologiaNotifica;
+    var categoriaCombo = document.form1.idCategoriaNotifica;
+
+    if(tipologiaCombo.selectedIndex == 0)
+    {
+      categoriaCombo.options.length = 0;
+      categoriaCombo.options[0] = new Option("","");
+      return;
+    }
+
+    categoriaCombo.options.length = 0;
+    categoriaCombo.options[0] = new Option("","");
+    var effectiveCnt = 1;
+    for(idx=0; idx<categoriaArray.length; idx++)
+    {
+      categoria = categoriaArray[idx];
+
+      if(tipologiaCombo.value == categoria.secondaryCode)
+      {
+        categoriaCombo.options[effectiveCnt] = new Option(categoria.description, categoria.code);
+        if(categoriaSel == categoria.code)
+        {
+          categoriaCombo.options[effectiveCnt].selected = true;
+        }
+        effectiveCnt++;
+      }
+    }
+    categoriaSel='';
+  }
+  
+  function disabledCheckedNotifica() 
+  {
+    if(document.forms[0].idTipologiaNotifica.value == 0) 
+    {
+      document.forms[0].notificaChiusa.disabled = true;
+    }
+    else 
+    {
+      document.forms[0].notificaChiusa.disabled = false;
+    }
+  }
+
+   </script>
+   
+<script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../js/jquery-ui-1.8.21.custom/jquery-ui-1.8.21.custom.min.js"></script>
+
+<script language="javascript1.2">  
+  function hideColumn(cssColumn, label)
+  {
+    //Nasconde la colonna
+    $('.'  + cssColumn).hide();
+    
+    var html=$('#tdColDisp').html();
+    if (html=='')
+    {
+      $('#tdColDisp').show();
+      html="Colonne disponibili: ";
+    }
+    html+="<a href=\"javascript:showColumn('"+cssColumn+"')\" id='id_"+cssColumn+"'>"+label+"</a><span id='span_"+cssColumn+"'> | </span> <input type='hidden' name='hidden_"+cssColumn+"' id='hidden_"+cssColumn+"' value='"+cssColumn+"' />";
+    $('#tdColDisp').html(html);
+  }
+
+  function showColumn(cssColumn)
+  {
+    
+    $('#id_'  + cssColumn).remove();
+    $('#span_'  + cssColumn).remove();
+    $('#hidden_'  + cssColumn).remove();
+    $('.'  + cssColumn).show();
+    if($('#tdColDisp').html().indexOf('<a')<0)
+    {
+      $('#tdColDisp').hide();
+      $('#tdColDisp').html('');
+    }
+    
+  }
+  
+  
+  function caricaColonne(primoIngresso)
+  {   
+    var supCat = '$$supCat';
+    var cond = '$$cond';
+    var dataInizioCond = '$$dataInizioCond';
+    var dataFineCond = '$$dataFineCond';
+    var supElegg = '$$supElegg';
+    var supEleggNetta = '$$supEleggNetta';
+    var supAgr = '$$supAgr';
+    var usoSecondario = '$$usoSecondario';
+    var casoParticolare = '$$casoParticolare';
+    var elemCaratPaes = '$$elemCaratPaes';
+    var azAss = '$$azAss';
+    var azConf = '$$azConf';
+    var seminaPrimario = '$$seminaPrimario';
+    var seminaSecondario = '$$seminaSecondario';
+    var mantenimento = '$$mantenimento';
+    var allevamento = '$$allevamento';
+                   
+    if(primoIngresso == 'true')
+    {
+      hideColumn("nascondibile_0", "Sup. cat.");
+      hideColumn("nascondibile_2", "Data inizio cond.");
+      hideColumn("nascondibile_3", "Data fine cond.");
+      hideColumn("nascondibile_4", "Sup. elegg.");
+      hideColumn("nascondibile_6", "Sup. agr.");
+      hideColumn("nascondibile_7", "Uso secondario");
+      hideColumn("nascondibile_8", "C.P.");
+      hideColumn("nascondibile_9", "Elementi caratteristici del paesaggio");
+      hideColumn("nascondibile_10", "Az. cond. asservimento");
+      hideColumn("nascondibile_11", "Az. cond. conferimento");
+      hideColumn("nascondibile_12", "Semina primario");
+      hideColumn("nascondibile_13", "Semina secondario");
+      hideColumn("nascondibile_14", "Mantenimento");
+      hideColumn("nascondibile_15", "Allevamento");
+      
+    }
+    else
+    {
+      if(supCat != null && supCat != '')
+      {
+        hideColumn("nascondibile_0", "Sup. cat.");
+      }
+      if(cond != null && cond != '')
+      {
+        hideColumn("nascondibile_1", "Cond. ");
+      }
+      if(dataInizioCond != null && dataInizioCond != '')
+      {
+        hideColumn("nascondibile_2", "Data inizio cond.");
+      }
+      if(dataFineCond != null && dataFineCond != '')
+      {
+        hideColumn("nascondibile_3", "Data fine cond.");
+      }
+      if(supElegg != null && supElegg != '')
+      {
+        hideColumn("nascondibile_4", "Sup. elegg.");
+      }
+      if(supEleggNetta != null && supEleggNetta != '')
+      {
+        hideColumn("nascondibile_5", "Sup. elegg. netta");
+      }
+      if(supAgr != null && supAgr != '')
+      {
+        hideColumn("nascondibile_6", "Sup. agr.");
+      }
+      if(usoSecondario != null && usoSecondario != '')
+      {
+        hideColumn("nascondibile_7", "Uso secondario");
+      }
+      if(casoParticolare != null && casoParticolare != '')
+      {
+        hideColumn("nascondibile_8", "C.P.");
+      }
+      if(elemCaratPaes != null && elemCaratPaes != '')
+      {
+        hideColumn("nascondibile_9", "Elementi caratteristici del paesaggio");
+      }
+      if(azAss != null && azAss != '')
+      {
+        hideColumn("nascondibile_10", "Az. cond. asservimento");
+      }
+      if(azConf != null && azConf != '')
+      {
+        hideColumn("nascondibile_11", "Az. cond. conferimento");
+      }
+      if(seminaPrimario != null && seminaPrimario != '')
+      {
+        hideColumn("nascondibile_12", "Semina primario");
+      }
+      if(seminaSecondario != null && seminaSecondario != '')
+      {
+        hideColumn("nascondibile_13", "Semina secondario");
+      }
+      if(mantenimento != null && mantenimento != '')
+      {
+        hideColumn("nascondibile_14", "Mantenimento");
+      }
+      if(allevamento != null && allevamento != '')
+      {
+        hideColumn("nascondibile_15", "Allevamento");
+      }
+    }
+  }
+  
+  
+  
+  function modificaComboValidazioni()
+  {
+    var idCombo = '#tdIdTipoUtilizzoDiv';
+    var idDichiarazioneConsistenzaPar = document.form1.idDichiarazioneConsistenza.value;       
+    
+    var dataInv = {
+      idDichiarazioneConsistenza: idDichiarazioneConsistenzaPar
+    };
+     
+    dataInv = $.param(dataInv);    
+    
+    
+    $.ajax({
+      url: "../layout/popolaComboUtilizzoElenco.htm",
+      type: "POST",
+      data: dataInv,
+      success: function( data ) 
+              { 
+                $(idCombo).html( data );                 
+              },
+       dataType: 'html'
+      
+    });
+  
+  
+  }
+  
+  function modificaComboTipoArea()
+  {
+    var idCombo = '#tdIdTipoAreaDiv';
+    var idDichiarazioneConsistenzaPar = document.form1.idDichiarazioneConsistenza.value;       
+    
+    var dataInv = {
+      idDichiarazioneConsistenza: idDichiarazioneConsistenzaPar
+    };
+     
+    dataInv = $.param(dataInv);    
+    
+    
+    $.ajax({
+      url: "../layout/popolaComboTipoAreaElenco.htm",
+      type: "POST",
+      data: dataInv,
+      success: function( data ) 
+              { 
+                $(idCombo).html( data );                 
+              },
+       dataType: 'html'
+      
+    });
+  
+  
+  }
+  
+  
+      
+  </script>
+
+
+
+</head>
+<body id="homeIndice" onLoad="javascript: disabledCheckedUsi();visualizzaEseguiControlli();duplicaNumPagina('originale');showhide('sez1');onChangeDocumento();eliminaColonneAzienda();onChangeTipologia();disabledCheckedNotifica();$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');caricaColonne('$$primoIngressso');">
+  <div id="pagina" class="colonnaUnica">
+      
+  <form id="form1" name="form1" method="post" action="../layout/terreniParticellareElenco.htm">
+    <input type="hidden" name="pagina" value="$$pagina">
+    <input type="hidden" name="numeroTotale" value="$$numeroTotale">
+    <input type="hidden" name="abaco" value="abaco" id="abaco" />
+    <input type="hidden" name="operazioneDefault" value="$$operazioneDefault" id="operazioneDefault" />
+    <input type="hidden" name="operazione" value="$$operazione" id="operazione" />
+    <input type="hidden" name="colonneLimitate" value="$$colonneLimitate" id="colonneLimitate" />
+    <input type="hidden" name="regimeElencoTerreni" value="regimeElencoTerreni" id="regimeElencoTerreni" />
+    <hr />
+      
+      
+      
+        <div id="intestazione##pathProvincia">
+          $$header
+          <!-- menu di navigazione-->
+          <div id="titoloEmenu">
+            <h2>
+              <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+            </h2>
+            <div id="menuDiNavigazione" title="Menu di navigazione">
+              <ul class="menuTendina" id="menu-2">
+                <li><a href="../layout/index.htm" title="Torna alla pagina principale">home</a></li>
+                <li class="attivo">gestione anagrafe aziende</li>
+                <li><a href="#" title="contatti">contatti</a></li>
+                <li><a href="#" title="help">help</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <hr />
+        <div style="clear:left"></div>
+        <div id="corpo">
+          <div id="Utente">
+            <div id="datiUtente">
+              <strong>utente:</strong> $$utente &nbsp;&nbsp; <strong>ente:</strong> $$ente
+            </div>
+            <div id="chiudisessione">
+              <a href="javascript:logout();">chiudi sessione</a>
+            </div>
+          </div>
+          <hr />
+          <h3>Gestione Anagrafe Aziende&nbsp;&gt;&nbsp;Terreni
+            <span class="helpFuori">
+              <a href="#">
+                <span class="alt">[help]</span>
+              </a>
+            </span>
+          </h3>
+          
+    <div class="box">
+      <div class="menuSX1">
+        <ul>
+          <!-- @@blkElencoAziendeRapLegale -->
+          <li><a href="../layout/elencoAziendeRapLegale.htm">Elenco Aziende</a></li>
+         <!-- @@blkElencoAziendeRapLegale -->
+          <!-- @@blkRicercaAzienda-->
+            <li><a href="../layout/ricerca.htm">Ricerche</a></li>
+          <!-- @@blkRicercaAzienda-->
+          <!-- @@blkNuova -->
+            <li><a href="../layout/nuovaAziendaAnagrafica.htm">Nuova Azienda</a></li>
+          <!-- @@blkNuova -->
+          <!-- @@blkNuovaIscrizione -->
+          <li>
+            <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+          </li>
+          <!-- @@blkNuovaIscrizione -->
+        </ul>
+      </div>
+      <div class="menuSX">
+        <ul>
+          <li><a href="../layout/anagrafica.htm">Anagrafica</a></li>
+          <!-- @@blkAziendeCollegate -->
+          <li>
+            <a href="../layout/aziendeCollegate.htm">$$aziendeCollegateLabel</a>
+          </li>
+          <!-- @@blkAziendeCollegate -->
+          <!-- @@blkSincronizzaFascicolo -->
+               <li>
+               	<a href="../layout/sincronizzaFascicolo.htm">Sincronizza fascicolo</a>
+               </li>
+          <!-- @@blkSincronizzaFascicolo -->
+          <!-- @@blkSoggettiCollegati -->
+            <li><a href="../layout/contitolari.htm">Soggetti collegati</a></li>
+          <!-- @@blkSoggettiCollegati -->
+          <!-- @@blkContiCorrenti -->
+            <li>
+              <a href="../layout/conti_correnti.htm">Conti
+                Correnti</a>
+            </li>
+          <!-- @@blkContiCorrenti -->
+          <!-- @@blkUnitaProduttive -->
+            <li><a href="../layout/sedi.htm">Unit&agrave; produttive</a></li>
+          <!-- @@blkUnitaProduttive -->
+          <!-- @@blkTerreni -->
+            <li>
+              <!-- @@blkLinkElenco -->
+              <a href="../layout/terreniParticellareElenco.htm" class="on">Terreni</a>
+              <ul>
+                <li><a href="../layout/riepiloghi.htm">riepiloghi</a></li>
+              <!-- @@blkLinkElenco -->
+              <!-- @@blkLinkRiepiloghi -->
+              <a href="../layout/riepiloghi.htm" class="on">Terreni</a>
+              <ul>
+                <li><a href="#" class="etichetta" >elenco</a></li>
+              <!-- @@blkLinkRiepiloghi -->
+              
+                <!-- @@blkDettaglio -->
+                  <li><a href="javascript:submitForm('../layout/terreniParticellareDettaglioConduzione.htm', document.forms[0], document.forms[0].idConduzione);">dettaglio</a></li>
+                <!-- @@blkDettaglio -->
+                <!-- @@blkModificaMultipla -->
+                  <li><a href="javascript:goTo('../layout/terreniParticellareModificaMultipla.htm', document.forms[0]);">modifica multipla</a></li>
+                <!-- @@blkModificaMultipla -->
+                <!-- @@blkModifica -->
+                  <li><a href="javascript:goTo('../layout/terreniParticellareModifica.htm', document.forms[0]);">modifica</a></li>
+                <!-- @@blkModifica -->
+                <!-- @@blkAllineaPercentuale -->
+                  <li><a href="../layout/terreniParticellareAllineaPercentuale.htm">allinea percentuale</a></li>
+                <!-- @@blkAllineaPercentuale -->
+                <!--@@blkInserisci-->
+                  <li><a href="../layout/terreniParticellareInserisci.htm">inserisci</a></li>
+                <!--@@blkInserisci-->
+                <!-- @@blkImportaParticelle -->
+                  <li><a href="../layout/importaTerreniGenerico.htm">importa</a></li>
+                <!-- @@blkImportaParticelle -->
+                <!--@@blkElimina-->
+                  <li><a href="javascript:submitSomeElementsForm('../layout/eliminaParticella.htm', document.forms[0], document.forms[0].idConduzione);">elimina</a></li>
+                <!--@@blkElimina-->
+                <!-- @@blkVerifiche -->
+                  <li><a href="../layout/terreniVerifica.htm">controlli</a></li>
+                <!-- @@blkVerifiche -->
+                <!-- @@blkPianoGrafico -->
+                  <li><a href="../layout/richiamoPianoGrafico.htm">piano grafico</a></li>
+                <!-- @@blkPianoGrafico -->
+                
+                <!-- @@blkAllineaUtilizzoAEleggibilita -->
+                  <li><a href="../layout/confermaAllineaGIS.htm">allinea a GIS</a></li>
+                <!-- @@blkAllineaUtilizzoAEleggibilita -->
+                <!-- @@blkAbacoIsole -->
+                  <li>
+                    <a href="javascript:goTo('../layout/terreniParticellareIsoleParcelle.htm?arrivoDa=terreni',document.forms[0]) ">Isole - Parcelle</a>
+                  </li>
+                <!-- @@blkAbacoIsole -->                
+               </ul>
+            </li>
+          <!-- @@blkTerreni -->
+          <!-- @@blkUnitaVitate -->
+          <li>
+            <!-- @@blkLinkElenco -->
+            <a href="../layout/terreniUnitaArboreeElenco.htm">Unit&agrave; Vitate</a>
+            <!-- @@blkLinkElenco -->
+            <!-- @@blkLinkRiepiloghi -->
+              <a href="../layout/riepiloghiUnitaArboree.htm">Unit&agrave; Vitate</a>
+              <!-- @@blkLinkRiepiloghi -->
+          </li>
+          <!-- @@blkUnitaVitate -->
+          <!-- @@blkFabbricati -->
+            <li>
+              <a href="../layout/fabbricati.htm">Fabbricati e Strutture</a>
+            </li>
+          <!-- @@blkFabbricati -->
+          <!-- @@blkAllevamenti -->
+            <li>
+              <a href="../layout/allevamenti.htm">Allevamenti</a>
+            </li>
+          <!-- @@blkAllevamenti -->
+          <!-- @@blkManodopera -->
+            <li>
+              <a href="../layout/manodopera.htm">Manodopera</a>
+            </li>
+          <!-- @@blkManodopera -->
+          <!-- @@blkMotoriAgricoli -->
+            <li>
+              <a href="../layout/motori_agricoli_incarico.htm">Macchine agricole</a>
+            </li>
+          <!-- @@blkMotoriAgricoli -->
+          <!-- @@blkDiritti -->
+            <li><a href="../layout/diritti.htm">Diritti di produzione</a></li>
+          <!-- @@blkDiritti -->
+          <!-- @@blkAttestazioni -->
+            <li><a href="../layout/attestazioniDettaglio.htm">Dichiarazioni</a></li>
+          <!-- @@blkAttestazioni -->
+          <!-- @@blkDichiarazioniConsistenza -->
+            <li>
+              <a href="../layout/dichiarazioneConsistenza.htm">Validazioni</a>
+            </li>
+          <!-- @@blkDichiarazioniConsistenza -->
+          <!-- @@blkDocumenti -->
+          <li><a href="../layout/documentiElenco.htm">Documenti</a></li>
+          <!-- @@blkDocumenti -->
+          <!-- @@blkFascicoloDematerializzato -->
+          <li>
+            <a href="../layout/fascicoloDematerializzato.htm">Fascicolo<br>elettronico</a>
+          </li>
+          <!-- @@blkFascicoloDematerializzato -->
+          <!-- @@blkGestioneNotifiche -->
+            <li>
+              <a href="../layout/notifiche.htm">Notifiche</a>
+            </li>
+          <!-- @@blkGestioneNotifiche -->
+          <!-- @@blkComunicazione10R -->
+            <li>
+              <a href="../layout/comunicazione10R_dettaglio.htm">Comunicazione 10/R</a>
+            </li>
+          <!-- @@blkComunicazione10R -->
+          <!-- @@blkPratiche -->
+            <li><a href="../layout/pratiche.htm">Pratiche</a></li>
+          <!-- @@blkPratiche -->
+          <!-- @@blkStampaFascicolo -->
+            <li>
+              <a href="../layout/scelta_stampa.htm">Stampe</a>
+            </li>
+          <!-- @@blkStampaFascicolo -->
+		  <li><a href="../layout/strumenti.htm">Strumenti</a></li>
+        </ul>
+      </div>
+    </div>       
+          
+          
+          <hr />
+          <div id="contenuto">
+            <div id="intesta">
+	            <p class="$$aziendaIntestazione" title="$$tooltipIntestazione" >
+	              $$CUAAIntestazione  $$denominazioneIntestazione
+	            </p>
+	          </div>
+            <!-- @@blkNotifica -->
+            <p class="$$immagine">$$messaggioNotifica</p>
+            <!-- @@blkINNotifica -->
+              <div class="notifica">$$notifica</div>
+             <!-- @@blkINNotifica -->
+            <!-- @@blkNotifica -->
+            <table>
+              <caption>Effettua la ricerca</caption>
+              <tr>
+                <th scope="row"><label for="piano">Piano di riferimento</label></th>
+                <td colspan="9">
+                  <select name="idDichiarazioneConsistenza" id="idDichiarazioneConsistenza" onChange="javascript: visualizzaEseguiControlli();modificaComboValidazioni();modificaComboTipoArea();">
+                  <!-- @@blkPianoRiferimento -->
+                    <option value="$$idDichiarazioneConsistenza" $$selected>$$descDichiarazioneConsistenza</option>
+                  <!-- @@blkPianoRiferimento -->
+                  </select>
+                  $$err_idDichiarazioneConsistenza
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <label for="ute">UTE</label>
+                </th>
+                <td colspan="9" >
+                  <select name="idUnitaProduttiva" id="idUnitaProduttiva">
+                    <option></option>
+                    <!-- @@blkUte -->
+                      <option value="$$idUnitaProduttiva" $$selected>$$descrizione</option>
+                    <!-- @@blkUte -->
+                  </select>
+                  $$err_idUnitaProduttiva
+                </td>
+              </tr>
+              <tr>
+                <th scope="row"><label for="comune">Comune</label></th>
+                <td>
+                  <select name="istatComuniConduzioniParticelle" id="istatComuniConduzioniParticelle">
+                    <option></option>
+                    <!-- @@blkComuniConduzioniParticelle -->
+                      <option value="$$istatComuniConduzioniParticelle" $$selected>$$descrizione</option>
+                    <!-- @@blkComuniConduzioniParticelle -->
+                  </select>
+                  $$err_istatComuniConduzioniParticelle
+                </td>
+                <th class="w15"><label for="sezione"><acronym title="Sezione">Sz.</acronym></label></th>
+                <td>
+                  <input type="text" id="sezione" name="sezione" maxlength="1" value="$$sezione" class="textbreve" /> 
+                </td>
+                <th class="w15"><label for="foglio"><acronym title="Foglio">Fgl.</acronym></label></th>
+                <td>
+                  <input type="text" id="foglio" name="foglio" maxlength="4" value="$$foglio" class="textbreve" />
+                </td>
+                <th class="w15"><label for="particella"><acronym title="Particella">Part.</acronym></label></th>
+                <td>
+                  <input type="text" id="particella" name="particella" maxlength="5" value="$$particella" class="textbreve" />
+                </td>
+                <th class="w15"><label for="sub"><acronym title="Subalterno">Sub.</acronym></label></th>
+                <td>
+                  <input type="text" id="subalterno" name="subalterno" maxlength="3" value="$$subalterno" class="textbreve" />
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <label for="Controllo">Controllo</label>
+                </th>
+                <td colspan="9" >
+                  <select name="idControllo" id="idControllo">
+                    <option></option>
+                    <!-- @@blkTipoControllo -->
+                    <option value="$$idControllo" $$selected>$$descrizione</option>
+                    <!-- @@blkTipoControllo -->
+                  </select>
+                  $$err_idControllo
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  <acronym title="Tipo Segnalazione">T.S.</acronym>
+                </th>
+                <td>
+                  <input name="segnalazioneBloccante" type="checkbox" value="B" $$checkedBloccante />
+                  <img src="$$srcBloccante" alt="$$descImmagineBloccante" width="17" height="17" onClick="alert('$$descImmagineBloccante')" onKeyPress="alert('$$descImmagineBloccante')" />
+                  <input name="segnalazioneWarning" type="checkbox" value="W" $$checkedWarning />
+                  <img src="$$srcWarning" alt="$$descImmagineWarning" width="17" height="17" onClick="alert('$$descImmagineWarning')" onKeyPress="alert('$$descImmagineWarning')" />
+                  <input name="segnalazioneOk" type="checkbox" value="P" $$checkedOk />
+                  <img src="$$srcOk" alt="$$descImmagineOk" width="16" height="16" onClick="alert('$$descImmagineOk')" onKeyPress="alert('$$descImmagineOk')" />                    
+                </td>
+                <th id="blkEseguiControlli" colspan="3" >$$dataEsecuzioneControlli $$err_dataEsecuzioneControlli</th>
+                <td id="blkEseguiControlli1" colspan="5" >
+                  <div class="azioni">
+                    <a href="javascript: goToOperazione(document.forms[0].action, document.forms[0], 'attenderePrego');">esegui controlli</a>                      
+                  </div>
+                </td>
+                <th id="blkNoEseguiControlli" colspan="8" >$$dataEsecuzioneControlliDichiarati $$err_dataEsecuzioneControlliDichiarati</th>
+              </tr>
+            </table>
+            <h3 class="titoloapri" id="aprisez1" onClick="javascript:showhide('sez1');"><span>Ricerca avanzata</span></h3>
+            <div class="sottosez" id="sez1">
+              <div class="scroll">
+                <table>
+                  <caption>Filtri conduzione</caption>
+                  <tr>
+                    <th scope="row">
+                      <label for="possesso">Titolo di possesso</label>
+                    </th>
+                    <td colspan="3">
+                      <select name="idTitoloPossesso" id="idTitoloPossesso" onChange="javascript: gestioneConduzioniAsservimento();" >
+                        <option></option>
+                        <!-- @@blkTitoliPossesso -->
+                        <option value="$$idTitoloPossesso" $$selected>$$descrizione</option>
+                        <!-- @@blkTitoliPossesso -->
+                      </select>
+                      $$err_idTitoloPossesso
+                    </td>
+                    <th scope="row">
+                      <label for="escludiAss">Escludi asservimento</label>
+                    </th>
+                     <td>
+                       <input name="escludiAsservimento" type="checkbox" value="S" $$checkedEscludiAsservimento $$disabledEscludiAsservimento/>
+                     </td>
+                     <th scope="row">
+                       <label for="soloAsservite">Solo asservite</label>
+                     </th>
+                     <td>
+                       <input name="soloAsservite" type="checkbox" value="S" $$checkedSoloAsservite onClick="deselezionaSoloConferite(this);" />
+                     </td>
+                    <!-- th scope="row">
+                      <label for="usoAgronomico">Uso agronomico</label>
+                    </th>
+                    <td>
+                      <input name="usoAgronomico" type="checkbox" value="S" $$checkedUsoAgronomico />
+                    </td-->
+                    <th scope="row">
+                      <label for="escludiConferimento">Escludi conferimento</label>
+                    </th>  
+                    <td>
+                      <input name="escludiConferimento" type="checkbox" value="S" $$checkedEscludiConferimento $$disabledEscludiConferimento/>
+                    </td>
+                    <th scope="row">
+                      <label for="soloConferite">Solo conferite</label>
+                    </th>
+                    <td>
+                      <input name="soloConferite" type="checkbox" value="S" $$checkedSoloConferite onClick="deselezionaSoloAsservite(this);"/>
+                    </td>
+                  </tr>
+                </table>
+                <table>
+                  <caption>Filtri uso del suolo</caption>
+                  <tr>
+                    <th>
+                      <label for="uso">Destinazione produttiva</label>
+                    </th>
+	                  <td colspan="3" >
+	                    <div id="tdIdTipoUtilizzoDiv">
+	                      <select name="idTipoUtilizzo" id="idTipoUtilizzo" onChange="javascript: disabledCheckedUsi();">
+	                        <!-- @@blkTipiUsoSuolo -->
+	                          <option value="$$idTipoUtilizzo" title="$$descCompleta" $$selected>$$descrizione</option>
+	                        <!-- @@blkTipiUsoSuolo -->
+	                      </select>
+	                    </div>
+	                    $$err_idTipoUtilizzo
+	                  </td>
+	                  
+                    <th>
+                      <label for="primario"><strong>primaria</strong></label>
+                    </th>
+                    <td>
+                      <input name="primario" type="checkbox" value="S" id="primario" $$checkedPrimario />
+                    </td>
+                    <th>
+                      <label for="secondario"><strong>secondaria</strong></label>
+                    </th>
+                    <td>
+                      <input name="secondario" type="checkbox" value="S" id="secondario" $$checkedSecondario />
+                    </td>
+                    <th scope="row">
+                      <label for="possesso">Macro uso</label>
+                    </th>
+                    <td colspan="2">
+                      <select name="idMacroUso" id="idMacroUso">
+                        <option></option>
+                        <!-- @@blkMacroUso -->
+                          <option value="$$idMacroUso" $$selected>$$descrizione</option>
+                        <!-- @@blkMacroUso -->
+                      </select>
+                      $$err_idMacroUso
+                    </td>
+                  </tr>
+                </table>
+                <table>
+                  <caption>Filtri dati territoriali</caption>
+                  <tr>
+                    <th scope="row">
+                      <label for="Tipi Area">Tipi Area</label>
+                    </th>
+                    <td colspan="5">
+                      <div id="tdIdTipoAreaDiv">
+	                      <select name="idTipoValoraArea" id="idTipoValoraArea">
+	                        <option value=""></option>
+	                        <!-- @@blkTipoArea -->
+	                          <option value="$$idTipoValoraArea" $$selected>$$descrizione</option>
+	                        <!-- @@blkTipoArea -->
+	                      </select>
+	                    </div>
+                      $$err_idTipoValoraArea
+                    </td>                    
+                  </tr>        
+                  <tr>
+                    <th scope="row">
+                      <label for="ZonaAltimetrica">Zona Altimetrica</label>
+                    </th>
+                    <td>
+                      <select name="idZonaAltimetrica" id="idZonaAltimetrica">
+                        <option></option>
+                        <!-- @@blkZonaAltimetrica -->
+                          <option value="$$idZonaAltimetrica" $$selected>$$descrizione</option>
+                        <!-- @@blkZonaAltimetrica -->
+                      </select>
+                      $$err_idZonaAltimetrica
+                    </td>
+                    <th scope="row">
+                      <label for="CasoParticolare">CasoParticolare</label>
+                    </th>
+                    <td>
+                      <select name="idCasoParticolare" id="idCasoParticolare">
+                        <option></option>
+                        <!-- @@blkCasoParticolare -->
+                          <option value="$$idCasoParticolare" $$selected>$$descrizione</option>
+                        <!-- @@blkCasoParticolare -->
+                      </select>
+                      $$err_idCasoParticolare
+                    </td>
+                    <th scope="row">
+                      <label for="tipoEfa">Tipo EFA</label>
+                    </th>
+                    <td>
+                      <select name="idTipoEfa" id="idTipoEfa">
+                        <option value=""></option>
+                        <!-- @@blkTipoEfa -->
+                          <option value="$$idTipoEfa" $$selected>$$descrizione</option>
+                        <!-- @@blkTipoEfa -->
+                      </select>
+                      $$err_idTipoEfa
+                    </td>
+                  </tr>        
+                </table>
+                <table>
+                  <caption>Filtri notifiche</caption>
+	                <tr>
+		                <th style="width:20%" scope="row">
+		                  <label for="Tipologia">Tipologia notifica</label>
+		                </th>
+		                <td colspan="2">
+		                  <select id="idTipologiaNotifica" name="idTipologiaNotifica"
+		                    onchange="javascript: onChangeTipologia();disabledCheckedNotifica();">
+		                    <option value=""></option>
+		                    <!-- @@blkTipologiaNotifica -->
+		                      <option value="$$idTipologiaNotifica" $$selected>$$descTipologiaNotifica</option>
+		                    <!-- @@blkTipologiaNotifica -->
+		                  </select>
+		                  $$err_idTipologiaNotifica
+		                </td>
+		                <th style="width:20%" scope="row" >
+		                  <label for="notifica">Categoria notifica</label>
+		                </th>
+		                <td colspan="5">
+		                  <select name="idCategoriaNotifica" id="idCategoriaNotifica">
+		                    <option value=""></option>
+		                  </select>
+		                  $$err_idCategoriaNotifica
+		                </td>
+		                <th style="width:10%" colspan="3" >
+		                  Notifiche chiuse
+		                </th>
+		                <td>
+		                  <input name="notificaChiusa" id="notificaChiusa" type="checkbox"
+                        value="S" $$checkedNotificaChiusa />
+		                </td>
+	                </tr>
+	              </table>
+                <table>
+                  <caption>Filtri documentali</caption>
+                  <tr>
+                    <th scope="row">
+                      <label for="tipoDocumento">Tipo Documento</label>
+                    </th>
+                    <td colspan="6">
+                      <select name="idTipoDocumento" id="idTipoDocumento" onChange="javascript: onChangeDocumento();" >
+                        <option></option>
+                        <!-- @@blkTipoDocumento -->
+                        <option value="$$idTipoDocumento" $$selected>$$descrizione</option>
+                        <!-- @@blkTipoDocumento -->
+                      </select>
+                      $$err_idTipoDocumento
+                    </td>
+                    <th scope="row">
+                      <label for="documento">Descrizione documento</label>
+                    </th>
+                    <td colspan="6">
+                      <select name="idDocumento" id="idDocumento"  onchange="javascript: onChangeProtocolloDocumento();" >
+                        <option value=""></option>
+                      </select>
+                      $$err_idDocumento
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                      <label for="documento">Documento</label>
+                    </th>
+                    <td colspan="6">
+                      <select name="idProtocolloDocumento" id="idProtocolloDocumento" >
+                        <option value=""></option>
+                      </select>
+                      $$err_idProtocolloDocumento
+                    </td>
+                    <th scope="row"></th>
+                    <td colspan="6"></td>
+                  </tr>
+                </table>               
+               </div>
+             </div>
+             <div class="pulsanti"><div class="sin">
+               <input type="submit" name="ricerca" value="ricerca" class="inputPulsante" />
+             </div></div>
+             <table>
+               <caption>Riepilogo filtri avanzati</caption>
+               <!-- @@blkElencoFiltri -->
+               <tr>
+                 <td>$$filtroZero</td>
+                 <td>$$filtroUno</td>
+                 <td>$$filtroDue</td>
+               </tr>
+               <!-- @@blkElencoFiltri -->
+             </table>
+            
+             <!-- @@blkNoParticelle -->
+             <input type="hidden" name="regimeElencoTerreniNoPart" value="true" id="regimeElencoTerreniNoPart" />
+             <!-- @@blkNoParticelle -->
+             <!-- @@blkParticelle -->
+             <div class="pulsanti">
+               <div class="sin">
+                 <input id="seleziona" name="seleziona" type="button" value="seleziona" onClick="javascript: selectAllKeys();" class="inputPulsante" />
+               </div>
+               <div class="des">
+                 <input id="deseleziona" name="deseleziona" type="button" value="deseleziona" onClick="javascript: deselectAllKeys();" class="inputPulsante" />
+                 <!-- @@blkBrogliaccio -->
+                 <input id="scarica" name="scarica" type="button"
+                   value="Esporta dati"
+                   onclick="javascript: goTo('../layout/sceltaEsportaDatiTerreni.htm', document.forms[0]);"
+                   class="inputPulsante" />
+                 <!-- @@blkBrogliaccio -->
+               </div>
+             </div>
+             <div class="paginazione">
+               <span class="sx">$$numeroTotRecords risultati trovati</span>
+               <div class="dx">
+                 <label for="numsub1">pagina</label>
+                 <input type="text" name="paginaCorrente" value="$$paginaCorrente" maxlength="4" id="paginaCorrente" onKeyUp="javascript:duplicaNumPagina('originale');" onKeyPress="javascript: simulateButtonViaByInvio(document, document.forms[0].vai, event);" />$$err_paginaCorrente di $$numeroTotale
+                 <span class="vai">
+                   <input type="submit" name="vai" value="vai" class="vaiInput" />
+                 </span>
+                 <!--@@blkGruppoPagine-->
+                 <a href="javascript:{go_page(document.forms[0].pagina,'$$nextPage', 'paginazione')}" title="$$descPagina">
+                 <!--@@blkPaginaCorrente-->
+                 
+                 <!--@@blkPaginaCorrente-->
+                 <!--@@blkGruppoSuccessivo-->
+                     <u>
+                 <!--@@blkGruppoSuccessivo-->
+                     $$pagina
+                 <!--@@blkGruppoSuccessivo-->
+                     </u>
+                 <!--@@blkGruppoSuccessivo-->
+                 <!--@@blkPaginaCorrente-->
+                  
+                 <!--@@blkPaginaCorrente-->
+                 </a>
+                <span class="bugFix">&nbsp;|&nbsp;</span>
+                <!--@@blkGruppoPagine-->
+                <!--@@indietro-->
+                <a href="javascript:{go_page(document.forms[0].pagina,parseInt(document.forms[0].pagina.value)-1), 'paginazione'}" title="vai alla pagina precedente">&lt;&lt; prec</a>
+                <!--@@indietro-->
+                <!--@@avanti-->
+                <a href="javascript:{go_page(document.forms[0].pagina,parseInt(document.forms[0].pagina.value)+1), 'paginazione'}" title="vai alla pagina successiva">succ &gt;&gt;</a>
+                <span class="bugFix">&nbsp;|&nbsp;</span>
+                <!--@@avanti-->
+              </div>
+            </div>
+            <div class="scroll">
+              <table class="evidence" cellspacing="3" summary="Tabella contenente i risultati della ricerca particelle">
+                <tr>
+                  <td id="tdColDisp" colspan="53" ></td>
+	              </tr>
+                <tr>
+                  <th rowspan="2" class="radio" scope="col">&nbsp;</th>
+                  <th id="thImmagini" name="thImmagini" colspan="7" rowspan="2" class="center" scope="col"></th>
+                  <th rowspan="2" class="center" scope="col">
+                    <span class="TitOrd">Comune</span>
+                    <div class="ordina">
+                      <a href="javascript: goToOperazione(document.forms[0].action, document.forms[0], '$$tipoOrdinaComune');" class="$$ordinaComune" title="$$descOrdinaComune">
+                        <span class="nascosto">$$descOrdinaComune</span>
+                      </a>
+                    </div>
+                  </th>
+                  <th rowspan="2" class="center" scope="col"><acronym title="Sezione">Sz.</acronym></th>
+                  <th rowspan="2" class="center" scope="col"><acronym title="Foglio">Fgl.</acronym></th>
+                  <th rowspan="2" class="center" scope="col"><acronym title="Particella">Part.</acronym></th>
+                  <th rowspan="2" class="center" scope="col"><acronym title="Subalterno">Sub.</acronym></th>
+                  <th rowspan="2" class="center nascondibile_0" scope="col">
+                    <a href="javascript:hideColumn('nascondibile_0','Sup. cat.');">
+                      <acronym title="Superficie Catastale">Sup. cat.</acronym>
+                    </a>
+                  </th>
+                  <th colspan="2" class="center nascondibile_1" scope="col">                    
+                    <a href="javascript:hideColumn('nascondibile_1','Cond.');">
+                      <span class="TitOrd">
+                      <acronym title="Conduzione">Cond.</acronym></span>
+                    </a>
+                    <div class="ordina">
+                      <a href="javascript: goToOperazione(document.forms[0].action, document.forms[0], '$$tipoOrdinaConduzione');" class="$$ordinaConduzione"	title="$$descOrdinaConduzione">
+                        <span class="nascosto">$$descOrdinaConduzione</span>
+                      </a>
+                    </div>
+                  </th>
+                  <th rowspan="2" class="center nascondibile_2" scope="col">                    
+                    <a href="javascript:hideColumn('nascondibile_2','Data inizio cond.');">
+                      <span class="TitOrd">
+                      <acronym title="Data Inizio Conduzione">Data inizio cond.</acronym></span>
+                    </a>
+                  </th>
+                  <th rowspan="2" class="center nascondibile_3" scope="col">                    
+                    <a href="javascript:hideColumn('nascondibile_3','Data fine cond.');">
+                      <span class="TitOrd">
+                      <acronym title="Data Fine Conduzione">Data fine cond.</acronym></span>
+                    </a>
+                  </th>
+                  <th id="thSupGrafica" name="thSupGrafica" rowspan="2" class="center" scope="col"><acronym title="Superficie Grafica">Sup. grafica</acronym></th>
+                  <th id="thSupElegg" name = "thSupElegg" rowspan="2" class="center nascondibile_4" scope="col">
+                    <a href="javascript:hideColumn('nascondibile_4','Sup. elegg.');">
+                        <acronym title="Superficie Eleggibile">Sup. elegg.</acronym>
+                    </a>
+                  </th>
+                  <th id="thSupEleggNetta" name = "thSupEleggNetta" rowspan="2" class="center nascondibile_5" scope="col">
+                    <a href="javascript:hideColumn('nascondibile_5','Sup. elegg. netta');">
+                      <acronym title="Superficie Eleggibile Netta">Sup. elegg. netta</acronym>
+                    </a>
+                  </th>
+                  <th rowspan="2" class="center nascondibile_6" scope="col">
+                    <a href="javascript:hideColumn('nascondibile_6','Sup. agr.');">
+                      <acronym title="Superficie agronomica">Sup. agr.</acronym>
+                    </a>
+                  </th>                  
+                  <th id="thUsoPrimario" name="thUsoPrimario" colspan="7" class="center" scope="col">Uso primario</th>
+                  <th colspan="4" class="center nascondibile_12" scope="col">
+                    <a href="javascript:hideColumn('nascondibile_12','Semina primario');">
+                      Semina primario</a>
+                  </th>
+                  <th colspan="6" class="center nascondibile_7" scope="col">
+                    <a href="javascript:hideColumn('nascondibile_7','Uso secondario');">
+                      Uso secondario</a>
+                  </th> 
+                  <th colspan="4" class="center nascondibile_13" scope="col">
+                    <a href="javascript:hideColumn('nascondibile_13','Semina secondario');">
+                      Semina secondario</a>
+                  </th> 
+                  <th rowspan="2" class="center nascondibile_14" scope="col">
+                    <a href="javascript:hideColumn('nascondibile_14','Mantenimento');">
+                      Mantenimento</a>
+                  </th>
+                  <th rowspan="2" class="center nascondibile_15" scope="col">
+                    <a href="javascript:hideColumn('nascondibile_15','Allevamento');">
+                      Allevamento</a>
+                  </th>                  
+                  <th id="thCasoParticolare" name = "thCasoParticolare" rowspan="2" class="center nascondibile_8" scope="col">
+                    <a href="javascript:hideColumn('nascondibile_8','C.P.');">
+                      <span class="TitOrd"><acronym title="Caso Particolare">C.P.</acronym></span>
+                    </a>
+                    <div class="ordina">
+                      <a href="javascript: goToOperazione(document.forms[0].action, document.forms[0], '$$tipoOrdinaCasoParticolare');" class="$$ordinaCasoParticolare" title="$$descOrdinaCasoParticolare">
+                          <span class="nascosto">$$descOrdinaCasoParticolare</span>
+                      </a>
+                    </div>
+                  </th>
+                  <th colspan="5" class="center nascondibile_9" scope="col">
+                    <a href="javascript:hideColumn('nascondibile_9','Elementi caratteristici del paesaggio');">
+                      <acronym title="Elementi caratteristici del paesaggio">
+                          Elementi caratteristici del paesaggio
+                      </acronym>                      
+                    </a>
+                  </th>                 
+                  <th rowspan="2" class="center nascondibile_10" scope="col">
+                    <a href="javascript:hideColumn('nascondibile_10','Az. cond. asservimento');">
+                      Az. cond. asservimento
+                    </a>
+                  </th>
+                  <th rowspan="2" class="center nascondibile_11" scope="col">
+                    <a href="javascript:hideColumn('nascondibile_11','Az. cond. conferimento');">
+                      Az. cond. conferimento
+                    </a>
+                  </th>
+                  
+                </tr>
+                <tr>
+                  <th class="center nascondibile_1" scope="col">&nbsp;</th>
+                  <th class="center nascondibile_1" scope="col" colspan="$$colspanSupCond">
+                    <acronym title="Percentuale Possesso">%</acronym>
+                  </th>
+                  <th class="center" ><acronym title="Superficie Utilizzata">Sup.</acronym></th>
+                  <th id="thMacroUso" name="thMacroUso" class="center" scope="col">
+                    <span class="TitOrd"><acronym title="Macro Uso">M.U.</acronym></span>
+                    <div class="ordina">
+                      <a href="javascript: goToOperazione(document.forms[0].action, document.forms[0], '$$tipoOrdinaMacroUso');" class="$$ordinaMacroUso" title="$$descOrdinaMacroUso">
+                        <span class="nascosto">$$descOrdinaMacroUso</span>
+                      </a>
+                    </div>
+                  </th>
+                  <th class="center" scope="col">
+                    <span class="TitOrd">Occupazione suolo</span>
+                    <div class="ordina">
+                       <a href="javascript: goToOperazione(document.forms[0].action, document.forms[0], '$$tipoOrdinaUsoPrimario');" class="$$ordinaUsoPrimario" title="$$descOrdinaUsoPrimario">
+                         <span class="nascosto">$$descOrdinaUsoPrimario</span>
+                       </a>
+                    </div>
+                  </th>
+                  <th class="center" scope="col">
+                    <span class="TitOrd">Destinazione</span>                     
+                  </th>
+                  <th class="center" scope="col">
+                    <span class="TitOrd">Uso</span>                     
+                  </th>
+                  <th class="center" scope="col">
+                    <span class="TitOrd">Qualit&agrave;</span>                     
+                  </th>
+                  <th class="center" scope="col">
+                    <span class="TitOrd">Variet&agrave;</span>
+                  </th>
+                  
+                  <th class="center nascondibile_12" scope="col">
+                    <span class="TitOrd">Epoca</span>                     
+                  </th>
+                  <th class="center nascondibile_12" scope="col">
+                    <span class="TitOrd">Tipo</span>                     
+                  </th>
+                  <th class="center nascondibile_12" scope="col">
+                    <span class="TitOrd">Data inizio</span>                     
+                  </th>
+                  <th class="center nascondibile_12" scope="col">
+                    <span class="TitOrd">Data fine</span>                     
+                  </th>
+                  
+                  <th class="center nascondibile_7" scope="col">
+                    <acronym title="Superficie Utilizzata Secondaria">Sup.</acronym>
+                  </th>
+                  <th class="center nascondibile_7" scope="col">
+                    <span class="TitOrd">Occupazione suolo</span>
+                    <div class="ordina">
+                      <a href="javascript: goToOperazione(document.forms[0].action, document.forms[0], '$$tipoOrdinaUsoSecondario');" class="$$ordinaUsoSecondario" title="$$descOrdinaUsoSecondario">
+                        <span class="nascosto">$$descOrdinaUsoSecondario</span>
+                      </a>
+                    </div>
+                  </th>
+                  <th class="center nascondibile_7" scope="col">
+                    <span class="TitOrd">Destinazione</span>                     
+                  </th>
+                  <th class="center nascondibile_7" scope="col">
+                    <span class="TitOrd">Uso</span>                     
+                  </th>
+                  <th class="center nascondibile_7" scope="col">
+                    <span class="TitOrd">Qualit&agrave;</span>                     
+                  </th>
+                  <th class="center nascondibile_7" scope="col">
+                    <span class="TitOrd">Variet&agrave;</span>
+                  </th>
+                  
+                  <th class="center nascondibile_13" scope="col">
+                    <span class="TitOrd">Epoca</span>                     
+                  </th>
+                  <th class="center nascondibile_13" scope="col">
+                    <span class="TitOrd">Tipo</span>                     
+                  </th>
+                  <th class="center nascondibile_13" scope="col">
+                    <span class="TitOrd">Data inizio</span>                     
+                  </th>
+                  <th class="center nascondibile_13" scope="col">
+                    <span class="TitOrd">Data fine</span>                     
+                  </th>
+                  
+                  <th class="center nascondibile_9" scope="col">
+                    <span class="TitOrd">Tipo</span>                     
+                  </th>
+                  <th class="center nascondibile_9" scope="col">
+                    <span class="TitOrd">Valore</span>                     
+                  </th>
+                  <th class="center nascondibile_9" scope="col">
+                    <span class="TitOrd">Unit&agrave; di misura</span>                     
+                  </th>
+                  <th class="center nascondibile_9" scope="col">
+                    <span class="TitOrd">Valore in ettari</span>                     
+                  </th>
+                  <th class="center nascondibile_9" scope="col">
+                    <span class="TitOrd">Valore valido per il controllo</span>                     
+                  </th>
+                </tr>
+                <!-- @@blkElencoParticelle -->
+                <tr>
+                  <td class="$$color radio" scope="row" rowspan="$$valoreRowspan">
+                    <input type="checkbox" name="idConduzione" value="$$idConduzione" onClick="javascript:selectUtilizzoCorrispondente();" $$checked />
+                    <!-- @@blkCondPart -->
+                      <input type="hidden" name="idConduzioneParticella" value="$$idConduzioneParticella"/>            
+                    <!-- @@blkCondPart -->
+                  </td>
+                  <td class="radio" scope="row" name="idUtilizzo" id="idUtilizzo" rowspan="$$valoreRowspan">
+                    <input type="checkbox" name="idUtilizzo" value="$$idUtilizzo" />
+                  </td>
+                  <td class="$$color radio" rowspan="$$valoreRowspan">
+                    <a href="javascript: newWindowDoForm('$$urlRSDI?idConduzione=$$idConduzione&idAzienda=$$idAzienda', 'abaco', '1000','700','yes', 'GIS');" 
+                       title="$$controlliP" class="$$immaginiControlliP"></a>
+                  </td>
+                  <td id="tdIstanzaRiesame" name="tdIstanzaRiesame" class="$$color radio" rowspan="$$valoreRowspan">
+                    <a href="javascript: newWindowDoForm('../layout/popIstanzaRiesame.htm?idConduzione=$$idConduzione', 'istanzariesame', '1000','700','yes', 'ISTANZARIESAME');" 
+                       title="$$descTitleIstanzaRiesame" class="$$immaginiIstanzaRiesame"></a>
+                  </td>
+                  <td id="tdAnomaliaParticella" name="tdAnomaliaParticella" class="$$color radio" rowspan="$$valoreRowspan">
+                    <a href="javascript: newWindowDoForm('../layout/popAnomalieParticella.htm?idConduzione=$$idConduzione', 'anomalie', '800', '400', 'yes', 'ANOMALIE');" 
+                       title="$$descTitleAnomalia" class="$$classImmagine"></a>
+                  </td>
+                  <td id="tdDocumento" name="tdDocumento" class="$$classStatoDocumento" rowspan="$$valoreRowspan">
+                    <a href="javascript: newWindowDoForm('../layout/popDocumentoDettaglio.htm?idConduzione=$$idConduzione', 'documenti', '800', '400', 'yes', 'DOCUMENTI');" 
+                       title="$$descTitleDocumento" class="$$classStatoDocumento"></a>
+                  </td>
+                  <td id="tdSchedario"  name="tdSchedario" class="$$color radio" rowspan="$$valoreRowspan">
+                     <a href="javascript: newWindowDoForm('../layout/popTerreniElencoUnar.htm?idConduzione=$$idConduzione', 'unitaVitate', '800', '400', 'yes', 'UNITA VITATA');" 
+                        title="$$descTitleSchedario" class="$$classSchedario"></a>
+                  </td>
+                  <td id="tdBiologico" name="tdBiologico" class="$$color radio" rowspan="$$valoreRowspan">
+                    <a href="#"  onclick="alert('$$descBiologico')" onKeyPress="alert('$$descBiologico')" 
+                      title="$$descBiologico" class="$$classBiologico"></a>
+                  </td>
+                  <td id="tdNotifica" name="tdNotifica" class="$$color radio" rowspan="$$valoreRowspan">
+                    <a href="javascript: newWindowDoForm('../layout/popPresenzaNotificheParticelle.htm?idConduzione=$$idConduzione', 'notifiche', '1000','700','yes', 'NOTIFICHE');" 
+                       title="$$descNotifica" class="$$classNotifica"></a>
+                  </td>
+                  <td class="$$color" rowspan="$$valoreRowspan">$$descComuneParticella ($$siglaProvinciaParticella)</td>
+                  <td class="$$color" rowspan="$$valoreRowspan">$$sezione</td>
+                  <td class="$$color numeridx" rowspan="$$valoreRowspan">$$foglio</td>
+                  <td class="$$color numeridx" rowspan="$$valoreRowspan">$$particella</td>
+                  <td class="$$color" rowspan="$$valoreRowspan">$$subalterno</td>
+                  <td class="numeridx nascondibile_0" rowspan="$$valoreRowspan">$$supCatastale</td>
+                  <td class="numeridx nascondibile_1" rowspan="$$valoreRowspan"><acronym title="$$descTitoloPossesso">$$idTitoloPossesso</acronym></td>
+                  <td class="numeridx nascondibile_1" colspan="$$colspanSupCond" title="$$percentualePossessoDecimal"  rowspan="$$valoreRowspan">$$percentualePossesso</td>
+                  <td class="data nascondibile_2" rowspan="$$valoreRowspan">$$dataInizioConduzione</td>
+                  <td class="data nascondibile_3" rowspan="$$valoreRowspan">$$dataFineConduzione</td>
+                  <td id="tdSupGrafica" name="tdSupGrafica" class="numeridx" rowspan="$$valoreRowspan" title="$$tooltipDescElegFit" >$$superficieGrafica</td>
+                  <td id="tdSupElegg" name="tdSupElegg" class="numeridx nascondibile_4" rowspan="$$valoreRowspan">$$supEleggibile</td>
+                  <td id="tdSupEleggNetta" name="tdSupEleggNetta" class="numeridx nascondibile_5" rowspan="$$valoreRowspan">$$supEleggibileNetta</td>
+                  <td class="numeridx nascondibile_6" rowspan="$$valoreRowspan">$$supAgronomica</td>
+                  <td class="numeridx" rowspan="$$valoreRowspan">$$superficieUtilizzata</td>
+                  <td id="tdMacroUso" name="tdMacroUso" title="$$titleMacroUso" rowspan="$$valoreRowspan">$$codiceMacroUso</td>
+                  <td rowspan="$$valoreRowspan">$$descUsoPrimario</td>
+                  <td rowspan="$$valoreRowspan">$$descTipoDestinazionePrimario</td>
+                  <td rowspan="$$valoreRowspan">$$descTipoDettUsoPrimario</td>
+                  <td rowspan="$$valoreRowspan">$$descTipoQualitaUsoPrimario</td>
+                  <td rowspan="$$valoreRowspan">$$descVarietaPrimario</td>
+                  <td class="nascondibile_12" rowspan="$$valoreRowspan">$$descTipoSeminaPrimario</td>
+                  <td class="nascondibile_12" rowspan="$$valoreRowspan">$$descSeminaPrimario</td>
+                  <td class="nascondibile_12" rowspan="$$valoreRowspan">$$dataInizioSeminaPrimario</td>
+                  <td class="nascondibile_12" rowspan="$$valoreRowspan">$$dataFineSeminaPrimario</td>
+                  <td class="numeridx nascondibile_7" rowspan="$$valoreRowspan">$$superficieSecondariaUtilizzata</td>
+                  <td rowspan="$$valoreRowspan" class="nascondibile_7" >$$descUsoSecondario</td>
+                  <td rowspan="$$valoreRowspan" class="nascondibile_7" >$$descTipoDestinazioneSecondario</td>
+                  <td rowspan="$$valoreRowspan" class="nascondibile_7" >$$descTipoDettUsoSecondario</td>
+                  <td rowspan="$$valoreRowspan" class="nascondibile_7" >$$descTipoQualitaUsoSecondario</td>
+                  <td rowspan="$$valoreRowspan" class="nascondibile_7" >$$descVarietaSecondaria</td>
+                  <td class="nascondibile_13" rowspan="$$valoreRowspan">$$descTipoSeminaSecondario</td>
+                  <td class="nascondibile_13" rowspan="$$valoreRowspan">$$descSeminaSecondario</td>
+                  <td class="nascondibile_13" rowspan="$$valoreRowspan">$$dataInizioSeminaSecondario</td>
+                  <td class="nascondibile_13" rowspan="$$valoreRowspan">$$dataFineSeminaSecondario</td>
+                  <td class="nascondibile_14" rowspan="$$valoreRowspan">$$descMantenimento</td>
+                  <td class="nascondibile_15" rowspan="$$valoreRowspan">$$descAllevamento</td>
+                  <td id="tdCasoParticolare" name="tdCasoParticolare" class="numeridx nascondibile_8" rowspan="$$valoreRowspan">$$idCasoParticolare</td>
+                  <td rowspan="$$valoreRowspan" class="nascondibile_9" >$$descTipoEfa</td>
+                  <td class="numeridx nascondibile_9" rowspan="$$valoreRowspan">$$valoreOriginale</td>
+                  <td rowspan="$$valoreRowspan" class="nascondibile_9" >$$descUnitaMisura</td>
+                  <td class="numeridx nascondibile_9" rowspan="$$valoreRowspan">$$valoreDopoConversione</td>
+                  <td class="numeridx nascondibile_9" rowspan="$$valoreRowspan">$$valoreDopoPonderazione</td>
+                  <!-- @@blkAziendaAsservimentoSingle -->
+                  <td title="$$aziendeAsservite" class="nascondibile_10" >$$cuaaAss - $$denominazioneAss</td>
+                  <!-- @@blkAziendaAsservimentoSingle -->
+                  <!-- @@blkAziendaConferimentoSingle -->
+                  <td title="$$aziendeConferita" class="nascondibile_11" >$$cuaaConf - $$denominazioneConf</td>
+                  <!-- @@blkAziendaConferimentoSingle -->
+                </tr>
+                <!-- @@blkAziendaAsservimentoMultiple -->
+                <tr>
+                  <td title="$$aziendeAsservite" class="nascondibile_10" >$$cuaaAss - $$denominazioneAss</td>
+                </tr>
+                <!-- @@blkAziendaAsservimentoMultiple -->
+                <!-- @@blkAziendaConferimentoMultiple -->
+                <tr>
+                  <td title="$$aziendeConferita" class="nascondibile_11" >$$cuaaConf - $$denominazioneConf</td>
+                </tr>
+                <!-- @@blkAziendaConferimentoMultiple -->
+                <!-- @@blkElencoParticelle -->
+                <tr>
+                  <td id="totali1" name="totali1" colspan="13" class="tot">Totali</td>
+                  <td class="tot nascondibile_0">$$totSupCatastale</td>
+                  <th class="center nascondibile_1" scope="col" colspan="2">&nbsp;</th>
+                  <td class="tot nascondibile_2"></td>
+                  <td class="tot nascondibile_3"></td>
+                  <td id="totSupGrafica" name="totSupGrafica" class="tot">$$totSuperficieGrafica</td>
+                  <td id="totaleSupElegg" name="totaleSupElegg" class="tot nascondibile_4">&nbsp;</td>
+                  <td id="totaleSupEleggNetta" name="totaleSupEleggNetta" class="tot nascondibile_5">&nbsp;</td>
+                  <th class="tot nascondibile_6" scope="col">
+                    <span class="numeridx">$$totSupAgronomica</span>
+                  </th>
+                  <td class="tot">
+                    <span class="numeridx">$$totSupUtilizzata</span>
+                  </td>
+                  <td id="totaleMacroUso" name="totaleMacroUso" class="tot">&nbsp;</td>
+                  <td class="tot" colspan="5">&nbsp;</td>
+                  <td class="tot nascondibile_12" colspan="4">&nbsp;</td>
+                  <td class="tot nascondibile_7">
+                    <span class="numeridx">$$totSupUtilizzataSecondaria</span>
+                  </td>
+                  <td class="tot nascondibile_7" colspan="5">&nbsp;</td>
+                  <td class="tot nascondibile_13" colspan="4">&nbsp;</td>
+                  <td class="tot nascondibile_14" >&nbsp;</td>
+                  <td class="tot nascondibile_15" >&nbsp;</td>
+                  <td id="totaleCp" name="totaleCp" class="tot nascondibile_8"></td>
+                  <td class="tot nascondibile_9" colspan="5">&nbsp;</td>
+                  <td class="tot nascondibile_10"></td>
+                  <td class="tot nascondibile_11"></td>
+                </tr>
+              </table>
+            </div>
+            <div class="paginazione">
+              <span class="sx">$$numeroTotRecords risultati trovati</span>
+              <div class="dx">
+                <label for="numsub1">pagina</label>
+                <input type="text" name="paginaCorrenteDup" value="$$paginaCorrenteDup" maxlength="4" id="paginaCorrenteDup" onKeyUp="javascript:duplicaNumPagina('duplicato');" onKeyPress="javascript: simulateButtonViaByInvio(document, document.forms[0].vai, event);" />$$err_paginaCorrente di $$numeroTotale
+                <span class="vai">
+                  <input type="submit" name="vai" value="vai" class="vaiInput" />
+                </span>
+                <!--@@blkGruppoPagine-->
+                <a href="javascript:{go_page(document.forms[0].pagina,'$$nextPage', 'paginazione')}" title="$$descPagina">
+                <!--@@blkPaginaCorrente-->
+                  
+                <!--@@blkPaginaCorrente-->
+                <!--@@blkGruppoSuccessivo-->
+                    <u>
+                <!--@@blkGruppoSuccessivo-->
+                      $$pagina
+                <!--@@blkGruppoSuccessivo-->
+                    </u>
+                <!--@@blkGruppoSuccessivo-->
+                <!--@@blkPaginaCorrente-->
+                  
+                <!--@@blkPaginaCorrente-->
+                </a>
+                <span class="bugFix">&nbsp;|&nbsp;</span>
+                <!--@@blkGruppoPagine-->
+                <!--@@indietro-->
+                <a href="javascript:{go_page(document.forms[0].pagina,parseInt(document.forms[0].pagina.value)-1), 'paginazione'}" title="vai alla pagina precedente">&lt;&lt; prec</a>
+                <!--@@indietro-->
+                <!--@@avanti-->
+                <a href="javascript:{go_page(document.forms[0].pagina,parseInt(document.forms[0].pagina.value)+1), 'paginazione'}" title="vai alla pagina successiva">succ &gt;&gt;</a>
+                <span class="bugFix">&nbsp;|&nbsp;</span>
+                <!--@@avanti-->
+              </div>
+            </div>
+            <div class="pulsanti">
+              <div class="sin">
+                <input id="seleziona" name="seleziona" type="button" value="seleziona" onClick="javascript: selectAllKeys();" class="inputPulsante" />
+              </div>
+              <div class="des">
+                <input id="deseleziona" name="deseleziona" type="button" value="deseleziona" onClick="javascript: deselectAllKeys();" class="inputPulsante" />
+                <!-- @@blkBrogliaccio -->
+                <input id="scarica" name="scarica" type="button"
+                   value="Esporta dati"
+                   onclick="javascript: goTo('../layout/sceltaEsportaDatiTerreni.htm', document.forms[0]);"
+                   class="inputPulsante" />
+                <!-- @@blkBrogliaccio -->
+              </div>
+            </div>
+            <p id="nota">Tutte le superfici sono espresse in ettari (ha).</p>
+            <p class="legenda"><strong>Conduzione</strong>:
+            <!-- @@blkLegendaConduzione -->
+              $$idTitoloPossesso $$descTitoloPossesso
+            <!-- @@blkLegendaConduzione -->
+            </p>
+            <p class="legenda"><strong>Macro Uso</strong>:
+            <!-- @@blkLegendaMacroUso -->
+              $$codice $$descMacroUso
+            <!-- @@blkLegendaMacroUso -->
+            </p>
+            <p class="legenda"><strong>Casi particolari</strong>:
+            <!-- @@blkLegendaCasiParticolari -->
+              $$idCasoParticolare $$descCasoParticolare
+            <!-- @@blkLegendaCasiParticolari -->
+            </p>
+          <!-- @@blkParticelle -->
+          <!-- @@blkErrore -->
+            <p class="errore">$$messaggioErrore</p>
+          <!-- @@blkErrore -->
+          </div>
+        </div>
+      </form>
+      <hr/>
+    $$footer

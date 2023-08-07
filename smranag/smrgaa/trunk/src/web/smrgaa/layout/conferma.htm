@@ -1,0 +1,54 @@
+$$head
+<script src="../js/checktext.js" type="text/javascript"></script>
+</head>
+<body id="homeIndice">
+	<form id="form1" name="form1" method="post" action="$$action">
+		<div id="pagina" class="colonnaUnica">
+			<input type="hidden" id="$$nomeValore" name="$$nomeValore"
+				value="$$idValore" />
+			<!--@@blkHidden-->
+			<input type="hidden" name="$$name" value="$$value">
+			<!--@@blkHidden-->
+			<!-- INTESTAZIONE -->
+			<div id="intestazione##pathProvincia">
+				$$header
+				<!-- menu di navigazione-->
+				<div id="titoloEmenu">
+					<h2>
+						<span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+					</h2>
+				</div>
+			</div>
+			<hr />
+			<div style="clear: left"></div>
+			<!-- CORPO -->
+			<div id="corpo">
+				<hr />
+				<!-- PRIMA COLONNA -->
+				<div id="content">
+					<p class="errore">
+						Attenzione
+					</p>
+					<p>
+						$$messaggio
+					</p>
+                    
+                     <div class="pulsanti">
+					<div class="sin">
+						<input type="submit" value="conferma" name="conferma"
+							class="inputPulsante highlighted" />
+					</div>
+					<div class="des">
+						<input type="submit" value="annulla" name="annulla"
+							class="inputPulsante annulla" $$onclick />
+					</div>
+                    </div>
+                    
+                    
+				</div>
+				<!-- SECONDA COLONNA -->
+			</div>
+			<hr />
+	</form>
+	<!-- PIE' DI PAGINA -->
+	$$footer

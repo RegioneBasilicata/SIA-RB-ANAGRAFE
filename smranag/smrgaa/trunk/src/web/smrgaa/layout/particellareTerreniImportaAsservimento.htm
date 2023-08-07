@@ -1,0 +1,597 @@
+$$head
+
+<script src="../js/checktext.js" type="text/javascript"></script>
+<script type="text/javascript" src="../js/messaggistica.js"></script>
+<script type="text/javascript">
+    function setHiddenOperazione(form, operazione) {
+      form.operazione.value = operazione;
+      form.submit();
+    }
+    
+    function setHiddenOperazioneReturn(form, operazione) {
+      form.operazione.value = operazione;
+      form.action = '../layout/terreniImportaAsservimento.htm'
+      form.submit();
+    }
+    
+    function selezionaTutto() 
+    {
+      if(document.elenco.idParticella.length) 
+      {
+        for(var i = 0; i < document.elenco.idParticella.length; i++) 
+        {
+          document.elenco.idParticella[i].checked = true;
+        }
+      }
+      else 
+      {
+        document.elenco.idParticella.checked = true;
+      }
+    }
+
+    function deselezionaTutto() 
+    {
+      if(document.elenco.idParticella.length) 
+      {
+        for(var i = 0; i < document.elenco.idParticella.length; i++) 
+        {
+          document.elenco.idParticella[i].checked = false;
+        }
+      }
+      else 
+      {
+        document.elenco.idParticella.checked = false;
+      }
+    }
+  
+    function vaiAPagina(pagina)
+    {
+      document.elenco.paginaCorrente.value=pagina;
+      document.elenco.paginaCorrente2.value=pagina;
+      //document.paginazioneDown.paginaCorrente.value=pagina;
+      document.elenco.submit();
+    }
+    
+    function toggle(checked)
+    {
+      $elenco=document.elenco.idParticella;
+      if ($elenco==null)
+      {
+        return;
+      }
+      if ($elenco.length!=null)
+      {
+        for($i=0;$i<$elenco.length;++$i)
+        {
+          $elenco[$i].checked=checked;
+        }
+      }
+      else
+      {
+        $elenco.checked=checked;
+      }
+      return false;
+    }
+  </script>
+</head>
+<body id="homeIndice" onload="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+  <form id="elenco" name="elenco" method="post"
+    action="../layout/particellareTerreniImportaAsservimento.htm">
+    <input type="hidden" name="operazione" value="$$operazione" id="operazione" />
+    <input type="hidden" name="idTitoloPossesso" id="idTitoloPossesso" value="$$idTitoloPossesso"/>
+    <div id="pagina" class="colonnaUnica">
+      <!-- INTESTAZIONE -->
+      <div id="intestazione##pathProvincia">
+        <!--intestazione-->
+        $$header
+        <!-- menu di navigazione-->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li>
+                <a href="index.htm" title="Torna alla pagina principale">home</a>
+              </li>
+              <li class="attivo">
+                gestione anagrafe aziende
+              </li>
+              <li>
+                <a href="#" title="contatti">contatti</a>
+              </li>
+              <li>
+                <a href="#" title="help">help</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div style="clear: left"></div>
+      <!-- CORPO -->
+      <div id="corpo">
+        <div id="Utente">
+          <div id="datiUtente">
+            <strong>utente:</strong> $$utente &nbsp; &nbsp;
+            <strong>ente:</strong> $$ente
+          </div>
+          <div id="chiudisessione">
+            <a href="javascript: logout();">chiudi sessione</a>
+          </div>
+        </div>
+        <hr />
+        <!--PRIMA COLONNA -->
+        <h3>
+          Gestione Anagrafe
+          Aziende&nbsp;&gt;&nbsp;Terreni&nbsp;&gt;&nbsp;Importa
+          <span class="helpFuori"> <a href="#"> <span
+              class="alt">[help]</span> </a> </span>
+        </h3>
+        <hr />
+        <div class="box">
+          <div class="menuSX1">
+            <ul>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <li>
+                <a href="../layout/elencoAziendeRapLegale.htm">Elenco
+                  Aziende</a>
+              </li>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <!-- @@blkRicercaAzienda-->
+              <li>
+                <a href="../layout/ricerca.htm">Ricerche</a>
+              </li>
+              <!-- @@blkRicercaAzienda-->
+              <!-- @@blkNuova -->
+              <li>
+                <a href="../layout/nuovaAziendaAnagrafica.htm">Nuova
+                  Azienda</a>
+              </li>
+              <!-- @@blkNuova -->
+              <!-- @@blkNuovaIscrizione -->
+              <li>
+                <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+              </li>
+              <!-- @@blkNuovaIscrizione -->
+            </ul>
+          </div>
+          <div class="menuSX">
+            <ul>
+              <li>
+                <a href="../layout/anagrafica.htm">Anagrafica</a>
+              </li>
+              <!-- @@blkAziendeCollegate -->
+              <li>
+                <a href="../layout/aziendeCollegate.htm">$$aziendeCollegateLabel</a>
+              </li>
+              <!-- @@blkAziendeCollegate -->
+              <!-- @@blkSincronizzaFascicolo -->
+               <li>
+               	<a href="../layout/sincronizzaFascicolo.htm">Sincronizza fascicolo</a>
+               </li>
+              <!-- @@blkSincronizzaFascicolo -->
+              <!-- @@blkSoggettiCollegati -->
+              <li>
+                <a href="../layout/contitolari.htm">Soggetti
+                  collegati</a>
+              </li>
+              <!-- @@blkSoggettiCollegati -->
+              <!-- @@blkContiCorrenti -->
+              <li>
+                <a href="../layout/conti_correnti.htm">Conti
+                  Correnti</a>
+              </li>
+              <!-- @@blkContiCorrenti -->
+              <!-- @@blkUnitaProduttive -->
+              <li>
+                <a href="../layout/sedi.htm">Unit&agrave; produttive</a>
+              </li>
+              <!-- @@blkUnitaProduttive -->
+              <!-- @@blkTerreni -->
+              <li>
+                <!-- @@blkLinkElenco -->
+                <a href="../layout/terreniParticellareElenco.htm" class="on">Terreni</a>
+                <!-- @@blkLinkElenco -->
+                <!-- @@blkLinkRiepiloghi -->
+                  <a href="../layout/riepiloghi.htm" class="on" >Terreni</a>
+                  <!-- @@blkLinkRiepiloghi -->
+                <ul>
+                  <li>
+                    <a href="#" class="etichetta">importa</a>
+                  </li>
+                </ul>
+              </li>
+              <!-- @@blkTerreni -->
+              <!-- @@blkUnitaVitate -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniUnitaArboreeElenco.htm">Unit&agrave; Vitate</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		              <a href="../layout/riepiloghiUnitaArboree.htm">Unit&agrave; Vitate</a>
+		              <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkUnitaVitate -->
+              <!-- @@blkFabbricati -->
+              <li>
+                <a href="../layout/fabbricati.htm">Fabbricati e
+                  Strutture</a>
+              </li>
+              <!-- @@blkFabbricati -->
+              <!-- @@blkAllevamenti -->
+              <li>
+                <a href="../layout/allevamenti.htm">Allevamenti</a>
+              </li>
+              <!-- @@blkAllevamenti -->
+              <!-- @@blkManodopera -->
+              <li>
+                <a href="../layout/manodopera.htm">Manodopera</a>
+              </li>
+              <!-- @@blkManodopera -->
+              <!-- @@blkMotoriAgricoli -->
+              <li>
+                <a href="../layout/motori_agricoli_incarico.htm">Macchine agricole</a>
+              </li>
+              <!-- @@blkMotoriAgricoli -->
+              <!-- @@blkDiritti -->
+              <li>
+                <a href="../layout/diritti.htm">Diritti di
+                  produzione</a>
+              </li>
+              <!-- @@blkDiritti -->
+              <!-- @@blkAttestazioni -->
+              <li>
+                <a href="../layout/attestazioniDettaglio.htm">Dichiarazioni</a>
+              </li>
+              <!-- @@blkAttestazioni -->
+              <!-- @@blkDichiarazioniConsistenza -->
+              <li>
+                <a href="../layout/dichiarazioneConsistenza.htm">Validazioni</a>
+              </li>
+              <!-- @@blkDichiarazioniConsistenza -->
+              <!-- @@blkDocumenti -->
+              <li>
+                <a href="../layout/documentiElenco.htm">Documenti</a>
+              </li>
+              <!-- @@blkDocumenti -->
+              <!-- @@blkFascicoloDematerializzato -->
+              <li>
+                <a href="../layout/fascicoloDematerializzato.htm">Fascicolo<br>elettronico</a>
+              </li>
+              <!-- @@blkFascicoloDematerializzato -->
+              <!-- @@blkGestioneNotifiche -->
+              <li>
+                <a href="../layout/notifiche.htm">Notifiche</a>
+              </li>
+              <!-- @@blkGestioneNotifiche -->
+              <!-- @@blkComunicazione10R -->
+              <li>
+                <a href="../layout/comunicazione10R_dettaglio.htm">Comunicazione
+                  10/R</a>
+              </li>
+              <!-- @@blkComunicazione10R -->
+              <!-- @@blkPratiche -->
+              <li>
+                <a href="../layout/pratiche.htm">Pratiche</a>
+              </li>
+              <!-- @@blkPratiche -->
+              <!-- @@blkStampaFascicolo -->
+              <li>
+                <a href="../layout/scelta_stampa.htm">Stampe</a>
+              </li>
+              <!-- @@blkStampaFascicolo -->
+			  <li><a href="../layout/strumenti.htm">Strumenti</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr />
+        <!-- SECONDA COLONNA -->
+        <div id="contenuto">
+          <div id="intesta">
+            <p class="$$aziendaIntestazione" title="$$tooltipIntestazione" >
+              $$CUAAIntestazione  $$denominazioneIntestazione
+            </p>
+          </div>
+          <hr />
+          <table cellspacing="3" summary="Questa tabella è costituita da righe">
+            <tr>
+              <th colspan="2" scope="row">
+                  <label for="possesso">
+                    Titolo di possesso
+                  </label>
+                </th>
+                <td colspan="3">
+                $$descrizioneTitoloPossesso
+                </td>
+            </tr>
+          </table>
+          <table border="0" cellspacing="3"
+            summary="riepilogo delle particelle">
+            <tr>
+              <th scope="row" class="misuraG">
+                <label for="ordinamento">
+                  Tutte le particelle selezionate saranno associate
+                  all'unit&agrave; produttiva di :
+                </label>
+              </th>
+              <td>
+                <select id="idUte" name="idUte">
+                  <option></option>
+                  <!-- @@blkElencoUte -->
+                  <option value="$$codice" $$selected>
+                    $$descrizione
+                  </option>
+                  <!-- @@blkElencoUte -->
+                </select>
+                $$err_idUte
+              </td>
+              <td>
+                <div class="azioni">
+                  <a href="#"
+                    onclick="goToOperazione('../layout/particellareTerreniImportaAsservimento.htm', document.elenco, 'attenderePrego');"
+                    title="[Attenzione: questo link si apre in una nuova finestra]">importa</a>
+                </div>
+              </td>
+            </tr>
+          </table>
+
+          <!-- @@blkErrore -->
+          <p class="errore">
+            $$messaggioErrore
+          </p>
+          <!-- @@blkErrore -->
+
+          <!-- $$err_paginaCorrente -->
+          <!--@@blkElenco-->
+
+          <div class="pulsanti">
+
+            <div class="sin">
+              <input id="seleziona" name="seleziona" type="button"
+                value="seleziona" onclick="toggle(true)"
+                class="inputPulsante" />
+            </div>
+            <div class="des">
+              <input id="deseleziona" name="deseleziona" type="button"
+                value="deseleziona" onclick="toggle(false)"
+                class="inputPulsante" />
+
+            </div>
+          </div>
+          <div class="paginazione">
+            <span class="sx">$$totaleRighe risultati trovati</span>
+            <!-- form name="elenco" method="post" action="particellareTerreniImportaAsservimento.htm" -->
+
+
+            <div class="dx">
+              <label for="paginaCorrente">
+                pagina
+              </label>
+              <input type="text" name="paginaCorrente"
+                value="$$paginaCorrente" maxlength="4"
+                id="paginaCorrente"
+                onkeyup="document.elenco.paginaCorrente2.value=this.value" />
+              ##err_paginaCorrente di $$totalePagine
+              <span class="vai"> <input type="submit" name="vai"
+                  value="vai" class="vaiInput" /> </span>
+              <!--@@blkGruppoPrecedente-->
+              <span class="bugFix">&nbsp;|&nbsp;</span>
+              <a href="#" onclick="vaiAPagina($$value)" class="$$class"
+                title="$$tooltip"> $$text </a>
+              <!--@@blkGruppoPrecedente-->
+              <!--@@blkGruppoCorrente-->
+              <span class="evidenziato"> $$paginaCorrente </span>
+              <!--@@blkGruppoCorrente-->
+              <!--@@blkGruppoSuccessivo-->
+              <span class="bugFix">&nbsp;|&nbsp;</span>
+              <a href="#" onclick="vaiAPagina($$value)" class="$$class"
+                title="$$tooltip"> $$text </a>
+              <!--@@blkGruppoSuccessivo-->
+              <!--@@blkPaginaPrecedente-->
+              <span class="bugFix">&nbsp;|&nbsp;</span>
+              <a href="#" onclick="vaiAPagina($$pagina)"
+                title="vai alla pagina precedente">&lt;&lt; prec</a>
+              <span class="bugFix">&nbsp;|&nbsp;</span>
+              <!--@@blkPaginaPrecedente-->
+              <!--@@blkPaginaSuccessiva-->
+              <span class="bugFix">&nbsp;|&nbsp;</span>
+              <a href="#" onclick="vaiAPagina($$pagina)"
+                title="vai alla pagina successiva">succ &gt;&gt;</a>
+              <span class="bugFix">&nbsp;|&nbsp;</span>
+              <!--@@blkPaginaSuccessiva-->
+            </div>
+
+          </div>
+          <div class="scroll">
+
+            <input type="hidden" name="from"
+              value="../layout/particellareTerreniImportaAsservimento.htm" />
+            
+            <table cellspacing="3"
+              summary="Questa tabella contiene i dati del rapporto">
+
+              <tr>
+                <th rowspan="2" class="radio" scope="col">
+                  Sel.
+                </th>
+                <th rowspan="2" class="center" scope="col">
+                  Comune
+                </th>
+                <th rowspan="2" class="center" scope="col">
+                  Sz.
+                </th>
+                <th rowspan="2" class="center" scope="col">
+                  Fgl.
+                </th>
+                <th rowspan="2" class="center" scope="col">
+                  Part.
+                </th>
+                <th rowspan="2" class="center" scope="col">
+                  Sub.
+                </th>
+                <th rowspan="2" class="center" scope="col">
+                  <b>Sup. Catastale</b>
+                </th>
+                <th rowspan="2" class="center" scope="col">
+                  <b>Sup. Grafica</b>
+                </th>
+                <!-- @@blkConduzione -->
+                <th colspan="2" class="center" scope="col">
+                  Conduzione
+                </th>
+                <!-- @@blkConduzione -->
+              </tr>
+              <tr>
+                <!-- @@blkConduzione -->
+                <th class="center">
+                  &nbsp;
+                </th>
+                <th class="center">
+                  %
+                </th>
+                <!-- @@blkConduzione -->
+              </tr>
+              <!--@@blkRiga-->
+              <tr>
+                <td class="radio">
+                  <input type="checkbox" id="idParticella"
+                    name="idParticella" value="$$idParticella" $$checked />
+                  <input type="hidden" id="idElem" name="idElem"
+                    value="$$idParticella" />
+                </td>
+                <td>
+                  $$descComuneParticella ($$siglaProvinciaParticella)
+                </td>
+                <td class="data">
+                  $$sezione
+                </td>
+                <td class="data">
+                  $$foglio
+                </td>
+                <td class="data">
+                  $$particella
+                </td>
+                <td class="data">
+                  $$subalterno
+                </td>
+                <td class="numeridx">
+                  $$supCatastale
+                </td>
+                <td class="numeridx">
+                  $$superficieGrafica
+                </td>
+                <!-- @@blkRicercaParticelle -->
+                <td class="numeridx">
+                  $$idTitoloPossesso
+                </td>
+                <td class="data">
+                  $$percentualePossesso
+                </td>
+                <!-- @@blkRicercaParticelle -->
+              </tr>
+              <!--@@blkRiga-->
+              <tr>
+                <td colspan="6" class="tot">
+                  Totale
+                </td>
+                <td class="tot">
+                  $$totSupCat
+                </td>
+                <td class="tot">
+                  $$totSuperficieGrafica
+                </td>
+                <!-- @@blkConduzione -->
+                <td class="tot" colspan="2">
+                  &nbsp;
+                </td>
+                <!-- @@blkConduzione -->
+              </tr>
+            </table>
+
+            <div class="paginazione">
+              <span class="sx">$$totaleRighe risultati trovati</span>
+
+    
+              <div class="dx">
+                <label for="paginaCorrente">
+                  pagina
+                </label>
+                <input type="text" name="paginaCorrente2"
+                  value="$$paginaCorrente" maxlength="4"
+                  id="paginaCorrente2"
+                  onkeyup="document.elenco.paginaCorrente.value=this.value" />
+                ##err_paginaCorrente di $$totalePagine
+                <span class="vai"> <input type="submit"
+                    name="vai" value="vai" class="vaiInput" /> </span>
+                <!--@@blkGruppoPrecedente-->
+                <span class="bugFix">&nbsp;|&nbsp;</span>
+                <a href="#" onclick="vaiAPagina($$value)"
+                  class="$$class" title="$$tooltip"> $$text </a>
+                <!--@@blkGruppoPrecedente-->
+                <!--@@blkGruppoCorrente-->
+                <span class="evidenziato"> $$paginaCorrente </span>
+                <!--@@blkGruppoCorrente-->
+                <!--@@blkGruppoSuccessivo-->
+                <span class="bugFix">&nbsp;|&nbsp;</span>
+                <a href="#" onclick="vaiAPagina($$value)"
+                  class="$$class" title="$$tooltip"> $$text </a>
+                <!--@@blkGruppoSuccessivo-->
+                <!--@@blkPaginaPrecedente-->
+                <span class="bugFix">&nbsp;|&nbsp;</span>
+                <a href="#" onclick="vaiAPagina($$pagina)"
+                  title="vai alla pagina precedente">&lt;&lt; prec</a>
+                <span class="bugFix">&nbsp;|&nbsp;</span>
+                <!--@@blkPaginaPrecedente-->
+                <!--@@blkPaginaSuccessiva-->
+                <span class="bugFix">&nbsp;|&nbsp;</span>
+                <a href="#" onclick="vaiAPagina($$pagina)"
+                  title="vai alla pagina successiva">succ &gt;&gt;</a>
+                <span class="bugFix">&nbsp;|&nbsp;</span>
+                <!--@@blkPaginaSuccessiva-->
+              </div>
+
+
+            </div>
+          </div>
+          <div class="pulsanti">
+
+            <div class="sin">
+              <input id="seleziona1" name="seleziona" type="button"
+                value="seleziona" onclick="toggle(true)"
+                class="inputPulsante" />
+            </div>
+            <div class="des">
+              <input id="deseleziona1" name="deseleziona" type="button"
+                value="deseleziona" onclick="toggle(false)"
+                class="inputPulsante" />
+            </div>
+          </div>
+          <!--@@blkElenco-->
+
+          <div class="pulsanti">
+            <div class="des">
+              <input type="button" value="annulla" name="annulla"
+                class="inputPulsante"
+                onclick="javascript:goTo('../layout/terreniImportaAsservimento.htm',document.forms[0]);" />
+            </div>
+          </div>
+
+          <p id="nota">
+            Tutte le superfici sono espresse in ettari (ha)
+          </p>
+          <!-- @@blkLegenda -->
+          <p class="legenda"><strong>Conduzione</strong>:
+            <!-- @@blkLegConduzione -->
+             $$idTitoloPossessoLeg $$descTitoloPossesso
+            <!-- @@blkLegConduzione -->
+          </p>
+          <!-- @@blkLegenda -->
+
+
+        </div>
+      </div>
+  </form>
+  <hr />
+  <!-- PIE' DI PAGINA -->
+  $$footer

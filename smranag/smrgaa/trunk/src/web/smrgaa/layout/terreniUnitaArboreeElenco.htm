@@ -1,0 +1,1353 @@
+$$head
+<!--ex menu' flottante-->
+<script src="../js/checktext.js" type="text/javascript"></script>
+<script type="text/javascript" src="../js/messaggistica.js"></script>
+<script type="text/javascript">
+
+  // Metodo per aprire la pop-up di modifica ed effettuare su di essa il submit del form
+  function newWindowSubmitImporta(mypage, myname, w, h, scroll)
+  {
+    var winl = (screen.width - w) / 2;
+    var wint = (screen.height - h) / 2;
+    winprops =    'height='+h+',width='+w+',top='+wint+',left='+winl+',scrollbars='+scroll+',resizable';
+    win = window.open('', myname, winprops);
+    if (parseInt(navigator.appVersion) >= 4) win.window.focus();
+    var target1 = document.forms[0].target;
+    var action1 = document.forms[0].action;
+    document.forms[0].target = myname;
+    document.forms[0].action = mypage;
+    document.forms[0].submit();
+    document.forms[0].target = target1;
+    document.forms[0].action = action1;
+  }
+
+  function newWindowSubmitImportaDett(mypage, myname, w, h, scroll, radio)
+  {
+    var coll = radio;
+    var count = 0;
+    var indice = 0;
+    if(coll != null)
+    {
+      if(coll.length)
+      {
+        for(i=0; i < coll.length; i++)
+          if(coll[i].checked)
+          {
+            count++;
+            indice=i;
+          }
+        if(count > 1) alert("Selezionare una sola voce dall'elenco");
+        else
+          if(count == 0) alert("Selezionare una voce dall'elenco");
+          else newWindowSubmitImporta(mypage+"&idUnita="+coll[indice].value, myname, w, h, scroll);
+      }
+      else
+      {
+        if(coll.checked) count++;
+        if(count > 1) alert("Selezionare una sola voce dall'elenco");
+        else
+          if(count == 0) alert("Selezionare una voce dall'elenco");
+          else newWindowSubmitImporta(mypage+"&idUnita="+coll.value, myname, w, h, scroll);
+      }
+    }
+    else alert('Non esistono elementi su cui effettuare operazioni');
+  }
+
+
+  // Funzione js utilizzata nella gestione della paginazione
+  function go_page(pagina, value, operazione) 
+  {
+    pagina.value = value;
+    goToOperazione(document.forms[0].action, document.forms[0], operazione);
+  }
+
+  // Funzione che intercetta il pulsante invio e simula il click sul pulsante indicato come parametro
+  function simulateButtonViaByInvio(document, objectSubmit, event) 
+  {
+    var mozilla = document.getElementById && !document.all;
+    var ie = document.all;
+    if(mozilla) 
+    {
+      if(event.keyCode == 13) {
+        document.forms[0].operazioneDefault.value = 'operazioneDefault';
+        document.forms[0].submit();
+      }
+    }
+    else if(ie) 
+    {
+      if(event.keyCode == 13) {
+         objectSubmit.click();
+      }
+    }
+  }
+
+  // Funzione javascript che si occupa di far visualizzare o meno il pulsante "esegui controlli"
+  // e le informazioni ad esso relative
+  function visualizzaEseguiControlli() {
+    // Gestisco la sezione relativa al pulsante e al messaggio dell'esegui controlli
+    if(document.forms[0].idDichiarazioneConsistenza.value == 0 || document.forms[0].idDichiarazioneConsistenza.value == -1) 
+    {
+      document.getElementById("blkEseguiControlli").style.display= "";
+      document.getElementById("blkEseguiControlli1").style.display= "";
+      document.getElementById("blkNoEseguiControlli").style.display= "none";
+      document.getElementById("blkNoEseguiControlli1").style.display= "none";
+    }
+    else 
+    {
+      document.getElementById("blkEseguiControlli").style.display= "none";
+      document.getElementById("blkEseguiControlli1").style.display= "none";
+      document.getElementById("blkNoEseguiControlli").style.display= "";
+      document.getElementById("blkNoEseguiControlli1").style.display= "";
+    }
+  }
+
+  // Funzione js che si occupa di gestire la validazione delle UV alla
+  // dichiarazione di consistenza
+  function validaUV(action) 
+  {
+    if(document.forms[0].idDichiarazioneConsistenza.value == 0 || document.forms[0].idDichiarazioneConsistenza.value == -1) 
+    {
+      alert("Selezionare una dichiarazione di consistenza ed effettuare la ricerca");
+    }
+    else 
+    {
+      var coll = document.forms[0].idUnita;
+      var count = 0;
+      if(coll != null) 
+      {
+        if(coll.length) 
+        {
+          for(i = 0; i < coll.length; i++) 
+          {
+            if(coll[i].checked) {
+                      count++;
+            }
+          }
+          if(count == 0) {
+            alert("Selezionare una voce dall'elenco");
+          }
+          else {
+            document.forms[0].operazione.value = 'validaUv';
+            document.forms[0].action = action;
+            document.forms[0].submit();
+          }
+        }
+        else 
+        {
+          if(coll.checked) 
+          {
+            count++;
+          }
+          if(count == 0) {
+            alert("Selezionare una voce dall'elenco");
+          }
+          else {
+            document.forms[0].operazione.value = 'validaUv';
+            document.forms[0].action = action;
+            document.forms[0].submit();
+          }
+        }
+      }
+      else 
+      {
+        alert("Non sono state reperite UV da validare");
+      }
+    }
+  }
+  
+  
+  function CodeDescription(code, secondaryCode, description)
+  {
+    
+    this.code = code;
+    this.secondaryCode = secondaryCode;
+    this.description = description;
+  }
+  
+  
+  var varietaSel='$$varietaSel';
+  var varietaArray = new Array();
+  var varietaTmp;
+  
+  
+  
+  @@blkVarietaCombo
+    varietaTmp = new CodeDescription($$idVarieta, $$idUtilizzo, "$$descVarieta");
+    varietaArray[$$index] = varietaTmp;
+  @@blkVarietaCombo
+  
+  function onChangeUso()
+  {
+    var utilizzoCombo = document.form1.idTipoUtilizzoElenco;
+    var varietaCombo = document.form1.idVarieta;
+
+    if(utilizzoCombo.selectedIndex == 0)
+    {
+      varietaCombo.options.length = 0;
+      varietaCombo.options[0] = new Option("","");
+      return;
+    }
+
+    varietaCombo.options.length = 0;
+    varietaCombo.options[0] = new Option("","");
+    var effectiveCnt = 1;
+    for(idx=0; idx<varietaArray.length; idx++)
+    {
+      varieta = varietaArray[idx];
+
+      if(utilizzoCombo.value == varieta.secondaryCode)
+      {
+        varietaCombo.options[effectiveCnt] = new Option(varieta.description, varieta.code);
+        if(varietaSel == varieta.code)
+        {
+          varietaCombo.options[effectiveCnt].selected = true;
+        }
+        effectiveCnt++;
+      }
+    }
+    varietaSel='';
+  }
+  
+  
+  
+  var comuneSel='$$comuneSel';
+  var comuneArray = new Array();
+  var comuneTmp;
+  
+  
+  
+  @@blkComuneCombo
+    comuneTmp = new CodeDescription("$$istatComune", "$$istatProvincia", "$$descComune");
+    comuneArray[$$index] = comuneTmp;
+  @@blkComuneCombo
+  
+  function onChangeProvincia()
+  {
+    var provinciaCombo = document.form1.istatProvinciaConduzioniParticelle;
+    var comuneCombo = document.form1.istatComuniConduzioniParticelle;
+
+    if(provinciaCombo.selectedIndex == 0)
+    {
+      var effectiveCnt = 1;
+      for(idx=0; idx<comuneArray.length; idx++)
+      {
+        comune = comuneArray[idx];       
+        comuneCombo.options[effectiveCnt] = new Option(comune.description, comune.code);
+        if(comuneSel == comune.code)
+        {
+          comuneCombo.options[effectiveCnt].selected = true;
+        }
+        effectiveCnt++;
+        
+      }
+      return;
+      
+    }
+
+    comuneCombo.options.length = 0;
+    comuneCombo.options[0] = new Option("","");
+    var effectiveCnt = 1;
+    for(idx=0; idx<comuneArray.length; idx++)
+    {
+      comune = comuneArray[idx];
+
+      if(provinciaCombo.value == comune.secondaryCode)
+      {
+        comuneCombo.options[effectiveCnt] = new Option(comune.description, comune.code);
+        if(comuneSel == comune.code)
+        {
+          comuneCombo.options[effectiveCnt].selected = true;
+        }
+        effectiveCnt++;
+      }
+    }
+    comuneSel='';
+  }
+  
+  
+  function eliminaColonneAzienda()
+  {
+    if(document.forms[0].colonneLimitate.value !='')
+    {
+      document.getElementById('thImmagini').colSpan = "2";
+      
+      
+      show_hide_column('thMatricola',false);
+      show_hide_column('thSestoFila', false); 
+      show_hide_column('thSestoFile', false);
+      show_hide_column('thNumCeppi', false);  
+      show_hide_column('thFall', false);  
+      show_hide_column('thPercVitigno', false);  
+      show_hide_column('thAltriVitigni', false);  
+      show_hide_column('thCausMod', false);    
+          
+      show_hide_column('tdIstanzaRiesame', false);      
+      //show_hide_column('tdAnomalia', false); 
+      show_hide_column('tdStatoUv', false);
+      show_hide_column('tdNotifica', false);            
+      show_hide_column('tdMatricola', false);
+      show_hide_column('tdSestoFila', false); 
+      show_hide_column('tdSestoFile', false);
+      show_hide_column('tdNumCeppi', false);  
+      show_hide_column('tdFall', false);  
+      show_hide_column('tdPercVitigno', false);  
+      show_hide_column('tdAltriVitigni', false);  
+      show_hide_column('tdCausMod', false);     
+            
+      
+      document.getElementById('totali1').colSpan = "8";
+      
+      
+    }
+  
+  }
+  
+  function show_hide_column(nameColumn, do_show) 
+  {
+
+    var stl;
+    if (do_show) stl = ''
+    else         stl = 'none';
+
+    var columns  = document.getElementsByName(nameColumn);
+
+    for (var count=0; count<columns.length;count++) {
+      columns[count].style.display=stl;
+    }
+  }
+  
+  
+  //Notifiche  
+  var categoriaSel='$$categoriaSel';
+  var categoriaArray = new Array();
+  var categoriaTmp;
+  
+  
+  
+  @@blkCategoriaCombo
+    categoriaTmp = new CodeDescription($$idCategoriaNotifica, $$idTipologiaNotifica, "$$descCategoriaNotifica");
+    categoriaArray[$$index] = categoriaTmp;
+  @@blkCategoriaCombo
+  
+  
+  function onChangeTipologia()
+  {
+    var tipologiaCombo = document.form1.idTipologiaNotifica;
+    var categoriaCombo = document.form1.idCategoriaNotifica;
+
+    if(tipologiaCombo.selectedIndex == 0)
+    {
+      categoriaCombo.options.length = 0;
+      categoriaCombo.options[0] = new Option("","");
+      return;
+    }
+
+    categoriaCombo.options.length = 0;
+    categoriaCombo.options[0] = new Option("","");
+    var effectiveCnt = 1;
+    for(idx=0; idx<categoriaArray.length; idx++)
+    {
+      categoria = categoriaArray[idx];
+
+      if(tipologiaCombo.value == categoria.secondaryCode)
+      {
+        categoriaCombo.options[effectiveCnt] = new Option(categoria.description, categoria.code);
+        if(categoriaSel == categoria.code)
+        {
+          categoriaCombo.options[effectiveCnt].selected = true;
+        }
+        effectiveCnt++;
+      }
+    }
+    categoriaSel='';
+  }
+  
+  function disabledCheckedNotifica() 
+  {
+    if(document.forms[0].idTipologiaNotifica.value == 0) 
+    {
+      document.forms[0].notificaChiusa.disabled = true;
+    }
+    else 
+    {
+      document.forms[0].notificaChiusa.disabled = false;
+    }
+  }
+  
+  
+  
+
+</script>
+</head>
+<body id="homeIndice"
+  onload="javascript: visualizzaEseguiControlli();onChangeUso();onChangeProvincia();eliminaColonneAzienda();onChangeTipologia();disabledCheckedNotifica();$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+   
+      <div id="pagina" class="colonnaUnica">     
+      
+  <form id="form1" name="form1" method="post"
+    action="../layout/terreniUnitaArboreeElenco.htm">
+    <input type="hidden" name="operazione" value="$$operazione" />
+    <input type="hidden" name="abaco" value="abaco" id="abaco" />
+    <input type="hidden" name="pagina" value="$$pagina" />
+    <input type="hidden" name="numeroTotale" value="$$numeroTotale">
+    <input type="hidden" name="operazioneDefault" value="$$operazioneDefault" id="operazioneDefault" />
+    <input type="hidden" name="colonneLimitate" value="$$colonneLimitate" id="colonneLimitate" />
+   
+      
+        <div id="intestazione##pathProvincia">
+          <!--#include virtual="/ris/include/smrgaaweb/header.html" -->
+          <div id="titoloEmenu">
+            <h2>
+              <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+            </h2>
+            <div id="menuDiNavigazione" title="Menu di navigazione">
+              <ul class="menuTendina" id="menu-2">
+                <li>
+                  <a href="../layout/index.htm"
+                    title="Torna alla pagina principale">home</a>
+                </li>
+                <li class="attivo">
+                  gestione anagrafe aziende
+                </li>
+                <li>
+                  <a href="#" title="contatti">contatti</a>
+                </li>
+                <li>
+                  <a href="#" title="help">help</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <hr />
+        <div style="clear: left"></div>
+        <div id="corpo">
+          <div id="Utente">
+            <div id="datiUtente">
+              <strong>utente:</strong> $$utente &nbsp; &nbsp;
+              <strong>ente:</strong> $$ente
+            </div>
+            <div id="chiudisessione">
+              <a href="javascript:logout();">chiudi sessione</a>
+            </div>
+          </div>
+          <hr />
+          <!--PRIMA COLONNA -->
+          <h3>
+            Gestione Anagrafe
+            Aziende&nbsp;&gt;&nbsp;Unit&agrave;
+            vitate
+            <span class="helpFuori"> <a href="#"> <span
+                class="alt">[help]</span> </a> </span>
+          </h3>
+          <hr />
+          
+           <div class="box">
+      <div class="menuSX1">
+        <ul>
+          <!-- @@blkElencoAziendeRapLegale -->
+          <li>
+            <a href="../layout/elencoAziendeRapLegale.htm">Elenco
+              Aziende</a>
+          </li>
+          <!-- @@blkElencoAziendeRapLegale -->
+          <!-- @@blkRicercaAzienda-->
+          <li>
+            <a href="../layout/ricerca.htm">Ricerche</a>
+          </li>
+          <!-- @@blkRicercaAzienda-->
+          <!-- @@blkNuova -->
+          <li>
+            <a href="../layout/nuovaAziendaAnagrafica.htm">Nuova
+              Azienda</a>
+          </li>
+          <!-- @@blkNuova -->
+          <!-- @@blkNuovaIscrizione -->
+          <li>
+            <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+          </li>
+          <!-- @@blkNuovaIscrizione -->
+        </ul>
+      </div>
+      <div class="menuSX">
+        <ul>
+          <li>
+            <a href="../layout/anagrafica.htm">Anagrafica</a>
+          </li>
+          <!-- @@blkAziendeCollegate -->
+          <li>
+            <a href="../layout/aziendeCollegate.htm">$$aziendeCollegateLabel</a>
+          </li>
+          <!-- @@blkAziendeCollegate -->
+          <!-- @@blkSincronizzaFascicolo -->
+               <li>
+               	<a href="../layout/sincronizzaFascicolo.htm">Sincronizza fascicolo</a>
+               </li>
+          <!-- @@blkSincronizzaFascicolo -->
+          <!-- @@blkSoggettiCollegati -->
+          <li>
+            <a href="../layout/contitolari.htm">Soggetti collegati</a>
+          </li>
+          <!-- @@blkSoggettiCollegati -->
+          <!-- @@blkContiCorrenti -->
+          <li>
+            <a href="../layout/conti_correnti.htm">Conti
+              Correnti</a>
+          </li>
+          <!-- @@blkContiCorrenti -->
+          <!-- @@blkUnitaProduttive -->
+          <li>
+            <a href="../layout/sedi.htm">Unit&agrave; produttive</a>
+          </li>
+          <!-- @@blkUnitaProduttive -->
+          <!-- @@blkTerreni -->
+          <li>
+            <!-- @@blkLinkElenco -->
+            <a href="../layout/terreniParticellareElenco.htm">Terreni</a>
+            <!-- @@blkLinkElenco -->
+            <!-- @@blkLinkRiepiloghi -->
+            <a href="../layout/riepiloghi.htm">Terreni</a>
+            <!-- @@blkLinkRiepiloghi -->
+          </li>
+          <!-- @@blkTerreni -->
+          <!-- @@blkUnitaVitate -->
+          <li>
+            <!-- @@blkLinkElenco -->
+             <a href="../layout/terreniUnitaArboreeElenco.htm" class="on">Unit&agrave; Vitate</a>
+             <ul>
+               <li>
+                 <a href="../layout/riepiloghiUnitaArboree.htm">riepiloghi</a>
+               </li>
+             <!-- @@blkLinkElenco -->
+             <!-- @@blkLinkRiepiloghi -->
+             <a href="../layout/riepiloghiUnitaArboree.htm"
+               class="on">Unità Vitate</a>
+             <ul>
+               <li>
+                 <a href="../layout/terreniUnitaArboreeElenco.htm">elenco</a>
+               </li>
+             <!-- @@blkLinkRiepiloghi -->
+              <!-- @@blkUnitaArboreeDettaglio -->
+              <li>
+                <a
+                  href="javascript:submitForm('../layout/unitaArboreeDettaglio.htm', document.forms[0], document.forms[0].idUnita);">dettaglio</a>
+              </li>
+              <!-- @@blkUnitaArboreeDettaglio -->
+              <!-- @@blkModificaUnitaArboree -->
+              <li>
+                <a
+                  href="javascript:goTo('../layout/unitaArboreeModificaMultipla.htm', document.forms[0]);">modifica multipla</a>
+              </li>
+              <!-- @@blkModificaUnitaArboree -->
+              <!-- @@blkModificaUnitaArboree -->
+              <li>
+                <a
+                  href="javascript:goTo('../layout/unitaArboreeModifica.htm', document.forms[0]);">modifica</a>
+              </li>
+              <!-- @@blkModificaUnitaArboree -->
+              <!-- @@blkInserisciUnitaArboree -->
+              <li>
+                <a href="../layout/unitaArboreeInserisci.htm">inserisci</a>
+              </li>
+              <!-- @@blkInserisciUnitaArboree -->
+              <!-- @@blkDuplicaUnitaArboree -->
+              <li>
+                <a
+                  href="javascript:submitForm('../layout/unitaArboreeInserisci.htm', document.forms[0], document.forms[0].idUnita);">duplica</a>
+              </li>
+              <!-- @@blkDuplicaUnitaArboree -->
+              <!-- @@blkInserisciImportUnitaArboree -->
+              <li>
+                <a
+                  href="../layout/unitaArboreeInserisciFrazionate.htm">importa</a>
+              </li>
+              <!-- @@blkInserisciImportUnitaArboree -->
+              <!-- @@blkCessaUnitaArboree -->
+              <li>
+                <a
+                  href="javascript:goTo('../layout/unitaArboreeElimina.htm', document.forms[0]);">cessazione</a>
+              </li>
+              <!-- @@blkCessaUnitaArboree -->
+              <!-- @@blkAssociaPerUsoEleggUnitaArboree -->
+              <li>
+                <a
+                  href="javascript:goTo('../layout/unitaArboreeAssociaPercUsoElegg.htm', document.forms[0]);">associa % d'uso</a>
+              </li>
+              <li>
+                <a
+                  href="javascript:goTo('../layout/sceltaAllineaPercUsoElegg.htm', document.forms[0]);">allinea % d'uso</a>
+              </li>
+              <!-- @@blkAssociaPerUsoEleggUnitaArboree -->
+              <!-- @@blkValidaUnitaArboree -->
+              <li>
+                <a
+                  href="javascript:validaUV('../layout/unitaArboreeValida.htm');">valida</a>
+              </li>
+              <!-- @@blkValidaUnitaArboree -->
+              <!-- @@blkVisualizzaSchedario -->
+              <li>
+                <a
+                  href="javascript: newWindowSubmitImporta('../layout/popSchedarioViticolo.htm', 'SCHEDARIO', '1000','700','yes');">schedario</a>
+              </li>
+              <!-- @@blkVisualizzaSchedario -->
+              <!-- @@blkRibaltaUnitaArboree -->
+              <li>
+                <a
+                  href="javascript:goTo('../layout/sceltaAllineaUV.htm', document.forms[0]);">allinea
+                  piano colturale</a>
+              </li>
+              <!-- @@blkRibaltaUnitaArboree -->
+              <!-- @@blkUnitaArboreeDettaglioAlbo -->
+              <li>
+                <a
+                  href="javascript: newWindowSubmitImportaDett('../layout/popUnitaVitateDettaglioCCIAA.htm?operazione=attenderePrego', 'DETTAGLIOALBO', '1000','700','yes',document.forms[0].idUnita);">dettaglio
+                  albo</a>
+              </li>
+              <!-- @@blkUnitaArboreeDettaglioAlbo -->
+              <!-- @@blkCCIAAUnitaVitate -->
+              <li>
+                <a
+                  href="javascript: newWindowSubmitImporta('../layout/popUnitaVitateCCIAA.htm?operazione=attenderePrego', 'ALBOVIGNETI', '1000','700','yes');">albo
+                  vigneti</a>
+              </li>
+              <!-- @@blkCCIAAUnitaVitate -->
+              <!-- @@blkGisAziendale -->
+              <li><a href="javascript: NewWindow('../layout/abacoGis.htm', 'abaco', '1000','700','yes', 'GIS');">GIS</a></li>
+              <!-- @@blkGisAziendale -->
+              <!-- @@blkCatVitReg -->
+              <li>
+                <a
+                  href="javascript: newWindowDoForm('../layout/abacoCatVitReg.htm', 'abaco', '1000','700','yes', 'CATVITREG');">GIS
+                  viticolo</a>
+              </li>
+              <!-- @@blkCatVitReg -->
+              <!-- @@blkAbacoIsole -->
+                <li>
+                  <a href="javascript:goTo('../layout/terreniParticellareIsoleParcelle.htm?arrivoDa=unitaVitate',document.forms[0])">Isole - Parcelle</a>
+                </li>
+              <!-- @@blkAbacoIsole -->
+              <!-- @@blkAllineaGisUnitaArboree -->
+              <li>
+                <a
+                  href="../layout/unitaArboreeAllineaGIS.htm">allinea UV a GIS</a>
+              </li>
+              <!-- @@blkAllineaGisUnitaArboree -->
+              <!-- @@blkAllineaCompConsoUnitaArboree -->
+              <li>
+                <a href="../layout/unitaArboreeConsolida.htm">consolida</a>
+              </li>
+              <!-- @@blkAllineaCompConsoUnitaArboree -->
+            </ul>
+              
+          </li>
+          <!-- @@blkUnitaVitate -->
+          <!-- @@blkFabbricati -->
+            <li>
+              <a href="../layout/fabbricati.htm">Fabbricati e Strutture</a>
+            </li>
+          <!-- @@blkFabbricati -->
+          <!-- @@blkAllevamenti -->
+            <li>
+              <a href="../layout/allevamenti.htm">Allevamenti</a>
+            </li>
+          <!-- @@blkAllevamenti -->
+          <!-- @@blkManodopera -->
+            <li>
+              <a href="../layout/manodopera.htm">Manodopera</a>
+            </li>
+          <!-- @@blkManodopera -->
+          <!-- @@blkMotoriAgricoli -->
+            <li>
+              <a href="../layout/motori_agricoli_incarico.htm">Macchine agricole</a>
+            </li>
+          <!-- @@blkMotoriAgricoli -->
+          <!-- @@blkDiritti -->
+            <li><a href="../layout/diritti.htm">Diritti di produzione</a></li>
+          <!-- @@blkDiritti -->
+          <!-- @@blkAttestazioni -->
+            <li><a href="../layout/attestazioniDettaglio.htm">Dichiarazioni</a></li>
+          <!-- @@blkAttestazioni -->
+          <!-- @@blkDichiarazioniConsistenza -->
+            <li>
+              <a href="../layout/dichiarazioneConsistenza.htm">Validazioni</a>
+            </li>
+          <!-- @@blkDichiarazioniConsistenza -->
+          <!-- @@blkDocumenti -->
+          <li><a href="../layout/documentiElenco.htm">Documenti</a></li>
+          <!-- @@blkDocumenti -->
+          <!-- @@blkFascicoloDematerializzato -->
+          <li>
+            <a href="../layout/fascicoloDematerializzato.htm">Fascicolo<br>elettronico</a>
+          </li>
+          <!-- @@blkFascicoloDematerializzato -->
+          <!-- @@blkGestioneNotifiche -->
+            <li>
+              <a href="../layout/notifiche.htm">Notifiche</a>
+            </li>
+          <!-- @@blkGestioneNotifiche -->
+          <!-- @@blkComunicazione10R -->
+            <li>
+              <a href="../layout/comunicazione10R_dettaglio.htm">Comunicazione 10/R</a>
+            </li>
+          <!-- @@blkComunicazione10R -->
+          <!-- @@blkPratiche -->
+            <li><a href="../layout/pratiche.htm">Pratiche</a></li>
+          <!-- @@blkPratiche -->
+          <!-- @@blkStampaFascicolo -->
+            <li>
+              <a href="../layout/scelta_stampa.htm">Stampe</a>
+            </li>
+          <!-- @@blkStampaFascicolo -->
+		  <li><a href="../layout/strumenti.htm">Strumenti</a></li>
+        </ul>
+      </div>
+    </div>
+          
+          <div id="contenuto">
+            <div id="intesta">
+	            <p class="$$aziendaIntestazione" title="$$tooltipIntestazione" >
+	              $$CUAAIntestazione  $$denominazioneIntestazione
+	            </p>
+	          </div>
+            <!-- @@blkNotifica -->
+            <p class="$$immagine">
+              $$messaggioNotifica
+            </p>
+            <!-- @@blkINNotifica -->
+          <div class="notifica">$$notifica</div>
+          <!-- @@blkINNotifica -->
+            <!-- @@blkNotifica -->
+            <table cellspacing="3"
+              summary="Tabella contenente i filtri di ricerca">
+              <tr>
+                <th scope="row" colspan="1">
+                  <label for="piano">
+                    Piano di riferimento
+                  </label>
+                </th>
+                <td colspan="11">
+                  <select name="idDichiarazioneConsistenza"
+                    id="idDichiarazioneConsistenza"
+                    onchange="javascript: visualizzaEseguiControlli();">
+                    <!-- @@blkPianoRiferimento -->
+                    <option value="$$idDichiarazioneConsistenza" $$selected>
+                      $$descDichiarazioneConsistenza
+                    </option>
+                    <!-- @@blkPianoRiferimento -->
+                  </select>
+                  $$err_idDichiarazioneConsistenza
+                </td>
+              </tr>
+              <tr>
+                <th scope="row" >
+                  <label for="destprod">
+                    Destinazione produttiva
+                  </label>
+                </th>
+                <td colspan="3" >
+                  <select name="idTipoUtilizzoElenco" id="idTipoUtilizzoElenco"
+                    onchange="javascript: onChangeUso();">
+                    <option></option>
+                    <!-- @@blkTipiUsoSuolo -->
+                    <option value="$$idTipoUtilizzoElenco" $$selected>
+                      $$descrizione
+                    </option>
+                    <!-- @@blkTipiUsoSuolo -->
+                  </select>
+                  $$err_idTipoUtilizzoElenco
+                </td>
+                <th class="w10" >
+                  <label for="idVarieta">
+                    Vitigno
+                  </label>
+                </th>
+                <td colspan="7">
+                  <select name="idVarieta" id="idVarieta">
+                    <option value=""></option>
+                  </select>
+                  $$err_idVarieta
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <label for="idprovincia">
+                    Provincia
+                  </label>
+                </th>
+                <td>
+                  <select name="istatProvinciaConduzioniParticelle"
+                    id="istatProvinciaConduzioniParticelle" onChange="javascript: onChangeProvincia();" >
+                    <option></option>
+                    <!-- @@blkProvinciaConduzioniParticelle -->
+                    <option value="$$istatProvinciaConduzioniParticelle"
+                      $$selected>
+                      $$descrizione
+                    </option>
+                    <!-- @@blkProvinciaConduzioniParticelle -->
+                  </select>
+                  $$err_istatProvinciaConduzioniParticelle
+                </td>
+                <th scope="row">
+                  <label for="idcomune">
+                    Comune
+                  </label>
+                </th>
+                <td>
+                  <select name="istatComuniConduzioniParticelle"
+                    id="istatComuniConduzioniParticelle">
+                    <option value=""></option>
+                  </select>
+                  $$err_istatComuniConduzioniParticelle
+                </td>
+                <th class="w10" >
+                  <label for="sezione">
+                    <acronym title="Sezione">Sz.</acronym>
+                  </label>
+                </th>
+                <td>
+                  <input type="text" id="sezione" name="sezione"
+                    maxlength="1" value="$$sezione" class="textbreve" />
+                </td>
+                <th class="w10" >
+                  <label for="foglio">
+                    <acronym title="Foglio">Fgl.</acronym>
+                  </label>
+                </th>
+                <td>
+                  <input type="text" id="foglio" name="foglio"
+                    maxlength="4" value="$$foglio" class="textbreve" />
+                </td>
+                <th class="w10">
+                  <label for="particella">
+                    <acronym title="Particella">Part.</acronym>
+                  </label>
+                </th>
+                <td>
+                  <input type="text" id="particella" name="particella"
+                    maxlength="5" value="$$particella" class="textbreve" />
+                </td>
+                <th class="w10">
+                  <label for="sub">
+                    <acronym title="Subalterno">Sub.</acronym>
+                  </label>
+                </th>
+                <td>
+                  <input type="text" id="subalterno" name="subalterno"
+                    maxlength="3" value="$$subalterno" class="textbreve" />
+                </td>
+              </tr>
+              <tr>
+                <th scope="row" >
+                  <label for="destprod">
+                    Idoneità
+                  </label>
+                </th>
+                <td colspan="3">
+                  <select name="idTipologiaVino" id="idTipologiaVino">
+                    <!-- @@blkTipiTipologiaVino -->
+                    <option value="$$idTipologiaVino" $$selected>
+                      $$descrizione
+                    </option>
+                    <!-- @@blkTipiTipologiaVino -->
+                  </select>
+                  $$err_idTipologiaVino
+                </td>
+                <th colspan="2" >
+                  <label for="idGenereIscrizione">
+                    Genere idoneit&agrave;
+                  </label>
+                </th>
+                <td colspan="6">
+                  <select name="idGenereIscrizione" id="idGenereIscrizione">
+                    <option></option>
+                    <!-- @@blkTipoGenereIscrizione -->
+                    <option value="$$idGenereIscrizione" $$selected>
+                      $$descrizione
+                    </option>
+                    <!-- @@blkTipoGenereIscrizione -->
+                  </select>
+                  $$err_idGenereIscrizione
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <label for="Tipologia">Tipologia notifica</label>
+                </th>
+	              <td colspan="2">
+	                <select id="idTipologiaNotifica" name="idTipologiaNotifica"
+	                  onchange="javascript: onChangeTipologia();disabledCheckedNotifica();">
+	                  <option value=""></option>
+	                  <!-- @@blkTipologiaNotifica -->
+	                    <option value="$$idTipologiaNotifica" $$selected>$$descTipologiaNotifica</option>
+	                  <!-- @@blkTipologiaNotifica -->
+	                </select>
+	                $$err_idTipologiaNotifica
+	              </td>
+	              <th scope="row" >
+                  <label for="notifica">Categoria notifica</label>
+	              </th>
+	              <td  colspan="5">
+	                <select name="idCategoriaNotifica" id="idCategoriaNotifica">
+	                  <option value=""></option>
+	                </select>
+	                $$err_idCategoriaNotifica
+	              </td>
+	              <th colspan="3" >
+                  Notifiche chiuse <input name="notificaChiusa" id="notificaChiusa" type="checkbox"
+                    value="S" $$checkedNotificaChiusa />
+                </th>
+              </tr>
+              <tr>
+                <th scope="row" >
+                  <label for="destprod">
+                    Causale Modifica
+                  </label>
+                </th>
+                <td colspan="11">
+                  <select name="idCausaleModifica" id="idCausaleModifica">
+                    <option></option>
+                    <!-- @@blkTipoCausaleModifica -->
+                    <option value="$$idCausaleModifica" $$selected>
+                      $$descrizione
+                    </option>
+                    <!-- @@blkTipoCausaleModifica -->
+                  </select>
+                  $$err_idCausaleModifica
+                </td>
+              </tr>
+              <tr>
+                <th scope="row" >
+                  <label for="Controllo">Controllo</label>
+                </th>
+                <td colspan="11">
+                  <select name="idControllo" id="idControllo">
+                    <option></option>
+                    <!-- @@blkTipoControllo -->
+                    <option value="$$idControllo" $$selected>$$descrizione</option>
+                    <!-- @@blkTipoControllo -->
+                  </select>
+                  $$err_idControllo
+                </td>
+              </tr>
+              
+              <tr>
+                <th scope="row" >
+                  <acronym title="Tipo Segnalazione">T.S.</acronym>
+                </th>
+                <td colspan="3" >
+                  <input name="segnalazioneBloccante" type="checkbox"
+                    value="B" $$checkedBloccante />
+                  <img src="$$srcBloccante"
+                    alt="$$descImmagineBloccante" width="17" height="17"
+                    onclick="alert('$$descImmagineBloccante')"
+                    onkeypress="alert('$$descImmagineBloccante')" />
+                  <input name="segnalazioneWarning" type="checkbox"
+                    value="W" $$checkedWarning />
+                  <img src="$$srcWarning" alt="$$descImmagineWarning"
+                    width="17" height="17"
+                    onclick="alert('$$descImmagineWarning')"
+                    onkeypress="alert('$$descImmagineWarning')" />
+                  <input name="segnalazioneOk" type="checkbox" value="P"
+                    $$checkedOk />
+                  <img src="$$srcOk" alt="$$descImmagineOk" width="16"
+                    height="16" onClick="alert('$$descImmagineOk')"
+                    onkeypress="alert('$$descImmagineOk')" />
+                </td>
+                <th scope="row" colspan="5" id="blkEseguiControlli">
+                  $$dataEsecuzioneControlli
+                  $$err_dataEsecuzioneControlli
+                </th>
+                <td colspan="3" id="blkEseguiControlli1">
+                  <div class="azioni">
+                    <a
+                      href="javascript: goToOperazione(document.forms[0].action, document.forms[0], 'attenderePrego');">esegui
+                      controlli</a>
+                  </div>
+                </td>
+                <th scope="row" colspan="5" id="blkNoEseguiControlli">
+                  $$dataEsecuzioneControlliDichiarati
+                  $$err_dataEsecuzioneControlliDichiarati
+                </th>
+                <th scope="row" colspan="3" id="blkNoEseguiControlli1"></th>
+              </tr>
+            </table>
+            <div class="pulsanti"><div class="sin">
+              <input type="submit" name="ricerca" value="ricerca"
+                class="inputPulsante" />
+            </div></div>
+            <!-- @@blkDati -->
+            <div class="pulsanti">
+              <div class="sin">
+                <input id="seleziona" name="seleziona" type="button"
+                  value="seleziona"
+                  onclick="javascript: selectAll(document.forms[0].idUnita);"
+                  class="inputPulsante" />
+              </div>
+              <div class="des">
+                <input id="deseleziona" name="deseleziona" type="button"
+                  value="deseleziona"
+                  onclick="javascript: deselectAll(document.forms[0].idUnita);"
+                  class="inputPulsante" />
+                  
+                <!-- @@blkEsportaDatiUV -->
+                 <input id="scarica" name="scarica" type="button"
+                  value="esporta dati"
+                  onclick="javascript: goTo('../layout/sceltaEsportaDatiUV.htm', document.forms[0]);"
+                  class="inputPulsante" />
+                 <!-- @@blkEsportaDatiUV -->
+              </div>
+            </div>
+            <div class="paginazione">
+              <span class="sx">$$numeroTotRecords risultati
+                trovati</span>
+              <div class="dx">
+                <label for="numsub1">
+                  pagina
+                </label>
+                <input type="text" name="paginaCorrente"
+                  value="$$paginaCorrente" maxlength="4"
+                  id="paginaCorrente"
+                  onkeypress="javascript: simulateButtonViaByInvio(document, document.forms[0].vai, event);" />
+                $$err_paginaCorrente di $$numeroTotale
+                <span class="vai"> <input type="submit"
+                    name="vai" value="vai" class="vaiInput" /> </span>
+                <!--@@blkGruppoPagine-->
+                <a href="javascript:{go_page(document.forms[0].pagina,'$$nextPage', 'paginazione')}"
+                  title="$$descPagina"> 
+	                <!--@@blkPaginaCorrente--> 
+	                 
+		                <!--@@blkPaginaCorrente--> 
+		                <!--@@blkGruppoSuccessivo-->
+		                <u> 
+		                <!--@@blkGruppoSuccessivo--> 
+		                  $$pagina 
+		                <!--@@blkGruppoSuccessivo-->
+		                </u> 
+		                <!--@@blkGruppoSuccessivo--> 
+		                <!--@@blkPaginaCorrente-->
+	                 
+	                <!--@@blkPaginaCorrente--> 
+	              </a>
+                <span class="bugFix">&nbsp;|&nbsp;</span>
+                <!--@@blkGruppoPagine-->
+                <!--@@indietro-->
+                <a
+                  href="javascript:{go_page(document.forms[0].pagina,parseInt(document.forms[0].pagina.value)-1), 'paginazione'}"
+                  title="vai alla pagina precedente">&lt;&lt; prec</a>
+                <!--@@indietro-->
+                <!--@@avanti-->
+                <a
+                  href="javascript:{go_page(document.forms[0].pagina,parseInt(document.forms[0].pagina.value)+1), 'paginazione'}"
+                  title="vai alla pagina successiva">succ &gt;&gt;</a>
+                <span class="bugFix">&nbsp;|&nbsp;</span>
+                <!--@@avanti-->
+              </div>
+            </div>
+            <div class="scroll">
+              <table class="evidence"  cellspacing="3"
+                summary="Tabella contenente i risultati della ricerca delle unità arboree">
+                <tr>
+                  <th rowspan="2" class="radio" scope="col">&nbsp;
+                    
+                  </th>
+                  <th id="thImmagini" nome="thImmagini" rowspan="2" colspan="5" class="center" scope="col"></th>
+                  <th id="thMatricola" name="thMatricola" rowspan="2" class="center" scope="col">
+                    <acronym title="Matricola">Matr.</acronym>
+                  </th>
+                  <th rowspan="2" class="center" scope="col">
+                    <span class="TitOrd">Comune</span>
+                    <div class="ordina">
+                      <a
+                        href="javascript: goToOperazione(document.forms[0].action, document.forms[0], '$$tipoOrdinaComune');"
+                        class="$$ordinaComune"
+                        title="$$descOrdinaComune"> <span
+                        class="nascosto">descOrdinaComune</span> </a>
+                    </div>
+                  </th>
+                  <th rowspan="2" class="center" scope="col">
+                    <acronym title="Sezione">Sz.</acronym>
+                  </th>
+                  <th rowspan="2" class="center" scope="col">
+                    <acronym title="Foglio">Fgl.</acronym>
+                  </th>
+                  <th rowspan="2" class="center" scope="col">
+                    <acronym title="Particella">Part.</acronym>
+                  </th>
+                  <th rowspan="2" class="center" scope="col">
+                    <acronym title="Subalterno">Sub.</acronym>
+                  </th>
+                  <th rowspan="2" class="center" scope="col">
+                    <acronym title="Superficie Catastale">Sup.
+                      Cat.</acronym>
+                  </th>
+                  <th rowspan="2" class="center" scope="col">
+                    <acronym title="Percentuale possesso conduzione">% Cond.</acronym>
+                  </th>
+                  <th rowspan="2" class="center" scope="col">
+                    <acronym title="Superficie Grafica">Sup.<br />Grafica</acronym>
+                  </th>
+                  <th rowspan="2" class="center" scope="col">
+                    <acronym title="Superficie Eleggibile">Sup.<br />Eleg.</acronym>
+                  </th>
+                  <th rowspan="2" class="center" scope="col">
+                    <acronym title="percentuale uso Eleggibilit&agrave;">% uso<br/>Eleg.</acronym>
+                  </th>
+                  <th rowspan="2" class="center" scope="col">
+                    <acronym title="Superficie vitata">Sup.
+                      Vit.</acronym>
+                  </th>
+                  <!-- @@blkEtichettaDataFine -->
+                  <th rowspan="2" class="center" scope="col">
+                    Fine
+                    <acronym title="Validit&agrave;">Val.</acronym>
+                  </th>
+                  <!-- @@blkEtichettaDataFine -->
+                  <th rowspan="2" class="center" scope="col">
+                    <span class="TitOrd"><acronym
+                      title="Progressivo">Pgr.</acronym> </span>
+                    <div class="ordina">
+                      <a
+                        href="javascript: goToOperazione(document.forms[0].action, document.forms[0], '$$tipoOrdinaProgr');"
+                        class="$$ordinaProgr" title="$$descOrdinaProgr">
+                        <span class="nascosto">$$descOrdinaProgr</span>
+                      </a>
+                    </div>
+                  </th>
+                  <th rowspan="2" class="center" scope="col">
+                    Data
+                    <acronym title="Impianto">Imp.</acronym>
+                    <div class="ordina">
+                      <a
+                        href="javascript: goToOperazione(document.forms[0].action, document.forms[0], '$$tipoOrdinaDataImpianto');"
+                        class="$$ordinaDataImpianto" title="$$descDataImpianto">
+                        <span class="nascosto">$$descDataImpianto</span>
+                      </a>
+                    </div>
+                  </th>
+                  <th colspan="2" class="center" scope="col">
+                    Idoneità
+                  </th>
+                  <th rowspan="2" class="center" scope="col">
+                    <span class="TitOrd">Vitigno</span>
+                    <div class="ordina">
+                      <a
+                        href="javascript: goToOperazione(document.forms[0].action, document.forms[0], '$$tipoOrdinaVarieta');"
+                        class="$$ordinaVarieta"
+                        title="$$descOrdinaVarieta"> <span
+                        class="nascosto">$$descOrdinaVarieta</span> </a>
+                    </div>
+                  </th>
+                  <th id="thSestoFila"  name="thSestoFila" rowspan="2" class="center" scope="col">
+                    Sesto su fila
+                    <acronym title="centimetri">(cm)</acronym>
+                  </th>
+                  <th id="thSestoFile"  name="thSestoFile" rowspan="2" class="center" scope="col">
+                    Sesto tra file
+                    <acronym title="centimetri">(cm)</acronym>
+                  </th>
+                  <th id="thNumCeppi"  name="thNumCeppi" rowspan="2" class="center" scope="col">
+                    <acronym title="Numero">Num.</acronym>
+                    <br>
+                    ceppi
+                  </th>
+                  <th id="thFall"  name="thFall" rowspan="2" class="center" scope="col">
+                    <acronym title="Forma allevamento">F. all.</acronym>
+                  </th>
+                  <th id="thPercVitigno"  name="thPercVitigno" rowspan="2" class="center" scope="col">
+                    &#37;
+                    <acronym title="Vitigno">Vit.</acronym>
+                  </th>
+                  <th id="thAltriVitigni"  name="thAltriVitigni" rowspan="2" class="center" scope="col">
+                    Altri
+                    <acronym title="vitigni">vit.</acronym>
+                  </th>
+                  <th id="thCausMod"  name="thCausMod" rowspan="2" class="center" scope="col">
+                    <acronym title="Causale">Caus.</acronym><br>
+                    <acronym title="modifica">mod.</acronym>
+                  </th>
+                </tr>
+                <tr>
+                  <th class="center" scope="col">
+                    <span class="TitOrd">Tipologia
+                    </span>
+                    <div class="ordina">
+                      <a
+                        href="javascript: goToOperazione(document.forms[0].action, document.forms[0], '$$tipoOrdinaVino');"
+                        class="$$ordinaVino"
+                        title="$$descOrdinaVino"> <span
+                        class="nascosto">$$descOrdinaVino</span> </a>
+                    </div>
+                  </th>
+                  <th class="center" scope="col">
+                    <acronym title="Anno">Anno</acronym>
+                  </th>
+                </tr>
+                <!-- @@blkElencoUnitaArboree -->
+                <tr>
+                  <td class="$$color radio" scope="row">
+                    <input type="checkbox" name="idUnita"
+                      value="$$idUnita" $$checked />
+                  </td>
+                  <td class="radio">
+                	<a
+                  		href="javascript: newWindowDoForm('http://gis-wms-wfs-csw.hosting.int/siarbView/siarb/?project=A33BB0C8-68A3-9016-6884-866CAF99A49D&idConduzione=$$idConduzione', 'abaco', '1000','700','yes', 'GIS');"
+                  		title="$$controlliP" class="$$immaginiControlliP">
+                	</a>
+              	  </td>
+                  <td id="tdIstanzaRiesame" name="tdIstanzaRiesame" class="$$color radio" rowspan="$$valoreRowspan">
+                    <a href="javascript: newWindowDoForm('../layout/popIstanzaRiesame.htm?idStoricoParticella=$$idStoricoParticella', 'istanzariesame', '1000','700','yes', 'ISTANZARIESAME');" 
+                       title="$$descTitleIstanzaRiesame" class="$$immaginiIstanzaRiesame"></a>
+                  </td>
+                  <td id="tdAnomalia" name="tdAnomalia" class="$$color radio">
+                    <a
+                      href="javascript: newWindowDoForm('../layout/popAnomalieUnar.htm?idStoricoUnitaArborea=$$idStoricoUnitaArborea', 'anomalie', '800', '400', 'yes', 'ANOMALIE');"
+                      title="$$descTitleAnomalia"
+                      class="$$classImmagine"></a>
+                  </td>
+                  <td id="tdStatoUv" name="tdStatoUv" class="$$color radio">
+                    <a title="$$descTitleStatoUnitaArborea"
+                      class="$$classStatoUnitaArborea"></a>
+                  </td>
+                  <td id="tdNotifica" name="tdNotifica" class="$$color radio">
+                    <a
+                      href="javascript: newWindowDoForm('../layout/popPresenzaNotificheUv.htm?idStoricoUnitaArborea=$$idStoricoUnitaArborea', 'notifiche', '800', '400', 'yes', 'NOTIFICHE');"
+                      title="$$descNotifica"
+                      class="$$classNotifica"></a>
+                  </td>
+                  <td id="tdMatricola" name="tdMatricola" class="$$color">
+                    $$matricolaCCIAA
+                  </td>
+                  <td class="$$color">
+                    $$descComuneParticella ($$siglaProvinciaParticella)
+                  </td>
+                  <td class="$$color">
+                    $$sezione
+                  </td>
+                  <td class="$$color numeridx">
+                    $$foglio
+                  </td>
+                  <td class="$$color numeridx">
+                    $$particella
+                  </td>
+                  <td class="$$color">
+                    $$subalterno
+                  </td>
+                  <td class="numeridx">
+                    $$supCatastale
+                  </td>
+                  <td class="center" title="$$percentualePossessoDecimal" >
+                    $$percentualePossesso
+                  </td>
+                  <td class="numeridx">
+                    $$superficieGrafica
+                  </td>
+                  <td class="numeridx" >
+                    $$supEleggibile
+                  </td>
+                  <td class="center"title="$$percUsoEleggDecimal" >
+                    $$percUsoElegg
+                  </td>
+                  <td class="numeridx">
+                    $$area
+                  </td>
+                  <!-- @@blkDataFine -->
+                  <td class="data">
+                    $$dataFineValidita
+                  </td>
+                  <!-- @@blkDataFine -->
+                  <td class="center">
+                    $$progrUnar
+                  </td>
+                  <td class="numeridx">
+                    $$dataImpianto
+                  </td>
+                  <td>
+                    $$tipologiaVino
+                  </td>
+                  <td class="numeridx">
+                    $$annoIscrizioneAlbo
+                  </td>
+                  <td>
+                    $$varieta
+                  </td>
+                  <td id="tdSestoFila" name="tdSestoFila"  class="numeridx">
+                    $$sestoSuFila
+                  </td>
+                  <td id="tdSestoFile" name="tdSestoFile" class="numeridx">
+                    $$sestoTraFile
+                  </td>
+                  <td id="tdNumCeppi" name="tdNumCeppi" class="numeridx">
+                    $$numeroCeppi
+                  </td>
+                  <td id="tdFall" name="tdFall" >
+                    $$descFormaAllevamento
+                  </td>
+                  <td id="tdPercVitigno" name="tdPercVitigno" class="numeridx">
+                    $$percentualeVarieta
+                  </td>
+                  <td id="tdAltriVitigni" name="tdAltriVitigni" >
+                    $$altriVitigni
+                  </td>
+                  <td id="tdCausMod" name="tdCausMod" class="center" >
+                    $$idCausaleModifica
+                  </td>
+                </tr>
+                <!-- @@blkElencoUnitaArboree -->
+                <tr>
+                  <td id="totali1" name="totali1" colspan="12" class="tot">
+                    Totali
+                  </td>
+                  <td class="tot">
+                    $$totSupCatastale
+                  </td>
+                  <td class="tot" colspan="4">&nbsp;
+                    
+                  </td>
+                  <td class="tot">
+                    <span class="numeridx">$$totArea</span>
+                  </td>
+                  <td class="tot" colspan="$$lastTotColspan">&nbsp;
+                    
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div class="pulsanti">
+              <div class="sin">
+                <input id="seleziona" name="seleziona" type="button"
+                  value="seleziona"
+                  onclick="javascript: selectAll(document.forms[0].idUnita);"
+                  class="inputPulsante" />
+              </div>
+              <div class="des">
+                <input id="deseleziona" name="deseleziona" type="button"
+                  value="deseleziona"
+                  onclick="javascript: deselectAll(document.forms[0].idUnita);"
+                  class="inputPulsante" />
+                <!-- @@blkEsportaDatiUV -->
+                  <input id="scarica" name="scarica" type="button"
+                    value="esporta dati"
+                    onclick="javascript: goTo('../layout/sceltaEsportaDatiUV.htm', document.forms[0]);"
+                    class="inputPulsante" />
+                 <!-- @@blkEsportaDatiUV -->
+              </div>
+            </div>
+            <p id="nota">
+              Tutte le superfici sono espresse in ettari (ha).
+            </p>
+            <p class="legenda"><strong>Causale Modifica</strong>:
+            <!-- @@blkLegendaCausMod -->
+              $$idCausaleModifica $$descCausMod
+            <!-- @@blkLegendaCausMod -->
+            </p>
+            <!-- @@blkDati -->
+            <!-- @@blkErrore -->
+            <p class="errore">
+              $$messaggioErrore
+            </p>
+            <!-- @@blkErrore -->
+          </div>
+        </div>
+  </form>
+  <hr />
+  $$footer

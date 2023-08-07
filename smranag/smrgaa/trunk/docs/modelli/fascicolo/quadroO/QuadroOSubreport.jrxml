@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 4.1.3  -->
+<!-- 2016-09-27T13:46:30 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="QuadroOSubreport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<parameter name="fascicoloDS" class="java.util.List"/>
+	<parameter name="DocumentiSubReport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="quadroDocumenti" class="it.csi.smranag.smrgaa.dto.jaxb.fascicolo.QuadroDocumenti"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="53">
+			<rectangle radius="10">
+				<reportElement x="0" y="0" width="555" height="50" forecolor="#000000" backcolor="#99CCFF"/>
+				<graphicElement>
+					<pen lineColor="#44C2FC"/>
+				</graphicElement>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToTallestObject" x="9" y="0" width="534" height="19"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{quadroDocumenti}.getTitoloDocumenti()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="231" splitType="Stretch">
+			<subreport>
+				<reportElement x="9" y="7" width="535" height="200">
+					<printWhenExpression><![CDATA[$F{quadroDocumenti}.getDocumenti() != null &&
+$F{quadroDocumenti}.getDocumenti().getDocumento() != null]]></printWhenExpression>
+				</reportElement>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{quadroDocumenti}.getDocumenti().getDocumento(),false)]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{DocumentiSubReport}]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>

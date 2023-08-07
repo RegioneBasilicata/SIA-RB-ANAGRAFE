@@ -1,0 +1,116 @@
+#contenuto table th.OLAPTableRowTitleHeader, #contenuto table th.OLAPTableRowHeader, #contenuto table th.OLAPTableColumnMeasureHeader {width:auto;display:block;text-align:right; white-space:normal;}
+#contenuto table th.OLAPTableColumnMeasureHeader {width:10%;}
+#contenuto table th.OLAPTableColumnMeasureHeader span span span {display:block;}
+
+#contenuto table th.OLAPTableColumnHeader {width:auto;display:block;text-align:right; white-space:normal;}
+
+#contenuto table th.OLAPTableColumnHeader {width:10%;}
+
+#contenutopopImg {
+position:relative;
+	background:#fff;
+	margin:0;
+	padding:0;
+}
+#contenutopopImg p {
+text-align:left;
+position:relative;
+	margin:0 6px;
+	padding: 6px 0;
+}
+#contenutopopImg ul {
+text-align:left;
+position:relative;
+	margin:0;
+	padding:0 0 0 15px;
+}
+#contenutopopImg ul li{
+list-style-type:square;
+}
+#contenutopopImg h3{
+text-align:left;
+}
+#contenutopopImg {
+	background	: #fff;
+	width:100%;
+}
+#contenutopopImg #crema {
+background:#F7F2E1;
+	margin: 6px 0 6px 0;
+	padding:0 0 0 6px;
+text-align:left;
+}
+#contenutopopImg #crema strong{
+color:#B38900;
+}
+#box{
+margin:0 6px 6px 6px; 
+}
+#contenutopopImg table {
+ font-size:0.95em;
+	margin: 0 0 6px 0;
+	width:100%;
+	border:1px solid #ccc;
+	padding:0;
+}
+#contenutopopImg table.Prima{
+ font-size:0.95em;
+	margin: 0 0 6px 0;
+	width:100%;
+	border:1px solid #ccc;
+	padding:0;
+	background:#FFD79A;
+	position:relative;
+}
+#contenutopopImg table th{
+color:#666666;
+}
+.center{
+text-align:center;
+}
+#contenutopopImg table.Due{
+ font-size:0.95em;
+	margin: 6px 0 6px 0;
+	width:100%;
+	border:1px solid #ccc;
+	padding:0;
+	background:#EAD6A6;
+	position:relative;
+}
+#contenutopopImg table caption {
+	margin:0 0 0 0;
+	color:#660000;
+	padding:0 0 0 6px;
+	line-height: 16px;
+	height:16px;
+	text-align: left;
+	font-weight:bold;
+	border:1px solid #ccc;
+	border-bottom:0;
+	background-color:#ccc;
+}
+
+div.scelVar {
+margin-top:3px;
+font-size:.9em;
+}
+
+div.scelVar a, div.scelVar a:visited{
+
+border-top:1px solid #CCCCCC ;
+border-left:1px solid #CCCCCC;
+border-bottom:1px solid #333333;
+border-right:1px solid #333333;
+background: #B38900;
+color:#fff;
+padding-left:3px;
+padding-right:3px;
+}
+
+div.scelVar a:hover, div.scelVar a:actived {
+background: #333333;
+color:#fff;
+padding-left:3px;
+padding-right:3px;
+}
+#contenutopop select {font-size: .95em;}

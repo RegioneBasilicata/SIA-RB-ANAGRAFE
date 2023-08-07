@@ -1,0 +1,297 @@
+$$head
+
+<script type="text/javascript" src="../js/checktext.js"></script>
+<script  type="text/javascript" src="../js/messaggistica.js"></script>
+<script type="text/javascript">
+	function scegliComune(mypage, myname, w, h, scroll, provincia, comune) {
+		NewWindowComuneAnag(mypage, myname, w, h, scroll, provincia, comune, '');
+	}
+
+	function ricerca(evt) {
+		var charCode = (evt.which) ? evt.which : window.event.keyCode;
+
+		if (charCode == 13)
+			document.getElementById("ricercaAvanzata").focus();
+	}
+
+	function NewWindowComuneAnag(mypage, myname, w, h, scroll, provincia,
+			comune, obiettivo) {
+		var winl = (screen.width - w) / 2;
+		var wint = (screen.height - h) / 2;
+		if (provincia == '' && comune == '') {
+			alert('Inserire una provincia o un comune!');
+		} else if (!mappaOggetti(comune) || !mappaOggetti(obiettivo)) {
+		} else {
+			winprops = 'height=' + h + ',width=' + w + ',top=' + wint
+					+ ',left=' + winl + ',scrollbars=' + scroll + ',resizable';
+			win = window.open(mypage + '?obiettivo=' + obiettivo
+					+ '&provincia=' + provincia + '&comune=' + comune, myname,
+					winprops);
+			if (parseInt(navigator.appVersion) >= 4) {
+				win.window.focus();
+			}
+		}
+	}
+
+	function newWindowStatoAzienda(mypage, myname, w, h, scroll, stato) {
+		var winl = (screen.width - w) / 2;
+		var wint = (screen.height - h) / 2;
+
+		if (!mappaOggetti(stato)) {
+		} else {
+			winprops = 'height=' + h + ',width=' + w + ',top=' + wint
+					+ ',left=' + winl + ',scrollbars=' + scroll + ',resizable';
+			win = window.open('', myname, winprops);
+			if (parseInt(navigator.appVersion) >= 4) {
+				win.window.focus();
+			}
+			document.form1.stato.value = stato;
+			var target1 = document.form1.target;
+			var action1 = document.form1.action;
+			document.form1.target = myname;
+			document.form1.action = mypage;
+			document.form1.submit();
+			document.form1.target = target1;
+			document.form1.action = action1;
+		}
+	}
+
+	function ricaricaCombo() {
+		document.form1.submit();
+	}
+</script>
+</head>
+<body id="homeIndice" onload="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+	<form action="../layout/ricerca.htm" method="post" name="form1"
+		id="form1">
+		<div id="pagina" class="colonnaUnica">
+			<!-- INTESTAZIONE -->
+			<div id="intestazione##pathProvincia">
+				$$header
+				<!-- menu di navigazione-->
+				<div id="titoloEmenu">
+					<h2>
+						<span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+					</h2>
+					<div id="menuDiNavigazione" title="Menu di navigazione">
+						<ul class="menuTendina" id="menu-2">
+							<li><a href="../layout/index.htm"
+								title="Torna alla pagina principale">home</a></li>
+							<li class="attivo">gestione anagrafe aziende</li>
+							<li><a href="#" title="contatti">contatti</a></li>
+							<li><a href="#" title="help">help</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<hr />
+			<div style="clear: left"></div>
+			<!-- CORPO -->
+			<div id="corpo">
+				<div id="Utente">
+					<div id="datiUtente">
+						<strong>utente: </strong> $$utente &nbsp; &nbsp; <strong>ente:
+						</strong> $$ente
+					</div>
+					<div id="chiudisessione">
+						<a href="javascript: logout();">chiudi sessione</a>
+					</div>
+				</div>
+				<hr />
+				<!--PRIMA COLONNA -->
+				<h3>
+					Ricerca azienda <span class="helpFuori"> <a href="#"> <span
+							class="alt"> [help]</span>
+					</a>
+					</span>
+				</h3>
+				<hr />
+				<div class="box">
+					<div class="menuSX1">
+						<ul>
+							<!-- @@blkElencoAziendeRapLegale -->
+							<li><a href="../layout/elencoAziendeRapLegale.htm">Elenco
+									Aziende</a></li>
+							<!-- @@blkElencoAziendeRapLegale -->
+							<!-- @@blkRicercaAzienda-->
+							<li><a href="../layout/ricerca.htm">Ricerca Azienda</a></li>
+							<!-- @@blkRicercaAzienda-->
+							<!--@@blkRicercaTerreno-->
+							<li><a href="../layout/ricercaTerreno.htm">Ricerca
+									Terreno</a></li>
+							<!--@@blkRicercaTerreno-->
+							<!--@@blkRicercaPersona-->
+							<li><a href="../layout/ricercaPersona.htm">Ricerca
+									Persona</a></li>
+							<!--@@blkRicercaPersona-->
+							<!--@@blkRicercaNotifica-->
+							<li><a href="../layout/ricercaNotifica.htm">Ricerca
+									Notifiche</a></li>
+							<!--@@blkRicercaNotifica-->
+							<!--@@blkVariazioniAzienda-->
+							<li><a href="../layout/ricercaVariazioni.htm">Ricerca
+									Variazioni</a></li>
+							<!--@@blkVariazioniAzienda-->
+							<!--@@blkRicercaRichiesta-->
+              <li><a href="../layout/ricercaRichiesta.htm">Ricerca 
+                  richiesta azienda</a></li>
+              <!--@@blkRicercaRichiesta-->
+							<!--@@blkNuova-->
+							<li><a href="../layout/nuovaAziendaAnagrafica.htm">Nuova
+									Azienda</a></li>
+							<!--@@blkNuova-->
+							<!-- @@blkNuovaIscrizione -->
+              <li>
+                <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+              </li>
+              <!-- @@blkNuovaIscrizione -->
+							<!--@@blkNuovaParticella-->
+							<li><a href="../layout/inserisciTerreno.htm">Nuova
+									Particella</a></li>
+							<!--@@blkNuovaParticella-->
+							<!--@@blkServizi-->
+							<li><a href="../layout/servizi.htm">Servizi</a></li>
+							<!--@@blkServizi-->
+							<!--@@blkReportistica-->
+							<li><a href="../layout/elencoRicerche.htm">Reportistica</a>
+							</li>
+							<!--@@blkReportistica-->
+							<!--@@blkEstrazioneDati-->
+							<li><a href="../layout/macroCategoriaReport.htm">Estrazione
+									dati</a></li>
+							<!--@@blkEstrazioneDati-->
+							<li><a href="../layout/elencoManuali.htm">Scarico
+									Documentazione Tecnica</a></li>
+						</ul>
+					</div>
+				</div>
+				<hr />
+				<!-- SECONDA COLONNA -->
+				<div id="contenuto">
+					<table cellspacing="3"
+						summary="Questa tabella è costituita da righe" class="detailTable">
+						<caption>Ricerca puntuale:</caption>
+						<tr>
+							<th><label for="CUAA">CUAA (codice fiscale)</label></th>
+							<td colspan="2"><input type="text" name="CUAA" id="CUAA"
+								class="textmediolungo" value="$$CUAA" maxlength="16" />
+								$$err_CUAA</td>
+						</tr>
+						<tr>
+							<th><label for="partitaIVA">Partita Iva</label></th>
+							<td colspan="2"><input type="text" name="partitaIVA"
+								id="partitaIVA" class="textmediolungo" value="$$partitaIVA"
+								maxlength="11" /> $$err_partitaIVA <input type="hidden"
+								id="dataPuntuale" name="dataPuntuale" value="$$dataPuntuale" />
+							</td>
+						</tr>
+					</table>
+					<div class="pulsanti"><div class="sin">
+						<label for="ricercaPuntuale" class="alt">ricerca</label> <input
+							type="submit" name="ricercaPuntuale" id="ricercaPuntuale"
+							value="ricerca" alt="ricerca puntuale" class="inputPulsante" />
+						$$exc
+					</div></div>
+					<table cellspacing="3"
+						summary="Questa tabella è costituita da righe" class="detailTable">
+						<caption>Ricerca avanzata:</caption>
+						<col width="40%" />
+						<col width="60%" />
+						<tr>
+							<th><label for="denominazione">Denominazione</label></th>
+							<td colspan="2"><input type="text" id="denominazione"
+								name="denominazione" class="text" value="$$denominazione"
+								onkeydown="ricerca(event)" /> $$err_denominazione <br />(usare
+								% come carattere jolly: vedere esempi a fondo pagina)</td>
+						</tr>
+						<tr>
+							<th><label for="provincia">Provincia</label></th>
+							<td colspan="2"><input type="text" id="provincia"
+								name="provincia" class="due" maxlength="2" value="$$sedelegProv"
+								onkeydown="ricerca(event)" /> $$err_sedelegProv</td>
+						</tr>
+						<tr>
+							<th><label for="comune">Comune</label></th>
+							<td><input type="text" id="comune" name="comune"
+								class="text" value="$$descComune" onkeydown="ricerca(event)" />
+                                
+                                 <div class="azioni line">
+									<a
+										href="javascript: scegliComune('../view/sceltaComuneView.jsp','scegli_comune','600','300','yes',document.form1.provincia.value,document.form1.comune.value);"
+										class="pulsante">cerca</a>
+								</div> $$err_descComune <input type="hidden" name="istatComune"
+								value="$$istatComune" /> <input type="hidden" name="cap"
+								value="$$cap" />                           
+                                
+							</td>
+							
+						</tr>
+						<tr>
+							<th><label for="sedelegEstero">Stato estero</label></th>
+							<td><input type="text" id="sedelegEstero"
+								name="sedelegEstero" class="text" value="$$sedelegEstero"
+								onkeydown="ricerca(event)" />
+                                
+								<div class="azioni line">
+									<a
+										href="javascript: newWindowStatoAzienda('../layout/sceltaStato.htm','scegliStato','600','300','yes',document.form1.sedelegEstero.value);"
+										class="pulsante">cerca</a>
+								</div> $$err_sedelegEstero <input type="hidden" name="stato"
+								value="$$stato" /> <input type="hidden" name="istatStatoEstero"
+								value="$$istatStatoEstero" />                            
+                                
+                                
+                                </td>
+						
+						</tr>
+						<tr>
+							<th>Tipo di azienda</th>
+							<td colspan="2"><select id="tipiAzienda" name="tipiAzienda"
+								onchange="ricaricaCombo();">
+									<option value=""></option>
+									<!--@@cmbTipiAzienda-->
+									<option value="$$idTipiAzienda" $$selected>$$descTipiAzienda</option>
+									<!--@@cmbTipiAzienda-->
+							</select> $$err_tipiAzienda</td>
+						</tr>
+						<tr>
+							<th><label for="formagiuridica">Forma giuridica</label></th>
+							<td colspan="2"><select id="tipiFormaGiuridica"
+								name="tipiFormaGiuridica">
+									<!--@@cmbTipoFormaGiuridica-->
+									<option value="$$idTipiFormaGiuridica" $$selected>$$descTipiFormaGiuridica</option>
+									<!--@@cmbTipoFormaGiuridica-->
+							</select> $$err_tipiFormaGiuridica</td>
+						</tr>
+						<tr>
+							<th><label for="attivita">Azienda attiva</label></th>
+							<td colspan="2"><input type="checkbox" id="attivita"
+								name="attivita" value="si" $$checkedAziendaInAttivita /></td>
+						</tr>
+						<tr>
+							<th><label for="dataavanzata">Situazione al</label></th>
+							<td colspan="2"><input type="text" id="dataAvanzata"
+								class="textmedio" name="dataAvanzata" value="$$dataAvanzata"
+								onkeydown="ricerca(event)" /> $$err_dataAvanzata (gg/mm/aaaa)</td>
+						</tr>
+					</table>
+					<div class="pulsanti"><div class="sin">
+						<label for="ricercaAvanzata" class="alt">ricerca</label> <input
+							type="submit" name="ricercaAvanzata" id="ricercaAvanzata"
+							value="ricerca" alt="ricerca avanzata" class="inputPulsante" />
+						$$exc2
+					</div></div>
+					<p class="note">
+						Per ricercare ad esempio "azienda agricola rossi" digitare %rossi
+						nel campo "Denominazione"; in questo modo vengono visualizzate
+						tutte le aziende nella cui denominazione &egrave; contenuta la
+						parola rossi. <br>Per ricercare tutte le aziende che
+						contengono le parole 'rossi' e 'verdi' digitare %rossi%verdi: in
+						questo modo vengono visualizzate tutte le aziende la cui
+						denominazione contiene la parola rossiverdi nell'ordine inserito.
+					</p>
+				</div>
+			</div>
+			<hr />
+			<!-- PIE' DI PAGINA -->
+			$$footer

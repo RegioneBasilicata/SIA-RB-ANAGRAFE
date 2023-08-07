@@ -1,0 +1,80 @@
+$$head
+  <script type="text/javascript" src="../js/checktext.js"></script>
+</head>
+<body id="popup">
+  <form id="sceltaSezione" name="sceltaSezione" method="post" action=" ">
+  <!-- CORPO -->
+    <div id="contenutopop">
+      <table cellspacing="3" summary="Questa tabella contiene i dati del rapporto">
+        <col width="30%"/>
+        <col width="70%"/>
+        <!-- @@blkComune -->
+          <tr>
+            <th scope="col">Provincia</th>
+            <td>$$siglaProvinciaParticella</td>
+          </tr>
+          <tr>
+            <th scope="col">Comune</th>
+            <td>$$descComuneParticella</td>
+          </tr>
+        <!-- @@blkComune -->
+        <!-- @@blkStato -->
+          <tr>
+            <th scope="col">StatoEstero</th>
+            <td>$$descStatoEsteroParticella</td>
+          </tr>
+        <!-- @@blkStato -->
+      </table>
+      <!-- @@conferma -->
+        <div class="pulsanti"><div class="des">
+          <a href="javascript:window.close();">chiudi</a>
+          <span class="alt">&nbsp;/&nbsp;</span>
+        </div>
+        <div class="sin">
+          <a href="javascript:confermaSezione()">conferma</a>
+        </div></div>
+      <!-- @@conferma -->
+      <table cellspacing="3" summary="Questa tabella contiene i dati del rapporto">
+        <col width="5%"/>
+        <col width="45%"/>
+        <col width="50%"/>
+        <tr>
+          <th class="radio" scope="col">&nbsp;</th>
+          <th class="center" scope="col">Sezione</th>
+          <th class="center" scope="col">Descrizione</th>
+        </tr>
+        <!-- @@blkSezioni -->
+          <tr>
+            <td>
+              <input type="radio" id="sezione" name="sezione" value="$$sezione"/>
+              <label for="sezione" class="alt">sezione</label>
+            </td>
+            <td>$$sezione
+              <input type="hidden" id="sezione" name="sezione" value="$$sezione"/>
+            </td>
+            <td>$$descrizione</td>
+          </tr>
+        <!-- @@blkSezioni -->
+      </table>
+      <p class="errore">$$exception</p>
+      <!-- @@conferma -->
+        <div class="pulsanti">
+          <div class="des">
+            <a href="javascript:window.close();">chiudi</a>
+            <span class="alt">&nbsp;/&nbsp;</span>
+          </div>
+          <div class="sin">
+            <a href="javascript:confermaSezione()">conferma</a>
+            <span class="alt">&nbsp;/&nbsp;</span>
+          </div>
+        </div>
+      <!-- @@conferma -->
+      <!-- @@chiudi -->
+       <div class="pulsanti"> <div class="des">
+          <a href="javascript:window.close();">chiudi</a>
+        </div></div>
+      <!-- @@chiudi -->
+    </div>
+    </div></form>
+    </body>
+    </html>

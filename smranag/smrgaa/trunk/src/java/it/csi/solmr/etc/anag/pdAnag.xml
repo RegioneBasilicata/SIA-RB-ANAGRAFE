@@ -1,0 +1,265 @@
+<porta-delegata name="smrgaaweb.PA_AnagFacade">
+  <services>
+    <service name="smrgaaweb.PA_AnagFacade.service" public-interface-class="it.csi.solmr.interfaceCSI.anag.AnagCSIInterface">
+        <operations>
+        <operation name="dichiarazioneDelega" type="synch-call" >
+          <param-list>
+             <param name="aaVO" type="it.csi.solmr.dto.anag.AnagAziendaVO" />
+             <param name="puVO" type="it.csi.solmr.dto.ProfiloUtenza" />
+          </param-list>
+          <ret-val type="void"/>
+        </operation>
+        <operation name="getProvinceByRegione" type="synch-call" >
+          <param-list>
+             <param name="idRegione" type="java.lang.String" />
+          </param-list>
+          <ret-val type="java.util.Vector"/>
+        </operation>
+        <operation name="findAziendaAttiva" type="synch-call" >
+          <param-list>
+             <param name="idAzienda" type="java.lang.Long" />
+          </param-list>
+             <ret-val type="it.csi.solmr.dto.anag.AnagAziendaVO" />
+        </operation>
+        <operation name="getRappLegaleTitolareByIdAzienda" type="synch-call" >
+         <param-list>
+           <param name="idAzienda" type="java.lang.Long" />
+         </param-list>
+          <ret-val type="java.lang.String"/>
+        </operation>
+        <operation name="getDatiAziendaPerMacchine" type="synch-call" >
+         <param-list>
+           <param name="idAzienda" type="java.lang.Long" />
+         </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.AnagAziendaVO"/>
+        </operation>
+        <operation name="getTitolareORappresentanteLegaleAzienda" type="synch-call" >
+          <param-list>
+             <param name="idAzienda" type="java.lang.Long" />
+             <param name="dataSituazioneAl" type="java.util.Date" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.PersonaFisicaVO"/>
+        </operation>
+        <operation name="getTipiIntermediario" type="synch-call" >
+         <param-list>
+         </param-list>
+           <ret-val type="java.util.Vector"/>
+        </operation>
+        <operation name="getFlagPartitaIva" type="synch-call" >
+         <param-list>
+           <param name="idTipoFormaGiuridica" type="java.lang.Long" />
+         </param-list>
+           <ret-val type="java.lang.String"/>
+        </operation>
+        <operation name="getFormaGiuridicaFlagCCIAA" type="synch-call" >
+         <param-list>
+           <param name="idFormaGiuridica" type="java.lang.Long" />
+         </param-list>
+           <ret-val type="java.lang.String"/>
+        </operation>
+        <operation name="isProvinciaReaValida" type="synch-call" >
+         <param-list>
+           <param name="siglaProvincia" type="java.lang.String" />
+         </param-list>
+           <ret-val type="boolean"/>
+        </operation>
+        <operation name="ricercaCodiceComune" type="synch-call" >
+          <param-list>
+             <param name="descrizioneComune" type="java.lang.String" />
+             <param name="siglaProvincia" type="java.lang.String" />
+          </param-list>
+          <ret-val type="java.lang.String"/>
+        </operation>
+        <operation name="ricercaCodiceComuneNonEstinto" type="synch-call" >
+         <param-list>
+           <param name="descrizioneComune" type="java.lang.String" />
+           <param name="siglaProvincia" type="java.lang.String" />
+         </param-list>
+           <ret-val type="java.lang.String"/>
+        </operation>
+        <operation name="ricercaCodiceFiscaleComune" type="synch-call" >
+          <param-list>
+             <param name="descrizioneComune" type="java.lang.String" />
+             <param name="siglaProvincia" type="java.lang.String" />
+          </param-list>
+             <ret-val type="java.lang.String"/>
+        </operation>
+        <operation name="checkIsCUAAPresent" type="synch-call" >
+         <param-list>
+           <param name="cuaa" type="java.lang.String" />
+           <param name="idAzienda" type="java.lang.Long" />
+         </param-list>
+          <ret-val type="void"/>
+        </operation>
+        <operation name="checkPartitaIVA" type="synch-call" >
+         <param-list>
+           <param name="partitaIVA" type="java.lang.String" />
+           <param name="idAzienda" type="java.lang.Long" />
+         </param-list>
+          <ret-val type="void"/>
+        </operation>
+         <operation name="getAziendaById" type="synch-call" >
+          <param-list>
+             <param name="idAzienda" type="java.lang.Long" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.AnagAziendaVO"/>
+        </operation>
+        <operation name="getPersonaFisica" type="synch-call" >
+         <param-list>
+           <param name="cuaa" type="java.lang.String" />
+         </param-list>
+           <ret-val type="it.csi.solmr.dto.anag.PersonaFisicaVO"/>
+        </operation>
+        <operation name="bonificaAziendaAgricola" type="synch-call" >
+          <param-list>
+             <param name="anagAziendaVO" type="it.csi.solmr.dto.anag.AnagAziendaVO" />
+             <param name="personaFisicaVO" type="it.csi.solmr.dto.anag.PersonaFisicaVO" />
+             <param name="profile" type="it.csi.solmr.dto.ProfiloUtenza" />
+          </param-list>
+          <ret-val type="void"/>
+        </operation>
+        <operation name="getComuneByCUAA" type="synch-call" >
+         <param-list>
+           <param name="cuaa" type="java.lang.String" />
+         </param-list>
+           <ret-val type="it.csi.solmr.dto.ComuneVO"/>
+        </operation>
+        <operation name="utenteConDelega" type="synch-call" >
+         <param-list>
+           <param name="pu" type="it.csi.solmr.dto.ProfiloUtenza" />
+           <param name="idAzienda" type="java.lang.Long" />
+         </param-list>
+           <ret-val type="void"/>
+        </operation>
+        <operation name="getRappresentanteLegaleFromIdAnagAzienda" type="synch-call" >
+         <param-list>
+           <param name="idAnagAzienda" type="java.lang.Long" />
+         </param-list>
+           <ret-val type="it.csi.solmr.dto.anag.PersonaFisicaVO"/>
+        </operation>
+        <operation name="updateDelegaForUMA" type="synch-call" >
+          <param-list>
+             <param name="dittaUmaAziendaVO" type="it.csi.solmr.dto.uma.DittaUMAAziendaVO" />
+             <param name="puVO" type="it.csi.solmr.dto.ProfiloUtenza" />
+             <param name="idIntermediario" type="java.lang.Long" />
+          </param-list>
+          <ret-val type="void"/>
+        </operation>
+        <operation name="findAziendaAttivabyCriterio" type="synch-call" >
+         <param-list>
+           <param name="cuaa" type="java.lang.String" />
+           <param name="partitaIva" type="java.lang.String" />
+         </param-list>
+           <ret-val type="it.csi.solmr.dto.anag.AnagAziendaVO"/>
+        </operation>
+        <operation name="getTipiIntermediarioUmaProv" type="synch-call" >
+          <param-list>
+          </param-list>
+          <ret-val type="java.util.Vector"/>
+        </operation>
+        <operation name="getSoggetti" type="synch-call" >
+         <param-list>
+           <param name="idAzienda" type="java.lang.Long" />
+           <param name="data" type="java.util.Date" />
+         </param-list>
+           <ret-val type="java.util.Vector"/>
+        </operation>
+        <operation name="getSoggetti" type="synch-call" >
+         <param-list>
+           <param name="idAzienda" type="java.lang.Long" />
+           <param name="storico" type="java.lang.Boolean" />
+         </param-list>
+           <ret-val type="java.util.Vector"/>
+        </operation>
+        <operation name="getDelegaByAzienda" type="synch-call" >
+          <param-list>
+             <param name="idAzienda" type="java.lang.Long" />
+             <param name="idProcedimento" type="java.lang.Long" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.anag.DelegaVO"/>
+        </operation>
+        <operation name="getDenominazioneByIdAzienda" type="synch-call" >
+         <param-list>
+           <param name="idAzienda" type="java.lang.Long" />
+         </param-list>
+          <ret-val type="java.lang.String"/>
+        </operation>
+        <operation name="ricercaStatoEstero" type="synch-call" >
+          <param-list>
+             <param name="statoEstero" type="java.lang.String" />
+          </param-list>
+          <ret-val type="java.util.Vector"/>
+        </operation>
+        <operation name="getComuniLikeProvAndCom" type="synch-call" >
+          <param-list>
+             <param name="provincia" type="java.lang.String" />
+             <param name="comune" type="java.lang.String" />
+          </param-list>
+          <ret-val type="java.util.Vector"/>
+        </operation>
+        <operation name="getComuniNonEstintiLikeProvAndCom" type="synch-call" >
+          <param-list>
+             <param name="provincia" type="java.lang.String" />
+             <param name="comune" type="java.lang.String" />
+          </param-list>
+          <ret-val type="java.util.Vector"/>
+        </operation>
+
+        <operation name="getTipiIntermediarioUmaProv" type="synch-call" >
+            <param-list>
+            </param-list>
+          <ret-val type="java.util.Vector"/>
+        </operation>
+        <operation name="getTipiTitoloPossesso" type="synch-call" >
+            <param-list>
+            </param-list>
+          <ret-val type="java.util.Vector"/>
+        </operation>
+        <operation name="getProvincePiemonte" type="synch-call" >
+            <param-list>
+            </param-list>
+          <ret-val type="java.util.Vector"/>
+        </operation>
+        <operation name="getTipiIntermediario" type="synch-call" >
+            <param-list>
+            </param-list>
+          <ret-val type="java.util.Vector"/>
+        </operation>
+        <operation name="getTipiFormaGiuridica" type="synch-call" >
+            <param-list>
+            </param-list>
+          <ret-val type="java.util.Vector"/>
+        </operation>
+     </operations>
+    </service>
+  </services>
+  <config>
+    <url-pa>multi://csitest4.csi.it</url-pa>
+    <pluggable-pd-list chooser-class="it.csi.csi.porte.FixedDelegateChooser">
+      <!-- pluggable-pd
+          name="protocol-AnagServiceForUma"
+          class="it.csi.csi.porte.soap.apache.PortaDelegataSoap"
+          url-pa="http://csisvil4.csi.it:7152/solmrAnag/anagServices"
+          url-qm="http://csisvil4.csi.it:7152/solmrAnag/servlet/rpcrouter;urn:qm-protocollo"
+      -->
+      <pluggable-pd
+        name="smrgaaweb.PA_AnagFacade.pd"
+        class="it.csi.csi.porte.ejb.PortaDelegataEJB"
+        url-pa="solmr/anag/PA_AnagFacade"
+      >
+        <properties>
+<!-- Macchine di sviluppo: -->
+          <!-- property name="java.naming.provider.url" value="t3://localhost:7001" /-->
+          <!--property name="java.naming.provider.url" value="t3://csisvil4.csi.it:7150" /-->
+          <!-- property name="java.naming.provider.url" value="t3://csisvil4.csi.it:7251" /-->
+<!-- Macchina di test: -->
+          <property name="java.naming.provider.url" value="t3://csitest4wls1.csi.it,csitest4wls2.csi.it,int2testwls3.csi.it,int2testwls4.csi.it:7150" />
+<!-- Macchina di produzione: -->
+          <!-- property name="java.naming.provider.url" value="t3://domint2wls5.reteunitaria.piemonte.it, domint2wls6.reteunitaria.piemonte.it, domint2wls7.reteunitaria.piemonte.it, domint2wls8.reteunitaria.piemonte.it :7201" /-->
+          <property name="java.naming.factory.initial" value="weblogic.jndi.WLInitialContextFactory" />
+        </properties>
+      </pluggable-pd>
+    </pluggable-pd-list>
+    <queue-manager url="rmi://csisvilwls1.csi.it:2001/QMgrCli"/>
+  </config>
+</porta-delegata>

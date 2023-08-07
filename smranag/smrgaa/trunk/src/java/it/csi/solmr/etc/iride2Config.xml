@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE iride2-security-config [
+<!ELEMENT iride2-security-config ( iride2-mappings )>
+<!ELEMENT iride2-mappings ( mapping+ ) >
+<!ELEMENT mapping EMPTY >
+<!ATTLIST mapping jsp CDATA #REQUIRED >
+<!ATTLIST mapping iride2 CDATA #REQUIRED >]>
+<iride2-security-config>
+  <iride2-mappings>
+    <!-- ACCESSO SISTEMA -->
+    <mapping jsp="indexView.jsp" iride2="ACCESSO_SISTEMA" />
+    <mapping jsp="elencoManualiCtrl.jsp" iride2="ACCESSO_SISTEMA" />
+    <mapping jsp="manualeCtrl.jsp" iride2="ACCESSO_SISTEMA" />
+    <mapping jsp="messaggiUtenteCtrl.jsp" iride2="ACCESSO_SISTEMA" />
+    <mapping jsp="messaggiUtenteLoginCtrl.jsp" iride2="ACCESSO_SISTEMA" />
+    <mapping jsp="dettMessaggiUtenteLoginCtrl.jsp" iride2="ACCESSO_SISTEMA" />
+    <mapping jsp="visualizzaAllegatoMessaggioCtrl.jsp" iride2="ACCESSO_SISTEMA" />
+    <mapping jsp="forceLogoutPage.jsp" iride2="ACCESSO_SISTEMA" />
+    <!-- ACCESSO SISTEMA -->
+    <!-- MONITORAGGIO -->
+    <mapping jsp="monitoraggioswhttpCtrl.jsp" iride2="MONITORAGGIO" />
+    <mapping jsp="abacoGisCtrl.jsp" iride2="MONITORAGGIO" />
+    <!-- MONITORAGGIO -->
+    <!-- SIGMATER -->
+    <mapping jsp="terreniParticellareSigmaterCtrl.jsp" iride2="VISUALIZZA_SIGMATER" />
+    <mapping jsp="ricercaTerrenoSigmaterCtrl.jsp" iride2="RICERCA_TERRENO_SIGMATER" />
+    <!-- SIGMATER -->
+    <!-- ALLEVAMENTI -->
+    <mapping jsp="allevamentiCtrl.jsp" iride2="VISUALIZZA_ALLEVAMENTI" />
+    <mapping jsp="allevamentiDettCtrl.jsp" iride2="VISUALIZZA_ALLEVAMENTI" />
+    <mapping jsp="allevamentiModCtrl.jsp" iride2="GESTIONE_ALLEVAMENTI" />
+    <mapping jsp="allevamentiNewCtrl.jsp" iride2="GESTIONE_ALLEVAMENTI" />
+    <mapping jsp="confermaEliminaAllevamentoCtrl.jsp" iride2="GESTIONE_ALLEVAMENTI" />
+    <mapping jsp="allevamentiVerificaAttendereCtrl.jsp" iride2="VISUALIZZA_ALLEVAMENTI" />
+    <mapping jsp="allevamentiVerificaCtrl.jsp" iride2="VISUALIZZA_ALLEVAMENTI" />
+    <mapping jsp="popAnomalieAllevamentoCtrl.jsp" iride2="VISUALIZZA_ALLEVAMENTI" />
+    <!-- ALLEVAMENTI -->
+    <!-- AZIENDA AGRICOLA(anagrafica, aziende collegate, soggetti collegati, U.T.E) -->
+    <mapping jsp="sincronizzaFascicoloCtrl.jsp" iride2="VISUALIZZA_DATI_AZIENDA" />
+    <mapping jsp="aggiornaFascicoloAziendaleCtrl.jsp" iride2="VISUALIZZA_DATI_AZIENDA" />
+    <mapping jsp="getAggiornamentiFascAziendaleCtrl.jsp" iride2="VISUALIZZA_DATI_AZIENDA" />
+    <mapping jsp="anagraficaCtrl.jsp" iride2="VISUALIZZA_DATI_AZIENDA" />
+    <mapping jsp="contitolariCtrl.jsp" iride2="VISUALIZZA_DATI_AZIENDA" />
+    <mapping jsp="dettUteCtrl.jsp" iride2="VISUALIZZA_DATI_AZIENDA" />
+    <mapping jsp="fontiCtrl.jsp" iride2="VISUALIZZA_DATI_AZIENDA" />
+    <mapping jsp="listaStoricoAziendaCtrl.jsp" iride2="STORICO_AZIENDA" />
+    <mapping jsp="rappLegaleCtrl.jsp" iride2="VISUALIZZA_DATI_AZIENDA" />
+    <mapping jsp="sedeCtrl.jsp" iride2="VISUALIZZA_DATI_AZIENDA" />
+    <mapping jsp="anagraficaIndicatoriCtrl.jsp" iride2="VISUALIZZA_DATI_AZIENDA" />
+    <mapping jsp="anagraficaAltreInformazioniCtrl.jsp" iride2="VISUALIZZA_DATI_AZIENDA" />
+    <mapping jsp="sediCtrl.jsp" iride2="VISUALIZZA_DATI_AZIENDA" />
+    <mapping jsp="aziendeCollegateCtrl.jsp" iride2="VISUALIZZA_DATI_AZIENDA" />
+    <mapping jsp="sceltaEsportaDatiElencoSociCtrl.jsp" iride2="VISUALIZZA_DATI_AZIENDA" />
+    <mapping jsp="enti_appartenenzaCtrl.jsp" iride2="VISUALIZZA_DATI_AZIENDA" />
+    <mapping jsp="anagraficaIndividualePassaggioCtrl.jsp" iride2="GESTIONE_AZIENDA" />
+    <mapping jsp="anagraficaIndividualePassaggioNuovoTitolareCtrl.jsp" iride2="GESTIONE_AZIENDA" />
+    <mapping jsp="anagraficaIndividualePassaggioSedeCtrl.jsp" iride2="GESTIONE_AZIENDA" />
+    <mapping jsp="anagraficaSocieta_cambiaRappresentanteCtrl.jsp" iride2="GESTIONE_AZIENDA" />
+    <mapping jsp="cessazioneCausaleAttivitaCtrl.jsp" iride2="GESTIONE_AZIENDA" />
+    <mapping jsp="confirmDelSoggettoCtrl.jsp" iride2="GESTIONE_AZIENDA" />
+    <mapping jsp="contitolariNewCtrl.jsp" iride2="GESTIONE_AZIENDA" />
+    <mapping jsp="modificaAziendaCtrl.jsp" iride2="GESTIONE_AZIENDA" />
+    <mapping jsp="modificaAziendaReloadCtrl.jsp" iride2="GESTIONE_AZIENDA" />
+    <mapping jsp="modificaRappLegaleCtrl.jsp" iride2="GESTIONE_AZIENDA" />
+    <mapping jsp="anagraficaIndicatoriModCtrl.jsp" iride2="GESTIONE_AZIENDA" />
+    <mapping jsp="anagraficaAltreInformazioniModCtrl.jsp" iride2="GESTIONE_AZIENDA" />
+    <mapping jsp="modificaSoggettoCtrl.jsp" iride2="GESTIONE_AZIENDA" />
+    <mapping jsp="anagraficaSedeModCtrl.jsp" iride2="GESTIONE_AZIENDA" />
+    <mapping jsp="sediConfirmDelCtrl.jsp" iride2="GESTIONE_AZIENDA" />
+    <mapping jsp="sediNewCtrl.jsp" iride2="GESTIONE_AZIENDA" />
+    <mapping jsp="sediUteModCtrl.jsp" iride2="GESTIONE_AZIENDA" />
+    <mapping jsp="dichiarazioneInsediamentoCtrl.jsp" iride2="GESTIONE_AZIENDA" />
+    <mapping jsp="insediamentoCtrl.jsp" iride2="GESTIONE_AZIENDA" />
+    <mapping jsp="aziendeCollegateModificaCtrl.jsp" iride2="GESTIONE_AZIENDA" />
+    <mapping jsp="aziendeCollegateInserisciCtrl.jsp" iride2="GESTIONE_AZIENDA" />
+    <mapping jsp="aziendeCollegateEliminaCtrl.jsp" iride2="GESTIONE_AZIENDA" />
+    <mapping jsp="popElencoAziendeCtrl.jsp" iride2="ACCESSO_SISTEMA" />
+    <mapping jsp="popElencoAziendeAjaxCtrl.jsp" iride2="ACCESSO_SISTEMA" />
+    <mapping jsp="controlliCessaAziendaCtrl.jsp" iride2="CESSAZIONE_AZIENDA" />
+    <mapping jsp="cessaAziendaCtrl.jsp" iride2="CESSAZIONE_AZIENDA" />
+    <!-- AZIENDA AGRICOLA(anagrafica, aziende collegate, soggetti collegati, U.T.E) -->
+    <!-- STORICO MANDATI -->
+    <mapping jsp="storicoMandatiCtrl.jsp" iride2="STORICO_MANDATI" />
+    <!-- STORICO MANDATI -->
+    <!--  VISUALIZZA FASCICOLO -->
+    <mapping jsp="gestoreFascicoloCtrl.jsp" iride2="VISUALIZZA_GEST_FASCICOLO" />
+    <mapping jsp="gestoreFascicolo_SIANCtrl.jsp" iride2="VISUALIZZA_GEST_FASCICOLO" />
+    <!--  VISUALIZZA FASCICOLO -->
+    <!-- RICERCA AZIENDA(da macro menù "ricerche") -->
+    <mapping jsp="ricAnagAziendaCtrl.jsp" iride2="RICERCA_AZIENDA" />
+    <mapping jsp="elencoCtrl.jsp" iride2="RICERCA_AZIENDA" />
+    <!-- RICERCA AZIENDA(da macro menù "ricerche") -->
+
+    <!-- AZIENDE_TITOLARE(da macro menù "elenzo aziende") -->
+    <mapping jsp="elencoAziendeRapLegaleCtrl.jsp" iride2="AZIENDE_TITOLARE" />
+    <!-- AZIENDE_TITOLARE(da macro menù "elenzo aziende") -->
+
+
+    <!-- NUOVA AZIENDA -->
+    <mapping jsp="nuovaAziendaAnagraficaCtrl.jsp" iride2="NUOVA_AZIENDA" />
+    <mapping jsp="nuovaAziendaAnagraficaReloadCtrl.jsp" iride2="NUOVA_AZIENDA" />
+    <mapping jsp="nuovaAziendaCCIAACtrl.jsp" iride2="NUOVA_AZIENDA" />
+    <mapping jsp="nuovaAziendaRappLegCtrl.jsp" iride2="NUOVA_AZIENDA" />
+    <mapping jsp="nuovaAziendaSedeCtrl.jsp" iride2="NUOVA_AZIENDA" />
+    <mapping jsp="nuovaAziendaTitolareCtrl.jsp" iride2="NUOVA_AZIENDA" />
+    <mapping jsp="nuovaAziendaIndicatoriCtrl.jsp" iride2="NUOVA_AZIENDA" />
+    <!-- NUOVA AZIENDA -->
+    <!-- FONTI CERTIFICATE(A.A.E.P) -->
+    <mapping jsp="anagraficaVisuraCameraleCtrl.jsp" iride2="VISUALIZZA_FONTE_AAEP" />
+    <mapping jsp="anagraficaVisuraCameraleImportCtrl.jsp" iride2="IMPORTA_FONTE_AAEP" />
+    <!-- FONTI CERTIFICATE(A.A.E.P) -->
+    <!-- TERRENI -->
+    <mapping jsp="terreniParticellareElencoCtrl.jsp" iride2="VISUALIZZA_TERRENI" />
+    <mapping jsp="popAnomalieParticellaCtrl.jsp" iride2="VISUALIZZA_TERRENI" />
+    <mapping jsp="popDocumentoDettaglioCtrl.jsp" iride2="VISUALIZZA_TERRENI" />
+    <mapping jsp="popupVariazioniParticellaCtrl.jsp" iride2="VISUALIZZA_TERRENI" />
+    <mapping jsp="popVariazioniEleggibilitaCtrl.jsp" iride2="VISUALIZZA_TERRENI" />
+    <mapping jsp="riepiloghiCtrl.jsp" iride2="VISUALIZZA_TERRENI" />
+    <mapping jsp="terreniParticellareDettaglioConduzioneCtrl.jsp" iride2="VISUALIZZA_TERRENI" />
+    <mapping jsp="terreniParticellareDettaglioCtrl.jsp" iride2="VISUALIZZA_TERRENI" />
+    <mapping jsp="terreniParticellareDettaglioPraticheCtrl.jsp" iride2="VISUALIZZA_TERRENI" />
+    <mapping jsp="terreniParticellareDettaglioRegistriCtrl.jsp" iride2="VISUALIZZA_TERRENI" />
+    <mapping jsp="popTerreniElencoUnarCtrl.jsp" iride2="VISUALIZZA_TERRENI" />
+    <mapping jsp="popIstanzaRiesameCtrl.jsp" iride2="VISUALIZZA_TERRENI" />
+    <mapping jsp="popPresenzaNotificheParticelleCtrl.jsp" iride2="VISUALIZZA_TERRENI" />
+    <mapping jsp="popAnomalieUnarCtrl.jsp" iride2="VISUALIZZA_TERRENI" />
+    <mapping jsp="sceltaEsportaDatiTerreniCtrl.jsp" iride2="VISUALIZZA_TERRENI" />
+    <mapping jsp="terreniParticellareModificaMultiplaCtrl.jsp" iride2="GESTIONE_TERRENI" />
+    <mapping jsp="popAggiungiUsoCtrl.jsp" iride2="GESTIONE_TERRENI" />
+    <mapping jsp="terreniParticellareModificaCtrl.jsp" iride2="GESTIONE_TERRENI" />
+    <mapping jsp="popModificaTerritorialeCondUsoCtrl.jsp" iride2="GESTIONE_TERRENI" />
+    <mapping jsp="terreniParticellareInserisciCtrl.jsp" iride2="GESTIONE_TERRENI" />
+    <mapping jsp="popCercaParticelleInserimentoCtrl.jsp" iride2="GESTIONE_TERRENI" />
+    <mapping jsp="terreniParticellareInserisciCondUsoCtrl.jsp" iride2="GESTIONE_TERRENI" />
+    <mapping jsp="eliminaParticellaCtrl.jsp" iride2="GESTIONE_TERRENI" />
+    <mapping jsp="popCercaParticelleInsUnarCtrl.jsp" iride2="GESTIONE_TERRENI" />
+    <mapping jsp="popCercaParticelleInsUnarFrazionateCtrl.jsp" iride2="GESTIONE_TERRENI" />
+    <mapping jsp="terreniControllaAnnoVerificaCtrl.jsp" iride2="VISUALIZZA_TERRENI" />
+    <mapping jsp="terreniVerificaCtrl.jsp" iride2="VISUALIZZA_TERRENI" />
+    <mapping jsp="terreniVerificaKoCtrl.jsp" iride2="VISUALIZZA_TERRENI" />
+    <mapping jsp="terreniVerificaOkCtrl.jsp" iride2="VISUALIZZA_TERRENI" />
+    <mapping jsp="confermaAllineaGISCtrl.jsp" iride2="ALLINEA_UTILIZZO_A_ELEGGIBILITA" />
+    <mapping jsp="terreniParticellareAllineaPercentualeCtrl.jsp" iride2="GESTIONE_TERRENI" />
+    <mapping jsp="popLegendaEfaCtrl.jsp" iride2="VISUALIZZA_TERRENI" />
+    <mapping jsp="richiamoPianoGraficoCtrl.jsp" iride2="PIANO_GRAFICO" />
+    <mapping jsp="popPianoGraficoCtrl.jsp" iride2="PIANO_GRAFICO" />
+    <!-- TERRENI -->
+    <!-- IMPORTA_TERRENI -->
+    <mapping jsp="importaTerreniGenericoCtrl.jsp" iride2="IMPORTA_TERRENI" />
+    <mapping jsp="particellareTerreniImportaAsservimentoCtrl.jsp" iride2="IMPORTA_TERRENI" />
+    <mapping jsp="terreniImportaAsservimentoCtrl.jsp" iride2="IMPORTA_TERRENI" />
+    <mapping jsp="particellareTerreniImportaCtrl.jsp" iride2="IMPORTA_TERRENI" />
+    <mapping jsp="terreniImportaCtrl.jsp" iride2="IMPORTA_TERRENI" />    
+    <!-- IMPORTA_TERRENI -->
+    <!-- UNITA VITATE -->
+    <mapping jsp="terreniUnitaArboreeElencoCtrl.jsp" iride2="VISUALIZZA_UNITA_ARBOREE" />
+    <mapping jsp="riepiloghiUnitaArboreeCtrl.jsp" iride2="VISUALIZZA_UNITA_ARBOREE" />
+    <mapping jsp="unitaArboreeDettaglioCtrl.jsp" iride2="VISUALIZZA_UNITA_ARBOREE" />
+    <mapping jsp="unitaArboreeDettaglioPraticheCtrl.jsp" iride2="VISUALIZZA_UNITA_ARBOREE" />
+    <mapping jsp="popSchedarioViticoloCtrl.jsp" iride2="VISUALIZZA_SCHEDARIO" />
+    <mapping jsp="unitaArboreeModificaMultiplaCtrl.jsp" iride2="GESTIONE_UNITA_ARBOREE" />
+    <mapping jsp="unitaArboreeModificaCtrl.jsp" iride2="GESTIONE_UNITA_ARBOREE" />
+    <mapping jsp="unitaArboreeInserisciCtrl.jsp" iride2="GESTIONE_UNITA_ARBOREE" />
+    <mapping jsp="unitaArboreeInserisciFrazionateCtrl.jsp" iride2="GESTIONE_UNITA_ARBOREE" />
+    <mapping jsp="unitaArboreeEliminaCtrl.jsp" iride2="GESTIONE_UNITA_ARBOREE" />
+    <mapping jsp="popSchedarioViticoloImportCtrl.jsp" iride2="GESTIONE_UNITA_ARBOREE" />
+    <mapping jsp="unitaArboreeValidaCtrl.jsp" iride2="GESTIONE_UNITA_ARBOREE" />
+    <mapping jsp="popUnitaArboreeModificaCtrl.jsp" iride2="GESTIONE_UNITA_ARBOREE" />
+    <mapping jsp="sceltaAllineaUVCtrl.jsp" iride2="GESTIONE_UNITA_ARBOREE" />
+    <mapping jsp="confermaAllineaUVCtrl.jsp" iride2="GESTIONE_UNITA_ARBOREE" />
+    <mapping jsp="unitaArboreeAssociaPercUsoEleggCtrl.jsp" iride2="GESTIONE_UNITA_ARBOREE" />
+    <mapping jsp="sceltaAllineaPercUsoEleggCtrl.jsp" iride2="GESTIONE_UNITA_ARBOREE" />
+    <mapping jsp="confermaAllineaPercUsoEleggCtrl.jsp" iride2="GESTIONE_UNITA_ARBOREE" />
+    <mapping jsp="popPresenzaNotificheUvCtrl.jsp" iride2="VISUALIZZA_UNITA_ARBOREE" />
+    <!-- UNITA VITATE -->
+    <!-- ALLINEA UV A ELEGGIBILITA -->
+    <mapping jsp="unitaArboreeAllineaGISCtrl.jsp" iride2="ALLINEA_UV_A_ELEGGIBILITA" />
+    <mapping jsp="unitaArboreeAssociaParcelleGISCtrl.jsp" iride2="ALLINEA_UV_A_ELEGGIBILITA" />
+    <mapping jsp="unitaArboreeAllineaCompensazioneCtrl.jsp" iride2="ALLINEA_UV_A_ELEGGIBILITA" />
+    <mapping jsp="unitaArboreeConsolidaCtrl.jsp" iride2="ALLINEA_UV_A_ELEGGIBILITA" />
+    <mapping jsp="confermaAllineaGisUVTolleranzaCtrl.jsp" iride2="ALLINEA_UV_A_ELEGGIBILITA" />
+    <!-- ALLINEA UV A ELEGGIBILITA -->
+    <!-- ALBO CCIAA -->
+    <mapping jsp="popUnitaVitateDettaglioCCIAACtrl.jsp" iride2="ALBO_VIGNETI_CCIAA" />
+    <mapping jsp="popUnitaVitateCCIAACtrl.jsp" iride2="ALBO_VIGNETI_CCIAA" />
+    <!-- ALBO CCIAA -->
+    <!-- ABACO TERRENI -->
+    <mapping jsp="abacoCatVitRegCtrl.jsp" iride2="GESTIONE_TERRENI" />
+    <mapping jsp="abacoIsolaCtrl.jsp" iride2="VISUALIZZA_ISOLEPARCELLE" />
+    <mapping jsp="terreniParticellareIsoleParcelleCtrl.jsp" iride2="VISUALIZZA_ISOLEPARCELLE" />
+    <mapping jsp="abaco3DCtrl.jsp" iride2="VISUALIZZA_GIS3D" />
+    <!-- ABACO TERRENI -->
+    <!-- MOTORI AGRICOLI -->
+      <mapping jsp="caratteristiche_fisicheCtrl.jsp" iride2="VISUALIZZA_MOTORI_AGRICOLI" />
+      <mapping jsp="dettElencoDitteUtilizzatriciCtrl.jsp" iride2="VISUALIZZA_MOTORI_AGRICOLI" />
+      <mapping jsp="elenco_ditte_utilizzCtrl.jsp" iride2="VISUALIZZA_MOTORI_AGRICOLI" />
+      <mapping jsp="motori_agricoli_incaricoCtrl.jsp" iride2="VISUALIZZA_MOTORI_AGRICOLI" />
+      <mapping jsp="macchinaAgricolaInserisciCtrl.jsp" iride2="GESTISCI_MOTORI_AGRICOLI" />
+      <mapping jsp="macchinaAgricolaModificaCtrl.jsp" iride2="GESTISCI_MOTORI_AGRICOLI" />
+      <mapping jsp="importaMacchinaAgricolaModCtrl.jsp" iride2="GESTISCI_MOTORI_AGRICOLI" />
+      <mapping jsp="importaMacchinaAgricolaCtrl.jsp" iride2="GESTISCI_MOTORI_AGRICOLI" />
+    <!-- MOTORI AGRICOLI -->
+    <!-- CESSAZIONE ATTIVITA' (cessazione da allevamenti, fabbricati e manodopera) -->
+      <mapping jsp="cessazioneAttivitaCtrl.jsp" iride2="CESSAZIONE_ATTIVITA" />
+    <!-- CESSAZIONE ATTIVITA' (cessazione da allevamenti, fabbricati e manodopera) -->
+    <!-- NOTIFICHE -->
+      <mapping jsp="dettaglioNotificaCtrl.jsp" iride2="NOTIFICHE" />
+      <mapping jsp="notificheCtrl.jsp" iride2="NOTIFICHE" />
+      <mapping jsp="nuovaNotificaCtrl.jsp" iride2="NOTIFICHE" />
+      <mapping jsp="popElencoUvNotificaCtrl.jsp" iride2="NOTIFICHE" />
+      <mapping jsp="popElencoParticelleNotificaCtrl.jsp" iride2="NOTIFICHE" />
+      <mapping jsp="nuovaNotificaConfermaCtrl.jsp" iride2="NOTIFICHE" />
+      <mapping jsp="modificaNotificaCtrl.jsp" iride2="NOTIFICHE" />
+      <mapping jsp="allegaFileNotificaCtrl.jsp" iride2="NOTIFICHE" />
+      <mapping jsp="chiusuraNotificaCtrl.jsp" iride2="CHIUSURA_NOTIFICHE" />
+    <!-- NOTIFICHE -->
+    <!-- CONTI CORRENTI -->
+      <mapping jsp="contiCorrentiCtrl.jsp" iride2="VISUALIZZA_CONTI_CORRENTI" />
+      <mapping jsp="contiCorrentiDetCtrl.jsp" iride2="VISUALIZZA_CONTI_CORRENTI" />
+      <mapping jsp="popContiCorrentiPraticheCtrl.jsp" iride2="VISUALIZZA_CONTI_CORRENTI" />
+      <mapping jsp="confermaEliminaContoCorrenteCtrl.jsp" iride2="GESTIONE_CONTI_CORRENTI" />
+      <mapping jsp="contiCorrentiModCtrl.jsp" iride2="GESTIONE_CONTI_CORRENTI" />
+      <mapping jsp="contiCorrentiNewCtrl.jsp" iride2="GESTIONE_CONTI_CORRENTI" />
+    <!-- CONTI CORRENTI -->
+    <!-- SOGGETTI COLLEGATI A.A.E.P. -->
+      <mapping jsp="contitolariAAEPCtrl.jsp" iride2="VISUALIZZA_SOGGETTI_AAEP" />
+      <mapping jsp="contitolariAAEPImportCtrl.jsp" iride2="IMPORTA_SOGGETTI_AAEP" />
+    <!-- SOGGETTI COLLEGATI A.A.E.P. -->
+    <!-- VALIDAZIONI -->
+      <mapping jsp="correzioneAnomaliaCtrl.jsp" iride2="NUOVA_DICH_CONSISTENZA" />
+      <mapping jsp="dettaglioAnomaliaCtrl.jsp" iride2="NUOVA_DICH_CONSISTENZA" />
+      <mapping jsp="dichiarazioneEliminaCtrl.jsp" iride2="NUOVA_DICH_CONSISTENZA" />
+      <mapping jsp="dichiarazioneNewCtrl.jsp" iride2="NUOVA_DICH_CONSISTENZA" />
+      <mapping jsp="dichiarazioneOKCtrl.jsp" iride2="NUOVA_DICH_CONSISTENZA" />
+      <mapping jsp="eliminaCorrezioneCtrl.jsp" iride2="NUOVA_DICH_CONSISTENZA" />
+      <mapping jsp="dichiarazioneAnomaliaCtrl.jsp" iride2="NUOVA_DICH_CONSISTENZA" />
+      <mapping jsp="dichiarazioneErroriCtrl.jsp" iride2="NUOVA_DICH_CONSISTENZA" />
+      <mapping jsp="dichiarazioneControllaAnnoCtrl.jsp" iride2="NUOVA_DICH_CONSISTENZA" />
+      <mapping jsp="dichiarazioneControllaAnnoVerificaCtrl.jsp" iride2="NUOVA_DICH_CONSISTENZA" />
+      <mapping jsp="dichiarazioneControllaModificheCtrl.jsp" iride2="NUOVA_DICH_CONSISTENZA" />
+      <mapping jsp="ripristinaDichConfermaCtrl.jsp" iride2="NUOVA_DICH_CONSISTENZA" />
+      <mapping jsp="dichiarazioneAnomaliaScegliMotivoCtrl.jsp" iride2="NUOVA_DICH_CONSISTENZA" />
+      <mapping jsp="dichiarazioneConsistenzaCtrl.jsp" iride2="VISUALIZZA_CONSISTENZA" />
+      <mapping jsp="dichiarazioneConsistenzaDetCtrl.jsp" iride2="VISUALIZZA_CONSISTENZA" />
+      <mapping jsp="popPraticheDichiarazioneCtrl.jsp" iride2="VISUALIZZA_CONSISTENZA" />
+      <mapping jsp="dichiarazioneVerificaCtrl.jsp" iride2="VERIFICA_CONSISTENZA" />
+      <mapping jsp="dichiarazioneVerificaKoCtrl.jsp" iride2="VERIFICA_CONSISTENZA" />
+      <mapping jsp="dichiarazioneVerificaOkCtrl.jsp" iride2="VERIFICA_CONSISTENZA" />
+      <mapping jsp="dichiarazioneProtocollaCtrl.jsp" iride2="VERIFICA_CONSISTENZA" />
+      <mapping jsp="popStampaDichiarazioneCtrl.jsp" iride2="VERIFICA_CONSISTENZA" />
+      <mapping jsp="dichiarazioneConsistenzaModCtrl.jsp" iride2="NUOVA_DICH_CONSISTENZA" />
+      <mapping jsp="dichiarazioneConsistenzaAllegatiCtrl.jsp" iride2="NUOVA_DICH_CONSISTENZA" />
+      <mapping jsp="dichiarazioneConsistenzaAllegatiModCtrl.jsp" iride2="NUOVA_DICH_CONSISTENZA" />
+    <!-- VALIDAZIONI -->
+    <!-- INVIO_FASCICOLI -->
+      <mapping jsp="schedulaInvioASianCtrl.jsp" iride2="INVIO_FASCICOLI" />
+    <!-- INVIO_FASCICOLI -->
+    <!-- RICERCA TERRENO(da macro menù "ricerche") -->
+      <mapping jsp="ricercaTerrenoDettaglioCtrl.jsp" iride2="RICERCA_TERRENO" />
+      <mapping jsp="ricercaTerrenoDettaglioPraticheCtrl.jsp" iride2="RICERCA_TERRENO" />
+      <mapping jsp="ricercaTerrenoDettaglioValidazioniCtrl.jsp" iride2="RICERCA_TERRENO" />
+      <mapping jsp="ricercaTerrenoDettaglioRegistriCtrl.jsp" iride2="RICERCA_TERRENO" />
+      <mapping jsp="ricercaTerrenoCtrl.jsp" iride2="RICERCA_TERRENO" />
+      <mapping jsp="elencoTerreniCtrl.jsp" iride2="RICERCA_TERRENO" />
+      <mapping jsp="cessazioneTerrenoCtrl.jsp" iride2="GESTIONE_TERRENO_RICERCA" />
+      <mapping jsp="popParticelleCtrl.jsp" iride2="VISUALIZZA_TERRENI" />
+      <mapping jsp="inserisciTerrenoCtrl.jsp" iride2="NUOVA_PARTICELLA" />
+      <mapping jsp="inserisciTerrenoParticellareCtrl.jsp" iride2="NUOVA_PARTICELLA" />
+    <!-- RICERCA TERRENO(da macro menù "ricerche") -->
+    <!-- DIRITTI DI PRODUZIONE -->
+      <mapping jsp="dirittiCtrl.jsp" iride2="DIRITTI_PRODUZIONE" />
+      <mapping jsp="sianQuoteLatteCtrl.jsp" iride2="DIRITTI_PRODUZIONE" />
+      <mapping jsp="sianTitoliCtrl.jsp" iride2="DIRITTI_PRODUZIONE" />
+      <mapping jsp="sianTitoliSingoliCtrl.jsp" iride2="DIRITTI_PRODUZIONE" />
+      <mapping jsp="dirittiVitatiCtrl.jsp" iride2="DIRITTI_PRODUZIONE" />
+    <!-- DIRITTI DI PRODUZIONE -->
+    <!-- DOCUMENTI -->
+      <mapping jsp="documentiElencoCtrl.jsp" iride2="VISUALIZZA_DOCUMENTI" />
+      <mapping jsp="popAnomalieDocumentoCtrl.jsp" iride2="VISUALIZZA_DOCUMENTI" />
+      <mapping jsp="documentoDettaglioCtrl.jsp" iride2="VISUALIZZA_DOCUMENTI" />
+      <mapping jsp="stampaProtocolloCtrl.jsp" iride2="VISUALIZZA_DOCUMENTI" />
+      <mapping jsp="documentiEliminaCtrl.jsp" iride2="GESTIONE_DOCUMENTI" />
+      <mapping jsp="documentoConfermaInserisciCtrl.jsp" iride2="GESTIONE_DOCUMENTI" />
+      <mapping jsp="documentoConfermaProtocolloCtrl.jsp" iride2="GESTIONE_DOCUMENTI" />
+      <mapping jsp="documentoInserisciCtrl.jsp" iride2="GESTIONE_DOCUMENTI" />
+      <mapping jsp="documentoModificaCtrl.jsp" iride2="GESTIONE_DOCUMENTI" />
+      <mapping jsp="allegaFileCtrl.jsp" iride2="GESTIONE_DOCUMENTI" />
+      <mapping jsp="popDocumentoParticelleCtrl.jsp" iride2="GESTIONE_DOCUMENTI" />
+      <mapping jsp="popParticelleEventoCtrl.jsp" iride2="GESTIONE_DOCUMENTI" />
+      <mapping jsp="popCercaParticellaCessataCtrl.jsp" iride2="GESTIONE_DOCUMENTI" />
+      <mapping jsp="annullaIstanzaRiesameCtrl.jsp" iride2="GESTIONE_DOCUMENTI" />
+      <mapping jsp="documentoAllegatiCtrl.jsp" iride2="GESTIONE_DOCUMENTI" />
+    <!-- DOCUMENTI -->
+    <!-- FASCICOLO DEMATERIALIZZATO -->
+      <mapping jsp="fascicoloDematerializzatoCtrl.jsp" iride2="FASCICOLO_DEM_VIEW" />
+    <!-- FASCICOLO DEMATERIALIZZATO -->
+    <!-- REPORTISTICA -->
+      <mapping jsp="elencoFascicoliCtrl.jsp" iride2="REPORTISTICA" />
+      <mapping jsp="elencoRicercheCtrl.jsp" iride2="REPORTISTICA" />
+      <mapping jsp="fascicoliCtrl.jsp" iride2="REPORTISTICA" />
+      <mapping jsp="mandatiCtrl.jsp" iride2="REPORTISTICA" />
+      <mapping jsp="reportisticaValidazioniCtrl.jsp" iride2="REPORTISTICA" />
+      <mapping jsp="pagineRPDServlet" iride2="REPORTISTICA" />
+    <!-- REPORTISTICA -->
+    <!-- RICERCA PERSONA(da macro menù "ricerche") -->
+      <mapping jsp="elencoPersoneCtrl.jsp" iride2="RICERCA_PERSONA" />
+      <mapping jsp="impreseSoggettoCtrl.jsp" iride2="RICERCA_PERSONA" />
+      <mapping jsp="personaDettCtrl.jsp" iride2="RICERCA_PERSONA" />
+      <mapping jsp="ricercaPersonaCtrl.jsp" iride2="RICERCA_PERSONA" />
+    <!-- RICERCA PERSONA(da macro menù "ricerche") -->
+    <!-- FABBRICATI -->
+      <mapping jsp="eliminaFabbricatiCtrl.jsp" iride2="GESTIONE_FABBRICATI" />
+      <mapping jsp="fabbricatiModCaratteristicheCtrl.jsp" iride2="GESTIONE_FABBRICATI" />
+      <mapping jsp="fabbricatiModUbicazioneCtrl.jsp" iride2="GESTIONE_FABBRICATI" />
+      <mapping jsp="fabbricatiNewCaratteristicheCtrl.jsp" iride2="GESTIONE_FABBRICATI" />
+      <mapping jsp="fabbricatiNewUbicazioneCtrl.jsp" iride2="GESTIONE_FABBRICATI" />
+      <mapping jsp="fabbricatiCtrl.jsp" iride2="VISUALIZZA_FABBRICATI" />
+      <mapping jsp="fabbricatiDetCtrl.jsp" iride2="VISUALIZZA_FABBRICATI" />
+    <!-- FABBRICATI -->
+    <!-- MANODOPERA -->
+      <mapping jsp="confermaEliminaManodoperaCtrl.jsp" iride2="GESTIONE_MANODOPERA" />
+      <mapping jsp="manodoperaModConduzioneCtrl.jsp" iride2="GESTIONE_MANODOPERA" />
+      <mapping jsp="manodoperaModCtrl.jsp" iride2="GESTIONE_MANODOPERA" />
+      <mapping jsp="manodoperaNewConduzioneCtrl.jsp" iride2="GESTIONE_MANODOPERA" />
+      <mapping jsp="manodoperaNewCtrl.jsp" iride2="GESTIONE_MANODOPERA" />
+      <mapping jsp="manodoperaCtrl.jsp" iride2="VISUALIZZA_MANODOPERA" />
+      <mapping jsp="manodoperaDetCtrl.jsp" iride2="VISUALIZZA_MANODOPERA" />
+    <!-- MANODOPERA -->
+    <!-- PRATICHE -->
+      <mapping jsp="praticheCtrl.jsp" iride2="PRATICHE" />
+      <mapping jsp="erogazioni_praticheCtrl.jsp" iride2="PRATICHE" />
+    <!-- PRATICHE -->
+    <!-- REGISTRO DEBITORI -->
+      <mapping jsp="registroDebitoriCtrl.jsp" iride2="REGISTRO_DEBITORI" />
+    <!-- REGISTRO DEBITORI -->
+    <!-- POLIZZE -->
+    <mapping jsp="polizzeElencoCtrl.jsp" iride2="POLIZZE" />
+    <mapping jsp="polizzaDettaglioCtrl.jsp" iride2="POLIZZE" />
+    <!-- POLIZZE -->
+    <!-- BUONI_CARBURANTE -->
+    <mapping jsp="assegnazioniElencoCtrl.jsp" iride2="BUONI_CARBURANTE" />
+    <mapping jsp="assegnazioniDettaglioCtrl.jsp" iride2="BUONI_CARBURANTE" />
+    <!-- BUONI_CARBURANTE -->
+    <!-- REVOCA MANDATO -->
+      <mapping jsp="revocaDelegaCtrl.jsp" iride2="REVOCA_DELEGA" />
+      <mapping jsp="confermaRevocaDelegaCtrl.jsp" iride2="REVOCA_DELEGA" />
+    <!-- REVOCA MANDATO -->
+    <!-- GESTIONE MANDATO -->
+      <mapping jsp="registrazioneDelegaCtrl.jsp" iride2="GESTIONE_MANDATO" />
+      <mapping jsp="modificaGestoreFascicoloCtrl.jsp" iride2="MOD_GEST_FASCICOLO" />
+    <!-- GESTIONE MANDATO -->
+    <!-- RICERCA NOTIFICHE(da macro menù "ricerche") -->
+      <mapping jsp="ricercaDettaglioNotificaCtrl.jsp" iride2="RICERCA_NOTIFICA" />
+      <mapping jsp="ricercaNotificaCtrl.jsp" iride2="RICERCA_NOTIFICA" />
+      <mapping jsp="sceltaEsportaDatiNotificheCtrl.jsp" iride2="RICERCA_NOTIFICA" />
+    <!-- RICERCA NOTIFICHE(da macro menù "ricerche") -->
+    <!-- U.T.E  A.A.E.P. -->
+      <mapping jsp="sediAAEPCtrl.jsp" iride2="VISUALIZZA_UTE_AAEP" />
+      <mapping jsp="sediAAEPImportCtrl.jsp" iride2="IMPORTA_UTE_AAEP" />
+    <!-- U.T.E A.A.E.P. -->
+    <!-- SOGGETTI SIAN ANAGRAFE TRIBUTARIA -->
+      <mapping jsp="contitolariATCtrl.jsp" iride2="VISUALIZZA_SOGGETTI_AT" />
+      <mapping jsp="popSoggettoATCtrl.jsp" iride2="VISUALIZZA_SOGGETTI_AT" />
+    <!-- SOGGETTI SIAN ANAGRAFE TRIBUTARIA -->
+    <!-- FONTI CERTIFICATE SIAN ANAGRAFE TRIBUTARIA -->
+      <mapping jsp="sianAnagrafeTributariaCtrl.jsp" iride2="VISUALIZZA_FONTE_AT" />
+      <mapping jsp="sianAnagrafeTributariaImportCtrl.jsp" iride2="IMPORTA_FONTE_AT" />
+      <mapping jsp="sianAltriDatiCtrl.jsp" iride2="VISUALIZZA_FONTE_SIAN" />
+    <!-- FONTI CERTIFICATE SIAN ANAGRAFE TRIBUTARIA -->
+    <!-- FONTI CERTIFICATE SIAN ANAGRAFE ZOOTECNICA -->
+      <mapping jsp="registroStallaBDNCtrl.jsp" iride2="VISUALIZZA_BDN" />
+      <mapping jsp="sianAnagrafeZootecnicaCtrl.jsp" iride2="VISUALIZZA_BDN" />
+      <mapping jsp="visuraBDNConsistenzaMediaCtrl.jsp" iride2="VISUALIZZA_BDN" />
+      <mapping jsp="sianAnagrafeZootecnicaSelectCtrl.jsp" iride2="IMPORTA_FONTE_BDN" />
+      <mapping jsp="sianAnagrafeZootecnicaImportCtrl.jsp" iride2="IMPORTA_FONTE_BDN" />
+    <!-- FONTI CERTIFICATE SIAN ANAGRAFE ZOOTECNICA -->
+    <!-- STAMPE -->
+      <mapping jsp="stampeCtrl.jsp" iride2="STAMPA_FASCICOLO" />
+      <mapping jsp="scelta_stampaCtrl.jsp" iride2="STAMPA_FASCICOLO" />
+    <!-- STAMPE -->
+    <!-- ESPORTA DATI UNITA' ARBOREE -->
+      <mapping jsp="sceltaEsportaDatiUVCtrl.jsp" iride2="ESPORTA_DATI_UV" />
+    <!-- ESPORTA DATI UNITA' ARBOREE -->
+    <!-- BIOLOGICO -->
+      <mapping jsp="biologico_detCtrl.jsp" iride2="VISUALIZZA_BIO" />
+      <mapping jsp="biologicoCtrl.jsp" iride2="VISUALIZZA_BIO" />
+      <mapping jsp="biologicoDaRicercaCtrl.jsp" iride2="VISUALIZZA_BIO" />
+      <mapping jsp="biologicoElencoCtrl.jsp" iride2="VISUALIZZA_BIO" />
+      <mapping jsp="ricercaBiologicoCtrl.jsp" iride2="VISUALIZZA_BIO" />
+      <mapping jsp="biologico_cesCtrl.jsp" iride2="GESTIONE_BIO" />
+      <mapping jsp="biologico_modCtrl.jsp" iride2="GESTIONE_BIO" />
+      <mapping jsp="biologico_newCtrl.jsp" iride2="GESTIONE_BIO" />
+    <!-- BIOLOGICO -->
+    <!-- ATTESTAZIONI -->
+      <mapping jsp="attestazioniDettaglioCtrl.jsp" iride2="VISUALIZZA_ATTESTATI" />
+      <mapping jsp="attestazioniModificaCtrl.jsp" iride2="GESTIONE_ATTESTATI" />
+    <!-- ATTESTAZIONI -->
+    <!-- GESTIONE UTILITI -->
+      <mapping jsp="serviziCtrl.jsp" iride2="GESTIONE_UTILITI" />
+      <mapping jsp="trasferimentoUfficioCtrl.jsp" iride2="GESTIONE_UTILITI" />
+      <mapping jsp="confermaTrasferimentoUfficioCtrl.jsp" iride2="GESTIONE_UTILITI" />
+    <!-- GESTIONE UTILITI -->
+    <!-- COMUNICAZIONE 10R -->
+      <mapping jsp="comunicazione10R_dettaglioCtrl.jsp" iride2="VISUALIZZA_COMUNICAZIONE_10R" />
+      <mapping jsp="comunicazione10R_modificaCtrl.jsp" iride2="GESTIONE_COMUNICAZIONE_10R" />
+      <mapping jsp="comunicazione10R_ricalcolaCtrl.jsp" iride2="GESTIONE_COMUNICAZIONE_10R" />
+    <!-- COMUNICAZIONE 10R -->
+    <!-- Variazioni aziendali -->
+      <mapping jsp="ricercaVariazioniVisioneCtrl.jsp" iride2="GESTIONE_VARIAZIONI_AZIENDA" />
+      <mapping jsp="ricercaVariazioniCtrl.jsp" iride2="RICERCA_VARIAZIONI_AZIENDA" />
+      <mapping jsp="elencoVariazioniCtrl.jsp" iride2="RICERCA_VARIAZIONI_AZIENDA" />
+    <!-- Variazioni aziendali -->
+    <!--  Nuova Iscrizione -->
+      <mapping jsp="newInserimentoAziendaCtrl.jsp" iride2="RICHIESTA_AZIENDA" />
+      <mapping jsp="newInserimentoAnagraficaImpreseEntiCtrl.jsp" iride2="RICHIESTA_AZIENDA" />
+      <mapping jsp="newInserimentoAnagraficaPrivatiCtrl.jsp" iride2="RICHIESTA_AZIENDA" />
+      <mapping jsp="newInserimentoUteCtrl.jsp" iride2="RICHIESTA_AZIENDA" />
+      <mapping jsp="newInserimentoFabbricatiCtrl.jsp" iride2="RICHIESTA_AZIENDA" />
+      <mapping jsp="newInserimentoParticelleCtrl.jsp" iride2="RICHIESTA_AZIENDA" />
+      <mapping jsp="newInserimentoAllevamentiCtrl.jsp" iride2="RICHIESTA_AZIENDA" />
+      <mapping jsp="newInserimentoContiCorrentiCtrl.jsp" iride2="RICHIESTA_AZIENDA" />
+      <mapping jsp="newInserimentoAllegatiCtrl.jsp" iride2="RICHIESTA_AZIENDA" />
+      <mapping jsp="newInserimentoConfermaCtrl.jsp" iride2="RICHIESTA_AZIENDA" />
+      <mapping jsp="allegaFileRichiestaCtrl.jsp" iride2="RICHIESTA_AZIENDA" />
+      <mapping jsp="ricercaRichiestaCtrl.jsp" iride2="RICERCA_RICHIESTA" />
+      <mapping jsp="elencoRicercaRichiestaCtrl.jsp" iride2="ELENCO_RICHIESTE_AZIENDA" />
+      <mapping jsp="annullaRichiestaCtrl.jsp" iride2="RICERCA_RICHIESTA" />
+      <mapping jsp="newInserimentoRichiestaValidazioneCtrl.jsp" iride2="RICHIESTE_CESS_VAL" />
+      <mapping jsp="newInserimentoRichiestaCessazioneCtrl.jsp" iride2="RICHIESTE_CESS_VAL" />
+      <mapping jsp="newInserimentoConfermaValidazioneCtrl.jsp" iride2="RICHIESTE_CESS_VAL" />
+      <mapping jsp="newInserimentoConfermaCessazioneCtrl.jsp" iride2="RICHIESTE_CESS_VAL" />
+      <mapping jsp="newInserimentoSoggettiCtrl.jsp" iride2="RICHIESTA_AZIENDA" />
+      <mapping jsp="newInserimentoSoggAssCtrl.jsp" iride2="RICHIESTA_AZIENDA" />
+      <mapping jsp="newInserimentoSoggAssCaaCtrl.jsp" iride2="RICHIESTA_AZIENDA" />
+      <mapping jsp="newInserimentoRichiestaVariazioneCtrl.jsp" iride2="RICHIESTA_AZIENDA" />
+      <mapping jsp="newInserimentoConfermaVariazioneCtrl.jsp" iride2="RICHIESTA_AZIENDA" />
+      <mapping jsp="newInserimentoRichVarIrrCtrl.jsp" iride2="RICHIESTA_AZIENDA" />
+      <mapping jsp="newInserimentoRichSoggAssCtrl.jsp" iride2="RICHIESTA_AZIENDA" />
+      <mapping jsp="newInserimentoRichSoggAssCaaCtrl.jsp" iride2="RICHIESTA_AZIENDA" />
+    <!--  Nuova Iscrizione -->
+    <!-- Strumenti -->
+      <mapping jsp="strumentiCtrl.jsp" iride2="STAMPA_FASCICOLO" />
+      <mapping jsp="strumentiFirmaMarcaTemporaleCtrl.jsp" iride2="STAMPA_FASCICOLO" />
+    <!-- Strumenti -->
+  </iride2-mappings>
+</iride2-security-config>

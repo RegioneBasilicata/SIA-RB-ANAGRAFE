@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 4.1.3  -->
+<!-- 2016-12-23T09:50:00 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="TemplateProtocollo" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="DocumentoAnagraficoDett" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="DocumentoIdentificazione" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="protocolloDS" class="java.util.List"/>
+	<parameter name="DocumentoProprietari" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="DocumentoTerreni" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="DocumentoZootecnicoDett" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="DocSottoscrittoJasper" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="DichiarazioniSubReport" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="DocFirmaJasper" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="DocTrattamentoDatiJasper" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="DocAltroParticelleJasper" class="net.sf.jasperreports.engine.JasperReport"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="headerDocumento" class="it.csi.smranag.smrgaa.dto.stampe.protocollo.HeaderDocumento"/>
+	<field name="docAnagrafico" class="it.csi.smranag.smrgaa.dto.stampe.protocollo.DocAnagrafico"/>
+	<field name="docContoCorrente" class="it.csi.smranag.smrgaa.dto.stampe.protocollo.DocContoCorrente"/>
+	<field name="docCorrettivaTerreni" class="it.csi.smranag.smrgaa.dto.stampe.protocollo.DocCorrettivaTerreni"/>
+	<field name="docIdentificazione" class="it.csi.smranag.smrgaa.dto.stampe.protocollo.DocIdentificazione"/>
+	<field name="docProprietari" class="it.csi.smranag.smrgaa.dto.stampe.protocollo.DocProprietari"/>
+	<field name="docTerreni" class="it.csi.smranag.smrgaa.dto.stampe.protocollo.DocTerreni"/>
+	<field name="docZootecnico" class="it.csi.smranag.smrgaa.dto.stampe.protocollo.DocZootecnico"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="168" splitType="Stretch">
+			<image>
+				<reportElement x="10" y="20" width="50" height="50"/>
+			</image>
+			<image>
+				<reportElement x="502" y="20" width="50" height="50"/>
+			</image>
+			<staticText>
+				<reportElement x="2" y="82" width="555" height="30">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="Dialog" size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Anagrafe Agricola Unica della TOBECONFIG]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="132" width="479" height="30"/>
+				<textElement>
+					<font fontName="Dialog" size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Documento]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="100" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="10" width="554" height="70" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{docAnagrafico} != null]]></printWhenExpression>
+				</reportElement>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{protocolloDS},false)]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{DocumentoAnagraficoDett}]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="128">
+			<staticText>
+				<reportElement x="0" y="10" width="160" height="30" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{docTerreni} == null || $F{docTerreni}.getElencoParticelle() == null || $F{docTerreni}.getElencoParticelle().size() <= 0]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="Dialog" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Non sono presenti terreni]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="0" y="10" width="555" height="100" isRemoveLineWhenBlank="true">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<printWhenExpression><![CDATA[$F{docTerreni} != null && $F{docTerreni}.getElencoParticelle() != null && $F{docTerreni}.getElencoParticelle().size() > 0]]></printWhenExpression>
+				</reportElement>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{docTerreni}.getElencoParticelle(),false)]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{DocumentoTerreni}]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="138">
+			<subreport>
+				<reportElement x="-2" y="10" width="555" height="100" isRemoveLineWhenBlank="true">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<printWhenExpression><![CDATA[$F{docProprietari} != null && $F{docProprietari}.getElencoProprietari()!= null &&  $F{docProprietari}.getElencoProprietari().size()>0]]></printWhenExpression>
+				</reportElement>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{docProprietari}.getElencoProprietari(),false)]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{DocumentoProprietari}]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement x="0" y="10" width="160" height="30" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{docProprietari} == null || $F{docProprietari}.getElencoProprietari() == null ||
+$F{docProprietari}.getElencoProprietari().size()<=0]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="Dialog" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Non sono presenti proprietari]]></text>
+			</staticText>
+		</band>
+		<band height="78">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="70" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{docIdentificazione} != null]]></printWhenExpression>
+				</reportElement>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{protocolloDS},false)]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{DocumentoIdentificazione}]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="95">
+			<subreport>
+				<reportElement x="0" y="10" width="555" height="70"/>
+				<subreportParameter name="protocolloDS">
+					<subreportParameterExpression><![CDATA[$P{protocolloDS}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="DichiarazioniSubReport">
+					<subreportParameterExpression><![CDATA[$P{DichiarazioniSubReport}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{protocolloDS},false)]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{DocSottoscrittoJasper}]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="135">
+			<subreport>
+				<reportElement x="0" y="29" width="555" height="71"/>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{protocolloDS}.get(0).getDocDichiarazioni(),false)]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{DichiarazioniSubReport}]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="109">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="90"/>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{protocolloDS},false)]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{DocTrattamentoDatiJasper}]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="50">
+			<subreport>
+				<reportElement x="5" y="5" width="555" height="25"/>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{protocolloDS},false)]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{DocAltroParticelleJasper}]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="50">
+			<subreport>
+				<reportElement x="5" y="5" width="555" height="25"/>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{protocolloDS},false)]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{DocTrattamentoDatiJasper}]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,0 +1,75 @@
+$$head
+<script type="text/javascript" src="../js/checktext.js"></script>
+<script type="text/javascript">
+	// Funzione che specifica l'operazione selezionata ed effettua il submit
+	// del form
+	function conferma() {
+		document.forms[0].aggiungi.value = 'aggiungi';
+		document.forms[0].submit();
+	}
+
+	function annulla() {
+		document.forms[0].annulla.value = 'annulla';
+		document.forms[0].submit();
+	}
+</script>
+</head>
+<body id="popup">
+	<form id="" name="form1" method="post"
+		action="../layout/popAggiungiUso.htm">
+		<input type="hidden" name="type" value="$$type" /> 
+		<input type="hidden" name="aggiungi" value="$$aggiungi" /> 
+		<input type="hidden" name="provenienza" value="$$provenienza" /> 
+		<input type="hidden" name="idParticellaCertificata" value="$$idParticellaCertificata" /> 
+		<input type="hidden" name="numTotaleUtilizzo" value="$$numTotaleUtilizzo" />		
+		<input type="hidden" name="annulla" value="$$annulla" /> 
+		
+		<!-- @@blkUvSel -->
+		<input type="hidden" name="idStoricoUnitaArborea" value="$$idStoricoUnitaArborea" />
+		<!-- @@blkUvSel -->
+		<!-- @@blkAreaUv -->
+    <input type="hidden" name="area" value="$$area" />
+    <!-- @@blkAreaUv -->
+		<!-- CORPO -->
+		<div id="contenutopop">
+			<table cellspacing="3"
+				summary="Questa tabella contiene i dati relativi agli utilizzi">
+				<tr>
+					<th scope="col"><label for="codice">Codice destinazione produttiva</label></th>
+					<td><input name="codiceUso" id="codiceUso" type="text"
+						class="texmedio" value="$$codiceUso" maxlength="10" />$$err_codiceUso
+					</td>
+				</tr>
+				<tr>
+					<th scope="col"><label for="indirizzo">Indirizzo destinazione produttiva</label></th>
+					<td><select name="idIndirizzoUtilizzo"
+						id="idIndirizzoUtilizzo"
+						onchange="javascript: goTo(document.forms[0].action, document.forms[0]);">
+							<option></option>
+							<!-- @@blkIndirizziUtilizzo -->
+							<option value="$$idIndirizzoUtilizzo" $$selected>$$descrizione</option>
+							<!-- @@blkIndirizziUtilizzo -->
+					</select> $$err_idIndirizzoUtilizzo</td>
+				</tr>
+				<tr>
+					<th scope="col"><label for="uso">Destinazione produttiva</label></th>
+					<td><select name="idTipoUtilizzo" id="idTipoUtilizzo">
+							<!-- @@blkTipiUtilizzo -->
+							<option value="$$idTipoUtilizzo" $$selected>$$descrizione</option>
+							<!-- @@blkTipiUtilizzo -->
+					</select> $$err_idTipoUtilizzo</td>
+				</tr>
+			</table>
+			<div class="pulsanti">
+				<div class="des">
+					<a href="javascript:annulla();" class="inputPulsante annulla">annulla</a> <span class="alt">&nbsp;/&nbsp;</span>
+				</div>
+				<div class="sin">
+					<a href="javascript:conferma();">conferma</a> <span class="alt">&nbsp;/&nbsp;</span>
+				</div>
+			</div>
+		</div>
+		</div>
+	</form>
+</body>
+</html>

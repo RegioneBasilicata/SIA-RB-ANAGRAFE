@@ -1,0 +1,493 @@
+$$head
+
+<script src="../js/checktext.js" type="text/javascript"></script>
+<script type="text/javascript" src="../js/messaggistica.js"></script>
+<script type="text/javascript">
+  function popolaIban()
+  {
+  	var codPaese = document.contoCorrente.codicepaese.value;
+  	var cctrl = document.contoCorrente.cctrl.value;
+  	var cin = document.contoCorrente.cin.value;
+  	var abi = document.contoCorrente.abi.value;
+  	var cab = document.contoCorrente.cab.value;
+  	var numeroContoCorrente = document.contoCorrente.numeroContoCorrente.value;
+  	var iban = codPaese + cctrl + cin + abi + cab + numeroContoCorrente;
+    
+  	if(codPaese != '' && cctrl != '' && cin != '' && abi != '' && cab != '' && numeroContoCorrente != '')
+    {
+  	  document.contoCorrente.iban.value = iban;
+  	}    
+  }
+   
+  function gestisciValidazione()
+  {
+    var validazione = document.forms[0].flagValidazione.value;
+    if(validazione == 'N')  
+    {
+      document.forms[0].motivoValidazione.readOnly = false;
+    }
+    else
+    {
+      document.forms[0].motivoValidazione.readOnly = true;
+    }
+  }
+  
+  
+  </script>
+
+</head>
+<body id="homeIndice" onLoad="javascript:gestisciValidazione();$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+  <form id="contoCorrente" name="contoCorrente" method="post"
+    action="../layout/conti_correnti_mod.htm">    
+    <!--
+        $$err_flagContoGf
+      -->   
+    <div id="pagina" class="colonnaUnica">
+      <input type="hidden" name="regimeModificaCC" value="true" />
+      <input type="hidden" name="abi" value="$$abi" />
+      <input type="hidden" name="cab" value="$$cab" />
+      <input type="hidden" name="codicepaese" value="$$codpaese" />
+      <input type="hidden" name="numeroContoCorrente"
+        value="$$numeroContoCorrente" />
+      <input type="hidden" name="idContoCorrente"
+        value="$$idContoCorrente" />
+      <input type="hidden" name="flagValidazione"
+        value="$$flagValidazione" />
+      <!-- INTESTAZIONE -->
+      <div id="intestazione##pathProvincia">
+        $$header
+        <!-- menu di navigazione-->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li>
+                <a href="../layout/index.htm"
+                  title="Torna alla pagina principale">home</a>
+              </li>
+              <li class="attivo">
+                gestione anagrafe aziende
+              </li>
+              <li>
+                <a href="#" title="contatti">contatti</a>
+              </li>
+              <li>
+                <a href="#" title="help">help</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div style="clear: left"></div>
+      <!-- CORPO -->
+      <div id="corpo">
+        <div id="Utente">
+          <div id="datiUtente">
+            <strong>utente:</strong>$$utente&nbsp;&nbsp;
+            <strong>ente:</strong>$$ente
+          </div>
+          <div id="chiudisessione">
+            <a href="javascript: logout();">chiudi sessione</a>
+          </div>
+        </div>
+        <hr />
+        <!--PRIMA COLONNA -->
+        <h3>
+          Gestione Anagrafe Aziende&nbsp;&gt;&nbsp;Conti
+          Correnti&nbsp;&gt;&nbsp;Modifica
+          <span class="helpFuori"> <a href="#"> <span
+              class="alt">[help]</span> </a> </span>
+        </h3>
+        <hr />
+        <div class="box">
+          <div class="menuSX1">
+            <ul>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <li>
+                <a href="../layout/elencoAziendeRapLegale.htm">Elenco
+                  Aziende</a>
+              </li>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <!-- @@blkRicercaAzienda-->
+              <li>
+                <a href="../layout/ricerca.htm">Ricerche</a>
+              </li>
+              <!-- @@blkRicercaAzienda-->
+              <!-- @@blkNuova -->
+              <li>
+                <a href="../layout/nuovaAziendaAnagrafica.htm">Nuova
+                  Azienda</a>
+              </li>
+              <!-- @@blkNuova -->
+              <!-- @@blkNuovaIscrizione -->
+		          <li>
+		            <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+		          </li>
+		          <!-- @@blkNuovaIscrizione -->
+            </ul>
+          </div>
+          <div class="menuSX">
+            <ul>
+              <li>
+                <a href="../layout/anagrafica.htm">Anagrafica</a>
+              </li>
+              <!-- @@blkAziendeCollegate -->
+              <li>
+                <a href="../layout/aziendeCollegate.htm">$$aziendeCollegateLabel</a>
+              </li>
+              <!-- @@blkAziendeCollegate -->
+              <!-- @@blkSincronizzaFascicolo -->
+               <li>
+               	<a href="../layout/sincronizzaFascicolo.htm">Sincronizza fascicolo</a>
+               </li>
+              <!-- @@blkSincronizzaFascicolo -->
+              <!-- @@blkSoggettiCollegati -->
+              <li>
+                <a href="../layout/contitolari.htm">Soggetti
+                  collegati</a>
+              </li>
+              <!-- @@blkSoggettiCollegati -->
+              <!-- @@blkContiCorrenti -->
+              <li>
+                <a href="../layout/conti_correnti.htm" class="on">Conti
+                  Correnti</a>
+                <ul>
+                  <li>
+                    <a href="#" class="etichetta">modifica</a>
+                  </li>
+                </ul>
+              </li>
+              <!-- @@blkContiCorrenti -->
+              <!-- @@blkUnitaProduttive -->
+              <li>
+                <a href="../layout/sedi.htm">Unit&agrave; produttive</a>
+              </li>
+              <!-- @@blkUnitaProduttive -->
+              <!-- @@blkTerreni -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniParticellareElenco.htm">Terreni</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		            <a href="../layout/riepiloghi.htm">Terreni</a>
+		            <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkTerreni -->
+		          <!-- @@blkUnitaVitate -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniUnitaArboreeElenco.htm">Unit&agrave; Vitate</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		              <a href="../layout/riepiloghiUnitaArboree.htm">Unit&agrave; Vitate</a>
+		              <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkUnitaVitate -->
+              <!-- @@blkFabbricati -->
+              <li>
+                <a href="../layout/fabbricati.htm">Fabbricati e
+                  Strutture</a>
+              </li>
+              <!-- @@blkFabbricati -->
+              <!-- @@blkAllevamenti -->
+              <li>
+                <a href="../layout/allevamenti.htm">Allevamenti</a>
+              </li>
+              <!-- @@blkAllevamenti -->
+              <!-- @@blkManodopera -->
+              <li>
+                <a href="../layout/manodopera.htm">Manodopera</a>
+              </li>
+              <!-- @@blkManodopera -->
+              <!-- @@blkMotoriAgricoli -->
+              <li>
+                <a href="../layout/motori_agricoli_incarico.htm">Macchine agricole</a>
+              </li>
+              <!-- @@blkMotoriAgricoli -->
+              <!-- @@blkDiritti -->
+              <li>
+                <a href="../layout/diritti.htm">Diritti di
+                  produzione</a>
+              </li>
+              <!-- @@blkDiritti -->
+              <!-- @@blkAttestazioni -->
+              <li>
+                <a href="../layout/attestazioniDettaglio.htm">Dichiarazioni</a>
+              </li>
+              <!-- @@blkAttestazioni -->
+              <!-- @@blkDichiarazioniConsistenza -->
+              <li>
+                <a href="../layout/dichiarazioneConsistenza.htm">Validazioni</a>
+              </li>
+              <!-- @@blkDichiarazioniConsistenza -->
+              <!-- @@blkDocumenti -->
+              <li>
+                <a href="../layout/documentiElenco.htm">Documenti</a>
+              </li>
+              <!-- @@blkDocumenti -->
+              <!-- @@blkFascicoloDematerializzato -->
+		          <li>
+		            <a href="../layout/fascicoloDematerializzato.htm">Fascicolo<br>elettronico</a>
+		          </li>
+		          <!-- @@blkFascicoloDematerializzato --> 
+              <!-- @@blkGestioneNotifiche -->
+              <li>
+                <a href="../layout/notifiche.htm">Notifiche</a>
+              </li>
+              <!-- @@blkGestioneNotifiche -->
+              <!-- @@blkComunicazione10R -->
+              <li>
+                <a href="../layout/comunicazione10R_dettaglio.htm">Comunicazione
+                  10/R</a>
+              </li>
+              <!-- @@blkComunicazione10R -->
+              <!-- @@blkPratiche -->
+              <li>
+                <a href="../layout/pratiche.htm">Pratiche</a>
+              </li>
+              <!-- @@blkPratiche -->
+              <!-- @@blkStampaFascicolo -->
+              <li>
+                <a href="../layout/scelta_stampa.htm">Stampe</a>
+              </li>
+              <!-- @@blkStampaFascicolo -->
+			  <li><a href="../layout/strumenti.htm">Strumenti</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr />
+        <!-- SECONDA COLONNA -->
+        <div id="contenuto">
+          <div id="intesta">
+            <p class="$$aziendaIntestazione" title="$$tooltipIntestazione" >
+              $$CUAAIntestazione  $$denominazioneIntestazione
+            </p>
+          </div>
+          <table cellspacing="3"
+            summary="Questa tabella è costituita da righe">
+            <caption>
+              Banca:
+            </caption>
+            <col width="30%" />
+            <col width="70%" />
+            <tr>
+              <th>
+                ABI
+              </th>
+              <td>
+                $$abi
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Denominazione
+              </th>
+              <td>
+                $$denominazioneBanca
+              </td>
+            </tr>
+            <tr>
+              <th>
+                BIC/SWIFT
+              </th>
+              <td>
+                $$bic
+              </td>
+            </tr>
+          </table>
+          <table cellspacing="3"
+            summary="Questa tabella è costituita da righe">
+            <caption>
+              Filiale/Sportello:
+            </caption>
+            <col width="30%" />
+            <col width="70%" />
+            <tr>
+              <th>
+                CAB
+              </th>
+              <td>
+                $$cab
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Indirizzo
+              </th>
+              <td>
+                $$indirizzoSportello
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Comune
+              </th>
+              <td>
+                $$descrizioneComuneSportello
+              </td>
+            </tr>
+            <tr>
+              <th>
+                C.A.P.
+              </th>
+              <td>
+                $$capSportello
+              </td>
+            </tr>
+          </table>
+          <table cellspacing="3"
+            summary="Questa tabella è costituita da righe">
+            <caption>
+              Conto Corrente:
+            </caption>
+            <col width="30%" />
+            <col width="70%" />
+            <tr>
+              <th>
+                Codice Paese
+              </th>
+              <td id="codpaese">
+                $$codpaese
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="cctrl">
+                  Cifra di controllo *
+                </label>
+              </th>
+              <td>
+                <input type="text" id="cctrl" name="cctrl"
+                  value="$$cctrl" maxlength="2"
+                  onblur="javascript:popolaIban();" size="4"
+                  class="textmedio" />
+                $$err_cctrl
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="cin">
+                  CIN *
+                </label>
+              </th>
+              <td>
+                <input type="text" id="cin" name="cin" value="$$cin"
+                  maxlength="1" onBlur="javascript:popolaIban();"
+                  size="4" class="textmedio" />
+                $$err_cin
+              </td>
+            </tr>
+            <tr>
+              <th>
+                Numero conto
+              </th>
+              <td>
+                $$numeroContoCorrente
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="iban">
+                  IBAN
+                </label>
+              </th>
+              <td>
+                <input type="text" id="iban" name="iban"
+                  readonly="readonly" value="$$iban" size="60"
+                  class="text" />
+              </td>
+            </tr>
+            <!-- @@blkCCSpeciale -->
+            <tr>
+              <th>
+                <label for="contabilita speciale">
+                  Contabilit&agrave; speciale
+                </label>
+              </th>
+              <td>
+                <input type="checkbox" id="flagContoGf" name="flagContoGf"
+                  value="S" $$checkedFlagContoGf />
+                ##err_flagContoGf
+              </td>
+            </tr>
+            <!-- @@blkCCSpeciale -->
+            <tr>
+              <th>
+                <label for="intestatario">
+                  Intestatario *
+                </label>
+              </th>
+              <!--Cambiato l'id e il name da intestazione a intestatario perchè altrimenti visualizzava il banner dell'intestazione-->
+              <td>
+                <input type="text" id="intestatario" name="intestatario"
+                  value="$$intestatario" size="50" maxlength="120"
+                  class="textmediolungo" />
+                $$err_intestatario
+              </td>
+            </tr>
+          </table>
+          <table cellspacing="3"
+            summary="Questa tabella è costituita da righe">
+            <caption>
+              Validit&agrave;:
+            </caption>
+            <col width="30%" />
+            <col width="70%" />
+            <tr>
+              <th>
+                Dal
+              </th>
+              <td>
+                $$dataInizioValiditaContoCorrente
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="estinto">
+                  Estinto
+                </label>
+              </th>
+              <td>
+                <input type="checkbox" id="estinto" name="estinto"
+                  value="si" $$checkedEstinto />
+              </td>
+            </tr>
+            <tr>
+              <th>Causale Invalidazione</th>
+              <td>$$causale</td>
+            </tr>
+            <tr>
+              <th>Note Invalidazione</th>
+              <td>$$note</td>
+            </tr>
+            <tr>
+              <th>Motivo Rivalidazione</th>
+              <td>
+                <textarea name="motivoValidazione"
+                  id="motivoValidazione" cols="85" rows="5">$$motivoValidazione</textarea>
+                $$err_motivoValidazione
+              </td>
+            </tr>
+          </table>
+          <p id="nota">
+            I campi contrassegnati con * sono obbligatori
+          </p>
+          <div class="pulsanti">
+            <div class="sin">
+              <input name="salva" class="inputPulsante highlighted" type="submit"
+                value="salva" />
+            </div>
+            <div class="des">
+              <input name="annulla" class="inputPulsante annulla" type="submit"
+                value="annulla" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr />
+  </form>
+  <!-- PIE' DI PAGINA -->
+  $$footer

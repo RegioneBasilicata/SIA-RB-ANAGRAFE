@@ -1,0 +1,171 @@
+#titoloEmenu {
+	background	: #ebebeb url(/css/AnagrafeAziende/im/testa_sup_anagrafeaziende_fluido.jpg) 0 0 no-repeat;
+	color		: #fff
+}
+#noteSito {
+	background: transparent url(/css/AnagrafeAziende/im/testa_inf_anagrafeaziende_fluido.jpg) 100% 100% no-repeat;
+	height:23px;
+	width:100%;
+	display:block;
+	color: #fff;
+}
+#noteSito a:link, 
+#noteSito a:visited,
+#noteSito a:hover, 
+#noteSito a:active {
+	background: transparent url(/css/AnagrafeAziende/im/testa_inf_anagrafeaziende_fluido.jpg) 100% 100% no-repeat;
+	height:23px;
+	width:100%;
+	display:block;
+	color: #fff;
+}
+/* consente l'inserimento della scrollbar nel popup*/
+.scrollpop {
+	overflow:auto;
+	width: 696px;
+	margin:0 0 3px 0;
+}
+
+.scrollpop {
+position: relative;
+overflow:auto;
+visibility: visible;
+z-index: 1000;
+/*height: 100px;*/ 
+/*width: 566px;*/
+margin:3px 0 8px 0;
+margin:0 0 3px 0;
+border:0;
+padding:0;
+}
+#corpo table td.giallo {
+background-color:#FFEC9D;
+}
+#contenuto h4.titolo {
+	background: #fff;
+	color: #5E2F00;
+	font-size:1.2em;
+	margin:8px 0 0 0;
+	text-decoration:underline;
+	font-style:italic;
+}
+.scrollpop table {
+	width: 676px !important;
+	height: 30px !important;
+}
+#hiddenRicerca{
+    position: absolute;
+    left: -10000px;
+    top: -10000px;
+	overflow: hidden;
+    width:0;
+	height:0;
+	clear:none;
+}
+/*fine classe per scroll in popup*/
+
+/****************************************************************************************************/
+/*Definizione del blocco notifiche :<!-- @@blkNotifica -->con $$notica e $$messaggioNotifica,
+da usare solo per questo blocco!!*/
+/*casi per $$messaggioNotifica:*/
+.bloccata{
+background: url(im/bloccato.jpg) 0% 0% no-repeat;
+padding-left: 30px !important;
+color:#FF0000;
+font-weight: bold;
+	}
+
+ .warning{
+background: url(im/warning.jpg) 0% 0% no-repeat;
+padding-left: 30px !important;
+color: #000000;
+font-weight: bold;
+}
+ .segnalazioni{
+background: url(im/info.jpg) 0% 0% no-repeat;
+padding-left: 30px !important;
+color: #25387F;
+font-weight: bold;
+}
+/*fine casi per $$messaggioNotifica*/
+/*definizione per $$notifica:(da usare solo x questa variabile che è contenuta in <!-- @@blkNotifica -->)*/
+.notifica
+{
+	color:#FF0000;
+	font-style:italic;
+	font-weight: bold;
+	/*border:1px dashed #000;*/
+	width:60%;
+	padding-left:3px;
+	margin-left:5px;
+	margin-bottom:6px;
+}
+/*fine definizione blocco notifiche*/
+/***************************************************************************************/
+/* nobordo per im */
+
+img {
+	border: 0 !important;
+}
+
+/* accrocchio per aggiustare larghezza all'interno del div scroll */
+	.scroll label span {
+		width: 0 !important; /*necessario?*/
+		height: 0 !important; /*necessario?*/
+		display: none !important; /*necessario?*/
+	}
+
+	
+/* utilizzata per titoletto in rosso e successivo paragrafo senza classi*/
+	.titrosso {
+	font-weight:bold;
+	font-size:1em;
+	color:#FF0000;
+	margin-bottom: -10px !important;
+}
+.titrosso2 {
+	font-weight:bold;
+	font-size:1em;
+	color:#FF0000;
+	margin-top: -10px !important;
+}
+/*richieste del dominio*/
+.rosso {
+color:red;
+}
+.nero {
+color:black;
+}
+#contenuto table th.left {
+	text-align:left;
+	width: auto;
+}
+#contenuto table td.right {
+	text-align:right;
+	width: auto;
+}
+#ricerca {
+   font-size: 0.95em;
+	height:18px; 
+	margin: 3px 0 0 0;
+	font-weight:bold; 
+	text-decoration:none; 
+	text-align:center;
+	color:#000;
+	background: #EFE7BD;
+	border-top: 1px solid #fff; 
+	border-bottom: 1px solid #000; 
+	border-left: 1px solid #fff; 
+	border-right: 1px solid #000;
+	cursor: hand;
+	padding: 0 0 2px 0;
+}
+/* Aggiunte #contenuto table td div*/
+.allinea {padding:0px;margin:0;display:block;}
+#contenuto table td div.allinea input.textmedio {width:100px;}
+/*#contenuto table td div.allinea input.inputPulsante {height:17px; }*/
+#CUAA {float:left;margin-right:3px;}
+.CUAA {float:left;margin-right:5px;margin-top:2px;}
+#importa{height:18px; margin-top:1px;margin-left:3px;}
+
+

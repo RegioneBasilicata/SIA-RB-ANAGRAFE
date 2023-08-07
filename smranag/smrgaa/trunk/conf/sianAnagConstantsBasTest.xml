@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xmlConstants>
+	<constant>
+		<name>SIAN_TIME_OUT</name>
+		<value>25000</value>
+	</constant>
+
+	<!-- Start ricercaAnagrafica -->
+	<constant>
+		<name>SIAN_URL_RICERCA_ANAGRAFICA</name>
+		<value>http://pdd.regione.TOBECONFIG.it:8080/pdd/PD/PD_AGEA_ValidazioneAnagrafe/?AZIONE=ricercaAnagraficaAll</value>
+	</constant>
+	<!-- End ricercaAnagrafica -->
+
+	<!-- Start postaCertificata -->
+	<constant>
+		<name>SMRCOMM_URL_POSTA_CERTIFICATA</name>
+		<value>http://172.18.14.155/siapcommwsApplSmrcommWs/SmrcommSrvService</value>
+	</constant>
+	<!-- End postaCertificata -->
+
+	<!-- Start papuaWs -->
+	<constant>
+		<name>PAPUA_URL_WS</name>
+		<value>http://172.18.14.155/papuaserv/ws/profilazione
+		</value>
+	</constant>
+	<!-- End papuaWs -->
+
+    <!-- Start infocamereWs -->
+	<constant>
+		<name>INFOCAMERE_URL_WS</name>
+		<value>http://172.18.14.155/ServizioLSIC/services/LSICService</value>
+	</constant>
+	<!-- End infocamereWs -->
+
+
+	<!-- Start BDN -->
+	<constant>
+		<name>WS_NAME</name>
+		<value>wsAgeaAut</value>
+	</constant>
+
+	<constant>
+		<name>WS_USERNAME</name>
+		<value>siarb_AGEA</value>
+	</constant>
+
+	<constant>
+		<name>WS_PASSWORD</name>
+		<value>test123</value>
+	</constant>
+
+	<constant>
+		<name>WS_NAMESPACE</name>
+		<value>http://bdr.izs.it/webservices</value>
+	</constant>
+
+	<constant>
+		<name>WS_WSDLURI</name>
+		<value>http://bdrtest.izs.it/wsBDNAgea/wsAgeaAut.asmx?wsdl</value>
+	</constant>
+
+	<constant>
+		<name>WS_URI</name>
+		<value>http://bdrtest.izs.it/wsBDNAgea/wsAgeaAut.asmx</value>
+	</constant>
+	<!-- End BDN -->
+
+
+	<!-- Start Proxy -->
+	<constant>
+		<name>PROXY_SERVER</name>
+		<value></value>
+	</constant>
+
+	<constant>
+		<name>PROXY_PORT</name>
+		<value></value>
+	</constant>
+	<!-- End BDN -->
+
+</xmlConstants>

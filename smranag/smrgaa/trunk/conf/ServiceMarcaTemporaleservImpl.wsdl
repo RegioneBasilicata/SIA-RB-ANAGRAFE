@@ -1,0 +1,142 @@
+<?xml version="1.0" ?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://service.gaaserv.agricoltura.aizoon.it/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="ServiceMarcaTemporaleservImplService" targetNamespace="http://service.gaaserv.agricoltura.aizoon.it/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://service.gaaserv.agricoltura.aizoon.it/" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://service.gaaserv.agricoltura.aizoon.it/">
+  <xs:element name="getMarcaTemporale" type="tns:getMarcaTemporale"></xs:element>
+  <xs:element name="getMarcaTemporaleResponse" type="tns:getMarcaTemporaleResponse"></xs:element>
+  <xs:element name="isAlive" type="tns:isAlive"></xs:element>
+  <xs:element name="isAliveResponse" type="tns:isAliveResponse"></xs:element>
+  <xs:element name="testResources" type="tns:testResources"></xs:element>
+  <xs:element name="testResourcesResponse" type="tns:testResourcesResponse"></xs:element>
+  <xs:complexType name="getMarcaTemporale">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:base64Binary"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getMarcaTemporaleResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:base64Binary"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="isAlive">
+    <xs:sequence></xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="isAliveResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="testResources">
+    <xs:sequence></xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="testResourcesResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Exception" type="tns:Exception"></xs:element>
+  <xs:complexType name="Exception">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getMarcaTemporale">
+    <wsdl:part element="tns:getMarcaTemporale" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getMarcaTemporaleResponse">
+    <wsdl:part element="tns:getMarcaTemporaleResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="isAlive">
+    <wsdl:part element="tns:isAlive" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="testResourcesResponse">
+    <wsdl:part element="tns:testResourcesResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="testResources">
+    <wsdl:part element="tns:testResources" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="isAliveResponse">
+    <wsdl:part element="tns:isAliveResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="Exception">
+    <wsdl:part element="tns:Exception" name="Exception">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="ServiceMarcaTemporaleserv">
+    <wsdl:operation name="getMarcaTemporale">
+      <wsdl:input message="tns:getMarcaTemporale" name="getMarcaTemporale">
+    </wsdl:input>
+      <wsdl:output message="tns:getMarcaTemporaleResponse" name="getMarcaTemporaleResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:Exception" name="Exception">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="isAlive">
+      <wsdl:input message="tns:isAlive" name="isAlive">
+    </wsdl:input>
+      <wsdl:output message="tns:isAliveResponse" name="isAliveResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:Exception" name="Exception">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="testResources">
+      <wsdl:input message="tns:testResources" name="testResources">
+    </wsdl:input>
+      <wsdl:output message="tns:testResourcesResponse" name="testResourcesResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:Exception" name="Exception">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ServiceMarcaTemporaleservImplServiceSoapBinding" type="tns:ServiceMarcaTemporaleserv">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"></soap:binding>
+    <wsdl:operation name="getMarcaTemporale">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="getMarcaTemporale">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getMarcaTemporaleResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault name="Exception" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="isAlive">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="isAlive">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="isAliveResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault name="Exception" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="testResources">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="testResources">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="testResourcesResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+      <wsdl:fault name="Exception">
+        <soap:fault name="Exception" use="literal"></soap:fault>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ServiceMarcaTemporaleservImplService">
+    <wsdl:port binding="tns:ServiceMarcaTemporaleservImplServiceSoapBinding" name="ServiceMarcaTemporaleservImplPort">
+      <soap:address location="http://localhost:8080/gaaserv/ServiceMarcaTemporaleservImpl"></soap:address>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,391 @@
+    <table cellspacing="3" summary="Questa tabella è costituita da righe">
+      <caption>Dati uso del suolo</caption>
+      <tr>
+        <th rowspan="3" class="center" scope="col">&nbsp;
+          <a href="javascript:modificaRigaDati('inserisci','','$$provenienza')" class="aggiungi" title="inserisci tipo EFA"></a>
+        </th>
+        <th colspan="8" class="center" scope="col">
+          Uso del suolo
+        </th>
+        <th rowspan="3" class="center" scope="col">
+          Mantenimento
+        </th>
+        <th rowspan="3" class="center" scope="col">
+          Fase allevamento
+        </th>
+        <th colspan="8" class="center" scope="col">
+          SOLO FRUTTA A GUSCIO
+        </th>
+      </tr>
+      <tr>
+        <th colspan="4" class="center" scope="col">
+          Uso primario
+        </th>
+        <th colspan="4" class="center" scope="col">
+          Uso secondario
+        </th>
+        <th colspan="5" class="center" scope="col">
+          Impianto
+        </th>
+        <th colspan="$$colspan" class="center" scope="col">
+          N&deg; piante consociate
+        </th>
+      </tr>
+      <tr>
+        <th class="center" scope="col">&nbsp;              
+        </th>
+        <th class="center" scope="col">&nbsp;              
+        </th>
+        <th class="center" scope="col">
+          Semina
+        </th>
+        <th class="center" scope="col">
+          Sup.
+        </th>
+        <th class="center" scope="col">&nbsp;              
+        </th>
+        <th class="center" scope="col">&nbsp;              
+        </th>
+        <th class="center" scope="col">
+          Semina
+        </th>
+        <th class="center" scope="col">
+          Sup.
+        </th>
+        <th class="center" scope="col">
+          Anno
+        </th>
+        <th class="center" scope="col">
+          Tipo
+        </th>
+        <th class="center" scope="col">
+          Sesto su file
+        </th>
+        <th class="center" scope="col">
+          Sesto tra file
+        </th>
+        <th class="center" scope="col">
+          N&deg; piante / Ceppi
+        </th>
+        <!-- @@blkEtichettaPianteConsociate -->
+        <th class="center" scope="col">
+          $$descPianteConsociate
+        </th>
+        <!-- @@blkEtichettaPianteConsociate -->
+      </tr>
+      <!-- @@blkElencoUtilizzi -->
+      <tr  class="evidence">
+        <td class="radio">
+          <a href="javascript:modificaRigaDati('elimina', '$$numeroUtilizzi','$$provenienza')" class="cancella" title="elimina Uso"></a>
+        </td>
+        <td>
+          <select name="idTipoUtilizzo" id="idTipoUtilizzo" class="clsIdTipoUtilizzo"
+            onchange="javascript: modificaComboDestinazione('$$numeroUtilizzi');">
+            <option value=""></option>
+            <!-- @@blkTipiUsoSuolo -->
+            <option value="$$idTipoUtilizzo" title="$$descCompleta" $$selected>
+              $$descrizione
+            </option>
+            <!-- @@blkTipiUsoSuolo -->
+          </select>
+          $$err_idTipoUtilizzo
+          <div id="idTipoDestinazioneDiv$$numeroUtilizzi">
+            <select name="idTipoDestinazione" id="idTipoDestinazione" 
+              onchange="javascript: modificaComboDettaglioUso('$$numeroUtilizzi');">
+              <!-- @@blkTipiDestinazione -->
+              <option value="$$idTipoDestinazione" title="$$descCompleta" $$selected>
+                $$descrizione
+              </option>
+              <!-- @@blkTipiDestinazione -->
+              <!-- @@blkNoTipiDestinazione -->
+              <option value=""></option>
+              <!-- @@blkNoTipiDestinazione -->
+            </select>
+            $$err_idTipoDestinazione
+          </div>
+          <div id="idTipoDettaglioUsoDiv$$numeroUtilizzi">
+            <select name="idTipoDettaglioUso" id="idTipoDettaglioUso" 
+              onchange="javascript: modificaComboQualitaUso('$$numeroUtilizzi');">
+              <!-- @@blkTipiDettaglioUso -->
+              <option value="$$idTipoDettaglioUso" title="$$descCompleta" $$selected>
+                $$descrizione
+              </option>
+              <!-- @@blkTipiDettaglioUso -->
+              <!-- @@blkNoTipiDettaglioUso -->
+              <option value=""></option>
+              <!-- @@blkNoTipiDettaglioUso -->
+            </select>                    
+          </div>
+          <div id="idTipoQualitaUsoDiv$$numeroUtilizzi">
+            <select name="idTipoQualitaUso" id="idTipoQualitaUso" 
+              onchange="javascript: modificaComboVarieta('$$numeroUtilizzi');">
+              <!-- @@blkTipiQualitaUso -->
+              <option value="$$idTipoQualitaUso" title="$$descCompleta" $$selected>
+                $$descrizione
+              </option>
+              <!-- @@blkTipiQualitaUso -->
+              <!-- @@blkNoTipiQualitaUso -->
+              <option value=""></option>
+              <!-- @@blkNoTipiQualitaUso -->
+            </select>
+            $$err_idTipoQualitaUso
+          </div>
+          <div id="idVarieta$$numeroUtilizzi">
+            <select name="idVarieta" id="idVarieta" 
+              onchange="javascript: modificaSezioneSemina('$$numeroUtilizzi');modificaSezioneMantenimento('$$numeroUtilizzi');modificaSezioneFaseAllevamento('$$numeroUtilizzi');">
+              <!-- @@blkTipiVarieta -->
+              <option value="$$idVarieta" title="$$descCompleta" $$selected>
+                $$descrizione
+              </option>
+              <!-- @@blkTipiVarieta -->
+              <!-- @@blkNoTipiVarieta -->
+              <option value=""></option>
+              <!-- @@blkNoTipiVarieta -->
+            </select>
+            $$err_idVarieta
+          </div>
+        </td>            
+        <td class="radio">
+          <a
+            href="javascript: newWindowSubmit('../layout/popAggiungiUso.htm', 'aggiungiUso', 600, 300, 'yes', 'Primario', '$$numeroUtilizzi', '$$provenienza');"
+            title="[Attenzione: questo link si apre in una nuova finestra]"
+            class="modifica" id="associaIdUtilizzo"></a>
+        </td>
+        <td>
+          <div id="idSezioneSemina$$numeroUtilizzi" >
+	          <select name="idTipoPeriodoSemina" onchange="javascript: modificaSezioneDateSemina('$$numeroUtilizzi');">
+	            <!-- @@blkTipoPeriodoSemina -->
+	            <option value="$$idTipoPeriodoSemina" $$selected>
+	              $$descrizione
+	            </option>
+	            <!-- @@blkTipoPeriodoSemina -->
+	            <!-- @@blkNoTipoPeriodoSemina -->
+              <option value=""></option>
+              <!-- @@blkNoTipoPeriodoSemina -->
+	          </select>
+	          $$err_idTipoPeriodoSemina
+	          <br>
+	          <select name="idTipoSemina" >
+	            <!-- @@blkTipoSemina -->
+	            <option value="$$idTipoSemina" $$selected>
+	              $$descrizione
+	            </option>
+	            <!-- @@blkTipoSemina -->
+	            <!-- @@blkNoTipoSemina -->
+              <option value=""></option>
+              <!-- @@blkNoTipoSemina -->
+	          </select>
+	          $$err_idTipoSemina
+	          <br>
+	       </div>
+	       <div id="idSezioneDateSemina$$numeroUtilizzi" >
+            <input type="text" name="dataInizioDestinazione" class="textmedio"
+              value="$$dataInizioDestinazione" $$readOnlyDataInizioDestinazione />&nbsp;inizio
+            $$err_dataInizioDestinazione
+            <br>
+            <input type="text" name="dataFineDestinazione" class="textmedio"
+              value="$$dataFineDestinazione" $$readOnlyDataFineDestinazione />&nbsp;fine
+            $$err_dataFineDestinazione
+	        </div>
+        </td>
+        <td>
+          <input type="text" name="supUtilizzata" class="textmedio"
+            value="$$supUtilizzata" />
+          $$err_supUtilizzata
+        </td>
+        <td>
+          <select name="idTipoUtilizzoSecondario" id="idTipoUtilizzoSecondario"  class="clsIdTipoUtilizzoSecondario"
+            onchange="javascript: modificaComboDestinazioneSecondario('$$numeroUtilizzi');">
+            <option value=""></option>
+            <!-- @@blkTipiUsoSuoloSecondario -->
+            <option value="$$idTipoUtilizzoSecondario" title="$$descCompleta" $$selected>
+              $$descrizione
+            </option>
+            <!-- @@blkTipiUsoSuoloSecondario -->
+          </select>
+          $$err_idTipoUtilizzoSecondario
+          <div id="idTipoDestinazioneSecondarioDiv$$numeroUtilizzi">
+            <select name="idTipoDestinazioneSecondario" id="idTipoDestinazioneSecondario" 
+              onchange="javascript: modificaComboDettaglioUsoSecondario('$$numeroUtilizzi');">
+              <!-- @@blkTipiDestinazioneSecondario -->
+              <option value="$$idTipoDestinazioneSecondario" title="$$descCompleta" $$selected>
+                $$descrizione
+              </option>
+              <!-- @@blkTipiDestinazioneSecondario -->
+              <!-- @@blkNoTipiDestinazioneSecondario -->
+              <option value=""></option>
+              <!-- @@blkNoTipiDestinazioneSecondario -->
+            </select>
+            $$err_idTipoDestinazioneSecondario
+          </div>
+          <div id="idTipoDettaglioUsoSecondarioDiv$$numeroUtilizzi">
+            <select name="idTipoDettaglioUsoSecondario" id="idTipoDettaglioUsoSecondario" 
+              onchange="javascript: modificaComboQualitaUsoSecondario('$$numeroUtilizzi');">
+              <!-- @@blkTipiDettaglioUsoSecondario -->
+              <option value="$$idTipoDettaglioUsoSecondario" title="$$descCompleta" $$selected>
+                $$descrizione
+              </option>
+              <!-- @@blkTipiDettaglioUsoSecondario -->
+              <!-- @@blkNoTipiDettaglioUsoSecondario -->
+              <option value=""></option>
+              <!-- @@blkNoTipiDettaglioUsoSecondario -->
+            </select>               
+            $$err_idTipoDettaglioUsoSecondario
+         </div>
+         <div id="idTipoQualitaUsoSecondarioDiv$$numeroUtilizzi">
+            <select name="idTipoQualitaUsoSecondario" id="idTipoQualitaUsoSecondario" 
+              onchange="javascript: modificaComboVarietaSecondaria('$$numeroUtilizzi');">
+              <!-- @@blkTipiQualitaUsoSecondario -->
+              <option value="$$idTipoQualitaUsoSecondario" title="$$descCompleta" $$selected>
+                $$descrizione
+              </option>
+              <!-- @@blkTipiQualitaUsoSecondario -->
+              <!-- @@blkNoTipiQualitaUsoSecondario -->
+              <option value=""></option>
+              <!-- @@blkNoTipiQualitaUsoSecondario -->
+            </select>
+            $$err_idTipoQualitaUsoSecondario
+          </div>       
+          <div id="idVarietaSecondaria$$numeroUtilizzi">
+            <select name="idVarietaSecondaria" id="idVarietaSecondaria" 
+              onchange="javascript: modificaSezioneSeminaSecondario('$$numeroUtilizzi');">
+              <!-- @@blkTipiVarietaSecondaria -->
+              <option value="$$idVarietaSecondaria" title="$$descCompleta" $$selected>
+                $$descrizione
+              </option>
+              <!-- @@blkTipiVarietaSecondaria -->
+              <!-- @@blkNoTipiVarietaSecondaria -->
+              <option value=""></option>
+              <!-- @@blkNoTipiVarietaSecondaria -->
+            </select>
+            $$err_idVarietaSecondaria
+          </div>                 
+        </td>
+        <td class="radio">
+          <a
+            href="javascript: newWindowSubmit('../layout/popAggiungiUso.htm', 'aggiungiUso', 600, 300, 'yes', 'Secondario', '$$numeroUtilizzi', '$$provenienza');"
+            title="[Attenzione: questo link si apre in una nuova finestra]"
+            class="modifica" id="associaIdUtilizzoSecondario"></a>
+        </td>
+        <td>
+          <div id="idSezioneSeminaSecondario$$numeroUtilizzi" >
+	          <select name="idTipoPeriodoSeminaSecondario" onchange="javascript: modificaSezioneDateSeminaSecondario('$$numeroUtilizzi');">
+	            <!-- @@blkTipoPeriodoSeminaSecondario -->
+	            <option value="$$idTipoPeriodoSeminaSecondario" $$selected>
+	              $$descrizione
+	            </option>
+	            <!-- @@blkTipoPeriodoSeminaSecondario -->
+	            <!-- @@blkNoTipoPeriodoSeminaSecondario -->
+              <option value=""></option>
+              <!-- @@blkNoTipoPeriodoSeminaSecondario -->
+	          </select>
+	          $$err_idTipoPeriodoSeminaSecondario
+	          <br>
+	          <select name="idTipoSeminaSecondario" >
+	            <!-- @@blkTipoSeminaSecondario -->
+	            <option value="$$idTipoSeminaSecondario" $$selected>
+	              $$descrizione
+	            </option>
+	            <!-- @@blkTipoSeminaSecondario -->
+	            <!-- @@blkNoTipoSeminaSecondario -->
+              <option value=""></option>
+              <!-- @@blkNoTipoSeminaSecondario -->
+	          </select>
+	          $$err_idTipoSeminaSecondario
+	          <br>
+	        </div>
+	        <div id="idSezioneDateSeminaSecondario$$numeroUtilizzi" >
+            <input type="text" name="dataInizioDestinazioneSec" class="textmedio"
+              value="$$dataInizioDestinazioneSec" $$readOnlyDataInizioDestinazioneSec />&nbsp;inizio
+            $$err_dataInizioDestinazioneSec
+            <br>
+            <input type="text" name="dataFineDestinazioneSec" class="textmedio"
+              value="$$dataFineDestinazioneSec" $$readOnlyDataFineDestinazioneSec />&nbsp;fine
+            $$err_dataFineDestinazioneSec
+          </div>
+        </td>
+        <td>
+          <input type="text" name="supUtilizzataSecondaria"
+            class="textmedio" value="$$supUtilizzataSecondaria" />
+          $$err_supUtilizzataSecondaria
+        </td>
+        <td>
+          <div id="idSezioneMantenimentoDiv$$numeroUtilizzi" >
+	          <select name="idPraticaMantenimento">
+	            <!-- @@blkTipoPraticaMantenimento -->
+	            <option value="$$idPraticaMantenimento" $$selected>
+	              $$descrizione
+	            </option>
+	            <!-- @@blkTipoPraticaMantenimento -->
+	            <!-- @@blkNoTipoPraticaMantenimento -->
+              <option value=""></option>
+              <!-- @@blkNoTipoPraticaMantenimento -->
+	          </select>
+	          $$err_idPraticaMantenimento
+	        </div>
+        </td>
+        <td>
+          <div id="idSezioneFaseAllevamento$$numeroUtilizzi" >
+            <select name="idFaseAllevamento" $$disabledFaseAlleavamento >
+              <!-- @@blkTipoFaseAllevamento -->
+              <option value="$$idFaseAllevamento" $$selected>
+                $$descrizione
+              </option>
+              <!-- @@blkTipoFaseAllevamento -->
+            </select>
+            $$err_idFaseAllevamento
+            <!-- @@blkHiddenFaseAllevamento -->
+            <input type="hidden" name="idFaseAllevamento" value="$$idFaseAllevamento" />
+            <!-- @@blkHiddenFaseAllevamento -->
+          </div>
+        </td>
+        <td>
+          <input type="text" name="annoImpianto" class="textmedio"
+            value="$$annoImpianto" />
+          $$err_annoImpianto
+        </td>
+        <td>
+          <select name="idImpianto" id="idImpianto">
+            <option value=""></option>
+            <!-- @@blkTipiImpianto -->
+            <option value="$$idImpianto" $$selected>
+              $$descrizione
+            </option>
+            <!-- @@blkTipiImpianto -->
+          </select>
+          $$err_idImpianto
+        </td>
+        <td class="numeridx">
+          <input type="text" name="sestoSuFile" class="textmedio"
+            value="$$sestoSuFile" />
+          $$err_sestoSuFile
+        </td>
+        <td class="numeridx">
+          <input type="text" name="sestoTraFile" class="textmedio"
+            value="$$sestoTraFile" />
+          $$err_sestoTraFile
+        </td>
+        <td class="numeridx">
+          <input type="text" name="numeroPianteCeppi"
+            class="textmedio" value="$$numeroPianteCeppi" />
+          $$err_numeroPianteCeppi
+        </td>
+        <!-- @@blkElencoPianteConsociate -->
+        <td class="numeridx">
+          <input type="text" name="numeroPianteConsociate"
+            class="textmedio" value="$$numeroPianteConsociate" />
+          $$err_numeroPianteConsociate
+        </td>
+        <!-- @@blkElencoPianteConsociate -->
+      </tr>
+      <!-- @@blkElencoUtilizzi -->
+    </table>
+    
+    <!-- @@blkNoElenco -->
+    <p class="errore">
+      $$messaggioErrore
+    </p>
+    <!-- @@blkNoElenco -->
+       
+          
+          

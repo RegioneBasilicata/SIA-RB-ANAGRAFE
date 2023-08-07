@@ -1,0 +1,63 @@
+$$head
+	<script src="../js/checktext.js" type="text/javascript"></script>
+</head>
+<body id="popup">
+	<form id="form1" name="form1" method="post" action="../layout/popAnomalieDocumento.htm">
+    	<div id="contenutopop">
+			<table width="100%" border="0">
+  				<tr>
+    				<th class="center" colspan="3" scope="col">Documento</th>
+    				<th class="center" colspan="2" scope="col">Validit&agrave;</th>
+    				<th class="center" colspan="2" scope="col">Repertorio</th>
+    			</tr>
+  				<tr>
+  					<th class="center">Tipologia</th>
+    				<th class="center">Tipo</th>
+    				<th class="center">Descrizione</th>
+    				<th class="center">Data inizio</th>
+	 	   			<th class="center">Data fine</th>
+    				<th class="center">Numero</th>
+     				<th class="center">Data</th>
+  				</tr>
+  				<tr>
+    				<td>$$descTipoTipologiaDocumento</td>
+    				<td>$$descTipoCategoriaDocumento</td>
+    				<td>$$descTipoDocumento</td>
+    				<td>$$dataInizioValidita</td>
+    				<td>$$dataFineValidita</td>
+    				<td>$$numeroProtocollo</td>
+    				<td>$$dataProtocollo</td>
+  				</tr>
+			</table>
+			<!-- @@blkAnomalie -->
+				<table width="100%" border="0">
+	  				<tr>
+	    				<th class="center" scope="col">Controllo</th>
+	    				<th class="center" scope="col">Descrizione</th>
+	    				<th class="center" scope="col">&nbsp;</th>
+	  				</tr>
+	  				<!-- @@blkElencoAnomalie -->
+	  					<tr>
+		  					<td>$$descrizioneTipoControllo</td>
+	    					<td>$$descrizione</td>
+	                		<td class="data">
+	                  			<span class="$$immagine">
+	                    		<span class="alt">Controllo eseguito</span>
+	                  			</span>
+	                		</td>
+	  					</tr>
+	  				<!-- @@blkElencoAnomalie -->
+				</table>
+			<!-- @@blkAnomalie -->
+			<!--@@blkNoAnomalie-->
+        		<p class="errore">$$messaggio</p>
+      		<!--@@blkNoAnomalie-->
+        	<div class="pulsanti">
+          		<div class="des">
+            		<a href="javascript:window.close();">chiudi</a>
+          		</div>
+        	</div>
+    	</div>
+	</form>
+</body>
+</html>

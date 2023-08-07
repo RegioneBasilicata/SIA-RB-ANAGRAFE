@@ -1,0 +1,174 @@
+$$head
+	<script type="text/javascript" src="../js/checktext.js"></script>
+	<script type="text/javascript" src="../js/messaggistica.js"></script>
+	<script type="text/javascript">
+
+    	function disabilitaCUAAProvenienza() {
+      		document.forms[0].cuaaProvenienza.disabled = true;
+      		document.forms[0].cuaaProvenienza.value = '';
+    	}
+
+    	function abilitaCUAAProvenienza() {
+      		document.forms[0].cuaaProvenienza.disabled = false;
+                document.forms[0].CUAASubentro.disabled = true;
+      		document.forms[0].CUAASubentro.value = '';
+    	}
+
+       function disabilitaCUAASubentro() {
+      		document.forms[0].CUAASubentro.disabled = true;
+      		document.forms[0].CUAASubentro.value = '';
+    	}
+
+    	function abilitaCUAASubentro() {
+      		document.forms[0].CUAASubentro.disabled = false;
+                document.forms[0].cuaaProvenienza.disabled = true;
+      		document.forms[0].cuaaProvenienza.value = '';
+    	}
+
+        function disabilitaCUAA() {
+      		document.forms[0].CUAASubentro.disabled = true;
+      		document.forms[0].CUAASubentro.value = '';
+                document.forms[0].cuaaProvenienza.disabled = true;
+      		document.forms[0].cuaaProvenienza.value = '';
+    	}
+
+
+    	// Funzione utilizzata per la corretta gestione dei campi cuaa
+    	// provenienza e radio button
+    	function gestioneCuaaProvenienza() {
+			for(i = 0; i < document.forms[0].radiobuttonAzienda.length; i++) {
+				if(document.forms[0].radiobuttonAzienda[i].checked == true)
+                                {
+					if(document.forms[0].radiobuttonAzienda[i].value == 1)
+						disabilitaCUAA();
+					else
+                                        {
+                                          if(document.forms[0].radiobuttonAzienda[i].value == 3)
+						abilitaCUAASubentro();
+					   else	abilitaCUAAProvenienza()
+					}
+				}
+			}
+    	}
+
+  </script>
+</head>
+<body id="homeIndice" onload="javascript: gestioneCuaaProvenienza();$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+	<form name="form1" method="post" action="../layout/nuovaAziendaAnagrafica.htm">
+		<div id="pagina" class="colonnaUnica">
+  			<input type="hidden" id="ricercaAAEP" name="ricercaAAEP" value="ricercaAAEP"/>
+  			<div id="intestazione##pathProvincia">
+    			$$header
+    			<div id="titoloEmenu">
+      				<h2>
+        				<span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+      				</h2>
+      				<div id="menuDiNavigazione" title="Menu di navigazione">
+        				<ul class="menuTendina" id="menu-2">
+          					<li><a href="../layout/index.htm" title="Torna alla pagina principale">home</a></li>
+          					<li class="attivo">gestione anagrafe aziende</li>
+          					<li><a href="#" title="contatti">contatti</a></li>
+          					<li><a href="#" title="help">help</a></li>
+        				</ul>
+      				</div>
+    			</div>
+ 	 		</div>
+  			<hr/>
+  			<div style="clear:left"></div>
+    		<div id="corpo">
+      			<div id="Utente">
+        			<div id="datiUtente">
+          				<strong>utente:</strong>
+          				$$utente&nbsp;&nbsp;
+          				<strong>ente:</strong>
+          				$$ente
+        			</div>
+        			<div id="chiudisessione">
+          				<a href="javascript: logout();">chiudi sessione</a>
+        			</div>
+      			</div>
+      			<hr/>
+      			<h3>Inserimento azienda
+        			<span class="helpFuori">
+          				<a href="#">
+            				<span class="alt">[help]</span>
+          				</a>
+        			</span>
+      			</h3>
+     	 		<hr/>
+      			<div class="box">
+        			<div class="menuSX1">
+          				<ul>
+            				<!-- @@blkElencoAziendeRapLegale -->
+                				<li><a href="../layout/elencoAziendeRapLegale.htm">Elenco Aziende</a></li>
+              				<!-- @@blkElencoAziendeRapLegale -->
+              				<!-- @@blkRicercaAzienda-->
+              					<li><a href="../layout/ricerca.htm">Ricerche</a></li>
+            				<!-- @@blkRicercaAzienda-->
+              				<li><a href="#" class="on">Nuova Azienda</a></li>
+          				</ul>
+        			</div>
+      			</div>
+      			<hr/>
+      			<div id="contenuto">
+          			<table cellspacing="3" summary="Questa tabella contiene i dati iniziali necessari per l'inserimento dell'azienda agricola">
+            			<col width="5%"/>
+            			<col width="95%"/>
+            			<tr>
+              				<th>
+                				<label for="CUAA">CUAA (Codice fiscale) della nuova azienda</label>*
+              				</th>
+              				<td>
+                				<input type="text" id="CUAA" name="CUAA" value="$$CUAA" class="textmediolungo" maxlength="16"/>$$err_CUAA
+              				</td>
+            			</tr>
+          			</table>
+          			<table cellspacing="3" summary="Questa tabella contiene le opzioni di origine dell'azienda agricola">
+            			<tr>
+              				<th class="radio" scope="row">
+                				<input id="radiobuttonAzienda1" name="radiobuttonAzienda" type="radio" value="1" $$radiobuttonAziendaChecked1 onclick="disabilitaCUAA();"/>
+              				</th>
+              				<td>
+                				<label for="radiobuttonAzienda1">azienda gi&agrave; costituita</label>
+              				</td>
+            			</tr>
+	            		<tr>
+	              			<th class="radio" scope="row">
+	                			<input id="radiobuttonAzienda2" name="radiobuttonAzienda" type="radio" value="S" $$radiobuttonAziendaCheckedProvenienza onclick="abilitaCUAAProvenienza();"/>
+	              			</th>
+	              			<td>
+	                			<label for="radiobuttonAzienda2">subentro all'azienda con CUAA *</label>
+	                			<label for="cuaaProvenienza" class="alt">cuaaProvenienza</label>
+	                			<input type="text" id="cuaaProvenienza" name="cuaaProvenienza" class="textmediolungo" maxlength="16" value="$$cuaaProvenienza"/>$$err_cuaaProvenienza
+	              			</td>
+	            		</tr>
+                                    <!--
+            			<tr>
+              				<th class="radio" scope="row">
+                				<input id="radiobuttonAzienda2" name="radiobuttonAzienda" type="radio" value="2" $$radiobuttonAziendaChecked2 onclick="disabilitaCUAASubentro();"/>
+              				</th>
+              				<td>
+                				<label for="radiobuttonAzienda2">misura B - nuovo insediamento giovani</label>
+              				</td>
+            			</tr>
+                                    -->
+            			<tr>
+              				<th class="radio" scope="row">
+                				<input id="radiobuttonAzienda3" name="radiobuttonAzienda" type="radio" value="3" $$radiobuttonAziendaChecked3 onclick="abilitaCUAASubentro();"/>
+              				</th>
+              				<td>
+                				<label for="radiobuttonAzienda3">insediamento giovani. Eventuale subentro all'azienda con CUAA</label>
+                				<label for="CUAASubentro" class="alt">CUAASubentro</label>
+                				<input type="text" id="CUAASubentro" name="CUAASubentro" class="textmediolungo" maxlength="16" value="$$CUAASubentro"/>$$err_CUAASubentro
+              				</td>
+            			</tr>
+          			</table>
+          			<p id="nota">I campi contrassegnati con * sono obbligatori</p>
+          			<div class="pulsanti"><div class="des">
+            			<input name="avanti" class="inputPulsante" type="submit" value="avanti"/>
+          			</div></div>  
+        		</div>
+      		</div>
+      		<hr/>
+      	</form>
+      	$$footer

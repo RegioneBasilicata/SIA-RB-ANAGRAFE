@@ -1,0 +1,117 @@
+$$head
+<script language="JavaScript" type="text/javascript" >
+   var operazioneincorso=false;
+   var chiusuraFinestra ='S';
+   function visualizzaMess(vis)
+   {
+      var segnaposto=document.getElementById('messaggio');
+      segnaposto.innerHTML =vis;
+   }
+   function chiusura()
+   {
+     if (chiusuraFinestra == 'S')
+     {
+      
+      opener.hWin = null;
+      <!-- @@blkReloadParent --> 
+      opener.reload();
+      <!-- @@blkReloadParent -->
+     }
+   }
+   function conferma()
+   {  
+      if (operazioneincorso ==false)
+      {   
+        operazioneincorso = true;
+        var segnaposto=document.getElementById('azione1');
+        segnaposto.disabled = true;    
+         
+        var segnaposto1=document.getElementById('pulsanti1');
+        segnaposto1.disabled = true;     
+      
+        visualizzaMess('Upload in corso.Attendere...');
+        //non deve ricaricare il padre perchè sto operando su questa finestra
+        chiusuraFinestra ='N';
+        
+        document.form1.operazione.value='conferma';
+        document.form1.submit();
+      }    
+   }
+
+   function cancella(idAllegato)
+   {     
+      chiusuraFinestra ='N';
+      document.formVis.idAllegato.value = idAllegato;
+      document.formVis.operazione.value='elimina';
+      
+      document.formVis.action = 'allegaFileNotifica.htm';
+      document.formVis.submit();
+   }
+   
+   function visualizzaFile(idAllegato)
+   {
+
+      document.formVis.idAllegato.value = idAllegato;
+      
+      document.formVis.action = 'visualizzaFileAllegato.htm?arrivo=allegaFileNotifica';
+      document.formVis.submit();
+   }
+
+</script>
+
+
+</head>
+<body id="popup" onload="javascript:visualizzaMess('')" onunload="javascript:chiusura()">
+<!-- CORPO -->
+<div id="contenutopop">
+	<h3>allega file</h3>
+	<hr />
+	<form name="formVis" method="post" action="" >
+		<input type="hidden" name="operazione" />
+		<input type="hidden" name="idAllegato" />
+		<input type="hidden" name="idDocumento" value = "$$idDocumento" />
+		<input type="hidden" name="idNotifica" value = "$$idDocumento" />
+	</form>
+
+	<form name="form1" method="post" action="allegaFileNotifica.htm" enctype="multipart/form-data">
+		<input type="hidden" name="operazione" />
+		<table cellspacing="3" summary="">
+		  <caption>File allegati</caption>
+		  <tr>
+		    <th scope="row"><label for="nomeLogico">Nome dell'allegato: *</label></th>
+		    <td><input id="nomeLogico" name="nomeLogico" type="text" class="textlungo" value="$$nomeLogico" />$$err_nomeLogico</td>
+		  </tr>
+		  <tr>
+		    <th scope="row"><label for="fileAllegato">File da allegare: *</label></th>
+		    <td><input name="fileAllegato" id="fileAllegato" type="file" size="50"/>$$err_fileAllegato</td>
+		  </tr>
+		</table>
+		
+		<p id="nota">I campi contrassegnati con * sono obbligatori.</p>
+		<div><p class="errore" id="messaggio">upload del file in corso. attendere</p></div>
+	</form>
+<hr>
+<div id="pulsanti1">
+	<div class="azioni" id="azione1"><a href="javascript:conferma()" >Allega</a></div>
+</div>
+<hr>
+<!-- @@fileAllegatiBlk -->
+<table cellspacing="3" summary="Tabella contenente il riepilogo dei dati dettagliati della ricerca effettuata in precedenza in particolare l'iter del bando">
+  <!-- @@fileBlk -->
+  <tr>   
+    <td><a href="javascript:cancella('$$idAllegato')" class="cancella" title="elimina allegato"></a></td>
+    <td><a href="javascript:visualizzaFile('$$idAllegato')" title="$$titleAllegato" >$$nome</a></td>
+  </tr>
+  <!-- @@fileBlk -->
+</table>
+<!-- @@fileAllegatiBlk -->
+
+    <div class="azioni">
+     <div class="des">     
+    <a href="javascript:window.close()">Chiudi</a>
+     </div>
+    </div>
+  
+</div>
+</body>
+</html>

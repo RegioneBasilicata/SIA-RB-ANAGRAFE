@@ -1,0 +1,107 @@
+/*** menuTendinaOrizz.css ***/
+
+/*
+* versione v.2.2.2003.11.27.20.55
+* CSS2.0 per la gestione dei menu a tendina delle pagine per la gestione tributi e visure di TOBECONFIG
+* Il codice è idoneo alla realizzazione di una pagina che rispetti le WAI WCAG 1.0 al livello AAA
+*/
+
+/**** mostra/nascondi ****/
+ul.menuTendinaOrizz ul {
+	display		: none;
+} /* nasconde i sotto-menu */
+ul.menuTendinaOrizz ul.attivo {
+	display		: block;
+} /* mostra i sotto-menu se attivati */
+ul.menuTendinaOrizz li {
+	position	: relative;
+}
+/**** sotto menu ****/
+.menuTendinaOrizz ul {			/* la tendina sotto il cavalierino */
+	position	: absolute;	/* il suo posizionamento è indifferente alla posizione degli altri elementi */
+	z-index		: 250;		/* si sovrappone al testo seguente -- tipico comportamento dei livelli (motivo per cui i tag <div> sono spesso chiamati livelli) */
+	/*border		: 1px solid #666;*/
+	border:0;
+	background	: #fff;
+	color		: #333;
+	width		: 11em;
+	top		: 1.5em;
+	left		: 0;
+	font-size	: 1em;
+	margin		: 0 0 0 0;
+	padding		: 6px 2px 2px 7px;
+	height		: auto;
+}
+/* Questo hack serve a nascondere delle regole che servono per Opera ma che danno fastidio a IE5.2 \*/
+.menuTendinaOrizz ul {
+	top		: auto;
+	left		: auto;
+}
+/* fine hack*/
+ul.menuTendinaOrizz .attivo li {		/* elementi della lista del sottomenu */
+	background	: #959595 none;
+	color		: #fff;
+	margin		: 0 0 2px 0 !important;
+	width		: 100%;
+	position	: relative;
+}
+div>ul.menuTendinaOrizz ul.attivo li {
+	float		: none;
+}
+#pagina ul.menuTendinaOrizz ul a:link,
+#pagina ul.menuTendinaOrizz ul a:visited {
+	padding		: .2em .5em;
+	border		: none;
+	position	: relative;
+	top		: -1px;
+	left		: -1px;
+	background	: #d9d9d9;
+	color		: #333;
+	white-space	: normal;
+	float		: none;
+}
+#pagina ul.menuTendinaOrizz ul a.attivo:link,
+#pagina ul.menuTendinaOrizz ul a.attivo:visited,
+#pagina ul.menuTendinaOrizz ul a.attivo:hover,
+#pagina ul.menuTendinaOrizz ul a.attivo:active,
+#pagina ul.menuTendinaOrizz ul a:hover,
+#pagina ul.menuTendinaOrizz ul a:active {
+	background	: #666;
+	color		: #fff;
+}
+
+/**** sotto menu di livello superiore al primo ****/
+ul.menuTendinaOrizz ul ul {
+	top		: -.7em;
+	left		: 205px !important;
+	left /**/	: 191px;
+	border-top	: 1px solid #999
+}
+
+/**** tendine verso sinistra ****/
+#menuDiServizio ul.menuTendinaOrizz ul ul {
+	left		: auto !important;
+	right		: 207px !important;
+	right /**/	: 193px;
+	border-top	: 1px solid #999;
+}
+
+/* gestione del menu di navigazione */
+#menuDiNavigazione ul.menuTendinaOrizz .attivo li {		/* elementi della lista del sottomenu */
+	background	: #959595 none;
+	color		: #fff;
+}
+#menuDiNavigazione ul.menuTendinaOrizz ul.attivo li a:link,
+#menuDiNavigazione ul.menuTendinaOrizz ul.attivo li a:visited {
+	background	: #d9d9d9 none;
+	color		: #333;
+}
+#menuDiNavigazione ul.menuTendinaOrizz ul.attivo li a.attivo:link,
+#menuDiNavigazione ul.menuTendinaOrizz ul.attivo li a.attivo:visited,
+#menuDiNavigazione ul.menuTendinaOrizz ul.attivo li a.attivo:hover,
+#menuDiNavigazione ul.menuTendinaOrizz ul.attivo li a.attivo:active,
+#menuDiNavigazione ul.menuTendinaOrizz ul.attivo li a:hover,
+#menuDiNavigazione ul.menuTendinaOrizz ul.attivo li a:active {
+	background	: #666 none;
+	color		: #fff;
+}

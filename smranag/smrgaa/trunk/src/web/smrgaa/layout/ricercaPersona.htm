@@ -1,0 +1,352 @@
+$$head
+  <script type="text/javascript" src="../js/checktext.js"></script>
+  <script type="text/javascript" src="../js/messaggistica.js"></script>
+  <script type="text/javascript">
+
+    function newWindowComuneAzienda(mypage, myname, w, h, scroll,comune, provincia, valida) {
+      var winl = (screen.width - w) / 2;
+      var wint = (screen.height - h) / 2;
+      if(comune == '' && provincia == '') {
+        alert('Inserire almeno una parte del comune o la provincia!');
+      }
+      else if(!mappaOggetti(comune) || !mappaOggetti(provincia)) {
+      }
+      else {
+        winprops = 'height='+h+',width='+w+',top='+wint+',left='+winl+',scrollbars='+scroll+',resizable';
+        win = window.open('', myname, winprops);
+        if (parseInt(navigator.appVersion) >= 4) {
+          win.window.focus();
+        }
+        document.form1.comune.value = comune;
+        document.form1.provincia.value = provincia;
+        document.form1.obiettivo.value = 'nascitaProvCom';
+        var target1 = document.form1.target;
+        var action1 = document.form1.action;
+        document.form1.target = myname;
+        document.form1.action = mypage;
+        document.form1.submit();
+        document.form1.target = target1;
+        document.form1.action = action1;
+      }
+    }
+
+    function newWindowStatoNascita(mypage, myname, w, h, scroll,stato) {
+      var winl = (screen.width - w) / 2;
+      var wint = (screen.height - h) / 2;
+
+      if(!mappaOggetti(stato)) {
+      }
+      else {
+        winprops =    'height='+h+',width='+w+',top='+wint+',left='+winl+',scrollbars='+scroll+',resizable';
+        win = window.open('', myname, winprops);
+        if (parseInt(navigator.appVersion) >= 4) {
+          win.window.focus();
+        }
+        document.form1.stato.value = stato;
+        document.form1.obiettivo.value = 'nascita';
+        var target1 = document.form1.target;
+        var action1 = document.form1.action;
+        document.form1.target = myname;
+        document.form1.action = mypage;
+        document.form1.submit();
+        document.form1.target = target1;
+        document.form1.action = action1;
+      }
+    }
+
+    function newWindowProvAndCom(mypage, myname, w, h, scroll,comune,provincia) {
+      var winl = (screen.width - w) / 2;
+      var wint = (screen.height - h) / 2;
+      if(provincia == '' && comune == '') {
+        alert('Inserire una provincia o un comune per effettuare la ricerca!');
+      }
+      else if(!mappaOggetti(provincia) || !mappaOggetti(comune)) {
+      }
+      else {
+        winprops =    'height='+h+',width='+w+',top='+wint+',left='+winl+',scrollbars='+scroll+',resizable';
+        win = window.open('', myname, winprops);
+        if (parseInt(navigator.appVersion) >= 4) {
+          win.window.focus();
+        }
+        document.form1.provincia.value = provincia;
+        document.form1.comune.value = comune
+        document.form1.obiettivo.value = 'ricercaPersona';
+        var target1 = document.form1.target;
+        var action1 = document.form1.action;
+        document.form1.target = myname;
+        document.form1.action = mypage;
+        document.form1.submit();
+        document.form1.target = target1;
+        document.form1.action = action1;
+      }
+    }
+
+    function newWindowStatoAzienda(mypage, myname, w, h, scroll,stato) {
+      var winl = (screen.width - w) / 2;
+      var wint = (screen.height - h) / 2;
+
+      if(!mappaOggetti(stato)) {
+      }
+      else {
+        winprops =    'height='+h+',width='+w+',top='+wint+',left='+winl+',scrollbars='+scroll+',resizable';
+        win = window.open('', myname, winprops);
+        if (parseInt(navigator.appVersion) >= 4) {
+          win.window.focus();
+        }
+        document.form1.stato.value = stato;
+        document.form1.obiettivo.value = "insAziendaStatoTitolare";
+        var target1 = document.form1.target;
+        var action1 = document.form1.action;
+        document.form1.target = myname;
+        document.form1.action = mypage;
+        document.form1.submit();
+        document.form1.target = target1;
+        document.form1.action = action1;
+      }
+    }
+
+  </script>
+</head>
+<body id="homeIndice" onload="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+<form name="form1" method="post" action="../layout/ricercaPersona.htm">
+  <div id="pagina" class="colonnaUnica">
+  <!-- INTESTAZIONE -->
+    <div id="intestazione##pathProvincia">
+      $$header
+    <!-- menu di navigazione-->
+      <div id="titoloEmenu">
+        <h2>
+          <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+        </h2>
+        <div id="menuDiNavigazione" title="Menu di navigazione">
+          <ul class="menuTendina" id="menu-2">
+            <li>
+              <a href="../layout/index.htm" title="Torna alla pagina principale">home</a>
+            </li>
+            <li class="attivo">gestione anagrafe aziende</li>
+            <li>
+              <a href="#" title="contatti">contatti</a>
+            </li>
+            <li>
+              <a href="#" title="help">help</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <hr />
+    <div style="clear:left"></div>
+    <!-- CORPO -->
+      <div id="corpo">
+      <input type="hidden" name="obiettivo" value="$$obiettivo">
+        <div id="Utente">
+          <div id="datiUtente">
+            <strong>utente:</strong> $$utente &nbsp; &nbsp;
+            <strong>ente:</strong> $$ente
+          </div>
+          <div id="chiudisessione">
+            <a href="javascript: logout();">chiudi sessione</a>
+          </div>
+        </div>
+        <hr />
+        <!--PRIMA COLONNA -->
+        <h3>Ricerca Persona
+          <span class="helpFuori">
+            <a href="#">
+              <span class="alt"> [help]</span>
+            </a>
+          </span>
+        </h3>
+        <hr />
+        <div class="box">
+          <div class="menuSX1">
+            <ul>
+              <!-- @@blkElencoAziendeRapLegale -->
+                <li><a href="../layout/elencoAziendeRapLegale.htm">Elenco Aziende</a></li>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <!-- @@blkRicercaAzienda-->
+                <li><a href="../layout/ricerca.htm">Ricerca Azienda</a></li>
+              <!-- @@blkRicercaAzienda-->
+              <!--@@blkRicercaTerreno-->
+                <li>
+                  <a href="../layout/ricercaTerreno.htm">Ricerca Terreno</a>
+                </li>
+              <!--@@blkRicercaTerreno-->
+              <!--@@blkRicercaPersona-->
+                <li><a href="../layout/ricercaPersona.htm" class="on" >Ricerca Persona</a></li>
+              <!--@@blkRicercaPersona-->
+              <!--@@blkRicercaNotifica-->
+                <li>
+                  <a href="../layout/ricercaNotifica.htm">Ricerca Notifiche</a>
+                </li>
+              <!--@@blkRicercaNotifica-->
+              <!--@@blkVariazioniAzienda-->
+                <li><a href="../layout/ricercaVariazioni.htm" >Ricerca Variazioni</a></li>
+              <!--@@blkVariazioniAzienda-->
+              <!--@@blkRicercaRichiesta-->
+                <li><a href="../layout/ricercaRichiesta.htm">Ricerca richiesta azienda</a></li>
+              <!--@@blkRicercaRichiesta-->
+              <!--@@blkNuova-->
+                <li>
+                  <a href="../layout/nuovaAziendaAnagrafica.htm">Nuova Azienda</a>
+                </li>
+              <!--@@blkNuova-->
+              <!-- @@blkNuovaIscrizione -->
+              <li>
+                <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+              </li>
+              <!-- @@blkNuovaIscrizione -->
+              <!--@@blkNuovaParticella-->
+              <li>
+                <a href="../layout/inserisciTerreno.htm">Nuova Particella</a>
+              </li>
+              <!--@@blkNuovaParticella-->
+              <!--@@blkServizi-->
+                <li><a href="../layout/servizi.htm" >Servizi</a></li>
+              <!--@@blkServizi-->
+              <!--@@blkReportistica-->
+	            <li>
+                  <a href="../layout/elencoRicerche.htm">Reportistica</a>
+                </li>
+              <!--@@blkReportistica-->
+              <!--@@blkEstrazioneDati-->
+              <li><a href="../layout/macroCategoriaReport.htm">Estrazione dati</a></li>
+              <!--@@blkEstrazioneDati-->
+              <li><a href="../layout/elencoManuali.htm">Scarico Documentazione Tecnica</a></li> 
+            </ul>
+          </div>
+        </div>
+        <hr />
+        <!-- SECONDA COLONNA -->
+        <div id="contenuto">
+          <table cellspacing="3" class="detailTable" summary="Questa tabella è costituita da righe">
+            <tr>
+              <th>
+                <label for="codFiscale">Codice fiscale</label>
+              </th>
+              <td colspan="3">
+                <input type="text" id="codFiscale" name="codFiscale" value="$$codFiscale" maxlength ="16" class="textmediolungo"/> $$err_codFiscale
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="cognome">Cognome</label>
+              </th>
+              <td colspan="3">
+                <input type="text" name="cognome" id="cognome" value="$$cognome" size="30" class="trenta"/> $$err_cognome
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="nome">Nome</label>
+              </th>
+              <td colspan="3">
+                <input type="text" id="nome" name="nome" value="$$nome" size="30" class="trenta"/> $$err_nome
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="dataNascita">Data nascita</label>
+              </th>
+              <td colspan="3">
+                <input type="text" id="dataNascita" name="dataNascita" value="$$dataNascita" class="textmedio" size="10" maxlength ="10" />(gg/mm/aaaa) $$err_dataNascita
+              </td>
+            </tr>
+          </table>
+          <table cellspacing="3" class="detailTable" summary="Questa tabella è costituita da righe">
+            <caption>Luogo di nascita (indicare provincia e comune se in Italia, stato se all'estero)</caption>
+              <tr>
+	        <th>
+                  <label for="nascitaProv">Provincia</label>
+                </th>
+	        <td colspan="2">
+                  <input type="text" id="nascitaProv" name="nascitaProv" class="due" value="$$nascitaProv" size="2" maxlength="2" /> $$err_nascitaProv
+                </td>
+              </tr>
+              <tr>
+	        <th>
+                  <label for="descNascitaComune">Comune</label>
+                </th>
+	        <td>
+                  <input type="text" name="descNascitaComune" id="descNascitaComune" size="30" maxlength="100" value="$$descNascitaComune" class="text"/>
+                </td>
+              <td>  <div class="azioni">
+	            <a href="javascript:newWindowComuneAzienda('../layout/sceltaComune.htm','scegliComune','600','300','yes',document.form1.descNascitaComune.value,document.form1.nascitaProv.value);" >cerca</a>
+                  </div>&nbsp;&nbsp;$$err_descNascitaComune
+	          <input type="hidden" name="comune" value="$$comune" />
+	          <input type="hidden" name="provincia" value="$$provincia" /></td>
+              </tr>
+              <tr>
+	        <th>
+                  <label for="nascitaStatoEstero">Stato</label>
+                </th>
+	        <td>
+                  <input type="text" id="nascitaStatoEstero" name="nascitaStatoEstero" size="30" maxlength="100" value="$$nascitaStatoEstero" class="text"/>
+                </td>
+              <td>   <div class="azioni">
+                    <a href="javascript: newWindowStatoNascita('../layout/sceltaStato.htm','scegliStato','600','300','yes',document.form1.nascitaStatoEstero.value);">cerca</a>
+                  </div>&nbsp;&nbsp;$$err_nascitaStatoEstero</td>
+              </tr>
+            </table>
+            <table cellspacing="3" class="detailTable" summary="Questa tabella è costituita da righe">
+              <caption>Residenza (indicare provincia e comune se in Italia, stato se all'estero)</caption>
+                <tr>
+	          <th>
+                    <label for="resProvincia">Provincia</label>
+                  </th>
+	          <td colspan="2">
+                    <input type="text" id="resProvincia" name="resProvincia" value="$$resProvincia" size="2" maxlength="2" class="due"> $$err_resProvincia
+                  </td>
+                </tr>
+                <tr>
+	          <th>
+                    <label for="descResComune">Comune</label>
+                  </th>
+	          <td>
+                    <input type="text" id="descResComune" name="descResComune" size="30" maxlength="100" value="$$descResComune" class="text">
+
+                    <input type="hidden" name="resComune" size="30" maxlength="100" value="$$resComune">
+
+                  </td>
+                <td><div class="azioni">
+                      <a href="javascript: newWindowProvAndCom('../layout/sceltaComune.htm','scegliComune','600','300','yes',document.form1.descResComune.value,document.form1.resProvincia.value);">cerca</a>
+                </div>&nbsp;&nbsp;$$err_descResComune</td>
+                </tr>
+                <tr>
+	          <th>
+                    <label for="descStatoEsteroResidenza">Stato</label>
+                  </th>
+	          <td>
+                    <input type="text" id="descStatoEsteroResidenza" name="descStatoEsteroResidenza" size="30" maxlength="100" value="$$descStatoEsteroResidenza" class="text">
+
+                  </td>
+                  <td>
+                    <div class="azioni">
+                        <a href="javascript: newWindowStatoAzienda('../layout/sceltaStato.htm','scegliStato','600','300','yes',document.form1.descStatoEsteroResidenza.value);">cerca</a>
+                    </div>&nbsp;&nbsp;$$err_descStatoEsteroResidenza
+                    <input type="hidden" name="stato" value="$$stato" />
+                  </td>
+                </tr>
+                <tr>
+	          <th>
+                    <label for="personaAttiva">Persone attive</label>
+                  </th>
+                  <td colspan="4">
+                    <input type="checkbox" name="personaAttiva" id="personaAttiva" value="si" $$checkedPersonaAttiva>
+                  </td>
+                </tr>
+              </table>
+	      <label for="ricerca" class="alt">ricerca</label>
+	      
+          <div class="pulsanti"> 
+          <div class="sin"> <input type="submit" name="ricerca" value="ricerca" class="inputPulsante" /></div>
+          </div>
+          
+          
+          
+            </div>
+          </div>
+          </form>
+          <hr />
+          <!-- PIE' DI PAGINA -->
+          $$footer

@@ -1,0 +1,161 @@
+/*
+* versione v.2.2.2003.11.26.10.44
+* CSS2.0 per la gestione dei cavalierini delle pagine per la gestione tributi e visure di TOBECONFIG
+*/
+/* M */
+.menuTendina {
+	margin		: 0;
+	padding		:0;
+	list-style	: none;
+	line-height:14px;
+}
+.menuTendina li {
+	float		: left;
+	padding		:0;
+	margin		: 0 -1px 0 0;
+	/*background	: transparent url(im/cav/right.gif) no-repeat right top;*/
+	color		: #444;
+	position	: relative;
+	list-style:none;
+}
+.menuTendina a,
+.menuTendina a:link,
+.menuTendina a:visited {
+	float		: left;
+	display		: block;
+	/*background	: transparent url(im/cav/left.gif) no-repeat left top;*/	
+	color		: #444;
+	padding		: 0 14px;
+	text-decoration	: none;
+	font-weight	: bold;
+	position	: relative;
+	white-space: nowrap;
+}
+.menuTendina a:hover,
+.menuTendina a:active {
+	color		: #000;
+/*background	: transparent url(im/cav/left.gif) no-repeat left top;*/
+}
+/*_________________________________________*/
+/* la seguente regola rimuove l'angolo sx al primo cavalierino del menu di servizio */
+li#menuDiServizio-primo a {
+	background-image: none;
+	padding-left:5px;
+}
+/*________________________________________*/
+
+/* Backslash Hack per nascondere la regola a IE5-Mac \*/
+.menuTendina a:link,
+.menuTendina a:visited {
+	float		: none;
+	position	: static;
+}
+/* fine hack */
+.menuTendina li:hover {
+	/*background	:   url(im/cav/right_on.gif) no-repeat right top;*/
+	color		: #000;
+	}
+.menuTendina li:hover a {
+	/*background	:   url(im/cav/left_on.gif) no-repeat left top;*/
+	color		: #000;
+}
+.menuTendina li.attivo {
+	color		: #444;
+}
+.menuTendina .attivo a:link,
+.menuTendina .attivo a:visited {
+	/*background	:   url(im/cav/left_on.gif) no-repeat left top;*/
+	color		: #444;
+}
+/* gestione dei cavalierini differenti per il menu di navigazione */
+#menuDiNavigazione .menuTendina li {
+	background	: #fff;
+	color: #444;
+	float:left;
+	list-style:none;
+}
+#menuDiNavigazione .menuTendina li:hover {
+	background	:#bfbfbf;
+	color		: #444;
+}
+/*#menuDiNavigazione .menuTendina li:hover.on {
+	background	:#fff;
+}*/
+#menuDiNavigazione .menuTendina li:hover a {
+	background	:#bfbfbf;
+	color		: #444;
+	font-weight:bold;
+}
+#menuDiNavigazione .menuTendina a:link,
+#menuDiNavigazione .menuTendina a:visited {
+	background	: #dedede;
+	color		: #444;
+	border:1px solid #444;
+}
+#menuDiNavigazione .menuTendina a:hover,
+#menuDiNavigazione .menuTendina a:active {
+	background	: #bfbfbf;
+	border:1px solid #444;
+	color		: #444;
+}
+#menuDiNavigazione .menuTendina li.attivo {
+	font-weight:bold;	
+	/*background	: #fff;*/
+	color		: #444;
+	border-bottom:1px solid #fff;
+}
+#menuDiNavigazione li.attivo a:link,
+#menuDiNavigazione li.attivo a:visited {
+	background	:#fff;
+	color		: #444;
+	padding		: 0 14px;
+	border-bottom:1px solid #fff;
+}
+#menuDiNavigazione li.attivo a:hover,
+#menuDiNavigazione li.attivo a:active {
+	color		: #444;
+	background	: #fff;
+	padding		: 0 14px;
+	border-bottom:1px solid #fff;
+}
+/*li.on{	
+	padding		: 0 14px;
+	font-weight:bold;	
+	background	: #fff;
+	color		: #444;
+	border:1px solid #444;
+	border-bottom:1px solid #fff;
+}
+li.selezione,
+.selezione {	
+	padding		: 0 6px;
+	font-weight : bold;	
+/*	background-color: #005191;
+	color		: #000;
+}*/
+/*Regole per la gestione del cavalierino di rimando al portale dell'area tematica di appartenenza*/
+#rimandoAreaTem{
+background:transparent url(/css/im/cavHome.gif) 0 0 no-repeat;
+}
+#rimandoAreaTem a:link, 
+#rimandoAreaTem a:visited {
+position:absolute;
+right:0;
+z-index:1000;
+padding:0 0 0 10px;
+width:155px!important;
+width /**/:165px;
+height:18px;
+line-height:20px;
+background:transparent url(/css/im/cavHome.gif) 0 0 no-repeat;
+font-weight:normal;
+font-size:.85em;
+text-align:center;
+color:#4F4F4C;
+letter-spacing:0.1em;
+}
+#rimandoAreaTem a:hover, 
+#rimandoAreaTem a:active{
+background:transparent url(/css/im/cavHomeRoll.gif) 0 0 no-repeat;
+color:#000;
+}

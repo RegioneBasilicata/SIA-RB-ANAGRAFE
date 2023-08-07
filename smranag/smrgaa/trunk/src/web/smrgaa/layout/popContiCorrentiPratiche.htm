@@ -1,0 +1,95 @@
+$$head
+<script type="text/javascript" src="../js/checktext.js"></script>
+
+<script type="text/javascript" language="javascript1.2">
+
+  function ordinaAnno(asc)
+  {
+    document.form1.action='popContiCorrentiPratiche.htm';
+    document.form1.ordine.value="anno";
+    document.form1.ascendente.value=asc;
+    document.form1.submit();
+    return false;
+  }
+</script>
+</head>
+<body id="popup">
+  <form name="form1" id="form1" method="post"
+    action="../layout/popContiCorrentiPratiche.htm">
+    <input type="hidden" name="regimePopContiCorrenti" id="regimePopContiCorrenti" value="true" />
+    <input type="hidden" name="ordine" value="" />
+    <input type="hidden" name="ascendente" value="" />
+    <!-- CORPO -->
+    <div id="contenutopop">
+      <h3>
+        Elenco Pratiche
+      </h3>
+      <hr />
+      <div class="pulsanti">
+        <div class="des">
+          <a href="javascript:window.close();" title="chiudi">chiudi</a>
+        </div>
+      </div>
+      <hr />
+      <!-- @@blkEAgriServ -->
+      <p class="errore">$$erroriAgriserv</p>
+      <!-- @@blkEAgriServ -->
+      
+      <p class="allineaDx">
+        $$numeroRecord pratiche trovate
+      </p>
+      <table border="0" cellspacing="3">
+        <tr>
+          <th class="center" scope="col">
+            Tipologia
+          </th>
+          <th class="center" scope="col">
+            Numero
+          </th>
+          <th class="center" scope="col">
+            Anno
+            <div class="ordina">
+              <a
+                href="javascript: ordinaAnno('$$ordineAnnoAsc');"
+                class="$$classOrdineAnno" title="$$descOrdineAnno"> <span
+                class="nascosto">$$descOrdineAnno</span> </a>
+            </div>
+          </th>
+          <th class="center" scope="col">
+            Stato
+          </th>
+          <th class="center" scope="col">
+            Dal
+          </th>
+        </tr>
+
+        <!-- @@rigaPratiche -->
+        <tr>
+          <td>
+            $$tipologia
+          </td>
+          <td>
+            $$numeroPratica
+          </td>
+          <td>
+            $$annoCampagna
+          </td>
+          <td>
+            $$stato
+          </td>
+          <td>
+            $$dataValiditaStato
+          </td>
+        </tr>
+        <!-- @@rigaPratiche -->
+      </table>
+  </form>
+  <hr />
+  <div class="pulsanti">
+    <div class="des">
+      <a href="javascript:window.close();" title="chiudi">chiudi</a>
+    </div>
+  </div>
+  </div>
+</body>
+</html>

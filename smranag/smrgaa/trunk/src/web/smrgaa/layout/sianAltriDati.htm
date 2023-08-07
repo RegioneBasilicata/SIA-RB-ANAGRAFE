@@ -1,0 +1,408 @@
+$$head
+<script src="../js/checktext.js" type="text/javascript"></script>
+<script type="text/javascript" src="../js/messaggistica.js"></script>
+  
+<script type="text/javascript"> 
+  function setHiddenOperazione(form, operazione) {
+    form.operazione.value = operazione;
+    form.submit();
+  }
+</script>
+
+</head>
+<body id="homeIndice" onLoad="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+  <form name="form1" method="post" action="../layout/sianAltriDati.htm">
+    <input type="hidden" name="operazione" value="$$operazione" />
+    <input type="hidden" name="regimeSianAltriDati" id="regimeSianAltriDati" value="regimeSianAltriDati" />
+    <div id="pagina" class="colonnaUnica">
+      <div id="intestazione##pathProvincia">
+        $$header
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li><a href="../layout/index.htm" title="Torna alla pagina principale">home</a></li>
+              <li class="attivo">gestione anagrafe aziende</li>
+              <li><a href="#" title="contatti">contatti</a></li>
+              <li><a href="#" title="help">help</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr/>
+      <div style="clear:left">  </div>
+      <!-- CORPO -->
+      <div id="corpo">
+        <div id="Utente">
+          <div id="datiUtente">
+            <strong>utente:</strong>
+            $$utente
+            &nbsp;
+            &nbsp;
+            <strong>ente:</strong>
+            $$ente
+          </div>
+          <div id="chiudisessione">
+            <a href="javascript: logout();">chiudi sessione</a>
+          </div>
+        </div>
+        <hr/>
+        <!--PRIMA COLONNA -->
+        <h3>Gestione Anagrafe Aziende&nbsp;&gt;&nbsp;Anagrafica&nbsp;&gt;&nbsp;Fonti certificate&nbsp;&gt;&nbsp;Sian
+          <span class="helpFuori">
+            <a href="#">
+              <span class="alt">[help]</span>
+            </a>
+          </span>
+        </h3>
+        <hr/>
+        <div class="box">
+          <div class="menuSX1">
+            <ul>
+              <!-- @@blkElencoAziendeRapLegale -->
+                <li><a href="../layout/elencoAziendeRapLegale.htm">Elenco Aziende</a></li>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <!-- @@blkRicercaAzienda-->
+                <li><a href="../layout/ricerca.htm">Ricerche</a></li>
+              <!-- @@blkRicercaAzienda-->
+              <!-- @@blkNuova -->
+              <li><a href="../layout/nuovaAziendaAnagrafica.htm">Nuova Azienda</a></li>
+              <!-- @@blkNuova -->
+              <!-- @@blkNuovaIscrizione -->
+              <li>
+                <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+              </li>
+              <!-- @@blkNuovaIscrizione -->
+            </ul>
+          </div>
+          <div class="menuSX">
+            <ul>
+              <li>
+                <a href="../layout/anagrafica.htm" class="on">Anagrafica</a>
+                <ul>
+                  <li>
+                    <a href="../layout/anagrafica.htm">dettaglio</a>
+                  </li>
+                  <li>
+                    <a href="../layout/fonti.htm" class="etichetta">fonti certificate</a>
+                    <ul>
+                      <!--@@linkAnagraficaVisuraCamerale-->
+                      <li>
+                        <a href="javascript: goToOperazione('../layout/anagraficaVisuraCamerale.htm', document.form1, 'attenderePrego');">Infocamere</a>
+                      </li>
+                      <!--@@linkAnagraficaVisuraCamerale-->
+                      <!--@@linkSianAnagrafeTributaria-->
+                      <li>
+                        <a href="javascript: goToOperazione('../layout/sianAnagrafeTributaria.htm', document.form1, 'attenderePrego');">anagrafe tributaria</a>
+                      </li>
+                      <!--@@linkSianAnagrafeTributaria-->
+                      <!--@@linkSianAltriDati-->
+                      <li>
+                        <a href="#" class="on">Sian</a>
+                      </li>
+                      <!--@@linkSianAltriDati-->
+                    </ul>
+                  </li>
+                  <!--@@linkDichiarazioneInsediamento-->
+                    <li>
+                      <a href="../layout/insediamento.htm">dichiarazione insediamento</a>
+                    </li>
+                  <!--@@linkDichiarazioneInsediamento-->
+                  <!--@@linkGestoreFascicolo-->
+                    <li>
+                      <a href="../layout/gestoreFascicolo.htm">gestore fascicolo</a>
+                    </li>
+                  <!--@@linkGestoreFascicolo-->
+                  <!--@@blkStoricoAzienda-->
+                  <li>
+                    <a href="../layout/listaStoricoAzienda.htm">storico azienda</a>
+                  </li>
+                  <!--@@blkStoricoAzienda-->
+                </ul>
+              </li>
+              <!-- @@blkAziendeCollegate -->
+	          			<li>
+	          					<a href="../layout/aziendeCollegate.htm">$$aziendeCollegateLabel</a>
+	          			</li>
+	          	<!-- @@blkAziendeCollegate -->
+	          <!-- @@blkSincronizzaFascicolo -->
+               <li>
+               	<a href="../layout/sincronizzaFascicolo.htm">Sincronizza fascicolo</a>
+               </li>
+              <!-- @@blkSincronizzaFascicolo -->	
+              <!-- @@blkSoggettiCollegati -->
+              <li><a href="../layout/contitolari.htm">Soggetti collegati</a></li>
+              <!-- @@blkSoggettiCollegati -->
+              <!-- @@blkContiCorrenti -->
+              <li><a href="../layout/conti_correnti.htm">Conti Correnti</a></li>
+              <!-- @@blkContiCorrenti -->
+              <!-- @@blkUnitaProduttive -->
+              <li><a href="../layout/sedi.htm">Unit&agrave; produttive</a></li>
+              <!-- @@blkUnitaProduttive -->
+              <!-- @@blkTerreni -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniParticellareElenco.htm">Terreni</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		            <a href="../layout/riepiloghi.htm">Terreni</a>
+		            <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkTerreni -->
+		          <!-- @@blkUnitaVitate -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniUnitaArboreeElenco.htm">Unit&agrave; Vitate</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		              <a href="../layout/riepiloghiUnitaArboree.htm">Unit&agrave; Vitate</a>
+		              <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkUnitaVitate -->
+              <!-- @@blkFabbricati -->
+              <li><a href="../layout/fabbricati.htm">Fabbricati e Strutture</a></li>
+              <!-- @@blkFabbricati -->
+              <!-- @@blkAllevamenti -->
+              <li><a href="../layout/allevamenti.htm">Allevamenti</a></li>
+              <!-- @@blkAllevamenti -->
+              <!-- @@blkManodopera -->
+              <li><a href="../layout/manodopera.htm">Manodopera</a></li>
+              <!-- @@blkManodopera -->
+              <!-- @@blkMotoriAgricoli -->
+              <li><a href="../layout/motori_agricoli_incarico.htm">Macchine agricole</a></li>
+              <!-- @@blkMotoriAgricoli -->
+              <!-- @@blkDiritti -->
+              <li><a href="../layout/diritti.htm">Diritti di produzione</a></li>
+              <!-- @@blkDiritti -->
+              <!-- @@blkAttestazioni -->
+              	<li><a href="../layout/attestazioniDettaglio.htm">Dichiarazioni</a></li>
+              <!-- @@blkAttestazioni -->
+              <!-- @@blkDichiarazioniConsistenza -->
+              <li><a href="../layout/dichiarazioneConsistenza.htm">Validazioni</a></li>
+              <!-- @@blkDichiarazioniConsistenza -->
+              <!-- @@blkDocumenti -->
+              <li><a href="../layout/documentiElenco.htm">Documenti</a></li>
+              <!-- @@blkDocumenti -->
+              <!-- @@blkFascicoloDematerializzato -->
+              <li>
+                <a href="../layout/fascicoloDematerializzato.htm">Fascicolo<br>elettronico</a>
+              </li>
+              <!-- @@blkFascicoloDematerializzato -->
+              <!-- @@blkGestioneNotifiche -->
+              <li><a href="../layout/notifiche.htm">Notifiche</a></li>
+              <!-- @@blkGestioneNotifiche -->
+              <!-- @@blkComunicazione10R -->
+                <li>
+                  <a href="../layout/comunicazione10R_dettaglio.htm">Comunicazione 10/R</a>
+                </li>
+              <!-- @@blkComunicazione10R -->
+              <!-- @@blkPratiche -->
+              <li><a href="../layout/pratiche.htm">Pratiche</a></li>
+              <!-- @@blkPratiche -->
+              <!-- @@blkStampaFascicolo -->
+              <li><a href="../layout/scelta_stampa.htm">Stampe</a></li>
+              <!-- @@blkStampaFascicolo -->
+			  <li>
+                <a href="../layout/strumenti.htm">Strumenti</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <hr/>
+        <!-- SECONDA COLONNA -->
+        <div id="contenuto">
+          <div id="intesta">
+            <p class="$$aziendaIntestazione" title="$$tooltipIntestazione" >
+              $$CUAAIntestazione  $$denominazioneIntestazione
+            </p>
+          </div>
+          <h4 class="titolo">Fonte dati: Sian</h4>          
+            <table cellspacing="3" summary="Questa tabella contiene i dati del rapporto">
+              <tr>
+                <!-- @@blkImportaRadio -->
+                  <th class="radio" scope="col">Sel.</th>
+                <!-- @@blkImportaRadio -->
+                <th>&nbsp;</th>
+                <th class="center" scope="col">Sian</th>
+                <th class="center" scope="col">Dati in anagrafe</th>
+              </tr>
+              <tr>
+                <!-- @@blkImportaRadio -->
+                <td>&nbsp;</td>
+                <!-- @@blkImportaRadio -->
+                <th colspan="3" class="left">Iscrizione INPS </th>
+              </tr>
+              <tr>
+                <!-- @@blkNoNumIscrInps -->
+                <td>&nbsp;</td>
+                <!-- @@blkNoNumIscrInps -->
+                <!-- @@blkImpNumIscrInps -->
+                <td class="radio" scope="row">
+                  <input type="checkbox" id="chkNumIscrInps" name="chkNumIscrInps" value="true" $$checkedNumIscrInps />
+                </td>
+                <!-- @@blkImpNumIscrInps -->
+                <td>Numero iscrizione</td>
+                <td class="$$numIscrInpsTributariaColor">$$numIscrInpsTributaria</td>
+                <td>$$numIscrInpsAnagrafe</td>
+                <input type="hidden" name="numIscrInpsTributaria" value="$$numIscrInpsTributaria"/>
+              </tr>
+              <tr>
+                <!-- @@blkNoTipoIscrInps -->
+                <td>&nbsp;</td>
+                <!-- @@blkNoTipoIscrInps -->
+                <!-- @@blkImpTipoIscrInps -->
+                <td class="radio" scope="row">
+                  <input type="checkbox" id="chkTipoIscrInps" name="chkTipoIscrInps" value="true" $$checkedTipoIscrInps/>
+                </td>
+                <!-- @@blkImpTipoIscrInps -->
+                <td>Tipo iscrizione</td>
+                <td class="$$tipoIscrInpsTributariaColor">$$tipoIscrInpsTributaria</td>
+                <td>$$tipoIscrInpsAnagrafe</td>
+                <input type="hidden" name="idTipoIscrInpsTributaria" value="$$idTipoIscrInpsTributaria"/>
+              </tr>
+              <tr>
+                <!-- @@blkNoDatInInps -->
+                <td>&nbsp;</td>
+                <!-- @@blkNoDatInInps -->
+                <!-- @@blkImpDatInInps -->
+                <td class="radio" scope="row">
+                  <input type="checkbox" id="chkDatInInps" name="chkDatInInps" value="true" $$checkedDatInInps/>
+                </td>
+                <!-- @@blkImpDatInInps -->
+                <td>Data inizio</td>
+                <td class="$$datInInpsTributariaColor">$$datInInpsTributaria</td>
+                <td>$$datInInpsAnagrafe</td>
+                <input type="hidden" name="datInInpsTributaria" value="$$datInInpsTributaria"/>
+              </tr>
+              <tr>
+                <!-- @@blkNoDatFinInps -->
+                <td>&nbsp;</td>
+                <!-- @@blkNoDatFinInps -->
+                <!-- @@blkImpDatFinInps -->
+                <td class="radio" scope="row">
+                  <input type="checkbox" id="chkDatFinInps" name="chkDatFinInps" value="true" $$checkedDatFinInps/>
+                </td>
+                <!-- @@blkImpDatFinInps -->
+                <td>Data cessazione</td>
+                <td class="$$datFinInpsTributariaColor">$$datFinInpsTributaria</td>
+                <td>$$datFinInpsAnagrafe</td>
+                <input type="hidden" name="datFinInpsTributaria" value="$$datFinInpsTributaria"/>
+              </tr>
+              <tr>
+                <!-- @@blkImportaRadio -->
+                  <td>&nbsp;</td>
+                <!-- @@blkImportaRadio -->
+                <th colspan="3" class="left">Iscrizione Registro Imprese</th>
+              </tr>
+              <tr>
+                <!-- @@blkNoNumIscrRI -->
+                <td>&nbsp;</td>
+                <!-- @@blkNoNumIscrRI -->
+                <!-- @@blkImpNumIscrRI -->
+                <td class="radio" scope="row">
+                  <input type="checkbox" id="chkNumIscrRI" name="chkNumIscrRI" value="true" $$checkedNumIscrRI />
+                </td>
+                <!-- @@blkImpNumIscrRI -->
+                <td>Numero iscrizione</td>
+                <td class="$$numIscrRITributariaColor">$$numIscrRITributaria</td>
+                <td>$$numIscrRIAnagrafe</td>
+                <input type="hidden" name="numIscrRITributaria" value="$$numIscrRITributaria"/>
+              </tr>
+              <tr>
+                <!-- @@blkNoDatInRI -->
+                <td>&nbsp;</td>
+                <!-- @@blkNoDatInRI -->
+                <!-- @@blkImpDatInRI -->
+                <td class="radio" scope="row">
+                  <input type="checkbox" id="chkDatInRI" name="chkDatInRI" value="true" $$checkedDatInRI />
+                </td>
+                <!-- @@blkImpDatInRI -->
+                <td>Data inizio</td>
+                <td class="$$datInRITributariaColor">$$datInRITributaria</td>
+                <td>$$datInRIAnagrafe</td>
+                <input type="hidden" name="datInRITributaria" value="$$datInRITributaria"/>
+              </tr>
+              <tr>
+                <!-- @@blkNoDatFinRI -->
+                <td>&nbsp;</td>
+                <!-- @@blkNoDatFinRI -->
+                <!-- @@blkImpDatFinRI -->
+                <td class="radio" scope="row">
+                  <input type="checkbox" id="chkDatFinRI" name="chkDatFinRI" value="true" $$checkedDatFinRI/>
+                </td>
+                <!-- @@blkImpDatFinRI -->
+                <td>Data cessazione</td>
+                <td class="$$datFinRITributariaColor">$$datFinRITributaria</td>
+                <td>$$datFinRIAnagrafe</td>
+                <input type="hidden" name="datFinRITributaria" value="$$datFinRITributaria"/>
+              </tr>
+              <tr>
+                <!-- @@blkImportaRadio -->
+                  <td>&nbsp;</td>
+                <!-- @@blkImportaRadio -->
+                <th colspan="3" class="left">Iscrizione REA</th>
+              </tr>
+              <tr>
+                <!-- @@blkNoNumIscrREA -->
+                <td>&nbsp;</td>
+                <!-- @@blkNoNumIscrREA -->
+                <!-- @@blkImpNumIscrREA -->
+                <td class="radio" scope="row">
+                  <input type="checkbox" id="chkNumIscrREA" name="chkNumIscrREA" value="true" $$checkedNumIscrREA />
+                </td>
+                <!-- @@blkImpNumIscrREA -->
+                <td>Numero iscrizione</td>
+                <td class="$$numIscrREATributariaColor">$$numIscrREATributaria</td>
+                <td>$$numIscrREAAnagrafe</td>
+                <input type="hidden" name="numIscrREATributaria" value="$$numIscrREATributaria"/>
+              </tr>
+              <tr>
+                <!-- @@blkNoDatInREA -->
+                <td>&nbsp;</td>
+                <!-- @@blkNoDatInREA -->
+                <!-- @@blkImpDatInREA -->
+                <td class="radio" scope="row">
+                  <input type="checkbox" id="chkDatInREA" name="chkDatInREA" value="true" $$checkedDatInREA />
+                </td>
+                <!-- @@blkImpDatInREA -->
+                <td>Data inizio</td>
+                <td class="$$datInREATributariaColor">$$datInREATributaria</td>
+                <td>$$datInREAAnagrafe</td>
+                <input type="hidden" name="datInREATributaria" value="$$datInREATributaria"/>
+              </tr>
+              <tr>
+                <!-- @@blkNoDatFinREA -->
+                <td>&nbsp;</td>
+                <!-- @@blkNoDatFinREA -->
+                <!-- @@blkImpDatFinREA -->
+                <td class="radio" scope="row">
+                  <input type="checkbox" id="chkDatFinREA" name="chkDatFinREA" value="true" $$checkedDatFinREA/>
+                </td>
+                <!-- @@blkImpDatFinREA -->
+                <td>Data cessazione</td>
+                <td class="$$datFinREATributariaColor">$$datFinREATributaria</td>
+                <td>$$datFinREAAnagrafe</td>
+                <input type="hidden" name="datFinREATributaria" value="$$datFinREATributaria"/>
+              </tr>              
+            </table>
+            <br/>
+            <!-- @@blkImporta -->
+             <div class="pulsanti"> 
+               <div class="sin">
+                 <a id="importa" name="importa"
+                    href="javascript:setHiddenOperazione(document.forms[0],'importa');">importa dati</a>
+               </div>
+             </div>
+            <!-- @@blkImporta -->
+          
+          <!-- @@blkErrore -->
+            <p class="errore">$$messaggio</p>
+          <!-- @@blkErrore -->
+        </div>
+      </div>
+      <hr/>
+      </form>
+      <!-- PIE' DI PAGINA -->
+      $$footer

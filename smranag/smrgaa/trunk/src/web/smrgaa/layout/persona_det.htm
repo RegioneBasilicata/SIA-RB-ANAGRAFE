@@ -1,0 +1,248 @@
+$$head
+
+  <script type="text/javascript" src="../js/checktext.js"></script>
+  <script type="text/javascript" src="../js/messaggistica.js"></script>
+</head>
+<body id="homeIndice" onload="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+  <form name="form1" method="post" action="../layout/persona_det.htm">
+    <div id="pagina" class="colonnaUnica">
+      <!-- INTESTAZIONE -->
+      <div id="intestazione##pathProvincia">
+        $$header
+        <!-- menu di navigazione-->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li>
+                <a href="../layout/index.htm" title="Torna alla pagina principale">home</a>
+              </li>
+              <li class="attivo">gestione anagrafe aziende</li>
+              <li>
+                <a href="#" title="contatti">contatti</a>
+              </li>
+              <li>
+                <a href="#" title="help">help</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr/>
+      <div style="clear:left"></div>
+      <!-- CORPO -->
+      <div id="corpo">
+        <div id="Utente">
+          <div id="datiUtente">
+            <strong>utente:</strong>$$utente&nbsp;&nbsp;
+            <strong>ente:</strong>$$ente
+          </div>
+          <div id="chiudisessione">
+            <a href="javascript: logout();">chiudi sessione</a>
+          </div>
+        </div>
+        <hr/>
+        <!--PRIMA COLONNA -->
+        <h3>Ricerca persona&gt;Dettaglio
+          <span class="helpFuori">
+            <a href="#">
+              <span class="alt">[help]</span>
+            </a>
+          </span>
+        </h3>
+        <hr/>
+        <div class="box">
+          <div class="menuSX1">
+            <ul>
+              <!-- @@blkElencoAziendeRapLegale -->
+                <li><a href="../layout/elencoAziendeRapLegale.htm">Elenco Aziende</a></li>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <!-- @@blkRicercaAzienda-->
+                <li><a href="../layout/ricerca.htm">Ricerca Azienda</a></li>
+              <!-- @@blkRicercaAzienda-->
+              <!--@@blkRicercaTerreno-->
+                <li>
+                  <a href="../layout/ricercaTerreno.htm">Ricerca Terreno</a>
+                </li>
+              <!--@@blkRicercaTerreno-->
+              <!--@@blkRicercaPersona-->
+                <li><a href="../layout/ricercaPersona.htm" class="on"  >Ricerca Persona</a></li>
+              <!--@@blkRicercaPersona-->
+              <!--@@blkRicercaNotifica-->
+                <li>
+                  <a href="../layout/ricercaNotifica.htm">Ricerca Notifiche</a>
+                </li>
+              <!--@@blkRicercaNotifica-->
+              <!--@@blkVariazioniAzienda-->
+                <li><a href="../layout/ricercaVariazioni.htm" >Ricerca Variazioni</a></li>
+              <!--@@blkVariazioniAzienda-->
+              <!--@@blkRicercaRichiesta-->
+                <li><a href="../layout/ricercaRichiesta.htm">Ricerca richiesta azienda</a></li>
+              <!--@@blkRicercaRichiesta-->
+              <!--@@blkNuova-->
+                <li>
+                  <a href="../layout/nuovaAziendaAnagrafica.htm">Nuova Azienda</a>
+                </li>
+              <!--@@blkNuova-->
+              <!-- @@blkNuovaIscrizione -->
+              <li>
+                <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+              </li>
+              <!-- @@blkNuovaIscrizione -->
+              <!--@@blkNuovaParticella-->
+              <li>
+                <a href="../layout/inserisciTerreno.htm">Nuova Particella</a>
+              </li>
+              <!--@@blkNuovaParticella-->
+              <!--@@blkServizi-->
+                <li><a href="../layout/servizi.htm" >Servizi</a></li>
+              <!--@@blkServizi-->
+              <!--@@blkReportistica-->
+                <li>
+                  <a href="../layout/elencoRicerche.htm">Reportistica</a>
+                </li>
+              <!--@@blkReportistica-->
+              <!--@@blkEstrazioneDati-->
+              <li><a href="../layout/macroCategoriaReport.htm">Estrazione dati</a></li>
+              <!--@@blkEstrazioneDati-->
+              <li><a href="../layout/elencoManuali.htm">Scarico Documentazione Tecnica</a></li>   
+            </ul>
+          </div>
+          <div class="menuSX">
+            <ul>
+              <li>
+                <a href="../layout/elencoPersone.htm" class="on">Persona</a>
+                <ul>
+                  <li>
+                    <a href="#" class="etichetta">dati anagrafici</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <hr/>
+        <!-- SECONDA COLONNA -->
+        <div id="contenuto">
+          <input type="hidden" name="idSoggetto" value="$$idSoggetto"/>
+          <table cellspacing="3" class="detailTable" summary="Questa tabella è costituita da righe">
+            <caption>Dati anagrafici</caption>
+            <col width="30%"/>
+            <col width="70%"/>
+            <tr>
+              <th>Cognome</th>
+              <td>$$cognome</td>
+            </tr>
+            <tr>
+              <th>Nome</th>
+              <td>$$nome</td>
+            </tr>
+            <tr>
+              <th>Codice fiscale</th>
+              <td>$$codFiscale</td>
+            </tr>
+            <tr>
+              <th>Data di nascita</th>
+              <td>$$dataNascita</td>
+            </tr>
+            <tr>
+              <th>Luogo di nascita</th>
+              <td>$$luogoNascita</td>
+            </tr>
+            <tr>
+              <th>Sesso</th>
+              <td>$$sesso</td>
+            </tr>
+          </table>
+          <table cellspacing="3" class="detailTable" summary="Questa tabella è costituita da righe">
+            <caption>Residenza</caption>
+            <col width="30%"/>
+            <col width="70%"/>
+            <tr>
+              <th>Indirizzo</th>
+              <td>$$resIndirizzo</td>
+            </tr>
+            <tr>
+              <th>Provincia</th>
+              <td>$$resProvincia</td>
+            </tr>
+            <tr>
+              <th>Comune</th>
+              <td>$$resComune</td>
+            </tr>
+            <tr>
+              <th>C.A.P.</th>
+              <td>$$resCAP</td>
+            </tr>
+            <tr>
+              <th>Stato estero</th>
+              <td>$$statoEstero</td>
+            </tr>
+            <tr>
+              <th>Citt&agrave;</th>
+              <td>$$citta</td>
+            </tr>
+            <tr>
+              <th>Telefono</th>
+              <td>$$telefono</td>
+            </tr>
+            <tr>
+              <th>Fax</th>
+              <td>$$fax</td>
+            </tr>
+            <tr>
+              <th>E-mail</th>
+              <td>$$email</td>
+            </tr>
+          </table>
+          <table cellspacing="3" class="detailTable" summary="Questa tabella è costituita da righe">
+            <caption>Domicilio (se diverso da residenza)</caption>
+            <col width="30%"/>
+            <col width="70%"/>
+            <tr>
+              <th>Indirizzo</th>
+              <td>$$domIndirizzo</td>
+            </tr>
+            <!--@@blkDomicilioItalia-->
+            <tr>
+              <th>Provincia</th>
+              <td>$$domProvincia</td>
+            </tr>
+            <tr>
+              <th>Comune</th>
+              <td>$$domComune</td>
+            </tr>
+            <tr>
+              <th>C.A.P.</th>
+              <td>$$domCAP</td>
+            </tr>
+            <!--@@blkDomicilioItalia-->
+            <!--@@blkDomicilioEstero-->
+            <tr>
+              <th>Stato estero</th>
+              <td>$$domicilioStatoEstero</td>
+            </tr>
+            <tr>
+              <th>Citt&agrave;</th>
+              <td>$$descCittaEsteroDomicilio</td>
+            </tr>
+            <!--@@blkDomicilioEstero-->
+            <tr>
+              <th>Titolo di studio</th>
+              <td>$$titoloIndirizzoStudio</td>
+            </tr>
+            <tr>
+              <th>Note</th>
+              <td>$$note</td>
+            </tr>
+          </table>
+		  <!--
+          <label for="indietro" class="alt">indietro</label>
+          <input name="indietro" id="indietro" class="inputPulsante" type="submit" value="indietro"/>-->
+        </div>
+      </div>
+      <hr/>
+      <!-- PIE' DI PAGINA -->
+      $$footer

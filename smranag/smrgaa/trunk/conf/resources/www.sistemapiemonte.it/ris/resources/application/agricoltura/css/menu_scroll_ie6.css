@@ -1,0 +1,17 @@
+/* CSS x menu scroll IE6 agricoltura */
+html, body{
+	height: 100%;
+	overflow: hidden;
+	margin:0;/*tolto 11px 0*/
+	padding:0;}
+.box {
+	display:block; 
+	position:fixed;
+	left: 3.5%;
+	top:155px;
+	z-index:10000;
+	width: 10%;}
+.box {position: absolute;}
+
+#contenitore {height: 100%;overflow: auto;position:relative;}
+menuSX, menuSX1 { background-image:none;}

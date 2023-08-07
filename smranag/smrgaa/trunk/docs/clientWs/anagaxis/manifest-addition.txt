@@ -1,0 +1,4 @@
+Built-By: Marco Pochettino (1427)
+Built-Date: 20140904
+Target-wsdl: dev
+Versione-ws-client: 3.1.0

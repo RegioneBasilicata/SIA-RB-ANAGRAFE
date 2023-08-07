@@ -1,0 +1,17 @@
+/* hack per IE/Mac \*/
+body{
+	background	: #fff;
+	color		: #000;
+}
+#avvisoVisure, #avviso {
+	background	: #fff url(/staticresources/css/im/avviso.gif) 0 0 no-repeat;
+	padding-top	: 72px;
+	width		: 100%
+}
+#menuNN4 {
+	background	: #fff url(/staticresources/css/im/avviso.gif) 0 0 no-repeat;
+	padding-top	: 72px;
+	width		: 100%;
+	 text-align:left;
+}
+/* EOH */

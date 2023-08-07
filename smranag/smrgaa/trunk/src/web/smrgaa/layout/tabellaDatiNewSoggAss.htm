@@ -1,0 +1,89 @@
+    <table cellspacing="3" summary="Questa tabella è costituita da righe">
+      <caption>Elenco aziende associate</caption>
+      <tr>
+        <th class="center" scope="col" rowspan="2">
+        </th>
+        <th class="center" scope="col" rowspan="2">
+          CUAA
+        </th>
+        <th class="center" scope="col" rowspan="2">
+          Partita iva
+        </th>
+        <th class="center" scope="col" rowspan="2">
+          Denominazione
+        </th>
+        <th class="center" scope="col" colspan="4">
+          Sede legale
+        </th>
+        <th class="center" scope="col" rowspan="2">
+          Data ingresso*
+        </th>
+      </tr>
+      <tr>
+        <th class="center" scope="col" >
+          Comune
+        </th>
+        <th class="center" scope="col" >
+          Provincia
+        </th>
+        <th class="center" scope="col" >
+          Indirizzo
+        </th>
+        <th class="center" scope="col" >
+          Cap
+        </th>
+      </tr>
+      <!--@@blkElencoAzAssociate -->
+      <tr>   
+        <td>
+          <a href="javascript:modificaRigaDati('elimina', '$$idRiga')" class="cancella" title="elimina Az Ass"></a>
+          <input type="hidden" name="idAziendaEl" value="$$idAziendaEl"/>
+          $$err_generico
+        </td>
+        <td>
+          $$cuaa
+          <input type="hidden" name="cuaaEl" value="$$cuaa"/>
+        </td>
+        <td>  
+          $$partitaIva
+          <input type="hidden" name="partitaIvaEl" value="$$partitaIva"/>         
+        </td>
+        <td>
+          $$denominazione
+          <input type="hidden" name="denominazioneEl" value="$$denominazione"/>  
+        </td>
+        <td>
+          $$desCom
+          <input type="hidden" name="istatComuneEl" value="$$istatComune"/>
+          <input type="hidden" name="desComEl" value="$$desCom"/>
+        </td>
+        <td>
+          $$siglaProvincia
+          <input type="hidden" name="siglaProvinciaEl" value="$$siglaProvincia"/>
+        </td>
+        <td>
+          $$indirizzo
+          <input type="hidden" name="indirizzoEl" value="$$indirizzo"/>
+        </td>
+        <td>
+          $$cap
+          <input type="hidden" name="capEl" value="$$cap"/>
+        </td>
+        <td>
+          <input type="text" name="dataIngresso" class="textmedio"
+              value="$$dataIngresso" />
+          $$err_dataIngresso
+        </td>
+      </tr>
+      
+      <!--@@blkElencoAzAssociate -->
+    </table>
+    
+    <!-- @@blkNoElenco -->
+    <p class="errore">
+      $$messaggioErrore
+    </p>
+    <!-- @@blkNoElenco -->
+       
+          
+          

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 4.1.3  -->
+<!-- 2016-10-08T14:34:49 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="QuadroATitolareSubreport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="fascicoloDS" class="java.util.List"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="quadroA" class="it.csi.smranag.smrgaa.dto.jaxb.fascicolo.QuadroA">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<title>
+		<band height="60" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="0" y="0" width="555" height="50" forecolor="#000000" backcolor="#99CCFF"/>
+				<graphicElement>
+					<pen lineColor="#44C2FC"/>
+				</graphicElement>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement x="9" y="13" width="535" height="19"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{quadroA}.getSezioneTitolare().getTitoloSezTitolare()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="111" splitType="Stretch">
+			<staticText>
+				<reportElement x="10" y="6" width="80" height="20"/>
+				<textElement>
+					<font fontName="SansSerif" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cognome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="245" y="6" width="80" height="20"/>
+				<textElement>
+					<font fontName="SansSerif" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="40" width="80" height="20"/>
+				<textElement>
+					<font fontName="SansSerif" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Codice Fiscale]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="68" width="80" height="20"/>
+				<textElement>
+					<font fontName="SansSerif" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Mail]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="247" y="66" width="80" height="20"/>
+				<textElement>
+					<font fontName="SansSerif" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Telefono]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="96" y="6" width="140" height="30" isRemoveLineWhenBlank="true"/>
+				<textFieldExpression><![CDATA[$F{quadroA}.getSezioneTitolare().getCognome()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="330" y="6" width="214" height="30" isRemoveLineWhenBlank="true"/>
+				<textFieldExpression><![CDATA[$F{quadroA}.getSezioneTitolare().getNome()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="95" y="39" width="446" height="30" isRemoveLineWhenBlank="true"/>
+				<textFieldExpression><![CDATA[$F{quadroA}.getSezioneTitolare().getCodiceFiscale()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="95" y="69" width="144" height="30" isRemoveLineWhenBlank="true"/>
+				<textFieldExpression><![CDATA[$F{quadroA}.getSezioneTitolare().getEmail()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="336" y="66" width="202" height="30" isRemoveLineWhenBlank="true"/>
+				<textFieldExpression><![CDATA[$F{quadroA}.getSezioneTitolare().getTel()]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

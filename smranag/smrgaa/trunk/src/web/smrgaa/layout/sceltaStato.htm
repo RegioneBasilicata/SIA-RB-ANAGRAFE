@@ -1,0 +1,67 @@
+$$head
+  <script src="../js/checktext.js"></script>
+</head>
+<body id="popup">
+  <form id="sceltaStato" name="sceltaStato" method="post" action="../layout/anagraficaSede_mod.htm">
+    <input type="hidden" value="$$obiettivo" name="obiettivo" id="obiettivo"/>
+    <!-- CORPO -->
+    <div id="contenutopop">
+      <!-- @@conferma -->
+        <div class="pulsanti">
+          <div class="des">
+            <a href="javascript:window.close();">chiudi</a>
+            <span class="alt">&nbsp;/&nbsp;</span>
+          </div>
+          <div class="sin">
+            <a href="javascript:confermaStato()">conferma</a>
+            <span class="alt">&nbsp;/&nbsp;</span>
+          </div>
+        </div>
+      <!-- @@conferma -->
+      <!-- @@chiudi -->
+        <div class="pulsanti"><div class="des">
+          <a href="javascript:window.close();">chiudi</a></div></div>
+      <!-- @@chiudi -->
+      <table cellspacing="3" summary="Questa tabella contiene i dati del rapporto">
+        <col width="5%"/>
+        <col width="45%"/>
+        <col width="50%"/>
+        <tr>
+          <th class="radio" scope="col">&nbsp;</th>
+          <th class="center" scope="col">Stato</th>
+          <th class="center" scope="col">ISTAT</th>
+        </tr>
+        <!-- @@elencoStati -->
+          <tr>
+            <th class="radio" scope="row">
+              <input type="radio" name="istat" id="istat" value="$$istat"/>
+              <label class="alt" for="istat">istat</label>
+            </th>
+            <td>$$stato</td>
+            <td>$$istat
+              <input type="hidden" id="siglaStato" name="siglaStato" value="$$siglaStato"/>
+            </td>
+          </tr>
+        <!-- @@elencoStati -->
+        <p>$$exception</p>
+      </table>
+      <!-- @@conferma -->
+        <div class="pulsanti">
+          <div class="des">
+            <a href="javascript:window.close();">chiudi</a>
+            <span class="alt">&nbsp;/&nbsp;</span>
+          </div>
+          <div class="sin">
+            <a href="javascript:confermaStato()">conferma</a>
+            <span class="alt">&nbsp;/&nbsp;</span>
+          </div>
+        </div>
+      <!-- @@conferma -->
+      <!-- @@chiudi -->
+        <div class="pulsanti"><div class="des">
+          <a href="javascript:window.close();">chiudi</a> </div></div>
+      <!-- @@chiudi -->
+    </div>
+    </div></form>
+    </body>
+    </html>

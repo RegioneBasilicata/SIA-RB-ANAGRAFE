@@ -1,0 +1,45 @@
+/*** print.css ***/
+
+/*formattazione blocchi*/
+body {font-size: 100%;font-family:'Times New Roman', Times, serif;color:#000;}
+a, a:link,a:visited {color:#036;text-decoration:none;font-weight:bold;}
+h1, h2 {font-family:'Times New Roman', Times, serif;font-size: 1.4em;color: #036;/*text-transform:uppercase;*/}
+h3{font-family:'Times New Roman', Times, serif;font-size: 1.2em;text-transform:uppercase;color: #036;}
+h4{font-family:'Times New Roman', Times, serif;font-size: 1.1em;text-transform:uppercase;}
+h5, h6{font-family:'Times New Roman', Times, serif;font-size: 0.9em;/*text-transform:uppercase;*/}
+p, a, ul, li, div{font-family:'Times New Roman', Times, serif;}
+
+.errore {font-weight: bold;text-transform: uppercase;color: #CC0000;text-decoration: none;text-align: center;padding:6px 0px;}
+
+/*bordi tabelle*/
+table {width:100%;border:1px solid #ccc;margin:.1em;}
+table td{text-align:left;border:1px solid #ccc;}
+table th{text-align:left;border:1px solid #ccc;}/*text-transform:uppercase;*/
+.colonnaUnica thead.titoliTabella {display:none;}
+img {clear:both;float:none;margin:0.5em;display:block;}
+
+/*formattazione specifica*/
+#menuDiNavigazione li.on {display:inline;font-size: 1.2em;font-weight:bold;}
+/*#titoloEmenu h2 .alt,*/
+#intestazione hr,
+.navigazionePagina,
+#menuDiNavigazione li,
+#colonna2,
+#piedipagina, 
+#pulsanti,
+.pulsanti,
+.nonstampare,
+.alt {display:none;}
+
+#bannerRupar h1 .alt, #bannerRuparNoCav .alt , h2 .alt {display:inline;}
+h2 .alt {text-transform:uppercase;}
+
+
+
+/*agricoltura*/
+.scroll table { font-size:0.7em;}
+
+.nascosto, 
+.radio,
+#chiudisessione{display:none;}
+

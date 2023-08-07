@@ -1,0 +1,277 @@
+$$head
+<script type="text/javascript" src="../js/checktext.js"></script>
+<script type="text/javascript" src="../js/messaggistica.js"></script>
+<script type="text/javascript"> 
+
+  function cambio() 
+  {
+    document.forms[0].operazione.value = 'cambio';
+    document.forms[0].submit();
+  }
+  
+  function elimina(idRiga) 
+  {
+    document.forms[0].operazione.value = 'elimina';
+    document.forms[0].idRigaElim.value = idRiga;
+    document.forms[0].submit();
+  }
+  
+  function inserisci() 
+  {
+    document.forms[0].operazione.value = 'inserisci';
+    document.forms[0].submit();
+  }
+
+
+
+</script>
+</head>
+<body id="homeIndice" onload="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+	<form id="form1" name="form1" method="post" action="../layout/newInserimentoAllevamenti.htm">
+    <input type="hidden" id="regimeInserimentoAllevamenti" name="regimeInserimentoAllevamenti" value="regimeInserimentoAllevamenti"/>
+    <input type="hidden" id="operazione" name="operazione" value=""/>
+    <input type="hidden" id="idRigaElim" name="idRigaElim" value=""/>
+    <div id="pagina" class="colonnaUnica">
+      
+      <!-- INTESTAZIONE -->
+      <div id="intestazione##pathProvincia">
+        $$header
+        <!-- menu di navigazione-->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li>
+                <a href="../layout/index.htm" title="Torna alla pagina principale">home</a>
+              </li>
+              <li class="attivo">gestione anagrafe aziende</li>
+              <li>
+                <a href="#" title="contatti">contatti</a>
+              </li>
+              <li>
+                <a href="#" title="help">help</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr/>
+      <div style="clear:left"></div>
+      <!-- CORPO -->
+      <div id="corpo">
+        <div id="Utente">
+          <div id="datiUtente">
+            <strong>utente:</strong>$$utente&nbsp;&nbsp;
+            <strong>ente:</strong>$$ente
+          </div>
+          <div id="chiudisessione">
+            <a href="javascript: logout();">chiudi sessione</a>
+          </div>
+        </div>
+        <hr/>
+        <!--PRIMA COLONNA -->
+        <h3>Nuova iscrizione
+          <span class="helpFuori">
+            <a href="#">
+              <span class="alt">[help]</span>
+            </a>
+          </span>
+        </h3>
+        <hr/>
+        <div class="box">
+          <div class="menuSX1">
+            <ul>
+              <!-- @@blkRicercaAzienda-->
+              <li>
+                <a href="../layout/ricerca.htm">Ricerche</a>
+              </li>
+              <!-- @@blkRicercaAzienda-->                  
+              <li><a href="../layout/newInserimentoAzienda.htm" class="on">Nuova iscrizione</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr/>
+        <!-- SECONDA COLONNA -->
+        <div id="contenuto">
+          <div id="intesta">
+            <p class="$$aziendaIntestazione" title="$$tooltipIntestazione" >
+              $$CUAAIntestazione  $$denominazioneIntestazione
+            </p>
+          </div>
+          
+          <div id="indice">
+            <span class="voce">
+              <a href="#">Anagrafica</a>
+            </span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+            <span class="voce">
+              <a href="#">Unit&agrave; produttive</a>
+            </span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+            <span class="voce">
+              <a href="#">Terreni</a>
+            </span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+            <span class="voce">
+              <a href="#">Fabbricati</a>
+            </span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+            <span class="evidenza">
+              <a href="#">Allevamenti</a>
+            </span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+            <span class="voce">
+              <a href="#">Soggetti collegati</a>
+            </span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+            <span class="voce">
+              <a href="#">Elenco associati</a>
+            </span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+            <span class="voce">
+              <a href="#">Conti correnti</a>
+            </span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+            <span class="voce">
+              <a href="#">Allegati</a>
+            </span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+          </div>
+          <hr/>
+          
+          <br>
+          <div>
+            <p id="istruzioni">$$testoHelp</p>         
+          </div>
+          <br>
+          
+          <div class="scroll">
+            <table cellspacing="3" summary="Questa tabella è costituita da righe">
+              <caption>Allevamenti</caption>
+              <tr>
+                <th class="center" scope="col">
+                  <a href="javascript:inserisci()" class="aggiungi" title="inserisci allevamenti"></a>
+                </th>
+                <th class="center" scope="col">
+                  Codice azienda<br>zootecnica
+                </th>
+                <th class="center" scope="col">
+                  ASL*
+                </th>
+                <th class="center" scope="col">
+                  Specie*
+                </th>
+                <th class="center" scope="col">
+                  Categoria*
+                </th>
+                <th class="center" scope="col">
+                  Quantit&agrave;*<br>
+                </th>
+                <th class="center" scope="col">
+                  unit&agrave;<br>di misura
+                </th>
+                <th class="center" scope="col">
+                  Note
+                </th>
+                <th class="center" scope="col">
+                  Ute*
+                </th>
+              </tr>
+              <!--@@blkElencoAllevamenti -->
+              <tr>   
+                <td>
+                  <a href="javascript:elimina('$$idRiga')" class="cancella" title="elimina allevamenti"></a>
+                  $$err_allevamentoBDN
+                </td>
+                <td>
+                  <input name="codiceAziendaZootecnica"  id="codiceAziendaZootecnica" type="text" class="textmedio"
+                    maxlength="8" value="$$codiceAziendaZootecnica" />
+                  $$err_codiceAziendaZootecnica
+                </td>
+                <td>
+                  <select name="idAsl" id="idAsl" >
+                    <option value="" ></option>
+                    <!-- @@blkElencoAsl -->
+                    <option value="$$idAsl" $$selected>
+                      $$descAsl
+                    </option>
+                    <!-- @@blkElencoAsl -->
+                  </select>
+                  $$err_idAsl
+                </td>
+                <td>
+                  <select name="idSpecieAnimale" id="idSpecieAnimale"
+                    onchange="javascript: cambio();">
+                    <option value="" ></option>
+                    <!-- @@blkElencoSpecie -->
+                    <option value="$$idSpecieAnimale" $$selected>
+                      $$descSpecieAnimale
+                    </option>
+                    <!-- @@blkElencoSpecie -->
+                  </select>
+                  $$err_idSpecieAnimale
+                </td>
+                <td>
+                  <select name="idCategoriaAnimale" id="idCategoriaAnimale">
+                    <option value="" ></option>
+                    <!-- @@blkElencoCategorie -->
+                    <option value="$$idCategoriaAnimale" $$selected>
+                      $$descCategoria
+                    </option>
+                    <!-- @@blkElencoCategorie -->
+                  </select>
+                  $$err_idCategoriaAnimale
+                </td>                
+                <td>
+                  <input name="numeroCapi"  id="numeroCapi" type="text" class="textmedio"
+                    maxlength="7" value="$$numeroCapi" />
+                  $$err_numeroCapi
+                </td>
+                <td>
+                  $$unitaMisura
+                </td>
+                <td>
+                  <textarea name="note" id="note" cols="30">$$note</textarea>
+                  $$err_note
+                </td>
+                <td>
+                  <select id="idUteAziendaNuova" name="idUteAziendaNuova" >
+                    <option value=""></option>
+                    <!--@@blkElencoUte-->
+                    <option value="$$idUteAziendaNuova" $$selected >$$descUte</option>
+                    <!--@@blkElencoUte-->
+                  </select>
+                  $$err_idUteAziendaNuova
+                </td>
+              </tr>
+              
+              <!--@@blkElencoAllevamenti -->
+            </table>
+          </div> 
+          
+          
+          <p id="nota">I campi contrassegnati con * sono obbligatori</p>
+          <div class="pulsanti"><div class="sin">
+            <input name="indietro" id="indietro" class="inputPulsante" type="submit" value="indietro"/>
+          </div>
+          <div class="des">
+            <input name="avanti" id="avanti" class="inputPulsante" type="submit" value="avanti"/>
+          </div></div>  
+          
+          </br>
+          </br>
+          </br>
+          
+          
+          <!-- @@blkErrore -->
+          <p class="errore">
+            $$messaggioErrore
+          </p>
+          <!-- @@blkErrore -->
+        </div>
+      </div>
+      <hr/>
+      <!-- PIE' DI PAGINA -->
+      $$footer

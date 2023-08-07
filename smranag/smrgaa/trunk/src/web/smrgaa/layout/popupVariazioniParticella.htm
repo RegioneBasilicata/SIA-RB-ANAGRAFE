@@ -1,0 +1,68 @@
+$$head
+	<script src="../js/checktext.js" type="text/javascript"></script>
+</head>
+<body id="popup">
+	<form id="form1" name="form1" method="post" action="../layout/popupVariazioniParticella.htm">
+    <div id="contenutopop">
+    	<div class="pulsanti">
+     		<div class="des">
+     			<a href="javascript:window.close();">chiudi</a>
+     		</div>
+      </div>
+      <!--@@blkStoricoParticella-->
+      <table cellspacing="3" summary="Questa tabella contiene i dati delle variazioni storiche delle particelle">
+      	<caption>Variazioni storiche</caption>
+      	<tr>
+      	  <th class="center" scope="col">Superficie catastale</th>
+          <th class="center" scope="col">Superficie grafica</th>
+    			<th class="center" scope="col">Dal</th>
+    			<th class="center" scope="col">Al</th>
+    			<th class="center" scope="col">Utente</th>
+    			<th class="center" scope="col">Motivo</th>
+    			<th class="center" scope="col">Documento</th>
+  			</tr>
+  			<!--@@blkElencoStoricoParticella-->
+        <tr>
+        	<td class="numeridx">$$supCatastale</td>
+          <td class="numeridx">$$superficieGrafica</td>
+          <td class="data">$$dataInizioValidita</td>
+          <td class="data">$$dataFineValidita</td>
+          <td>$$ultimaModificaVw</td>
+          <td>$$causale $$motivo</td>
+          <td>$$documento</td>
+        </tr>
+  			<!--@@blkElencoStoricoParticella-->
+      </table>
+  		<!--@@blkEvento-->
+    	<table cellspacing="3" summary="Questa tabella contiene i dati degli eventi che hanno interessato la particella">
+      	<caption>Eventi</caption>
+      	<tr>
+      		<th class="center" scope="col">Descrizione</th>
+      		<th class="center" scope="col">Del</th>
+      		<th class="center" scope="col">Particella di riferimento</th>
+      	</tr>
+      	<!--@@blkElencoEventiParticella-->
+	      <tr>
+	       	<td>$$descEvento</td>
+	       	<td class="data">$$dataAggiornamento</td>
+	       	<td>$$descrizioneParticella</td>
+	      </tr>
+      	<!--@@blkElencoEventiParticella-->
+    	</table>
+      <!--@@blkEvento-->
+      <p id="nota">Tutte le superfici sono espresse in ettari (ha).</p>
+      <!--@@blkStoricoParticella-->
+      <!-- @@blkErrore -->
+      <br/>
+      <p class="errore">$$messaggio</p>
+      <br/>
+      <!-- @@blkErrore -->
+      <div class="pulsanti">
+      	<div class="des">
+      		<a href="javascript:window.close();">chiudi</a>
+      	</div>
+      </div>
+    </div>
+  </form>
+</body>
+</html>

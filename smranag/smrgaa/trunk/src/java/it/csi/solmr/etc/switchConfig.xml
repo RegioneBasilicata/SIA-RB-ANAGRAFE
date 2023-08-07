@@ -1,0 +1,583 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE config-client [
+<!ELEMENT config-client ( property, layout-mappings, get-accepteds, no-login-required, default-ctrl, error-page )>
+<!ELEMENT property EMPTY >
+<!ATTLIST property pointTo CDATA #REQUIRED >
+<!ELEMENT layout-mappings ( mapping+ ) >
+<!ELEMENT mapping EMPTY >
+<!ATTLIST mapping layout CDATA #REQUIRED >
+<!ATTLIST mapping controller CDATA #REQUIRED >
+<!ELEMENT get-accepteds ( get-accepted+ ) >
+<!ELEMENT get-accepted EMPTY >
+<!ATTLIST get-accepted requested CDATA #REQUIRED >
+<!ELEMENT no-login-required ( no-login+ ) >
+<!ELEMENT no-login EMPTY >
+<!ATTLIST no-login page CDATA #REQUIRED >
+<!ELEMENT default-ctrl EMPTY >
+<!ATTLIST default-ctrl controller CDATA #REQUIRED >
+<!ELEMENT error-page EMPTY >
+<!ATTLIST error-page page CDATA #REQUIRED >]>
+<config-client>
+  <property pointTo="EJB"/>
+  <layout-mappings>
+    <!-- Report dinamici-->
+    <mapping layout="/layout/macroCategoriaReport.htm" controller="/servlet/elencoCategorie"/>
+    <mapping layout="/layout/elencoTipologieReport.htm" controller="/servlet/elencoTipologie"/>
+    <mapping layout="/layout/dettaglioTipologiaReport.htm" controller="/servlet/dettaglioTipologia"/>
+    <mapping layout="/layout/risultatoTipologiaReport.htm" controller="/servlet/risultatoTipologia"/>
+    <mapping layout="/layout/risultato_tipologia_report.xls" controller="/servlet/risultatoTipologia?excel=excel"/>
+    <!-- Login-->
+    <mapping layout="/secure/loginSispie.htm" controller="/loginssl?portalName=sistemapiemonte"/>
+    <mapping layout="/secure/loginTOBECONFIG.htm" controller="/loginssl?portalName=applicazioni"/>
+    <mapping layout="/secure/loginRupar.htm" controller="/loginssl?portalName=ruparpiemonte"/>
+    <mapping layout="/secure/loginTOBECONFIG.htm/layout/sceltaRuolo.htm" controller="/view/sceltaRuoloPEP.jsp"/>
+    <mapping layout="/layout/sceltaRuolo.htm" controller="/view/sceltaRuoloPEP.jsp"/>
+    
+    <!-- Sincronizzazione fascicolo -->
+    <mapping layout="/layout/sincronizzaFascicolo.htm" controller="/ctrl/sincronizzaFascicoloCtrl.jsp"/>    
+    
+    <mapping layout="/layout/indexswhttp.htm" controller="/ctrl/ricAnagAziendaCtrl.jsp"/>
+    <mapping layout="/layout/indexswhttpHome.htm" controller="/view/indexView.jsp"/>
+    <mapping layout="/layout/indexAziendaswhttp.htm" controller="/ctrl/elencoAziendeRapLegaleCtrl.jsp"/>
+    <mapping layout="/layout/index.htm" controller="/view/indexView.jsp"/>
+    <mapping layout="/layout/elencoAziendeRapLegale.htm" controller="/ctrl/elencoAziendeRapLegaleCtrl.jsp"/>
+    <mapping layout="/layout/anagrafica.htm" controller="/ctrl/anagraficaCtrl.jsp"/>
+    <mapping layout="/layout/anagraficaIndicatori.htm" controller="/ctrl/anagraficaIndicatoriCtrl.jsp"/>
+    <mapping layout="/layout/anagraficaAltreInformazioni.htm" controller="/ctrl/anagraficaAltreInformazioniCtrl.jsp"/>
+    <mapping layout="/layout/aziendeCollegate.htm" controller="/ctrl/aziendeCollegateCtrl.jsp"/>
+    <mapping layout="/layout/sceltaEsportaDatiElencoSoci.htm" controller="/ctrl/sceltaEsportaDatiElencoSociCtrl.jsp"/>
+    <mapping layout="/layout/aziendeCollegateModifica.htm" controller="/ctrl/aziendeCollegateModificaCtrl.jsp"/>
+    <mapping layout="/layout/aziendeCollegateInserisci.htm" controller="/ctrl/aziendeCollegateInserisciCtrl.jsp"/>
+    <mapping layout="/layout/aziendeCollegateElimina.htm" controller="/ctrl/aziendeCollegateEliminaCtrl.jsp"/>
+    <mapping layout="/layout/enti_appartenenza.htm" controller="/ctrl/enti_appartenenzaCtrl.jsp"/>
+    <mapping layout="/layout/popElencoAziende.htm" controller="/ctrl/popElencoAziendeCtrl.jsp"/>
+    <mapping layout="/layout/popElencoAziendeAjax.htm" controller="/ctrl/popElencoAziendeAjaxCtrl.jsp"/>
+    <mapping layout="/layout/anagrafica_cessa.htm" controller="/ctrl/cessaAziendaCtrl.jsp"/>
+    <mapping layout="/layout/controlliCessaAzienda.htm" controller="/ctrl/controlliCessaAziendaCtrl.jsp"/>
+    <mapping layout="/layout/anagraficaSocieta_cambiaRappresentante.htm" controller="/ctrl/anagraficaSocieta_cambiaRappresentanteCtrl.jsp"/>
+    <mapping layout="/layout/confermaCFCambiaRappresentante.htm" controller="/view/confermaCFCambiaRappresentanteView.jsp"/>
+    <mapping layout="/layout/anagraficaIndividualePassaggio.htm" controller="/ctrl/anagraficaIndividualePassaggioCtrl.jsp"/>
+    <mapping layout="/layout/anagraficaIndividualePassaggio_nuovoTitolare.htm" controller="/ctrl/anagraficaIndividualePassaggioNuovoTitolareCtrl.jsp"/>
+    <mapping layout="/layout/anagraficaIndividualePassaggio_sede.htm" controller="/ctrl/anagraficaIndividualePassaggioSedeCtrl.jsp"/>
+    <mapping layout="/layout/anagrafica_mod.htm" controller="/ctrl/modificaAziendaCtrl.jsp"/>
+    <mapping layout="/layout/anagraficaIndicatori_mod.htm" controller="/ctrl/anagraficaIndicatoriModCtrl.jsp"/>
+    <mapping layout="/layout/anagraficaAltreInformazioni_mod.htm" controller="/ctrl/anagraficaAltreInformazioniModCtrl.jsp"/>
+    <mapping layout="/layout/anagrafica_mod_reload.htm" controller="/ctrl/modificaAziendaReloadCtrl.jsp"/>
+    <mapping layout="/layout/anagraficaRappLegale_mod.htm" controller="/ctrl/modificaRappLegaleCtrl.jsp"/>
+    <mapping layout="/layout/anagraficaSede_mod.htm" controller="/ctrl/anagraficaSedeModCtrl.jsp"/>
+    <!-- conti correnti  -->
+    <mapping layout="/layout/confermaEliminaContoCorrente.htm" controller="/ctrl/confermaEliminaContoCorrenteCtrl.jsp"/>
+    <mapping layout="/layout/conti_correnti.htm" controller="/ctrl/contiCorrentiCtrl.jsp"/>
+    <mapping layout="/layout/conti_correnti_new.htm" controller="/ctrl/contiCorrentiNewCtrl.jsp"/>
+    <mapping layout="/layout/conti_correnti_mod.htm" controller="/ctrl/contiCorrentiModCtrl.jsp"/>
+    <mapping layout="/layout/conti_correnti_det.htm" controller="/ctrl/contiCorrentiDetCtrl.jsp"/>
+    <mapping layout="/layout/sceltaBanca.htm" controller="/view/sceltaBancaView.jsp"/>
+    <mapping layout="/layout/sceltaFiliale.htm" controller="/view/sceltaFilialeView.jsp"/>
+    <mapping layout="/layout/popContiCorrentiPratiche.htm" controller="/ctrl/popContiCorrentiPraticheCtrl.jsp"/>
+    <!-- conti correnti -->
+    <mapping layout="/layout/confermaCF.htm" controller="/view/confirmCFView.jsp"/>
+    <mapping layout="/layout/confirm.htm" controller="/view/confirmView.jsp"/>
+    <mapping layout="/layout/confirmDel.htm" controller="/ctrl/sediConfirmDelCtrl.jsp"/>
+    <mapping layout="/layout/conferma.htm" controller="/macchina/ctrl/eliminaMacchinaCtrl.jsp"/>
+    <mapping layout="/layout/confirmDelSoggetto.htm" controller="/ctrl/confirmDelSoggettoCtrl.jsp"/>
+    <mapping layout="/layout/confirmDel_bis.htm" controller="/view/confirmDelView.jsp"/>
+    <mapping layout="/layout/contitolariAT.htm" controller="/ctrl/contitolariATCtrl.jsp"/>
+    <mapping layout="/layout/contitolari.htm" controller="/ctrl/contitolariCtrl.jsp"/>
+    <mapping layout="/layout/contitolari_mod.htm" controller="/ctrl/modificaSoggettoCtrl.jsp"/>
+    <mapping layout="/layout/contitolari_new.htm" controller="/ctrl/contitolariNewCtrl.jsp"/>
+    <mapping layout="/layout/contitolari_det.htm" controller="/view/contitolariDettView.jsp"/>
+    <mapping layout="/layout/elenco.htm" controller="/ctrl/elencoCtrl.jsp"/>
+    <mapping layout="/layout/nuovaAziendaAnagrafica.htm" controller="/ctrl/nuovaAziendaCCIAACtrl.jsp"/>
+    <mapping layout="/layout/nuovaAziendaAnagraficaForward.htm" controller="/ctrl/nuovaAziendaAnagraficaCtrl.jsp"/>
+    <mapping layout="/layout/nuovaAziendaAnagraficaReload.htm" controller="/ctrl/nuovaAziendaAnagraficaReloadCtrl.jsp"/>
+    <mapping layout="/layout/nuovaAziendaRappLeg.htm" controller="/ctrl/nuovaAziendaRappLegCtrl.jsp"/>
+    <mapping layout="/layout/nuovaAziendaSede.htm" controller="/ctrl/nuovaAziendaSedeCtrl.jsp"/>
+    <mapping layout="/layout/nuovaAziendaTitolare.htm" controller="/ctrl/nuovaAziendaTitolareCtrl.jsp"/>
+    <mapping layout="/layout/nuovaAziendaIndicatori.htm" controller="/ctrl/nuovaAziendaIndicatoriCtrl.jsp"/>
+    <mapping layout="/layout/rappres_leg.htm" controller="/ctrl/rappLegaleCtrl.jsp"/>
+    <mapping layout="/layout/ricerca.htm" controller="/ctrl/ricAnagAziendaCtrl.jsp"/>
+    <mapping layout="/layout/ricercaPersona.htm" controller="/ctrl/ricercaPersonaCtrl.jsp"/>
+    <mapping layout="/layout/elencoPersone.htm" controller="/ctrl/elencoPersoneCtrl.jsp"/>
+    <mapping layout="/layout/persona_det.htm" controller="/ctrl/personaDettCtrl.jsp"/>
+    <mapping layout="/layout/impreseSoggetto.htm" controller="/ctrl/impreseSoggettoCtrl.jsp"/>
+    <mapping layout="/layout/sceltaComune.htm" controller="/view/sceltaComuneView.jsp"/>
+    <mapping layout="/layout/sceltaStato.htm" controller="/view/sceltaStatoView.jsp"/>
+    <mapping layout="/layout/scegliOTE.htm" controller="/view/scegliOTEView.jsp"/>
+    <mapping layout="/layout/scegliATECO.htm" controller="/view/scegliATECOView.jsp"/>
+    <mapping layout="/layout/scegliATECOAeep.htm" controller="/view/scegliATECOAeepView.jsp"/>
+    <mapping layout="/layout/sede.htm" controller="/ctrl/sedeCtrl.jsp"/>
+    <mapping layout="/layout/sedi.htm" controller="/ctrl/sediCtrl.jsp"/>
+    <mapping layout="/layout/sedi_det.htm" controller="/ctrl/dettUteCtrl.jsp"/>
+    <mapping layout="/layout/sedi_mod.htm" controller="/ctrl/sediUteModCtrl.jsp"/>
+    <mapping layout="/layout/sedi_new.htm" controller="/ctrl/sediNewCtrl.jsp"/>
+    <!-- Funzionalità terreni -->
+    <mapping layout="/layout/terreniParticellareElenco.htm" controller="/ctrl/terreniParticellareElencoCtrl.jsp"/>
+    <mapping layout="/layout/terreniParticellareIsoleParcelle.htm" controller="/ctrl/terreniParticellareIsoleParcelleCtrl.jsp"/>
+    <mapping layout="/layout/popAnomalieParticella.htm" controller="/ctrl/popAnomalieParticellaCtrl.jsp"/>
+    <mapping layout="/layout/popDocumentoDettaglio.htm" controller="/ctrl/popDocumentoDettaglioCtrl.jsp"/>
+    <mapping layout="/layout/riepiloghi.htm" controller="/ctrl/riepiloghiCtrl.jsp"/>
+    <mapping layout="/layout/terreniParticellareDettaglioConduzione.htm" controller="/ctrl/terreniParticellareDettaglioConduzioneCtrl.jsp"/>
+    <mapping layout="/layout/terreniParticellareDettaglio.htm" controller="/ctrl/terreniParticellareDettaglioCtrl.jsp"/>
+    <mapping layout="/layout/terreniParticellareDettaglioRegistri.htm" controller="/ctrl/terreniParticellareDettaglioRegistriCtrl.jsp"/>
+    <mapping layout="/layout/terreniParticellareDettaglioPratiche.htm" controller="/ctrl/terreniParticellareDettaglioPraticheCtrl.jsp"/>
+    <mapping layout="/layout/popupVariazioniParticella.htm" controller="/ctrl/popupVariazioniParticellaCtrl.jsp"/>
+    <mapping layout="/layout/popVariazioniEleggibilita.htm" controller="/ctrl/popVariazioniEleggibilitaCtrl.jsp"/>
+    <mapping layout="/layout/terreniParticellareModificaMultipla.htm" controller="/ctrl/terreniParticellareModificaMultiplaCtrl.jsp"/>
+    <mapping layout="/layout/popAggiungiUso.htm" controller="/ctrl/popAggiungiUsoCtrl.jsp"/>
+    <mapping layout="/layout/terreniParticellareModifica.htm" controller="/ctrl/terreniParticellareModificaCtrl.jsp"/>
+    <mapping layout="/layout/popModificaTerritorialeCondUso.htm" controller="/ctrl/popModificaTerritorialeCondUsoCtrl.jsp"/>
+    <mapping layout="/layout/terreniParticellareInserisci.htm" controller="/ctrl/terreniParticellareInserisciCtrl.jsp"/>
+    <mapping layout="/layout/popCercaParticelleInserimento.htm" controller="/ctrl/popCercaParticelleInserimentoCtrl.jsp"/>
+    <mapping layout="/layout/terreniParticellareInserisciCondUso.htm" controller="/ctrl/terreniParticellareInserisciCondUsoCtrl.jsp"/>
+    <mapping layout="/layout/eliminaParticella.htm" controller="/ctrl/eliminaParticellaCtrl.jsp"/>
+    <mapping layout="/layout/popTerreniElencoUnar.htm" controller="/ctrl/popTerreniElencoUnarCtrl.jsp"/>
+    <mapping layout="/layout/popIstanzaRiesame.htm" controller="/ctrl/popIstanzaRiesameCtrl.jsp"/>
+    <mapping layout="/layout/popPresenzaNotificheParticelle.htm" controller="/ctrl/popPresenzaNotificheParticelleCtrl.jsp"/>
+    <mapping layout="/layout/popAnomalieUnar.htm" controller="/ctrl/popAnomalieUnarCtrl.jsp"/>
+    <mapping layout="/layout/sceltaEsportaDatiTerreni.htm" controller="/ctrl/sceltaEsportaDatiTerreniCtrl.jsp"/>
+    <mapping layout="/layout/popCercaParticelleInsUnar.htm" controller="/ctrl/popCercaParticelleInsUnarCtrl.jsp"/>
+    <mapping layout="/layout/popCercaParticelleInsUnarFrazionate.htm" controller="/ctrl/popCercaParticelleInsUnarFrazionateCtrl.jsp"/>
+    <mapping layout="/layout/importaTerreniGenerico.htm" controller="/ctrl/importaTerreniGenericoCtrl.jsp"/>
+    <mapping layout="/layout/terreniImporta.htm" controller="/ctrl/terreniImportaCtrl.jsp"/>
+    <mapping layout="/layout/particellareTerreniImporta.htm" controller="/ctrl/particellareTerreniImportaCtrl.jsp"/>
+    <mapping layout="/layout/terreniImportaAsservimento.htm" controller="/ctrl/terreniImportaAsservimentoCtrl.jsp"/>
+    <mapping layout="/layout/particellareTerreniImportaAsservimento.htm" controller="/ctrl/particellareTerreniImportaAsservimentoCtrl.jsp"/>
+    <mapping layout="/layout/popParticelle.htm" controller="/ctrl/popParticelleCtrl.jsp"/>
+    <mapping layout="/layout/inserisciTerreno.htm" controller="/ctrl/inserisciTerrenoCtrl.jsp"/>
+    <mapping layout="/layout/inserisciTerrenoParticellare.htm" controller="/ctrl/inserisciTerrenoParticellareCtrl.jsp"/>
+    <mapping layout="/layout/confermaAllineaGIS.htm" controller="/ctrl/confermaAllineaGISCtrl.jsp"/>
+    <mapping layout="/layout/terreniParticellareAllineaPercentuale.htm" controller="/ctrl/terreniParticellareAllineaPercentualeCtrl.jsp"/>
+    <mapping layout="/layout/popolaComboVarieta.htm" controller="/view/popolaComboVarietaView.jsp"/>
+    <mapping layout="/layout/popolaComboVarietaSecondaria.htm" controller="/view/popolaComboVarietaSecondariaView.jsp"/>
+    <mapping layout="/layout/popolaComboDestinazione.htm" controller="/view/popolaComboDestinazioneView.jsp"/>
+    <mapping layout="/layout/popolaComboDestinazioneSecondario.htm" controller="/view/popolaComboDestinazioneSecondarioView.jsp"/>
+    <mapping layout="/layout/popolaComboDettaglioUso.htm" controller="/view/popolaComboDettaglioUsoView.jsp"/>
+    <mapping layout="/layout/popolaComboDettaglioUsoSecondario.htm" controller="/view/popolaComboDettaglioUsoSecondarioView.jsp"/>
+    <mapping layout="/layout/popolaComboQualitaUso.htm" controller="/view/popolaComboQualitaUsoView.jsp"/>
+    <mapping layout="/layout/popolaComboQualitaUsoSecondario.htm" controller="/view/popolaComboQualitaUsoSecondarioView.jsp"/>
+    <mapping layout="/layout/popolaSezioneSemina.htm" controller="/view/popolaSezioneSeminaView.jsp"/>
+    <mapping layout="/layout/popolaSezioneDateSemina.htm" controller="/view/popolaSezioneDateSeminaView.jsp"/>
+    <mapping layout="/layout/popolaSezioneSeminaSecondario.htm" controller="/view/popolaSezioneSeminaSecondarioView.jsp"/>
+    <mapping layout="/layout/popolaSezioneDateSeminaSecondario.htm" controller="/view/popolaSezioneDateSeminaSecondarioView.jsp"/>
+    <mapping layout="/layout/popolaSezioneMantenimento.htm" controller="/view/popolaSezioneMantenimentoView.jsp"/>
+    <mapping layout="/layout/popolaSezioneFaseAllevamento.htm" controller="/view/popolaSezioneFaseAllevamentoView.jsp"/>
+    <mapping layout="/layout/tabellaDatiPopCondUso.htm" controller="/view/tabellaDatiPopCondUsoView.jsp"/>
+    <mapping layout="/layout/popLegendaEfa.htm" controller="/ctrl/popLegendaEfaCtrl.jsp"/>
+    <mapping layout="/layout/rigaDatiModificaTerreni.htm" controller="/view/rigaDatiModificaTerreniView.jsp"/>
+    <mapping layout="/layout/tabellaDatiPopEfa.htm" controller="/view/tabellaDatiPopEfaView.jsp"/>
+    <mapping layout="/layout/popolaComboUtilizzoEfa.htm" controller="/view/popolaComboUtilizzoEfaView.jsp"/>
+    <mapping layout="/layout/popolaComboDestinazioneEfa.htm" controller="/view/popolaComboDestinazioneEfaView.jsp"/>
+    <mapping layout="/layout/popolaComboDettaglioUsoEfa.htm" controller="/view/popolaComboDettaglioUsoEfaView.jsp"/>
+    <mapping layout="/layout/popolaComboQualitaUsoEfa.htm" controller="/view/popolaComboQualitaUsoEfaView.jsp"/>
+    <mapping layout="/layout/popolaComboVarietaEfa.htm" controller="/view/popolaComboVarietaEfaView.jsp"/>
+    <mapping layout="/layout/popolaComboUtilizzoElenco.htm" controller="/view/popolaComboUtilizzoElencoView.jsp"/>
+    <mapping layout="/layout/popolaComboTipoAreaElenco.htm" controller="/view/popolaComboTipoAreaElencoView.jsp"/>
+    <!-- Funzionalità terreni -->
+    <!-- Funzionalità unita vitate -->
+    <mapping layout="/layout/terreniUnitaArboreeElenco.htm" controller="/ctrl/terreniUnitaArboreeElencoCtrl.jsp"/>    
+    <mapping layout="/layout/riepiloghiUnitaArboree.htm" controller="/ctrl/riepiloghiUnitaArboreeCtrl.jsp"/>
+    <mapping layout="/layout/unitaArboreeDettaglio.htm" controller="/ctrl/unitaArboreeDettaglioCtrl.jsp"/>
+    <mapping layout="/layout/unitaArboreeDettaglioPratiche.htm" controller="/ctrl/unitaArboreeDettaglioPraticheCtrl.jsp"/>
+    <mapping layout="/layout/popSchedarioViticolo.htm" controller="/ctrl/popSchedarioViticoloCtrl.jsp"/>
+    <mapping layout="/layout/popSchedarioViticoloImport.htm" controller="/ctrl/popSchedarioViticoloImportCtrl.jsp"/>
+    <mapping layout="/layout/unitaArboreeModifica.htm" controller="/ctrl/unitaArboreeModificaCtrl.jsp"/>
+    <mapping layout="/layout/unitaArboreeModificaMultipla.htm" controller="/ctrl/unitaArboreeModificaMultiplaCtrl.jsp"/>
+    <mapping layout="/layout/unitaArboreeElimina.htm" controller="/ctrl/unitaArboreeEliminaCtrl.jsp"/>
+    <mapping layout="/layout/unitaArboreeInserisci.htm" controller="/ctrl/unitaArboreeInserisciCtrl.jsp"/>
+    <mapping layout="/layout/unitaArboreeInserisciFrazionate.htm" controller="/ctrl/unitaArboreeInserisciFrazionateCtrl.jsp"/>
+    <mapping layout="/layout/unitaArboreeValida.htm" controller="/ctrl/unitaArboreeValidaCtrl.jsp"/>
+    <mapping layout="/layout/popUnitaArboreeModifica.htm" controller="/ctrl/popUnitaArboreeModificaCtrl.jsp"/>
+    <mapping layout="/layout/sceltaAllineaUV.htm" controller="/ctrl/sceltaAllineaUVCtrl.jsp"/>
+    <mapping layout="/layout/confermaAllineaUV.htm" controller="/ctrl/confermaAllineaUVCtrl.jsp"/>
+    <mapping layout="/layout/unitaArboreeAssociaPercUsoElegg.htm" controller="/ctrl/unitaArboreeAssociaPercUsoEleggCtrl.jsp"/>
+    <mapping layout="/layout/sceltaAllineaPercUsoElegg.htm" controller="/ctrl/sceltaAllineaPercUsoEleggCtrl.jsp"/>
+    <mapping layout="/layout/confermaAllineaPercUsoElegg.htm" controller="/ctrl/confermaAllineaPercUsoEleggCtrl.jsp"/>
+    <mapping layout="/layout/popPresenzaNotificheUv.htm" controller="/ctrl/popPresenzaNotificheUvCtrl.jsp"/>
+    <!-- Funzionalità unita vitate -->
+    <!-- Funzionalità allinea uv a gis -->
+    <mapping layout="/layout/unitaArboreeAllineaGIS.htm" controller="/ctrl/unitaArboreeAllineaGISCtrl.jsp"/>
+    <mapping layout="/layout/unitaArboreeConsolida.htm" controller="/ctrl/unitaArboreeConsolidaCtrl.jsp"/>
+    <!-- Funzionalità allinea uv a gis -->
+    <!-- ESPORTA DATI UNITA' ARBOREE -->
+    <mapping layout="/layout/sceltaEsportaDatiUV.htm" controller="/ctrl/sceltaEsportaDatiUVCtrl.jsp"/>
+    <!-- ESPORTA DATI UNITA' ARBOREE -->
+    <!-- Funzionalità albo ciaa -->
+    <mapping layout="/layout/popUnitaVitateDettaglioCCIAA.htm" controller="/ctrl/popUnitaVitateDettaglioCCIAACtrl.jsp"/>
+    <mapping layout="/layout/popUnitaVitateCCIAA.htm" controller="/ctrl/popUnitaVitateCCIAACtrl.jsp"/>
+    <!-- Funzionalità albo ciaa -->
+    <!-- Funzionalità ricerche -->
+    <mapping layout="/layout/ricercaTerreno.htm" controller="/ctrl/ricercaTerrenoCtrl.jsp"/>
+    <mapping layout="/layout/elencoRicerche.htm" controller="/ctrl/elencoRicercheCtrl.jsp"/>
+    <mapping layout="/layout/mandati.htm" controller="/ctrl/mandatiCtrl.jsp"/>
+    <mapping layout="/layout/fascicoli.htm" controller="/ctrl/fascicoliCtrl.jsp"/>
+    <mapping layout="/layout/elencoFascicoli.htm" controller="/ctrl/elencoFascicoliCtrl.jsp"/>
+    <mapping layout="/layout/reportisticaValidazioni.htm" controller="/ctrl/reportisticaValidazioniCtrl.jsp"/>
+    <!-- Funzionalità ricerche -->
+    <!-- Funzionalità pratiche -->
+    <mapping layout="/layout/pratiche.htm" controller="/ctrl/praticheCtrl.jsp"/>
+    <mapping layout="/layout/erogazioni_pratiche.htm" controller="/ctrl/erogazioni_praticheCtrl.jsp"/>
+    <!-- Funzionalità pratiche -->
+    <!-- Funzionalità registro debitori -->
+    <mapping layout="/layout/registroDebitori.htm" controller="/ctrl/registroDebitoriCtrl.jsp"/>
+    <!-- Funzionalità registro debitori -->
+    <!-- Funzionalità polizze -->
+    <mapping layout="/layout/polizzeElenco.htm" controller="/ctrl/polizzeElencoCtrl.jsp"/>
+    <mapping layout="/layout/polizza_dettaglio.htm" controller="/ctrl/polizzaDettaglioCtrl.jsp"/>
+    <!-- Funzionalità polizze -->
+    <!-- Funzionalità buoni carburante -->
+    <mapping layout="/layout/assegnazioniElenco.htm" controller="/ctrl/assegnazioniElencoCtrl.jsp"/>
+    <mapping layout="/layout/assegnazioniDettaglio.htm" controller="/ctrl/assegnazioniDettaglioCtrl.jsp"/>
+    <!-- Funzionalità buoni carburante -->
+    <!-- Funzionalità di fonti certificate -->
+    <mapping layout="/layout/fonti.htm" controller="/ctrl/fontiCtrl.jsp"/>
+    <mapping layout="/layout/diritti.htm" controller="/ctrl/dirittiCtrl.jsp"/>
+    <mapping layout="/layout/anagraficaVisuraCamerale.htm" controller="/ctrl/anagraficaVisuraCameraleCtrl.jsp"/>
+    <mapping layout="/layout/anagraficaVisuraCameraleImport.htm" controller="/ctrl/anagraficaVisuraCameraleImportCtrl.jsp"/>
+    <mapping layout="/layout/sediAAEP.htm" controller="/ctrl/sediAAEPCtrl.jsp"/>
+    <mapping layout="/layout/sediAAEPImport.htm" controller="/ctrl/sediAAEPImportCtrl.jsp"/>
+    <mapping layout="/layout/contitolariAAEP.htm" controller="/ctrl/contitolariAAEPCtrl.jsp"/>
+    <mapping layout="/layout/contitolariAAEPImport.htm" controller="/ctrl/contitolariAAEPImportCtrl.jsp"/>
+    <mapping layout="/layout/sianAnagrafeTributaria.htm" controller="/ctrl/sianAnagrafeTributariaCtrl.jsp"/>
+    <mapping layout="/layout/sianAnagrafeTributariaImport.htm" controller="/ctrl/sianAnagrafeTributariaImportCtrl.jsp"/>
+    <mapping layout="/layout/titoli.htm" controller="/ctrl/sianTitoliCtrl.jsp"/>
+    <mapping layout="/layout/titoliSingoli.htm" controller="/ctrl/sianTitoliSingoliCtrl.jsp"/>
+    <mapping layout="/layout/quoteLatte.htm" controller="/ctrl/sianQuoteLatteCtrl.jsp"/>
+    <mapping layout="/layout/popSoggettoAT.htm" controller="/ctrl/popSoggettoATCtrl.jsp"/>
+    <mapping layout="/layout/sianAltriDati.htm" controller="/ctrl/sianAltriDatiCtrl.jsp"/>
+    <!-- Funzionalità di fonti certificate -->
+    
+    <!-- Funzionalità dei diritti di produzione non relative alle fonti certificate-->
+    <mapping layout="/layout/dirittiVitati.htm" controller="/ctrl/dirittiVitatiCtrl.jsp"/>
+    <!-- Funzionalità dei diritti di produzione non relative alle fonti certificate-->
+    
+    <!-- Funzionalità di documenti -->
+    <mapping layout="/layout/documentiElenco.htm" controller="/ctrl/documentiElencoCtrl.jsp"/>
+    <mapping layout="/layout/popAnomalieDocumento.htm" controller="/ctrl/popAnomalieDocumentoCtrl.jsp"/>
+    <mapping layout="/layout/documentoInserisci.htm" controller="/ctrl/documentoInserisciCtrl.jsp"/>
+    <mapping layout="/layout/popDocumentoParticelle.htm" controller="/ctrl/popDocumentoParticelleCtrl.jsp"/>
+    <mapping layout="/layout/popParticelleEvento.htm" controller="/ctrl/popParticelleEventoCtrl.jsp"/>
+    <mapping layout="/layout/popCercaParticellaCessata.htm" controller="/ctrl/popCercaParticellaCessataCtrl.jsp"/>
+    <mapping layout="/layout/documentoDettaglio.htm" controller="/ctrl/documentoDettaglioCtrl.jsp"/>
+    <mapping layout="/layout/documentoModifica.htm" controller="/ctrl/documentoModificaCtrl.jsp"/>
+    <mapping layout="/layout/allegaFile.htm" controller="/ctrl/allegaFileCtrl.jsp"/>
+    <mapping layout="/layout/visualizzaFileAllegato.htm" controller="/ctrl/visualizzaFileAllegatoCtrl.jsp"/>
+    <mapping layout="/layout/documentiElimina.htm" controller="/ctrl/documentiEliminaCtrl.jsp"/>
+    <mapping layout="/layout/documentoConfermaProtocollo.htm" controller="/ctrl/documentoConfermaProtocolloCtrl.jsp"/>
+    <mapping layout="/layout/documentoConfermaInserisci.htm" controller="/ctrl/documentoConfermaInserisciCtrl.jsp"/>
+    <mapping layout="/layout/stampaProtocollo.htm" controller="/ctrl/stampaProtocolloCtrl.jsp"/>
+    <mapping layout="/layout/sceltaTipoDocumento.htm" controller="/view/sceltaTipoDocumentoView.jsp"/>
+    <mapping layout="/layout/annullaIstanzaRiesame.htm" controller="/ctrl/annullaIstanzaRiesameCtrl.jsp"/>
+    <mapping layout="/layout/documentoAllegati.htm" controller="/ctrl/documentoAllegatiCtrl.jsp"/>
+    <!-- Funzionalità di documenti -->
+    <!-- Funzionalità di fascicolo dematerializzato -->
+    <mapping layout="/layout/fascicoloDematerializzato.htm" controller="/ctrl/fascicoloDematerializzatoCtrl.jsp"/>
+    <mapping layout="/layout/treeDematerializzato.htm" controller="/view/treeDematerializzatoView.jsp"/>
+    <mapping layout="/layout/elencoDocDem.htm" controller="/view/elencoDocDemView.jsp"/>
+    <mapping layout="/layout/visualizzaFileAllegatoIndex.htm" controller="/ctrl/visualizzaFileAllegatoIndexCtrl.jsp"/>
+    <!-- Funzionalità di fascicolo dematerializzato -->
+    <mapping layout="/layout/listaStoricoAzienda.htm" controller="/ctrl/listaStoricoAziendaCtrl.jsp"/>
+    <mapping layout="/layout/sceltaSezione.htm" controller="/view/sceltaSezioneView.jsp"/>
+    <mapping layout="/layout/sceltaFoglio.htm" controller="/view/sceltaFoglioView.jsp"/>
+    <mapping layout="/layout/sceltaParticella.htm" controller="/view/sceltaParticellaView.jsp"/>
+    <mapping layout="/layout/fabbricati.htm" controller="/ctrl/fabbricatiCtrl.jsp"/>
+    <mapping layout="/layout/fabbricatiNewCaratteristiche.htm" controller="/ctrl/fabbricatiNewCaratteristicheCtrl.jsp"/>
+    <mapping layout="/layout/fabbricatiNewUbicazione.htm" controller="/ctrl/fabbricatiNewUbicazioneCtrl.jsp"/>
+    <mapping layout="/layout/fabbricatiDet.htm" controller="/ctrl/fabbricatiDetCtrl.jsp"/>
+    <mapping layout="/layout/fabbricatiModCaratteristiche.htm" controller="/ctrl/fabbricatiModCaratteristicheCtrl.jsp"/>
+    <mapping layout="/layout/fabbricatiModUbicazione.htm" controller="/ctrl/fabbricatiModUbicazioneCtrl.jsp"/>
+    <mapping layout="/layout/confermaEliminaFabbricato.htm" controller="/ctrl/eliminaFabbricatiCtrl.jsp"/>
+    <mapping layout="/layout/stampe.htm" controller="/ctrl/stampeCtrl.jsp"/>
+    <mapping layout="/layout/scelta_stampa.htm" controller="/ctrl/scelta_stampaCtrl.jsp"/>
+    <mapping layout="/layout/stampaFascicolo.htm" controller="/ctrl/stampeCtrl.jsp"/>
+    <mapping layout="/layout/cessazioneAttivita.htm" controller="/ctrl/cessazioneAttivitaCtrl.jsp"/>
+    <mapping layout="/layout/cessazioneCausaleAttivita.htm" controller="/ctrl/cessazioneCausaleAttivitaCtrl.jsp"/>
+    <mapping layout="/layout/elencoTerreni.htm" controller="/ctrl/elencoTerreniCtrl.jsp"/>
+    <mapping layout="/layout/ricercaTerrenoDettaglio.htm" controller="/ctrl/ricercaTerrenoDettaglioCtrl.jsp"/>
+    <mapping layout="/layout/ricercaTerrenoDettaglioPratiche.htm" controller="/ctrl/ricercaTerrenoDettaglioPraticheCtrl.jsp"/>
+    <mapping layout="/layout/ricercaTerrenoDettaglioValidazioni.htm" controller="/ctrl/ricercaTerrenoDettaglioValidazioniCtrl.jsp"/>
+    <mapping layout="/layout/ricercaTerrenoDettaglioRegistri.htm" controller="/ctrl/ricercaTerrenoDettaglioRegistriCtrl.jsp"/>
+    <mapping layout="/layout/cessazioneTerreno.htm" controller="/ctrl/cessazioneTerrenoCtrl.jsp"/>
+    <!-- Notifiche -->
+    <mapping layout="/layout/ricercaNotifica.htm" controller="/ctrl/ricercaNotificaCtrl.jsp"/>
+    <mapping layout="/layout/ricercaDettaglioNotifica.htm" controller="/ctrl/ricercaDettaglioNotificaCtrl.jsp"/>
+    <mapping layout="/layout/dettaglioNotifica.htm" controller="/ctrl/dettaglioNotificaCtrl.jsp"/>
+    <mapping layout="/layout/sceltaEsportaDatiNotifiche.htm" controller="/ctrl/sceltaEsportaDatiNotificheCtrl.jsp"/>
+    <mapping layout="/layout/notifiche.htm" controller="/ctrl/notificheCtrl.jsp"/>
+    <mapping layout="/layout/nuovaNotifica.htm" controller="/ctrl/nuovaNotificaCtrl.jsp"/>
+    <mapping layout="/layout/popElencoUvNotifica.htm" controller="/ctrl/popElencoUvNotificaCtrl.jsp"/>
+    <mapping layout="/layout/popElencoParticelleNotifica.htm" controller="/ctrl/popElencoParticelleNotificaCtrl.jsp"/>
+    <mapping layout="/layout/nuovaNotificaConferma.htm" controller="/ctrl/nuovaNotificaConfermaCtrl.jsp"/>
+    <mapping layout="/layout/modificaNotifica.htm" controller="/ctrl/modificaNotificaCtrl.jsp"/>
+    <mapping layout="/layout/allegaFileNotifica.htm" controller="/ctrl/allegaFileNotificaCtrl.jsp"/>
+    <mapping layout="/layout/chiusuraNotifica.htm" controller="/ctrl/chiusuraNotificaCtrl.jsp"/>
+    <!-- Notifiche -->
+    <!-- GIS - ABACO -->
+    <mapping layout="/layout/abacoGis.htm" controller="/ctrl/abacoGisCtrl.jsp"/>
+    <mapping layout="/layout/abacoCatVitReg.htm" controller="/ctrl/abacoCatVitRegCtrl.jsp"/>
+    <mapping layout="/layout/abacoIsola.htm" controller="/ctrl/abacoIsolaCtrl.jsp"/>
+    <mapping layout="/layout/abaco3D.htm" controller="/ctrl/abaco3DCtrl.jsp"/>
+    <!-- GIS - ABACO -->
+    <mapping layout="/anag/layout/autocertificazioneDelega.htm" controller="/anag/ctrl/autocertificazioneDelegaCtrl.jsp"/>
+    <mapping layout="/anag/layout/confermaEliminaDittaUma.htm" controller="/anag/ctrl/confermaEliminaDittaUmaCtrl.jsp"/>
+    <mapping layout="/anag/layout/variazioneDittaUma.htm" controller="/anag/ctrl/variazioneDittaUmaCtrl.jsp"/>
+    <mapping layout="/anag/layout/dettaglioAzienda.htm" controller="/anag/ctrl/dettaglioAziendaControl.jsp"/>
+    <mapping layout="/anag/layout/dettaglioAziendaNote.htm" controller="/anag/ctrl/dettaglioAziendaNoteCtrl.jsp"/>
+    <mapping layout="/anag/layout/dettaglioAziendaRapp.htm" controller="/anag/ctrl/dettaglioAziendaRappCtrl.jsp"/>
+    <mapping layout="/anag/layout/dettaglioAziendaSede.htm" controller="/anag/ctrl/dettaglioAziendaSedeCtrl.jsp"/>
+    <mapping layout="/anag/layout/dettaglioAziendaSoggetti.htm" controller="/anag/ctrl/dettaglioAziendaSoggettiCtrl.jsp"/>
+    <mapping layout="/anag/layout/elencoAziende.htm" controller="/anag/ctrl/elencoAziendeCtrl.jsp"/>
+    <mapping layout="/anag/layout/ricercaAzienda.htm" controller="/anag/ctrl/ricercaAziendaUMACtrl.jsp"/>
+    <mapping layout="/layout/confirmMod.htm" controller="/view/confirmModView.jsp"/>
+    <mapping layout="/layout/sceltaComune.htm" controller="/view/sceltaComuneView.jsp"/>
+    <mapping layout="/layout/sceltaComuneMultipla.htm" controller="/view/sceltaComuneMultiplaView.jsp"/>
+    <!-- allevamentiAnag -->
+    <mapping layout="/layout/allevamenti.htm" controller="/ctrl/allevamentiCtrl.jsp"/>
+    <mapping layout="/layout/allevamenti_det.htm" controller="/ctrl/allevamentiDettCtrl.jsp"/>
+    <mapping layout="/layout/allevamenti_new.htm" controller="/ctrl/allevamentiNewCtrl.jsp"/>
+    <mapping layout="/layout/allevamenti_mod.htm" controller="/ctrl/allevamentiModCtrl.jsp"/>
+    <mapping layout="/layout/confermaEliminaAllevamento.htm" controller="/ctrl/confermaEliminaAllevamentoCtrl.jsp"/>
+    <mapping layout="/layout/visuraBDN.htm" controller="/ctrl/sianAnagrafeZootecnicaCtrl.jsp"/>
+    <mapping layout="/layout/visuraBDNspecie.htm" controller="/ctrl/sianAnagrafeZootecnicaSelectCtrl.jsp"/>
+    <mapping layout="/layout/registroStallaBDN.htm" controller="/ctrl/registroStallaBDNCtrl.jsp"/>
+    <mapping layout="/layout/visuraBDNImport.htm" controller="/ctrl/sianAnagrafeZootecnicaImportCtrl.jsp"/>
+    <mapping layout="/layout/visuraBDNConsistenzaMedia.htm" controller="/ctrl/visuraBDNConsistenzaMediaCtrl.jsp"/>
+    <mapping layout="/layout/allevamentiVerificaAttendere.htm" controller="/ctrl/allevamentiVerificaAttendereCtrl.jsp"/>
+    <mapping layout="/layout/allevamentiVerifica.htm" controller="/ctrl/allevamentiVerificaCtrl.jsp"/>
+    <mapping layout="/layout/popAnomalieAllevamento.htm" controller="/ctrl/popAnomalieAllevamentoCtrl.jsp"/>
+    <!-- allevamentiAnag -->
+    <!-- manodopera -->
+    <mapping layout="/layout/manodopera.htm" controller="/ctrl/manodoperaCtrl.jsp"/>
+    <mapping layout="/layout/manodoperaDet.htm" controller="/ctrl/manodoperaDetCtrl.jsp"/>
+    <mapping layout="/layout/manodoperaNew.htm" controller="/ctrl/manodoperaNewCtrl.jsp"/>
+    <mapping layout="/layout/manodoperaNewConduzione.htm" controller="/ctrl/manodoperaNewConduzioneCtrl.jsp"/>
+    <mapping layout="/layout/manodoperaMod.htm" controller="/ctrl/manodoperaModCtrl.jsp"/>
+    <mapping layout="/layout/manodoperaModConduzione.htm" controller="/ctrl/manodoperaModConduzioneCtrl.jsp"/>
+    <mapping layout="/layout/confermaEliminaManodopera.htm" controller="/ctrl/confermaEliminaManodoperaCtrl.jsp"/>
+    <!-- manodopera -->
+    <!-- consistenza -->
+    <mapping layout="/layout/dichiarazioneConsistenza.htm" controller="/ctrl/dichiarazioneConsistenzaCtrl.jsp"/>
+    <mapping layout="/layout/dichiarazione_det.htm" controller="/ctrl/dichiarazioneConsistenzaDetCtrl.jsp"/>
+    <mapping layout="/layout/dichiarazioneNuova.htm" controller="/ctrl/dichiarazioneNewCtrl.jsp"/>
+    <mapping layout="/layout/dichiarazioneVerifica.htm" controller="/ctrl/dichiarazioneVerificaCtrl.jsp"/>
+    <mapping layout="/layout/dichiarazioneControllaModifiche.htm" controller="/ctrl/dichiarazioneControllaModificheCtrl.jsp"/>
+    <mapping layout="/layout/dichiarazioneControllaAnno.htm" controller="/ctrl/dichiarazioneControllaAnnoCtrl.jsp"/>
+    <mapping layout="/layout/dichiarazioneOK.htm" controller="/ctrl/dichiarazioneOKCtrl.jsp"/>
+    <mapping layout="/layout/dichiarazioneAnomalia.htm" controller="/ctrl/dichiarazioneAnomaliaCtrl.jsp"/>
+    <mapping layout="/layout/dichiarazioneControllaAnnoVerifica.htm" controller="/ctrl/dichiarazioneControllaAnnoVerificaCtrl.jsp"/>
+    <mapping layout="/layout/dichiarazioneVerifica_ok.htm" controller="/ctrl/dichiarazioneVerificaOkCtrl.jsp"/>
+    <mapping layout="/layout/dichiarazioneVerifica_ko.htm" controller="/ctrl/dichiarazioneVerificaKoCtrl.jsp"/>
+    <mapping layout="/layout/dichiarazioneElimina.htm" controller="/ctrl/dichiarazioneEliminaCtrl.jsp"/>
+    <mapping layout="/layout/dichiarazioneInsediamento.htm" controller="/ctrl/dichiarazioneInsediamentoCtrl.jsp"/>
+    <mapping layout="/layout/insediamento.htm" controller="/ctrl/insediamentoCtrl.jsp"/>
+    <mapping layout="/layout/dettaglioAnomalia.htm" controller="/ctrl/dettaglioAnomaliaCtrl.jsp"/>
+    <mapping layout="/layout/correzioneAnomalia.htm" controller="/ctrl/correzioneAnomaliaCtrl.jsp"/>
+    <mapping layout="/layout/eliminaCorrezione.htm" controller="/ctrl/eliminaCorrezioneCtrl.jsp"/>
+    <mapping layout="/layout/ripristinaDichConferma.htm" controller="/ctrl/ripristinaDichConfermaCtrl.jsp"/>
+    <mapping layout="/layout/dichiarazioneAnomaliaScegliMotivo.htm" controller="/ctrl/dichiarazioneAnomaliaScegliMotivoCtrl.jsp"/>
+    <mapping layout="/layout/dichiarazioneProtocolla.htm" controller="/ctrl/dichiarazioneProtocollaCtrl.jsp"/>
+    <mapping layout="/layout/popPraticheDichiarazione.htm" controller="/ctrl/popPraticheDichiarazioneCtrl.jsp"/>
+    <mapping layout="/layout/popStampaDichiarazione.htm" controller="/ctrl/popStampaDichiarazioneCtrl.jsp"/>
+    <mapping layout="/layout/dichiarazioneConsistenzaMod.htm" controller="/ctrl/dichiarazioneConsistenzaModCtrl.jsp"/>
+    <mapping layout="/layout/dichiarazioneConsistenzaAllegati.htm" controller="/ctrl/dichiarazioneConsistenzaAllegatiCtrl.jsp"/>
+    <mapping layout="/layout/dichiarazioneConsistenzaAllegatiMod.htm" controller="/ctrl/dichiarazioneConsistenzaAllegatiModCtrl.jsp"/>
+    <mapping layout="/layout/richiamoPianoGrafico.htm" controller="/ctrl/richiamoPianoGraficoCtrl.jsp"/>
+    <mapping layout="/layout/popPianoGrafico.htm" controller="/ctrl/popPianoGraficoCtrl.jsp"/>
+    <mapping layout="/layout/controlliPianoGrafico.htm" controller="/view/controlliPianoGraficoView.jsp"/>
+    <!-- consistenza -->
+    <!-- invio fascicoli -->
+    <mapping layout="/layout/schedulaInvioASian.htm" controller="/ctrl/schedulaInvioASianCtrl.jsp"/>
+    <!-- invio fascicoli -->
+    <!-- terreni & consistenza -->
+    <mapping layout="/layout/terreniVerifica.htm" controller="/ctrl/terreniVerificaCtrl.jsp"/>
+    <mapping layout="/layout/terreniControllaAnnoVerifica.htm" controller="/ctrl/terreniControllaAnnoVerificaCtrl.jsp"/>
+    <mapping layout="/layout/terreniVerifica_ok.htm" controller="/ctrl/terreniVerificaOkCtrl.jsp"/>
+    <mapping layout="/layout/terreniVerifica_ko.htm" controller="/ctrl/terreniVerificaKoCtrl.jsp"/>
+    <!-- terreni & consistenza -->
+    <!-- Registrazione mandato -->
+    <mapping layout="/layout/registrazioneDelega.htm" controller="/ctrl/registrazioneDelegaCtrl.jsp"/>
+    <mapping layout="/layout/registrazioneDelegaVis.htm" controller="/ctrl/registrazioneDelegaVisCtrl.jsp"/>
+    <mapping layout="/layout/revocaDelega.htm" controller="/ctrl/revocaDelegaCtrl.jsp"/>
+    <mapping layout="/layout/confermaRevocaDelega.htm" controller="/ctrl/confermaRevocaDelegaCtrl.jsp"/>
+    <mapping layout="/layout/revocaDelegaVis.htm" controller="/ctrl/revocaDelegaCtrl.jsp"/>
+    <mapping layout="/layout/gestoreFascicolo.htm" controller="/ctrl/gestoreFascicoloCtrl.jsp"/>
+    <mapping layout="/layout/gestoreFascicolo_SIAN.htm" controller="/ctrl/gestoreFascicolo_SIANCtrl.jsp"/>
+    <mapping layout="/layout/storicoMandati.htm" controller="/ctrl/storicoMandatiCtrl.jsp"/>
+    <mapping layout="/layout/modificaGestoreFascicolo.htm" controller="/ctrl/modificaGestoreFascicoloCtrl.jsp"/>
+    <!-- Registrazione mandato -->
+    <!-- Pagine usate da biologico -->
+    <mapping layout="/layout/biologico.htm" controller="/abio/ctrl/biologicoCtrl.jsp"/>
+    <mapping layout="/layout/biologico_det.htm" controller="/abio/ctrl/biologico_detCtrl.jsp"/>
+    <mapping layout="/layout/biologico_mod.htm" controller="/abio/ctrl/biologico_modCtrl.jsp"/>
+    <mapping layout="/layout/biologico_ces.htm" controller="/abio/ctrl/biologico_cesCtrl.jsp"/>
+    <mapping layout="/layout/biologico_new.htm" controller="/abio/ctrl/biologico_newCtrl.jsp"/>
+    <mapping layout="/layout/biologicoFiltri.htm" controller="/abio/ctrl/ricercaBiologicoCtrl.jsp"/>
+    <mapping layout="/layout/biologicoElenco.htm" controller="/abio/ctrl/biologicoElencoCtrl.jsp"/>
+    <mapping layout="/layout/biologicoDaRicerca.htm" controller="/abio/ctrl/biologicoDaRicercaCtrl.jsp"/>
+    <mapping layout="/layout/biologicoStampaElenco.htm" controller="/abio/view/biologicoStampaElencoView.jsp"/>
+    <!-- Pagine usate da biologico -->
+    <!-- Pagine usate da UMA -->
+    <mapping layout="/layout/caratteristiche_fisiche.htm" controller="/ctrl/caratteristiche_fisicheCtrl.jsp"/>
+    <mapping layout="/layout/dettElencoDitteUtilizzatrici.htm" controller="/ctrl/dettElencoDitteUtilizzatriciCtrl.jsp"/>
+    <mapping layout="/layout/elenco_ditte_utilizz.htm" controller="/ctrl/elenco_ditte_utilizzCtrl.jsp"/>
+    <mapping layout="/layout/motori_agricoli_incarico.htm" controller="/ctrl/motori_agricoli_incaricoCtrl.jsp"/>
+    <mapping layout="/layout/macchinaAgricolaInserisci.htm" controller="/ctrl/macchinaAgricolaInserisciCtrl.jsp"/>
+    <mapping layout="/layout/popolaComboGenereMacchina.htm" controller="/view/popolaComboGenereMacchinaView.jsp"/>
+    <mapping layout="/layout/popolaComboCategoria.htm" controller="/view/popolaComboCategoriaView.jsp"/>
+    <mapping layout="/layout/macchinaAgricolaModifica.htm" controller="/ctrl/macchinaAgricolaModificaCtrl.jsp"/>
+    <mapping layout="/layout/importaMacchinaAgricolaMod.htm" controller="/ctrl/importaMacchinaAgricolaModCtrl.jsp"/>
+    <mapping layout="/layout/importaMacchinaAgricola.htm" controller="/ctrl/importaMacchinaAgricolaCtrl.jsp"/>
+    <mapping layout="/layout/popolaComboMarca.htm" controller="/view/popolaComboMarcaView.jsp"/>
+    <!-- Pagine usate da UMA -->
+    <!-- Attestazioni -->
+    <mapping layout="/layout/attestazioniDettaglio.htm" controller="/ctrl/attestazioniDettaglioCtrl.jsp"/>
+    <mapping layout="/layout/attestazioniModifica.htm" controller="/ctrl/attestazioniModificaCtrl.jsp"/>
+    <!-- Attestazioni -->
+    <!-- Gestione Utiliti -->
+    <mapping layout="/layout/servizi.htm" controller="/ctrl/serviziCtrl.jsp"/>
+    <mapping layout="/layout/trasferimentoUfficio.htm" controller="/ctrl/trasferimentoUfficioCtrl.jsp"/>
+    <mapping layout="/layout/confermaTrasferimentoUfficio.htm" controller="/ctrl/confermaTrasferimentoUfficioCtrl.jsp"/>
+    <!-- Gstione Utiliti -->
+    <!-- Comunicazione 10R -->
+    <mapping layout="/layout/comunicazione10R_dettaglio.htm" controller="/ctrl/comunicazione10R_dettaglioCtrl.jsp"/>
+    <mapping layout="/layout/comunicazione10R_modifica.htm" controller="/ctrl/comunicazione10R_modificaCtrl.jsp"/>
+    <mapping layout="/layout/comunicazione10R_ricalcola.htm" controller="/ctrl/comunicazione10R_ricalcolaCtrl.jsp"/>
+    <!-- Comunicazione 10R -->
+    <!-- Variazioni aziendali -->
+    <mapping layout="/layout/ricercaVariazioniVisione.htm" controller="/ctrl/ricercaVariazioniVisioneCtrl.jsp"/>
+    <mapping layout="/layout/ricercaVariazioni.htm" controller="/ctrl/ricercaVariazioniCtrl.jsp"/>
+    <mapping layout="/layout/elencoVariazioni.htm" controller="/ctrl/elencoVariazioniCtrl.jsp"/>
+    <!-- Variazioni aziendali -->
+    
+    <!-- SIGMATER -->
+    <mapping layout="/layout/terreniParticellareSigmater.htm"   controller="/ctrl/terreniParticellareSigmaterCtrl.jsp"/>
+    <mapping layout="/layout/ricercaTerrenoSigmater.htm"   controller="/ctrl/ricercaTerrenoSigmaterCtrl.jsp"/>
+    <!-- SIGMATER -->
+    
+    <!-- MONITORAGGIO -->
+    <mapping layout="/layout/monitoraggioswhttp.htm"   controller="/ctrl/monitoraggioswhttpCtrl.jsp"/>
+    <!-- MONITORAGGIO -->
+    
+    <!-- MANUALI-->
+    <mapping layout="/layout/elencoManuali.htm"   controller="/ctrl/elencoManualiCtrl.jsp"/>
+    <mapping layout="/layout/manuale.htm" controller="/ctrl/manualeCtrl.jsp"/> 
+    <!-- MANUALI -->
+    
+    <!--  NUOVA ISCRIZIONE -->
+    <mapping layout="/layout/newInserimentoAzienda.htm" controller="/ctrl/newInserimentoAziendaCtrl.jsp"/> 
+    <mapping layout="/layout/newInserimentoAnagraficaImpreseEnti.htm" controller="/ctrl/newInserimentoAnagraficaImpreseEntiCtrl.jsp"/> 
+    <mapping layout="/layout/newInserimentoAnagraficaPrivati.htm" controller="/ctrl/newInserimentoAnagraficaPrivatiCtrl.jsp"/>
+    <mapping layout="/layout/newInserimentoUte.htm" controller="/ctrl/newInserimentoUteCtrl.jsp"/>
+    <mapping layout="/layout/newInserimentoFabbricati.htm" controller="/ctrl/newInserimentoFabbricatiCtrl.jsp"/>
+    <mapping layout="/layout/newInserimentoParticelle.htm" controller="/ctrl/newInserimentoParticelleCtrl.jsp"/>
+    <mapping layout="/layout/newInserimentoAllevamenti.htm" controller="/ctrl/newInserimentoAllevamentiCtrl.jsp"/>
+    <mapping layout="/layout/newInserimentoContiCorrenti.htm" controller="/ctrl/newInserimentoContiCorrentiCtrl.jsp"/>
+    <mapping layout="/layout/newInserimentoAllegati.htm" controller="/ctrl/newInserimentoAllegatiCtrl.jsp"/>
+    <mapping layout="/layout/newInserimentoConferma.htm" controller="/ctrl/newInserimentoConfermaCtrl.jsp"/>
+    <mapping layout="/layout/allegaFileRichiesta.htm" controller="/ctrl/allegaFileRichiestaCtrl.jsp"/>
+    <mapping layout="/layout/ricercaRichiesta.htm" controller="/ctrl/ricercaRichiestaCtrl.jsp"/>
+    <mapping layout="/layout/elencoRicercaRichiesta.htm" controller="/ctrl/elencoRicercaRichiestaCtrl.jsp"/>
+    <mapping layout="/layout/annullaRichiesta.htm" controller="/ctrl/annullaRichiestaCtrl.jsp"/>
+    <mapping layout="/layout/visualizzaPdf.htm" controller="/ctrl/visualizzaPdfCtrl.jsp"/>
+    <mapping layout="/layout/newInserimentoRichiestaValidazione.htm" controller="/ctrl/newInserimentoRichiestaValidazioneCtrl.jsp"/>
+    <mapping layout="/layout/newInserimentoRichiestaCessazione.htm" controller="/ctrl/newInserimentoRichiestaCessazioneCtrl.jsp"/>
+    <mapping layout="/layout/newInserimentoConfermaValidazione.htm" controller="/ctrl/newInserimentoConfermaValidazioneCtrl.jsp"/>
+    <mapping layout="/layout/newInserimentoConfermaCessazione.htm" controller="/ctrl/newInserimentoConfermaCessazioneCtrl.jsp"/>
+    <mapping layout="/layout/newInserimentoSoggetti.htm" controller="/ctrl/newInserimentoSoggettiCtrl.jsp"/>
+    <mapping layout="/layout/tabellaDatiNewSoggetti.htm" controller="/view/tabellaDatiNewSoggettiView.jsp"/>
+    <mapping layout="/layout/popolaComboComune.htm" controller="/view/popolaComboComuneView.jsp"/>
+    <mapping layout="/layout/newInserimentoSoggAss.htm" controller="/ctrl/newInserimentoSoggAssCtrl.jsp"/>
+    <mapping layout="/layout/newInserimentoSoggAssCaa.htm" controller="/ctrl/newInserimentoSoggAssCaaCtrl.jsp"/>
+    <mapping layout="/layout/tabellaDatiNewSoggAssCaa.htm" controller="/view/tabellaDatiNewSoggAssCaaView.jsp"/>
+    <mapping layout="/layout/tabellaDatiInsNewSoggAss.htm" controller="/view/tabellaDatiInsNewSoggAssView.jsp"/>
+    <mapping layout="/layout/tabellaDatiNewSoggAss.htm" controller="/view/tabellaDatiNewSoggAssView.jsp"/>
+    <mapping layout="/layout/popolaCap.htm" controller="/view/popolaCapView.jsp"/>
+    <mapping layout="/layout/newInserimentoRichiestaVariazione.htm" controller="/ctrl/newInserimentoRichiestaVariazioneCtrl.jsp"/>
+    <mapping layout="/layout/newInserimentoConfermaVariazione.htm" controller="/ctrl/newInserimentoConfermaVariazioneCtrl.jsp"/>
+    <mapping layout="/layout/newInserimentoRichVarIrr.htm" controller="/ctrl/newInserimentoRichVarIrrCtrl.jsp"/>
+    <mapping layout="/layout/tabellaDatiNewRichVarIrr.htm" controller="/view/tabellaDatiNewRichVarIrrView.jsp"/>
+    <mapping layout="/layout/newInserimentoRichSoggAss.htm" controller="/ctrl/newInserimentoRichSoggAssCtrl.jsp"/>
+    <mapping layout="/layout/newInserimentoRichSoggAssCaa.htm" controller="/ctrl/newInserimentoRichSoggAssCaaCtrl.jsp"/>
+    <mapping layout="/layout/tabellaDatiNewRichSoggAssCaa.htm" controller="/view/tabellaDatiNewRichSoggAssCaaView.jsp"/>
+    <mapping layout="/layout/tabellaDatiNewRichSoggAss.htm" controller="/view/tabellaDatiNewRichSoggAssView.jsp"/>
+    <!--  NUOVA ISCRIZIONE -->
+    
+    <!--  MESSAGGISTICA -->
+    <mapping layout="/layout/messaggi_utente.htm" controller="/ctrl/messaggiUtenteCtrl.jsp"/>
+    <mapping layout="/layout/messaggi_utente_login.htm" controller="/ctrl/messaggiUtenteLoginCtrl.jsp"/>
+    <mapping layout="/layout/force_logout.htm" controller="/error/forceLogoutPage.jsp"/>
+    <mapping layout="/layout/dett_messaggi_utente.htm" controller="/ctrl/dettMessaggiUtenteLoginCtrl.jsp"/>
+    <mapping layout="/layout/dett_messaggi_utente_login.htm" controller="/ctrl/dettMessaggiUtenteLoginCtrl.jsp"/>
+    <mapping layout="/layout/visualizzaAllegatoMessaggio.htm" controller="/ctrl/visualizzaAllegatoMessaggioCtrl.jsp"/>
+    <!--  MESSAGGISTICA -->
+    
+    <!-- STRUMENTI -->
+    <mapping layout="/layout/strumenti.htm" controller="/ctrl/strumentiCtrl.jsp"/>
+    <mapping layout="/layout/strumentiFirmaMarca.htm" controller="/ctrl/strumentiFirmaMarcaTemporaleCtrl.jsp"/>
+    <mapping layout="/layout/downloadFileFirma.htm" controller="/servlet/DownloadFileFirmaServlet"/>
+    <mapping layout="/layout/uploadFileFirma.htm" controller="/servlet/UploadFileFirmaServlet"/>
+    <mapping layout="/layout/marcaTemporaleFile.htm" controller="/servlet/MarcaTemporaleFileServlet"/>
+    <!-- STRUMENTI -->
+    
+    <mapping layout="/layout/errore.htm" controller="/ctrl/erroreCtrl.jsp"/>
+  </layout-mappings>
+  <get-accepteds>
+    <get-accepted requested=""/>
+    <get-accepted requested="/layout/sceltaStato.htm"/>
+    <get-accepted requested="/macchina/layout/elencoMacchine.htm"/>
+    <get-accepted requested="/macchina/layout/elencoMacchineBis.htm"/>
+    <get-accepted requested="/ditta/layout/dettaglioAllevamentoPOP.htm"/>
+    <get-accepted requested="/ditta/layout/elencoAllevamento.htm"/>
+    <get-accepted requested="/ditta/layout/elencoAllevamentoBis.htm"/>
+    <get-accepted requested="/ditta/layout/dettaglioSerraPOP.htm"/>
+    <get-accepted requested="/ditta/layout/elencoSerre.htm"/>
+    <get-accepted requested="/ditta/layout/elencoSerreBis.htm"/>
+    <get-accepted requested="/ditta/layout/dettaglioSuperficiePOP.htm"/>
+    <get-accepted requested="/ditta/layout/elencoSuperfici.htm"/>
+    <get-accepted requested="/ditta/layout/elencoSuperficiBis.htm"/>
+    <get-accepted requested="/ditta/layout/elencoColture.htm"/>
+    <get-accepted requested="/layout/sceltaComune.htm"/>
+    <get-accepted requested="/layout/sceltaComuneMultipla.htm"/>
+    <get-accepted requested="/domass/layout/assegnazioni.htm"/>
+    <get-accepted requested="/domass/layout/datiAllevamentiAziendaPOP.htm"/>
+    <get-accepted requested="/domass/layout/datiCarburanteMacchinePOP.htm"/>
+    <get-accepted requested="/domass/layout/datiColtureAziendaPOP.htm"/>
+    <get-accepted requested="/domass/layout/datiSerreAziendaPOP.htm"/>
+    <get-accepted requested="/macchina/layout/elencoSocietaLeasing.htm"/>
+    <get-accepted requested="/macchina/layout/sceltaMarca.htm"/>
+    <get-accepted requested="/secure/loginRupar.htm"/>
+    <get-accepted requested="/secure/loginSispie.htm"/>
+    <get-accepted requested="/secure/loginTOBECONFIG.htm"/>
+    <get-accepted requested="/layout/sceltaRuolo.htm"/>
+    <get-accepted requested="/secure/loginTOBECONFIG.htm/layout/sceltaRuolo.htm"/>
+    <get-accepted requested="/layout/popAggiungiUso.htm"/>
+    <get-accepted requested="/layout/popAnomalieDocumento.htm"/>
+    <get-accepted requested="/layout/popSoggettoAT.htm"/>
+    <get-accepted requested="/layout/sceltaSezione.htm"/>
+    <get-accepted requested="/layout/sceltaFoglio.htm"/>
+    <get-accepted requested="/layout/sceltaParticella.htm"/>
+    <get-accepted requested="/layout/popDettaglioUnitaArborea.htm"/>
+    <get-accepted requested="/layout/popPraticheDichiarazione.htm"/>
+    <get-accepted requested="/layout/allegaFile.htm"/>
+    <get-accepted requested="/layout/documentoAllegati.htm"/>
+    <get-accepted requested="/layout/allegaFileRichiesta.htm"/>
+    <get-accepted requested="/layout/allegaFileNotifica.htm"/>
+    <get-accepted requested="/layout/visualizzaFileAllegato" />
+    <get-accepted requested="/layout/visualizzaPdf" />
+    <get-accepted requested="/layout/popPianoGrafico.htm"/>
+    <!--Report dinamici-->
+    <get-accepted requested="/layout/macroCategoriaReport.htm"/>
+    <get-accepted requested="/layout/elencoTipologieReport.htm"/>
+    <get-accepted requested="/layout/dettaglioTipologiaReport.htm"/>
+    <get-accepted requested="/layout/risultatoTipologiaReport.htm"/>
+    <!--Report dinamici-->
+  </get-accepteds>
+  <no-login-required>
+    <no-login page="/secure/loginRupar.htm" />
+    <no-login page="/secure/loginSispie.htm" />
+    <no-login page="/secure/loginTOBECONFIG.htm" />
+    <no-login page="/layout/sceltaRuolo.htm" />
+    <no-login page="/secure/loginTOBECONFIG.htm/layout/sceltaRuolo.htm" />
+  </no-login-required>
+  <default-ctrl controller="/defaultView.jsp"/>
+  <error-page page="/messaggi_error/sessione_scaduta.html"/>
+</config-client>

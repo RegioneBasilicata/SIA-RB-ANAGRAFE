@@ -1,0 +1,340 @@
+$$head
+<script type="text/javascript" src="../js/checktext.js"></script>
+<script type="text/javascript" src="../js/messaggistica.js"></script>
+<script type="text/javascript"> 
+
+  function cambio() 
+  {
+    document.forms[0].operazione.value = 'cambio';
+    document.forms[0].submit();
+  }
+  
+  function elimina(idRiga) 
+  {
+    document.forms[0].operazione.value = 'elimina';
+    document.forms[0].idRigaElim.value = idRiga;
+    document.forms[0].submit();
+  }
+  
+  function inserisci() 
+  {
+    document.forms[0].operazione.value = 'inserisci';
+    document.forms[0].submit();
+  }
+
+
+
+</script>
+</head>
+<body id="homeIndice" onload="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+	<form id="form1" name="form1" method="post" action="../layout/newInserimentoParticelle.htm">
+    <input type="hidden" id="regimeInserimentoParticelle" name="regimeInserimentoParticelle" value="regimeInserimentoParticelle"/>
+    <input type="hidden" id="operazione" name="operazione" value=""/>
+    <input type="hidden" id="idRigaElim" name="idRigaElim" value=""/>
+    <div id="pagina" class="colonnaUnica">
+      
+      <!-- INTESTAZIONE -->
+      <div id="intestazione##pathProvincia">
+        $$header
+        <!-- menu di navigazione-->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li>
+                <a href="../layout/index.htm" title="Torna alla pagina principale">home</a>
+              </li>
+              <li class="attivo">gestione anagrafe aziende</li>
+              <li>
+                <a href="#" title="contatti">contatti</a>
+              </li>
+              <li>
+                <a href="#" title="help">help</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr/>
+      <div style="clear:left"></div>
+      <!-- CORPO -->
+      <div id="corpo">
+        <div id="Utente">
+          <div id="datiUtente">
+            <strong>utente:</strong>$$utente&nbsp;&nbsp;
+            <strong>ente:</strong>$$ente
+          </div>
+          <div id="chiudisessione">
+            <a href="javascript: logout();">chiudi sessione</a>
+          </div>
+        </div>
+        <hr/>
+        <!--PRIMA COLONNA -->
+        <h3>Nuova iscrizione
+          <span class="helpFuori">
+            <a href="#">
+              <span class="alt">[help]</span>
+            </a>
+          </span>
+        </h3>
+        <hr/>
+        <div class="box">
+          <div class="menuSX1">
+            <ul>
+              <!-- @@blkRicercaAzienda-->
+              <li>
+                <a href="../layout/ricerca.htm">Ricerche</a>
+              </li>
+              <!-- @@blkRicercaAzienda-->                  
+              <li><a href="../layout/newInserimentoAzienda.htm" class="on">Nuova iscrizione</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr/>
+        <!-- SECONDA COLONNA -->
+        <div id="contenuto">
+          <div id="intesta">
+            <p class="$$aziendaIntestazione" title="$$tooltipIntestazione" >
+              $$CUAAIntestazione  $$denominazioneIntestazione
+            </p>
+          </div>
+          
+          <div id="indice">
+            <span class="voce">
+              <a href="#">Anagrafica</a>
+            </span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+            <span class="voce">
+              <a href="#">Unit&agrave; produttive</a>
+            </span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+            <span class="evidenza">
+              <a href="#">Terreni</a>
+            </span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+            <span class="voce">
+              <a href="#">Fabbricati</a>
+            </span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+            <span class="voce">
+              <a href="#">Allevamenti</a>
+            </span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+            <span class="voce">
+              <a href="#">Soggetti collegati</a>
+            </span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+            <span class="voce">
+              <a href="#">Elenco associati</a>
+            </span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+            <span class="voce">
+              <a href="#">Conti correnti</a>
+            </span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+            <span class="voce">
+              <a href="#">Allegati</a>
+            </span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+          </div>
+          <hr/>
+          
+          <br>
+          <div>
+            <p id="istruzioni">$$testoHelp</p>            
+          </div>
+          <br>
+          
+          <div class="scroll">
+            <table cellspacing="3" summary="Questa tabella è costituita da righe">
+              <caption>Terreni</caption>
+              <tr>
+                <th class="center" scope="col">
+                  <a href="javascript:inserisci()" class="aggiungi" title="inserisci Particelle"></a>
+                </th>
+                <th class="center" scope="col">
+                  Prov*
+                </th>
+                <th class="center" scope="col">
+                  Comune*
+                </th>
+                <th class="center" scope="col">
+                  Sez
+                </th>
+                <th class="center" scope="col">
+                  Fgl*
+                </th>
+                <th class="center" scope="col">
+                  Part*
+                </th>
+                <th class="center" scope="col">
+                  Titolo di<br>
+                  posesso*
+                </th>
+                <th class="center" scope="col">
+                  %<br>
+                  cond.*
+                </th>
+                <th class="center" scope="col">
+                  Destinazione d'uso*
+                </th>
+                <th class="center" scope="col">
+                  Unit&agrave; misura*
+                </th>
+                <th class="center" scope="col">
+                  Superficie*
+                </th>
+                <th class="center" scope="col">
+                  Ute*
+                </th>
+              </tr>
+              <!--@@blkElencoParticelle -->
+              <tr>   
+                <td>
+                  <a href="javascript:elimina('$$idRiga')" class="cancella" title="elimina particelle"></a>
+                  $$err_particellaCertificata
+                  $$err_percPossesso
+                </td>
+                <td>
+                  <select name="istatProvincia" id="istatProvincia"
+                    onchange="javascript: cambio();">
+                    <option value="" ></option>
+                    <!-- @@blkElencoProvince -->
+                    <option value="$$istatProvincia" $$selected>
+                      $$sglProv
+                    </option>
+                    <!-- @@blkElencoProvince -->
+                  </select>
+                  $$err_istatProvincia
+                </td>
+                <td>
+                  <select name="istatComune" id="istatComune">
+                    <option value="" ></option>
+                    <!-- @@blkElencoComuni -->
+                    <option value="$$istatComune" $$selected>
+                      $$desCom
+                    </option>
+                    <!-- @@blkElencoComuni -->
+                  </select>
+                  $$err_istatComune
+                </td>
+                <td>
+                  <input name="sezione"  id="sezione" type="text" class="textbreve"
+                    maxlength="1" value="$$sezione" />
+                  $$err_sezione
+                </td>
+                <td>
+                  <input name="foglio"  id="foglio" type="text" class="textbreve"
+                    maxlength="5" value="$$foglio" />
+                  $$err_foglio
+                </td>
+                <td>
+                  <input name="particella"  id="particella" type="text" class="textbreve"
+                    maxlength="5" value="$$particella" />
+                  $$err_particella
+                </td>
+                <td>
+                  <select name="idTitoloPossesso" id="idTitoloPossesso">
+                    <option value="" ></option>
+                    <!-- @@blkElencoTitoloPossesso -->
+                    <option value="$$idTitoloPossesso" $$selected>
+                      $$descTitoloPossesso
+                    </option>
+                    <!-- @@blkElencoTitoloPossesso -->
+                  </select>
+                  $$err_idTitoloPossesso
+                </td>
+                <td>
+                  <input name="percentualePossesso"  id="percentualePossesso" type="text" class="textbreve"
+                    maxlength="6" value="$$percentualePossesso" />
+                  $$err_percentualePossesso
+                </td>
+                <td>
+                  <select name="idIndirizzoUtilizzo" id="idIndirizzoUtilizzo"
+                    onchange="javascript: cambio();">
+                    <option value="" ></option>
+                    <!-- @@blkElencoIndirizzoUtilizzo -->
+                    <option value="$$idIndirizzoUtilizzo" $$selected>
+                      $$descIndirizzoUtilizzo
+                    </option>
+                    <!-- @@blkElencoIndirizzoUtilizzo -->
+                  </select>
+                  $$err_idIndirizzoUtilizzo
+                  <br>                   
+                  <select name="idUtilizzo" id="idUtilizzo"
+                    onchange="javascript: cambio();">
+                    <option value="" ></option>
+                    <!-- @@blkElencoUtilizzi -->
+                    <option value="$$idUtilizzo" $$selected>
+                      $$descUtilizzo
+                    </option>
+                    <!-- @@blkElencoUtilizzi -->
+                  </select>
+                  $$err_idUtilizzo               
+                  <br>
+                  <select name="idVarieta" id="idVarieta">
+                    <option value="" ></option>
+                    <!-- @@blkElencoVarieta -->
+                    <option value="$$idVarieta" $$selected>
+                      $$descVarieta
+                    </option>
+                    <!-- @@blkElencoVarieta -->
+                  </select>
+                  $$err_idVarieta               
+                </td>                
+                <td>
+                  <select name="idUnitaMisura" id="idUnitaMisura">
+                    <option value="" ></option>
+                    <!-- @@blkElencoUnitaMisura -->
+                    <option value="$$idUnitaMisura" $$selected>
+                      $$descUnitaMisura
+                    </option>
+                    <!-- @@blkElencoUnitaMisura -->
+                  </select>
+                  $$err_idUnitaMisura
+                </td>
+                <td>
+                  <input name="superficie"  id="superficie" type="text" class="textmedio"
+                    value="$$superficie" />
+                  $$err_superficie
+                </td>
+                <td>
+                  <select id="idUteAziendaNuova" name="idUteAziendaNuova" >
+                    <option value=""></option>
+                    <!--@@blkElencoUte-->
+                    <option value="$$idUteAziendaNuova" $$selected >$$descUte</option>
+                    <!--@@blkElencoUte-->
+                  </select> 
+                  $$err_idUteAziendaNuova
+                </td>             
+              </tr>              
+              <!--@@blkElencoParticelle -->
+            </table>
+          </div> 
+          
+          
+          <p id="nota">I campi contrassegnati con * sono obbligatori</p>
+          <div class="pulsanti"><div class="sin">
+            <input name="indietro" id="indietro" class="inputPulsante" type="submit" value="indietro"/>
+          </div>
+          <div class="des">
+            <input name="avanti" id="avanti" class="inputPulsante" type="submit" value="avanti" autofocus />
+          </div>
+          </div>  
+          </br>
+          </br>
+          </br>
+          
+          
+          <!-- @@blkErrore -->
+          <p class="errore">
+            $$messaggioErrore
+          </p>
+          <!-- @@blkErrore -->
+        </div>
+      </div>
+      <hr/>
+      <!-- PIE' DI PAGINA -->
+      $$footer

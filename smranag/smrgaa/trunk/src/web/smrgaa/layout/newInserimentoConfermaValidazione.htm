@@ -1,0 +1,221 @@
+$$head
+<script type="text/javascript" src="../js/checktext.js"></script>
+<script type="text/javascript" src="../js/messaggistica.js"></script>
+<script language="javascript1.2" src="../js/stampaMod.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+ 
+  function setHiddenBlockedOperazione(form, obj, operazione) 
+  {
+    form.operazione.value = operazione;
+    obj.onclick = '';
+    form.submit();
+  }
+  
+  function ristampaMod(form) 
+  {
+	  var d = new Date();
+	  var unique = (d.getUTCHours()*60+d.getUTCMinutes())*60+d.getUTCSeconds();
+	  var target = "stampa"+unique;
+	  popCentro("",645,500,target);
+	  form.target = target;
+	  form.operazione.value = 'stampa';
+	  form.submit();
+	  form.target='';
+	  return;
+	}
+  
+  function stampaModNuovaIscrizione(form) 
+  {
+    var d = new Date();
+    var unique = (d.getUTCHours()*60+d.getUTCMinutes())*60+d.getUTCSeconds();
+    var target = "stampa"+unique;
+    popCentro("",645,500,target);
+    form.target = target;
+    form.operazione.value = 'stampa';
+    form.submit();
+    form.target='';
+    form.operazione.value = 'stampaConferma';
+    form.submit();
+    return;
+  }
+  
+  function stampaModApponiFirmaDigitale(form) 
+  {
+    var d = new Date();
+    var unique = (d.getUTCHours()*60+d.getUTCMinutes())*60+d.getUTCSeconds();
+    var target = "stampa"+unique;
+    popCentro("",645,500,target);
+    form.target = target;
+    form.operazione.value = 'stampaFirma';
+    form.submit();
+    form.target='';
+    form.operazione.value = 'appFirmDig';
+    form.submit();
+    return;
+  }
+
+
+
+</script>
+</head>
+<body id="homeIndice" onload="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+	<form id="form1" name="form1" method="post" action="../layout/newInserimentoConfermaValidazione.htm">
+    <input type="hidden" id="regimeInserimentoConfermaValidazione" name="regimeInserimentoConfermaValidazione" value="regimeInserimentoConfermaValidazione"/>
+    <input type="hidden" id="idAzienda" name="idAzienda" value="$$idAzienda"/>
+    <input type="hidden" id="operazione" name="operazione" value=""/>    
+    <div id="pagina" class="colonnaUnica">
+      
+      <!-- INTESTAZIONE -->
+      <div id="intestazione##pathProvincia">
+        $$header
+        <!-- menu di navigazione-->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li>
+                <a href="../layout/index.htm" title="Torna alla pagina principale">home</a>
+              </li>
+              <li class="attivo">gestione anagrafe aziende</li>
+              <li>
+                <a href="#" title="contatti">contatti</a>
+              </li>
+              <li>
+                <a href="#" title="help">help</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr/>
+      <div style="clear:left"></div>
+      <!-- CORPO -->
+      <div id="corpo">
+        <div id="Utente">
+          <div id="datiUtente">
+            <strong>utente:</strong>$$utente&nbsp;&nbsp;
+            <strong>ente:</strong>$$ente
+          </div>
+          <div id="chiudisessione">
+            <a href="javascript: logout();">chiudi sessione</a>
+          </div>
+        </div>
+        <hr/>
+        <!--PRIMA COLONNA -->
+        <h3>Nuova richiesta validazione
+          <span class="helpFuori">
+            <a href="#">
+              <span class="alt">[help]</span>
+            </a>
+          </span>
+        </h3>
+        <hr/>
+        <div class="box">
+          <div class="menuSX1">
+            <ul>
+              <li><a href="../layout/elencoAziendeRapLegale.htm">Elenco Aziende</a></li>
+            </ul>
+          </div>
+          <div class="menuSX">
+            <ul>               
+              <li><a href="#" class="on">Nuova richiesta validazione</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr/>
+        <!-- SECONDA COLONNA -->
+        <div id="contenuto">
+          <div id="intesta">
+            <p class="$$aziendaIntestazione" title="$$tooltipIntestazione" >
+              $$cuaaIntestazione - $$denominazioneIntestazione
+            </p>
+          </div>
+          
+         
+          <div class="scroll">
+            <table cellspacing="3" summary="Questa tabella è costituita da righe">
+              <tr>
+                <th class="left" scope="col">
+                  $$testoNoAllegati
+                  $$testoPerTutti
+                  <!-- @@blkElencoStep -->
+                  <!-- @@blkNormaleElencoStep -->
+                  <span style="font-weight: normal; font-size:11px; color: black;">$$descrizioneEstesa</span><br>
+                  <!-- @@blkNormaleElencoStep -->
+                  <!-- @@blkBoldElencoStep -->
+                  $$descrizioneEstesa<br>
+                  <!-- @@blkBoldElencoStep -->
+	                <!-- @@blkElencoStep -->
+                </th>
+              </tr>
+            </table>
+            <table cellspacing="3" summary="Questa tabella è costituita da righe">
+              <caption>$$intestazionePasso</caption>
+              <tr>
+                <th class="left" scope="col">
+                 $$descrizionePasso
+                </th>
+              </tr>
+            </table>
+          </div> 
+          <div class="pulsanti">
+	          <!-- @@blkIndietro -->
+	          <div class="sin">
+	            <input id="indietro" name="indietro" type="button"
+                value="indietro" onclick="javascript:setHiddenBlockedOperazione(document.forms[0], this,'indietro')"
+                class="inputPulsante" />
+	          </div>
+	          <!-- @@blkIndietro -->
+	          <!-- @@blkStampa -->
+	          <div class="des">
+	            <input id="stampa" name="stampa" type="button"
+	              value="stampa" onclick="javascript:stampaModNuovaIscrizione(document.forms[0])"
+	              class="inputPulsante" />
+	          </div>
+	          <!-- @@blkStampa -->
+	          <!-- @@blkApponiDigitale -->
+            <div class="des">
+              <input id="ristampa" name="ristampa" type="button"
+                value="ristampa" onclick="javascript:ristampaMod(document.forms[0])"
+                class="inputPulsante" />
+              <input id="appFirmDig" name="appFirmDig" type="button"
+                value="firma elettronicamente" onclick="javascript:stampaModApponiFirmaDigitale(document.forms[0])"
+                class="inputPulsante" />
+            </div>
+            <!-- @@blkApponiDigitale -->
+            <!-- @@blkButtonTrasmPA -->
+            <div class="des">
+              <input id="ristampa" name="ristampa" type="button"
+                value="ristampa" onclick="javascript:ristampaMod(document.forms[0])"
+                class="inputPulsante" />
+              <input id="trasmPA" name="trasmPA" type="button"
+                value="trasmetti PA" onclick="javascript:setHiddenBlockedOperazione(document.forms[0], this,'trasmPA')"
+                class="inputPulsante" />
+            </div>
+            <!-- @@blkButtonTrasmPA -->
+            <!-- @@blkButtonDopoTrasm -->
+            <div class="des">
+              <input id="ristampa" name="ristampa" type="button"
+                value="ristampa" onclick="javascript:ristampaMod(document.forms[0])"
+                class="inputPulsante" />
+            </div>
+            <!-- @@blkButtonDopoTrasm -->
+	        </div>
+          
+          </br>
+          </br>
+          </br>
+          
+          <!-- @@blkErrore -->
+          <p class="errore">
+            $$messaggioErrore
+          </p>
+          <!-- @@blkErrore -->
+        </div>
+      </div>
+      <hr/>
+      <!-- PIE' DI PAGINA -->
+      $$footer

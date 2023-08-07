@@ -1,0 +1,1227 @@
+$$head
+<script language="javascript1.2" src="../js/checktext.js"  type="text/javascript"></script>
+<script language="javascript1.2" src="../js/stampaMod.js"  type="text/javascript"></script>
+<script type="text/javascript" src="../js/messaggistica.js"></script>
+<script language="javascript1.2" type="text/javascript">
+
+  var hWin;
+   
+  //forza la chiusura dell pop up ad esempio se indiero o si rintre senza chiudere
+  function chiudiPopup()
+  {
+    if ( hWin != null)
+    {
+      hWin.close();
+    } 
+  }
+
+ 	function gestioneStampe() 
+ 	{
+  	stampaMod(document.stampaProtocollo);
+ 	}
+    	
+  function associaParticelle(mypage, myname, w, h, scroll) 
+  {
+  
+    var inContradditorio = document.getElementById('inContradditorio');
+  
+    if(document.forms[0].flagIstanzaRiesameFotoIntMod.value == 'S')
+    {
+      if(document.forms[0].annoInserimento.value != document.forms[0].annoCorrente.value)
+      {
+        alert('Modifica non permessa: l\'istanza di riesame e\' riferita ad altra campagna');
+        return;      
+      }
+    
+    }
+  
+    
+  
+		if(document.forms[0].siglaProvinciaParticella.value == '' 
+	          && document.forms[0].comune.value == '' 
+	          &&  document.forms[0].idTitoloPossesso.value == '' 
+	          && document.forms[0].idCasoParticolare.value == ''
+	          && document.forms[0].idAnomalie.value == '' 
+	          && (((inContradditorio != null) && (inContradditorio.checked == false))
+                || (inContradditorio == null))) 
+	  {
+			alert('Indicare almeno un criterio di ricerca');
+			return;
+		}
+	  else if(document.forms[0].siglaProvinciaParticella.value != '' && document.forms[0].comune.value == '') 
+	  {
+		  alert('Valorizzare il comune');
+		  return;
+	  }
+		else if(document.forms[0].siglaProvinciaParticella.value == '' && document.forms[0].comune.value != '') 
+		{
+			alert('Valorizzare la provincia');
+			return;
+		}
+	  else 
+	  {
+			var winl = (screen.width - w) / 2;
+ 			var wint = (screen.height - h) / 2;
+ 			winprops =    'height='+h+',width='+w+',top='+wint+',left='+winl+',scrollbars='+scroll+',resizable';
+ 			window.name = 'PADRE';
+ 			win = window.open('', myname, winprops);
+ 			if(parseInt(navigator.appVersion) >= 4) 
+ 			{
+   			win.window.focus();
+ 			}
+ 			var target1 = document.forms[0].target;
+ 			var action1 = document.forms[0].action;
+ 			document.forms[0].target = myname;
+ 			document.forms[0].action = mypage;
+		  document.forms[0].submit();
+ 			document.forms[0].target = target1;
+ 			document.forms[0].action = action1;
+ 		}
+	}
+	
+	
+	function associaParticelleValoreC(mypage, myname, w, h, scroll) 
+  {    
+    var winl = (screen.width - w) / 2;
+    var wint = (screen.height - h) / 2;
+    winprops =    'height='+h+',width='+w+',top='+wint+',left='+winl+',scrollbars='+scroll+',resizable';
+    window.name = 'PADRE';
+    win = window.open('', myname, winprops);
+    if(parseInt(navigator.appVersion) >= 4) 
+    {
+      win.window.focus();
+    }
+    
+    var target1 = document.forms[0].target;
+    var action1 = document.forms[0].action;
+    document.forms[0].target = myname;
+    document.forms[0].action = mypage;
+    document.forms[0].submit();
+    document.forms[0].target = target1;
+    document.forms[0].action = action1;
+  }
+  
+  function associaParticelleExtraSistema(mypage, myname, w, h, scroll) 
+  {    
+    var winl = (screen.width - w) / 2;
+    var wint = (screen.height - h) / 2;
+    winprops =    'height='+h+',width='+w+',top='+wint+',left='+winl+',scrollbars='+scroll+',resizable';
+    window.name = 'PADRE';
+    win = window.open('', myname, winprops);
+    if(parseInt(navigator.appVersion) >= 4) 
+    {
+      win.window.focus();
+    }
+    
+    var target1 = document.forms[0].target;
+    var action1 = document.forms[0].action;
+    document.forms[0].target = myname;
+    document.forms[0].action = mypage;
+    document.forms[0].submit();
+    document.forms[0].target = target1;
+    document.forms[0].action = action1;
+  }
+    
+  function calcolaUso() 
+  {
+      document.forms[0].submit();
+  }
+    
+  // Metodo per aprire una pop-up ed effettuare su di essa il submit del form
+  function newWindowSubmit(mypage, myname, w, h, scroll, type, indice, numeroParticella) 
+  {
+    var winl = (screen.width - w) / 2;
+    var wint = (screen.height - h) / 2;
+    winprops =    'height='+h+',width='+w+',top='+wint+',left='+winl+',scrollbars='+scroll+',resizable';
+    win = window.open('', myname, winprops);
+
+    if (parseInt(navigator.appVersion) >= 4) {
+      win.window.focus();
+    } 
+    
+    var target1 = document.forms[0].target;
+    var action1 = document.forms[0].action;
+    document.forms[0].target = myname;
+    document.forms[0].action = mypage;
+    document.forms[0].type.value = type;
+    document.forms[0].indice.value = indice;
+    document.forms[0].numeroParticella.value = numeroParticella;
+    document.forms[0].submit();
+    document.forms[0].target = target1;
+    document.forms[0].action = action1;
+  }
+    
+    
+  function associaParticelleEvento(mypage, myname, w, h, scroll,idParticella) 
+  {
+    var winl = (screen.width - w) / 2;
+    var wint = (screen.height - h) / 2;
+    winprops =    'height='+h+',width='+w+',top='+wint+',left='+winl+',scrollbars='+scroll+',resizable';
+    window.name = 'PADRE';
+    win = window.open('', myname, winprops);
+    if(parseInt(navigator.appVersion) >= 4) 
+    {
+      win.window.focus();
+    }
+    var target1 = document.forms[0].target;
+    var action1 = document.forms[0].action;
+    document.forms[0].target = myname;
+    document.forms[0].action = mypage;
+    document.forms[0].idParticella.value = idParticella;
+    document.forms[0].submit();
+    document.forms[0].target = target1;
+    document.forms[0].action = action1;
+    document.forms[0].idParticella ='';
+  }
+    
+    
+		
+	// Funzione che apre la pop-up relativa all'anagrafe tributaria
+	function newWindowAT(mypage, myname, w, h, scroll, parameter) 
+	{
+		if(parameter == '') 
+		{
+			alert('Inserire un codice fiscale o una partita IVA validi');
+		}
+		else 
+		{
+ 			var winl = (screen.width - w) / 2;
+ 			var wint = (screen.height - h) / 2;
+ 			winprops =    'height='+h+',width='+w+',top='+wint+',left='+winl+',scrollbars='+scroll+',resizable'
+ 			win = window.open(mypage+'?cuaa='+parameter, myname, winprops);
+ 			if (parseInt(navigator.appVersion) >= 4) 
+ 			{
+   			win.window.focus();
+ 			}
+		}
+	}
+	
+  
+  function setBlocked(form, obj, operazione) 
+  {
+    obj.onclick = '';
+    form.operazione.value = operazione
+    form.submit();
+  }
+
+  </script>
+</head>
+<!-- $$err_idDichiarazioneConsistenza -->
+<!-- $$err_noParticelleAssociate -->
+<!-- $$err_noParticelle -->
+<!-- $$err_idAnomalie -->
+<body id="homeIndice"  onload="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');"  onunload="javascript:chiudiPopup()" >
+  <form id="form1" name="form1" method="post"
+    action="../layout/documentoModifica.htm">
+    <input type="hidden" name="regimeDocumentoModifica" value="true" />
+    <input type="hidden" name="motivoModifica" value="$$motivoModifica" />
+    <input type="hidden" name="operazione" value="$$operazione" />
+    <input type="hidden" name="idDocumento" value="$$idDocumento" />
+    <input type="hidden" name="pageFrom" value="$$pageFrom" />
+    <input type="hidden" name="idParticella" />
+    <input type="hidden" name="type" value="$$type" />
+    <input type="hidden" name="indice" value="$$indice" />
+    <input type="hidden" name="numeroParticella" value="$$numeroParticella" />
+    <input type="hidden" name="idAllegato" />
+    <input type="hidden" name="flagIstanzaRiesameFotoIntMod" value="$$flagIstanzaRiesameFotoIntMod" />
+    <input type="hidden" name="annoInserimento" value="$$annoInserimento" />
+    <input type="hidden" name="annoCorrente" value="$$annoCorrente" />
+    <div id="pagina" class="colonnaUnica">
+      <!-- INTESTAZIONE -->
+      <div id="intestazione##pathProvincia">
+        <!--intestazione-->
+        $$header
+        <!-- menu di navigazione-->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li>
+                <a href="../layout/index.htm"
+                  title="Torna alla pagina principale">home</a>
+              </li>
+              <li class="attivo">
+                gestione anagrafe aziende
+              </li>
+              <li>
+                <a href="#" title="contatti">contatti</a>
+              </li>
+              <li>
+                <a href="#" title="help">help</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div style="clear: left"></div>
+      <!-- CORPO -->
+      <div id="corpo">
+        <div id="Utente">
+          <div id="datiUtente">
+            <strong>utente:</strong>$$utente&nbsp;&nbsp;
+            <strong>ente:</strong>$$ente
+          </div>
+          <div id="chiudisessione">
+            <a href="javascript: logout();">chiudi sessione</a>
+          </div>
+        </div>
+        <hr />
+        <!--PRIMA COLONNA -->
+        <h3>
+          Gestione Anagrafe
+          Aziende&nbsp;&gt;&nbsp;Documenti&nbsp;&gt;&nbsp;Modifica
+          <span class="helpFuori"> <a href="#"> <span
+              class="alt">[help]</span> </a> </span>
+        </h3>
+        <hr />
+        <div class="box">
+          <div class="menuSX1">
+            <ul>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <li>
+                <a href="../layout/elencoAziendeRapLegale.htm">Elenco
+                  Aziende</a>
+              </li>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <!-- @@blkRicercaAzienda-->
+              <li>
+                <a href="../layout/ricerca.htm">Ricerche</a>
+              </li>
+              <!-- @@blkRicercaAzienda-->
+              <!-- @@blkNuova -->
+              <li>
+                <a href="../layout/nuovaAziendaAnagrafica.htm">Nuova
+                  Azienda</a>
+              </li>
+              <!-- @@blkNuova -->
+              <!-- @@blkNuovaIscrizione -->
+		          <li>
+		            <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+		          </li>
+		          <!-- @@blkNuovaIscrizione -->
+            </ul>
+          </div>
+          <div class="menuSX">
+            <ul>
+              <li>
+                <a href="../layout/anagrafica.htm">Anagrafica</a>
+              </li>
+              <!-- @@blkAziendeCollegate -->
+              <li>
+                <a href="../layout/aziendeCollegate.htm">$$aziendeCollegateLabel</a>
+              </li>
+              <!-- @@blkAziendeCollegate -->
+              <!-- @@blkSincronizzaFascicolo -->
+               <li>
+               	<a href="../layout/sincronizzaFascicolo.htm">Sincronizza fascicolo</a>
+               </li>
+              <!-- @@blkSincronizzaFascicolo -->
+              <!-- @@blkSoggettiCollegati -->
+              <li>
+                <a href="../layout/contitolari.htm">Soggetti
+                  collegati</a>
+              </li>
+              <!-- @@blkSoggettiCollegati -->
+              <!-- @@blkContiCorrenti -->
+              <li>
+                <a href="../layout/conti_correnti.htm">Conti
+                  Correnti</a>
+              </li>
+              <!-- @@blkContiCorrenti -->
+              <!-- @@blkUnitaProduttive -->
+              <li>
+                <a href="../layout/sedi.htm">Unit&agrave; produttive</a>
+              </li>
+              <!-- @@blkUnitaProduttive -->
+              <!-- @@blkTerreni -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniParticellareElenco.htm">Terreni</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		            <a href="../layout/riepiloghi.htm">Terreni</a>
+		            <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkTerreni -->
+		          <!-- @@blkUnitaVitate -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniUnitaArboreeElenco.htm">Unit&agrave; Vitate</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		              <a href="../layout/riepiloghiUnitaArboree.htm">Unit&agrave; Vitate</a>
+		              <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkUnitaVitate -->
+              <!-- @@blkFabbricati -->
+              <li>
+                <a href="../layout/fabbricati.htm">Fabbricati e
+                  Strutture</a>
+              </li>
+              <!-- @@blkFabbricati -->
+              <!-- @@blkAllevamenti -->
+              <li>
+                <a href="../layout/allevamenti.htm">Allevamenti</a>
+              </li>
+              <!-- @@blkAllevamenti -->
+              <!-- @@blkManodopera -->
+              <li>
+                <a href="../layout/manodopera.htm">Manodopera</a>
+              </li>
+              <!-- @@blkManodopera -->
+              <!-- @@blkMotoriAgricoli -->
+              <li>
+                <a href="../layout/motori_agricoli_incarico.htm">Macchine agricole</a>
+              </li>
+              <!-- @@blkMotoriAgricoli -->
+              <!-- @@blkDiritti -->
+              <li>
+                <a href="../layout/diritti.htm">Diritti di
+                  produzione</a>
+              </li>
+              <!-- @@blkDiritti -->
+              <!-- @@blkAttestazioni -->
+              <li>
+                <a href="../layout/attestazioniDettaglio.htm">Dichiarazioni</a>
+              </li>
+              <!-- @@blkAttestazioni -->
+              <!-- @@blkDichiarazioniConsistenza -->
+              <li>
+                <a href="../layout/dichiarazioneConsistenza.htm">Validazioni</a>
+              </li>
+              <!-- @@blkDichiarazioniConsistenza -->
+              <!-- @@blkDocumenti -->
+              <li>
+                <a href="../layout/documentiElenco.htm"
+                  class="on">Documenti</a>
+                <ul>
+                  <li>
+                    <a href="#" class="etichetta">modifica</a>
+                  </li>
+                </ul>
+              </li>
+              <!-- @@blkDocumenti -->
+              <!-- @@blkFascicoloDematerializzato -->
+		          <li>
+		            <a href="../layout/fascicoloDematerializzato.htm">Fascicolo<br>elettronico</a>
+		          </li>
+		          <!-- @@blkFascicoloDematerializzato --> 
+              <!-- @@blkGestioneNotifiche -->
+              <li>
+                <a href="../layout/notifiche.htm">Notifiche</a>
+              </li>
+              <!-- @@blkGestioneNotifiche -->
+              <!-- @@blkComunicazione10R -->
+              <li>
+                <a href="../layout/comunicazione10R_dettaglio.htm">Comunicazione
+                  10/R</a>
+              </li>
+              <!-- @@blkComunicazione10R -->
+              <!-- @@blkPratiche -->
+              <li>
+                <a href="../layout/pratiche.htm">Pratiche</a>
+              </li>
+              <!-- @@blkPratiche -->
+              <!-- @@blkStampaFascicolo -->
+              <li>
+                <a href="../layout/scelta_stampa.htm">Stampe</a>
+              </li>
+              <!-- @@blkStampaFascicolo -->
+			  <li><a href="../layout/strumenti.htm">Strumenti</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr />
+        <!-- SECONDA COLONNA -->
+        <div id="contenuto">
+          <div id="intesta">
+            <p class="$$aziendaIntestazione" title="$$tooltipIntestazione" >
+              $$CUAAIntestazione  $$denominazioneIntestazione
+            </p>
+          </div>
+          <table cellspacing="3"
+            summary="Questa tabella contiene i dati relativi al documento">
+            <col width="42%" />
+            <col width="10%" />
+            <col width="48%" />
+            <tr>
+              <th>
+                <label for="tipo">
+                  Tipologia documento
+                </label>
+              </th>
+              <td colspan="2">
+                $$descTipoTipologiaDocumento
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="tipo">
+                  Tipo documento
+                </label>
+              </th>
+              <td colspan="2">
+                $$descTipoCategoriaDocumento
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="Stato">
+                  Descrizione documento
+                </label>
+              </th>
+              <td colspan="2">
+                $$descTipoDocumento
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="inizio">
+                  Data inizio validit&agrave; *
+                </label>
+              </th>
+              <td colspan="2">
+                <input name="dataInizioValidita" id="dataInizioValidita"
+                  type="text" class="textmedio"
+                  value="$$dataInizioValidita" maxlength="10" $$readOnlyDataInizio />
+                gg/mm/aaaa&nbsp;$$err_dataInizioValidita
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="scadenza">
+                  Data fine validit&agrave;
+                </label>
+              </th>
+              <td colspan="2">
+                <input name="dataFineValidita" id="dataFineValidita"
+                  type="text" class="textmedio"
+                  value="$$dataFineValidita" maxlength="10" />
+                gg/mm/aaaa&nbsp;$$err_dataFineValidita
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="protocollo_est">
+                  Repertorio esterno
+                </label>
+              </th>
+              <td colspan="2">
+                <input name="numeroProtocolloEsterno"
+                  id="numeroProtocolloEsterno" type="text" class="text"
+                  maxlength="100" value="$$numeroProtocolloEsterno" />
+                $$err_numeroProtocolloEsterno
+              </td>
+            </tr>          
+            <tr>
+              <th>
+                <label for="Causale modifica">
+                  Causale modifica
+                </label>
+              </th>
+              <td colspan="2">
+                <select name="idCausaleModificaDocumento"
+                  id="idCausaleModificaDocumento">
+                  <option></option>
+                  <!-- @@blkElencoCausaleModifica -->
+                  <option value="$$codiceCausaleModifica" $$selected>
+                    $$descCausaleModifica
+                  </option>
+                  <!-- @@blkElencoCausaleModifica -->
+                </select>
+                $$err_idCausaleModificaDocumento
+              </td>
+            </tr>       
+            <tr>
+              <th>
+                <label for="note">
+                  Note
+                </label>
+              </th>
+              <td colspan="2">
+                <textarea name="note" id="note" cols="90">$$note</textarea>
+                $$err_note
+              </td>
+            </tr>
+          </table>
+          <!-- @@blkDatiDocumentoAnagrafici -->
+          <table cellspacing="3"
+            summary="Questa tabella contiene i dati anagrafici del documento">
+            <tr>
+              <th>
+                <label for="Numero">
+                  Numero documento
+                </label>
+              </th>
+              <td>
+                <input name="numeroDocumento" type="text"
+                  class="textmediolungo" id="numeroDocumento"
+                  maxlength="20" value="$$numeroDocumento" />
+                $$err_numeroDocumento
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="Ente">
+                  Ente di rilascio
+                </label>
+              </th>
+              <td>
+                <input name="enteRilascioDocumento"
+                  id="enteRilascioDocumento" type="text" class="text"
+                  maxlength="100" value="$$enteRilascioDocumento" />
+                $$err_enteRilascioDocumento
+              </td>
+            </tr>
+          </table>
+          <!-- @@blkDatiDocumentoAnagrafici -->
+          <!-- @@blkDatiDocumentoZootecnici -->
+          <table cellspacing="3"
+            summary="Questa tabella contiene i dati zootecnici del documento">
+            <tr>
+              <th>
+                <label for="cuaa">
+                  Cuaa
+                </label>
+              </th>
+              <td>
+                <input name="cuaaSoccidario" id="cuaaSoccidario"
+                  type="text" class="textmediolungo" maxlength="16"
+                  value="$$cuaaSoccidario" />
+                $$err_cuaaSoccidario
+              </td>
+              <td class="piccola">
+                <div class="azioni">
+                  <a
+                    href="javascript: newWindowAT('../layout/popSoggettoAT.htm', 'anagrafeTributaria', 1000, 700, 'yes', document.forms[0].cuaaSoccidario.value);"
+                    title="AT - Attenzione: questo link si apre in una nuova finestra">AT</a>
+                </div>
+              </td>
+            </tr>
+          </table>
+          <!-- @@blkDatiDocumentoZootecnici -->
+          <!-- @@blkDatiDocumentoTerritoriali -->
+          <table cellspacing="3"
+            summary="Questa tabella indica i dati del proprietario del documento">
+            <caption>
+              Proprietari&nbsp;$$err_noProprietari
+            </caption>
+            <tr>
+              <th>
+                <label for="fiscale">
+                  Codice fiscale*
+                </label>
+              </th>
+              <td>
+                <input name="codiceFiscale" type="text"
+                  class="textmediolungo" id="codiceFiscale"
+                  maxlength="16" value="$$codiceFiscale" />
+                $$err_codiceFiscale
+              </td>
+              <td class="piccola">
+                <div class="azioni">
+                  <a
+                    href="javascript: newWindowAT('../layout/popSoggettoAT.htm', 'anagrafeTributaria', 1000, 700, 'yes', document.forms[0].codiceFiscale.value);"
+                    title="AT - Attenzione: questo link si apre in una nuova finestra">AT</a>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="Denominazione">
+                  Denominazione
+                </label>
+              </th>
+              <td colspan="2">
+                <input name="denominazione" id="denominazione"
+                  type="text" class="text" value="$$denominazione"
+                  maxlength="1000" />
+              </td>
+            </tr>
+            <tr>
+              <td colspan="3">
+                <div class="azioni">  <input type="submit" name="inserisci" value="inserisci"
+                  class="inputPulsante highlighted" /></div>
+              </td>
+            </tr>
+          </table>
+          <!-- @@blkTabellaProprietari -->
+          <table cellspacing="3"
+            summary="Questa tabella è costituita dall'elenco dei proprietari">
+            <!-- @@blkEtichettaProprietari -->
+            <tr>
+              <th class="radio" scope="col">
+                Sel.
+              </th>
+              <th class="center" scope="col">
+                Codice fiscale
+              </th>
+              <th class="center" scope="col">
+                Denominazione
+              </th>
+            </tr>
+            <!-- @@blkEtichettaProprietari -->
+            <!-- @@blkElencoProprietari -->
+            <tr>
+              <th class="radio" scope="row">
+                <input type="checkbox" id="countProprietario"
+                  name="countProprietario" value="$$countProprietario" />
+              </th>
+              <td>
+                <label for="a">
+                  <a
+                    href="javascript: newWindowAT('../layout/popSoggettoAT.htm', 'anagrafeTributaria', 1000, 700, 'yes', '$$cuaa');"
+                    title="AT - Attenzione: questo link si apre in una nuova finestra">$$cuaa</a>$$err_cuaa
+                </label>
+              </td>
+              <td>
+                $$denominazione
+              </td>
+            </tr>
+            <!-- @@blkElencoProprietari -->
+            <tr>
+              <td colspan="3">
+                 <div class="azioni"><input type="submit" name="elimina" value="elimina"
+                  class="inputPulsante" /></div>
+              </td>
+            </tr>
+          </table>
+          <!-- @@blkTabellaProprietari -->
+          <!-- @@blkSezioneParticelle -->
+          <div class="scroll">
+            <table cellspacing="3"
+              summary="Questa tabella contiene i dati relativi alle particelle da associare al documento">
+              <caption>
+                Particelle&nbsp;&nbsp;##err_noParticelle
+              </caption>
+
+              <!-- @@blkPrimoBlocco -->
+              <tr>
+                <th class="w15" >
+                  <label for="idAnno" class="checkbox">
+                    Piano di riferimento
+                  </label>
+                </th>
+                <td colspan="7">
+                  <select name="idDichiarazioneConsistenza"
+                    id="idDichiarazioneConsistenza">
+                    <!-- @@blkPianoRiferimento -->
+                    <option value="$$idDichiarazioneConsistenza"
+                      $$selected>
+                      $$descDichiarazioneConsistenza
+                    </option>
+                    <!-- @@blkPianoRiferimento -->
+                  </select>
+                  ##err_idDichiarazioneConsistenza
+                </td>
+              </tr>
+
+              <tr>
+                <th class="w15" >
+                  <label for="siglaProvinciaParticella">
+                    Provincia
+                  </label>
+                </th>
+                <td>
+                  <input name="siglaProvinciaParticella" type="text"
+                    class="due" id="siglaProvinciaParticella"
+                    value="$$siglaProvinciaParticella" maxlength="2" />
+                  <span class="alt"> <label for="comune">
+                      Comune
+                    </label> </span>
+                  <input name="comune" type="text" class="trenta"
+                    id="comune" value="$$comune" />
+                </td>
+                <td>
+                  <div class="azioni">
+                    <a
+                      href="javascript: popupComuneDocumenti('../view/sceltaComuneView.jsp','scegliComune','600','300','yes',document.form1.comune.value, document.form1.siglaProvinciaParticella.value, 'documentale', 'documentale');">cerca</a>
+                  </div>
+                </td>
+                <th class="center" scope="row">
+                  <label for="idTitoloPossesso">
+                    <acronym title="Titolo Possesso">T.P.</acronym>
+                  </label>
+                </th>
+                <td>
+                  <select name="idTitoloPossesso" id="idTitoloPossesso">
+                    <option></option>
+                    <!-- @@blkElencoTitoloPossesso -->
+                    <option value="$$code">
+                      $$description
+                    </option>
+                    <!-- @@blkElencoTitoloPossesso -->
+                  </select>
+                </td>
+                <th class="center" scope="row">
+                  <label for="casopart">
+                    <acronym title="Caso Particolare">C.P.</acronym>
+                  </label>
+                </th>
+                <td>
+                  <select name="idCasoParticolare"
+                    id="idCasoParticolare">
+                    <option></option>
+                    <!-- @@blkElencoTipoCasoParticolare -->
+                    <option value="$$code" $$selected>
+                      $$description
+                    </option>
+                    <!-- @@blkElencoTipoCasoParticolare -->
+                  </select>
+                </td>
+                <!-- @@blkCercaParticellaCessata -->
+                <td rowspan="2" class="piccola" >
+                  <div class="azioni">                    
+                    <a href="javascript:associaParticelle('../view/popCercaParticellaCessataView.jsp','cercaParticella','600','300','yes');"
+                      title="Attenzione: questo link si apre in una nuova finestra">cerca&nbsp;particelle</a>
+                   </div>
+                </td>
+                <!-- @@blkCercaParticellaCessata -->
+                <!-- @@blkAssociaParticelle -->
+                <td rowspan="$$numRigheAssocia" class="piccola" >
+                  <div class="azioni">                   
+                    <a href="javascript:associaParticelle('../view/popDocumentoParticelleView.jsp','associaParticella','600','300','yes');"
+                      title="Attenzione: questo link si apre in una nuova finestra">associa&nbsp;particelle</a>
+                  </div>
+                </td>
+                <!-- @@blkAssociaParticelle -->
+              </tr>
+              <tr>
+                <th class="w15" >
+                  <label for="idAnomalie" class="checkbox">
+                    Anomalie territoriali riscontrate
+                  </label>
+                </th>
+                <td colspan="6">
+                  <select name="idAnomalie" id="idAnomalie">
+                    <option></option>
+                    <!-- @@blkAnomalie -->
+                    <option value="$$idAnomalie" $$selected>
+                      $$descrizione
+                    </option>
+                    <!-- @@blkAnomalie -->
+                  </select>
+                  ##err_idAnomalie
+                </td>
+              </tr>
+              <!-- @@blkPrimoBlocco -->
+              <!-- @@blkContradditorio -->
+              <tr>
+                <th scope="row">
+                  <label for="inContradditorio" class="checkbox">
+                    Particelle inseribili in contraddittorio
+                  </label>
+                </th>
+                <td colspan="6">
+                  <input name="inContradditorio" id="inContradditorio" type="checkbox"
+                    value="S" $$checkedInContradditorio />                
+                </td>
+              </tr>
+              <!-- @@blkContradditorio -->
+              <!-- @@blkExtraSistema -->
+              <tr>
+                <th scope="row">
+                  <label for="chkExtraSistema" class="checkbox">
+                    Estrai particelle inseribili senza controlli standard
+                  </label>
+                </th>
+                <td>
+                  <input name="chkExtraSistema" id="chkExtraSistema" type="checkbox"
+                    value="S" checked="true" disabled="true" />
+                  <input name="hdChkExtraSistema" id="hdChkExtraSistema" type="hidden"
+                    value="S" />                          
+                </td>
+                <!-- @@blkAssociaParticelle -->
+                <td>
+                  <div class="azioni">
+                    <a
+                      href="javascript: associaParticelleExtraSistema('../view/popDocumentoParticelleView.jsp','associaParticella','600','300','yes');"
+                      title="Attenzione: questo link si apre in una nuova finestra">associa
+                      particelle</a>
+                  </div>
+                </td>
+                <!-- @@blkAssociaParticelle -->
+              </tr>
+              <!-- @@blkExtraSistema -->
+              <!-- @@blkValoreC -->
+              <tr>
+                <th scope="row">
+                  <label for="valoreC" class="checkbox">
+                    Estrai istanze extra-sistema inseribili per l'azienda
+                  </label>
+                </th>
+                <td>
+                  <input name="valoreC" id="valoreC" type="checkbox"
+                    value="S" checked="true" disabled="true"/>
+                  <input name="hdValoreC" id="hdValoreC" type="hidden"
+                    value="S" />                
+                </td>
+                <!-- @@blkAssociaParticelle -->
+                <td>
+                  <div class="azioni">
+                    <a
+                      href="javascript: associaParticelleValoreC('../view/popDocumentoParticelleView.jsp','associaParticella','600','300','yes');"
+                      title="Attenzione: questo link si apre in una nuova finestra">associa
+                      particelle</a>
+                  </div>
+                </td>
+                <!-- @@blkAssociaParticelle -->
+              </tr>
+              <!-- @@blkValoreC -->
+            </table>
+          </div>
+          <!-- @@blkSezioneParticelle -->
+          <!-- @@blkTabellaParticelle -->
+          <table cellspacing="3"
+            summary="Questa tabella contiene le particelle associate al documento">
+            <caption>
+              Particelle associate 
+            </caption>
+            <tr>
+              <th class="center" scope="col" rowspan="2">
+                Sel
+              </th>
+              <th class="center" scope="col" rowspan="2">
+                Comune
+                <acronym title="Provincia">(Prov.)</acronym>
+              </th>
+              <th class="center" scope="col" rowspan="2">
+                <acronym title="Sezione">Sz.</acronym>
+              </th>
+              <th class="center" scope="col" rowspan="2">
+                <acronym title="Foglio">Fgl.</acronym>
+              </th>
+              <th class="center" scope="col" rowspan="2">
+                <acronym title="Particella">Part.</acronym>
+              </th>
+              <th class="center" scope="col" rowspan="2">
+                <acronym title="Subalterno">Sub.</acronym>
+              </th>
+              <th class="center" scope="col" rowspan="2">
+                <acronym title="Superficie Catastale">Sup.Cat.(ha)</acronym>
+              </th>
+              <th class="center" scope="col" colspan="2">
+                Conduzione
+              </th>
+              <th class="center" scope="col" rowspan="2">
+                <acronym title="Caso Particolare">C.P.</acronym>
+              </th>
+              <th class="center" scope="col" rowspan="2">
+                <acronym title="Note">Note</acronym>
+              </th>
+              <!-- @@blkTabPrioritaLaborazione -->
+              <th class="center" scope="col" rowspan="2">
+                <acronym title="Priorità">Priorit&agrave;<br>di lavorazione</acronym>
+              </th>
+              <!-- @@blkTabPrioritaLaborazione -->
+            </tr>
+            <tr>
+              <th class="center" scope="col"></th>
+              <th class="center" scope="col">
+                <acronym title="Percentuale Possesso">%</acronym>
+              </th>
+            </tr>
+            <!-- @@blkTabellaParticelle -->
+            <!-- @@blkElencoParticelle -->
+            <tr>
+              <td>
+                <input name="idConduzioneParticella"
+                  id="idConduzioneParticella" type="checkbox"
+                  value="$$idConduzioneParticella" />
+              </td>
+              <td>
+                $$descComuneParticella ($$siglaProvinciaParticella)
+              </td>
+              <td class="center">
+                $$sezione
+              </td>
+              <td class="center" >
+                $$foglio
+              </td>
+              <td class="center" >
+                $$particella
+              </td>
+              <td class="center" >
+                $$subalterno
+              </td>
+              <td class="numeridx">
+                $$supCatastale
+              </td>
+              <td class="center">
+                $$idTitoloPossesso
+              </td>
+              <td class="center" >
+                $$percentualePossesso
+              </td>
+              <td class="center">
+                $$idCasoParticolare
+              </td>
+              <td class="center">
+                <textarea name="noteDocConduzione" id="noteDocConduzione" cols="40">$$noteDocConduzione</textarea>
+                $$err_noteDocConduzione
+              </td>
+              <!-- @@blkElencPrioritaLavorazione -->
+              <td class="center" scope="row">
+                <input type="checkbox" id="lavorazionePrioritaria"
+                  name="lavorazionePrioritaria" value="$$lavorazionePrioritaria" $$checkedLavorazionePrioritaria />
+              </td>
+              <!-- @@blkElencPrioritaLavorazione -->
+              
+            </tr>
+            <!-- @@blkElencoParticelle -->
+
+
+            <!-- @@blkCessTabellaParticelle -->
+            <table cellspacing="3"
+              summary="Questa tabella contiene le particelle scelte">
+              <caption>
+                Particella scelta&nbsp;&nbsp;##err_noParticelleAssociate
+              </caption>
+              <tr>
+                <th class="center" scope="col" rowspan="2">
+                  Comune
+                  <acronym title="Provincia">(Prov.)</acronym>
+                </th>
+                <th class="center" scope="col" rowspan="2">
+                  <acronym title="Sezione">Sz.</acronym>
+                </th>
+                <th class="center" scope="col" rowspan="2">
+                  <acronym title="Foglio">Fgl.</acronym>
+                </th>
+                <th class="center" scope="col" rowspan="2">
+                  <acronym title="Particella">Part.</acronym>
+                </th>
+                <th class="center" scope="col" rowspan="2">
+                  <acronym title="Subalterno">Sub.</acronym>
+                </th>
+                <th class="center" scope="col" rowspan="2">
+                  <acronym title="Superficie Catastale">Sup.Cat.(ha)</acronym>
+                </th>
+                <th class="center" scope="col" colspan="2">
+                  Conduzione
+                </th>
+                <th class="center" scope="col" rowspan="2">
+                  <acronym title="Caso Particolare">C.P.</acronym>
+                </th>
+                <th class="center" scope="col" rowspan="2">
+                  <acronym title="Note">Note</acronym>
+                </th>
+                <th class="center" scope="col" rowspan="2">&nbsp;
+                  
+                </th>
+              </tr>
+              <tr>
+                <th class="center" scope="col"></th>
+                <th class="center" scope="col">
+                  <acronym title="Percentuale Possesso">%</acronym>
+                </th>
+              </tr>
+              <!-- @@blkCessTabellaParticelle -->
+              <!-- @@blkCessElencoParticelle -->
+              <tr>
+                <td>
+                  $$descComuneParticella ($$siglaProvinciaParticella)
+                </td>
+                <td class="center" >
+                  $$sezione
+                </td>
+                <td class="center" >
+                  $$foglio
+                </td>
+                <td class="center" >
+                  $$particella
+                </td>
+                <td class="center" >
+                  $$subalterno
+                </td>
+                <td class="numeridx">
+                  $$supCatastale
+                </td>
+                <td class="center" >
+                  $$idTitoloPossesso
+                </td>
+                <td class="center" >
+                  $$percentualePossesso
+                </td>
+                <td class="center" >
+                  $$idCasoParticolare
+                </td>
+                <td class="center">
+                  <textarea name="cessNoteDocConduzione" id="cessNoteDocConduzione" cols="40">$$cessNoteDocConduzione</textarea>
+                  $$err_cessNoteDocConduzione
+                </td>
+                <td>
+                  <div class="azioni">
+                    <a
+                      href="javascript: associaParticelleEvento('../view/popParticelleEventoView.jsp','associaParticella','600','300','yes',$$idParticella);"
+                      title="Attenzione: questo link si apre in una nuova finestra">associa
+                      particelle</a>
+                  </div>
+                </td>
+              </tr>
+              <!-- @@blkCessElencoParticelle -->
+              <!-- @@blkCessTabellaParticelle -->
+            </table>
+            <!-- @@blkCessTabellaParticelle -->
+
+
+           
+
+
+
+            <!-- @@blkTabellaParticelle2 -->
+            <tr>
+              <td colspan="$$numRowTabellaParticelle2">
+                 <div class="azioni"><input type="submit" name="eliminaParticella"
+                  value="elimina particelle" class="inputPulsante" /></div>
+              </td>
+            </tr>
+            <!-- @@blkTabellaParticelle2 -->
+          </table>
+          <!-- @@blkLegende -->
+          <p class="legenda">
+            <strong>Conduzione</strong>:
+            <!-- @@blkLegendaConduzione -->
+            $$idTitoloPossesso $$descTitoloPossesso
+            <!-- @@blkLegendaConduzione -->
+          </p>
+          <p class="legenda">
+            <strong>Casi particolari</strong>:
+            <!-- @@blkLegendaCasiParticolari -->
+            $$idCasoParticolare $$descCasoParticolare
+            <!-- @@blkLegendaCasiParticolari -->
+          </p>
+          <!-- @@blkLegende -->
+          <!-- @@blkDatiDocumentoTerritoriali -->
+
+          <!-- @@blkDatiDocumentoContoCorrente -->
+          <!-- @@blkSiContiCorrenti -->
+          <table cellspacing="3"
+            summary="Questa tabella contiene i dati del rapporto">
+            <tr>
+              <th rowspan="2" class="radio" scope="col"></th>
+              <th rowspan="2" class="center" scope="col">
+                Banca
+              </th>
+              <th rowspan="2" class="center" scope="col">
+                Filiale
+              </th>
+              <th colspan="6" class="center" scope="col">
+                IBAN
+              </th>
+              <th rowspan="2" class="center" scope="col">
+                Dal
+              </th>
+              <th rowspan="2" class="center" scope="col">
+                Al
+              </th>
+              <th rowspan="2" class="radio" scope="col">
+                Validazione
+              </th>
+            </tr>
+            <tr>
+              <th class="center" scope="col">
+                Codice Paese
+              </th>
+              <th class="center" scope="col">
+                Cifra di controllo
+              </th>
+              <th class="center" scope="col">
+                CIN
+              </th>
+              <th class="center" scope="col">
+                ABI
+              </th>
+              <th class="center" scope="col">
+                CAB
+              </th>
+              <th class="center" scope="col">
+                Numero Conto
+              </th>
+            </tr>
+            <!-- @@blkElencoContoCorrente -->
+            <tr>
+              <th class="radio" scope="row">
+                <input type="radio" class="radio" id="idContoCorrente"
+                  name="idContoCorrente" value="$$idContoCorrente"
+                  $$checked />
+                <label for="idContoCorrente" class="alt">
+                  ContoCorrente
+                </label>
+              </th>
+              <td>
+                $$banca
+              </td>
+              <td>
+                $$filiale
+              </td>
+              <td>
+                $$codpaese
+              </td>
+              <td>
+                $$cctrl
+              </td>
+              <td>
+                $$cin
+              </td>
+              <td>
+                $$abi
+              </td>
+              <td>
+                $$cab
+              </td>
+              <td>
+                $$numeroconto
+              </td>
+              <td>
+                $$dataInizioValidita
+              </td>
+              <td>
+                $$dataEstinzione
+              </td>
+              <td align="center">
+                $$validazioneCC
+              </td>
+            </tr>
+            <!-- @@blkElencoContoCorrente -->
+          </table>
+          <!-- @@blkSiContiCorrenti -->
+
+          <!-- @@blkNoContiCorrenti -->
+          <p class="errore">
+            Non esistono conti correnti relativi all'azienda agricola
+            selezionata
+          </p>
+          <!-- @@blkNoContiCorrenti -->
+
+          <!-- @@blkDatiDocumentoContoCorrente -->
+
+
+
+
+
+
+
+
+          <div class="pulsanti">
+            <div class="sin">
+              <input type="button" id="conferma" value="conferma" name="conferma" class="inputPulsante highlighted" onClick="javascript:setBlocked(document.forms[0], this, 'conferma');" />
+                $$err_particelleP
+            </div>
+            <div class="des">
+              <input type="submit" name="annulla" value="annulla"
+                class="inputPulsante annulla" />
+            </div>
+          </div>
+        </div>
+      </div>
+  </form>
+  <form name="stampaProtocollo" method="post"
+    action="../servlet/StampaServletProtocollo">
+    <input type="hidden" name="idDocumento" value="$$idDocumento" />
+  </form>
+  <hr />
+  $$footer

@@ -1,0 +1,514 @@
+$$head
+<script type="text/javascript" language="javascript1.2"	src="../js/checktext.js"></script>
+<script type="text/javascript" src="../js/messaggistica.js"></script>
+<script type="text/javascript" language="javascript1.2">
+  function ricercaPerAnno()
+  {
+    document.form1.action='unitaArboreeDettaglioPratiche.htm';
+    document.form1.submit();
+    return false;
+  }
+  function ordinaAnno(asc)
+  {
+    document.form1.action='unitaArboreeDettaglioPratiche.htm';
+    document.form1.ordine.value="anno";
+    document.form1.ascendente.value=asc;
+    document.form1.submit();
+    return false;
+  }
+</script>
+
+</head>
+<body id="homeIndice" onLoad="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+	<form id="form1" name="form1" method="post" action="" />
+    <input type="hidden" name="ordine" value="" />
+    <input type="hidden" name="ascendente" value="" />
+		<input type="hidden" name="from"
+			value="../layout/unitaArboreeDettaglioPratiche.htm" />
+		<input type="hidden" name="idAzienda" value="" />
+		<input type="hidden" name="idDichiarazioneConsistenza" value="" />
+    <input type="hidden" name="idUnita" value="$$idUnita" />
+		<input type="hidden" name="cuaaDiscendente" value="$$ordineCuaaDesc" />
+		<input type="hidden" name="validazioniDiscendente"
+			value="$$ordineValidazioniDesc" />
+    <input type="hidden" name="regimeDettaglioPraticheUV" value="regimeDettaglioPraticheUV" />
+    <input type="hidden" name="idParticella" value="$$idParticella" id="idParticella" />
+		<div id="pagina" class="colonnaUnica">
+			<!-- INTESTAZIONE -->
+			<div id="intestazione##pathProvincia">
+				<!--intestazione-->
+				$$header
+				<!-- menu di navigazione-->
+				<div id="titoloEmenu">
+					<h2>
+						<span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+					</h2>
+					<div id="menuDiNavigazione" title="Menu di navigazione">
+						<ul class="menuTendina" id="menu-2">
+							<li>
+								<a href="index.htm" title="Torna alla pagina principale">home</a>
+							</li>
+							<li class="attivo">
+								gestione anagrafe aziende
+							</li>
+							<li>
+								<a href="#" title="contatti">contatti</a>
+							</li>
+							<li>
+								<a href="#" title="help">help</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<hr />
+			<div style="clear: left">
+			</div>
+			<!-- CORPO -->
+			<div id="corpo">
+				<hr />
+				<div id="Utente">
+					<div id="datiUtente">
+						<strong>utente:</strong>$$utente&nbsp;&nbsp;
+						<strong>ente:</strong>$$ente
+					</div>
+					<div id="chiudisessione">
+						<a href="javascript: logout();">chiudi sessione</a>
+
+					</div>
+				</div>
+				<!--PRIMA COLONNA -->
+        <h3>
+          Gestione Anagrafe
+          Aziende&nbsp;&gt;&nbsp;Unità Vitate&nbsp;&gt;&nbsp;Dettaglio
+          <span class="helpFuori"> <a href="#"> <span
+              class="alt">[help]</span> </a> </span>
+        </h3>
+        <hr />
+        <div class="box">
+          <div class="menuSX1">
+            <ul>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <li>
+                <a href="../layout/elencoAziendeRapLegale.htm">Elenco
+                  Aziende</a>
+              </li>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <!-- @@blkRicercaAzienda-->
+              <li>
+                <a href="../layout/ricerca.htm">Ricerche</a>
+              </li>
+              <!-- @@blkRicercaAzienda-->
+              <!-- @@blkNuova -->
+              <li>
+                <a href="../layout/nuovaAziendaAnagrafica.htm">Nuova
+                  Azienda</a>
+              </li>
+              <!-- @@blkNuova -->
+              <!-- @@blkNuovaIscrizione -->
+              <li>
+                <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+              </li>
+              <!-- @@blkNuovaIscrizione -->
+            </ul>
+          </div>
+          <div class="menuSX">
+            <ul>
+              <li>
+                <a href="../layout/anagrafica.htm">Anagrafica</a>
+              </li>
+              <!-- @@blkAziendeCollegate -->
+              <li>
+                <a href="../layout/aziendeCollegate.htm">$$aziendeCollegateLabel</a>
+              </li>
+              <!-- @@blkAziendeCollegate -->
+              <!-- @@blkSincronizzaFascicolo -->
+               <li>
+               	<a href="../layout/sincronizzaFascicolo.htm">Sincronizza fascicolo</a>
+               </li>
+              <!-- @@blkSincronizzaFascicolo -->
+              <!-- @@blkSoggettiCollegati -->
+              <li>
+                <a href="../layout/contitolari.htm">Soggetti
+                  collegati</a>
+              </li>
+              <!-- @@blkSoggettiCollegati -->
+              <!-- @@blkContiCorrenti -->
+              <li>
+                <a href="../layout/conti_correnti.htm">Conti
+                  Correnti</a>
+              </li>
+              <!-- @@blkContiCorrenti -->
+              <!-- @@blkUnitaProduttive -->
+              <li>
+                <a href="../layout/sedi.htm">Unit&agrave; produttive</a>
+              </li>
+              <!-- @@blkUnitaProduttive -->
+              <!-- @@blkTerreni -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniParticellareElenco.htm">Terreni</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		            <a href="../layout/riepiloghi.htm">Terreni</a>
+		            <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkTerreni -->
+              <!-- @@blkUnitaVitate -->
+              <li>
+                <!-- @@blkLinkElenco -->
+                <a href="../layout/terreniUnitaArboreeElenco.htm" class="on">Unit&agrave; Vitate</a>
+                <!-- @@blkLinkElenco -->
+                <!-- @@blkLinkRiepiloghi -->
+                <a href="../layout/riepiloghiUnitaArboree.htm" class="on">Unit&agrave; Vitate</a>
+                <!-- @@blkLinkRiepiloghi -->
+                <ul>                  
+                  <li>
+                    <a href="#" class="etichetta">dettaglio</a>
+                  </li>
+                </ul>                  
+              </li>
+              <!-- @@blkUnitaVitate -->
+              <!-- @@blkFabbricati -->
+              <li>
+                <a href="../layout/fabbricati.htm">Fabbricati e
+                  Strutture</a>
+              </li>
+              <!-- @@blkFabbricati -->
+              <!-- @@blkAllevamenti -->
+              <li>
+                <a href="../layout/allevamenti.htm">Allevamenti</a>
+              </li>
+              <!-- @@blkAllevamenti -->
+              <!-- @@blkManodopera -->
+              <li>
+                <a href="../layout/manodopera.htm">Manodopera</a>
+              </li>
+              <!-- @@blkManodopera -->
+              <!-- @@blkMotoriAgricoli -->
+              <li>
+                <a href="../layout/motori_agricoli_incarico.htm">Macchine agricole</a>
+              </li>
+              <!-- @@blkMotoriAgricoli -->
+              <!-- @@blkDiritti -->
+              <li>
+                <a href="../layout/diritti.htm">Diritti di
+                  produzione</a>
+              </li>
+              <!-- @@blkDiritti -->
+              <!-- @@blkAttestazioni -->
+              <li>
+                <a href="../layout/attestazioniDettaglio.htm">Dichiarazioni</a>
+              </li>
+              <!-- @@blkAttestazioni -->
+              <!-- @@blkDichiarazioniConsistenza -->
+              <li>
+                <a href="../layout/dichiarazioneConsistenza.htm">Validazioni</a>
+              </li>
+              <!-- @@blkDichiarazioniConsistenza -->
+              <!-- @@blkDocumenti -->
+              <li>
+                <a href="../layout/documentiElenco.htm">Documenti</a>
+              </li>
+              <!-- @@blkDocumenti -->
+              <!-- @@blkFascicoloDematerializzato -->
+              <li>
+                <a href="../layout/fascicoloDematerializzato.htm">Fascicolo<br>elettronico</a>
+              </li>
+              <!-- @@blkFascicoloDematerializzato -->
+              <!-- @@blkGestioneNotifiche -->
+              <li>
+                <a href="../layout/notifiche.htm">Notifiche</a>
+              </li>
+              <!-- @@blkGestioneNotifiche -->
+              <!-- @@blkComunicazione10R -->
+              <li>
+                <a href="../layout/comunicazione10R_dettaglio.htm">Comunicazione
+                  10/R</a>
+              </li>
+              <!-- @@blkComunicazione10R -->
+              <!-- @@blkPratiche -->
+              <li>
+                <a href="../layout/pratiche.htm">Pratiche</a>
+              </li>
+              <!-- @@blkPratiche -->
+              <!-- @@blkStampaFascicolo -->
+              <li>
+                <a href="../layout/scelta_stampa.htm">Stampe</a>
+              </li>
+              <!-- @@blkStampaFascicolo -->
+			  <li><a href="../layout/strumenti.htm">Strumenti</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr />
+        <!-- SECONDA COLONNA -->
+				<div id="contenuto">
+
+					<div id="intesta">
+            <p class="$$aziendaIntestazione" title="$$tooltipIntestazione" >
+              $$CUAAIntestazione  $$denominazioneIntestazione
+            </p>
+          </div>
+          <!-- @@blkDatiDettaglio -->
+          <table cellspacing="3"
+            summary="Tabella contenente i dati logici della particella">
+            <tr>
+              <th class="center" scope="col"></th>
+              <th class="center" scope="col">
+                Comune
+              </th>
+              <th class="center" scope="col">
+                <acronym title="Sezione">Sz.</acronym>
+              </th>
+              <th class="center" scope="col">
+                <acronym title="Foglio">Fgl.</acronym>
+              </th>
+              <th class="center" scope="col">
+                <acronym title="Particella">Part.</acronym>
+              </th>
+              <th class="center" scope="col">
+                <acronym title="Subalterno">Sub.</acronym>
+              </th>
+              <th class="center" scope="col">
+                <acronym title="Superficie Catastale">Sup.
+                  cat.</acronym>
+              </th>
+              <th class="center" scope="col">
+                <acronym title="Superficie Grafica">Sup. grafica</acronym>
+              </th>
+              <th class="center" scope="col">
+                <acronym title="Superficie">Sup. elegg.</acronym>
+              </th>
+              <th scope="col" class="center">&nbsp;
+                
+              </th>
+            </tr>
+            <tr>
+              <td class="radio">
+                <a
+                  href="javascript: newWindowDoForm('../layout/abacoGis.htm?idStoricoParticella=$$idStoricoParticella', 'abaco', '1000','700','yes', 'GIS');"
+                  title="GIS - Attenzione: questo link si apre in una nuova finestra"
+                  class="gis"></a>
+              </td>
+              <td>
+                $$descComuneParticella ($$siglaProvinciaParticella)
+              </td>
+              <td>
+                $$sezione
+              </td>
+              <td class="numeridx">
+                $$foglio
+              </td>
+              <td class="numeridx">
+                $$particella
+              </td>
+              <td>
+                $$subalterno
+              </td>
+              <td class="numeridx">
+                $$supCatastale
+              </td>
+              <td class="numeridx">
+                $$superficieGrafica
+              </td>
+              <td class="numeridx">
+                $$supEleggibile
+              </td>
+              <td class="piccola">
+                <div class="azioni">
+                  <a
+                    href="javascript:newWindowDoForm('../layout/popupVariazioniParticella.htm', 'storico', '800', '400', 'yes');"
+                    title="Visualizza storico - Attenzione: questo link si apre in una nuova finestra">visualizza
+                    storico</a>
+                </div>
+              </td>
+            </tr>
+          </table>
+          
+          <!-- @@blkDatiDettaglio -->
+          
+					<div id="indice">
+            <span class="voce"> 
+              <a href="javascript:goTo('../layout/unitaArboreeDettaglio.htm', document.forms[0]);">Unità Vitata</a>
+            </span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+            <span class="evidenza">pratiche</span>
+					</div>
+					<!--@@blkCombo-->
+					<table cellspacing="3"
+						summary="Questa tabella è costituita da righe">
+						<tr>
+							<th scope="row">
+								<label for="anno_pratica">
+									Anno Pratica
+								</label>
+							</th>
+							<td>
+								<select name="annoPratica" id="anno_pratica">
+									<option value="">
+										- selezionare -
+									</option>
+									<!--@@blkAnno-->
+									<option value="$$value" $$selected>
+										$$descrizione
+									</option>
+									<!--@@blkAnno-->
+								</select>
+							</td>
+						</tr>
+					  <tr>
+              <th scope="row">
+                <label for="tipologiaPratica">
+                  Tipologia Pratica
+                </label>
+              </th>
+              <td>
+                <select name="tipologiaPratica" id="tipologiaPratica">
+                  <option value="">
+                    - selezionare -
+                  </option>
+                  <!--@@blkTipologiaPratica-->
+                  <option value="$$value" $$selected>
+                    $$descrizione
+                  </option>
+                  <!--@@blkTipologiaPratica-->
+                </select>
+              </td>
+            </tr>
+          </table>
+          <div class="pulsanti"><div class="sin"> 
+            <input name="ricerca" type="submit"
+               onclick="return ricercaPerAnno()" value="ricerca"
+               class="inputPulsante" /></div>
+            ##err_anno
+          </div>
+					<!--@@blkCombo-->
+					<!--@@blkAgriErrori-->
+					<p class="errore">$$erroriAgriserv</p>
+					<!--@@blkAgriErrori-->
+					<!--@@blkElenco-->
+					<div class="scroll">
+						<table cellspacing="3"
+							summary="Questa tabella è costituita da righe">
+							<caption>
+								$$numPratiche pratiche trovate
+							</caption>
+							<tr>
+								<th colspan="5" scope="col" class="center">
+									Pratica
+								</th>
+								<th rowspan="2" scope="col" class="center">
+									Sup. Cat.
+								</th>
+								<th rowspan="2" scope="col" class="center">
+									Conduzione
+								</th>
+								<th colspan="3" scope="col" class="center">
+									Uso del suolo
+								</th>
+							</tr>
+							<tr>
+								<th scope="col" class="center">
+									Tipologia
+								</th>
+								<th scope="col" class="center">
+									Numero
+								</th>
+								<th scope="col" class="center">
+									<span class="TitOrd">Anno</span>
+									<div class="ordina">
+										<a
+											href="javascript: ordinaAnno('$$ordineAnnoAsc');"
+											class="$$classOrdineAnno" title="$$descOrdineAnno"> <span
+											class="nascosto">$$descOrdineAnno</span> </a>
+									</div>
+								</th>
+								<th scope="col" class="center">
+									Stato
+								</th>
+								<th scope="col" class="center">
+									dal
+								</th>
+								<th scope="col" class="center">
+									Utilizzo
+								</th>
+								<th scope="col" class="center">
+									<abbr title="Superfice richiesta a premio" lang="it">Sup.</abbr>
+								</th>
+								<th scope="col" class="center">&nbsp;
+								
+								</th>
+							</tr>
+							<!--@@blkRiga-->
+							<tr>
+								<td rowspan="$$rowSpan">
+									$$tipologia
+								</td>
+								<td rowspan="$$rowSpan">
+									$$numeroPratica
+								</td>
+								<td rowspan="$$rowSpan">
+									$$annoPratica
+								</td>
+								<td rowspan="$$rowSpan">
+									$$statoPratica
+								</td>
+								<td rowspan="$$rowSpan">
+									$$dataDal
+								</td>
+								<td rowspan="$$rowSpan" class="numeridx">
+									$$supCatastale
+								</td>
+								<td rowspan="$$rowSpan" class="numeridx">
+									$$descTitoloPossesso
+								</td>
+								<td>
+									$$descUtilizzo
+								</td>
+								<td class="numeridx">
+									$$supUtilizzo
+								</td>
+								<td>
+									$$causale
+								</td>
+							</tr>
+							<!--@@blkUtilizzoRiga-->
+							<tr>
+								<td>
+									$$descUtilizzo
+								</td>
+								<td class="numeridx">
+									$$supUtilizzo
+								</td>
+								<td>
+									$$causale
+								</td>
+							</tr>
+							<!--@@blkUtilizzoRiga-->
+							<!--@@blkRiga-->
+						</table>
+					</div>
+
+					<p id="nota">
+						Tutte le superfici sono espresse in ettari (ha).
+					</p>
+
+					<p>
+						<strong>Tipo Conduzione:</strong> $$legendaConduzione
+					</p>
+					<!--@@blkElenco-->
+           <!--@@blkNoPraticheFiltri-->
+          <p class="errore">
+            Non esistono pratiche per i filtri impostati
+          </p>
+          <!--@@blkNoPraticheFiltri-->
+          <!--@@blkNoPratiche-->
+          <p class="errore">
+            Non esistono pratiche per la particella richiesta
+          </p>
+          <!--@@blkNoPratiche-->
+
+				</div>
+			</div>
+			$$footer

@@ -1,0 +1,694 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project basedir="." name="SMRGAA" xmlns:ivy="antlib:fr.jayasoft.ivy.ant" default="distribution">
+
+	<!-- INIZIO SEZIONE RELATIVA ALLA CREAZIONE DI SMRGAA.EAR RELATIVO ALL'APPLICAZIONE ANAGRAFE AGRICOLA UNICA -->
+
+	<!-- La definizione di ${lib} è necessaria qui perché il tipo name/location non è definibile tramite file di propeties -->
+	<property name="lib" location="lib" />
+	<property name="buildfiles" location="buildfiles" />
+
+	<!-- Target che crea i jar contenenti le classi necessarie al funzionamento di smrgaa.ear -->
+	<target name="libs" depends="compile-all" description="Builds library JARs containing classes from etc's, exception's, dto's and util's packages">
+		<jar jarfile="${dist}/${target}/${component}_etc.jar" basedir="${buildclasses}" includes="it/csi/solmr/etc/**,it/csi/solmr/interfaceCSI/**" excludes="it/csi/solmr/etc/anag/pdAnag.xml,it/csi/solmr/etc/anag/services/pdAnagService.xml">
+			<manifest>
+				<attribute name="Built-By" value="${user.name}" />
+				<attribute name="Built-Date" value="${DSTAMP}" />				
+			</manifest>
+		</jar>
+		<jar jarfile="${dist}/${target}/${component}_exc.jar" basedir="${buildclasses}" includes="it/csi/solmr/exception/**">
+			<manifest>
+				<attribute name="Built-By" value="${user.name}" />
+				<attribute name="Built-Date" value="${DSTAMP}" />				
+			</manifest>
+		</jar>
+		<jar jarfile="${dist}/${target}/${component}_dto.jar" basedir="${buildclasses}" includes="it/csi/solmr/dto/**">
+			<manifest>
+				<attribute name="Built-By" value="${user.name}" />
+				<attribute name="Built-Date" value="${DSTAMP}" />			
+			</manifest>
+		</jar>
+		<jar jarfile="${dist}/${target}/${component}_presentation.jar" basedir="${buildclasses}" includes="it/csi/solmr/presentation/**">
+			<manifest>
+				<attribute name="Built-By" value="${user.name}" />
+				<attribute name="Built-Date" value="${DSTAMP}" />				
+			</manifest>
+		</jar>
+		<jar jarfile="${dist}/${target}/${component}_util.jar" basedir="${buildclasses}" includes="it/csi/solmr/util/**, it/csi/solmr/integration/*, it/csi/solmr/client/**, it/csi/solmr/servlet/**, it/csi/solmr/ws/** ">
+			<manifest>
+				<attribute name="Built-By" value="${user.name}" />
+				<attribute name="Built-Date" value="${DSTAMP}" />				
+			</manifest>
+		</jar>
+		<jar jarfile="${dist}/${target}/${component}.jar" basedir="${buildclasses}" includes="it/csi/smranag/smrgaa/**,com/lucana/**">
+			<manifest>
+				<attribute name="Built-By" value="${user.name}" />
+				<attribute name="Built-Date" value="${DSTAMP}" />				
+			</manifest>
+		</jar>
+	</target>
+
+	<!-- Carico le configurazioni di ivy -->
+	<!-- Inizio operazione -->
+	<target name="resolve-dependencies" description="carica le librerie dal repository remoto">
+		<!--
+			<ivy:configure file="${basedir}/buildfiles/ivyconf.xml" />
+			<ivy:resolve file="${basedir}/buildfiles/ivy.xml" />
+		-->
+	</target>
+
+	<target name="load-dependencies" depends="resolve-dependencies" description="Risolve le dipendenze esterne.">
+		<!--
+			<ivy:retrieve pattern="${basedir}/lib/[artifact].[type]" />
+		-->
+	</target>
+	<!-- Fine operazione -->
+
+	<!-- Funzione che elimina la precedente directory lib e ne crea una nuova caricandola con le librerie presenti su
+         repart.csi.it e quelle presenti nella directory locale delle librerie non ancora esposte -->
+	<target name="clean-create-lib" depends="init" description="elimina, ricrea e popola la cartella lib">
+		<!--
+			<delete dir="${lib}" />
+			<delete dir="${buildcache}" />
+			<mkdir dir="${lib}" />
+			<antcall target="load-dependencies" />
+		-->
+	</target>
+
+
+	<!-- Target che lancia la creazione di smrgaa_solmrAnag.jar -->
+	<target name="anag" depends="libs" description="Builds anag's EJB-JAR">
+		<delete dir="${buildclasses}/META-INF" />
+		<copy todir="${buildclasses}/META-INF">
+			<fileset dir="${conf}/ejb" />
+		</copy>
+
+		<!-- modifica il path verso il file di configurazioe per l'accesso ai webservice SIAN -->
+		<loadproperties srcFile="${buildfiles}/${component}.properties" />
+		<loadproperties srcFile="${buildfiles}/${target}.properties" />
+		<echo message="prodotto: ${product}" />
+		<echo message="componente: ${component}" />
+		<echo message="base percorso costanti: ${sianConstantsRootWeb}" />
+		<property name="sianAnagConstants" value="${sianConstantsRootWeb}/${sian.constants}" />
+		<echo message="percorso costanti: ${sianAnagConstants}" />
+
+		<copy todir="${buildclasses}">
+			<fileset dir="${conf}/" includes="constantsReportDin.xml,pdReportDin.xml,stylereport.properties,config.properties,papuaserv_ws_messaggistica.wsdl,gaaserv_ws.wsdl,ServiceMarcaTemporaleservImpl.wsdl,LSICService.wsdl,fascicoloAll.wsdl" />
+		</copy>
+		
+		<replace file="${buildclasses}/config.properties" token="@@sianConstants@@" value="${sianAnagConstants}" />
+		<replace file="${buildclasses}/config.properties" token="@@messaggistica_endpoint_url@@" value="${messaggistica_endpoint_url}" />
+		<replace file="${buildclasses}/config.properties" token="@@agriwell_service_endpoint_url@@" value="${agriwell_service_endpoint_url}" />
+		<replace file="${buildclasses}/config.properties" token="@@ambienteDeploy@@" value="${ambienteDeploy}" />
+		<replace file="${buildclasses}/config.properties" token="@@templatePdf@@" value="${templatePdf}" />
+		<replace file="${buildclasses}/config.properties" token="@@marcaTemporaleService_endpoint_url@@" value="${marcaTemporaleService_endpoint_url}" />
+		<replace file="${buildclasses}/config.properties" token="@@sianFascicoloAll_endpoint_url@@" value="${sianFascicoloAll_endpoint_url}" />
+		
+		
+
+		<!-- PD WS REPORTDIN -->				
+		  <replace file="${buildclasses}/pdReportDin.xml" token="@REPORTDIN_SERVICE_ENDPOINT_URL@" value="${reportdin_service_endpoint_url}"/>		
+	    <!-- FINE PD WS SMRCOMM AGRIWELL -->
+
+		<jar jarfile="${dist}/${target}/${component}_solmrAnagEJB.jar" basedir="${buildclasses}" includes="it/csi/solmr/business/anag/**,it/csi/smranag/smrgaa/business//**,it/csi/solmr/integration/anag/**,constantsReportDin.xml,pdReportDin.xml,stylereport.properties,config.properties,papuaserv_ws_messaggistica.wsdl,gaaserv_ws.wsdl" excludes="it/csi/solmr/business/anag/services/**">
+			<metainf dir="${buildclasses}/META-INF">
+				<include name="**/*jboss-ejb3.xml" />
+			</metainf>
+			<manifest>
+				<attribute name="Built-By" value="${user.name}" />
+				<attribute name="Built-Date" value="${DSTAMP}" />
+			</manifest>
+		</jar>
+		<delete>
+			<fileset dir="${buildclasses}/META-INF" includes="jboss-ejb3.xml" />
+		</delete>
+
+
+		<copy todir="${buildclasses}/smrgaaTemp" overwrite="true">
+			<fileset dir="src/web/smrgaa" />
+		</copy>
+		<echo message="portaleRupar = ${portaleRupar}" />
+		<echo message="portaleSispie = ${portaleSispie}" />
+		<echo message="portaleRas = ${portaleRas}" />
+		<replaceregexp match="(layout/indexRuparssl.htm)" replace="${portaleRupar}\1" flags="s" byline="true">
+			<fileset dir="${buildclasses}/smrgaaTemp" includes="index.html" />
+		</replaceregexp>
+		<replaceregexp match="(layout/indexSispiessl.htm)" replace="${portaleSispie}\1" flags="s" byline="true">
+			<fileset dir="${buildclasses}/smrgaaTemp" includes="index.html" />
+		</replaceregexp>
+		<replaceregexp match="(layout/indexRASssl.htm)" replace="${portaleRas}\1" flags="s" byline="true">
+			<fileset dir="${buildclasses}/smrgaaTemp" includes="index.html" />
+		</replaceregexp>
+	</target>
+
+
+	<!-- Target per la creazione del War relativo al contesto SMRGAAWEB senza le JSP già precompilate -->
+	<target name="warAnagNotPrecompiled" depends="compile-jsp-weblogic" unless="false" description="Builds SOLMR - Anag's WAR">
+		<war destfile="${dist}/${target}/${component}.war" webxml="${buildclasses}/WEB-INF/web.xml">
+			<fileset dir="${buildclasses}/smrgaaTemp">
+				<include name="*" />
+				<include name="layout/*" />
+				<include name="view/*" />
+				<include name="ctrl/*" />
+				<include name="include/*" />
+				<include name="error/*" />
+				<include name="js/**" />
+				<include name="css/**"/>
+				<include name="locallogin/**" />				
+				<exclude name="**/*dummy*" />
+				<exclude name="fake*" />
+				<exclude name="${excludes}" />
+			</fileset>
+			<manifest>
+				<attribute name="Built-By" value="${user.name}" />
+				<attribute name="Built-Date" value="${DSTAMP}" />
+			</manifest>
+		</war>
+	</target>
+
+
+	<!-- Funzione per la compilazione delle jsp della web-app SMRGAAWEB -->
+
+
+
+	<target name="compile-jsp-weblogic" if="false" description="compila le jsp per weblogic">
+		<echo message="precompile: ${precompile}" />
+		<echo message="build: ${buildclasses}" />
+
+		<path id="libraryPrecompile.ref">
+			<fileset dir="${env.JAVA_HOME_SERVER}/lib">
+				<include name="**/*.jar" />
+			</fileset>
+			<fileset dir="lib">
+				<include name="**/*.jar" />
+				<include name="**/*.zip" />
+			</fileset>
+			<fileset dir="${dist}/${target}">
+				<include name="**/*.jar" />
+			</fileset>
+		</path>
+
+		<pathconvert property="wl.path" refid="libraryPrecompile.ref" pathsep=";" />
+
+
+		<echo message="inizio precompilazione" />
+		<java classname="weblogic.appc" classpathref="libraryPrecompile.ref" failonerror="true" fork="true" maxmemory="1024M" output="${buildclasses}/precompile.log">
+			<arg line="-output ${buildclasses}/smrgaaTemp -keepgenerated -compiler ${env.JAVA_HOME_SERVER}/bin/javac -verbose src/web/smrgaa" />
+		</java>
+
+		<loadfile property="precompile.exceptions" srcfile="${buildclasses}/precompile.log">
+			<filterchain>
+				<linecontainsregexp>
+					<regexp pattern="Exception encountered" />
+				</linecontainsregexp>
+			</filterchain>
+		</loadfile>
+
+		<fail if="precompile.exceptions" message="Eccezioni in precompilazione jsp:${line.separator}${precompile.exceptions}" />
+
+
+		<echo message="fine precompilazione" />
+
+	</target>
+
+
+
+	<target name="application_config" description="crea il file application.xml e lo configura in base al nome della componente">
+		<!--style in="${eargrp}" out="${buildclasses}/META-INF/application.xml" style="${buildfiles}/application.xsl" /-->
+		<copy todir="${buildclasses}/META-INF">
+			<fileset dir="${conf}/ear" />
+		</copy>
+		<replaceregexp file="${buildclasses}/META-INF/application.xml" match="&lt;display-name&gt;(.*)&lt;/display-name&gt;" replace="&lt;display-name&gt;${component}&lt;/display-name&gt;" byline="true" />
+		<replaceregexp file="${buildclasses}/META-INF/application.xml" match="&lt;ejb&gt;(.*)_solmrAnagEJB.jar&lt;/ejb&gt;" replace="&lt;ejb&gt;${component}_solmrAnagEJB.jar&lt;/ejb&gt;" />
+		<replaceregexp file="${buildclasses}/META-INF/application.xml" match="&lt;web-uri&gt;(.*).war&lt;/web-uri&gt;" replace="&lt;web-uri&gt;${component}.war&lt;/web-uri&gt;" />
+		<replaceregexp file="${buildclasses}/META-INF/application.xml" match="&lt;context-root&gt;(.*)&lt;/context-root&gt;" replace="&lt;context-root&gt;${context-root}&lt;/context-root&gt;" />
+		
+		<replace file="${buildclasses}/META-INF/jboss-deployment-structure.xml" token="@ORACLE_MODULE_NAME@" value="${oracle_module_name}"/>
+		<replace file="${buildclasses}/META-INF/jboss-deployment-structure.xml" token="@IRONJACAMAR_JDBCADAPTERS_MODULE_NAME@" value="${ironjacamar_jdbcadapters_module_name}"/>
+		
+	</target>
+
+	<!--   Questo target viene usato per creare la web application -->
+	<target name="web-ear" depends="anag,warAnagNotPrecompiled,_package-all-wsfad-wars" description="Builds from scratch SOLMR - Anag's EAR file">
+		<echo message="component: ${component}" />
+		<echo message="tar: ${component}-${versione}.tar" />
+		<antcall target="application_config" />
+		<ear destfile="${dist}/${target}/${earfilename}.ear" appxml="${buildclasses}/META-INF/application.xml">
+
+			<fileset dir="${dist}/${target}" includes="*.war" />
+			<fileset dir="${dist}/${target}" includes="${component}_solmrAnagEJB.jar" />
+
+			<metainf dir="${buildclasses}/META-INF/" includes="jboss-deployment-structure.xml"/>
+
+			<zipfileset dir="${dist}/${target}" includes="*.jar" excludes="${component}_solmrAnagEJB.jar" prefix="lib" />
+			<zipfileset dir="${conf}/ear/stylereport" includes="stylereport.properties" prefix="APP-INF/classes" />
+			<zipfileset dir="${lib}" includes="${libs.ear}" prefix="lib" />
+			<zipfileset dir="${lib}" includes="${classpathlibsext}" prefix="lib" />
+
+			<manifest>
+				<attribute name="Built-By" value="${user.name}" />
+				<attribute name="Built-Date" value="${DSTAMP}" />
+			</manifest>
+		</ear>
+		<echo message="Copio ${conf}/${sian.constants.source} in ${dist}/${target}/${sian.constants}" />
+		<copy file="${conf}/${sian.constants.source}" tofile="${dist}/${target}/${sian.constants}" />
+		<replace file="${dist}/${target}/${sian.constants}" token="@@sianNodeUsername@@" value="${sianNodeUsername}" />
+		<replace file="${dist}/${target}/${sian.constants}" token="@@sianNodePassword@@" value="${sianNodePassword}" />
+		<antcall target="maketar" />
+		<delete>
+			<fileset dir="${dist}/${target}" includes="*.jar,*.war" />
+			<fileset dir="${buildclasses}/META-INF" includes="*.xml" />
+			<fileset dir="." includes="application.xml" />
+			<fileset dir="." includes="jboss-deployment-structure.xml" />
+		</delete>
+		<move todir="${dist}">
+			<fileset dir="${dist}/${target}">
+				<exclude name="*.tar" />
+			</fileset>
+		</move>
+		<!-- tar tarfile="${dist}/${target}/${component}-${versione}.tar" basedir="${dist}/${target}" includes="*.ear" / -->
+	</target>
+
+	<!-- FINE SEZIONE RELATIVA ALLA CREAZIONE DI SMRGAA.EAR RELATIVO ALL'APPLICAZIONE ANAGRAFE AGRICOLA UNICA -->
+
+
+
+	<!-- INIZIO SEZIONE TARGET "COMUNI", UTILIZZATI CIOE' SIA PER LA CREAZIONE DELL'EAR RELATIVO ALL'APPLICATIVO CHE A QUELLO RELATIVO ALL'EROGAZIONE DEI SERVIZI-->
+
+	<!-- INIT TARGET -->
+	<target name="init" description="Inizializza lo script Ant">
+		<tstamp />
+		<loadproperties srcFile="${buildfiles}/build.properties" />
+		<condition property="target" value="dev-Csi">
+			<equals arg1="${target}" arg2="$${target}" />
+		</condition>
+
+		<condition property="precompile" value="true">
+			<not>
+				<contains string="${target}" substring="dev-Csi" />
+			</not>
+		</condition>
+
+		<condition property="tar" value="true">
+			<or>
+				<contains string="${target}" substring="coll" />
+				<contains string="${target}" substring="prod" />
+			</or>
+		</condition>
+
+		<condition property="component" value="smrgaaweb">
+			<equals arg1="${component}" arg2="$${component}" />
+		</condition>
+
+		<echo message="precompile: ${precompile}" />
+		<echo message="component: ${component}" />
+		<echo message="target: ${target}" />
+
+		<property environment="env" />
+		<loadproperties srcFile="${buildfiles}/${component}.properties" />
+		<loadproperties srcFile="${buildfiles}/${target}.properties" />
+
+		<delete dir="${buildclasses}" />
+		<mkdir dir="${buildclasses}" />
+		<mkdir dir="${buildclasses}/META-INF" />
+		<mkdir dir="${dist}/${target}" />
+		<mkdir dir="${buildclasses}" />
+		<mkdir dir="${buildclasses}/WEB-INF" />
+		<mkdir dir="${buildclasses}/tempsrc" />
+		<mkdir dir="${buildclasses}/smrgaaTemp" />
+	</target>
+
+	<target name="create-classpath" depends="init" description="Crea i classpath necessari">
+		<echo message="classpathlibs: ${classpathlibs}" />
+		<echo message="csiclasspathlibs: ${csiclasspathlibs}" />
+		<echo message="wlclasspathlibs: ${wlclasspathlibs}" />
+		<echo message="classpathlibsext: ${classpathlibsext}" />
+		<echo />
+
+		<!-- Creo i riferimenti alle librerie -->
+		<fileset dir="${lib}" id="classpathlibs.ref" includes="${classpathlibs}" />
+		<fileset dir="${lib}" id="csiclasspathlibs.ref" includes="${csiclasspathlibs}" />		
+		<fileset dir="${lib}" id="wlclasspathlibs.ref" includes="${wlclasspathlibs}" />
+		<fileset dir="${lib}" id="classpathlibsext.ref" includes="${classpathlibsext}" />
+
+		<!-- Converto i riferimenti alle librerie a classpath utilizzabili per compilare -->
+		<mkdir dir="${lib}" />
+		<pathconvert property="classpath" refid="classpathlibs.ref" pathsep=";" />
+		<pathconvert property="csiclasspath" refid="csiclasspathlibs.ref" pathsep=";" />
+		<pathconvert property="wlclasspath" refid="wlclasspathlibs.ref" pathsep=";" />
+		<pathconvert property="classpathext" refid="classpathlibsext.ref" pathsep=";" />
+		<echo message="classpath: ${classpath}" />
+		<echo message="csiclasspath: ${csiclasspath}" />
+		<echo message="classpathext: ${classpathext}" />
+		<echo message="wlclasspath: ${wlclasspath}" />
+		<echo />
+
+		<!-- Converto i riferimenti alle librerie a classpath utilizzabili nei MANIFEST.MF -->
+		<pathconvert property="classpath.ear" refid="classpathlibs.ref" pathsep=" ">
+			<map from="${lib}\" to="" />
+			<map from="${lib}/" to="" />
+		</pathconvert>
+		<pathconvert property="csiclasspath.ear" refid="csiclasspathlibs.ref" pathsep=" ">
+			<map from="${lib}\" to="" />
+			<map from="${lib}/" to="" />
+		</pathconvert>
+		<pathconvert property="classpathext.ear" refid="classpathlibsext.ref" pathsep=" ">
+			<map from="${lib}\" to="" />
+			<map from="${lib}/" to="" />
+		</pathconvert>
+		<pathconvert property="wlclasspath.ear" refid="wlclasspathlibs.ref" pathsep=" ">
+			<map from="${lib}\" to="" />
+			<map from="${lib}/" to="" />
+		</pathconvert>
+		<echo message="classpath.ear: ${classpath.ear}" />
+		<echo message="csiclasspath.ear: ${csiclasspath.ear}" />
+		<echo message="classpathext.ear: ${classpathext.ear}" />
+		<echo message="wlclasspath.ear: ${wlclasspath.ear}" />
+	</target>
+
+	<!-- Target che si occupa di settare correttamente i files xml per configurare correttamente il pacchetto in relazione 
+         all'ambito di utilizzo -->
+	<target name="environment-config" depends="create-classpath" description="parsifica i modelli dei file di configurazione inserendo al loro interno i dati necessari per ciascun ambiente">
+		<!-- in questo caso modifichiamo una porta delegata inserendo la url t3 cui connettersi per ogni ambiente -->
+		<echo message="sianServletUrl: ${sianServletUrl}" />
+		<echo message="abacoSitiUrlSispie: ${abacoSitiUrlSispie}" />
+		<echo message="abacoSitiUrlRupar: ${abacoSitiUrlRupar}" />
+		<echo message="abacoSitiUrlSispie3D: ${abacoSitiUrlSispie3D}" />
+		<echo message="abacoSitiUrlRupar3D: ${abacoSitiUrlRupar3D}" />
+		<echo message="abacoSSOUrl: ${abacoSSOUrl}" />
+		<echo message="dsname: ${dsname}" />
+
+		<copy todir="${buildclasses}/WEB-INF">
+			<fileset dir="src/web/smrgaa/WEB-INF" excludes="**/*.class*,**/*.jar*" />
+			<filterset begintoken="@@" endtoken="@@">
+				<filtersfile file="${buildfiles}/${target}.properties" />
+			</filterset>
+			<filterset begintoken="&lt;!--@" endtoken="@-->">
+				<filtersfile file="${buildfiles}/${target}.properties" />
+			</filterset>
+		</copy>
+
+		<copy todir="${buildclasses}/tempsrc">
+			<fileset dir="${src}" excludes="**/*.class*,**/*.jar*" />
+		</copy>
+		<copy todir="${buildclasses}">
+			<fileset dir="${src}" excludes="**/*.java*,**/*.jbx*" />
+		</copy>				
+
+		<replaceregexp file="${buildclasses}/it/csi/solmr/etc/services/pdSitiServ.xml" match="&lt;property[ ]+name=&quot;java.naming.provider.url&quot;[ ]+value=&quot;(.*)" replace="&lt;property name=&quot;java.naming.provider.url&quot; value=&quot;${java.naming.provider.url.Sitiserv}&quot; />" byline="true" />
+
+		<replaceregexp file="${buildclasses}/it/csi/solmr/etc/services/defpd_daticatastali.xml" match="&lt;property[ ]+name=&quot;java.naming.provider.url&quot;[ ]+value=&quot;(.*)" replace="&lt;property name=&quot;java.naming.provider.url&quot; value=&quot;${java.naming.provider.url.SigMater}&quot; />" byline="true" />		
+
+		<replaceregexp file="${buildclasses}/it/csi/solmr/etc/services/defPDSigopService.xml" match="&lt;property[ ]+name=&quot;java.naming.provider.url&quot;[ ]+value=&quot;(.*)" replace="&lt;property name=&quot;java.naming.provider.url&quot; value=&quot;${java.naming.provider.url.defPDSigopService}&quot; />" byline="true" />
+		
+		<!-- PD WS SMRCOMM AGRIWELL -->
+		<replace file="${buildclasses}/it/csi/solmr/etc/services/pdComuneService.xml" token="@COMUNESERVICE_SERVICE_ENDPOINT_URL@" value="${comuneService_service_endpoint_url}"/>		
+		<replace file="${buildclasses}/it/csi/solmr/etc/services/pdComuneServiceNP.xml" token="@SMRCOMMSERVICE_SERVICE_ENDPOINT_URL@" value="${smrcommService_service_endpoint_url}"/>
+	    <!-- FINE PD WS SMRCOMM AGRIWELL -->
+		
+		<!-- PD WS SOLMRUMA -->
+		<replace file="${buildclasses}/it/csi/solmr/etc/uma/pdUmaService.xml" token="@UMA_SERVICE_ENDPOINT_URL@" value="${uma_service_endpoint_url}"/>
+		<!-- PD WS SOLMRUMA -->
+		
+		<!-- PD WS UMASERV -->
+		<replace file="${buildclasses}/it/csi/solmr/etc/services/pdUmaServ.xml" token="@UMASERV_SERVICE_ENDPOINT_URL@" value="${umaserv_service_endpoint_url}"/>
+		<!-- PD WS UMASERV -->
+		
+		<!-- PD WS VITISERV -->
+		  <replace file="${buildclasses}/it/csi/solmr/etc/services/pdVitiserv.xml" token="@VITISERVICE_SERVICE_ENDPOINT_URL@" value="${vitiserv_service_endpoint_url}"/>
+		<!-- PD WS VITISERV -->
+
+		<replaceregexp file="${buildclasses}/it/csi/solmr/etc/services/pdModolsrv.xml" match="&lt;property[ ]+name=&quot;java.naming.provider.url&quot;[ ]+value=&quot;(.*)" replace="&lt;property name=&quot;java.naming.provider.url&quot; value=&quot;${java.naming.provider.url.Modol}&quot; />" byline="true" />
+
+		<replaceregexp file="${buildclasses}/it/csi/solmr/etc/services/pdModolpdfgeneratorsrv.xml" match="&lt;property[ ]+name=&quot;java.naming.provider.url&quot;[ ]+value=&quot;(.*)" replace="&lt;property name=&quot;java.naming.provider.url&quot; value=&quot;${java.naming.provider.url.ModolPDFGen}&quot; />" byline="true" />		
+
+		<replace file="${buildclasses}/it/csi/solmr/etc/generalString.properties" token="@@logger@@" value="${component}" />
+		<replace file="${buildclasses}/it/csi/solmr/etc/generalString.properties" token="@@ufficioUMA@@" value="${ufficioUMA}" />
+		<replace file="${buildclasses}/it/csi/solmr/etc/generalString.properties" token="@@SIAN_SERVLET_URL@@" value="${sianServletUrl}" />
+		<replace file="${buildclasses}/it/csi/solmr/etc/generalString.properties" token="@@ABACO_SITI_URL_SISPIE@@" value="${abacoSitiUrlSispie}" />
+		<replace file="${buildclasses}/it/csi/solmr/etc/generalString.properties" token="@@ABACO_SITI_URL_RUPAR@@" value="${abacoSitiUrlRupar}" />
+		<replace file="${buildclasses}/it/csi/solmr/etc/generalString.properties" token="@@ABACO_SITI_URL_SISPIE_3D@@" value="${abacoSitiUrlSispie3D}" />
+		<replace file="${buildclasses}/it/csi/solmr/etc/generalString.properties" token="@@ABACO_SITI_URL_RUPAR_3D@@" value="${abacoSitiUrlRupar3D}" />
+		<replace file="${buildclasses}/it/csi/solmr/etc/generalString.properties" token="@@ABACO_SSO_URL@@" value="${abacoSSOUrl}" />
+		<replace file="${buildclasses}/it/csi/solmr/etc/generalString.properties" token="@@ABACO_SSO_TIMEOUT@@" value="${abacoSSOTimeout}" />
+		<replace file="${buildclasses}/it/csi/solmr/etc/generalString.properties" token="@@RSDI_URL@@" value="${rsdiUrl}" />
+		<replaceregexp match="/\*LOGGER_STOPWATCH_BEGIN\*/(.*)/\*LOGGER_STOPWATCH_END\*/" replace='public static final String LOGGER_STOPWATCH="${component}";' flags="s" byline="false">
+			<fileset dir="${buildclasses}/tempsrc/it/csi/solmr/etc/" includes="SolmrConstants.java" />
+		</replaceregexp>
+		<replaceregexp match="/\*AUTENTICAZIONE_RAS_BEGIN\*/(.*)/\*AUTENTICAZIONE_RAS_END\*/" replace='public static final String URL_LOGIN_RAS="${autenticazioneRas}";' flags="s" byline="false">
+			<fileset dir="${buildclasses}/tempsrc/it/csi/solmr/etc/" includes="SolmrConstants.java" />
+		</replaceregexp>
+		<replaceregexp match="/\*IRIDE2_APPLICATION_NAME_BEGIN\*/(.*)/\*IRIDE2_APPLICATION_NAME_END\*/" replace='public static final String APP_NAME_IRIDE2_SMRGAA = "${iride2AppName}";' flags="s" byline="false">
+			<fileset dir="${buildclasses}/tempsrc/it/csi/solmr/etc/" includes="SolmrConstants.java" />
+		</replaceregexp>		
+		<replaceregexp match="/\*MIN_TIME_WAIT_BEGIN\*/(.*)/\*MIN_TIME_WAIT_END\*/" replace='public static final int MIN_TIME_WAIT = ${minTimeWait};' flags="s" byline="false">
+			<fileset dir="${buildclasses}/tempsrc/it/csi/solmr/etc/" includes="SolmrConstants.java" />
+		</replaceregexp>
+		<replaceregexp match="/\*MEDIUM_TIME_WAIT_BEGIN\*/(.*)/\*MEDIUM_TIME_WAIT_END\*/" replace='public static final int MEDIUM_TIME_WAIT = ${mediumTimeWait};' flags="s" byline="false">
+			<fileset dir="${buildclasses}/tempsrc/it/csi/solmr/etc/" includes="SolmrConstants.java" />
+		</replaceregexp>
+		<replaceregexp match="/\*MAX_TIME_WAIT_BEGIN\*/(.*)/\*MAX_TIME_WAIT_END\*/" replace='public static final int MAX_TIME_WAIT = ${maxTimeWait};' flags="s" byline="false">
+			<fileset dir="${buildclasses}/tempsrc/it/csi/solmr/etc/" includes="SolmrConstants.java" />
+		</replaceregexp>
+
+		<echo message="passoGenerico: ${passoGenerico}" />
+		<echo message="passo: ${passo}" />
+		<condition property="passo" value="${passoGenerico}">
+			<equals arg1="${passo}" arg2="$${passo}" />
+		</condition>
+		<echo message="PASSO: ${passo}" />
+		<replaceregexp match="PASSO=800" replace='PASSO=${passo}' flags="s" byline="false">
+			<fileset dir="${buildclasses}/tempsrc/it/csi/solmr/integration/" includes="BaseDAO.java" />
+		</replaceregexp>
+
+		<echo message="it.csi.opauth.filter.loginAccessUrl: ${PORTAL.LOGINACCESSURL}" />
+		<replaceregexp match="(&lt;param-name&gt;it.csi.opauth.filter.loginAccessUrl&lt;/param-name&gt;[^&lt;]*&lt;param-value&gt;)[^&lt;]*(&lt;/param-value&gt;)" replace="\1http://${PORTAL.LOGINACCESSURL}/portal/pls/portal/csi_custom.ext_login\2" flags="s" byline="false">
+			<fileset dir="${buildclasses}/WEB-INF/" includes="web.xml" />
+		</replaceregexp>
+		<echo message="it.csi.opauth.filter.serverName: ${PORTAL.SERVERNAME}" />
+		<replaceregexp match="(&lt;param-name&gt;it.csi.opauth.filter.serverName&lt;/param-name&gt;[^&lt;]*&lt;param-value)&gt;[^&lt;]*(&lt;/param-value&gt;)" replace="\1&gt;${PORTAL.SERVERNAME}\2" flags="s" byline="false">
+			<fileset dir="${buildclasses}/WEB-INF/" includes="web.xml" />
+		</replaceregexp>
+
+		<echo message="CookiePath: /${context-root}" />
+		<replaceregexp match="(&lt;param-name&gt;CookiePath&lt;/param-name&gt;[^&lt;]*&lt;param-value)&gt;[^&lt;]*(&lt;/param-value&gt;)" replace="\1&gt;/${context-root}\2" flags="s" byline="false">
+		</replaceregexp>
+
+		<antcall target="environment-config-cond1" />
+		<antcall target="environment-config-cond2" />
+
+	</target>
+
+
+	<!-- Target per la sostituzione di parametri solo se presenti -->
+	<target name="environment-config-cond1" if="page.auth">
+		<replaceregexp match="(URL_LOGIN_SISPIE=&quot;/_auth/)autenticazione.shtml(&quot;)" replace="\1${page.auth}\2" flags="s" byline="false">
+			<fileset dir="${buildclasses}/tempsrc/it/csi/solmr/etc/" includes="SolmrConstants.java" />
+		</replaceregexp>
+	</target>
+	<target name="environment-config-cond2" if="page.head">
+		<replaceregexp match="(anagrafe_aziende/)head.html(&lt;/param-value&gt;)" replace="\1${page.head}\2" flags="s" byline="false">
+			<fileset dir="${buildclasses}/WEB-INF/" includes="web.xml" />
+		</replaceregexp>
+	</target>
+
+
+	<!-- Target per la compilazione dei sorgenti dell'applicativo -->
+	<target name="compile-all" depends="load-dependencies,environment-config" description="Compila i sorgenti nella build directory">
+		<echo message="csiclasspath: ${csiclasspath}" />
+		<echo message="wlclasspath: ${wlclasspath}" />
+		<echo message="classpath: ${classpath}" />
+		<echo message="classpathext: ${classpathext}" />
+		<javac srcdir="${buildclasses}/tempsrc" destdir="${buildclasses}" classpath="${csiclasspath};${wlclasspath};${classpath};${classpathext};" optimize="on" compiler="modern" fork="true" nowarn="true" memoryInitialSize="128M" memoryMaximumSize="512M" encoding="iso8859-15" debug="true"/>
+		<delete dir="${buildclasses}/tempsrc" />
+	</target>
+
+	<target name="compile-all-NoLoadDependencies" depends="environment-config" description="Compila i sorgenti nella build directory">
+		<echo message="csiclasspath: ${csiclasspath}" />
+		<echo message="wlclasspath: ${wlclasspath}" />
+		<echo message="classpath: ${classpath}" />
+		<echo message="csiclasspathext: ${csiclasspathext}" />
+		<javac srcdir="${buildclasses}/tempsrc" destdir="${buildclasses}" classpath="${csiclasspath};${wlclasspath};${classpath};${classpathext};" optimize="on" compiler="modern" fork="true" nowarn="true"  memoryInitialSize="128M" memoryMaximumSize="512M" encoding="iso8859-15" />
+		<delete dir="${buildclasses}/tempsrc" />
+	</target>
+
+
+	<target name="maketar" description="crea il tar contenente l'ear">
+		<tar tarfile="${dist}/${target}/${component}-${versione}.tar" basedir="${dist}/${target}" includes="${component}.ear,${sian.constants}">
+		</tar>
+		<!-- zip destfile="${dist}/${component}-${versione}.zip"
+				basedir="." includes="build.xml,buildfiles/**,src/**,conf/**" excludes="**/.svn/**, **/*.bak" >
+		</zip -->
+	</target>
+
+	<!-- ******************************************************************************************** -->
+	<!-- CLEAN TARGETS -->
+	<!-- ******************************************************************************************** -->
+	<target name="clean-all" depends="init, clean-cache, clean-build, clean-archive, clean-lib">
+	</target>
+
+	<target name="clean-cache">
+		<!--
+			<echo message="Cancello ${buildcache}" />
+			<delete dir="${buildcache}" />
+		-->
+	</target>
+
+	<target name="clean-archive">
+		<echo message="Cancello ${dist}/${target}" />
+		<delete dir="${dist}/${target}" />
+		<delete>
+			<fileset dir="${dist}" includes="*" />
+		</delete>
+	</target>
+
+
+	<target name="clean-build">
+		<echo message="Cancello ${build}" />
+		<delete dir="${build}" />
+	</target>
+
+	<target name="clean-lib">
+		<!--
+			<echo message="Cancello ${lib}" />
+			<delete dir="${lib}" />
+		-->
+	</target>
+
+	<target name="default" description="Eseguire il build per l'environment specificato a linea di comando con -Dtarget=${target} o per tutti gli environment (se non specificato).">
+		<condition property="first-call" value="distribution">
+			<not>
+				<equals arg1="${target}" arg2="$${target}" />
+			</not>
+		</condition>
+		<condition property="first-call" value="all-targets">
+			<equals arg1="${target}" arg2="$${target}" />
+		</condition>
+		<echo message="target: ${target}" />
+		<echo message="first-call: ${first-call}" />
+		<antcall target="${first-call}" />
+	</target>
+
+	<target name="all-targets" description="Esegue il build per le varie distribuzioni in sequenza.">
+		<antcall target="distribution">
+			<param name="target" value="local" />
+		</antcall>		
+		<antcall target="distribution">
+			<param name="target" value="tst-bas" />
+		</antcall>
+		<antcall target="distribution">
+					<param name="target" value="prod-bas" />
+		</antcall>
+	</target>
+
+	<target name="package-all" description="crea tutti gli archivi per un ambiente" depends="init">
+		<delete dir="${dist}/${target}" />
+		<antcall target="web-ear" />
+	</target>
+
+	<target name="package-ear-Test" description="Crea ear per Test">
+		<antcall target="distribution">
+			<param name="target" value="tst-bas" />
+		</antcall>
+	</target>
+		
+	<target name="show-vars" depends="init" description="Visualizza tutte le variabili impostate nei file di properties e/o da linea di comando">
+		<echo message="*****************************************" />
+		<echo message="********  ${component} environment  *******" />
+		<echo message="*****************************************" />
+		<echo message="Runtime :" />
+		<echo message="" />
+		<echo message="Classpath :" />
+		<echo message="CLASS_PATH = ${classpath}" />
+		<echo message="CLASS_PATH_EXT = ${classpathext}" />
+		<echo message="CSI_CLASS_PATH = ${csiclasspath}" />
+		<echo message="WL_CLASS_PATH = ${wlclasspathlibs}" />
+		<echo message="" />
+		<echo message="Target:" />
+		<echo message="TARGET = ${target}" />
+		<echo message="" />
+		<echo message="Application :" />
+		<echo message="VERSION = ${versione}" />
+		<echo message="" />
+	</target>
+
+	<target name="about">
+		<loadproperties srcFile="buildfiles/build.properties" />
+		<loadfile property="about" srcFile="buildfiles/about.txt" />
+		<echo message=" ${about}" />
+	</target>
+
+	<target name="about-custom" description="Visualizza l'elenco di tutti i target, pubblici e privati (equivalente a 'ant -projecthelp')">
+		<loadproperties srcfile="buildfiles/build.properties" />
+		<loadfile property="about-custom" srcfile="buildfiles/about-custom.txt" />
+		<echo message="${about-custom}" />
+	</target>
+
+	<!-- FINE SEZIONE TARGET "COMUNI", UTILIZZATI CIOE' SIA PER LA CREAZIONE DELL'EAR RELATIVO ALL'APPLICATIVO CHE A QUELLO RELATIVO ALL'EROGAZIONE DEI SERVIZI -->
+
+	<target name="distribution">
+		<property name="component" value="smrgaaweb" />
+		<echo message="component: ${component}" />
+		<antcall target="web-ear" />
+	</target>
+
+
+
+
+
+
+	<target name="make-classpaths">
+		<loadproperties srcFile="buildfiles/build.properties" />
+		<fileset dir="${lib}" id="library.ref" includes="${csiclasspathlibs},${classpathlibs},${classpathlibsext}" />
+		<pathconvert property="library.classpath.internal.javac" refid="library.ref" pathsep=";" />
+		<pathconvert property="library.classpath.internal.ear" refid="library.ref" pathsep=" ">
+			<map from="${lib}\" to="lib/" />
+			<map from="${lib}/" to="lib/" />
+		</pathconvert>
+
+		<fileset dir="${lib}" id="weblogic.ref" includes="${library.names.external}" />
+		<pathconvert property="library.classpath.external.javac" refid="weblogic.ref" pathsep=";" />
+
+		<echo />
+		<echo>library.names.internal=${library.names.internal}</echo>
+		<echo>
+			library.classpath.internal.javac=${library.classpath.internal.javac}
+		</echo>
+		<echo>
+			library.classpath.internal.ear=${library.classpath.internal.ear}
+		</echo>
+		<echo />
+	</target>
+	
+	
+	<!-- costruisce i war dei wsfad -->
+    <target name="_package-all-wsfad-wars">
+    	
+    	<!-- richiamo costruzione war wsfad servizio prova -->
+    	<antcall target="_package-wsfad-war">
+    		<param name="component.name" value="smrgaa"/>
+    		<param name="service.name" value="anagaxis"/>
+    		<param name="binding.code" value="wsfad"/>
+    		<param name="service.type" value="appl"/>
+    	</antcall>
+    
+    </target>
+	
+	<target name="_package-wsfad-war" >
+		<echo message="src: ${build}/${target}/${service.type}-${service.name}-${binding.code}.war"/>
+      <!-- prende in input i parametri component.name service.name binding.code -->
+      <mkdir dir="${build}/${target}/${binding.code}/${service.name}/WEB-INF" />
+         
+		<war destfile="${dist}/${target}/${service.type}-${service.name}-${binding.code}.war"
+             webxml="${conf}/web/${binding.code}/${service.name}/WEB-INF/web.xml" 
+			 roundup= "false">
+			 <webinf file="${conf}/web/${binding.code}/${service.name}/WEB-INF/server-config.wsdd" />
+			 <webinf file="${conf}/web/${binding.code}/${service.name}/WEB-INF/jboss-web.xml" />
+			 <webinf file="${conf}/web/${binding.code}/${service.name}/WEB-INF/weblogic.xml" />
+			 <classes dir="src/web/${binding.code}/${service.name}" 
+				includes="defpdelegata_embedded*.xml" />
+			<fileset dir="src/web/${binding.code}/${service.name}" includes="**">			
+			</fileset>
+		</war>
+    </target>
+
+</project>

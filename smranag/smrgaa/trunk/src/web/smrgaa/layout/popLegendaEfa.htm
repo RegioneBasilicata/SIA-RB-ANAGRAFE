@@ -1,0 +1,54 @@
+$$head
+	<script src="../js/checktext.js" type="text/javascript"></script>
+</head>
+<body id="popup">
+	<form id="form1" name="form1" method="post" action="../layout/popLegendaEfa.htm">
+    <div id="contenutopop">
+		  <table cellspacing="3" summary="Questa tabella contiene i dati dell'istanza di riesame">
+        <caption>
+          Legenda tipologia EFA dichiarabili
+        </caption>
+				<tr>
+				  <th class="center" >
+            Tipo EFA
+          </th>
+          <th class="center" >
+            Unit&agrave; di misura
+          </th>
+          <th class="center" >
+            Fattore di conversione in m2
+          </th>
+          <th class="center" >
+            Fattore di ponderazione in sup. valida per il controllo
+          </th>
+        </tr>
+        <!-- @@blkElencoEfa -->
+        <!-- @@blkPrimoEfa -->
+        <tr>
+          <td colspan="4">
+            $$descTipoEfa
+          </td>     
+        </tr>
+        <!-- @@blkPrimoEfa -->
+        <!-- @@blkSecondoEfa -->
+        <tr>
+          <td >
+            $$descTipoEfa
+          </td>
+          <td>
+            $$descUnitaMisura
+          </td>    
+          <td class="numeridx">
+            $$fattoreConversione
+          </td>  
+          <td class="numeridx">
+            $$fattorePonderazione
+          </td>         
+        </tr>
+        <!-- @@blkSecondoEfa -->
+        <!-- @@blkElencoEfa -->
+			</table>
+    </div>
+	</form>
+</body>
+</html>

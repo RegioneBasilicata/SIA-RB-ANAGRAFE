@@ -1,0 +1,53 @@
+$$head
+<script src="../js/checktext.js" type="text/javascript"></script>
+<script type="text/javascript" src="../js/messaggistica.js"></script>
+<script type="text/javascript">
+
+    function goTo(url) 
+    {
+      //document.form1.operazione.value = 'indietro';
+      document.form1.action = url;
+      document.form1.submit();
+    }
+
+  </script>
+</head>
+<body id="homeIndice" onLoad="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+  <form id="form1" name="form1" method="post" action="../layout/confermaAllineaPercUsoElegg.htm">
+    <div id="pagina" class="colonnaUnica">
+      <input type="hidden" id="operazione" name="operazione" value="$$operazione"/>
+      <!-- INTESTAZIONE -->
+      <div id="intestazione##pathProvincia">
+        $$header
+        <!-- menu di navigazione-->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+        </div>
+      </div>
+      <hr/>
+      <div style="clear:left"></div>
+      <!-- CORPO -->
+      <div id="corpo">
+        <hr/>
+        <!-- PRIMA COLONNA -->
+        <div id="content">
+          <p>Attenzione! Proseguendo verrà allineata la percentuale d'uso per tutte le particelle su cui insistono le unit&agrave; vitate selezionate. Sei sicuro di voler proseguire?</p>
+          
+           <div class="pulsanti">
+          <div class="sin">
+            <input type="button" value="conferma" name="conferma" class="inputPulsante highlighted" onClick="javascript:goToOperazione('../layout/confermaAllineaPercUsoElegg.htm', document.forms[0], 'attenderePrego');"/>
+          </div>
+          <div class="des">
+            <input type="button" value="annulla" name="annulla" class="inputPulsante" onClick="javascript: goTo('../layout/terreniUnitaArboreeElenco.htm')"/>
+          </div>
+           </div>
+          
+        </div>
+        <!-- SECONDA COLONNA -->
+      </div>
+      <hr/>
+    </form>
+    <!-- PIE' DI PAGINA -->
+    $$footer

@@ -1,0 +1,76 @@
+$$head
+  <script type="text/javascript" src="../js/checktext.js"></script>
+  
+</head>
+<body id="popup">
+  <form id="sceltaComune" name="sceltaComune" method="post" action="">
+    <input type="hidden" id="obiettivo" name="obiettivo" value="$$obiettivo"/>
+    <!-- CORPO -->
+    <div id="contenutopop">
+      <!-- @@conferma -->
+        <div class="pulsanti">
+          <div class="des">
+            <a href="javascript:window.close();">chiudi</a>
+            <span class="alt">&nbsp;/&nbsp;</span>
+          </div>
+	        <div class="sin">
+	          <a href="javascript:confermaComune()">conferma</a>
+	        </div>
+       </div>
+      <!-- @@conferma -->
+      <table cellspacing="3" summary="Questa tabella contiene i dati del rapporto">
+        <col width="5%"/>
+        <col width="25%"/>
+        <col width="25%"/>
+        <col width="25%"/>
+        <col width="20%"/>
+        <tr>
+          <th class="radio" scope="col">&nbsp;</th>
+          <th class="center" scope="col">Comune</th>
+          <th class="center" scope="col">Provincia</th>
+          <th class="center" scope="col">ISTAT</th>
+          <th class="center" scope="col">CAP</th>
+        </tr>
+        <!-- @@elencoComuni -->
+          <tr>
+            <td class="radio" scope="row">
+              <input type="radio" id="istat" name="istat" value="$$istat"/>
+              <label for="istat" class="alt">istat</label>
+            </td>
+            <td>$$comune</td>
+            <td>$$provincia</td>
+            <td>$$istat</td>
+            <td>$$cap
+              <input type="hidden" id="siglaProvincia" name="siglaProvincia" value="$$siglaProvincia"/>
+              <input type="hidden" id="istatProvincia" name="istatProvincia" value="$$istatProvincia"/>
+              <input type="hidden" id="istatComune" name="istatComune" value="$$istatComune"/>
+              <input type="hidden" id="comune" name="comune" value="$$comune"/>
+              <input type="hidden" id="cap" name="cap" value="$$cap"/>
+              <input type="hidden" id="zonaAltimetrica" name="zonaAltimetrica" value="$$zonaAltimetrica"/>
+              <input type="hidden" id="codiceFiscaleComune" name="codiceFiscaleComune" value="$$codiceFiscaleComune"/>
+            </td>
+          </tr>
+        <!-- @@elencoComuni -->
+      </table>
+      <p>$$exception</p>
+      <!-- @@conferma -->
+        <div class="pulsanti">
+          <div class="des">
+            <a href="javascript:window.close();">chiudi</a>
+            <span class="alt">&nbsp;/&nbsp;</span>
+          </div>
+          <div class="sin">
+            <a href="javascript:confermaComune()">conferma</a>
+            <span class="alt">&nbsp;/&nbsp;</span>
+          </div>
+        </div>
+      <!-- @@conferma -->
+      <!-- @@chiudi -->
+      <div class="pulsanti"><div class="des">
+        <a href="javascript:window.close();">chiudi</a>
+      </div></div>
+      <!-- @@chiudi -->
+    </div>
+    </div></form>
+    </body>
+    </html>

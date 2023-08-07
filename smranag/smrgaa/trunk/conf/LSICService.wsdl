@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns="http://servizio.frontend.ls.com" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ax21="http://bean.frontend.ls.com/xsd" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:ns1="http://org.apache.axis2/xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://servizio.frontend.ls.com">
+    <wsdl:documentation>
+		Servizi Infocamere per Siarb
+	</wsdl:documentation>
+    <wsdl:types>
+        <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://bean.frontend.ls.com/xsd">
+            <xs:complexType name="PersonaRIInfoc">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="capResidenza" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="codComuneNascita" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="codComuneRes" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="codiceFiscale" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="cognome" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="dataNascita" nillable="true" type="xs:date"/>
+                    <xs:element minOccurs="0" name="descrFrazioneRes" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="descrStatoNascita" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="descrStatoRes" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="descrToponimoResid" nillable="true" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="listaCaricaPersInfoc" nillable="true" type="ax21:CaricaPersonaInfoc"/>
+                    <xs:element minOccurs="0" name="nome" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="numCivicoResid" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="progrOrdineVisura" type="xs:long"/>
+                    <xs:element minOccurs="0" name="progrPersona" type="xs:long"/>
+                    <xs:element minOccurs="0" name="sesso" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="siglaProvResidenza" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="viaResidenza" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="CaricaPersonaInfoc">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="codiceCarica" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="dataFineCarica" nillable="true" type="xs:date"/>
+                    <xs:element minOccurs="0" name="dataInizioCarica" nillable="true" type="xs:date"/>
+                    <xs:element minOccurs="0" name="descrCarica" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ListaPersonaCaricaInfoc">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="codFiscaleAzienda" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="codFiscalePersona" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="codiceCarica" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="dataFineCarica" nillable="true" type="xs:date"/>
+                    <xs:element minOccurs="0" name="descrCarica" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="Sede">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="cap" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="codCausaleCessazione" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="codComune" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="codTipoLocalizzazione" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="codiceStatoEstero" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="dataCessaz" nillable="true" type="xs:date"/>
+                    <xs:element minOccurs="0" name="dataFineAttivita" nillable="true" type="xs:date"/>
+                    <xs:element minOccurs="0" name="dataInizioAttivita" nillable="true" type="xs:date"/>
+                    <xs:element minOccurs="0" name="dataInizioValidita" nillable="true" type="xs:date"/>
+                    <xs:element minOccurs="0" name="denominazioneSede" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="descrStatoEstero" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="descrizioneAttivitaSede" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="descrizioneCausaleCessazione" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="descrizioneTipoSede" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="email" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="fax" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="frazioneUL" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="idTipoSede" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="indirizzo" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="indirizzoSede" nillable="true" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="listaAtecoRI2007Infoc" nillable="true" type="ax21:AtecoRI2007Infoc"/>
+                    <xs:element minOccurs="0" name="nomeComune" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="numeroCivico" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="siglaProvUL" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="siglaProvincia" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="telefono" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="toponimo" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="AtecoRI2007Infoc">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="codAteco2007" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="codImportanzaRI" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="dataInizioAteco2007" nillable="true" type="xs:date"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="Azienda">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="annoCCIAA" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="codATECO2007" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="codiceCausaleCessazione" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="codiceFiscale" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="dataCancellazRea" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="dataCessazione" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="dataCostituzione" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="dataIscrRegistroImpr" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="dataIscrizioneRea" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="descrATECO2007" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="descrizioneCausaleCessazione" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="descrizioneNaturaGiuridica" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="idNaturaGiuridica" nillable="true" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="listaPersoneRI" nillable="true" type="ax21:ListaPersoneRI"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="listaProcConcors" nillable="true" type="ax21:ProcConcors"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="listaSedi" nillable="true" type="ax21:ListaSedi"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="listaSezSpec" nillable="true" type="ax21:SezSpec"/>
+                    <xs:element minOccurs="0" name="nRegistroImpreseCCIAA" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="numeroCCIAA" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="oggettoSociale" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="partitaIva" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="postaElettronicaCertificata" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="provinciaCCIAA" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="ragioneSociale" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="rappresentanteLegale" nillable="true" type="ax21:RappresentanteLegale"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ListaPersoneRI">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="codiceFiscale" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="progrPersona" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ProcConcors">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="codAtto" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="codLiquidazione" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="dataAperturaProc" nillable="true" type="xs:date"/>
+                    <xs:element minOccurs="0" name="dataChiusuraLiquidaz" nillable="true" type="xs:date"/>
+                    <xs:element minOccurs="0" name="dataEsecConcordPrevent" nillable="true" type="xs:date"/>
+                    <xs:element minOccurs="0" name="dataFineLiquidaz" nillable="true" type="xs:date"/>
+                    <xs:element minOccurs="0" name="dataRegistroAtto" nillable="true" type="xs:date"/>
+                    <xs:element minOccurs="0" name="dataRevocalLiquidaz" nillable="true" type="xs:date"/>
+                    <xs:element minOccurs="0" name="descIndicatEsecutAtto" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="descrAltreIndicazioni" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="descrCodAtto" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="descrNotaio" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="descrTribunale" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="localRegistroAtto" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="numRestistrAtto" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="progrLiquidazione" type="xs:long"/>
+                    <xs:element minOccurs="0" name="siglaProvRegAtto" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ListaSedi">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="progrSede" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="SezSpec">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="codSezione" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="codiceSezSpec" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="dataFine" nillable="true" type="xs:date"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="RappresentanteLegale">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="cap" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="codComuneNascita" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="codComuneResidenza" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="codiceFiscale" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="cognome" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="dataNascita" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="descrComuneNascita" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="descrComuneResidenza" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="indirizzo" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="nome" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="numeroCivico" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="sesso" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="tipoVia" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+        <xs:schema xmlns:ax22="http://bean.frontend.ls.com/xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://servizio.frontend.ls.com">
+            <xs:import namespace="http://bean.frontend.ls.com/xsd"/>
+            <xs:element name="cercaPuntualePersonaRI">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="codiceFiscale" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="progrPersona" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="codFonte" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="cercaPuntualePersonaRIResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:PersonaRIInfoc"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="cercaPerFiltriCodFiscFonte">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="codiceFiscale" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="codFonte" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="cercaPerFiltriCodFiscFonteResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true" type="ax22:ListaPersonaCaricaInfoc"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="cercaPuntualeSede">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="codiceFiscale" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="progrSede" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="codFonte" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="cercaPuntualeSedeResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:Sede"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="cercaPerCodiceFiscale">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="codiceFiscale" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="codFonte" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="cercaPerCodiceFiscaleResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:Azienda"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="cercaPuntualePersonaRIRequest">
+        <wsdl:part name="parameters" element="ns:cercaPuntualePersonaRI"/>
+    </wsdl:message>
+    <wsdl:message name="cercaPuntualePersonaRIResponse">
+        <wsdl:part name="parameters" element="ns:cercaPuntualePersonaRIResponse"/>
+    </wsdl:message>
+    <wsdl:message name="cercaPerFiltriCodFiscFonteRequest">
+        <wsdl:part name="parameters" element="ns:cercaPerFiltriCodFiscFonte"/>
+    </wsdl:message>
+    <wsdl:message name="cercaPerFiltriCodFiscFonteResponse">
+        <wsdl:part name="parameters" element="ns:cercaPerFiltriCodFiscFonteResponse"/>
+    </wsdl:message>
+    <wsdl:message name="cercaPerCodiceFiscaleRequest">
+        <wsdl:part name="parameters" element="ns:cercaPerCodiceFiscale"/>
+    </wsdl:message>
+    <wsdl:message name="cercaPerCodiceFiscaleResponse">
+        <wsdl:part name="parameters" element="ns:cercaPerCodiceFiscaleResponse"/>
+    </wsdl:message>
+    <wsdl:message name="cercaPuntualeSedeRequest">
+        <wsdl:part name="parameters" element="ns:cercaPuntualeSede"/>
+    </wsdl:message>
+    <wsdl:message name="cercaPuntualeSedeResponse">
+        <wsdl:part name="parameters" element="ns:cercaPuntualeSedeResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="LSICServicePortType">
+        <wsdl:operation name="cercaPuntualePersonaRI">
+            <wsdl:input message="ns:cercaPuntualePersonaRIRequest" wsaw:Action="urn:cercaPuntualePersonaRI"/>
+            <wsdl:output message="ns:cercaPuntualePersonaRIResponse" wsaw:Action="urn:cercaPuntualePersonaRIResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="cercaPerFiltriCodFiscFonte">
+            <wsdl:input message="ns:cercaPerFiltriCodFiscFonteRequest" wsaw:Action="urn:cercaPerFiltriCodFiscFonte"/>
+            <wsdl:output message="ns:cercaPerFiltriCodFiscFonteResponse" wsaw:Action="urn:cercaPerFiltriCodFiscFonteResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="cercaPerCodiceFiscale">
+            <wsdl:input message="ns:cercaPerCodiceFiscaleRequest" wsaw:Action="urn:cercaPerCodiceFiscale"/>
+            <wsdl:output message="ns:cercaPerCodiceFiscaleResponse" wsaw:Action="urn:cercaPerCodiceFiscaleResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="cercaPuntualeSede">
+            <wsdl:input message="ns:cercaPuntualeSedeRequest" wsaw:Action="urn:cercaPuntualeSede"/>
+            <wsdl:output message="ns:cercaPuntualeSedeResponse" wsaw:Action="urn:cercaPuntualeSedeResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="LSICServiceSoap11Binding" type="ns:LSICServicePortType">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="cercaPuntualePersonaRI">
+            <soap:operation soapAction="urn:cercaPuntualePersonaRI" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="cercaPerFiltriCodFiscFonte">
+            <soap:operation soapAction="urn:cercaPerFiltriCodFiscFonte" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="cercaPerCodiceFiscale">
+            <soap:operation soapAction="urn:cercaPerCodiceFiscale" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="cercaPuntualeSede">
+            <soap:operation soapAction="urn:cercaPuntualeSede" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="LSICServiceSoap12Binding" type="ns:LSICServicePortType">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="cercaPuntualePersonaRI">
+            <soap12:operation soapAction="urn:cercaPuntualePersonaRI" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="cercaPerFiltriCodFiscFonte">
+            <soap12:operation soapAction="urn:cercaPerFiltriCodFiscFonte" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="cercaPerCodiceFiscale">
+            <soap12:operation soapAction="urn:cercaPerCodiceFiscale" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="cercaPuntualeSede">
+            <soap12:operation soapAction="urn:cercaPuntualeSede" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="LSICServiceHttpBinding" type="ns:LSICServicePortType">
+        <http:binding verb="POST"/>
+        <wsdl:operation name="cercaPuntualePersonaRI">
+            <http:operation location="cercaPuntualePersonaRI"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="cercaPerFiltriCodFiscFonte">
+            <http:operation location="cercaPerFiltriCodFiscFonte"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="cercaPerCodiceFiscale">
+            <http:operation location="cercaPerCodiceFiscale"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="cercaPuntualeSede">
+            <http:operation location="cercaPuntualeSede"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="LSICService">
+        <wsdl:port name="LSICServiceHttpSoap11Endpoint" binding="ns:LSICServiceSoap11Binding">
+            <soap:address location="http://172.18.14.155/ServizioLSIC/services/LSICService.LSICServiceHttpSoap11Endpoint/"/>
+        </wsdl:port>
+        <wsdl:port name="LSICServiceHttpSoap12Endpoint" binding="ns:LSICServiceSoap12Binding">
+            <soap12:address location="http://172.18.14.155/ServizioLSIC/services/LSICService.LSICServiceHttpSoap12Endpoint/"/>
+        </wsdl:port>
+        <wsdl:port name="LSICServiceHttpEndpoint" binding="ns:LSICServiceHttpBinding">
+            <http:address location="http://172.18.14.155/ServizioLSIC/services/LSICService.LSICServiceHttpEndpoint/"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

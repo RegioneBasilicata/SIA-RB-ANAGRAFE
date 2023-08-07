@@ -1,0 +1,572 @@
+$$head
+<script src="../js/checktext.js" type="text/javascript"></script>
+<script type="text/javascript" src="../js/messaggistica.js"></script>
+<script type="text/javascript">
+
+    function customDoForm(page) {
+      var oldAction = document.form1.action;
+      document.form1.action=page;
+      document.form1.submit();
+      document.form1.action=oldAction;
+    }
+
+    function goTo(page) {
+      document.form1.operazione.value = '';
+      var radio=document.form1.radiobutton;
+      if(!radio) {
+        alert("Nessun allevamento!");
+        return;
+      }
+      if(!radio.length) {
+        if(radio.checked) {
+          currentSelection=radio.value;
+          customDoForm(page);
+          return;
+        }
+      }
+      else {
+        for(i=0;i<radio.length;i++) {
+          if (radio[i].checked) {
+            currentSelection=radio[i].value;
+            customDoForm(page);
+            return;
+          }
+        }
+      }
+      alert("Selezionare un allevamento!");
+    }
+
+    function inserisci(url) {
+      document.form1.action = url;
+      document.form1.operazione.value = '';
+      document.form1.submit();
+    }
+
+    // Utilizzato per la gestione dei pulsanti precedente/successivo
+    function goToLine(prev) {
+      document.form1.operazione.value = '';
+      document.paginazione.startRow.value=prev;
+      document.paginazione.submit();
+    }
+    
+    function resetOperazione()
+    {
+      document.form1.operazione.value = '';
+      document.form1.submit();
+    }
+
+  </script>
+</head>
+<body id="homeIndice" onLoad="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+  <form action="allevamenti.htm" method="post" name="paginazione">
+    <input type="hidden" name="startRow" value="">
+  </form>
+  <form name="form1" id="form1" method="post"
+    action="../layout/allevamenti.htm">
+    <div id="pagina" class="colonnaUnica">
+      <input type="hidden" name="currentSel" value="" />
+      <input type="hidden" name="operazione" value="$$operazione" />
+      <input type="hidden" name="idElemento" value="$$idElemento" />
+      <!-- INTESTAZIONE -->
+      <div id="intestazione##pathProvincia">
+        <!--#include virtual="/ris/include/smrgaaweb/header.html" -->
+        <!-- menu di navigazione-->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li>
+                <a href="../layout/index.htm"
+                  title="Torna alla pagina principale">home</a>
+              </li>
+              <li class="attivo">
+                gestione anagrafe aziende
+              </li>
+              <li>
+                <a href="#" title="contatti">contatti</a>
+              </li>
+              <li>
+                <a href="#" title="help">help</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div style="clear: left"></div>
+      <!-- CORPO -->
+      <div id="corpo">
+        <div id="Utente">
+          <div id="datiUtente">
+            <strong>utente:</strong>$$utente&nbsp;&nbsp;
+            <strong>ente:</strong>$$ente
+          </div>
+          <div id="chiudisessione">
+            <a href="javascript: logout();">chiudi sessione</a>
+          </div>
+        </div>
+        <hr />
+        <!--PRIMA COLONNA -->
+        <h3>
+          Gestione Anagrafe Aziende&nbsp;&gt;&nbsp;Allevamenti
+          <span class="helpFuori"> <a href="#"> <span
+              class="alt">[help]</span> </a> </span>
+        </h3>
+        <hr />
+        <div class="box">
+          <div class="menuSX1">
+            <ul>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <li>
+                <a href="../layout/elencoAziendeRapLegale.htm">Elenco
+                  Aziende</a>
+              </li>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <!-- @@blkRicercaAzienda-->
+              <li>
+                <a href="../layout/ricerca.htm">Ricerche</a>
+              </li>
+              <!-- @@blkRicercaAzienda-->
+              <!-- @@blkNuova -->
+              <li>
+                <a href="../layout/nuovaAziendaAnagrafica.htm">Nuova
+                  Azienda</a>
+              </li>
+              <!-- @@blkNuova -->
+              <!-- @@blkNuovaIscrizione -->
+		          <li>
+		            <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+		          </li>
+		          <!-- @@blkNuovaIscrizione -->
+            </ul>
+          </div>
+          <div class="menuSX">
+            <ul>
+              <li>
+                <a href="../layout/anagrafica.htm">Anagrafica</a>
+              </li>
+              <!-- @@blkAziendeCollegate -->
+              <li>
+                <a href="../layout/aziendeCollegate.htm">$$aziendeCollegateLabel</a>
+              </li>
+              <!-- @@blkAziendeCollegate -->
+              <!-- @@blkSincronizzaFascicolo -->
+              <li>
+               	<a href="../layout/sincronizzaFascicolo.htm">Sincronizza fascicolo</a>
+              </li>
+              <!-- @@blkSincronizzaFascicolo -->
+              <!-- @@blkSoggettiCollegati -->
+              <li>
+                <a href="../layout/contitolari.htm">Soggetti
+                  collegati</a>
+              </li>
+              <!-- @@blkSoggettiCollegati -->
+              <!-- @@blkContiCorrenti -->
+              <li>
+                <a href="../layout/conti_correnti.htm">Conti
+                  Correnti</a>
+              </li>
+              <!-- @@blkContiCorrenti -->
+              <!-- @@blkUnitaProduttive -->
+              <li>
+                <a href="../layout/sedi.htm">Unit&agrave; produttive</a>
+              </li>
+              <!-- @@blkUnitaProduttive -->
+              <!-- @@blkTerreni -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniParticellareElenco.htm">Terreni</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		            <a href="../layout/riepiloghi.htm">Terreni</a>
+		            <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkTerreni -->
+		          <!-- @@blkUnitaVitate -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniUnitaArboreeElenco.htm">Unit&agrave; Vitate</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		              <a href="../layout/riepiloghiUnitaArboree.htm">Unit&agrave; Vitate</a>
+		              <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkUnitaVitate -->
+              <!-- @@blkFabbricati -->
+              <li>
+                <a href="../layout/fabbricati.htm">Fabbricati e
+                  Strutture</a>
+              </li>
+              <!-- @@blkFabbricati -->
+              <!-- @@blkAllevamenti -->
+              <li>
+                <a href="../layout/allevamenti.htm" class="on">Allevamenti</a>
+                <ul>
+                  <!-- @@blkDettaglio -->
+                  <li>
+                    <a
+                      href="javascript: goTo('../layout/allevamenti_det.htm');">dettaglio</a>
+                  </li>
+                  <!-- @@blkDettaglio -->
+                  <!--@@blkModifica-->
+                  <li>
+                    <a
+                      href="javaScript: goTo('../layout/allevamenti_mod.htm');">modifica</a>
+                  </li>
+                  <!--@@blkModifica-->
+                  <!-- @@blkCessazione -->
+                  <li>
+                    <a
+                      href="javaScript: cessaAttivita('../layout/cessazioneAttivita.htm', 'allevamento')">cessazione</a>
+                  </li>
+                  <!-- @@blkCessazione -->
+                  <!--@@blkElimina-->
+                  <li>
+                    <a
+                      href="javascript: goTo('../layout/confermaEliminaAllevamento.htm')">elimina</a>
+                  </li>
+                  <!--@@blkElimina-->
+                  <!--@@blkInserisci-->
+                  <li>
+                    <a
+                      href="javascript: inserisci(' ../layout/allevamenti_new.htm')">inserisci</a>
+                  </li>
+                  <!--@@blkInserisci-->
+                  <!-- @@blkControlli -->
+                    <li><a href="../layout/allevamentiVerifica.htm">controlli</a></li>
+                  <!-- @@blkControlli -->
+                  <!--@@blkVisuraBDN-->
+                  <li>
+                    <a
+                      href="javascript:goToOperazione('../layout/visuraBDN.htm', document.form1, 'attenderePrego');">anagrafe
+                      zootecnica</a>
+                  </li>
+                  <!--@@blkVisuraBDN-->
+                  <!--@@blkRegistroStallaBDN-->
+                  <li>
+                    <a
+                      href="javascript:goToOperazione('../layout/registroStallaBDN.htm', document.form1, 'attenderePrego');">registro
+                      di stalla</a>
+                  </li>
+                  <li>
+                    <a
+                      href="javascript:goToOperazione('../layout/visuraBDNConsistenzaMedia.htm', document.form1, 'attenderePrego');">consistenza
+                      media</a>
+                  </li>
+                  <!--@@blkRegistroStallaBDN-->
+
+                </ul>
+              </li>
+              <!-- @@blkAllevamenti -->
+              <!-- @@blkManodopera -->
+              <li>
+                <a href="../layout/manodopera.htm">Manodopera</a>
+              </li>
+              <!-- @@blkManodopera -->
+              <!-- @@blkMotoriAgricoli -->
+              <li>
+                <a href="../layout/motori_agricoli_incarico.htm">Macchine agricole</a>
+              </li>
+              <!-- @@blkMotoriAgricoli -->
+              <!-- @@blkDiritti -->
+              <li>
+                <a href="../layout/diritti.htm">Diritti di
+                  produzione</a>
+              </li>
+              <!-- @@blkDiritti -->
+              <!-- @@blkAttestazioni -->
+              <li>
+                <a href="../layout/attestazioniDettaglio.htm">Dichiarazioni</a>
+              </li>
+              <!-- @@blkAttestazioni -->
+              <!-- @@blkDichiarazioniConsistenza -->
+              <li>
+                <a href="../layout/dichiarazioneConsistenza.htm">Validazioni</a>
+              </li>
+              <!-- @@blkDichiarazioniConsistenza -->
+              <!-- @@blkDocumenti -->
+              <li>
+                <a href="../layout/documentiElenco.htm">Documenti</a>
+              </li>
+              <!-- @@blkDocumenti -->
+              <!-- @@blkFascicoloDematerializzato -->
+		          <li>
+		            <a href="../layout/fascicoloDematerializzato.htm">Fascicolo<br>elettronico</a>
+		          </li>
+		          <!-- @@blkFascicoloDematerializzato -->
+              <!-- @@blkGestioneNotifiche -->
+              <li>
+                <a href="../layout/notifiche.htm">Notifiche</a>
+              </li>
+              <!-- @@blkGestioneNotifiche -->
+              <!-- @@blkComunicazione10R -->
+              <li>
+                <a href="../layout/comunicazione10R_dettaglio.htm">Comunicazione
+                  10/R</a>
+              </li>
+              <!-- @@blkComunicazione10R -->
+              <!-- @@blkPratiche -->
+              <li>
+                <a href="../layout/pratiche.htm">Pratiche</a>
+              </li>
+              <!-- @@blkPratiche -->
+              <!-- @@blkStampaFascicolo -->
+              <li>
+                <a href="../layout/scelta_stampa.htm">Stampe</a>
+              </li>
+              <!-- @@blkStampaFascicolo -->
+			  <li><a href="../layout/strumenti.htm">Strumenti</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr />
+        <!-- SECONDA COLONNA -->
+        <div id="contenuto">
+          <div id="intesta">
+            <p class="$$aziendaIntestazione" title="$$tooltipIntestazione" >
+              $$CUAAIntestazione  $$denominazioneIntestazione
+            </p>
+          </div>
+          <!-- @@blkNotifica -->
+          <p class="$$immagine">
+            $$messaggioNotifica
+          </p>
+          <!-- @@blkINNotifica -->
+          <div class="notifica">$$notifica</div>
+          <!-- @@blkINNotifica -->
+          <!-- @@blkNotifica -->
+          <br />
+          <table cellspacing="3"
+            summary="Questa tabella è costituita da righe">
+            <col width="15%" />
+            <col width="70%" />
+            <tr>
+              <th scope="row">
+                <label for="idAnno" class="checkbox">
+                  Piano di riferimento
+                </label>
+              </th>
+              <td>
+                <select name="idDichiarazioneConsistenza"
+                  id="idDichiarazioneConsistenza">
+                  <!-- @@blkPianoRiferimento -->
+                  <option value="$$idDichiarazioneConsistenza"
+                    $$selected>
+                    $$descDichiarazioneConsistenza
+                  </option>
+                  <!-- @@blkPianoRiferimento -->
+                </select>
+                $$err_idDichiarazioneConsistenza
+              </td>
+              <td rowspan="2">
+                <div class="azioni">
+                  <a href="javascript:resetOperazione();">aggiorna</a>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <label for="idUte" class="checkbox">
+                  UTE
+                </label>
+              </th>
+              <td>
+                <select name="idUte" id="idUte">
+                  <option value=""></option>
+                  <!-- @@blkElencoUte -->
+                  <option value="$$idUte" $$selected>
+                    $$descUte
+                  </option>
+                  <!-- @@blkElencoUte -->
+                </select>
+                $$err_idUte
+              </td>              
+            </tr>
+            <tr>
+              <th scope="row">
+                Controlli effettuati in data     
+              </th>
+              <td colspan="2">
+                $$dataControlli          
+              </td>      
+            </tr>
+          </table>
+          <!--@@blkNumeroAllevamenti-->
+          <p class="allineaDx">
+            Numero Allevamenti dell'azienda: $$numAllevamenti
+            <span> @@prev <a
+              href="javascript: goToLine($$prevPage)">indietro</a>
+              @@prev Pag.$$currentPage Di $$maxPage @@next <a
+              href="javascript: goToLine($$nextPage)">avanti</a> @@next
+            </span>
+          </p>
+          <!--@@blkNumeroAllevamenti-->
+          <!--@@elencoAllevamenti-->
+          <!-- @@blkIntestazione -->
+          <div class="scroll">
+            <table class="evidence" cellspacing="3"
+              summary="Questa tabella contiene i dati del rapporto">
+              <thead>
+                <tr>
+                  <th rowspan="2" class="radio" scope="col">&nbsp;
+                    
+                  </th>
+                  <th rowspan="2" colspan="2" class="radio" scope="col">&nbsp;
+                    
+                  </th>
+                  <th rowspan="2" class="center" scope="col">
+                    Denominazione
+                  </th>
+                  <th rowspan="2" class="center" scope="col">
+                    Unit&agrave; produttiva (U.T.E.)
+                  </th>
+                  <th rowspan="2" class="center" scope="col">
+                    Comune
+                  </th>
+                  <th rowspan="2" class="center" scope="col">
+                    Codice
+                  </th>
+                  <th rowspan="2" class="center" scope="col">
+                    Specie
+                  </th>
+                  <th rowspan="2" class="center" scope="col">
+                    Quantit&agrave;<br>in detenzione
+                  </th>
+                  <th rowspan="2" class="center" scope="col">
+                    Quantit&agrave;<br>in propriet&agrave;
+                  </th>
+                  <th rowspan="2" class="center" scope="col">
+                    Unit&agrave; di misura
+                  </th>
+                  <th rowspan="2" class="center" scope="col">
+                    <acronym title="unità bovine adulte" lang="it">UBA</acronym>
+                  </th>
+                  <th colspan="2" class="center" scope="col">
+                    Detentore
+                  </th>
+                  <th colspan="2" class="center" scope="col">
+                    Proprietario
+                  </th>
+                  <th rowspan="2" class="center" scope="col">
+                    Soccida
+                  </th>
+                  <!--@@blkHidden-->
+                  <th rowspan="2" class="center" scope="col">
+                    Dal
+                  </th>
+                  <!--@@blkHidden-->
+                  <th rowspan="2" class="center" scope="col">
+                    Data fine validit&agrave;
+                  </th>
+                </tr>
+                <tr>
+                  <th class="center" scope="col">
+                    Codice fiscale
+                  </th>
+                  <th class="center" scope="col">
+                    Denominazione
+                  </th>
+                  <th class="center" scope="col">
+                    Codice fiscale
+                  </th>
+                  <th class="center" scope="col">
+                    Denominazione
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- @@blkIntestazione-->
+                <!-- @@blkAllevamento -->
+                <tr>
+                  <th class="radio" scope="row">
+                    <input type="radio" id="radiobutton"
+                      name="radiobutton" value="$$idAllevamento"
+                      $$checked />
+                  </th>
+                  <td class="radio">
+                    <a href="#" onClick="alert('$$descBiologico')"
+                      onkeypress="alert('$$descBiologico')"
+                      title="$$descBiologico" class="$$classBiologico"></a>
+                  </td>
+                  <td class="radio" >
+                    <a href="javascript: newWindowDoForm('../layout/popAnomalieAllevamento.htm?idAllevamento=$$idAllevamento', 'anomalie', '800', '400', 'yes', 'ANOMALIE ALLEVAMENTO');" 
+                       title="$$descTitleAnomalia" class="$$classImmagine"></a>
+                  </td>
+                  <td>
+                    $$denominazioneAllevamento
+                  </td>
+                  <td>
+                    $$comuneUte - $$indirizzoUte
+                  </td>
+                  <td>
+                    $$comuneAllevamento
+                  </td>
+                  <td>
+                    <label for="radiobutton">
+                      $$codiceAziendaZootecnico
+                    </label>
+                  </td>
+                  <td>
+                    $$specie
+                  </td>
+                  <td class="numeridx">
+                    $$quantitaDetenzione
+                  </td>
+                  <td class="numeridx">
+                    $$quantitaProprieta
+                  </td>
+                  <td>
+                    $$unitaMisura
+                  </td>
+                  <td class="numeridx">
+                    $$UBA
+                  </td>
+                  <td>
+                    $$codFiscDetentore
+                  </td>
+                  <td>
+                    $$denominazioneDetentore
+                  </td>
+                  <td>
+                    $$codFiscProprietario
+                  </td>
+                  <td>
+                    $$denominazioneProprietario
+                  </td>
+                  <td class="center">
+                    $$soccida
+                  </td>
+                  <!--@@blkHidden-->
+                  <td>
+                    $$dataDal
+                  </td>
+                  <!--@@blkHidden-->
+                  <td>
+                    $$dataAl
+                  </td>
+                </tr>
+                <!-- @@blkAllevamento-->
+                <!-- @@blkIntestazione -->
+              </tbody>
+            </table>
+          </div>
+          <!-- @@blkIntestazione -->
+          <div class="azioni">
+            <a
+              href="javascript: goToOperazione('../layout/allevamenti.htm', document.form1,'excel');">esporta
+              dati</a>
+          </div>
+          <!--@@elencoAllevamenti-->
+          <!--@@noAllevamenti-->
+          <p class="errore">
+            Non esistono allevamenti relativi al piano di riferimento
+            selezionato
+          </p>
+          <!--@@noAllevamenti-->
+        </div>
+      </div>
+      <hr />
+      <!-- PIE' DI PAGINA -->
+      $$footer

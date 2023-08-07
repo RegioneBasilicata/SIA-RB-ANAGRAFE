@@ -1,0 +1,2435 @@
+$$head
+<script src="../js/checktext.js" type="text/javascript"></script>
+<script src="../js/checkdata.js" type="text/javascript"></script>
+<script type="text/javascript">
+		
+		// Funzione che specifica l'operazione selezionata ed effettua il submit
+		// del form
+		function conferma() 
+		{
+			document.forms[0].confermo.value = 'confermo';
+  	  document.forms[0].submit();
+		}
+		
+		// Funzione per la gestione corretta dei valori relativi al flag irrigata
+		// e alla combo tipo irrigazione
+		function gestioneIrrigabile() {
+			if(document.forms[0].flagIrrigabile.checked == true) {
+				document.forms[0].idIrrigazione.disabled = false;
+			}
+			else {
+				document.forms[0].idIrrigazione.value = null;
+				document.forms[0].idIrrigazione.disabled = true;
+			}
+		}
+		
+		// Funzione che apre una richiesta di conferma in merito alla congruenza
+		// tra la somma delle superfici utilizzate e la sup condotta
+		function confirmSuperfici() {
+			if(document.forms[0].confermaSup.value != '') {
+				if(confirm('Non è stato dichiarato l\'uso del suolo sulla totalità della superficie grafica o catastale.Vuoi proseguire?')) {
+					conferma();
+				}
+				else {
+					document.forms[0].confermaSup.value = '';
+				}
+			}
+		}
+		
+		// Metodo per aprire una pop-up ed effettuare su di essa il submit del form
+		function newWindowSubmit(mypage, myname, w, h, scroll, type, numTotaleUtilizzo, provenienza) {
+			var winl = (screen.width - w) / 2;
+  			var wint = (screen.height - h) / 2;
+  			winprops =    'height='+h+',width='+w+',top='+wint+',left='+winl+',scrollbars='+scroll+',resizable';
+  			win = window.open('', myname, winprops);
+
+  			if (parseInt(navigator.appVersion) >= 4) {
+    			win.window.focus();
+  			}	
+		  	var target1 = document.forms[0].target;
+		  	var action1 = document.forms[0].action;
+		  	document.forms[0].target = myname;
+		  	document.forms[0].action = mypage;
+		  	document.forms[0].type.value = type;
+		  	document.forms[0].numTotaleUtilizzo.value = numTotaleUtilizzo;
+		  	document.forms[0].provenienza.value = provenienza;
+			  document.forms[0].submit();
+			  document.forms[0].target = target1;
+  			document.forms[0].action = action1;
+		}
+		
+		
+		
+  function calcolaPercentualePossesso(superficieGrafica, supCatastale) 
+  {
+    var valore1 = document.form1.supCondotta.value;
+    var valore2 = superficieGrafica;
+    var totale='';   
+    
+    if (valore1=='')
+      totale='';
+    else
+    {
+      if(IsNumeric(valore1) && valore1 != '' && (IsNumeric(supCatastale) || IsNumeric(superficieGrafica)) )
+      {
+        if(IsNumeric(supCatastale))
+        {
+          valore2 = supCatastale;
+        }
+        totale = parseFloat(valore1.replace(',', '.')) * 100;
+        totale = totale / parseFloat(valore2.replace(',', '.'))
+        totale = arrotonda(totale,2);
+        if(totale == 0)
+          totale = 0.01
+        if(totale > 100)
+          totale = 100
+        totale = ''+totale;
+        document.form1.percentualePossesso.value = totale.replace('.', ',');  
+      }
+      else totale='NaN';
+    }
+  }		
+	</script>
+	
+<script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../js/jquery-ui-1.8.21.custom/jquery-ui-1.8.21.custom.min.js"></script>
+<script type="text/javascript">
+  /*function modificaComboVarieta(indice)
+  {    
+    
+    var idCombo = '#idVarieta'+indice;
+    var idUtilizzoPar = '';
+    
+    //mi serve per capire se ho più righe!!!
+    if (document.form1.supUtilizzata.length)
+    {
+      idUtilizzoPar = document.form1.idTipoUtilizzo[indice].value;
+    }
+    else
+    {
+      idUtilizzoPar = document.form1.idTipoUtilizzo.value;
+    }   
+    
+    var dataInv = {
+      idUtilizzo: idUtilizzoPar,
+      provenienza: "popModTerrCondUso",
+      indice: indice
+    };
+     
+    dataInv = $.param(dataInv);    
+    
+    
+    $.ajax({
+      url: "../layout/popolaComboVarieta.htm",
+      type: "POST",
+      data: dataInv,
+      success: function( data ) 
+              { 
+                $(idCombo).html( data );
+                modificaComboDettaglioUso(indice);      
+              },
+       dataType: 'html'
+      
+    });   
+  }
+  
+  function modificaComboDettaglioUso(indice)
+  {
+  
+    var idCombo = '#idTipoDettaglioUsoDiv'+indice;
+    var idVarietaPar = '';       
+    
+    //mi serve per capire se ho più righe!!!
+    if (document.form1.supUtilizzata.length)
+    {
+      idVarietaPar = document.form1.idVarieta[indice].value;
+    }
+    else
+    {
+      idVarietaPar = document.form1.idVarieta.value;
+    }
+    
+    
+    var dataInv = {
+      idVarieta: idVarietaPar,
+      indice: indice,
+      provenienza: "popModTerrCondUso"
+    };
+     
+    dataInv = $.param(dataInv);    
+    
+    
+    $.ajax({
+      url: "../layout/popolaComboDestUso.htm",
+      type: "POST",
+      data: dataInv,
+      success: function( data ) 
+              { 
+                $(idCombo).html( data );
+                var idTipoPeriodoSeminaVarieta = document.getElementById('idTipoPeriodoSeminaVarieta'+indice).value;
+                caricaDefaultSemina(indice,idTipoPeriodoSeminaVarieta);                    
+              },
+       dataType: 'html'
+      
+    });
+  
+  
+  }
+  
+  
+  function aggiungiUsoPrimario(idUtilizzoPar,descUtilizzoPar,numTotaleUtilizzo)
+  {
+    var i = 0;
+    $('.clsIdTipoUtilizzo').each(function() 
+    {
+      if(i == numTotaleUtilizzo)
+      {
+        $(this).append($("<option value='"+idUtilizzoPar+"' selected>"+descUtilizzoPar+"</option>"));
+        modificaComboVarieta(numTotaleUtilizzo);
+      }
+      else
+      {
+        $(this).append($("<option value='"+idUtilizzoPar+"'>"+descUtilizzoPar+"</option>"));
+      }
+      
+      i++;
+    });     
+    
+  }*/
+  
+  
+  function modificaComboDestinazione(indice)
+  {
+  
+    var idCombo = '#idTipoDestinazioneDiv'+indice;
+    var idUtilizzoPar = '';       
+    
+    //mi serve per capire se ho più righe!!!
+    if (document.form1.supUtilizzata.length)
+    {
+      idUtilizzoPar = document.form1.idTipoUtilizzo[indice].value;
+    }
+    else
+    {
+      idUtilizzoPar = document.form1.idTipoUtilizzo.value;
+    }
+    
+    
+    var dataInv = {
+      idUtilizzo: idUtilizzoPar,
+      indice: indice,
+      provenienza: "popModTerrCondUso"
+    };
+     
+    dataInv = $.param(dataInv);    
+    
+    
+    $.ajax({
+      url: "../layout/popolaComboDestinazione.htm",
+      type: "POST",
+      data: dataInv,
+      success: function( data ) 
+              { 
+                $(idCombo).html( data );
+                modificaComboDettaglioUso(indice);              
+              },
+       dataType: 'html'
+      
+    }); 
+  
+  }
+  
+  function modificaComboDettaglioUso(indice)
+  {
+  
+    var idCombo = '#idTipoDettaglioUsoDiv'+indice;
+    var idUtilizzoPar = ''; 
+    var idTipoDestinazionePar = '';          
+    
+    //mi serve per capire se ho più righe!!!
+    if (document.form1.supUtilizzata.length)
+    {
+      idUtilizzoPar = document.form1.idTipoUtilizzo[indice].value;
+      idTipoDestinazionePar = document.form1.idTipoDestinazione[indice].value; 
+    }
+    else
+    {
+      idUtilizzoPar = document.form1.idTipoUtilizzo.value;
+      idTipoDestinazionePar = document.form1.idTipoDestinazione.value; 
+    }
+    
+    
+    var dataInv = {
+      idUtilizzo: idUtilizzoPar,
+      idTipoDestinazione: idTipoDestinazionePar,
+      indice: indice,
+      provenienza: "popModTerrCondUso"
+    };
+     
+    dataInv = $.param(dataInv);    
+    
+    
+    $.ajax({
+      url: "../layout/popolaComboDettaglioUso.htm",
+      type: "POST",
+      data: dataInv,
+      success: function( data ) 
+              { 
+                $(idCombo).html( data );
+                modificaComboQualitaUso(indice);                  
+              },
+       dataType: 'html'
+      
+    }); 
+  }
+  
+  function modificaComboQualitaUso(indice)
+  {
+  
+    var idCombo = '#idTipoQualitaUsoDiv'+indice;
+    var idUtilizzoPar = '';
+    var idTipoDestinazionePar = '';
+    var idTipoDettaglioUsoPar = '';         
+    
+    //mi serve per capire se ho più righe!!!
+    if (document.form1.supUtilizzata.length)
+    {
+      idUtilizzoPar = document.form1.idTipoUtilizzo[indice].value;
+      idTipoDestinazionePar = document.form1.idTipoDestinazione[indice].value;
+      idTipoDettaglioUsoPar = document.form1.idTipoDettaglioUso[indice].value; 
+    }
+    else
+    {
+      idUtilizzoPar = document.form1.idTipoUtilizzo.value;
+      idTipoDestinazionePar = document.form1.idTipoDestinazione.value;
+      idTipoDettaglioUsoPar = document.form1.idTipoDettaglioUso.value; 
+    }
+    
+    
+    var dataInv = {
+      idUtilizzo: idUtilizzoPar,
+      idTipoDestinazione: idTipoDestinazionePar,
+      idTipoDettaglioUso: idTipoDettaglioUsoPar,
+      indice: indice,
+      provenienza: "popModTerrCondUso"
+    };
+     
+    dataInv = $.param(dataInv);    
+    
+    
+    $.ajax({
+      url: "../layout/popolaComboQualitaUso.htm",
+      type: "POST",
+      data: dataInv,
+      success: function( data ) 
+              { 
+                $(idCombo).html( data );
+                modificaComboVarieta(indice);                  
+              },
+       dataType: 'html'
+      
+    }); 
+  }
+  
+  function modificaComboVarieta(indice)
+  {    
+    
+    var idCombo = '#idVarieta'+indice;
+    var idUtilizzoPar = '';
+    var idTipoDestinazionePar = '';
+    var idTipoDettaglioUsoPar = '';
+    var idTipoQualitaUsoPar = '';
+    
+    //mi serve per capire se ho più righe!!!
+    if (document.form1.supUtilizzata.length)
+    {
+      idUtilizzoPar = document.form1.idTipoUtilizzo[indice].value;
+      idTipoDestinazionePar = document.form1.idTipoDestinazione[indice].value;
+      idTipoDettaglioUsoPar = document.form1.idTipoDettaglioUso[indice].value;
+      idTipoQualitaUsoPar = document.form1.idTipoQualitaUso[indice].value;
+    }
+    else
+    {
+      idUtilizzoPar = document.form1.idTipoUtilizzo.value;
+      idTipoDestinazionePar = document.form1.idTipoDestinazione.value;
+      idTipoDettaglioUsoPar = document.form1.idTipoDettaglioUso.value;
+      idTipoQualitaUsoPar = document.form1.idTipoQualitaUso.value;
+    }   
+    
+    var dataInv = {
+      idUtilizzo: idUtilizzoPar,
+      idTipoDestinazione: idTipoDestinazionePar,
+      idTipoDettaglioUso: idTipoDettaglioUsoPar,
+      idTipoQualitaUso: idTipoQualitaUsoPar,
+      provenienza: "popModTerrCondUso",
+      indice: indice
+    };
+     
+    dataInv = $.param(dataInv);    
+    
+    
+    $.ajax({
+      url: "../layout/popolaComboVarieta.htm",
+      type: "POST",
+      data: dataInv,
+      success: function( data ) 
+              { 
+                $(idCombo).html( data );
+                modificaSezioneSemina(indice);
+                modificaSezioneMantenimento(indice);
+                modificaSezioneFaseAllevamento(indice);     
+              },
+       dataType: 'html'
+      
+    });   
+  }
+  
+  
+  function modificaSezioneSemina(indice)
+  {    
+    
+    var idCombo = '#idSezioneSemina'+indice;
+    var idUtilizzoPar = '';
+    var idTipoDestinazionePar = '';
+    var idTipoDettaglioUsoPar = '';
+    var idTipoQualitaUsoPar = '';
+    var idVarietaPar = '';
+    
+    //mi serve per capire se ho più righe!!!
+    if (document.form1.supUtilizzata.length)
+    {
+      idUtilizzoPar = document.form1.idTipoUtilizzo[indice].value;
+      idTipoDestinazionePar = document.form1.idTipoDestinazione[indice].value;
+      idTipoDettaglioUsoPar = document.form1.idTipoDettaglioUso[indice].value;
+      idTipoQualitaUsoPar = document.form1.idTipoQualitaUso[indice].value;
+      idVarietaPar = document.form1.idVarieta[indice].value;
+    }
+    else
+    {
+      idUtilizzoPar = document.form1.idTipoUtilizzo.value;
+      idTipoDestinazionePar = document.form1.idTipoDestinazione.value;
+      idTipoDettaglioUsoPar = document.form1.idTipoDettaglioUso.value;
+      idTipoQualitaUsoPar = document.form1.idTipoQualitaUso.value;
+      idVarietaPar = document.form1.idVarieta.value;
+    }   
+    
+    var dataInv = {
+      idUtilizzo: idUtilizzoPar,
+      idTipoDestinazione: idTipoDestinazionePar,
+      idTipoDettaglioUso: idTipoDettaglioUsoPar,
+      idTipoQualitaUso: idTipoQualitaUsoPar,
+      idVarieta: idVarietaPar,
+      provenienza: "popModTerrCondUso",
+      indice: indice
+    };
+     
+    dataInv = $.param(dataInv);    
+    
+    
+    $.ajax({
+      url: "../layout/popolaSezioneSemina.htm",
+      type: "POST",
+      data: dataInv,
+      success: function( data ) 
+              { 
+                $(idCombo).html( data );
+                modificaSezioneDateSemina(indice);     
+              },
+       dataType: 'html'
+      
+    });   
+  }
+  
+  
+  function modificaSezioneDateSemina(indice)
+  {    
+    
+    var idCombo = '#idSezioneDateSemina'+indice;
+    var idUtilizzoPar = '';
+    var idTipoDestinazionePar = '';
+    var idTipoDettaglioUsoPar = '';
+    var idTipoQualitaUsoPar = '';
+    var idVarietaPar = '';
+    var idTipoPeriodoSeminaPar = '';
+    
+    //mi serve per capire se ho più righe!!!
+    if (document.form1.supUtilizzata.length)
+    {
+      idUtilizzoPar = document.form1.idTipoUtilizzo[indice].value;
+      idTipoDestinazionePar = document.form1.idTipoDestinazione[indice].value;
+      idTipoDettaglioUsoPar = document.form1.idTipoDettaglioUso[indice].value;
+      idTipoQualitaUsoPar = document.form1.idTipoQualitaUso[indice].value;
+      idVarietaPar = document.form1.idVarieta[indice].value;
+      idTipoPeriodoSeminaPar = document.form1.idTipoPeriodoSemina[indice].value;
+    }
+    else
+    {
+      idUtilizzoPar = document.form1.idTipoUtilizzo.value;
+      idTipoDestinazionePar = document.form1.idTipoDestinazione.value;
+      idTipoDettaglioUsoPar = document.form1.idTipoDettaglioUso.value;
+      idTipoQualitaUsoPar = document.form1.idTipoQualitaUso.value;
+      idVarietaPar = document.form1.idVarieta.value;
+      idTipoPeriodoSeminaPar = document.form1.idTipoPeriodoSemina.value;
+    }   
+    
+    var dataInv = {
+      idUtilizzo: idUtilizzoPar,
+      idTipoDestinazione: idTipoDestinazionePar,
+      idTipoDettaglioUso: idTipoDettaglioUsoPar,
+      idTipoQualitaUso: idTipoQualitaUsoPar,
+      idVarieta: idVarietaPar,
+      idTipoPeriodoSemina: idTipoPeriodoSeminaPar,
+      provenienza: "popModTerrCondUso",
+      indice: indice
+    };
+     
+    dataInv = $.param(dataInv);    
+    
+    
+    $.ajax({
+      url: "../layout/popolaSezioneDateSemina.htm",
+      type: "POST",
+      data: dataInv,
+      success: function( data ) 
+              { 
+                $(idCombo).html( data );     
+              },
+       dataType: 'html'
+      
+    });   
+  }
+  
+  
+  function modificaSezioneMantenimento(indice)
+  {    
+    
+    var idCombo = '#idSezioneMantenimentoDiv'+indice;
+    var idUtilizzoPar = '';
+    var idTipoDestinazionePar = '';
+    var idTipoDettaglioUsoPar = '';
+    var idTipoQualitaUsoPar = '';
+    var idVarietaPar = '';
+    
+    //mi serve per capire se ho più righe!!!
+    if (document.form1.supUtilizzata.length)
+    {
+      idUtilizzoPar = document.form1.idTipoUtilizzo[indice].value;
+      idTipoDestinazionePar = document.form1.idTipoDestinazione[indice].value;
+      idTipoDettaglioUsoPar = document.form1.idTipoDettaglioUso[indice].value;
+      idTipoQualitaUsoPar = document.form1.idTipoQualitaUso[indice].value;
+      idVarietaPar = document.form1.idVarieta[indice].value;
+    }
+    else
+    {
+      idUtilizzoPar = document.form1.idTipoUtilizzo.value;
+      idTipoDestinazionePar = document.form1.idTipoDestinazione.value;
+      idTipoDettaglioUsoPar = document.form1.idTipoDettaglioUso.value;
+      idTipoQualitaUsoPar = document.form1.idTipoQualitaUso.value;
+      idVarietaPar = document.form1.idVarieta.value;
+    }   
+    
+    var dataInv = {
+      idUtilizzo: idUtilizzoPar,
+      idTipoDestinazione: idTipoDestinazionePar,
+      idTipoDettaglioUso: idTipoDettaglioUsoPar,
+      idTipoQualitaUso: idTipoQualitaUsoPar,
+      idVarieta: idVarietaPar,
+      provenienza: "popModTerrCondUso",
+      indice: indice
+    };
+     
+    dataInv = $.param(dataInv);    
+    
+    
+    $.ajax({
+      url: "../layout/popolaSezioneMantenimento.htm",
+      type: "POST",
+      data: dataInv,
+      success: function( data ) 
+              { 
+                $(idCombo).html( data );     
+              },
+       dataType: 'html'
+      
+    });   
+  }
+  
+  function modificaSezioneFaseAllevamento(indice)
+  {    
+    
+    var idCombo = '#idSezioneFaseAllevamento'+indice;
+    var idUtilizzoPar = '';
+    var idTipoDestinazionePar = '';
+    var idTipoDettaglioUsoPar = '';
+    var idTipoQualitaUsoPar = '';
+    var idVarietaPar = '';
+    
+    //mi serve per capire se ho più righe!!!
+    if (document.form1.supUtilizzata.length)
+    {
+      idUtilizzoPar = document.form1.idTipoUtilizzo[indice].value;
+      idTipoDestinazionePar = document.form1.idTipoDestinazione[indice].value;
+      idTipoDettaglioUsoPar = document.form1.idTipoDettaglioUso[indice].value;
+      idTipoQualitaUsoPar = document.form1.idTipoQualitaUso[indice].value;
+      idVarietaPar = document.form1.idVarieta[indice].value;
+    }
+    else
+    {
+      idUtilizzoPar = document.form1.idTipoUtilizzo.value;
+      idTipoDestinazionePar = document.form1.idTipoDestinazione.value;
+      idTipoDettaglioUsoPar = document.form1.idTipoDettaglioUso.value;
+      idTipoQualitaUsoPar = document.form1.idTipoQualitaUso.value;
+      idVarietaPar = document.form1.idVarieta.value;
+    }   
+    
+    var dataInv = {
+      idUtilizzo: idUtilizzoPar,
+      idTipoDestinazione: idTipoDestinazionePar,
+      idTipoDettaglioUso: idTipoDettaglioUsoPar,
+      idTipoQualitaUso: idTipoQualitaUsoPar,
+      idVarieta: idVarietaPar,
+      provenienza: "popModTerrCondUso",
+      indice: indice
+    };
+     
+    dataInv = $.param(dataInv);    
+    
+    
+    $.ajax({
+      url: "../layout/popolaSezioneFaseAllevamento.htm",
+      type: "POST",
+      data: dataInv,
+      success: function( data ) 
+              { 
+                $(idCombo).html( data );     
+              },
+       dataType: 'html'
+      
+    });   
+  }
+  
+  
+  function aggiungiUsoPrimario(idUtilizzoPar,descUtilizzoPar,numTotaleUtilizzo)
+  {
+    var i = 0;
+    $('.clsIdTipoUtilizzo').each(function() 
+    {
+      if(i == numTotaleUtilizzo)
+      {
+        $(this).html($(this).html().replace(/selected=\"selected\"/g,""));
+        $(this).append($("<option value='"+idUtilizzoPar+"' selected=\"selected\">"+descUtilizzoPar+"</option>"));
+        modificaComboDestinazione(numTotaleUtilizzo);
+      }
+      else
+      {
+        $(this).append($("<option value='"+idUtilizzoPar+"'>"+descUtilizzoPar+"</option>"));
+      }
+      
+      i++;
+    });     
+    
+  }
+  
+  /*function modificaComboVarietaSecondaria(indice)
+  {    
+    
+    var idCombo = '#idVarietaSecondaria'+indice;
+    var idUtilizzoPar = '';
+    
+    if (document.form1.supUtilizzata.length)
+    {
+      idUtilizzoPar = document.form1.idTipoUtilizzoSecondario[indice].value;
+    }
+    else
+    {
+      idUtilizzoPar = document.form1.idTipoUtilizzoSecondario.value;
+    }
+    
+    
+    
+    var dataInv = {
+      idUtilizzo: idUtilizzoPar,
+      provenienza: "popModTerrCondUso",
+      indice: indice
+    };
+     
+    dataInv = $.param(dataInv);    
+    
+    
+    $.ajax({
+      url: "../layout/popolaComboVarietaSecondaria.htm",
+      type: "POST",
+      data: dataInv,
+      success: function( data ) 
+              { 
+                $(idCombo).html( data );
+                modificaComboDettaglioUsoSecondario(indice);                 
+              },
+       dataType: 'html'
+      
+    });   
+  }
+  
+  function modificaComboDettaglioUsoSecondario(indice)
+  {
+    var idCombo = '#idTipoDettaglioUsoSecondarioDiv'+indice;
+    var idVarietaPar = '';
+    
+    if (document.form1.supUtilizzata.length)
+    {
+      idVarietaPar = document.form1.idVarietaSecondaria[indice].value;
+    }
+    else
+    {
+      idVarietaPar = document.form1.idVarietaSecondaria.value;   
+    }
+        
+    
+    var dataInv = {
+      idVarieta: idVarietaPar,
+      provenienza: "popModTerrCondUso",
+      indice: indice
+    };
+     
+    dataInv = $.param(dataInv);    
+    
+    
+    $.ajax({
+      url: "../layout/popolaComboDestUsoSecondario.htm",
+      type: "POST",
+      data: dataInv,
+      success: function( data ) 
+              { 
+                $(idCombo).html( data );
+                var idTipoPeriodoSeminaVarieta = document.getElementById('idTipoPeriodoSeminaVarietaSecondario'+indice).value;
+                caricaDefaultSeminaSecondario(indice,idTipoPeriodoSeminaVarieta);                 
+              },
+       dataType: 'html'
+      
+    });
+  
+  
+  }
+  
+  function aggiungiUsoSecondario(idUtilizzoPar,descUtilizzoPar,numTotaleUtilizzo)
+  {
+    
+    var i = 0;
+    $('.clsIdTipoUtilizzoSecondario').each(function() 
+    {
+      if(i == numTotaleUtilizzo)
+      {
+        $(this).append("<option value='"+idUtilizzoPar+"' selected=\"selected\">"+descUtilizzoPar+"</option>");
+        modificaComboVarietaSecondaria(numTotaleUtilizzo);
+      }
+      else
+      {
+        $(this).append($("<option value='"+idUtilizzoPar+"'>"+descUtilizzoPar+"</option>"));
+      }
+      
+      i++;
+    });     
+    
+  }
+  
+  
+  function caricaDefaultSemina(indice,idTipoPeriodoSemina) 
+  { 
+    var idTipo = '#idTipoPeriodoSemina'+indice;
+    $(idTipo).find('option').removeAttr("selected");
+    $(idTipo+' option[value="' + idTipoPeriodoSemina + '"]').attr('selected', 'selected');        
+  }
+  
+  function caricaDefaultSeminaSecondario(indice,idTipoPeriodoSemina) 
+  { 
+    var idTipo = '#idTipoPeriodoSeminaSecondario'+indice;
+    $(idTipo).find('option').removeAttr("selected");
+    $(idTipo+' option[value="' + idTipoPeriodoSemina + '"]').attr('selected', 'selected');        
+  }*/
+  
+  
+  function modificaComboDestinazioneSecondario(indice)
+  {
+    var idCombo = '#idTipoDestinazioneSecondarioDiv'+indice;
+    var idUtilizzoPar = ''; 
+    
+    if (document.form1.supUtilizzata.length)
+    {
+      idUtilizzoPar = document.form1.idTipoUtilizzoSecondario[indice].value;
+    }
+    else
+    {
+      idUtilizzoPar = document.form1.idTipoUtilizzoSecondario.value;    
+    }    
+    
+    var dataInv = {
+      idUtilizzo: idUtilizzoPar,
+      provenienza: "popModTerrCondUso"
+    };
+     
+    dataInv = $.param(dataInv);    
+    
+    
+    $.ajax({
+      url: "../layout/popolaComboDestinazioneSecondario.htm",
+      type: "POST",
+      data: dataInv,
+      success: function( data ) 
+              { 
+                $(idCombo).html( data );
+                modificaComboDettaglioUsoSecondario(indice);                 
+              },
+       dataType: 'html'
+      
+    });
+  
+  
+  }
+  
+  
+  
+  function modificaComboDettaglioUsoSecondario(indice)
+  {
+    var idCombo = '#idTipoDettaglioUsoSecondarioDiv'+indice;
+    var idUtilizzoPar = '';   
+    var idTipoDestinazionePar = '';
+    
+    if (document.form1.supUtilizzata.length)
+    {
+      idUtilizzoPar = document.form1.idTipoUtilizzoSecondario[indice].value;   
+      idTipoDestinazionePar = document.form1.idTipoDestinazioneSecondario[indice].value;
+    }
+    else
+    {
+      idUtilizzoPar = document.form1.idTipoUtilizzoSecondario.value;   
+      idTipoDestinazionePar = document.form1.idTipoDestinazioneSecondario.value;
+    }
+        
+    
+    var dataInv = {
+      idUtilizzo: idUtilizzoPar,   
+      idTipoDestinazione: idTipoDestinazionePar,
+      provenienza: "popModTerrCondUso",
+      indice: indice
+    };
+     
+    dataInv = $.param(dataInv);    
+    
+    
+    $.ajax({
+      url: "../layout/popolaComboDettaglioUsoSecondario.htm",
+      type: "POST",
+      data: dataInv,
+      success: function( data ) 
+              { 
+                $(idCombo).html( data );
+                modificaComboQualitaUsoSecondario(indice);                 
+              },
+       dataType: 'html'
+      
+    }); 
+  }
+  
+  function modificaComboQualitaUsoSecondario(indice)
+  {
+    var idCombo = '#idTipoQualitaUsoSecondarioDiv'+indice;
+    var idUtilizzoPar = '';
+    var idTipoDestinazionePar = '';
+    var idTipoDettaglioUsoPar = '';
+    
+    
+    if (document.form1.supUtilizzata.length)
+    {
+      idUtilizzoPar = document.form1.idTipoUtilizzoSecondario[indice].value;
+      idTipoDestinazionePar = document.form1.idTipoDestinazioneSecondario[indice].value;
+      idTipoDettaglioUsoPar = document.form1.idTipoDettaglioUsoSecondario[indice].value;
+    }
+    else
+    {
+      idUtilizzoPar = document.form1.idTipoUtilizzoSecondario.value;
+      idTipoDestinazionePar = document.form1.idTipoDestinazioneSecondario.value;
+      idTipoDettaglioUsoPar = document.form1.idTipoDettaglioUsoSecondario.value;
+    }       
+    
+    var dataInv = {
+      idUtilizzo: idUtilizzoPar,
+      idTipoDestinazione: idTipoDestinazionePar,
+      idTipoDettaglioUso: idTipoDettaglioUsoPar,
+      provenienza: "popModTerrCondUso"
+    };
+     
+    dataInv = $.param(dataInv);    
+    
+    
+    $.ajax({
+      url: "../layout/popolaComboQualitaUsoSecondario.htm",
+      type: "POST",
+      data: dataInv,
+      success: function( data ) 
+              { 
+                $(idCombo).html( data );
+                modificaComboVarietaSecondaria(indice);                 
+              },
+       dataType: 'html'
+      
+    });
+  
+  
+  }
+  
+  function modificaComboVarietaSecondaria(indice)
+  {    
+    
+    var idCombo = '#idVarietaSecondaria'+indice;
+    var idUtilizzoPar = '';
+    var idTipoDestinazionePar = '';
+    var idTipoDettaglioUsoPar = '';
+    var idTipoQualitaUsoPar = '';
+    
+    if (document.form1.supUtilizzata.length)
+    {
+      idUtilizzoPar = document.form1.idTipoUtilizzoSecondario[indice].value;
+      idTipoDestinazionePar = document.form1.idTipoDestinazioneSecondario[indice].value;
+      idTipoDettaglioUsoPar = document.form1.idTipoDettaglioUsoSecondario[indice].value;
+      idTipoQualitaUsoPar = document.form1.idTipoQualitaUsoSecondario[indice].value;
+    }
+    else
+    {
+      idUtilizzoPar = document.form1.idTipoUtilizzoSecondario.value;
+      idTipoDestinazionePar = document.form1.idTipoDestinazioneSecondario.value;
+      idTipoDettaglioUsoPar = document.form1.idTipoDettaglioUsoSecondario.value;
+      idTipoQualitaUsoPar = document.form1.idTipoQualitaUsoSecondario.value;
+    }
+    
+    
+    
+    var dataInv = {
+      idUtilizzo: idUtilizzoPar,
+      idTipoDestinazione: idTipoDestinazionePar,
+      idTipoDettaglioUso: idTipoDettaglioUsoPar,
+      idTipoQualitaUso: idTipoQualitaUsoPar,
+      provenienza: "popModTerrCondUso",
+      indice: indice
+    };
+     
+    dataInv = $.param(dataInv);    
+    
+    
+    $.ajax({
+      url: "../layout/popolaComboVarietaSecondaria.htm",
+      type: "POST",
+      data: dataInv,
+      success: function( data ) 
+              { 
+                $(idCombo).html( data );
+                modificaSezioneSeminaSecondario(indice);              
+              },
+       dataType: 'html'
+      
+    });   
+  }
+  
+  
+  function modificaSezioneSeminaSecondario(indice)
+  {    
+    
+    var idCombo = '#idSezioneSeminaSecondario'+indice;
+    var idUtilizzoPar = '';
+    var idTipoDestinazionePar = '';
+    var idTipoDettaglioUsoPar = '';
+    var idTipoQualitaUsoPar = '';
+    var idVarietaPar = '';
+    
+    
+    //mi serve per capire se ho più righe!!!
+    if (document.form1.supUtilizzata.length)
+    {
+      idUtilizzoPar = document.form1.idTipoUtilizzoSecondario[indice].value;
+      idTipoDestinazionePar = document.form1.idTipoDestinazioneSecondario[indice].value;
+      idTipoDettaglioUsoPar = document.form1.idTipoDettaglioUsoSecondario[indice].value;
+      idTipoQualitaUsoPar = document.form1.idTipoQualitaUsoSecondario[indice].value;
+      idVarietaPar = document.form1.idVarietaSecondaria[indice].value;
+    }
+    else
+    {
+      idUtilizzoPar = document.form1.idTipoUtilizzoSecondario.value;
+      idTipoDestinazionePar = document.form1.idTipoDestinazioneSecondario.value;
+      idTipoDettaglioUsoPar = document.form1.idTipoDettaglioUsoSecondario.value;
+      idTipoQualitaUsoPar = document.form1.idTipoQualitaUsoSecondario.value;
+      idVarietaPar = document.form1.idVarietaSecondaria.value;
+    }   
+    
+    var dataInv = {
+      idUtilizzo: idUtilizzoPar,
+      idTipoDestinazione: idTipoDestinazionePar,
+      idTipoDettaglioUso: idTipoDettaglioUsoPar,
+      idTipoQualitaUso: idTipoQualitaUsoPar,
+      idVarieta: idVarietaPar,
+      provenienza: "popModTerrCondUso",
+      indice: indice
+    };
+     
+    dataInv = $.param(dataInv);    
+    
+    
+    $.ajax({
+      url: "../layout/popolaSezioneSeminaSecondario.htm",
+      type: "POST",
+      data: dataInv,
+      success: function( data ) 
+              { 
+                $(idCombo).html( data );
+                modificaSezioneDateSeminaSecondario(indice);     
+              },
+       dataType: 'html'
+      
+    });   
+  }
+  
+  function modificaSezioneDateSeminaSecondario(indice)
+  {    
+    
+    var idCombo = '#idSezioneDateSeminaSecondario'+indice;
+    var idUtilizzoPar = '';
+    var idTipoDestinazionePar = '';
+    var idTipoDettaglioUsoPar = '';
+    var idTipoQualitaUsoPar = '';
+    var idVarietaPar = '';
+    var idTipoPeriodoSeminaPar = '';
+    
+    //mi serve per capire se ho più righe!!!
+    if (document.form1.supUtilizzata.length)
+    {
+      idUtilizzoPar = document.form1.idTipoUtilizzoSecondario[indice].value;
+      idTipoDestinazionePar = document.form1.idTipoDestinazioneSecondario[indice].value;
+      idTipoDettaglioUsoPar = document.form1.idTipoDettaglioUsoSecondario[indice].value;
+      idTipoQualitaUsoPar = document.form1.idTipoQualitaUsoSecondario[indice].value;
+      idVarietaPar = document.form1.idVarietaSecondaria[indice].value;
+      idTipoPeriodoSeminaPar = document.form1.idTipoPeriodoSeminaSecondario[indice].value;
+    }
+    else
+    {
+      idUtilizzoPar = document.form1.idTipoUtilizzoSecondario.value;
+      idTipoDestinazionePar = document.form1.idTipoDestinazioneSecondario.value;
+      idTipoDettaglioUsoPar = document.form1.idTipoDettaglioUsoSecondario.value;
+      idTipoQualitaUsoPar = document.form1.idTipoQualitaUsoSecondario.value;
+      idVarietaPar = document.form1.idVarietaSecondaria.value;
+      idTipoPeriodoSeminaPar = document.form1.idTipoPeriodoSeminaSecondario.value;
+    }   
+    
+    var dataInv = {
+      idUtilizzo: idUtilizzoPar,
+      idTipoDestinazione: idTipoDestinazionePar,
+      idTipoDettaglioUso: idTipoDettaglioUsoPar,
+      idTipoQualitaUso: idTipoQualitaUsoPar,
+      idVarieta: idVarietaPar,
+      idTipoPeriodoSemina: idTipoPeriodoSeminaPar,
+      provenienza: "popModTerrCondUso",
+      indice: indice
+    };
+     
+    dataInv = $.param(dataInv);    
+    
+    
+    $.ajax({
+      url: "../layout/popolaSezioneDateSeminaSecondario.htm",
+      type: "POST",
+      data: dataInv,
+      success: function( data ) 
+              { 
+                $(idCombo).html( data );     
+              },
+       dataType: 'html'
+      
+    });   
+  }
+  
+  function aggiungiUsoSecondario(idUtilizzoPar,descUtilizzoPar,numTotaleUtilizzo)
+  {
+    var i = 0;
+    $('.clsIdTipoUtilizzoSecondario').each(function() 
+    {
+      if(i == numTotaleUtilizzo)
+      {
+        $(this).html($(this).html().replace(/selected=\"selected\"/g,""));
+        $(this).append("<option value='"+idUtilizzoPar+"' selected=\"selected\">"+descUtilizzoPar+"</option>");
+        modificaComboDestinazioneSecondario(numTotaleUtilizzo);
+      }
+      else
+      {
+        $(this).append($("<option value='"+idUtilizzoPar+"'>"+descUtilizzoPar+"</option>"));
+      }
+      
+      i++;
+    });     
+    
+  }
+  
+  
+  function modificaRigaDati(tipoModificaPar, numRiga, provenienza)
+  {    
+    
+    var dataInv = {
+      tipoModifica: tipoModificaPar,
+      numRiga: numRiga,
+      provenienzaModRig: provenienza 
+    };
+     
+    dataInv = $('#form1').serialize() + '&' + $.param(dataInv);
+    
+    
+    
+    $.ajax({
+      url: "../layout/tabellaDatiPopCondUso.htm",
+      type: "POST",
+      data: dataInv,
+      success: function( data ) 
+              {
+                $('#elencoDatiUso').html( data );                 
+              },
+       dataType: 'html'
+      
+    });   
+  }
+  
+  function modificaRigaEfa(tipoModificaPar, numRiga)
+  {    
+    
+    var dataInv = {
+      tipoModifica: tipoModificaPar,
+      numRiga: numRiga
+    };
+     
+    dataInv = $('#form1').serialize() + '&' + $.param(dataInv);
+    
+    
+    
+    $.ajax({
+      url: "../layout/tabellaDatiPopEfa.htm",
+      type: "POST",
+      data: dataInv,
+      success: function( data ) 
+              {
+                $('#elencoEfa').html( data );                 
+              },
+       dataType: 'html'
+      
+    });   
+  }
+  
+  function modificaTipoUtilizzoEfa(indice)
+  {    
+    
+    var idCombo = '#idTipoUtilizzoEfa'+indice;
+    var idTipoEfaPar = '';
+    
+    //mi serve per capire se ho più righe!!!
+    if (document.form1.valoreOriginale.length)
+    {
+      idTipoEfaPar = document.form1.idTipoEfa[indice].value;
+    }
+    else
+    {
+      idTipoEfaPar = document.form1.idTipoEfa.value;
+    }   
+    
+    var dataInv = {
+      idTipoEfa: idTipoEfaPar,
+      provenienza: "inserisciParticellareCondUso",
+      indice: indice
+    };
+     
+    dataInv = $.param(dataInv);    
+    
+    
+    $.ajax({
+      url: "../layout/popolaComboUtilizzoEfa.htm",
+      type: "POST",
+      data: dataInv,
+      success: function( data ) 
+              { 
+                $(idCombo).html( data );
+                var descMisura = '';
+                if (document.form1.valoreOriginale.length)
+                {
+                  descMisura = document.form1.descMisuraHd[indice].value;
+                }
+                else
+                {
+                  descMisura = document.form1.descMisuraHd.value;
+                }                  
+                document.getElementById('descUnitaMisura'+indice).innerHTML = descMisura;
+                modificaComboDestinazioneEfa(indice);      
+              },
+       dataType: 'html'
+      
+    });   
+  }
+  
+  
+  function modificaComboDestinazioneEfa(indice)
+  {    
+    
+    var idCombo = '#idTipoDestinazioneEfaDiv'+indice;
+    var idTipoEfaPar = '';
+    var idUtilizzoPar = '';
+    
+    //mi serve per capire se ho più righe!!!
+    if (document.form1.valoreOriginale.length)
+    {
+      idTipoEfaPar = document.form1.idTipoEfa[indice].value;
+      idUtilizzoPar = document.form1.idTipoUtilizzoEfa[indice].value;
+    }
+    else
+    {
+      idTipoEfaPar = document.form1.idTipoEfa.value;
+      idUtilizzoPar = document.form1.idTipoUtilizzoEfa.value;
+    }   
+    
+    var dataInv = {
+      idUtilizzo: idUtilizzoPar,
+      idTipoEfa: idTipoEfaPar,
+      provenienza: "inserisciParticellareCondUso",
+      indice: indice
+    };
+     
+    dataInv = $.param(dataInv);    
+    
+    
+    $.ajax({
+      url: "../layout/popolaComboDestinazioneEfa.htm",
+      type: "POST",
+      data: dataInv,
+      success: function( data ) 
+              { 
+                $(idCombo).html( data );
+                modificaComboDettaglioUsoEfa(indice);    
+              },
+       dataType: 'html'
+      
+    });   
+  }
+  
+  
+  function modificaComboDettaglioUsoEfa(indice)
+  {
+  
+    var idCombo = '#idTipoDettaglioUsoEfaDiv'+indice;
+    var idTipoEfaPar = '';
+    var idUtilizzoPar = '';
+    var idTipoDettaglioUsoPar = '';    
+    
+    //mi serve per capire se ho più righe!!!
+    if (document.form1.valoreOriginale.length)
+    {
+      idTipoEfaPar = document.form1.idTipoEfa[indice].value;
+      idUtilizzoPar = document.form1.idTipoUtilizzoEfa[indice].value;
+      idTipoDestinazionePar = document.form1.idTipoDestinazioneEfa[indice].value;
+    }
+    else
+    {
+      idTipoEfaPar = document.form1.idTipoEfa.value;
+      idUtilizzoPar = document.form1.idTipoUtilizzoEfa.value;
+      idTipoDestinazionePar = document.form1.idTipoDestinazioneEfa.value;
+    }
+    
+    
+    var dataInv = {
+      idTipoEfa: idTipoEfaPar,
+      idUtilizzo: idUtilizzoPar,
+      idTipoDestinazione: idTipoDestinazionePar,   
+      indice: indice,
+      provenienza: "inserisciParticellareCondUso"
+    };
+     
+    dataInv = $.param(dataInv);    
+    
+    
+    $.ajax({
+      url: "../layout/popolaComboDettaglioUsoEfa.htm",
+      type: "POST",
+      data: dataInv,
+      success: function( data ) 
+              { 
+                $(idCombo).html( data );
+                modificaComboQualitaUsoEfa(indice);                
+              },
+       dataType: 'html'
+      
+    }); 
+  }
+  
+  function modificaComboQualitaUsoEfa(indice)
+  {
+  
+    var idCombo = '#idTipoQualitaUsoEfaDiv'+indice;
+    var idTipoEfaPar = '';
+    var idUtilizzoPar = '';
+    var idTipoDestinazionePar = '';
+    var idTipoDettaglioUsoPar = '';         
+    
+    //mi serve per capire se ho più righe!!!
+    if (document.form1.valoreOriginale.length)
+    {
+      idTipoEfaPar = document.form1.idTipoEfa[indice].value;
+      idUtilizzoPar = document.form1.idTipoUtilizzoEfa[indice].value;
+      idTipoDestinazionePar = document.form1.idTipoDestinazioneEfa[indice].value;
+      idTipoDettaglioUsoPar = document.form1.idTipoDettaglioUsoEfa[indice].value; 
+    }
+    else
+    {
+      idTipoEfaPar = document.form1.idTipoEfa.value;
+      idUtilizzoPar = document.form1.idTipoUtilizzoEfa.value;
+      idTipoDestinazionePar = document.form1.idTipoDestinazioneEfa.value;
+      idTipoDettaglioUsoPar = document.form1.idTipoDettaglioUsoEfa.value; 
+    }
+    
+    
+    var dataInv = {
+      idTipoEfa: idTipoEfaPar,
+      idUtilizzo: idUtilizzoPar,
+      idTipoDestinazione: idTipoDestinazionePar,
+      idTipoDettaglioUso: idTipoDettaglioUsoPar,
+      indice: indice,
+      provenienza: "inserisciParticellareCondUso"
+    };
+     
+    dataInv = $.param(dataInv);    
+    
+    
+    $.ajax({
+      url: "../layout/popolaComboQualitaUsoEfa.htm",
+      type: "POST",
+      data: dataInv,
+      success: function( data ) 
+              { 
+                $(idCombo).html( data );
+                modificaComboVarietaEfa(indice);                  
+              },
+       dataType: 'html'
+      
+    }); 
+  }
+  
+  function modificaComboVarietaEfa(indice)
+  {    
+    
+    var idCombo = '#idVarietaEfa'+indice;
+    var idTipoEfaPar = '';
+    var idUtilizzoPar = '';
+    var idTipoDestinazionePar = '';
+    var idTipoDettaglioUsoPar = '';
+    var idTipoQualitaUsoPar = '';  
+    
+    
+    //mi serve per capire se ho più righe!!!
+    if (document.form1.valoreOriginale.length)
+    {
+      idTipoEfaPar = document.form1.idTipoEfa[indice].value;
+      idUtilizzoPar = document.form1.idTipoUtilizzoEfa[indice].value;
+      idTipoDestinazionePar = document.form1.idTipoDestinazioneEfa[indice].value;
+      idTipoDettaglioUsoPar = document.form1.idTipoDettaglioUsoEfa[indice].value;
+      idTipoQualitaUsoPar = document.form1.idTipoQualitaUsoEfa[indice].value;
+    }
+    else
+    {
+      idTipoEfaPar = document.form1.idTipoEfa.value;
+      idUtilizzoPar = document.form1.idTipoUtilizzoEfa.value;
+      idTipoDestinazionePar = document.form1.idTipoDestinazioneEfa.value;
+      idTipoDettaglioUsoPar = document.form1.idTipoDettaglioUsoEfa.value;
+      idTipoQualitaUsoPar = document.form1.idTipoQualitaUsoEfa.value;
+    }   
+    
+    var dataInv = {
+      idTipoEfa: idTipoEfaPar,
+      idUtilizzo: idUtilizzoPar,
+      idTipoDestinazione: idTipoDestinazionePar,
+      idTipoDettaglioUso: idTipoDettaglioUsoPar,
+      idTipoQualitaUso: idTipoQualitaUsoPar,
+      provenienza: "inserisciParticellareCondUso",
+      indice: indice
+    };
+     
+    dataInv = $.param(dataInv);    
+    
+    
+    $.ajax({
+      url: "../layout/popolaComboVarietaEfa.htm",
+      type: "POST",
+      data: dataInv,
+      success: function( data ) 
+              { 
+                $(idCombo).html( data );
+                //modTipoDettaglioUso(indice);
+                calcolaValori(indice);       
+              },
+       dataType: 'html'
+      
+    });   
+  }
+  
+  
+  function calcolaValori(indice) 
+  {
+    var valoreOriginale = '';
+    var valFatConv = '';
+    var valFatPond = '';
+    var valIdTipoEfa = '';
+    var valAbbPond = '';
+    
+    if (document.form1.valoreOriginale.length)
+    {
+      valoreOriginale = document.form1.valoreOriginale[indice].value;
+      valFatConv = document.form1.fattoreConversione[indice].value;
+      valFatPond = document.form1.fattorePonderazione[indice].value;
+      valIdTipoEfa = document.form1.idTipoEfa[indice].value;
+      valAbbPond = document.form1.abbPonderazioneVarieta[indice].value;
+    }
+    else
+    {
+      valoreOriginale = document.form1.valoreOriginale.value;
+      valFatConv = document.form1.fattoreConversione.value;
+      valFatPond = document.form1.fattorePonderazione.value;
+      valIdTipoEfa = document.form1.idTipoEfa.value;
+      valAbbPond = document.form1.abbPonderazioneVarieta.value;
+    }
+    
+    if(valIdTipoEfa != '' )
+    {
+      if (valoreOriginale=='')
+      {
+        valCov ='';
+        valPond = '';
+      }
+      else
+      {
+        if(IsNumeric(valoreOriginale))
+        {
+          valCov = parseFloat(valoreOriginale.replace(',', '.')) * parseFloat(valFatConv.replace(',', '.')) / 10000;
+          valPond = valCov * parseFloat(valFatPond.replace(',', '.'));
+          valPond = valPond * valAbbPond;
+          valCov = Math.round(valCov * 10000);
+          valCov = ''+(valCov / 10000);
+          valCov=valCov.replace('.',',');
+          valPond = Math.round(valPond * 10000);
+          valPond = ''+(valPond / 10000);
+          valPond=valPond.replace('.',',');
+        }
+      }
+      
+      var rigaValConv = 'rigaValConv'+indice;
+      document.getElementById(rigaValConv).innerHTML=valCov;
+      var rigaValPond = 'rigaValPond'+indice;
+      document.getElementById(rigaValPond).innerHTML=valPond;
+      if (document.form1.valoreOriginale.length)
+      {
+        document.form1.valoreDopoConversione[indice].value = valCov;
+        document.form1.valoreDopoPonderazione[indice].value = valPond;
+      }
+      else
+      {
+        document.form1.valoreDopoConversione.value = valCov;
+        document.form1.valoreDopoPonderazione.value = valPond;
+      }
+    }   
+  }
+  
+  
+  // Funzione che mi permette di controllare se un campo è numerico
+  function IsNumeric(sText) {
+    if(!sText)
+      return false;
+    var ValidChars = "0123456789.,";
+    var IsNumber=true;
+    var Char;
+    for(i = 0; i < sText.length && IsNumber == true; i++) { 
+        Char = sText.charAt(i); 
+        if(ValidChars.indexOf(Char) == -1) {
+          IsNumber = false;
+        }
+      }
+    return IsNumber;
+  }  
+  
+  
+  /*function modTipoDettaglioUso(indice)
+  {
+    var idVarietaPar = '';
+    var idTipoEfaPar = '';
+    var idTipoDettaglioUsoPar = '';        
+    
+    //mi serve per capire se ho più righe!!!
+    if (document.form1.valoreOriginale.length)
+    {
+      idVarietaPar = document.form1.idVarietaEfa[indice].value;
+      idTipoEfaPar = document.form1.idTipoEfa[indice].value;
+      idTipoDettaglioUsoPar = document.form1.idTipoDettaglioUsoEfa[indice].value;
+    }
+    else
+    {
+      idVarietaPar = document.form1.idVarietaEfa.value;
+      idTipoEfaPar = document.form1.idTipoEfa.value;
+      idTipoDettaglioUsoPar = document.form1.idTipoDettaglioUsoEfa.value;
+    }
+    
+    
+    var dataInv = {
+      idVarieta: idVarietaPar,
+      idTipoEfa: idTipoEfaPar,
+      idTipoDettaglioUso: idTipoDettaglioUsoPar
+      
+    };
+     
+    dataInv = $.param(dataInv);
+    
+    
+    $.ajax({
+        url: "../servlet/ValueAbbPonderazioneServlet",
+        type: "POST",
+        data: dataInv,  
+        success: function( data ) 
+                {
+                  if(data != 'failed')
+                  {
+                    document.getElementById('abbPonderazioneVarieta'+indice).value = data;
+                    calcolaValori(indice);
+                  }
+                  else
+                  {
+                    alert("Attenzione problemi nella ricerca del valore di calcolo ponderazione")
+                  }             
+                },
+         dataType: 'html'
+        
+      });
+  
+  } */
+  
+  
+  function modTipoDettaglioUso(indice)
+  {
+    var idTipoEfaPar = '';
+    var idUtilizzoPar = '';
+    var idTipoDestinazionePar = '';
+    var idTipoDettaglioUsoPar = '';
+    var idTipoQualitaUsoPar = '';
+    var idVarietaPar = '';          
+    
+    //mi serve per capire se ho più righe!!!
+    if (document.form1.valoreOriginale.length)
+    {
+      idTipoEfaPar = document.form1.idTipoEfa[indice].value;
+      idUtilizzoPar = document.form1.idTipoUtilizzoEfa[indice].value;
+      idTipoDestinazionePar = document.form1.idTipoDestinazioneEfa[indice].value;
+      idTipoDettaglioUsoPar = document.form1.idTipoDettaglioUsoEfa[indice].value;
+      idTipoQualitaUsoPar = document.form1.idTipoQualitaUsoEfa[indice].value;
+      idVarietaPar = document.form1.idVarietaEfa[indice].value;
+    }
+    else
+    {
+      idTipoEfaPar = document.form1.idTipoEfa.value;
+      idUtilizzoPar = document.form1.idTipoUtilizzoEfa.value;
+      idTipoDestinazionePar = document.form1.idTipoDestinazioneEfa.value;
+      idTipoDettaglioUsoPar = document.form1.idTipoDettaglioUsoEfa.value;
+      idTipoQualitaUsoPar = document.form1.idTipoQualitaUsoEfa.value;
+      idVarietaPar = document.form1.idVarietaEfa.value;
+    }
+    
+    
+    var dataInv = {
+      idTipoEfa: idTipoEfaPar,
+      idUtilizzo: idUtilizzoPar,
+      idTipoDestinazione: idTipoDestinazionePar,
+      idTipoDettaglioUso: idTipoDettaglioUsoPar,
+      idTipoQualitaUso: idTipoQualitaUsoPar,
+      idVarieta: idVarietaPar   
+      
+    };
+     
+    dataInv = $.param(dataInv);
+    
+    
+    $.ajax({
+        url: "../servlet/ValueAbbPonderazioneServlet",
+        type: "POST",
+        data: dataInv,  
+        success: function( data ) 
+                {
+                  if(data != 'failed')
+                  {
+                    document.getElementById('abbPonderazioneVarieta'+indice).value = ''+data;
+                    calcolaValori(indice);   
+                  }
+                  else
+                  {
+                    alert("Attenzione problemi nella ricerca del valore di calcolo ponderazione")
+                  }             
+                },
+         dataType: 'text'
+        
+      });
+  
+  }      
+</script>
+</head>
+<body id="popup"
+  onload="javascript:gestioneIrrigabile();confirmSuperfici();$$err_error">
+  <form id="form1" name="form1" method="post" action="../layout/popModificaTerritorialeCondUso.htm">
+    <input type="hidden" name="confermo" value="$$confermo" />
+    <input type="hidden" name="idConduzioneParticella"
+      value="$$idConduzioneParticella" id="idConduzioneParticella" />
+    <input type="hidden" name="rowSelected" value="$$rowSelected"
+      id="rowSelected" />
+    <input type="hidden" name="provenienza" value="$$provenienza"
+      id="provenienza" />
+    <input type="hidden" name="operazione" value="$$operazione"
+      id="operazione" />
+    <input type="hidden" name="confermaSup" value="$$confermaSup"
+      id="confermaSup" />
+    <input type="hidden" name="type" value="$$type" />
+    <input type="hidden" name="regimePopModificaTerritorialeCondUso" id="regimePopModificaTerritorialeCondUso" value="true" />
+    <input type="hidden" name="numTotaleUtilizzo" value="$$numTotaleUtilizzo" />
+    <div id="contenutopop">
+      <!-- @@blkElencoDati -->
+      <table cellspacing="3"
+        summary="Questa tabella contiene i dati catastali chiave e la conduzione della particella">
+        <caption>
+          Unit&agrave; produttiva: $$descComuneUte $$siglaProvinciaUte
+          $$indirizzoUte
+        </caption>
+        <tr>
+          <th class="center" scope="col" rowspan="2">
+            Comune (Prov.)
+          </th>
+          <th class="center" scope="col" rowspan="2">
+            Sez.
+          </th>
+          <th class="center" scope="col" rowspan="2">
+            Foglio
+          </th>
+          <th class="center" scope="col" rowspan="2">
+            Particella
+          </th>
+          <th class="center" scope="col" rowspan="2">
+            Sub.
+          </th>
+          <th class="center" scope="col" rowspan="2">
+            Sup. cat.
+          </th>
+          <th class="center" scope="col" rowspan="2">
+            Sup. grafica
+          </th>
+          <th class="center" scope="col" colspan="3">
+            Conduzione*
+          </th>
+        </tr>
+        <tr>
+          <th class="center" scope="col"></th>
+          <th class="center" scope="col">Sup.</th>
+          <th class="center" scope="col">
+            %
+          </th>
+        </tr>
+        <tr>
+          <td>
+            $$descComuneParticella $$siglaProvinciaParticella
+          </td>
+          <td>
+            $$sezione
+          </td>
+          <td class="numeridx">
+            $$foglio
+          </td>
+          <td class="numeridx">
+            $$particella
+          </td>
+          <td>
+            $$subalterno
+          </td>
+          <td class="numeridx">
+            $$supCatastale
+          </td>
+          <td class="numeridx">
+            <input name="superficieGrafica" type="hidden" value="$$superficieGrafica"
+              id="superficieGrafica" />
+            $$superficieGrafica
+          </td>
+          <td>
+            <select name="idTitoloPossesso" id="idTitoloPossesso">
+              <option></option>
+              <!-- @@blkTitoliPossesso -->
+              <option value="$$idTitoloPossesso" $$selected>
+                $$descrizione
+              </option>
+              <!-- @@blkTitoliPossesso -->
+            </select>
+            $$err_idTitoloPossesso
+          </td>          
+          <td>
+            <input name="supCondotta" type="text"
+              class="textmedio" value="$$supCondotta"
+              maxlength="10" onKeyUp="javascript:calcolaPercentualePossesso('$$superficieGrafica','$$supCatastale');" />
+            $$err_supCondotta
+          </td>
+          <td>
+            <input name="percentualePossesso" type="text"
+              class="textmedio" value="$$percentualePossesso" maxlength="5" />
+            $$err_percentualePossesso
+          </td>
+        </tr>
+      </table>
+      <table cellspacing="3"
+        summary="Questa tabella contiene i dati territoriali della particella">
+        <caption>
+          Dati territoriali
+        </caption>
+        <tr>
+          <th scope="row">
+            Pendenza
+          </th>
+          <td>
+            $$descPendenzaMedia
+          </td>
+          <th>
+            Altitudine
+          </th>
+          <td>
+            $$descAltitudineMedia
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <label for="Irrigabile">
+              Irrigabile
+            </label>
+          </th>
+          <td>
+            <input name="flagIrrigabile" type="checkbox" value="S"
+              id="flagIrrigabile" $$checkedIrrigabile
+              onclick="javascript:gestioneIrrigabile();" />
+            $$err_flagIrrigabile
+          </td>
+          <th>
+            <label for="Consorzio">
+              Tipo irrigazione
+            </label>
+          </th>
+          <td>
+            <select name="idIrrigazione" id="idIrrigazione">
+              <option></option>
+              <!-- @@blkTipiIrrigazione -->
+              <option value="$$idIrrigazione" $$selected>
+                $$descrizione
+              </option>
+              <!-- @@blkTipiIrrigazione -->
+            </select>
+            $$err_idIrrigazione
+          </td>
+        </tr>
+        
+        <tr>
+          <th>
+            <label for="Consorzio">
+               Metodo irrigazione
+            </label>
+          </th>
+          <td>
+            <select name="idMetodoIrriguo" id="idMetodoIrriguo">
+              <option value="" ></option>
+              <!-- @@blkTipiMetodoIrriguo -->
+              <option value="$$idMetodoIrriguo" $$selected>
+                $$descrizione
+              </option>
+              <!-- @@blkTipiMetodoIrriguo -->
+            </select>
+            $$err_idMetodoIrriguo
+          </td>
+          <th>
+            <label for="uso">
+              Zona di captazione acque e pozzi
+            </label>
+          </th>
+          <td>
+            <input name="flagCaptazionePozzi" type="checkbox" value="S" id="flagCaptazionePozzi" $$checkedCaptazionePozzi />
+            $$err_flagCaptazionePozzi
+          </td>
+        </tr>
+        
+        <tr>
+          <th>
+            <label for="Terrazzamenti">
+              Presenza Terrazzamenti *
+            </label>
+          </th>
+          <td>
+            <select name="idTerrazzamento" id="idTerrazzamento">
+              <option value="-1"></option>
+              <!-- @@blkTipiTerrazzamenti -->
+              <option value="$$idTerrazzamento" $$selected>
+                $$descrizione
+              </option>
+              <!-- @@blkTipiTerrazzamenti -->
+            </select>
+            $$err_idTerrazzamento
+          </td>
+          <th>
+            <label for="Rotazione colturale">
+              Rotazione colturale *
+            </label>
+          </th>
+          <td>
+            <select name="idRotazioneColturale" id="idRotazioneColturale">
+              <option value="-1"></option>
+              <!-- @@blkTipiRotazioneColturale -->
+              <option value="$$idRotazioneColturale" $$selected>
+                $$descrizione
+              </option>
+              <!-- @@blkTipiRotazioneColturale -->
+            </select>
+            $$err_idRotazioneColturale
+          </td>
+        </tr>
+        <!-- @@blkRiga -->
+        <tr>
+          <th>
+            $$desc1
+          </th>
+          <td>
+            <input type="hidden" name="flagEsclusivoFoglio1" value="$$flagEsclusivoFoglio1" />
+            <input type="hidden" name="idTipoArea1" value="$$idTipoArea1" />
+            <select name="valoreArea1" $$disabledValore1>
+              <!-- @@blkTipiValoreArea1 -->
+              <option value="$$valoreArea1" $$selected >
+                $$descrizione
+              </option>
+              <!-- @@blkTipiValoreArea1 -->
+            </select>
+            $$err_valoreArea1
+            <!-- @@blkHiddenValoreArea1 -->
+            <input type="hidden" name="valoreArea1" value="$$valoreArea1" />
+            <!-- @@blkHiddenValoreArea1 -->
+          </td>
+          <th>
+            $$desc2
+          </th>
+          <td>
+            <input type="hidden" name="flagEsclusivoFoglio2" value="$$flagEsclusivoFoglio2" />
+            <input type="hidden" name="idTipoArea2" value="$$idTipoArea2" />
+            <select name="valoreArea2" $$disabledValore2>
+              <!-- @@blkTipiValoreArea2 -->
+              <option value="$$valoreArea2" $$selected>
+                $$descrizione
+              </option>
+              <!-- @@blkTipiValoreArea2 -->
+            </select>
+            $$err_valoreArea2
+            <!-- @@blkHiddenValoreArea2 -->
+            <input type="hidden" name="valoreArea2" value="$$valoreArea2" />
+             <!-- @@blkHiddenValoreArea2 -->
+          </td>
+        </tr>           
+        <!-- @@blkRiga -->
+        <tr>
+          <th>
+            <label for="Documento">
+              Documento
+            </label>
+          </th>
+          <td colspan="3">
+            <select name="idDocumentoProtocollato"
+              id="idDocumentoProtocollato">
+              <option></option>
+              <!-- @@blkElencoDocumenti -->
+              <option value="$$idDocumentoProtocollato" $$selected>
+                $$descrizione
+              </option>
+              <!-- @@blkElencoDocumenti -->
+            </select>
+            $$err_idDocumentoProtocollato
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <label for="Causale">
+              Causale Modifica
+            </label>
+          </th>
+          <td colspan="3">
+            <select name="idCausaleModParticella"
+              id="idCausaleModParticella">
+              <option></option>
+              <!-- @@blkCausaleModParticella -->
+              <option value="$$idCausaleModParticella" $$selected>
+                $$descrizione
+              </option>
+              <!-- @@blkCausaleModParticella -->
+            </select>
+            $$err_idCausaleModParticella
+            <label for="Modifica" class="alt">
+              Causale Modifica*
+            </label>
+            <textarea name="motivoModifica" id="motivoModifica"
+              cols="50" rows="3">$$motivoModifica</textarea>
+            $$err_motivoModifica
+          </td>
+        </tr>
+      </table>
+      <div class="scroll">
+        <div id="elencoDatiUso">
+	        <table cellspacing="3" summary="Questa tabella è costituita da righe">
+	          <caption>Dati uso del suolo</caption>
+	          <tr>
+	            <th rowspan="3" class="center" scope="col">&nbsp;
+	              <a href="javascript:modificaRigaDati('inserisci','', 'popModTerrCondUso')" class="aggiungi" title="inserisci uso del suolo"></a>
+	            </th>
+	            <th colspan="8" class="center" scope="col">
+	              Uso del suolo
+	            </th>
+	            <th rowspan="3" class="center" scope="col">
+                Mantenimento
+              </th>
+              <th rowspan="3" class="center" scope="col">
+                Fase allevamento
+              </th>
+	            <th colspan="8" class="center" scope="col">
+	              SOLO FRUTTA A GUSCIO
+	            </th>
+	          </tr>
+	          <tr>
+	            <th colspan="4" class="center" scope="col">
+	              Uso primario
+	            </th>
+	            <th colspan="4" class="center" scope="col">
+	              Uso secondario
+	            </th>
+	            <th colspan="5" class="center" scope="col">
+	              Impianto
+	            </th>
+	            <th colspan="$$colspan" class="center" scope="col">
+	              N&deg; piante consociate
+	            </th>
+	          </tr>
+	          <tr>
+	            <th class="center" scope="col">&nbsp;              
+	            </th>
+	            <th class="center" scope="col">&nbsp;              
+	            </th>
+	            <th class="center" scope="col">
+	              Semina
+	            </th>
+	            <th class="center" scope="col">
+	              Sup.
+	            </th>
+	            <th class="center" scope="col">&nbsp;              
+	            </th>
+	            <th class="center" scope="col">&nbsp;              
+	            </th>
+	            <th class="center" scope="col">
+	              Semina
+	            </th>
+	            <th class="center" scope="col">
+	              Sup.
+	            </th>
+	            <th class="center" scope="col">
+	              Anno
+	            </th>
+	            <th class="center" scope="col">
+	              Tipo
+	            </th>
+	            <th class="center" scope="col">
+	              Sesto su file
+	            </th>
+	            <th class="center" scope="col">
+	              Sesto tra file
+	            </th>
+	            <th class="center" scope="col">
+	              N&deg; piante / Ceppi
+	            </th>
+	            <!-- @@blkEtichettaPianteConsociate -->
+	            <th class="center" scope="col">
+	              $$descPianteConsociate
+	            </th>
+	            <!-- @@blkEtichettaPianteConsociate -->
+	          </tr>
+	          <!-- @@blkElencoUtilizzi -->
+	          <tr  class="evidence">
+	            <td class="radio">
+	              <a href="javascript:modificaRigaDati('elimina', '$$numeroUtilizzi', 'popModTerrCondUso')" class="cancella" title="elimina Uso"></a>
+	              <input type="hidden" name="contatore" value="$$contatore" />
+	            </td>
+	            <td>
+	              <select name="idTipoUtilizzo" id="idTipoUtilizzo" class="clsIdTipoUtilizzo"
+	                onchange="javascript: modificaComboDestinazione('$$numeroUtilizzi');">
+	                <option value=""></option>
+	                <!-- @@blkTipiUsoSuolo -->
+	                <option value="$$idTipoUtilizzo" title="$$descCompleta" $$selected>
+	                  $$descrizione
+	                </option>
+	                <!-- @@blkTipiUsoSuolo -->
+	              </select>
+	              $$err_idTipoUtilizzo
+	              <div id="idTipoDestinazioneDiv$$numeroUtilizzi">
+                  <select name="idTipoDestinazione" id="idTipoDestinazione" 
+                    onchange="javascript: modificaComboDettaglioUso('$$numeroUtilizzi');">
+                    <!-- @@blkTipiDestinazione -->
+                    <option value="$$idTipoDestinazione" title="$$descCompleta" $$selected>
+                      $$descrizione
+                    </option>
+                    <!-- @@blkTipiDestinazione -->
+                    <!-- @@blkNoTipiDestinazione -->
+                    <option value=""></option>
+                    <!-- @@blkNoTipiDestinazione -->
+                  </select>
+                  $$err_idTipoDestinazione
+                </div>
+                <div id="idTipoDettaglioUsoDiv$$numeroUtilizzi">
+                  <select name="idTipoDettaglioUso" id="idTipoDettaglioUso" 
+                    onchange="javascript: modificaComboQualitaUso('$$numeroUtilizzi');">
+                    <!-- @@blkTipiDettaglioUso -->
+                    <option value="$$idTipoDettaglioUso" title="$$descCompleta" $$selected>
+                      $$descrizione
+                    </option>
+                    <!-- @@blkTipiDettaglioUso -->
+                    <!-- @@blkNoTipiDettaglioUso -->
+                    <option value=""></option>
+                    <!-- @@blkNoTipiDettaglioUso -->
+                  </select>                    
+                </div>
+                <div id="idTipoQualitaUsoDiv$$numeroUtilizzi">
+                  <select name="idTipoQualitaUso" id="idTipoQualitaUso" 
+                    onchange="javascript: modificaComboVarieta('$$numeroUtilizzi');">
+                    <!-- @@blkTipiQualitaUso -->
+                    <option value="$$idTipoQualitaUso" title="$$descCompleta" $$selected>
+                      $$descrizione
+                    </option>
+                    <!-- @@blkTipiQualitaUso -->
+                    <!-- @@blkNoTipiQualitaUso -->
+                    <option value=""></option>
+                    <!-- @@blkNoTipiQualitaUso -->
+                  </select>
+                  $$err_idTipoQualitaUso
+                </div>
+                <div id="idVarieta$$numeroUtilizzi">
+                  <select name="idVarieta" id="idVarieta" 
+                    onchange="javascript: modificaSezioneSemina('$$numeroUtilizzi');modificaSezioneMantenimento('$$numeroUtilizzi');modificaSezioneFaseAllevamento('$$numeroUtilizzi');">
+                    <!-- @@blkTipiVarieta -->
+                    <option value="$$idVarieta" title="$$descCompleta" $$selected>
+                      $$descrizione
+                    </option>
+                    <!-- @@blkTipiVarieta -->
+                    <!-- @@blkNoTipiVarieta -->
+                    <option value=""></option>
+                    <!-- @@blkNoTipiVarieta -->
+                  </select>
+                  $$err_idVarieta
+                </div>                           
+	            </td>            
+	            <td class="radio">
+	              <a
+	                href="javascript: newWindowSubmit('../layout/popAggiungiUso.htm', 'aggiungiUso', 600, 300, 'yes', 'Primario', '$$numeroUtilizzi', 'popModTerrCondUso');"
+	                title="[Attenzione: questo link si apre in una nuova finestra]"
+	                class="modifica" id="associaIdUtilizzo"></a>
+	            </td>
+	            <td>
+	              <div id="idSezioneSemina$$numeroUtilizzi" >
+                  <select name="idTipoPeriodoSemina"  onchange="javascript: modificaSezioneDateSemina('$$numeroUtilizzi');">
+                    <!-- @@blkTipoPeriodoSemina -->
+                    <option value="$$idTipoPeriodoSemina" $$selected>
+                      $$descrizione
+                    </option>
+                    <!-- @@blkTipoPeriodoSemina -->
+                    <!-- @@blkNoTipoPeriodoSemina -->
+                    <option value=""></option>
+                    <!-- @@blkNoTipoPeriodoSemina -->
+                  </select>
+                  $$err_idTipoPeriodoSemina
+                  <br>
+                  <select name="idTipoSemina" >
+                    <!-- @@blkTipoSemina -->
+                    <option value="$$idTipoSemina" $$selected>
+                      $$descrizione
+                    </option>
+                    <!-- @@blkTipoSemina -->
+                    <!-- @@blkNoTipoSemina -->
+                    <option value=""></option>
+                    <!-- @@blkNoTipoSemina -->
+                  </select>
+                  $$err_idTipoSemina
+                  <br>
+                </div>
+                <div id="idSezioneDateSemina$$numeroUtilizzi" >
+                  <input type="text" name="dataInizioDestinazione" class="textmedio"
+                    value="$$dataInizioDestinazione" $$disabledOnlyDataInizioDestinazione />&nbsp;inizio
+                  $$err_dataInizioDestinazione
+                  <br>
+                  <input type="text" name="dataFineDestinazione" class="textmedio"
+                    value="$$dataFineDestinazione" $$disabledDataFineDestinazione />&nbsp;fine
+                  $$err_dataFineDestinazione
+                </div>
+	            </td>
+	            <td>
+	              <input type="text" name="supUtilizzata" class="textmedio"
+	                value="$$supUtilizzata" />
+	              $$err_supUtilizzata
+	            </td>
+	            <td>
+	              <select name="idTipoUtilizzoSecondario" id="idTipoUtilizzoSecondario" class="clsIdTipoUtilizzoSecondario"
+	                onchange="javascript: modificaComboDestinazioneSecondario('$$numeroUtilizzi');">
+	                <option></option>
+	                <!-- @@blkTipiUsoSuoloSecondario -->
+	                <option value="$$idTipoUtilizzoSecondario" title="$$descCompleta" $$selected>
+	                  $$descrizione
+	                </option>
+	                <!-- @@blkTipiUsoSuoloSecondario -->
+	              </select>
+	              $$err_idTipoUtilizzoSecondario
+	              <div id="idTipoDestinazioneSecondarioDiv$$numeroUtilizzi">
+                  <select name="idTipoDestinazioneSecondario" id="idTipoDestinazioneSecondario" 
+                    onchange="javascript: modificaComboDestinazioneSecondario('$$numeroUtilizzi');">
+                    <!-- @@blkTipiDestinazioneSecondario -->
+                    <option value="$$idTipoDestinazioneSecondario" title="$$descCompleta" $$selected>
+                      $$descrizione
+                    </option>
+                    <!-- @@blkTipiDestinazioneSecondario -->
+                    <!-- @@blkNoTipiDestinazioneSecondario -->
+                    <option value=""></option>
+                    <!-- @@blkNoTipiDestinazioneSecondario -->
+                  </select>
+                  $$err_idTipoDestinazioneSecondario
+                </div>
+                <div id="idTipoDettaglioUsoSecondarioDiv$$numeroUtilizzi">
+                  <select name="idTipoDettaglioUsoSecondario" id="idTipoDettaglioUsoSecondario" 
+                    onchange="javascript: modificaComboQualitaUsoSecondario('$$numeroUtilizzi');">
+                    <!-- @@blkTipiDettaglioUsoSecondario -->
+                    <option value="$$idTipoDettaglioUsoSecondario" title="$$descCompleta" $$selected>
+                      $$descrizione
+                    </option>
+                    <!-- @@blkTipiDettaglioUsoSecondario -->
+                    <!-- @@blkNoTipiDettaglioUsoSecondario -->
+                    <option value=""></option>
+                    <!-- @@blkNoTipiDettaglioUsoSecondario -->
+                  </select>               
+                  $$err_idTipoDettaglioUsoSecondario
+               </div>
+               <div id="idTipoQualitaUsoSecondarioDiv$$numeroUtilizzi">
+                  <select name="idTipoQualitaUsoSecondario" id="idTipoQualitaUsoSecondario" 
+                    onchange="javascript: modificaComboVarietaSecondaria('$$numeroUtilizzi');">
+                    <!-- @@blkTipiQualitaUsoSecondario -->
+                    <option value="$$idTipoQualitaUsoSecondario" title="$$descCompleta" $$selected>
+                      $$descrizione
+                    </option>
+                    <!-- @@blkTipiQualitaUsoSecondario -->
+                    <!-- @@blkNoTipiQualitaUsoSecondario -->
+                    <option value=""></option>
+                    <!-- @@blkNoTipiQualitaUsoSecondario -->
+                  </select>
+                  $$err_idTipoQualitaUsoSecondario
+                </div>       
+                <div id="idVarietaSecondaria$$numeroUtilizzi">
+                  <select name="idVarietaSecondaria" id="idVarietaSecondaria" 
+                    onchange="javascript: modificaSezioneSeminaSecondario('$$numeroUtilizzi');">
+                    <!-- @@blkTipiVarietaSecondaria -->
+                    <option value="$$idVarietaSecondaria" title="$$descCompleta" $$selected>
+                      $$descrizione
+                    </option>
+                    <!-- @@blkTipiVarietaSecondaria -->
+                    <!-- @@blkNoTipiVarietaSecondaria -->
+                    <option value=""></option>
+                    <!-- @@blkNoTipiVarietaSecondaria -->
+                  </select>
+                  $$err_idVarietaSecondaria
+                </div>                   
+	            </td>
+	            <td class="radio">
+	              <a
+	                href="javascript: newWindowSubmit('../layout/popAggiungiUso.htm', 'aggiungiUso', 600, 300, 'yes', 'Secondario', '$$numeroUtilizzi', 'popModTerrCondUso');"
+	                title="[Attenzione: questo link si apre in una nuova finestra]"
+	                class="modifica" id="associaIdUtilizzoSecondario"></a>
+	            </td>
+	            <td>
+	              <div id="idSezioneSeminaSecondario$$numeroUtilizzi" >
+                  <select name="idTipoPeriodoSeminaSecondario" onchange="javascript: modificaSezioneDateSeminaSecondario('$$numeroUtilizzi');">
+                    <!-- @@blkTipoPeriodoSeminaSecondario -->
+                    <option value="$$idTipoPeriodoSeminaSecondario" $$selected>
+                      $$descrizione
+                    </option>
+                    <!-- @@blkTipoPeriodoSeminaSecondario -->
+                    <!-- @@blkNoTipoPeriodoSeminaSecondario -->
+                    <option value=""></option>
+                    <!-- @@blkNoTipoPeriodoSeminaSecondario -->
+                  </select>
+                  $$err_idTipoPeriodoSeminaSecondario
+                  <br>
+                  <select name="idTipoSeminaSecondario" >
+                    <!-- @@blkTipoSeminaSecondario -->
+                    <option value="$$idTipoSeminaSecondario" $$selected>
+                      $$descrizione
+                    </option>
+                    <!-- @@blkTipoSeminaSecondario -->
+                    <!-- @@blkNoTipoSeminaSecondario -->
+                    <option value=""></option>
+                    <!-- @@blkNoTipoSeminaSecondario -->
+                  </select>
+                  $$err_idTipoSeminaSecondario
+                  <br>
+                </div>
+                <div id="idSezioneDateSeminaSecondario$$numeroUtilizzi" >
+                  <input type="text" name="dataInizioDestinazioneSec" class="textmedio"
+                    value="$$dataInizioDestinazioneSec" $$readOnlyDataInizioDestinazioneSec />&nbsp;inizio
+                  $$err_dataInizioDestinazioneSec
+                  <br>
+                  <input type="text" name="dataFineDestinazioneSec" class="textmedio"
+                    value="$$dataFineDestinazioneSec" $$readOnlyDataFineDestinazioneSec />&nbsp;fine
+                  $$err_dataFineDestinazioneSec
+                </div>
+	            </td>
+	            <td>
+	              <input type="text" name="supUtilizzataSecondaria"
+	                class="textmedio" value="$$supUtilizzataSecondaria" />
+	              $$err_supUtilizzataSecondaria
+	            </td>
+	            <td>
+                <div id="idSezioneMantenimentoDiv$$numeroUtilizzi" >
+                  <select name="idPraticaMantenimento">
+                    <!-- @@blkTipoPraticaMantenimento -->
+                    <option value="$$idPraticaMantenimento" $$selected>
+                      $$descrizione
+                    </option>
+                    <!-- @@blkTipoPraticaMantenimento -->
+                    <!-- @@blkNoTipoPraticaMantenimento -->
+                    <option value=""></option>
+                    <!-- @@blkNoTipoPraticaMantenimento -->
+                  </select>
+                  $$err_idPraticaMantenimento
+                </div>
+              </td>
+              <td>
+                <div id="idSezioneFaseAllevamento$$numeroUtilizzi" >
+                  <select name="idFaseAllevamento" $$disabledFaseAlleavamento >
+                    <!-- @@blkTipoFaseAllevamento -->
+                    <option value="$$idFaseAllevamento" $$selected>
+                      $$descrizione
+                    </option>
+                    <!-- @@blkTipoFaseAllevamento -->
+                  </select>
+                  $$err_idFaseAllevamento
+                  <!-- @@blkHiddenFaseAllevamento -->
+                  <input type="hidden" name="idFaseAllevamento" value="$$idFaseAllevamento" />
+                  <!-- @@blkHiddenFaseAllevamento -->
+                </div>
+              </td>
+	            <td>
+	              <input type="text" name="annoImpianto" class="textmedio"
+	                value="$$annoImpianto" />
+	              $$err_annoImpianto
+	            </td>
+	            <td>
+	              <select name="idImpianto" id="idImpianto">
+	                <option></option>
+	                <!-- @@blkTipiImpianto -->
+	                <option value="$$idImpianto" $$selected>
+	                  $$descrizione
+	                </option>
+	                <!-- @@blkTipiImpianto -->
+	              </select>
+	              $$err_idImpianto
+	            </td>
+	            <td class="numeridx">
+	              <input type="text" name="sestoSuFile" class="textmedio"
+	                value="$$sestoSuFile" />
+	              $$err_sestoSuFile
+	            </td>
+	            <td class="numeridx">
+	              <input type="text" name="sestoTraFile" class="textmedio"
+	                value="$$sestoTraFile" />
+	              $$err_sestoTraFile
+	            </td>
+	            <td class="numeridx">
+	              <input type="text" name="numeroPianteCeppi"
+	                class="textmedio" value="$$numeroPianteCeppi" />
+	              $$err_numeroPianteCeppi
+	            </td>
+	            <!-- @@blkElencoPianteConsociate -->
+	            <td class="numeridx">
+	              <input type="text" name="numeroPianteConsociate"
+	                class="textmedio" value="$$numeroPianteConsociate" />
+	              $$err_numeroPianteConsociate
+	            </td>
+	            <!-- @@blkElencoPianteConsociate -->
+	          </tr>
+	          <!-- @@blkElencoUtilizzi -->
+	        </table>
+	      </div>
+      </div>
+      
+      <div class="scroll">
+        <div id="elencoEfa">
+          <table cellspacing="3" summary="Questa tabella contiene l'elenco delle particelle selezionate per la modifica">
+            <caption>Elementi caratteristici del paesaggio</caption>
+            <tr>
+              <th class="center" scope="col">
+                <a href="javascript:modificaRigaEfa('inserisci','')" class="aggiungi" title="inserisci tipo EFA"></a>
+              </th>
+              <th class="center" scope="col">
+                Tipo EFA
+              </th>
+              <th class="center" scope="col">
+                Uso del suolo
+              </th>
+              <th class="center" scope="col">
+                Valore
+              </th>
+              <th class="center" scope="col">
+                Valore in ettari
+              </th>
+              <th class="center" scope="col">
+                Valore valido per il controllo
+              </th>
+            </tr>
+            <!-- @@blkElencoEfa -->
+            <tr>
+              <td class="radio">
+                <a href="javascript:modificaRigaEfa('elimina', '$$numeroUtilizziEfa')" class="cancella" title="elimina Uso efa"></a>
+              </td>
+              <td>
+                <select name="idTipoEfa" id="idTipoEfa" onchange="javascript: modificaTipoUtilizzoEfa('$$numeroUtilizziEfa')">
+                  <option value=""></option>
+                  <!-- @@blkTipoEfa -->
+                  <option value="$$idTipoEfa" title="$$descCompleta" $$selected>
+                    $$descrizione
+                  </option>
+                  <!-- @@blkTipoEfa -->
+                </select>
+                $$err_idTipoEfa
+              </td>
+              <td>
+                <div id="idTipoUtilizzoEfa$$numeroUtilizziEfa">
+	                <select name="idTipoUtilizzoEfa" id="idTipoUtilizzoEfa" class="clsIdTipoUtilizzoEfa"
+	                  onchange="javascript: modificaComboDestinazioneEfa('$$numeroUtilizziEfa');">
+	                  <!-- @@blkTipiUsoSuoloEfa -->
+	                  <option value="$$idTipoUtilizzoEfa" title="$$descCompleta" $$selected>
+	                    $$descrizione
+	                  </option>
+	                  <!-- @@blkTipiUsoSuoloEfa -->
+	                  <!-- @@blkNoTipiUsoSuoloEfa -->
+                    <option value=""></option>
+                    <!-- @@blkNoTipiUsoSuoloEfa -->
+	                </select>
+	                <input name="fattoreConversione" id="fattoreConversione" type="hidden" value="$$fattoreConversione"  />
+	                <input name="fattorePonderazione" id="fattorePonderazione" type="hidden" value="$$fattorePonderazione"  />
+	                <input name="descMisuraHd" id="descMisuraHd" type="hidden" value="$$descMisuraHd"  />
+	                $$err_idTipoUtilizzoEfa
+	              </div>
+                <div id="idTipoDestinazioneEfaDiv$$numeroUtilizziEfa">
+                  <select name="idTipoDestinazioneEfa"  
+                    onchange="javascript: modificaComboDettaglioUsoEfa('$$numeroUtilizziEfa');">
+                    <!-- @@blkTipiDestinazioneEfa -->
+                    <option value="$$idTipoDestinazioneEfa" title="$$descCompleta" $$selected>
+                      $$descrizione
+                    </option>
+                    <!-- @@blkTipiDestinazioneEfa -->
+                    <!-- @@blkNoTipiDestinazioneEfa -->
+                    <option value=""></option>
+                    <!-- @@blkNoTipiDestinazioneEfa -->
+                  </select>
+                  $$err_idTipoDestinazioneEfa
+                </div>
+                <div id="idTipoDettaglioUsoEfaDiv$$numeroUtilizziEfa">
+                  <select name="idTipoDettaglioUsoEfa"  
+                    onchange="javascript: modificaComboQualitaUsoEfa('$$numeroUtilizziEfa');">
+                    <!-- @@blkTipiDettaglioUsoEfa -->
+                    <option value="$$idTipoDettaglioUsoEfa" title="$$descCompleta" $$selected>
+                      $$descrizione
+                    </option>
+                    <!-- @@blkTipiDettaglioUsoEfa -->
+                    <!-- @@blkNoTipiDettaglioUsoEfa -->
+                    <option value=""></option>
+                    <!-- @@blkNoTipiDettaglioUsoEfa -->
+                  </select>                    
+                </div>
+                <div id="idTipoQualitaUsoEfaDiv$$numeroUtilizziEfa">
+                  <select name="idTipoQualitaUsoEfa" 
+                    onchange="javascript: modificaComboVarietaEfa('$$numeroUtilizziEfa');">
+                    <!-- @@blkTipiQualitaUsoEfa -->
+                    <option value="$$idTipoQualitaUsoEfa" title="$$descCompleta" $$selected>
+                      $$descrizione
+                    </option>
+                    <!-- @@blkTipiQualitaUsoEfa -->
+                    <!-- @@blkNoTipiQualitaUsoEfa -->
+                    <option value=""></option>
+                    <!-- @@blkNoTipiQualitaUsoEfa -->
+                  </select>
+                  $$err_idTipoQualitaUsoEfa
+                </div>
+                <div id="idVarietaEfa$$numeroUtilizziEfa">
+                  <select name="idVarietaEfa"
+                    onchange="javascript: modTipoDettaglioUso('$$numeroUtilizziEfa');">
+                    <!-- @@blkTipiVarietaEfa -->
+                    <option value="$$idVarietaEfa" $$selected>
+                      $$descrizione
+                    </option>
+                    <!-- @@blkTipiVarietaEfa -->
+                    <!-- @@blkNoTipiVarietaEfa -->
+                    <option value=""></option>
+                    <!-- @@blkNoTipiVarietaEfa -->
+                  </select>
+                  <input name="abbPonderazioneVarieta" id="abbPonderazioneVarieta$$numeroUtilizziEfa" type="hidden" value="$$abbPonderazioneVarieta"  />
+                  $$err_idVarietaEfa
+                </div>
+              </td>            
+              <td style="white-space:nowrap">
+                <input name="valoreOriginale" id="valoreOriginale" class="textmedio"
+                  type="text" value="$$valoreOriginale" maxlength="10" 
+                  onChange="javascript:calcolaValori('$$numeroUtilizziEfa');" 
+                  onkeyup="javascript:calcolaValori('$$numeroUtilizziEfa');" />
+                <div id="descUnitaMisura$$numeroUtilizziEfa" >
+                  $$descUnitaMisura
+                </div>
+                $$err_valoreOriginale
+              </td>
+              <td class="numeridx" id="rigaValConv$$numeroUtilizziEfa">
+                $$valoreDopoConversione
+              </td>
+              <input name="valoreDopoConversione" id="valoreDopoConversione" type="hidden" value="$$valoreDopoConversione"  />
+              <td class="numeridx" id="rigaValPond$$numeroUtilizziEfa">
+                $$valoreDopoPonderazione
+              </td>
+              <input name="valoreDopoPonderazione" id="valoreDopoPonderazione" type="hidden" value="$$valoreDopoPonderazione"  />
+            </tr>
+            <!-- @@blkElencoEfa -->
+          </table>
+        </div>
+      </div>
+      
+      
+      <p id="legenda">
+        <a href="javascript: newWindowDoForm('../layout/popLegendaEfa.htm', 'legendaEfa', '800', '400', 'yes', 'LEGENDAEFA');" 
+           title="Legenda">Legenda tipologie EFA</a>
+      </p>
+      <p id="nota">
+        I campi contrassegnati con * sono obbligatori
+      </p>      
+      <p id="nota">
+        Tutte le superfici sono espresse in ettari (ha)
+      </p>
+      <div class="pulsanti">
+        <div class="sin">
+          <a href="javascript:conferma();">conferma</a>
+        </div>
+        <div class="des">
+          <a href="javascript:window.close();" class="inputPulsante annulla">annulla</a>
+        </div>
+      </div>
+      <!-- @@blkElencoDati -->
+      <!-- @@blkErrore -->
+      <p class="errore">
+        $$messaggioErrore
+      </p>
+      <div class="pulsanti"><div class="des">
+        <a href="javascript:window.close();">chiudi</a>
+      </div></div>
+      <!-- @@blkErrore -->
+    </div>
+  </form>
+</body>
+</html>

@@ -1,0 +1,271 @@
+$$head
+    <script src="../js/checktext.js" type="text/javascript"></script>
+    <script type="text/javascript" src="../js/messaggistica.js"></script>
+</head>
+<body id="homeIndice" onLoad="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+  <div id="pagina" class="colonnaUnica">
+    <form  name="form1" method="post" action="../layout/dirittiVitati.htm">
+        <input type="hidden" name="operazione" value="$$operazione" />
+        <div id="intestazione##pathProvincia">
+        <!--#include virtual="/ris/include/smrgaaweb/header.html" -->
+        <!-- menu di navigazione-->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li><a href="../layout/index.htm" title="Torna alla pagina principale">home</a></li>
+              <li class="attivo">gestione anagrafe aziende</li>
+              <li><a href="#" title="contatti">contatti</a></li>
+              <li><a href="#" title="help">help</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr/>
+      <div style="clear:left">  </div>
+      <!-- CORPO -->
+      <div id="corpo">
+        <div id="Utente">
+          <div id="datiUtente">
+            <strong>utente:</strong>
+            $$utente
+            &nbsp;
+            &nbsp;
+            <strong>ente:</strong>
+            $$ente
+          </div>
+          <div id="chiudisessione">
+            <a href="javascript: logout();">chiudi sessione</a>
+          </div>
+        </div>
+        <hr/>
+        <!--PRIMA COLONNA -->
+        <h3>Gestione Anagrafe Aziende &gt; Diritti di Produzione &gt; diritti viticoli
+          <span class="helpFuori">
+            <a href="#">
+              <span class="alt">[help]</span>
+            </a>
+          </span>
+        </h3>
+        <hr/>
+        <div class="box">
+          <div class="menuSX1">
+            <ul>
+              <!-- @@blkElencoAziendeRapLegale -->
+                <li><a href="../layout/elencoAziendeRapLegale.htm">Elenco Aziende</a></li>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <!-- @@blkRicercaAzienda-->
+                <li><a href="../layout/ricerca.htm">Ricerche</a></li>
+              <!-- @@blkRicercaAzienda-->
+              <!-- @@blkNuova -->
+              <li><a href="../layout/nuovaAziendaAnagrafica.htm">Nuova Azienda</a></li>
+              <!-- @@blkNuova -->
+              <!-- @@blkNuovaIscrizione -->
+		          <li>
+		            <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+		          </li>
+		          <!-- @@blkNuovaIscrizione -->
+            </ul>
+          </div>
+          <div class="menuSX">
+            <ul>
+              <li><a href="../layout/anagrafica.htm">Anagrafica</a></li>
+              <!-- @@blkAziendeCollegate -->
+                  <li>
+                      <a href="../layout/aziendeCollegate.htm">$$aziendeCollegateLabel</a>
+                  </li>
+              <!-- @@blkAziendeCollegate -->
+              <!-- @@blkSincronizzaFascicolo -->
+               <li>
+               	<a href="../layout/sincronizzaFascicolo.htm">Sincronizza fascicolo</a>
+               </li>
+              <!-- @@blkSincronizzaFascicolo -->
+              <!-- @@blkSoggettiCollegati -->
+              <li><a href="../layout/contitolari.htm">Soggetti collegati</a></li>
+              <!-- @@blkSoggettiCollegati -->
+              <!-- @@blkContiCorrenti -->
+              <li><a href="../layout/conti_correnti.htm">Conti Correnti</a></li>
+              <!-- @@blkContiCorrenti -->
+              <!-- @@blkUnitaProduttive -->
+              <li><a href="../layout/sedi.htm">Unit&agrave; produttive</a></li>
+              <!-- @@blkUnitaProduttive -->
+              <!-- @@blkTerreni -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniParticellareElenco.htm">Terreni</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		            <a href="../layout/riepiloghi.htm">Terreni</a>
+		            <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkTerreni -->
+		          <!-- @@blkUnitaVitate -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniUnitaArboreeElenco.htm">Unit&agrave; Vitate</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		              <a href="../layout/riepiloghiUnitaArboree.htm">Unit&agrave; Vitate</a>
+		              <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkUnitaVitate -->
+              <!-- @@blkFabbricati -->
+              <li><a href="../layout/fabbricati.htm">Fabbricati e Strutture</a></li>
+              <!-- @@blkFabbricati -->
+              <!-- @@blkAllevamenti -->
+              <li><a href="../layout/allevamenti.htm">Allevamenti</a></li>
+              <!-- @@blkAllevamenti -->
+              <!-- @@blkManodopera -->
+              <li><a href="../layout/manodopera.htm">Manodopera</a></li>
+              <!-- @@blkManodopera -->
+              <!-- @@blkMotoriAgricoli -->
+              <li><a href="../layout/motori_agricoli_incarico.htm">Macchine agricole</a></li>
+              <!-- @@blkMotoriAgricoli -->
+              <!-- @@blkDiritti -->
+                <li>
+                  <a href="../layout/diritti.htm" class="on">Diritti di produzione</a>
+                  <ul>
+                    <li>
+                        <a href="javascript: goToOperazione('../layout/titoliSingoli.htm', document.form1, 'attenderePrego');">titoli</a>
+                      </li>
+                      <li>
+                        <a href="javascript: goToOperazione('../layout/titoli.htm', document.form1, 'attenderePrego');">titoli aggregati</a>
+                      </li>
+                      <li>
+                        <a href="javascript: goToOperazione('../layout/quoteLatte.htm', document.form1, 'attenderePrego');">quote latte</a>
+                      </li>
+                      <li>
+                        <a href="#" class="etichetta">diritti viticoli</a>
+                      </li>
+                  </ul>
+                </li>
+              <!-- @@blkDiritti -->
+              <!-- @@blkAttestazioni -->
+                <li><a href="../layout/attestazioniDettaglio.htm">Dichiarazioni</a></li>
+              <!-- @@blkAttestazioni -->
+              <!-- @@blkDichiarazioniConsistenza -->
+              <li><a href="../layout/dichiarazioneConsistenza.htm">Validazioni</a></li>
+              <!-- @@blkDichiarazioniConsistenza -->
+              <!-- @@blkDocumenti -->
+              <li><a href="../layout/documentiElenco.htm">Documenti</a></li>
+              <!-- @@blkDocumenti -->
+              <!-- @@blkFascicoloDematerializzato -->
+		          <li>
+		            <a href="../layout/fascicoloDematerializzato.htm">Fascicolo<br>elettronico</a>
+		          </li>
+		          <!-- @@blkFascicoloDematerializzato --> 
+              <!-- @@blkGestioneNotifiche -->
+              <li><a href="../layout/notifiche.htm">Notifiche</a></li>
+              <!-- @@blkGestioneNotifiche -->
+              <!-- @@blkComunicazione10R -->
+                <li>
+                  <a href="../layout/comunicazione10R_dettaglio.htm">Comunicazione 10/R</a>
+                </li>
+              <!-- @@blkComunicazione10R -->
+              <!-- @@blkPratiche -->
+              <li><a href="../layout/pratiche.htm">Pratiche</a></li>
+              <!-- @@blkPratiche -->
+              <!-- @@blkStampaFascicolo -->
+              <li><a href="../layout/scelta_stampa.htm">Stampe</a></li>
+              <!-- @@blkStampaFascicolo -->
+			  <li><a href="../layout/strumenti.htm">Strumenti</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr/>
+        <!-- SECONDA COLONNA -->
+        <div id="contenuto">
+          <div id="intesta">
+            <p class="$$aziendaIntestazione" title="$$tooltipIntestazione" >
+              $$CUAAIntestazione  $$denominazioneIntestazione
+            </p>
+          </div>
+          <h4 class="titolo">Fonte dati: SIARB - estirpazione e impianto vigneti</h4>
+          <br />
+          <!-- @@blkErrore -->
+            <p class="errore">$$messaggio</p>
+          <!-- @@blkErrore -->		  
+
+
+
+          <!-- @@blkDirittoVitato -->
+          <table cellspacing="3" summary="Questa tabella &egrave; costituita da righe">
+          <caption>Filtro diritti viticoli</caption>
+            <colgroup>
+            <col width="10%"/>
+            <col width="90%"/>
+            </colgroup>
+            <tr>
+              <td><input type="checkbox" id="flagScaduti" name="flagScaduti" value="true" $$checkedFlagScaduti/><label for="diritti">Diritti Scaduti</label></td>
+              <td>
+              <div class="azioni">
+              <input name="aggiorna" id="aggiorna" class="inputPulsante" type="submit" value="aggiorna" onmouseover="javascript:overOutHandler(this, 'inputPulsanteHover');" onmouseout="javascript:overOutHandler(this, 'inputPulsante');" />
+              </div>
+              </td>
+            </tr>
+          </table>
+          <div class="pulsanti">
+		        <div class="sin">
+        	    <input id="seleziona" name="scarica" type="button" value="esporta dati" onclick="javascript: goToOperazione('../layout/dirittiVitati.htm', document.form1,'scarica');" class="inputPulsante"/>
+            </div>
+          </div>
+
+          <div class="scroll">
+            <table  class="evidence" cellspacing="3" summary="Questa tabella è costituita da righe">
+              <tr>
+                <th colspan="2" class="center" scope="col">Origine</th>
+                <th rowspan="2" class="center" scope="col">Amm. competenza del reimpianto</th>
+                <th rowspan="2" class="center" scope="col">Variet&agrave;</th>
+                <th rowspan="2" class="center" scope="col">Vino</th>
+                <th rowspan="2" class="center" scope="col">Nr. diritto</th>
+                <th rowspan="2" class="center" scope="col">Stato</th>
+                <th rowspan="2" class="center" scope="col">Aut. estirpo n.</th>
+                <th rowspan="2" class="center" scope="col">Data Estirpo</th>
+                <th rowspan="2" class="center" scope="col">Data Scadenza</th>
+                <th colspan="4" class="center" scope="col">Superfici (ha)</th>              
+              </tr>
+              <tr>
+              	<th class="center">Descrizione</th>
+                  <th class="center">Pv.</th>
+                  <th>Iniziale</th>
+                  <th>Utilizzata</th>
+                  <th>Trasferita</th>
+                  <th>Residua</th>
+              </tr>   
+              <!-- @@blkElencoDiritti -->           
+              <tr>
+                <td @@blkRed   class="rosso"    @@blkRed>$$descOrigine</td>
+                <td @@blkRed   class="rosso"    @@blkRed>$$siglaProvinciaOrigine</td>
+                <td @@blkRed   class="rosso"    @@blkRed>$$descAmmCompetenzaReimpianto</td>
+                <td @@blkRed   class="rosso"    @@blkRed>$$varieta</td>
+                <td @@blkRed   class="rosso"    @@blkRed>$$vino</td>
+                <td @@blkRed   class="rosso"    @@blkRed>$$numeroDiritto</td>
+                <td @@blkRed   class="rosso"    @@blkRed>$$descStatoDiritto</td>
+              	<td @@blkRed   class="rosso"    @@blkRed>$$autorizzazione_estirpazione</td>
+                <td @@blkRed   class="rosso"    @@blkRed>$$dataEstirpazione</td>
+                <td @@blkRed   class="rosso"    @@blkRed>$$dataScadenza</td>
+                <td @@blkBlack   class="numeridx"    @@blkBlack @@blkRed   class="numeridx rosso"    @@blkRed>$$superficieIniziale</td>
+                <td @@blkBlack   class="numeridx"    @@blkBlack @@blkRed   class="numeridx rosso"    @@blkRed>$$superficieUtilizzata</td>
+                <td @@blkBlack   class="numeridx"    @@blkBlack @@blkRed   class="numeridx rosso"    @@blkRed>$$superficieTrasferita</td>
+                <td @@blkBlack   class="numeridx"    @@blkBlack @@blkRed   class="numeridx rosso"    @@blkRed>$$supResidua</td>
+              </tr>
+              <!-- @@blkElencoDiritti -->                
+            </table>
+          </div>
+          <div class="pulsanti">
+	          <div class="sin">
+              <input id="seleziona" name="scarica" type="button" value="esporta dati" onclick="javascript: goToOperazione('../layout/dirittiVitati.htm', document.form1,'scarica');" class="inputPulsante"/>
+            </div>
+          </div>
+
+          <p id="nota">Le righe evidenziate in rosso rappresentano diritti scaduti. <!--<span class="rosso">(Legenda)</span> --></p>
+         
+        <!-- @@blkDirittoVitato -->  
+        </div>
+      </div>
+      <hr/>
+      </form>
+      <!-- PIE' DI PAGINA -->
+            $$footer

@@ -1,0 +1,254 @@
+<ivy-module version="1.0">
+    <info organisation="TOBECONFIG" module="smrgaa"/> 
+    <dependencies>
+			<dependency org="apache" name="commons-httpclient" rev="3.1" >
+				<artifact name="commons-httpclient-3.1" type="jar" />
+			</dependency> 
+			<dependency org="apache" name="commons-codec" rev="1.3" >
+				<artifact name="commons-codec-1.3" type="jar" />
+			</dependency> 
+			<dependency org="apache" name="commons-discovery" rev="0.2" >
+				<artifact name="commons-discovery-0.2" type="jar" />
+			</dependency> 
+			<dependency org="apache" name="commons-lang" rev="2.1" >
+				<artifact name="commons-lang-2.1" type="jar" />
+			</dependency> 
+			<dependency org="apache" name="commons-logging" rev="1.1.1" >
+				<artifact name="commons-logging-1.1.1" type="jar" />
+			</dependency>
+			<dependency org="apache" name="log4j" rev="1.2.15" >
+				<artifact name="log4j-1.2.15" type="jar" />
+			</dependency>			
+			<dependency org="apache" name="soap" rev="2.3.1">
+				<artifact name="soap-2.3.1" type="jar" />
+			</dependency>
+			<dependency org="apache" name="regexp" rev="1.4">
+				<artifact name="jakarta-regexp-1.4" type="jar" />
+			</dependency>   			
+			<dependency org="TOBECONFIG" name="aaepsv" rev="3.7.0">
+				<artifact name="aaepsv-client-3.7.0" type="jar" />
+			</dependency>  
+			<dependency org="TOBECONFIG" name="coop-trace" rev="1.1.0">
+				<artifact name="coop-trace-1.1.0" type="jar" />
+			</dependency>  	
+			<dependency org="TOBECONFIG" name="coop-diag" rev="1.2.1">
+				<artifact name="coop-diag-1.2.1" type="jar" />
+			</dependency>
+			<dependency org="TOBECONFIG" name="csi" rev="1.4.5">
+				<artifact name="csi-apachesoap-1.4.5" type="jar" />
+				<artifact name="csi-core-1.4.5" type="jar" />
+				<artifact name="csi-ejb-1.4.5" type="jar" />				
+				<artifact name="csi-rmi-1.4.5" type="jar" />
+				<artifact name="csi-stadapter-1.4.5" type="jar" />
+				<artifact name="csi-tools-1.4.5" type="jar" />
+			</dependency>
+			<dependency org="TOBECONFIG" name="ejbproxyfactory" rev="1.0.0" >
+				<artifact name="ejbproxyfactory-1.0.0" type="jar" />
+			</dependency>
+			<dependency org="TOBECONFIG" name="htmpl" rev="1.3.2" >
+				<artifact name="htmpl-1.3.2" type="jar" />
+			</dependency>
+			<dependency org="TOBECONFIG" name="iridev2" rev="2.0.0">
+				<artifact name="iridev2-pep-intf-2.0.0" type="jar" />
+			</dependency>
+			<dependency org="TOBECONFIG" name="util-perf" rev="1.0.0">
+				<artifact name="util-perf-1.0.0" type="jar" />
+			</dependency>
+			<dependency org="TOBECONFIG" name="util-monitor" rev="1.1.0">
+				<artifact name="util-monitor-1.1.0" type="jar" />
+			</dependency>
+			<dependency org="TOBECONFIG" name="solmruma" rev="2.3.0">
+				<artifact name="solmruma-client-2.3.0" type="jar" />
+			</dependency>
+			<dependency org="inetsoft" name="stylereportpro" rev="9.5">
+				<artifact name="xreport_pro-9.5" type="jar" />
+			</dependency>
+			<dependency org="oracle" name="jdbc" rev="10.2.0.3.0">
+				<artifact name="ojdbc14-10.2.0.3.0" type="jar" />
+			</dependency>	
+			<dependency org="others" name="jexcelapi" rev="2.5.7">
+				<artifact name="jxl-2.5.7" type="jar" />
+			</dependency>
+			<dependency org="others" name="itextpdf" rev="5.4.4">
+				<artifact name="itextpdf-5.4.4" type="jar" />
+			</dependency>
+			<dependency org="sun" name="jaxp" rev="1.1.1" >
+				<artifact name="jaxp-1.1.1" type="jar" />
+			</dependency>
+			<dependency org="sun" name="jdom" rev="b10" >
+				<artifact name="jdom-b10" type="jar" />
+			</dependency>
+			<dependency org="sun" name="jndi" rev="1.2.1">
+				<artifact name="jndi-1.2.1" type="jar" />
+			</dependency>
+			<dependency org="sun" name="jsse" rev="1.0.3">
+				<artifact name="jsse-1.0.3" type="jar" />
+			</dependency>
+			<dependency org="sun" name="j2ee" rev="1.3">
+				<artifact name="j2ee-1.3" type="jar" />
+			</dependency>
+			<dependency org="apache" name="axis" rev="1.4" >
+				<artifact name="axis-1.4" type="jar" />
+			</dependency>
+			<dependency org="sun" name="jaxrpc" rev="1.1">
+				<artifact name="jaxrpc-1.1" type="jar" />
+			</dependency>
+			<dependency org="others" name="wsdl4j" rev="1.5.1" >
+				<artifact name="wsdl4j-1.5.1" type="jar" />
+			</dependency>
+			<dependency org="TOBECONFIG" name="sian-ws-banca-dati-debitori" rev="1.0.0">
+				<artifact name="sian-ws-banca-dati-debitori-1.0.0" type="jar" />
+			</dependency>
+			<dependency org="TOBECONFIG" name="sian-ws-interscambio" rev="1.0.0">
+				<artifact name="sian-ws-interscambio-1.0.0" type="jar" />
+			</dependency>
+			<dependency org="TOBECONFIG" name="sian-ws-validazione-gis" rev="1.0.0">
+				<artifact name="sian-ws-validazione-gis-1.0.0" type="jar" />
+			</dependency>
+			<dependency org="TOBECONFIG" name="csn-ws-aut" rev="2.4.1">
+          <artifact name="csn-ws-aut-2.4.1" type="jar" />
+       </dependency>
+			<dependency org="TOBECONFIG" name="smrcommsrv" rev="4.5.0">
+				<artifact name="smrcommsrv-client-4.5.0" type="jar" />
+			</dependency>			
+			<dependency org="apache" name="poi" rev="3.0.2" >
+				<artifact name="poi-3.0.2-FINAL-20080204" type="jar" />
+			</dependency>
+			<dependency org="TOBECONFIG" name="sitiserv-client" rev="1.2.0">
+				<artifact name="sitiserv-client-1.2.0" type="jar" />
+			</dependency>
+			<dependency org="TOBECONFIG" name="cciaa-ws-albo-vigneti" rev="1.0.1">
+				<artifact name="cciaa-ws-albo-vigneti-1.0.1" type="jar" />
+			</dependency>
+			<dependency org="TOBECONFIG" name="vitiserv-client" rev="2.2.0">
+				<artifact name="vitiserv-client-2.2.0" type="jar"/>
+			</dependency>
+			<dependency org="TOBECONFIG" name="sigopserv-client" rev="1.8.2" >
+				<artifact name="sigopserv-client-1.8.2" type="jar" />
+			</dependency>
+			<dependency org="TOBECONFIG" name="sigtersrv-daticatastali-client" rev="2.2.0" >
+				<artifact name="sigtersrv-daticatastali-client-2.2.0" type="jar" />
+			</dependency>	   	   
+			<dependency org="others" name="bea2jboss-client" rev="4.3.0" >
+				<artifact name="concurrent-4.3.0" type="jar" /> 
+				<artifact name="javassist-4.3.0" type="jar" /> 
+				<artifact name="jboss-aop-jdk50-4.3.0" type="jar" /> 
+				<artifact name="jboss-aspect-jdk50-client-4.3.0" type="jar" /> 
+				<artifact name="jboss-client-4.3.0" type="jar" /> 
+				<artifact name="jboss-common-client-4.3.0" type="jar" /> 
+				<artifact name="jbosscx-client-4.3.0" type="jar" /> 
+				<artifact name="jboss-deployment-4.3.0" type="jar" /> 
+				<artifact name="jbossha-client-4.3.0" type="jar" /> 
+				<artifact name="jboss-iiop-client-4.3.0" type="jar" /> 
+				<artifact name="jboss-messaging-client-4.3.0" type="jar" /> 
+				<artifact name="jboss-remoting-4.3.0" type="jar" /> 
+				<artifact name="jboss-serialization-4.3.0" type="jar" /> 
+				<artifact name="jboss-srp-client-4.3.0" type="jar" /> 
+				<artifact name="jbosssx-client-4.3.0" type="jar" /> 
+				<artifact name="jboss-system-client-4.3.0" type="jar" /> 
+				<artifact name="jboss-transaction-client-4.3.0" type="jar" /> 
+				<artifact name="jnp-client-4.3.0" type="jar" /> 
+				<artifact name="trove-4.3.0" type="jar" />
+			</dependency>		
+      <dependency org="abaco" name="abaco-rpc" rev="1.6">
+        <artifact name="abaco-rpc-1.6" type="jar" />
+      </dependency>
+      <dependency org="abaco" name="sso-common" rev="2.54">
+        <artifact name="SSO-common-2.54" type="jar" />
+      </dependency>
+      <dependency org="abaco" name="sso-client" rev="2.58">
+        <artifact name="SSO-client-2.58" type="jar" />
+      </dependency>
+      <dependency org="abaco" name="sso-iride2-client-api" rev="6">
+        <artifact name="SSO-IRIDE2-client-api-6" type="jar" />
+      </dependency>
+      <dependency org="TOBECONFIG" name="shibboleth" rev="1.0.0" >
+    	  <artifact name="shibboleth-shibfilter-1.0.0" type="jar" />
+    	</dependency>
+    	<dependency org="apache" name="commons-fileupload" rev="1.2" >
+	      <artifact name="commons-fileupload-1.2" type="jar" />
+	    </dependency>
+	    <dependency org="apache" name="commons-io" rev="1.4">
+	      <artifact name="commons-io-1.4" type="jar"/>
+	    </dependency>
+	    <dependency org="TOBECONFIG" name="sian-ws-ricercaanagrafica" rev="2.0.0">
+				<artifact name="sian-ws-ricercaanagrafica-2.0.0" type="jar" />
+			</dependency>
+			<dependency org="TOBECONFIG" name="papuaserv-client" rev="1.0.0" >
+        <artifact name="papuaserv-client-1.0.0" type="jar" />
+      </dependency>
+      <dependency org="TOBECONFIG" name="wsbridge-client" rev="1.5.0">
+			  <artifact name="wsbridge-client-1.5.0" type="jar" />
+		  </dependency>
+		  <dependency org="TOBECONFIG" name="smrcommsrv-agriwell-client" rev="1.4.1">
+			  <artifact name="smrcommsrv-agriwell-client-1.4.1" type="jar" />
+		  </dependency>
+		  <dependency org="TOBECONFIG" name="smrgaasrv-sian-client" rev="1.2.0">
+			  <artifact name="smrgaasrv-sian-client-1.2.0" type="jar" />
+		  </dependency>
+		  <dependency org="TOBECONFIG" name="umaserv-client" rev="1.0.0">
+			  <artifact name="umaserv-client-1.0.0" type="jar" />
+		  </dependency>
+		  <dependency org="TOBECONFIG" name="modolsrv" rev="1.5.0" >
+        <artifact name="modolsrv-client-1.5.0" type="jar" />
+      </dependency>
+      <dependency org="TOBECONFIG" name="modolpdfgeneratorsrv-client" rev="1.2.0" >
+        <artifact name="modolpdfgeneratorsrv-client-1.2.0" type="jar" />
+      </dependency>
+      <dependency org="TOBECONFIG" name="siapcommws-client" rev="1.0.0">
+				<artifact name="siapcommws-client-1.0.0" type="jar" />
+			</dependency>
+			<dependency org="TOBECONFIG" name="papuaserv-wsclient-axis" rev="1.0.0">
+				<artifact name="papuaserv-wsclient-axis-1.0.0" type="jar" />
+			</dependency>
+			<dependency org="TOBECONFIG" name="papuaserv-wsclient-axis-legacy" rev="1.0.0">
+				<artifact name="papuaserv-wsclient-axis-legacy-1.0.0" type="jar" />
+			</dependency> 
+
+      <!-- necessaria a conversione automatica xsd-classi-xml -->
+	    <dependency org="sun" name="jaxb" rev="2.1.9" />
+	    
+	    <!-- new -->		
+<dependency transitive="false" org="others" name="jboss" force="true" rev="eap-6.0">
+   <artifact name="jboss-ejb-api_3.1_spec-1.0.2.Final-redhat-1" 
+    type="jar" />
+   <artifact name="jboss-jsp-api_2.2_spec-1.0.1.Final-redhat-1"
+    type="jar" />
+   <artifact name="jboss-el-api_2.2_spec-1.0.2.Final-redhat-1"
+    type="jar" />
+   <artifact name="jboss-servlet-api_3.0_spec-1.0.1.Final-redhat-1"
+    type="jar" />
+   <artifact name="validation-api-1.0.0.GA-redhat-1" type="jar" />
+   <artifact name="jboss-transaction-api_1.1_spec-1.0.1.Final-redhat-1"
+    type="jar" />
+   <artifact name="jackson-core-asl-1.9.2-redhat-1" type="jar" />
+   <artifact name="jackson-mapper-asl-1.9.2-redhat-1" type="jar" />
+</dependency>
+				
+
+     <!-- necessarie perché la xreport-9.5.jar sembra avere delle dipendenze che su JBoss non vengono trovate : org.mozilla.javascript.Scriptable -->
+    <dependency transitive="false" org="others" name="rhino" rev="1.7R1">
+      <artifact name="rhino-js-1.7R1" type="jar" />
+    </dependency>
+    <dependency transitive="false" org="others" name="oromatcher" rev="1.1">
+      <artifact name="oromatcher-1.1" type="jar" />
+    </dependency>
+    <dependency org="apache" name="antlr" rev="2.7.5">
+				<artifact name="antlr-2.7.5H3" type="jar" />
+	</dependency>
+	
+	<!-- necessarie per l'aggancio ai servizi esposti a ws, con chiamate pa/pd -->
+	<dependency org="TOBECONFIG" name="wsadp" rev="2.1.0">
+	       <artifact name="wsadp-2.1.0" type="jar" />
+	</dependency>
+	
+	<dependency org="TOBECONFIG" name="tokenretry" rev="2.0.0" >
+	   		<artifact name="token-retry-2.0.0" type="jar" />
+	   		<artifact name="token-retry-plugin-cxf-2.0.0" type="jar" />
+    </dependency>
+
+    <dependency org="TOBECONFIG" name="axiscsi" rev="1.0.0">
+	      <artifact name="axis-1.4.csi-1.0.0" type="jar" />
+	</dependency>
+    </dependencies>
+</ivy-module>

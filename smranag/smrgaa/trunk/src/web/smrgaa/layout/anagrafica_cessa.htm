@@ -1,0 +1,498 @@
+$$head
+
+<link rel="stylesheet" href="../css/jQueryAnag.css" />
+<script src="../js/checktext.js" type="text/javascript"></script>
+<script type="text/javascript" src="../js/messaggistica.js"></script>
+<script type="text/javascript">
+
+  function buttonClicked() 
+  {
+    var str = "";
+    return str = confirm("Non potranno pi\u00F9 essere modificati i dati\ndell\'azienda dopo la cessazione. Proseguire?");
+  }
+
+  function cessa() 
+  {
+    var lastAction = document.form1.action;
+    document.form1.action = "../layout/anagrafica.htm";
+    document.form1.cessazione.value="true";
+    document.form1.submit();
+    document.form1.cessazione.value="";
+    document.form1.action = lastAction;
+  }
+
+  function cambioTitolare(mypage) 
+  {
+    var operazione = "cambioTitolare";
+    document.form1.operazione.value = operazione;
+    var target1 = document.form1.target;
+    var action1 = document.form1.action;
+    document.form1.target = '';
+    document.form1.action = mypage;
+    document.form1.submit();
+    document.form1.target = target1;
+    document.form1.action = action1;
+  }
+
+</script>
+<script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript"
+  src="../js/jquery-ui-1.8.21.custom/jquery-ui-1.8.21.custom.min.js"></script>
+<script type="text/javascript">
+    
+  jQuery(function($) {
+
+    <!-- @@blkjQuery -->
+    $( document ).ready(function() {
+        loading(); // loading
+        setTimeout(function(){ // then show popup, deley in .5 second
+          loadPopup(); // function show popup
+        }, 500); // .5 second
+    return false;
+    });
+   <!-- @@blkjQuery -->
+
+    $("a.topopup").click(function() {
+        loading(); // loading
+        setTimeout(function(){ // then show popup, deley in .5 second
+          loadPopup(); // function show popup
+        }, 500); // .5 second
+    return false;
+    });
+  
+    /* event for close the popup */
+    $("div.close").hover(
+            function() {
+              $('span.ecs_tooltip').show();
+            },
+            function () {
+                $('span.ecs_tooltip').hide();
+              }
+          );
+  
+    $("div.close").click(function() {
+      disablePopup();  // function close pop up
+    });
+  
+    $(this).keyup(function(event) {
+      if (event.which == 27) { // 27 is 'Ecs' in the keyboard
+        disablePopup();  // function close pop up
+      }
+    });
+  
+          $("div#backgroundPopup").click(function() {
+      disablePopup();  // function close pop up
+    });
+ 
+  
+     /************** start: functions. **************/
+    function loading() {
+      $("div.loader").show();
+    }
+    function closeloading() {
+      $("div.loader").fadeOut('normal');
+    }
+  
+    var popupStatus = 0; // set value
+  
+    function loadPopup() 
+    {
+      if(popupStatus == 0) 
+      { // if value is 0, show popup
+        closeloading(); // fadeout loading
+        $("#toPopup").fadeIn(0500); // fadein popup div
+        //$("#testoPop").css("text-align", "center"); 
+        $("#backgroundPopup").css("opacity", "0.7"); // css opacity, supports IE7, IE8
+        $("#backgroundPopup").fadeIn(0001);
+        popupStatus = 1; // and set value to 1
+      }
+    }
+  
+    function disablePopup() {
+      if(popupStatus == 1) { // if value is 1, close popup
+        $("#toPopup").fadeOut("normal");
+        $("#backgroundPopup").fadeOut("normal");
+        popupStatus = 0;  // and set value to 0
+      }
+    }
+    /************** end: functions. **************/
+  }); // jQuery End
+  
+  
+</script>
+</head>
+<body id="homeIndice" onLoad="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+  <form id="form1" name="form1" method="post" action="../layout/anagrafica_cessa.htm">
+    <input type="hidden" id="regimeAnagraficaCessa" name="regimeAnagraficaCessa" value="regimeAnagraficaCessa" />
+    <div id="pagina" class="colonnaUnica">
+      <div id="intestazione##pathProvincia">
+        $$header
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li>
+                <a href="../layout/index.htm"
+                  title="Torna alla pagina principale">home</a>
+              </li>
+              <li class="attivo">
+                gestione anagrafe aziende
+              </li>
+              <li>
+                <a href="#" title="contatti">contatti</a>
+              </li>
+              <li>
+                <a href="#" title="help">help</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div style="clear: left"></div>
+      <div id="corpo">
+        <div id="Utente">
+          <div id="datiUtente">
+            <strong>utente:</strong> $$utente &nbsp; &nbsp;
+            <strong>ente:</strong> $$ente
+          </div>
+          <div id="chiudisessione">
+            <a href="javascript: logout();">chiudi sessione</a>
+          </div>
+        </div>
+        <hr />
+        <h3>
+          Gestione Anagrafe
+          Aziende&nbsp;&gt;&nbsp;Anagrafica&nbsp;&gt;&nbsp;Cessazione
+          <span class="helpFuori"> <a href="#"> <span
+              class="alt">[help]</span> </a> </span>
+        </h3>
+        <hr />
+        <div class="box">
+          <div class="menuSX1">
+            <ul>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <li>
+                <a href="../layout/elencoAziendeRapLegale.htm">Elenco
+                  Aziende</a>
+              </li>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <!-- @@blkRicercaAzienda-->
+              <li>
+                <a href="../layout/ricerca.htm">Ricerche</a>
+              </li>
+              <!-- @@blkRicercaAzienda-->
+              <!-- @@blkNuova -->
+              <li>
+                <a href="../layout/nuovaAziendaAnagrafica.htm">Nuova
+                  Azienda</a>
+              </li>
+              <!-- @@blkNuova -->
+              <!-- @@blkNuovaIscrizione -->
+		          <li>
+		            <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+		          </li>
+		          <!-- @@blkNuovaIscrizione -->
+            </ul>
+          </div>
+          <div class="menuSX">
+            <ul>
+              <li>
+                <a href="../layout/anagrafica.htm" class="on">Anagrafica</a>
+                <ul>
+                  <li>
+                    <a href="../layout/anagrafica.htm">dettaglio</a>
+                  </li>
+                  <li>
+                    <a href="../layout/fonti.htm">fonti certificate</a>
+                  </li>
+                  <!--@@linkModifica-->
+                  <li>
+                    <a href="../layout/anagrafica_mod.htm">modifica</a>
+                  </li>
+                  <!--@@linkModifica-->
+                  <!--@@linkCessa-->
+                  <li>
+                    <a href="#" class="etichetta">cessazione</a>
+                  </li>
+                  <!--@@linkCessa-->
+                  <!--@@linkCambioTitolare-->
+                  <!--<li><a href="javascript: cambioTitolare('../layout/anagrafica.htm');">subentro nuovo titolare</a></li>-->
+                  <!--@@linkCambioTitolare-->
+                  <!--@@linkCambioRappresentante-->
+                  <li>
+                    <a
+                      href="../layout/anagraficaSocieta_cambiaRappresentante.htm">cambio
+                      rappr. legale</a>
+                  </li>
+                  <!--@@linkCambioRappresentante-->
+                  <!--@@linkDichiarazioneInsediamento-->
+                  <li>
+                    <a href="../layout/insediamento.htm">dichiarazione
+                      insediamento</a>
+                  </li>
+                  <!--@@linkDichiarazioneInsediamento-->
+                  <!--@@linkGestoreFascicolo-->
+                  <li>
+                    <a href="../layout/gestoreFascicolo.htm">gestore
+                      fascicolo</a>
+                  </li>
+                  <!--@@linkGestoreFascicolo-->
+                  <!--@@linkRevocaDelega-->
+                  <li>
+                    <a href="../layout/revocaDelega.htm">revoca
+                      mandato</a>
+                  </li>
+                  <!--@@linkRevocaDelega-->
+                  <!--@@blkStoricoAzienda-->
+                  <li>
+                    <a href="../layout/listaStoricoAzienda.htm">storico
+                      azienda</a>
+                  </li>
+                  <!--@@blkStoricoAzienda-->
+                </ul>
+              </li>
+              <!-- @@blkAziendeCollegate -->
+              <li>
+                <a href="../layout/aziendeCollegate.htm">$$aziendeCollegateLabel</a>
+              </li>
+              <!-- @@blkAziendeCollegate -->
+              <!-- @@blkSincronizzaFascicolo -->
+              <li>
+               	<a href="../layout/sincronizzaFascicolo.htm">Sincronizza fascicolo</a>
+              </li>
+              <!-- @@blkSincronizzaFascicolo -->
+              <!-- @@blkSoggettiCollegati -->
+              <li>
+                <a href="../layout/contitolari.htm">Soggetti
+                  collegati</a>
+              </li>
+              <!-- @@blkSoggettiCollegati -->
+              <!-- @@blkContiCorrenti -->
+              <li>
+                <a href="../layout/conti_correnti.htm">Conti
+                  Correnti</a>
+              </li>
+              <!-- @@blkContiCorrenti -->
+              <!-- @@blkUnitaProduttive -->
+              <li>
+                <a href="../layout/sedi.htm">Unit&agrave; produttive</a>
+              </li>
+              <!-- @@blkUnitaProduttive -->
+              <!-- @@blkTerreni -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniParticellareElenco.htm">Terreni</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		            <a href="../layout/riepiloghi.htm">Terreni</a>
+		            <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkTerreni -->
+		          <!-- @@blkUnitaVitate -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniUnitaArboreeElenco.htm">Unit&agrave; Vitate</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		              <a href="../layout/riepiloghiUnitaArboree.htm">Unit&agrave; Vitate</a>
+		              <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkUnitaVitate -->
+              <!-- @@blkFabbricati -->
+              <li>
+                <a href="../layout/fabbricati.htm">Fabbricati e
+                  Strutture</a>
+              </li>
+              <!-- @@blkFabbricati -->
+              <!-- @@blkAllevamenti -->
+              <li>
+                <a href="../layout/allevamenti.htm">Allevamenti</a>
+              </li>
+              <!-- @@blkAllevamenti -->
+              <!-- @@blkManodopera -->
+              <li>
+                <a href="../layout/manodopera.htm">Manodopera</a>
+              </li>
+              <!-- @@blkManodopera -->
+              <!-- @@blkMotoriAgricoli -->
+              <li>
+                <a href="../layout/motori_agricoli_incarico.htm">Macchine agricole</a>
+              </li>
+              <!-- @@blkMotoriAgricoli -->
+              <!-- @@blkDiritti -->
+              <li>
+                <a href="../layout/diritti.htm">Diritti di
+                  produzione</a>
+              </li>
+              <!-- @@blkDiritti -->
+              <!-- @@blkAttestazioni -->
+              <li>
+                <a href="../layout/attestazioniDettaglio.htm">Dichiarazioni</a>
+              </li>
+              <!-- @@blkAttestazioni -->
+              <!-- @@blkDichiarazioniConsistenza -->
+              <li>
+                <a href="../layout/dichiarazioneConsistenza.htm">Validazioni</a>
+              </li>
+              <!-- @@blkDichiarazioniConsistenza -->
+              <!-- @@blkDocumenti -->
+              <li>
+                <a href="../layout/documentiElenco.htm">Documenti</a>
+              </li>
+              <!-- @@blkDocumenti -->
+              <!-- @@blkFascicoloDematerializzato -->
+		          <li>
+		            <a href="../layout/fascicoloDematerializzato.htm">Fascicolo<br>elettronico</a>
+		          </li>
+		          <!-- @@blkFascicoloDematerializzato -->
+              <!-- @@blkGestioneNotifiche -->
+              <li>
+                <a href="../layout/notifiche.htm">Notifiche</a>
+              </li>
+              <!-- @@blkGestioneNotifiche -->
+              <!-- @@blkComunicazione10R -->
+              <li>
+                <a href="../layout/comunicazione10R_dettaglio.htm">Comunicazione
+                  10/R</a>
+              </li>
+              <!-- @@blkComunicazione10R -->
+              <!-- @@blkPratiche -->
+              <li>
+                <a href="../layout/pratiche.htm">Pratiche</a>
+              </li>
+              <!-- @@blkPratiche -->
+              <!-- @@blkStampaFascicolo -->
+              <li>
+                <a href="../layout/scelta_stampa.htm">Stampe</a>
+              </li>
+              <!-- @@blkStampaFascicolo -->
+			  <li><a href="../layout/strumenti.htm">Strumenti</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr />
+        <div id="contenuto">
+          <div id="intesta">
+            <p class="$$aziendaIntestazione" title="$$tooltipIntestazione" >
+              $$CUAAIntestazione  $$denominazioneIntestazione
+            </p>
+          </div>
+          
+          
+          
+          
+          <!-- Nuova pop up inizio -->
+          <div id="toPopup">              
+            <div class="close"></div>                    
+            <div id="popup_content"> <!--your content start-->
+              <img src="../css/im/exclPointTranspSmall.gif" alt="Attenzione" title="Attenzione" style="float: left; margin: auto; vertical-align: middle;" />
+              <div id="testoPop">
+               <br>
+               <br>
+               ATTENZIONE!<br>L'azienda ha inviato una richiesta di cessazione con motivazione: $$descMotivoCessazione
+              </div>              
+            </div> <!--your content end-->              
+          </div> <!--toPopup end-->
+    
+          <div class="loader"></div>
+          <div id="backgroundPopup"></div>
+          <!-- Nuova pop up fine -->
+          
+          
+          
+          
+          
+          
+          <table cellspacing="3"
+            summary="Questa tabella contiene i dati dell'azienda">
+            <tr>
+              <th scope="row">
+                Denominazione
+              </th>
+              <td>
+                $$denominazione
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">
+                CUAA (Codice fiscale)
+              </th>
+              <td>
+                $$cuaa
+                <input type="hidden" id="idAnagAzienda"
+                  name="idAnagAzienda" size="6" maxlength="2"
+                  class="testo8" value="$$idAnagAzienda" />
+                <input type="hidden" id="operazione" name="operazione"
+                  value="$$operazione" />
+                <input type="hidden" id="cessazione" name="cessazione" />
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <label for="dataCessazioneStr">
+                  Data cessazione *
+                </label>
+              </th>
+              <td>
+                <input type="text" id="dataCessazioneStr"
+                  name="dataCessazioneStr" size="12" maxlength="10"
+                  value="$$dataCessazioneStr" class="textmedio" />
+                (gg/mm/aaaa) $$err_dataCessazioneStr
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <label for="MotivoCessazione">
+                  Motivo cessazione *
+                </label>
+              </th>
+              <td>
+                <select name="idCessazione" id="idCessazione">
+                  <option></option>
+                  <!-- @@blkTipoCessazione -->
+                  <option value="$$idCessazione" $$selected>
+                    $$descrizione
+                  </option>
+                  <!-- @@blkTipoCessazione -->
+                </select>
+                $$err_idCessazione
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <label for="causaleCessazione">
+                  Note
+                </label>
+              </th>
+              <td>
+                <textarea id="causaleCessazione"
+                  name="causaleCessazione" cols="50" rows="4">$$causaleCessazione</textarea>
+                $$err_causaleCessazione
+              </td>
+            </tr>
+          </table>
+          <p id="nota">
+            I campi contrassegnati con * sono obbligatori
+          </p>
+          <div class="pulsanti">
+            <div class="sin">
+              <input name="salva" type="submit" value="salva"
+                onclick="return buttonClicked()" class="inputPulsante highlighted" />
+            </div>
+            <div class="des">
+              <input name="annulla" type="submit" value="annulla"
+                class="inputPulsante annulla" />
+            </div>
+          </div>
+          
+          <!-- @@blkErrore -->
+          <p class="errore">$$messaggioErrore</p>
+          <!-- @@blkErrore -->
+        </div>
+      </div>
+      <hr />
+  </form>
+  $$footer

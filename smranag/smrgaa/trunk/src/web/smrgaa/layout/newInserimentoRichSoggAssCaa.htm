@@ -1,0 +1,236 @@
+$$head
+<script type="text/javascript" src="../js/checktext.js"></script>
+<script type="text/javascript" src="../js/messaggistica.js"></script>
+<script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../js/jquery-ui-1.8.21.custom/jquery-ui-1.8.21.custom.min.js"></script>
+<script type="text/javascript">
+  function modificaRigaDati(tipoModificaPar, numRiga)
+  {    
+    
+    var dataInv = {
+      tipoModifica: tipoModificaPar,
+      numRiga: numRiga
+    };
+     
+    dataInv = $('#form1').serialize() + '&' + $.param(dataInv);
+    
+    
+    
+    $.ajax({
+      url: "../layout/tabellaDatiNewRichSoggAssCaa.htm",
+      type: "POST",
+      data: dataInv,
+      success: function( data ) 
+              {
+                $('#elencoDatiSoggAssCaa').html( data );                 
+              },
+       dataType: 'html'
+      
+    });   
+  }
+  
+
+</script>
+</head>
+<body id="homeIndice" onload="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+	<form id="form1" name="form1" method="post" action="../layout/newInserimentoRichSoggAssCaa.htm">
+    <input type="hidden" id="regimeInserimentoRichSoggAssCaa" name="regimeInserimentoRichSoggAssCaa" value="regimeInserimentoRichSoggAssCaa"/>
+    <input type="hidden" id="operazione" name="operazione" value=""/>
+    <input type="hidden" id="idRigaElim" name="idRigaElim" value=""/>
+    <input type="hidden" id="idAzienda" name="idAzienda" value="$$idAzienda"/>
+    <div id="pagina" class="colonnaUnica">
+      
+      <!-- INTESTAZIONE -->
+      <div id="intestazione##pathProvincia">
+        $$header
+        <!-- menu di navigazione-->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li>
+                <a href="../layout/index.htm" title="Torna alla pagina principale">home</a>
+              </li>
+              <li class="attivo">gestione anagrafe aziende</li>
+              <li>
+                <a href="#" title="contatti">contatti</a>
+              </li>
+              <li>
+                <a href="#" title="help">help</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr/>
+      <div style="clear:left"></div>
+      <!-- CORPO -->
+      <div id="corpo">
+        <div id="Utente">
+          <div id="datiUtente">
+            <strong>utente:</strong>$$utente&nbsp;&nbsp;
+            <strong>ente:</strong>$$ente
+          </div>
+          <div id="chiudisessione">
+            <a href="javascript: logout();">chiudi sessione</a>
+          </div>
+        </div>
+        <hr/>
+        <!--PRIMA COLONNA -->
+        <h3>Richiesta variazione
+          <span class="helpFuori">
+            <a href="#">
+              <span class="alt">[help]</span>
+            </a>
+          </span>
+        </h3>
+        <hr/>
+        <div class="box">
+          <div class="menuSX1">
+            <!--@@blkGestoreCaa -->
+            <ul>
+              <li><a href="../layout/ricerca.htm">Ricerca Azienda</a></li>
+            </ul>
+            <!--@@blkGestoreCaa -->
+            <!--@@blkAltro -->
+            <ul>
+              <li><a href="../layout/elencoAziendeRapLegale.htm">Elenco Aziende</a></li>
+            </ul>
+            <!--@@blkAltro -->
+          </div>
+          <div class="menuSX">
+            <ul>               
+              <li><a href="#" class="on">Nuova richiesta variazione aziende associate</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr/>
+        <!-- SECONDA COLONNA -->
+        <div id="contenuto">
+          <div id="intesta">
+            <p class="$$aziendaIntestazione" title="$$tooltipIntestazione" >
+              $$cuaaIntestazione  $$denominazioneIntestazione
+            </p>
+          </div>
+          <br>
+          <div>
+            <p id="istruzioni">$$testoHelp</p>            
+          </div>
+          <br>
+          
+          <div class="scroll">
+            <div id="elencoDatiSoggAssCaa">
+	            <table cellspacing="3" summary="Questa tabella è costituita da righe">
+	              <caption>Elenco aziende associate</caption>
+	              <tr>
+	                <th class="center" scope="col" rowspan="2">
+	                </th>
+	                <th class="center" scope="col" rowspan="2">
+	                  CUAA
+	                </th>
+	                <th class="center" scope="col" rowspan="2">
+	                  Partita iva
+	                </th>
+	                <th class="center" scope="col" rowspan="2">
+	                  Denominazione
+	                </th>
+	                <th class="center" scope="col" rowspan="2">
+	                  Codice ente
+	                </th>
+	                <th class="center" scope="col" colspan="4">
+	                  Sede legale
+	                </th>
+	                <th class="center" scope="col" rowspan="2">
+	                  Data ingresso*
+	                </th>
+	                <th class="center" scope="col" rowspan="2">
+                    Data uscita
+                  </th>
+	              </tr>
+	              <tr>
+	                <th class="center" scope="col" >
+	                  Comune
+	                </th>
+	                <th class="center" scope="col" >
+	                  Provincia
+	                </th>
+	                <th class="center" scope="col" >
+	                  Indirizzo
+	                </th>
+	                <th class="center" scope="col" >
+	                  Cap
+	                </th>
+	              </tr>
+	              <!--@@blkElencoAzAssociate -->
+	              <tr>   
+	                <td>
+	                  <a href="javascript:modificaRigaDati('elimina', '$$idRiga')" class="cancella" title="elimina Az Ass"></a>
+	                </td>
+	                <td>
+	                  $$cuaa
+	                </td>
+	                <td>  
+	                  $$partitaIva         
+	                </td>
+	                <td>
+	                  $$denominazione
+	                </td>
+	                <td>
+	                  $$codiceEnte
+	                  <input type="hidden" name="codiceEnte" value="$$codiceEnte" />
+	                </td>
+	                <td>
+	                  $$desCom
+	                </td>
+	                <td>
+	                  $$siglaProvincia
+	                </td>
+	                <td>
+	                  $$indirizzo
+	                </td>
+	                <td>
+	                  $$cap
+	                </td>
+	                <td>
+	                  <input type="text" name="dataIngresso" class="textmedio"
+	                      value="$$dataIngresso" />
+	                  $$err_dataIngresso
+	                </td>
+	                <td>
+                    <input type="text" name="dataUscita" class="textmedio"
+                        value="$$dataUscita" />
+                    $$err_dataUscita
+                  </td>
+	              </tr>
+	              
+	              <!--@@blkElencoAzAssociate -->
+	            </table>
+	          </div>
+          </div> 
+          
+          
+          <p id="nota">I campi contrassegnati con * sono obbligatori</p>
+          <div class="pulsanti"><div class="sin">
+            <input name="indietro" id="indietro" class="inputPulsante" type="submit" value="indietro"/>
+          </div>
+          <div class="des">
+            <input name="avanti" id="avanti" class="inputPulsante" type="submit" value="avanti"/>
+          </div>
+          </div>  
+          </br>
+          </br>
+          </br>
+          
+          
+          <!-- @@blkErrore -->
+          <p class="errore">
+            $$messaggioErrore
+          </p>
+          <!-- @@blkErrore -->
+        </div>
+      </div>
+      <hr/>
+      <!-- PIE' DI PAGINA -->
+      $$footer

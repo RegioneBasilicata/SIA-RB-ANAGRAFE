@@ -1,0 +1,67 @@
+BUILD TARGETS: Elenco dei targets previsti da release manager e utilizzati per il build del progetto
+
+**********************************************************************
+
+ DISTRIBUTION
+
+**********************************************************************
+
+La chiamata ad Ant senza parametri provocherà la creazione di un pacchetto per ogni ambiente di esecuzione (in particolare: dev/tst/coll/prod).
+
+**********************************************************************
+
+UTILITY
+
+********************************************************************** 
+
+about: shows all public targets.
+about-custom: shows all internal targets
+show-wars: shows all environment properties (name/value)
+
+**********************************************************************
+
+CLEAN
+
+**********************************************************************
+
+clean-create-lib: elimina, ricrea e popola la cartella lib
+cleanMeta: Target per la cancellazione della directory temporanea meta-inf
+clean: Target per la cancellazione della directory build e dist utilizzate per la creazione degli ear relativi a smrgaa.ear e a smrgaasv.ear
+
+**********************************************************************
+
+PACKAGING
+
+**********************************************************************
+
+EJB TIER
+
+package-ear: compiles ejb tier sources and creates ear into ${archives}.
+ 
+
+WEB TIER
+
+package-war: compiles war tier sources and creates war into ${archives}.
+ 
+
+APPLICATION:
+
+package-all: creates all archives in build directory.
+
+ 
+
+ 
+
+ 
+
+ 
+
+ **********************************************************************
+
+ COMPILE
+
+ **********************************************************************
+
+ 
+
+ compile-all: compiles all application sources.

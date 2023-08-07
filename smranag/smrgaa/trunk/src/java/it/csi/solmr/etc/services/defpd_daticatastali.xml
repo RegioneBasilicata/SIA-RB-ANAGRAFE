@@ -1,0 +1,353 @@
+
+<porta-delegata name="smrgaaweb.sigmater.ApplDatiCatastaliPA">
+	<services>
+		<service name="smrgaaweb.sigmater.ApplDatiCatastaliPA.service"
+			public-interface-class="it.csi.sigmater.sigtersrv.interfacecsi.daticatastali.DatiCatastaliSrv"
+			top-version="1.0.0">
+			<operations>
+				<operation name="cercaTerreno" type="synch-call" since="1.0.0">
+					<param-list>
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+					</param-list>
+					<ret-val
+						type="it.csi.sigmater.sigtersrv.dto.daticatastali.DettaglioTerreno" />
+				</operation>
+				<operation name="cercaStoricoTerreno" type="synch-call"
+					since="1.0.0">
+					<param-list>
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+					</param-list>
+					<ret-val
+						type="it.csi.sigmater.sigtersrv.dto.daticatastali.DettaglioTerrenoRid[]" />
+				</operation>
+				<operation name="cercaTitolaritaOggettoCatastale" type="synch-call"
+					since="1.0.0">
+					<param-list>
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+					</param-list>
+					<ret-val type="it.csi.sigmater.sigtersrv.dto.daticatastali.Titolarita[]" />
+				</operation>
+				<operation name="cercaSoggettoFisico" type="synch-call"
+					since="1.0.0">
+					<param-list>
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+					</param-list>
+					<ret-val
+						type="it.csi.sigmater.sigtersrv.dto.daticatastali.SoggettoFisico[]" />
+				</operation>
+				<operation name="cercaSoggettoGiuridico" type="synch-call"
+					since="1.0.0">
+					<param-list>
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+					</param-list>
+					<ret-val
+						type="it.csi.sigmater.sigtersrv.dto.daticatastali.SoggettoGiuridico[]" />
+				</operation>
+				<operation name="cercaTitolaritaSoggettoCatastale" type="synch-call"
+					since="1.0.0">
+					<param-list>
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+					</param-list>
+					<ret-val type="it.csi.sigmater.sigtersrv.dto.daticatastali.Titolarita[]" />
+				</operation>
+				<operation name="cercaFabbricato" type="synch-call" since="1.0.0">
+					<param-list>
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+					</param-list>
+					<ret-val
+						type="it.csi.sigmater.sigtersrv.dto.daticatastali.DettaglioFabbricato" />
+				</operation>
+				<operation name="cercaStoricoFabbricato" type="synch-call"
+					since="1.0.0">
+					<param-list>
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+					</param-list>
+					<ret-val
+						type="it.csi.sigmater.sigtersrv.dto.daticatastali.DettaglioFabbricatoRid[]" />
+				</operation>
+				<operation name="cercaElencoFabbricati" type="synch-call"
+					since="1.0.0">
+					<param-list>
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+					</param-list>
+					<ret-val type="it.csi.sigmater.sigtersrv.dto.daticatastali.Fabbricato[]" />
+				</operation>
+				<operation name="cercaImmagine" type="synch-call" since="1.0.0">
+					<param-list>
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+					</param-list>
+					<ret-val type="byte[]" />
+				</operation>
+				<operation name="cercaFabbricati" type="synch-call" since="1.0.0">
+					<param-list>
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+					</param-list>
+					<ret-val
+						type="it.csi.sigmater.sigtersrv.dto.daticatastali.DettaglioFabbricato[]" />
+				</operation>
+				<operation name="cercaTerreni" type="synch-call" since="1.0.0">
+					<param-list>
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+					</param-list>
+					<ret-val
+						type="it.csi.sigmater.sigtersrv.dto.daticatastali.DettaglioTerreno[]" />
+				</operation>
+				<operation name="cercaSoggettiFisici" type="synch-call"
+					since="1.0.0">
+					<param-list>
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+					</param-list>
+					<ret-val
+						type="it.csi.sigmater.sigtersrv.dto.daticatastali.SoggettoFisico[]" />
+				</operation>
+				<operation name="cercaSoggettiFisiciConUsernameApplicativo" type="synch-call"
+					since="1.0.0">
+					<param-list>
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+					</param-list>
+					<ret-val
+						type="it.csi.sigmater.sigtersrv.dto.daticatastali.SoggettoFisico[]" />
+				</operation>
+				<operation name="cercaSoggettiGiuridici" type="synch-call"
+					since="1.0.0">
+					<param-list>
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+					</param-list>
+					<ret-val
+						type="it.csi.sigmater.sigtersrv.dto.daticatastali.SoggettoGiuridico[]" />
+				</operation>
+				<operation name="cercaFabbricato_Indirizzo" type="synch-call"
+					since="1.0.0">
+					<param-list>
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+	                    <param name="name" type="java.lang.String" />						
+					</param-list>
+					<ret-val
+						type="it.csi.sigmater.sigtersrv.dto.daticatastali.DettaglioFabbricato[]" />
+				</operation>
+				<operation name="cercaFabbricato_Partita" type="synch-call"
+					since="1.0.0">
+					<param-list>
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+					</param-list>
+					<ret-val
+						type="it.csi.sigmater.sigtersrv.dto.daticatastali.DettaglioFabbricato[]" />
+				</operation>
+				<operation name="cercaFabbricato_ZonaCens" type="synch-call"
+					since="1.0.0">
+					<param-list>
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+					</param-list>
+					<ret-val
+						type="it.csi.sigmater.sigtersrv.dto.daticatastali.DettaglioFabbricato[]" />
+				</operation>
+				<operation name="cercaFabbricato_Nota" type="synch-call"
+					since="1.0.0">
+					<param-list>
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+					</param-list>
+					<ret-val
+						type="it.csi.sigmater.sigtersrv.dto.daticatastali.DettaglioFabbricato[]" />
+				</operation>
+				<operation name="cercaTerreno_Partita" type="synch-call"
+					since="1.0.0">
+					<param-list>
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+					</param-list>
+					<ret-val
+						type="it.csi.sigmater.sigtersrv.dto.daticatastali.DettaglioTerreno[]" />
+				</operation>
+				<operation name="cercaTerreno_Qualita" type="synch-call"
+					since="1.0.0">
+					<param-list>
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+					</param-list>
+					<ret-val
+						type="it.csi.sigmater.sigtersrv.dto.daticatastali.DettaglioTerreno[]" />
+				</operation>
+				<operation name="cercaTerreno_Nota" type="synch-call"
+					since="1.0.0">
+					<param-list>
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+						<param name="name" type="java.lang.String" />
+					</param-list>
+					<ret-val
+						type="it.csi.sigmater.sigtersrv.dto.daticatastali.DettaglioTerreno[]" />
+				</operation>
+
+      
+        <!-- operazione per monitoraggio -->
+				<operation name="testResources" type="synch-call">
+					<param-list>
+					</param-list>
+					<ret-val type="boolean" />
+				</operation>
+      
+      
+        <!-- operazioni per diagnostica -->
+				<operation name="selfCheck" type="synch-call">
+					<param-list>
+						<param name="alreadyCalled" type="it.csi.coopdiag.api.CalledResource[]" />
+					</param-list>
+					<ret-val type="it.csi.coopdiag.api.InvocationNode" />
+				</operation>
+				<operation name="hasSelfCheck" type="synch-call">
+					<param-list>
+					</param-list>
+					<ret-val type="boolean" />
+				</operation>
+			</operations>
+		</service>
+	</services>
+	<config>
+		<url-pa>**not used**</url-pa>
+		<pluggable-pd-list chooser-class="it.csi.csi.porte.FixedDelegateChooser">
+			<pluggable-pd name="smrgaaweb.sigmater.ApplDatiCatastaliPA.pd"
+				class="it.csi.csi.porte.ejb20.PortaDelegataEJB" 
+				url-pa="sigtersrv.ejb.ApplDatiCatastaliPA"
+				url-qm="sigtersrv.ejb.ApplDatiCatastaliQMGR">
+				<properties>
+					<property name="java.naming.provider.url" value="jnp://tst-jboss43-07.csi.it:19716,tst-jboss43-08.csi.it:19716" />
+					<property name="java.naming.factory.initial" value="org.jnp.interfaces.NamingContextFactory" />
+					<property name="csi.auth.basic" value="" />
+					<property name="csi.auth.jaas.client.class"
+						value="it.csi.csi.porte.ejb.jaas.StandardJAASClient" />
+				</properties>
+			</pluggable-pd>
+		</pluggable-pd-list>
+		<pre-function-handler-list>
+		</pre-function-handler-list>
+		<post-function-handler-list>
+		</post-function-handler-list>
+		<queue-manager url="" />
+	</config>
+</porta-delegata>

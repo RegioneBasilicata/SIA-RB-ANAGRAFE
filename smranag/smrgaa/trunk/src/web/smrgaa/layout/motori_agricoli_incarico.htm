@@ -1,0 +1,612 @@
+$$head
+  <script type="text/javascript" src="../js/messaggistica.js"></script>
+  <script type="text/javascript" src="../js/checktext.js"></script>
+  <script type="text/javascript">
+
+    function customDoForm(page) {
+      var oldAction = document.elenco.action;
+      document.elenco.action=page;
+      document.elenco.submit();
+      document.elenco.action=oldAction;
+    }
+
+    function goTo(page) {
+      var radio=document.elenco.idPossessoMacchina;
+      if (!radio) {
+        alert("Nessuna macchina!");
+        return;
+      }
+      if (!radio.length) {
+        if (radio.checked) {
+          currentSelection=radio.value;
+          customDoForm(page);
+          return;
+        }
+      }
+      else {
+        for(i=0;i<radio.length;i++) {
+          if (radio[i].checked) {
+            currentSelection=radio[i].value;
+            customDoForm(page);
+            return;
+          }
+        }
+      }
+      alert("Selezionare una macchina!");
+    }
+
+    function setHiddenOperazione(form, operazione) {
+      form.operazione.value = operazione;
+      form.submit();
+    }
+    
+    function vaiAPagina(pagina)
+    {
+      document.elenco.paginaCorrente.value=pagina;
+      document.elenco.paginaCorrente2.value=pagina;
+      document.elenco.operazione.value='';
+      document.elenco.submit();
+    }
+    
+    function setBlocked(form, obj) {
+      obj.onclick = '';
+    }
+
+  </script>
+  
+<script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../js/jquery-ui-1.8.21.custom/jquery-ui-1.8.21.custom.min.js"></script>
+<script language="javascript1.2">  
+
+  function hideColumn(cssColumn, label)
+  {
+    //Nasconde la colonna
+    $('.'  + cssColumn).hide();
+    
+    var html=$('#tdColDisp').html();
+    if (html=='')
+    {
+      $('#tdColDisp').show();
+      html="Colonne disponibili: ";
+    }
+    html+="<a href=\"javascript:showColumn('"+cssColumn+"')\" id='id_"+cssColumn+"'>"+label+"</a><span id='span_"+cssColumn+"'> | </span> <input type='hidden' name='hidden_"+cssColumn+"' id='hidden_"+cssColumn+"' value='"+cssColumn+"' />";
+    $('#tdColDisp').html(html);
+  }
+
+  function showColumn(cssColumn)
+  {
+    
+    $('#id_'  + cssColumn).remove();
+    $('#span_'  + cssColumn).remove();
+    $('#hidden_'  + cssColumn).remove();
+    $('.'  + cssColumn).show();
+    if($('#tdColDisp').html().indexOf('<a')<0)
+    {
+      $('#tdColDisp').hide();
+      $('#tdColDisp').html('');
+    }
+    
+  }
+  
+  
+  function caricaColonne(primoIngresso)
+  {   
+  
+    var ute = '$$ute';
+    var tipologia = '$$tipologia';
+    var modello = '$$modello';
+    var targa = '$$targa';
+    var telaio = '$$telaio';
+    var annoCostruzione = '$$annoCostruzione';
+    var dataScarico = '$$dataScarico';
+    var confermata = '$$confermata';   
+                   
+    if(primoIngresso == 'true')
+    {
+      hideColumn("nascondibile_0", "UTE");
+      hideColumn("nascondibile_3", "Targa");
+      hideColumn("nascondibile_4", "Telaio");
+      hideColumn("nascondibile_5", "Anno costruzione/acquisto");
+      hideColumn("nascondibile_6", "Data scarico");
+    }
+    else
+    {
+      if(ute != null && ute != '')
+      {
+        hideColumn("nascondibile_0", "UTE");
+      }
+      if(tipologia != null && tipologia != '')
+      {
+        hideColumn('nascondibile_1','Tipologia')
+      }
+      if(modello != null && modello != '')
+      {
+       hideColumn('nascondibile_2','Modello');
+      }
+      if(targa != null && targa != '')
+      {
+        hideColumn("nascondibile_3", "Targa");
+      }
+      if(telaio != null && telaio != '')
+      {
+        hideColumn("nascondibile_4", "Telaio");
+      }
+      if(annoCostruzione != null && annoCostruzione != '')
+      {
+        hideColumn("nascondibile_5", "Anno costruzione/acquisto");
+      }
+      if(dataScarico != null && dataScarico != '')
+      {
+        hideColumn("nascondibile_6", "Data scarico");
+      }
+      if(confermata != null && confermata != '')
+      {
+        hideColumn("nascondibile_7", "Confermata");
+      }
+    }
+  }
+  
+  
+</script>  
+</head>
+<body id="homeIndice" onLoad="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');caricaColonne('$$primoIngressso');">
+
+<form id="elenco" name="elenco" method="post" action="../layout/motori_agricoli_incarico.htm">
+  <input type="hidden" name="operazione" id="operazione" value="" />
+  <input type="hidden" name="regimeElencoMotoriAgricoli" id="regimeElencoMotoriAgricoli" value="true" />
+  <div id="pagina" class="colonnaUnica">
+  <!-- INTESTAZIONE -->
+    <div id="intestazione##pathProvincia">
+      <!--#include virtual="/ris/include/smrgaaweb/header.html" -->
+      <!-- menu di navigazione-->
+      <div id="titoloEmenu">
+        <h2>
+          <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+        </h2>
+        <div id="menuDiNavigazione" title="Menu di navigazione">
+          <ul class="menuTendina" id="menu-2">
+            <li>
+              <a href="../layout/index.htm" title="Torna alla pagina principale">home</a>
+            </li>
+            <li class="attivo">gestione anagrafe aziende</li>
+            <li>
+              <a href="#" title="contatti">contatti</a>
+            </li>
+            <li>
+              <a href="#" title="help">help</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <hr/>
+    <div style="clear:left"></div>
+    <!-- CORPO -->
+      <div id="corpo">
+        <div id="Utente">
+          <div id="datiUtente">
+            <strong>utente:</strong>$$utente&nbsp;&nbsp;
+            <strong>ente:</strong>$$ente
+          </div>
+          <div id="chiudisessione">
+            <a href="javascript: logout();">chiudi sessione</a>
+          </div>
+        </div>
+        <hr/>
+        <!--PRIMA COLONNA -->
+        <h3>Gestione Anagrafe Aziende&nbsp;&gt;&nbsp;Macchine agricole
+          <span class="helpFuori">
+            <a href="#">
+              <span class="alt">[help]</span>
+            </a>
+          </span>
+        </h3>
+        <hr/>
+        <div class="box">
+          <div class="menuSX1">
+            <ul>
+              <!-- @@blkElencoAziendeRapLegale -->
+                <li><a href="../layout/elencoAziendeRapLegale.htm">Elenco Aziende</a></li>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <!-- @@blkRicercaAzienda-->
+                <li><a href="../layout/ricerca.htm">Ricerche</a></li>
+              <!-- @@blkRicercaAzienda-->
+              <!-- @@blkNuova -->
+                <li>
+                  <a href="../layout/nuovaAziendaAnagrafica.htm">Nuova Azienda</a>
+                </li>
+              <!-- @@blkNuova -->
+              <!-- @@blkNuovaIscrizione -->
+              <li>
+                <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+              </li>
+              <!-- @@blkNuovaIscrizione -->
+            </ul>
+          </div>
+          <div class="menuSX">
+            <ul>
+              <li>
+                <a href="../layout/anagrafica.htm">Anagrafica</a>
+              </li>
+              <!-- @@blkAziendeCollegate -->
+	          			<li>
+	          					<a href="../layout/aziendeCollegate.htm">$$aziendeCollegateLabel</a>
+	          			</li>
+	          	<!-- @@blkAziendeCollegate -->
+	          <!-- @@blkSincronizzaFascicolo -->
+               <li>
+               	<a href="../layout/sincronizzaFascicolo.htm">Sincronizza fascicolo</a>
+               </li>
+              <!-- @@blkSincronizzaFascicolo --> 	
+              <!-- @@blkSoggettiCollegati -->
+                <li>
+                  <a href="../layout/contitolari.htm">Soggetti collegati</a>
+                </li>
+              <!-- @@blkSoggettiCollegati -->
+              <!-- @@blkContiCorrenti -->
+              <li><a href="../layout/conti_correnti.htm">Conti Correnti</a></li>
+              <!-- @@blkContiCorrenti -->
+              <!-- @@blkUnitaProduttive -->
+                <li>
+                  <a href="../layout/sedi.htm">Unit&agrave; produttive</a>
+                </li>
+              <!-- @@blkUnitaProduttive -->
+              <!-- @@blkTerreni -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniParticellareElenco.htm">Terreni</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		            <a href="../layout/riepiloghi.htm">Terreni</a>
+		            <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkTerreni -->
+		          <!-- @@blkUnitaVitate -->
+		          <li>
+		            <!-- @@blkLinkElenco -->
+		            <a href="../layout/terreniUnitaArboreeElenco.htm">Unit&agrave; Vitate</a>
+		            <!-- @@blkLinkElenco -->
+		            <!-- @@blkLinkRiepiloghi -->
+		              <a href="../layout/riepiloghiUnitaArboree.htm">Unit&agrave; Vitate</a>
+		              <!-- @@blkLinkRiepiloghi -->
+		          </li>
+		          <!-- @@blkUnitaVitate -->
+              <!-- @@blkFabbricati -->
+                <li>
+                  <a href="../layout/fabbricati.htm">Fabbricati e Strutture</a>
+                </li>
+              <!-- @@blkFabbricati -->
+              <!-- @@blkAllevamenti -->
+                <li>
+                  <a href="../layout/allevamenti.htm">Allevamenti</a>
+                </li>
+              <!-- @@blkAllevamenti -->
+              <!-- @@blkManodopera -->
+                <li>
+                  <a href="../layout/manodopera.htm">Manodopera</a>
+                </li>
+              <!-- @@blkManodopera -->
+              <!-- @@blkMotoriAgricoli -->
+                <li>
+                  <a href="../layout/motori_agricoli_incarico.htm" class="on">Macchine agricole</a>
+                  <ul>
+                    <!-- @@blkInserisciMacchina -->
+                    <li>
+                      <a href="../layout/macchinaAgricolaInserisci.htm" >inserisci</a>
+                    </li>
+                    <!-- @@blkInserisciMacchina -->
+                    <!-- @@blkModificaMacchina -->
+                    <li>
+                      <a href="javascript:goTo('../layout/macchinaAgricolaModifica.htm')" >modifica</a>
+                    </li>
+                    <!-- @@blkModificaMacchina -->
+                    <!-- @@blkCaricaMacchina -->
+                    <li>
+                      <a href="../layout/importaMacchinaAgricola.htm" >carica</a>
+                    </li>
+                    <!-- @@blkCaricaMacchina -->
+                    <li>
+                      <a href="javascript:goTo('../layout/caratteristiche_fisiche.htm')">dati tecnici</a>
+                    </li>
+                    <li>
+                      <a href="javascript:goTo('../layout/elenco_ditte_utilizz.htm')" id="colorsottomenu">elenco ditte utilizzatrici</a>
+                    </li>
+                  </ul>
+                </li>
+              <!-- @@blkMotoriAgricoli -->
+              <!-- @@blkDiritti -->
+                <li><a href="../layout/diritti.htm">Diritti di produzione</a></li>
+              <!-- @@blkDiritti -->
+              <!-- @@blkAttestazioni -->
+              	<li><a href="../layout/attestazioniDettaglio.htm">Dichiarazioni</a></li>
+              <!-- @@blkAttestazioni -->
+              <!-- @@blkDichiarazioniConsistenza -->
+              <li><a href="../layout/dichiarazioneConsistenza.htm">Validazioni</a></li>
+              <!-- @@blkDichiarazioniConsistenza -->
+              <!-- @@blkDocumenti -->
+              <li><a href="../layout/documentiElenco.htm">Documenti</a></li>
+              <!-- @@blkDocumenti -->
+              <!-- @@blkFascicoloDematerializzato -->
+              <li>
+                <a href="../layout/fascicoloDematerializzato.htm">Fascicolo<br>elettronico</a>
+              </li>
+              <!-- @@blkFascicoloDematerializzato -->
+              <!-- @@blkGestioneNotifiche -->
+              <li><a href="../layout/notifiche.htm">Notifiche</a></li>
+              <!-- @@blkGestioneNotifiche -->
+              <!-- @@blkComunicazione10R -->
+                <li>
+                  <a href="../layout/comunicazione10R_dettaglio.htm">Comunicazione 10/R</a>
+                </li>
+              <!-- @@blkComunicazione10R -->
+              <!-- @@blkPratiche -->
+              <li><a href="../layout/pratiche.htm">Pratiche</a></li>
+              <!-- @@blkPratiche -->
+              <!-- @@blkStampaFascicolo -->
+              <li><a href="../layout/scelta_stampa.htm">Stampe</a></li>
+              <!-- @@blkStampaFascicolo -->
+			  <li><a href="../layout/strumenti.htm">Strumenti</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr/>
+        <!-- SECONDA COLONNA -->
+        <div id="contenuto">
+          <div id="intesta">
+            <p class="$$aziendaIntestazione" title="$$tooltipIntestazione" >
+              $$CUAAIntestazione  $$denominazioneIntestazione
+            </p>
+          </div>
+          <!-- @@blkNotifica -->
+            <p class="$$immagine">$$messaggioNotifica</p>
+            <!-- @@blkINNotifica -->
+              <div class="notifica">$$notifica</div>
+             <!-- @@blkINNotifica -->
+          <!-- @@blkNotifica -->
+          <br/>
+          <h4 class="titolo">Fonte dati: Registro Macchine agricole</h4>
+          <br />
+          <!-- @@blkErrore -->
+	        <p class="errore">
+	          $$messaggioErrore
+	        </p>
+	        <!-- @@blkErrore -->        
+        
+          <!-- @@blkDittaUma -->
+          <table cellspacing="3" summary="Questa tabella contiene i dati del rapporto">
+            <col width="30%"/>
+            <col width="70%"/>
+            <tr>
+              <th>Numero ditta UMA</th>
+              <td>$$numeroDittaUma/$$siglaProvinciaUma</td>
+            </tr>
+          </table>
+          
+          
+          <table cellspacing="3" summary="Questa tabella contiene i dati del rapporto">
+            <col width="30%"/>
+            <col width="50%"/>
+            <col width="20%"/>
+            <tr>
+              <th>
+                <label for="dataUltimoAllineamento">Data ultimo allineamento</label>
+              </th>
+              <td>
+                $$dataUltimoAllineamento
+              </td>
+              <td>
+                <!-- @@blkAllineaUma -->
+                <div class="azioni">
+                  <a href="#"
+                    onclick="javascript:setBlocked(document.forms[0], this);goToOperazione('../layout/motori_agricoli_incarico.htm', document.elenco, 'attenderePrego');">allinea a UMA</a>
+                </div>
+                <!-- @@blkAllineaUma -->
+                $$err_allinea                
+              </td>
+            </tr>
+          </table>
+                  
+          <table cellspacing="3" summary="Questa tabella contiene i dati del rapporto">
+            <col width="30%"/>
+            <col width="50%"/>
+            <col width="20%"/>
+            <tr>
+              <th>
+                <label for="idGenereMacchina">Visualizza macchine con genere</label>
+              </th>
+              <td>
+                <select id="idGenereMacchina" name="idGenereMacchina">
+                  <option value="">- tutti i generi -</option>          
+					        <!--  @@blkTipoGenereMacchina -->
+					        <option value="$$idGenereMacchina" $$selected>$$descrizione</option>
+					        <!-- @@blkTipoGenereMacchina -->        
+                </select>
+              </td>
+              <td rowspan="2">
+                <div class="azioni">
+                  <a href="#"
+                    onclick="setHiddenOperazione(document.forms[0], 'aggiorna')">aggiorna</a>
+                </div>
+                $$err_aggiorna
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <label for="storico" class="checkbox">
+                  Visualizza storico
+                </label>
+              </th>
+              <td>
+                <input type="checkbox" name="storico" id="storico"
+                    value="true" $$checkedStorico />
+              </td>
+            </tr>
+          </table>
+          
+          <!-- @@blkDittaUma -->
+          
+          
+          
+          
+          <!-- @@blkElenco -->
+          <div class="paginazione">
+            <span class="sx">$$totaleRighe risultati trovati</span>
+
+
+            <div class="dx">
+              <label for="paginaCorrente">
+                pagina
+              </label>
+              <input type="text" name="paginaCorrente"
+                value="$$paginaCorrente" maxlength="4"
+                id="paginaCorrente"
+                onkeyup="document.elenco.paginaCorrente2.value=this.value" />
+              ##err_paginaCorrente di $$totalePagine
+              <span class="vai"> <input type="submit"
+                  name="vai" value="vai" class="vaiInput" /> </span>
+              <!-- @@blkGruppoPrecedente -->
+              <span class="bugFix">&nbsp;|&nbsp;</span>
+              <a href="#" onClick="vaiAPagina($$value)"
+                class="$$class" title="$$tooltip"> $$text </a>
+              <!-- @@blkGruppoPrecedente -->
+              <!-- @@blkGruppoCorrente -->
+              <span class="evidenziato"> $$paginaCorrente </span>
+              <!-- @@blkGruppoCorrente -->
+              <!-- @@blkGruppoSuccessivo -->
+              <span class="bugFix">&nbsp;|&nbsp;</span>
+              <a href="#" onClick="vaiAPagina($$value)"
+                class="$$class" title="$$tooltip"> $$text </a>
+              <!-- @@blkGruppoSuccessivo -->
+              <!-- @@blkPaginaPrecedente -->
+              <span class="bugFix">&nbsp;|&nbsp;</span>
+              <a href="#" onClick="vaiAPagina($$pagina)"
+                title="vai alla pagina precedente">&lt;&lt; prec</a>
+              <span class="bugFix">&nbsp;|&nbsp;</span>
+              <!-- @@blkPaginaPrecedente -->
+              <!-- @@blkPaginaSuccessiva -->
+              <span class="bugFix">&nbsp;|&nbsp;</span>
+              <a href="#" onClick="vaiAPagina($$pagina)"
+                title="vai alla pagina successiva">succ &gt;&gt;</a>
+              <span class="bugFix">&nbsp;|&nbsp;</span>
+              <!-- @@blkPaginaSuccessiva -->
+            </div>
+
+          </div>
+      
+      
+          <table cellspacing="3" summary="Questa tabella contiene i dati del rapporto">
+          <tr>
+            <td id="tdColDisp" colspan="12" ></td>
+          </tr>
+          <tr>
+            <th class="radio" scope="col"></th>
+            <th class="center nascondibile_0" scope="col">
+              <a href="javascript:hideColumn('nascondibile_0','UTE');">UTE</a>
+            </th>
+            <th class="center nascondibile_1" scope="col">
+              <a href="javascript:hideColumn('nascondibile_1','Tipologia');">Tipologia</a>
+            </th>
+            <th class="center" scope="col">Genere</th>
+            <th class="center" scope="col">Categoria</th>
+            <th class="center" scope="col">Marca</th>
+            <th class="center nascondibile_2" scope="col">
+              <a href="javascript:hideColumn('nascondibile_2','Modello');">Modello</a>
+            </th>
+            <th class="center nascondibile_3" scope="col">
+              <a href="javascript:hideColumn('nascondibile_3','Targa');">Targa</a>
+            </th>
+            <th class="center nascondibile_4" scope="col">
+              <a href="javascript:hideColumn('nascondibile_4','Telaio');">Telaio</a>
+            </th>
+            <th class="center nascondibile_5" scope="col">
+              <a href="javascript:hideColumn('nascondibile_5','Anno costruzione/acquisto');">Anno costruzione/acquisto</a>
+            </th>
+            <th class="center" scope="col">Data carico</th>
+            <th class="center nascondibile_6" scope="col">
+              <a href="javascript:hideColumn('nascondibile_6','Data scarico');">Data scarico</a>
+            </th>
+            <th class="center nascondibile_7" scope="col">
+              <a href="javascript:hideColumn('nascondibile_7','Confermata');">Confermata</a>
+            </th>
+          </tr>
+       
+          <!-- @@blkRiga -->
+          <tr  class="evidence">
+            <th scope="row" class="radio">
+              <label for="idPossessoMacchina" class="alt">idPossessoMacchina</label>
+              <input id="idPossessoMacchina" name="idPossessoMacchina" type="radio" value="$$idPossessoMacchina"/>
+            </th>
+            <td class="nascondibile_0">$$descUte</td>
+            <td class="nascondibile_1">$$descTipoMacchina</td>
+            <td>$$descTipoGenereMacchina</td>
+            <td>$$descTipoCategoriaMacchina</td>
+            <td>$$descTipoMarca</td>
+            <td class="nascondibile_2" >$$descModello</td>
+            <td class="nascondibile_3">$$numeroTarga</td>
+            <td class="nascondibile_4" >$$matricolaTelaio</td>
+            <td class="nascondibile_5" >$$annoCostruzione</td>
+            <td>$$dataCarico</td>
+            <td class="nascondibile_6" >$$dataScarico</td>
+            <td class="center nascondibile_7">$$imgConfermata</td>
+          </tr>
+          <!-- @@blkRiga -->
+        </table>
+        
+        
+        
+         <div class="paginazione">
+           <span class="sx">$$totaleRighe risultati trovati</span>
+
+
+           <div class="dx">
+             <label for="paginaCorrente">
+               pagina
+             </label>
+             <input type="text" name="paginaCorrente2"
+               value="$$paginaCorrente" maxlength="4"
+               id="paginaCorrente2"
+               onkeyup="document.elenco.paginaCorrente.value=this.value" />
+             ##err_paginaCorrente di $$totalePagine
+             <span class="vai"> <input type="submit"
+                 name="vai" value="vai" class="vaiInput" /> </span>
+             <!-- @@blkGruppoPrecedente -->
+             <span class="bugFix">&nbsp;|&nbsp;</span>
+             <a href="#" onClick="vaiAPagina($$value)"
+               class="$$class" title="$$tooltip"> $$text </a>
+             <!-- @@blkGruppoPrecedente -->
+             <!-- @@blkGruppoCorrente -->
+             <span class="evidenziato"> $$paginaCorrente </span>
+             <!-- @@blkGruppoCorrente -->
+             <!-- @@blkGruppoSuccessivo -->
+             <span class="bugFix">&nbsp;|&nbsp;</span>
+             <a href="#" onClick="vaiAPagina($$value)"
+               class="$$class" title="$$tooltip"> $$text </a>
+             <!-- @@blkGruppoSuccessivo -->
+             <!-- @@blkPaginaPrecedente -->
+             <span class="bugFix">&nbsp;|&nbsp;</span>
+             <a href="#" onClick="vaiAPagina($$pagina)"
+               title="vai alla pagina precedente">&lt;&lt; prec</a>
+             <span class="bugFix">&nbsp;|&nbsp;</span>
+             <!-- @@blkPaginaPrecedente -->
+             <!-- @@blkPaginaSuccessiva -->
+             <span class="bugFix">&nbsp;|&nbsp;</span>
+             <a href="#" onClick="vaiAPagina($$pagina)"
+               title="vai alla pagina successiva">succ &gt;&gt;</a>
+             <span class="bugFix">&nbsp;|&nbsp;</span>
+             <!-- @@blkPaginaSuccessiva -->
+           </div>
+         </div>     
+        
+        <!-- @@blkElenco -->
+        
+        
+        
+        
+        
+        
+        
+      </div>
+    </div>
+  <hr/>
+  <!-- PIE' DI PAGINA -->
+  $$footer

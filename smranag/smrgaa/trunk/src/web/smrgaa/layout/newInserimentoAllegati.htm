@@ -1,0 +1,367 @@
+$$head
+<script type="text/javascript" src="../js/checktext.js"></script>
+<script type="text/javascript" src="../js/messaggistica.js"></script>
+<script type="text/javascript">
+
+  var hWin;
+   
+  //forza la chiusura dell pop up ad esempio se indiero o si rintre senza chiudere
+  function chiudiPopup()
+  {
+    if ( hWin != null)
+    {
+      hWin.close();
+    } 
+  } 
+
+  function cambio() 
+  {
+    document.forms[0].operazione.value = 'cambio';
+    document.forms[0].submit();
+  }
+  
+  function elimina(idRiga, idDocRich) 
+  {
+    document.forms[0].operazione.value = 'elimina';
+    document.forms[0].idRigaElim.value = idRiga;
+    document.forms[0].idDocRich.value = idDocRich;
+    document.forms[0].submit();
+  }
+  
+  function inserisci() 
+  {
+    document.forms[0].operazione.value = 'inserisci';
+    document.forms[0].submit();
+  }
+  
+  function reload()
+  { 
+    document.forms[0].action = 'newInserimentoAllegati.htm';
+    document.forms[0].operazione.value = 'reload';
+    document.forms[0].submit();
+  }
+  
+  
+  function allegaFile(idDocumentoRichiesta)
+  {
+    var strPage='allegaFileRichiesta.htm';
+    var strParametri = 'toolbar=no, location=no, status=yes, menubar=no, scrollbars=yes, resizable=yes, width=590, height=230';
+      
+    if (hWin == null)
+    {
+      hWin = window.open(strPage+'?idDocumento='+idDocumentoRichiesta, 'allega', strParametri);
+      
+      if (parseInt(navigator.appVersion) >= 4) 
+      {
+        hWin.window.focus();
+      }
+    }
+    else
+    {
+      alert ('finestra allega file già aperta');
+    }
+  }
+  
+  function visualizzaFile(idAllegato)
+  {
+    var oldAction = document.form1.action
+
+    document.form1.idAllegato.value = idAllegato;
+     
+    document.form1.action = 'visualizzaFileAllegato.htm?arrivo=newInserimentoAllegati';
+    document.form1.submit();
+    document.form1.action = oldAction;
+  }
+
+
+
+</script>
+</head>
+<body id="homeIndice" onLoad="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+	<form id="form1" name="form1" method="post" action="../layout/newInserimentoAllegati.htm">
+    <input type="hidden" id="regimeInserimentoAllegati" name="regimeInserimentoAllegati" value="regimeInserimentoAllegati"/>
+    <input type="hidden" id="operazione" name="operazione" value=""/>
+    <input type="hidden" id="idRigaElim" name="idRigaElim" value=""/>
+    <input type="hidden" id="idDocRich" name="idDocRich" value=""/>
+    <input type="hidden" name="idAllegato" id="idAllegato" value=""/>
+    <div id="pagina" class="colonnaUnica">
+    
+    <!--
+        $$err_numeroDocumento
+        $$err_enteRilascioDocumento
+      -->
+      
+      <!-- INTESTAZIONE -->
+      <div id="intestazione##pathProvincia">
+        $$header
+        <!-- menu di navigazione-->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li>
+                <a href="../layout/index.htm" title="Torna alla pagina principale">home</a>
+              </li>
+              <li class="attivo">gestione anagrafe aziende</li>
+              <li>
+                <a href="#" title="contatti">contatti</a>
+              </li>
+              <li>
+                <a href="#" title="help">help</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr/>
+      <div style="clear:left"></div>
+      <!-- CORPO -->
+      <div id="corpo">
+        <div id="Utente">
+          <div id="datiUtente">
+            <strong>utente:</strong>$$utente&nbsp;&nbsp;
+            <strong>ente:</strong>$$ente
+          </div>
+          <div id="chiudisessione">
+            <a href="javascript: logout();">chiudi sessione</a>
+          </div>
+        </div>
+        <hr/>
+        <!--PRIMA COLONNA -->
+        <h3>Nuova iscrizione
+          <span class="helpFuori">
+            <a href="#">
+              <span class="alt">[help]</span>
+            </a>
+          </span>
+        </h3>
+        <hr/>
+        <div class="box">
+          <div class="menuSX1">
+            <ul>
+              <!-- @@blkRicercaAzienda-->
+		          <li>
+		            <a href="../layout/ricerca.htm">Ricerche</a>
+		          </li>
+		          <!-- @@blkRicercaAzienda-->              
+              <li><a href="../layout/newInserimentoAzienda.htm" class="on">Nuova iscrizione</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr/>
+        <!-- SECONDA COLONNA -->
+        <div id="contenuto">
+          <div id="intesta">
+            <p class="$$aziendaIntestazione" title="$$tooltipIntestazione" >
+              $$CUAAIntestazione  $$denominazioneIntestazione
+            </p>
+          </div>
+        
+          <div id="indice">
+            <span class="voce">
+              <a href="#">Anagrafica</a>
+            </span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+            <span class="voce">
+              <a href="#">Unit&agrave; produttive</a>
+            </span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+            <span class="voce">
+              <a href="#">Terreni</a>
+            </span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+            <span class="voce">
+              <a href="#">Fabbricati</a>
+            </span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+            <span class="voce">
+              <a href="#">Allevamenti</a>
+            </span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+            <span class="voce">
+              <a href="#">Soggetti collegati</a>
+            </span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+            <span class="voce">
+              <a href="#">Elenco associati</a>
+            </span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+            <span class="voce">
+              <a href="#">Conti correnti</a>
+            </span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+            <span class="evidenza">
+              <a href="#">Allegati</a>
+            </span>
+            <span class="bugFix">&nbsp;|&nbsp;</span>
+          </div>
+          <hr/>
+          
+          <br>
+          <div>
+            <p id="istruzioni">$$testoHelp</p>            
+          </div>
+          <br>
+          
+          <div class="scroll">
+	          <table cellspacing="3" summary="Questa tabella è costituita da righe">
+	            <caption>Inserimento documento</caption>
+	            <tr>
+	              <th class="right" scope="col">
+	                Tipologia documento 
+	              </th>
+	              <td>
+                  <select name="extIdDocumento" id="extIdDocumento" onChange="javascript: cambio();" >
+                    <option value="" ></option>
+                    <!-- @@blkTipoDocumento -->
+                    <option value="$$extIdDocumento" $$selected>
+                      $$descDocumento
+                    </option>
+                    <!-- @@blkTipoDocumento -->
+                  </select>
+                  $$err_extIdDocumento
+                </td>
+                <td class="center" scope="col" rowspan="$$numRow">
+                  <div class="azioni">
+                    <a
+                      href="javascript:inserisci();" name="inserisci" class="highlighted" id="inserisci">inserisci</a>
+                  </div>
+                </td>
+	            </tr>
+	            <tr>
+	              <th class="right" scope="col">
+                  Data inizio validit&agrave;
+                </th>
+                <td>
+                  <input type="text" id="dataInizioValidita" name="dataInizioValidita" class="textmedio" value="$$dataInizioValidita" maxlength="10"/>
+                    gg/mm/aaaa $$err_dataInizioValidita
+                </td>
+	            </tr>
+	            <tr>
+                <th class="right" scope="col">
+                  Data fine validit&agrave;
+                </th>
+                <td>
+                  <input type="text" id="dataFineValidita" name="dataFineValidita" class="textmedio" value="$$dataFineValidita" maxlength="10"/>
+                    gg/mm/aaaa $$err_dataFineValidita
+                </td>
+              </tr>
+	            <!-- @@blkFlagEnteNumero -->
+	            <tr>
+	              <th class="right"  >
+                  Numero documento
+                </th>
+                <td scope="col">
+                  <input name="numeroDocumento"  id="numeroDocumento" type="text" class="textmediolungo"
+                    maxlength="20" value="$$numeroDocumento" />
+                  ##err_numeroDocumento
+                </td>
+	            </tr>
+	            <tr>
+                <th class="right"  >
+                  Ente di rilascio
+                </th>
+                <td scope="col">
+                  <input name="enteRilascioDocumento"  id="enteRilascioDocumento" type="text" class="textmediolungo"
+                    maxlength="100" value="$$enteRilascioDocumento" />
+                  ##err_enteRilascioDocumento
+                </td>
+              </tr>
+	            <!-- @@blkFlagEnteNumero -->
+	          </table>
+	        </div>
+          <hr>
+          <!--@@blkAllegati -->
+          <div class="scroll">
+	          <table>
+	            <tr>
+                <th class="center" scope="col">
+                </th>
+                <th class="center" scope="col">
+                  Tipologia documento
+                </th>
+                <th class="center" scope="col">
+                  Data inizio validit&agrave;
+                </th>
+                <th class="center" scope="col">
+                  Data fine validit&agrave;
+                </th>
+                <th class="center" scope="col">
+                  Numero documento
+                </th>
+                <th class="center" scope="col">
+                  Ente rilascio
+                </th>
+                <th class="center" scope="col">
+                  File
+                </th>
+                <th class="center" scope="col">
+                </th>
+              </tr>
+	            <!--@@blkElencoAllegati -->	            
+	            <tr>   
+						    <td class="radio" >
+						      <a href="javascript:elimina('$$idRiga','$$idRichiestaAziendaDocumento')" class="cancella" title="elimina allegati"></a>
+						    </td>
+						    <td>
+                  $$descDocumento
+                </td>
+                <td>
+                  $$dataInizioValidita
+                </td>
+                <td>
+                  $$dataFineValidita
+                </td>
+                <td>
+                  $$numeroDocumento
+                </td>
+                <td>
+                  $$enteRilascioDocumento
+                </td>
+						    <td>
+                <!-- @@blkFileAllegato -->
+                  <a href="javascript:visualizzaFile('$$idAllegato')" class="pratica" title="$$titleAllegato"></a>
+                <!-- @@blkFileAllegato --> 
+	              </td>
+	              <td>
+	                <a href="javascript:allegaFile('$$idRichiestaAziendaDocumento')">allega documento</a>
+	              </td>
+						  </tr>
+						  <!--@@blkElencoAllegati -->
+						  <tr>
+						    <td colspan="8">
+						      <input type="checkbox" name="chkDichiarazione" id="chkDichiarazione"
+                    value="S" $$checkedDichiarazione $$disabledDichiarazione />$$testoDichiarazione
+                  $$err_chkDichiarazione
+						    </td>
+						  </tr>
+	          </table>
+	        </div>
+	        <!--@@blkAllegati -->
+          
+          
+          <p id="nota">I campi contrassegnati con * sono obbligatori</p>
+          <div class="pulsanti"><div class="sin">
+            <input name="indietro" id="indietro" class="inputPulsante" type="submit" value="indietro"/>
+          </div>
+          <div class="des">
+            <input name="avanti" id="avanti" class="inputPulsante" type="submit" value="avanti"/>
+            $$err_avanti
+          </div></div>  
+          
+          </br>
+          </br>
+          </br>
+          
+          <!-- @@blkErrore -->
+          <p class="errore">
+            $$messaggioErrore
+          </p>
+          <!-- @@blkErrore -->
+        </div>
+      </div>
+      <hr/>
+      <!-- PIE' DI PAGINA -->
+      $$footer

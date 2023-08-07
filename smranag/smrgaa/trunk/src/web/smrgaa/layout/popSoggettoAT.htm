@@ -1,0 +1,107 @@
+$$head
+</head>
+<body id="popup">
+	<form name="form1" method="post" action="../layout/popSoggettoAT.htm">
+ 		<!-- CORPO -->
+   	<div id="contenutopop">
+			<h4 class="titolo">Fonte Dati: Anagrafe Tributaria</h4>
+ 			<!-- @@blkSoggettoAT -->
+   		<table cellspacing="3" summary="Tabella dei dati anagrafici">
+     		<caption>Dati anagrafici</caption>
+     		<tr>
+       		<th>Codice fiscale</th>
+       		<td>$$codiceFiscale</td>
+       		<th>Partita iva</th>
+       		<td>$$partitaIva</td>
+     		</tr>
+     		<tr>
+       		<th>Cognome</th>
+       		<td>$$cognome</td>
+       		<th>Nome</th>
+       		<td>$$nome</td>
+     		</tr>
+     		<tr>
+        	<th>Comune di nascita</th>
+        	<td>$$comuneNascita $$provinciaNascita</td>
+        	<th>Data di nascita</th>
+        	<td>$$dataNascita</td>
+     		</tr>
+     		<tr>
+          <th>Data decesso</th>
+          <td>$$dataDecesso</td>
+          <th></th>
+          <td></td>
+        </tr>
+     		<tr>
+       	  <th>Sesso</th>
+       		<td>$$sesso</td>
+       		<th>Denominazione</th>
+       		<td>$$denominazione</td>
+     		</tr>
+     		<tr>
+          <th>Codice ateco 2007</th>
+          <td>$$codiceAteco</td>
+          <th>Descrizione ateco 2007</th>
+          <td>$$descAttivitaAteco</td>
+        </tr>
+   		</table>		 
+      <table cellspacing="3" summary="Tabella dei dati di residenza">
+      	<caption>Residenza</caption>
+      	<tr>
+       		<th>Indirizzo</th>
+       		<td colspan="3">$$indirizzoResidenza</td>
+      	</tr>
+      	<tr>
+       		<th>Comune</th>
+       		<td>$$comuneResidenza $$provinciaResidenza</td>
+       		<th>Cap</th>
+       		<td>$$capResidenza</td>
+      	</tr>
+     	</table>		 
+				      
+   		<!-- @@blkSezioneSedeLegale -->		
+      <table cellspacing="3" summary="Tabella della sede legale">
+     		<caption>Sede legale</caption>
+     		<tr>
+       		<th>Indirizzo</th>
+       		<td colspan="3">$$indirizzoSedeLegale</td>
+     		</tr>
+     		<tr>
+       		<th>Comune</th>
+       		<td>$$comuneSedeLegale $$provinciaSedeLegale</td>
+       		<th>Cap</th>
+       		<td>$$capSedeLegale</td>
+     		</tr>
+   		</table>				
+		  <!-- @@blkSezioneSedeLegale -->
+ 		  <!-- @@blkSezioneDomicilioFiscale -->
+		  <table cellspacing="3" summary="Tabella del domicilio fiscale">
+      	<caption>Domicilio fiscale</caption>
+      	<tr>
+      		<th>Indirizzo</th>
+      		<td colspan="3">$$indirizzoDomicilioFiscale</td>
+      	</tr>
+        <tr>
+        	<th>Comune</th>
+        	<td>$$comuneDomicilioFiscale $$provinciaDomicilioFiscale</td>
+        	<th>Cap</th>
+        	<td>$$capDomicilioFiscale</td>
+        </tr>
+      </table>				
+ 		  <!-- @@blkSezioneDomicilioFiscale -->
+		  		
+          		
+          		
+   		<!-- @@blkSoggettoAT --> 
+   		<!-- @@blkErrore -->
+     		<p class="errore">$$messaggio</p>
+   		<!-- @@blkErrore -->
+   		<div class="pulsanti">
+ 			<div class="des">
+   				<a href="javascript:window.close();">chiudi</a>
+ 			</div>
+		</div>
+    		</div>
+    	</form>
+    </body>
+</html>

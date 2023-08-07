@@ -1,0 +1,64 @@
+$$head
+<script src="../js/checkdata.js" type="text/javascript"></script>
+  <script src="../js/checktext.js" type="text/javascript"></script>
+</head>
+<body id="popup">
+  <form id="form1" name="form1" method="post" action="../layout/popAnomalieAllevamento.htm">
+    <div id="contenutopop">
+      <div class="pulsanti">
+        <div class="des">
+          <a href="javascript:window.close();">chiudi</a>
+        </div>
+      </div>
+      <table cellspacing="3" summary="Questa tabella contiene i dati del rapporto">
+        <tr>
+          <th class="center" scope="col">Denominazione</th>
+          <th class="center" scope="col">UTE</th>
+          <th class="center" scope="col">Comune</th>
+          <th class="center" scope="col">Codice ASL</th>
+          <th class="center" scope="col">Specie</th>
+          <th class="center" scope="col">Detentore</th>
+          <th class="center" scope="col">Proprietario</th>
+        </tr>
+        <tr>
+          <td>$$denominazioneAllevamento</td>
+          <td>$$comuneUte - $$indirizzoUte</td>
+          <td>$$comuneAllevamento</td>
+          <td>$$codiceAziendaZootecnico</td>
+          <td>$$specie</td>
+          <td>$$codFiscDetentore - $$denominazioneDetentore</td>
+          <td>$$codFiscProprietario - $$denominazioneProprietario</td>
+        </tr>
+      </table>
+      <!-- @@blkAnomalie -->
+        <table cellspacing="3" summary="Questa tabella contiene i dati del rapporto">
+          <tr>
+            <th scope="col" class="center">Controllo</th>
+            <th scope="col" class="center">Descrizione</th>
+            <th scope="col" class="center"></th>
+          </tr>
+          <!-- @@blkElencoAnomalie -->
+            <tr>
+              <td>$$descrizioneTipoControllo</td>
+              <td>$$descrizione</td>
+              <td class="data">
+                <span class="$$immagine">
+                  <span class="alt">Controllo eseguito</span>
+                </span>
+              </td>
+            </tr>
+          <!-- @@blkElencoAnomalie -->
+        </table>
+      <!-- @@blkAnomalie -->
+      <!--@@blkNoAnomalie-->
+        <p class="errore">$$messaggio</p>
+      <!--@@blkNoAnomalie-->
+      <div class="pulsanti">
+        <div class="des">
+          <a href="javascript:window.close();">chiudi</a>
+        </div>
+      </div>
+    </div>
+  </form>
+</body>
+</html>

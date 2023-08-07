@@ -1,0 +1,133 @@
+<porta-delegata name="Profile">
+  <services>
+    <service name="Profile" public-interface-class="it.csi.solmr.interfaceCSI.profile.services.ProfCSIInterface">
+      <operations>
+       <!--ruoloUtenza-->
+       <operation name="isUtenteConRuoloSuProcedimento" type="synch-call" >
+        <param-list>
+          <param name="codiceFiscale" type="java.lang.String" />
+          <param name="idProcedimento" type="java.lang.Long" />
+        </param-list>
+        <ret-val type="java.lang.Boolean"/>
+       </operation>
+       <operation name="isUtenteAbilitatoProcedimento" type="synch-call" >
+        <param-list>
+          <param name="utenteIride2VO" type="it.csi.solmr.dto.profile.UtenteIride2VO" />
+        </param-list>
+        <ret-val type="java.lang.Boolean"/>
+       </operation>
+       <operation name="login" type="synch-call" >
+        <param-list>
+           <param name="utenteIride2VO" type="it.csi.solmr.dto.profile.UtenteIride2VO" />
+        </param-list>
+        <ret-val type="it.csi.solmr.dto.profile.RuoloUtenza"/>
+       </operation>
+       <operation name="writeAccessLogUser" type="synch-call" >
+        <param-list>
+           <param name="utenteIride2VO" type="it.csi.solmr.dto.profile.UtenteIride2VO" />
+        </param-list>
+        <ret-val type="java.lang.Long"/>
+       </operation>
+       <operation name="loadRoleUser" type="synch-call" >
+        <param-list>
+           <param name="utenteIride2VO" type="it.csi.solmr.dto.profile.UtenteIride2VO" />
+        </param-list>
+        <ret-val type="it.csi.solmr.dto.profile.RuoloUtenza"/>
+       </operation>
+       <operation name="serviceGetUtenteProcedimento" type="synch-call" >
+          <param-list>
+             <param name="codiceFiscale" type="java.lang.String" />
+             <param name="idProcedimento" type="java.lang.Long" />
+             <param name="ruolo" type="java.lang.String" />
+             <param name="codiceEnte" type="java.lang.String" />
+             <param name="dirittoAccesso" type="java.lang.String" />
+             <param name="idLivello" type="java.lang.Long" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.profile.UtenteProcedimento[]"/>
+       </operation>
+        <operation name="serviceGetUtenteIride2ById" type="synch-call" >
+          <param-list>
+            <param name="idUtente" type="java.lang.Long" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.profile.UtenteIride2VO"/>
+        </operation>
+        <operation name="serviceGetRuoloUtenzaByIdUtente" type="synch-call" >
+          <param-list>
+            <param name="idUtente" type="java.lang.Long" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.profile.RuoloUtenza"/>
+        </operation>
+        <operation name="serviceGetRuoloUtenzaByIdRange" type="synch-call" >
+          <param-list>
+            <param name="idUtente" type="long[]" />
+            <param name="ammcompLivelli" type="boolean" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.profile.RuoloUtenza[]"/>
+        </operation>
+       <!--profiloUtenza-->
+        <operation name="loginPU" type="synch-call" >
+          <param-list>
+            <param name="utenteIride2VO" type="it.csi.solmr.dto.profile.UtenteIride2VO" />
+          </param-list>
+          <ret-val type="it.csi.solmr.dto.ProfiloUtenza"/>
+        </operation>
+        <operation name="testResources" type="synch-call" >
+          <ret-val type="boolean"/>
+        </operation>
+        <operation name="isAlive" type="synch-call" >
+          <ret-val type="boolean"/>
+        </operation>
+      </operations>
+    </service>
+  </services>
+  <config>
+    <url-pa>**not used**</url-pa>
+    <pluggable-pd-list chooser-class="it.csi.csi.porte.FixedDelegateChooser">
+	<pluggable-pd name="business" class="it.csi.csi.porte.jaxrpc.PortaDelegataWS" url-pa="***" url-qm="">      
+      <properties>
+         <property name="csi.wrapper.wsinterf.class" value="it.csi.smrcomms.smrcomm.dto.profile.axisgen.SmrcommsrvProfileService_PortType" />
+		 <property name="csi.http.transport.type" value="commons-http" />
+          <property name="csi.http.timeout" value="10000" />          
+          <property name="class" value="it.csi.smrcomms.smrcomm.dto.profile.axisgen.SmrcommsrvProfileServiceServiceLocator" />
+          <!-- l'url dell'endpoint del servizio-->
+ 	      <property name="javax.xml.rpc.service.endpoint.address" value="http://localhost:8080/smrcommsrvProfileServiceWsfad/services/smrcommsrvProfileService" />         
+        </properties>
+      </pluggable-pd>
+    </pluggable-pd-list> 
+    <queue-manager url=""/>
+  	<pre-function-handler-list>
+      <pluggable-fh name="isoint_pre" class="it.csi.csi.porte.jaxrpc.pfh.IsoIntTransformer">
+        <properties>
+          <property name="source.interface" value="it.csi.solmr.interfaceCSI.profile.services.ProfCSIInterface" />
+          <property name="target.interface" value="it.csi.smrcomms.smrcomm.dto.profile.axisgen.SmrcommsrvProfileService_PortType" />
+          <property name="pkg-map-1" value="it.csi.solmr.interfaceCSI.profile.services=it.csi.smrcomms.smrcomm.dto.profile.axisgen\" />      
+          <property name="class-map-2" value="it.csi.solmr.dto.profile.CodeDescription=it.csi.smrcomms.smrcomm.dto.profile.axisgen.CodeDescription"/>
+		  <property name="class-map-3" value="it.csi.solmr.dto.comune.IntermediarioVO=it.csi.smrcomms.smrcomm.dto.profile.axisgen.IntermediarioVO"/>
+		  <property name="class-map-4" value="it.csi.smrcomms.smrcomm.exception.InvalidParameterException=it.csi.smrcomms.smrcomm.dto.profile.axisgen.InvalidParameterException"/>
+		  <property name="class-map-5" value="it.csi.solmr.dto.ProfiloUtenza=it.csi.smrcomms.smrcomm.dto.profile.axisgen.ProfiloUtenza"/>
+  		  <property name="class-map-6" value="it.csi.solmr.dto.profile.RuoloUtenza=it.csi.smrcomms.smrcomm.dto.profile.axisgen.RuoloUtenza" />
+		  <property name="class-map-7" value="it.csi.solmr.dto.UfficioZonaIntermediarioVO=it.csi.smrcomms.smrcomm.dto.profile.axisgen.UfficioZonaIntermediarioVO" />
+		  <property name="class-map-8" value="it.csi.solmr.dto.profile.UtenteIride2VO=it.csi.smrcomms.smrcomm.dto.profile.axisgen.UtenteIride2VO" />
+        </properties>
+      </pluggable-fh>
+    </pre-function-handler-list>
+    <post-function-handler-list>
+      <pluggable-fh name="isoint_pre" class="it.csi.csi.porte.jaxrpc.pfh.IsoIntTransformer">
+        <properties>
+          <property name="source.interface" value="it.csi.solmr.interfaceCSI.profile.services.ProfCSIInterface" />
+          <property name="target.interface" value="it.csi.smrcomms.smrcomm.dto.profile.axisgen.SmrcommsrvProfileService_PortType" />
+              <property name="pkg-map-1" value="it.csi.solmr.interfaceCSI.profile.services=it.csi.smrcomms.smrcomm.dto.profile.axisgen\" />      
+	          <property name="class-map-2" value="it.csi.solmr.dto.profile.CodeDescription=it.csi.smrcomms.smrcomm.dto.profile.axisgen.CodeDescription"/>
+			  <property name="class-map-3" value="it.csi.solmr.dto.comune.IntermediarioVO=it.csi.smrcomms.smrcomm.dto.profile.axisgen.IntermediarioVO"/>
+			  <property name="class-map-4" value="it.csi.smrcomms.smrcomm.exception.InvalidParameterException=it.csi.smrcomms.smrcomm.dto.profile.axisgen.InvalidParameterException"/>
+			  <property name="class-map-5" value="it.csi.solmr.dto.ProfiloUtenza=it.csi.smrcomms.smrcomm.dto.profile.axisgen.ProfiloUtenza"/>
+	  		  <property name="class-map-6" value="it.csi.solmr.dto.profile.RuoloUtenza=it.csi.smrcomms.smrcomm.dto.profile.axisgen.RuoloUtenza" />
+			  <property name="class-map-7" value="it.csi.solmr.dto.UfficioZonaIntermediarioVO=it.csi.smrcomms.smrcomm.dto.profile.axisgen.UfficioZonaIntermediarioVO" />
+			  <property name="class-map-8" value="it.csi.solmr.dto.profile.UtenteIride2VO=it.csi.smrcomms.smrcomm.dto.profile.axisgen.UtenteIride2VO" />         
+              <property name="class-map-9" value="it.csi.smrcomms.smrcomm.exception.InvalidParameterException=it.csi.smrcomms.smrcomm.dto.profile.axisgen.InvalidParameterException"/>
+              <property name="class-map-10" value="it.csi.solmr.exception.services.UserNotFoundException=it.csi.smrcomms.smrcomm.dto.profile.axisgen.UserNotFoundException"/>
+        </properties>
+      </pluggable-fh>
+    </post-function-handler-list>
+  </config>
+</porta-delegata>

@@ -1,0 +1,2429 @@
+/*** skinAgricolturaFluido.css ***/
+/*
+* versione v.xx
+* CSS2.0 per specificare aspetti peculiari delle pagine per gli applicativi di agricoltura
+* Il codice idoneo alla realizzazione di una pagina che rispetti le WAI WCAG 1.0 al livello AAA*/
+#contenuto {_margin-left:10%;height:100%;background:#fff;margin-top:6px;margin-left:13%;}
+
+.box {_width:10%;height:100%;float:left;/*background:#fff;*/margin-top:6px;width:11%;}
+#corpo {
+	padding	:11px ;
+	margin:0;
+background:#fff;
+}
+a:link { 
+	color		: #005071;
+	font-weight	: bold;
+}
+a:visited {
+	color		: #006699;
+	font-weight	: bold;
+	}
+a:hover,a:active {
+	color		: #900;
+}
+
+/* B */
+.briciole {
+	background	: #fff;
+	color		: #000;
+	font-size	: 0.90em;
+}
+/* H */
+h1 {
+	line-height	: 46px;
+	
+}
+
+h2 {
+	font-size	: 1.2em;
+} /* il tag h2  usato solo per il titolo della pagina */
+h3, h4, h5, h6 {
+	font-size	: 1em;
+	line-height:1.5em;
+	font-weight:bold;
+}
+
+
+/* I */
+#i {
+	font-size	: .8em;
+	text-align	: right;
+}
+#i a:link, #i a:visited {
+	background	: transparent;
+	color		: #005071
+}
+#i a:hover, #i a:active {
+	background	: transparent;
+	color		: #900;
+}
+/*-------------------------------*/
+
+#homeIndice #intestazione {
+	background	: #ebebeb url(/staticresources/css/im/testalino_fluido_sp.gif) top left no-repeat;
+	color		: #000;
+
+}
+#homeIndice #intestazione form {
+	background	: #ebebeb url(/staticresources/css/im/testalino_fluido_sp.gif) top left no-repeat;
+	text-align	: right;
+}
+#intestazione form input {
+	font		: 1em Verdana, Arial, Helvetica, Geneva, Swiss, SunSans-Regular, sans-serif;
+}
+
+/* M */
+#menuDiServizio {
+	background	: #ebebeb;
+	color		: #444;
+	border: 0;
+}
+.menuTendina ul, .menuTendinaB ul {
+	list-style	: none;
+}
+/* N */
+p.nota {
+	font-size	: 0.90em;
+	font-style	: italic;
+}
+#noteSito {
+	font-size	: 0.8em;
+	font-weight	: bold;
+	/*line-height	: 2em;*/
+	line-height	: 22px;
+	text-align	: center;
+	position:relative;
+}
+/* P */
+/*inizio attesa caricamento dati in corso*/
+
+#caricaDati{background:#fff url(staticresources/css_rupar/generali/im/attesa.gif) 50% 50% no-repeat;height:150px;width:100%;}
+#caricaDati span.barraCarica{background:transparent url(staticresources/css_rupar/generali/im/caricamento.gif) 60% 69% no-repeat;height:150px;width:80%;display:block;}
+p.evidenza {
+background:#ededed;
+padding:6px;
+font-weight:normal;
+color:#000;
+}
+/*fine attesa caricamento dati in corso*/
+
+#personalizzazione {
+	background	: #ebebeb;
+	color		: #ebebeb !important; /* nasconde i separatori '|' poich si usano i bordi */
+	color /**/	: #000; /* poich su IE5 i bordi su elementi in linea non sono supportati, rendo nuovamente visibili le barre */
+	word-spacing	: -.3em !important; /* riduce lo spazio generato dai separatori '|' -- ormai invisibili*/
+	word-spacing /**/: 0; /* ripristina lo spazio generato dai separatori '|' -- visibili su IE5.x */
+}
+#personalizzazione a {
+	padding		: 0 .5em;
+	border		: 1px solid;
+	text-decoration	: none;
+	font-size	: .8em;
+}
+/* formattazione standard dei link */
+a:link, a:visited  {
+	color: #B38900;
+	font-weight: bold;
+	text-decoration:none;
+}
+a:hover, a:active {
+	color: #900;
+	text-decoration:none;
+}
+img {
+border:0;
+}
+#corpo p label.cerca {
+	font-size:11px;
+	color:#000;
+	margin-left:23em;
+	font-weight:bold;
+}
+
+/*per le home page ad una colonna:*/
+#content {
+	margin: 3px 0;
+	padding:0;
+}
+#content p{
+	margin: 3px 0 3px 0;
+	background-color:#ece2bf;
+	padding:3px 6px 3px 6px;
+	position:relative;
+}
+#content  h4.primo{
+	height:15px;
+	line-height:15px;
+	margin-top: 3px;
+	background: #cecece;	
+	color:#333;
+	padding:0 0 0 6px;
+	clear :both;
+}
+/* barra con tasto vai delle index */
+#content h4 {
+	height:15px;
+	line-height:15px;
+	margin-top: 0;
+	background: #cecece;	
+	color:#333;
+	padding:0 0 0 6px;
+	clear :both;
+}
+#content h4 a, 
+#content h4 a:link, 
+#content h4 a:visited {
+width:100%;
+	display:block;
+	/*position:relative;*/
+	background:#cecece url(/staticresources/ris/resources/application/agricoltura/css/im/pulsvai_bio.gif) 100% 50% no-repeat;
+	color:#333;
+	text-decoration:none;
+}
+#content h4 a:hover, 
+#content h4 a:active {
+width:100%;
+	display:block;
+	background:#cecece url(/staticresources/ris/resources/application/agricoltura/css/im/pulsvai_roll_bio.gif) 100% 50% no-repeat;
+	color:#666;
+	text-decoration:none;
+}
+
+/* barra */
+#barra a,
+#barra a:link, 
+#barra a:visited {
+	color:#4f4f4c;
+	display:block; 
+	background:#e1d099 url(/staticresources/ris/resources/application/agricoltura/css/im/pulsvai_agri.gif) 100% 50% no-repeat;
+	text-decoration:none;
+}
+#barra a:hover, 
+#barra a:active { /**/
+	color:#333;
+	display:block;
+	background:#e1d099 url(/staticresources/ris/resources/application/agricoltura/css/im/pulsvai_roll_agri.gif) 100% 50% no-repeat;
+	text-decoration:none;
+}
+#barra {/**/
+	line-height:1.5em;
+	display:block;
+	font-size:0.95em;
+	background:#e1d099;
+	margin:0!important; 
+	padding:0 0 0 .3em;
+	margin-left/**/:9.2em; 
+}
+
+/* ----------------------- */
+/* FORMATTAZIONE DEL CORPO */
+/* ----------------------- */
+/* FORMATTAZIONE H2 H3 H4 H5 */
+/* formattazione del tag H2  usato solo per il titolo della pagina*/
+h2 {
+	margin: 0;
+	height: 44px !important;
+	padding: 0;
+} 
+h3, h4 {
+	margin: 0 0 3px 0;
+	padding:0 0 0 6px;
+	height:auto!important;
+	height:16px;}
+
+h3 {position:relative; 	color :#fff; background: #b48c09;}
+h4 {position:relative;}
+h5 {color: #b38900;	font-weight:bold;padding-left:6px;}
+/* fine formattazione hx */
+
+/* BARRA CON HELP */
+.helpFuori {
+	position:absolute;
+	margin:0;
+	font-weight: bold;
+	right:0px;
+	height:16px;
+	border-left:3px solid #fff;
+}
+.helpFuori a, .helpFuori a:link, .helpFuori a:visited  {
+	display:block;
+	width:25px;
+	height:16px;
+	background:#fff url(/staticresources/ris/resources/application/agricoltura/css/im/puntointerrogativo.gif) 100% 50% no-repeat;
+}
+.helpFuori a:hover, .helpFuori a:active{
+	display:block;
+	width:25px;
+	height:16px;
+	background:#fff url(/staticresources/ris/resources/application/agricoltura/css/im/puntointerrogativo_roll.gif) 100% 50% no-repeat;
+}
+/* formattazione del menu */
+/* menuSX */
+.menuSX {
+	font-size:0.95em;
+	margin:0 0 30px 0;
+}
+.menuSX ul{
+	list-style-type:none;
+	margin:0;
+	padding:0;
+}
+.menuSX ul li{ 
+	list-style-type:none;
+	font-weight:bold;
+	color:#8A6B00;
+	display:block;
+	margin-bottom:10px;
+}
+.menuSX ul li a, 
+.menuSX ul li a:link, 
+.menuSX ul li a:visited  {
+	background:#eaeaea url(/staticresources/ris/resources/application/agricoltura/css/im/grey.gif) 0 0 repeat-y;
+	color:#222;
+	list-style-type:none;
+	display:block;
+	padding:0 0 0 8px;
+	border:1px solid #000;
+	border-top:1px solid #ccc;
+	border-left:1px solid #ccc;
+	width:100%;
+}
+.menuSX ul li a:hover, 
+.menuSX ul li a:active {
+	color:#fff;
+	list-style-type:none;
+	display:block;
+	background:#999;
+}
+.menuSX ul li a.on{
+	width:100%;
+	margin:0;
+}
+.menuSX ul li a.on:link, 
+.menuSX ul li a.on:hover,
+.menuSX ul li a.on:visited, 
+.menuSX ul li a.on:active {
+	color:#000;
+	background:#bbb url(/staticresources/ris/resources/application/agricoltura/css/im/grey.gif) 0 0 repeat-y;
+	list-style-type:none;
+	display:block;
+	margin:0 0 2px 0;	
+	border-bottom-color:#333;
+	border-right-color:#333;
+} 
+
+.menuSX ul li ul{ 
+	margin:0;
+	padding:0;
+	border:0;
+}
+.menuSX ul li ul li{ 
+	list-style-type:none;
+	color:#000;
+	display:block;
+	margin:0;
+	padding:0;
+	}
+.menuSX ul li ul li a, 
+.menuSX ul li ul li a:link, 
+.menuSX ul li ul li a:visited  {
+	font-weight:normal;
+	color:#000;
+	display:block;
+
+	background:#FBF2CE;  
+	text-decoration:none;
+	margin:1px 0;	
+	background:#FBF2CE;
+}
+.menuSX ul li ul li a:hover, 
+.menuSX ul li ul li a:active {
+	color:#fff;
+	margin:1px 0;
+	background:#333;
+	display:block;
+}
+.menuSX ul li ul li a.on:link, 
+.menuSX ul li ul li a.on:hover,
+.menuSX ul li ul li a.on:visited, 
+.menuSX ul li ul li a.on:active {
+	color:#b48c09;
+	background:#E5E5E5;
+	list-style-type:none;
+	display:block;
+	font-weight:bold;
+	cursor:default;
+}
+.menuSX ul li ul li a.etichetta:link, 
+.menuSX ul li ul li a.etichetta:hover,
+.menuSX ul li ul li a.etichetta:visited, 
+.menuSX ul li ul li a.etichetta:active {
+	color:#B48C09;
+	background:#FBF2CE url(/staticresources/ris/resources/application/agricoltura/css/im/fr_2.gif) 0 50% no-repeat;
+	list-style-type:none;
+	display:block;
+	border:1px solid #333;
+	border-top:1px solid #999;
+	border-left:1px solid #ccc;
+	text-decoration:none;
+	font-weight:bold;
+	/*cursor:default;*/
+}
+.menuSX ul li ul li ul{ 
+	margin:0;
+	padding:0;
+}
+.menuSX ul li ul li ul li{
+	color: #000;
+	list-style-type:none;
+	display:block;
+	padding:0;
+	margin:0 2px;
+}
+.menuSX ul li ul li ul li a, 
+.menuSX ul li ul li ul li a:link, 
+.menuSX ul li ul li ul li a:visited  {
+	background:#ffe;
+	color:	#000;
+	display:block;
+	text-decoration:none;
+	font-weight:normal;
+	margin:0;
+	border-bottom:1px solid #ccc;
+	border-right:1px solid #5D5D5D;
+}
+.menuSX ul li ul li ul li a:hover, 
+.menuSX ul li ul li ul li a:active {
+	background:#eaeaea url(/staticresources/ris/resources/application/agricoltura/css/im/fr_b.gif) 2px 50% no-repeat;
+	color:	#000;
+	display:block;
+	text-decoration:none;
+	font-weight:normal;
+	margin:0;
+	border-bottom:1px solid #ccc;
+	border-right:1px solid #5D5D5D;
+}
+.menuSX ul li ul li ul li a.on:link, 
+.menuSX ul li ul li ul li a.on:hover,
+.menuSX ul li ul li ul li a.on:visited, 
+.menuSX ul li ul li ul li a.on:active {
+	background:#E6E6E6 url(/staticresources/ris/resources/application/agricoltura/css/im/fr_b.gif) 2px 50% no-repeat;
+	font-weight:normal;
+	color:#900;
+	list-style-type:none;
+	display:block;
+	border-bottom:1px solid #ccc;
+	}
+.menuSX li a.ocra{
+	color:#FF9900;
+	}
+
+/* menuSX1 */
+.menuSX1 {
+	font-size:0.95em;
+	margin:0 0 30px 0;
+}
+.menuSX1 ul{
+	list-style-type:none;
+	margin:0;
+	padding:0;
+}
+.menuSX1 ul li{ 
+	list-style-type:none;
+	font-weight:bold;
+	color:#8A6B00;
+	display:block;
+	margin-bottom:3px;
+}
+.menuSX1 ul li a, 
+.menuSX1 ul li a:link, 
+.menuSX1 ul li a:visited  {
+	background:#eaeaea url(/staticresources/ris/resources/application/agricoltura/css/im/grey.gif) 0 0 repeat-y;
+	color:#222;
+	list-style-type:none;
+	display:block;
+	padding:0 0 0 8px;
+	border:1px solid #000;
+	border-top:1px solid #ccc;
+	border-left:1px solid #ccc;
+	width:100%;
+}
+.menuSX1 ul li a:hover, 
+.menuSX1 ul li a:active {
+	color:#fff;
+	list-style-type:none;
+	display:block;
+	background:#999;
+}
+.menuSX1 ul li a.on{
+	width:100%;
+	margin:0;
+}
+.menuSX1 ul li a.on:link, 
+.menuSX1 ul li a.on:hover,
+.menuSX1 ul li a.on:visited, 
+.menuSX1 ul li a.on:active {
+	color:#000;
+	background:#bbb url(/staticresources/ris/resources/application/agricoltura/css/im/grey.gif) 0 0 repeat-y;
+	list-style-type:none;
+	display:block;
+	margin:0 0 2px 0;	
+	border-bottom-color:#333;
+	border-right-color:#333;
+} 
+
+.menuSX1 ul li ul{ 
+	margin:0;
+	padding:0;
+	border:0;
+}
+.menuSX1 ul li ul li{ 
+	list-style-type:none;
+	color:#000;
+	display:block;
+	margin:0;
+	padding:0;
+	}
+.menuSX1 ul li ul li a, 
+.menuSX1 ul li ul li a:link, 
+.menuSX1 ul li ul li a:visited  {
+	font-weight:normal;
+	color:#000;
+	display:block;
+	background:#FBF2CE; 
+	text-decoration:none;
+	margin:1px 0;	
+	background:#FBF2CE;
+}
+.menuSX1 ul li ul li a:hover, 
+.menuSX1 ul li ul li a:active {
+	color:#fff;
+	margin:1px 0;
+	background:#333;
+	display:block;
+}
+.menuSX1 ul li ul li a.on:link, 
+.menuSX1 ul li ul li a.on:hover,
+.menuSX1 ul li ul li a.on:visited, 
+.menuSX1 ul li ul li a.on:active {
+	color:#b48c09;
+	background:#E5E5E5;
+	list-style-type:none;
+	display:block;
+	font-weight:bold;
+}
+.menuSX1 ul li ul li a.etichetta:link, 
+.menuSX1 ul li ul li a.etichetta:hover,
+.menuSX1 ul li ul li a.etichetta:visited, 
+.menuSX1 ul li ul li a.etichetta:active {
+	color:#B48C09;
+	background:#FBF2CE url(/staticresources/ris/resources/application/agricoltura/css/im/fr_2.gif) 0 50% no-repeat;
+	list-style-type:none;
+	display:block;
+	border:1px solid #333;
+	border-top:1px solid #999;
+	border-left:1px solid #ccc;
+	text-decoration:none;
+	font-weight:bold;
+	cursor:default;
+}
+.menuSX1 ul li ul li ul{ 
+	margin:0;
+	padding:0;
+}
+.menuSX1 ul li ul li ul li{
+	color: #000;
+	list-style-type:none;
+	display:block;
+	padding:0;
+	margin:0 2px;
+}
+.menuSX1 ul li ul li ul li a, 
+.menuSX1 ul li ul li ul li a:link, 
+.menuSX1 ul li ul li ul li a:visited  {
+	background:#ffe;
+	color:	#000;
+	display:block;
+	text-decoration:none;
+	font-weight:normal;
+	margin:0;
+	border-bottom:1px solid #ccc;
+	border-right:1px solid #5D5D5D;
+}
+.menuSX1 ul li ul li ul li a:hover, 
+.menuSX1 ul li ul li ul li a:active {
+	background:#eaeaea url(/staticresources/ris/resources/application/agricoltura/css/im/fr_b.gif) 2px 50% no-repeat;
+	color:	#000;
+	display:block;
+	text-decoration:none;
+	font-weight:normal;
+	margin:0;
+	border-bottom:1px solid #ccc;
+	border-right:1px solid #5D5D5D;
+}
+.menuSX1 ul li ul li ul li a.on:link, 
+.menuSX1 ul li ul li ul li a.on:hover,
+.menuSX1 ul li ul li ul li a.on:visited, 
+.menuSX1 ul li ul li ul li a.on:active {
+	background:#E6E6E6 url(/staticresources/ris/resources/application/agricoltura/css/im/fr_b.gif) 2px 50% no-repeat;
+	font-weight:normal;
+	color:#900;
+	list-style-type:none;
+	display:block;
+	border-bottom:1px solid #ccc;
+	}
+.menuSX li a.ocra{
+	color:#FF9900;
+	}
+/* fine formattazione del menu a sinistra */
+
+
+
+
+
+
+/* menu input */
+
+
+.menu a:link,
+.menu a:visited {font-weight:bold;text-align:left;	font-size: 0.95em;color:#fff; display:block;background:#eaeaea url(/staticresources/ris/resources/application/agricoltura/css/im/grey.gif) 0 0 repeat-y;color:#222; padding:0 0 0 8px;	border:1px solid #000;	border-top:1px solid #ccc;	border-left:1px solid #ccc;width:100%;}
+
+.menu a:hover,
+.menu a:active {  font-weight:bold;text-align:left;font-size: 0.95em;cursor:pointer;cursor:hand;padding:0 0 0 8px;	border:1px solid #000;	border-top:1px solid #ccc;	border-left:1px solid #ccc;color: #fff;background-color:#999;}
+a.on,  a.on:link,  a.on:visited,  a.on:hover, a.on:active{font-size: 0.95em;background:#bbb url(/staticresources/ris/resources/application/agricoltura/css/im/grey.gif) 0 0 repeat-y; border:1px solid #333;border-top:1px solid #999;	border-left:1px solid #ccc;text-decoration:none;font-weight:bold; padding:0 0 0 8px;width:100%;color:#000;display:block; width:100%;}
+
+
+.menuSX1 .menu a{ margin:0;}
+.menuSX .menu a{ margin:10px 0 0 0;}
+
+/*fine link*/
+.menuSX, .menuSX1 { padding:0;}
+.menuSX input, .menuSX1  input{  padding:0; margin:0;text-align:left;}
+
+ .on{font-size: 0.95em;color:#000;	background:#bbb url(/staticresources/ris/resources/application/agricoltura/css/im/grey.gif) 0 0 repeat-y; border:1px solid #333;	border-top:1px solid #999;	border-left:1px solid #ccc;	text-decoration:none;font-weight:bold; padding:0 0 0 8px;	width:100%; }
+input.on{cursor:pointer;cursor:hand;font-size: 0.95em;text-align:left;color:#000; background:#bbb url(/staticresources/ris/resources/application/agricoltura/css/im/grey.gif) 0 0 repeat-y;border:1px solid #333;border-top:1px solid #999; border-left:1px solid #ccc;font-weight:bold; padding:0 0 0 8px;width:100%;w\idth:108%; }
+
+.menuSX1 input.on,.menuSX1 .on {margin:0 0 2px 0; }
+.menuSX input.on,.menuSX .on {margin:10px 0 2px 0; }
+
+
+.etichetta {font-size: 0.95em;color:#B48C09;background:#FBF2CE url(/staticresources/ris/resources/application/agricoltura/css/im/fr_2.gif) 0 50% no-repeat; border:1px solid #333; border-top:1px solid #999; border-left:1px solid #ccc;font-weight:bold;padding:0 0 0 8px;margin: 0;/*width:127px;*/width:100%;}
+input.etichetta {cursor:pointer;cursor:hand;text-align:left;font-size: 0.95em;color:#B48C09;background:#FBF2CE url(/staticresources/ris/resources/application/agricoltura/css/im/fr_2.gif) 0 50% no-repeat;border:1px solid #333;	border-top:1px solid #999;	border-left:1px solid #ccc;	font-weight:bold;padding:0 0 0 8px;margin: 0;width:100%;w\idth:108%;}
+
+.subOn {font-size: 0.95em;background:#E6E6E6 url(/staticresources/ris/resources/application/agricoltura/css/im/fr_b.gif) 2px 50% no-repeat;	font-weight:normal;color:#900;	border:1px solid #333;	border-top:1px solid #999;	border-left:1px solid #ccc;	border-bottom:1px solid #ccc;	padding:0 0 0 9px;	margin: 0;width:99%;}
+input.subOn {cursor:pointer;cursor:hand;text-align:left;font-size: 0.95em;background:#E6E6E6 url(/staticresources/ris/resources/application/agricoltura/css/im/fr_b.gif) 2px 50% no-repeat;	font-weight:normal;	color:#900;	border:1px solid #333;	border-top:1px solid #999;	border-left:1px solid #ccc;	border-bottom:1px solid #ccc;padding:0 0 0 9px;	margin: 0;width:100%;w\idth:108%;}
+
+.menuSX1 input.menu, .menuSX input.menu { font-weight:bold;text-align:left;	font-size: 0.95em;color:#fff;	background:#eaeaea url(/staticresources/ris/resources/application/agricoltura/css/im/grey.gif) 0 0 repeat-y;cursor:pointer;cursor:hand;color:#222; padding:0 0 0 8px;	border:1px solid #000;	border-top:1px solid #ccc;	border-left:1px solid #ccc;width:100%;w\idth:108%;}
+.menuSX1 input.menu:hover, .menuSX input.menu:hover, .menuSX1 input.menuHover, .menuSX input.menuHover{
+ font-weight:bold;text-align:left;font-size: 0.95em;cursor:pointer;cursor:hand;padding:0 0 0 8px;	border:1px solid #000;	border-top:1px solid #ccc;	border-left:1px solid #ccc;color: #fff;background-color:#999;width:100%;w\idth:108%;}
+ 
+.menuSX1 input.menu, .menuSX1 input.menuHover {margin: 0 0 3px 0;}
+
+.menuSX input.menu, .menuSX input.menuHover{margin: 10px 0 0 0;}
+
+.menuSX input.sottoMenu {text-align:left;font-size: 0.95em;	height:auto; margin: 0;	color:#000;	background:#FBF2CE;
+	border-top: 1px solid #fff; border-bottom: 1px solid #000; border-left: 1px solid #fff; border-right: 1px solid #000;	cursor: hand;padding: 0 0 0 8px; cursor:pointer;cursor:hand;width:100%;w\idth:108%;}
+.menuSX input.sottoMenu:hover, .menuSX input.sottoMenuHover {text-align:left;font-size: 0.95em;	height:auto; margin: 0;border-top: 1px solid #fff; border-bottom: 1px solid #000; border-left: 1px solid #fff; border-right: 1px solid #000;	cursor: hand;padding: 0 0 0 8px; cursor:pointer;cursor:hand;color:#fff;background: #333;width:100%;w\idth:108%;}
+
+.menuSX input.subMenu {font-size: 0.95em; background:#ffe;color:#000;margin:0;border-bottom:1px solid #ccc;
+	border-right:1px solid #5D5D5D;	padding: 0 0 0 8px; cursor:pointer;cursor:hand;width:100%;w\idth:108%; text-align:left;}
+.menuSX input.subMenu:hover, .menuSX input.subMenuHover {font-size: 0.95em;background:#eaeaea url(/staticresources/ris/resources/application/agricoltura/css/im/fr_b.gif) 2px 50% no-repeat;color:#000;margin:0;border-bottom:1px solid #ccc;	border-right:1px solid #5D5D5D;cursor:pointer;cursor:hand;width:100%;w\idth:108%;padding: 0 0 0 8px;text-align:left;}
+
+
+.mis2 { height:30px;}
+.mis3 { height:42px;}
+.mis4 { height:60px;}
+
+/* fine menu input */
+
+/* -------PULSANTI-------- */
+/* contenitore pulsanti */
+#pulsanti, .pulsanti{
+ 	margin:6px 0;
+	height:20px; 
+	display:block;
+	/*width:100%;*/
+	position:relative; 
+}
+
+/* pulsante a DESTRA */
+.annulla, #annulla {	
+	float:right;
+	text-align:center;
+	color:#000;
+	background: #EFE7BD;
+	height:14px; 
+	line-height:14px;
+	margin:0 3px 0 0; 
+	border-top: 1px solid #fff; 
+	border-bottom: 1px solid #000; 
+	border-left: 1px solid #fff; 
+	border-right: 1px solid #000;
+    font-size:0.95em;
+	position:relative;
+
+}
+.annulla a,
+#annulla a {
+	display:block;
+	padding: 0 6px;
+}
+.annulla a:link,
+.annulla a:visited,
+#annulla a:link,
+#annulla a:visited {
+	color:#000;
+	background-color: #EFE7BD;
+}
+.annulla a:hover,
+.annulla a:active,
+#annulla a:hover,
+#annulla a:active {
+	color:#fff;
+	background-color:#b38900;
+}
+
+/* pulsante a SINISTRA */
+#azione, .azione {
+	float:left;
+	text-align:center;
+	color:#B38900;
+	background-color: #EFE7BD; 
+	height:14px;
+	line-height:14px;
+	margin:0 3px 0 0; 
+	border-top: 1px solid #fff; 
+	border-bottom: 1px solid #000; 
+	border-left: 1px solid #fff; 
+	border-right: 1px solid #000;
+	position:relative;
+	font-size:.95em;
+	width: auto;
+}
+#azione a , .azione a{
+	display:block;
+	padding:0 6px;
+}
+#azione a:link,
+.azione a:link,
+#azione a:visited,
+.azione a:visited{
+	color:#000;
+	background-color: #EFE7BD;
+}
+#azione a:hover, .azione a:hover,
+#azione a:active, .azione a:active {
+	color:#fff;
+	background-color:#b38900;
+}
+/*table td div.azione a{
+	margin-bottom:30px;
+}*/
+table td div.azione{background:none;
+}
+
+
+#cerca, .cerca {
+	float:left;
+	text-align:center;
+	color:#000;
+	background-color: #EFE7BD; 
+	height:14px;
+	line-height:14px;
+	margin:0 3px 0 0; 
+	border-top: 1px solid #fff; 
+	border-bottom: 1px solid #000; 
+	border-left: 1px solid #fff; 
+	border-right: 1px solid #000;
+	font-size:0.95em;
+	width: auto;
+}
+#cerca a, .cerca a{
+	display:block;
+	padding:0 6px;
+	color:#000;
+	background-color: #EFE7BD;
+}
+#cerca a:link,
+.cerca a:link,
+#cerca a:visited,
+.cercae a:visited{
+	color:#000;
+	background-color: #EFE7BD;
+}
+#cerca a:hover, .cerca a:hover,
+#cerca a:active, .cerca a:active {
+	color:#fff;
+	background-color:#b38900;
+}
+/* fine formattazione pulsanti */
+
+/* ---------------------------------------------------------------------------- */
+/* ------------- CONTENUTO DELLA PAGINA (posizionato a destra del menu)-------- */
+/* ---------------------------------------------------------------------------- */
+
+
+body#popup {
+	background:#fff;
+	margin:0;
+	padding: 0;
+}
+#contenutopop {
+	background:#fff;
+	margin:0;
+	padding:0;
+}
+#contenutopop p {
+text-align:left;
+position:relative;
+margin: 6px;
+padding: 6px 0;
+}
+
+/*inseriti stili x pagina help da newstandardizzato_fluido.css*/
+#contenutopop dl {padding: 0 6px 0 6px;}
+#contenutopop dl dt{ background-color:#CCCCCC; color:#660000; font-weight: bold; padding-left:6px;}
+#contenutopop dl dd{ background-color:#E6E6E6; margin: 0 0 3px 0; padding: 0 6px 0 6px;}
+
+/*aggiunto x popup da skin_organismo_pagatore_fluido.css (x titolo) */
+#contenutopop p.titolo{
+	color: #5E2F00;
+	font-size:1.3em;
+	text-decoration:underline;
+	font-weight:bold;
+}
+/**/
+
+#contenutopop h3{
+text-align:left;
+}
+#contenuto p {
+	margin: 0;
+	padding: 6px 0;
+}
+#contenuto p.evidenza {
+	margin: 0;
+	padding: 3px 6px;
+}
+#contenuto form {
+	margin:0;
+	padding:0;
+}
+#contenuto h4 {
+	background: #cccccc;
+	color: #660000; clear:none;
+}
+
+#contenuto h4.tit1 {
+	background: #cccccc;
+	color: #660000; clear:none;	font-size:1.3em;
+	margin-bottom:20px;
+}
+
+#contenuto h4.titolo, #contenutopop h4.titolo {
+	background: #fff;
+	color: #5E2F00;
+	font-size:1.3em;
+	margin:8px 0 6px 0;
+	text-decoration:underline;
+}
+
+/* -------TESTATA (dati azienda selezionata)----- */
+#intesta{
+	font-size:0.95em;
+ 	padding:3px 0;
+ }
+#intesta p{
+	font-size:1em;
+	font-weight:bold;
+	color:#000;
+	margin:3px 0;
+	padding:0 6px;
+}
+#intesta p.azienda{
+	font-size:1.4em;
+	color:#900;
+}
+#intesta p.para{
+	font-size:.95em;
+}
+
+#intesta p.fascicolovirtuale{
+font-size:1.4em;
+color:#900;
+height: 30px;
+min-height: 30px;
+background: url(/ris/resources/application/agricoltura/css/im/fascicolo_virtuale.png) 5px 0% no-repeat;
+padding-left: 40px !important;
+	}
+
+/* --------FORMATTAZIONE DEI TAB-------- */
+.voce {
+	font-weight: bold;
+	color: #666666;
+}
+.voce a:link, .voce a:visited {
+	color: #B38900;
+	padding:0 10px;
+	border:1px solid #fff;
+	background:#fff;
+		}
+.voce a:hover, .voce a:active {
+	color: #000;
+}
+.evidenza {
+ 	border:1px solid #b48c09;
+	color: #000;
+	background-color: #EFE7BD;
+	padding:0 6px;
+	font-weight: bold;
+}
+/* fine formattazione dei tab */
+
+/* ------------PAGINAZIONE-------------- */
+p.allineaDx{
+	text-align:left;
+}
+.allineaDx span{
+	text-align:right;
+	position:absolute;
+	right:38px;
+}
+.allineaDx span a{
+	color:#B38900;
+	background:#fff;
+	padding:0 3px;
+}
+.allineaDx span a:hover{
+	color:#fff;
+	background-color:#B38900;
+}
+
+.paginazione .dx a.gruppo,.paginazione .dx a.gruppo:link,.paginazione .dx a.gruppo:visited 
+ {text-decoration:underline;}
+/*
+.paginazione span.evidenza, .paginazione span.evidenziato {color:#fff; border:none;background:#B48C09;padding: 0 5px 0 5px;}*/
+.paginazione .dx span.evidenziato {color:#fff;background:#B48C09;padding: 0 5px 0 5px;}
+.paginazione .dx span.evidenza    {color:#fff;background:#B48C09;padding: 0 5px 0 5px;}
+/*.paginazione span.evidenziato {width: 15px!important; }
+/* Inizio paginazione nuova con campo input*/
+.paginazione {background:#E9E9E9;/*clear:both;*/font-size:0.95em;text-align: right;width:100%;padding:0;margin:0 0 3px 0;line-height:1.50em;font-weight: bold;}
+.paginazione .sx {/* nel caso ci sia il testo allineato a sinista 'xx risltati trovati'*/
+ padding-left:6px; font-weight:normal; float:left; color:#000; font-weight:bold;background:#E9E9E9;}
+.paginazione .dx select{/*nel caso si possa scegliere dall'elenco il numero pagina*/
+ font-size:.8em;border:1px solid #000;margin:0;vertical-align:middle;}
+.paginazione .dx input{/*nel caso si possa inserire il numero pagina*/
+ font-size:.8em; width:25px;border:1px solid #000;margin:0;vertical-align:middle;}
+/* vai */
+.paginazione .dx .vai input, .paginazione .dx .vai input.vaiInput {margin: 0 30px 0 0; width:30px;}
+.paginazione .dx .vai input.vaiInput{color:#000;background:#E9E9E9;padding:0;cursor:pointer!important;cursor:hand;font-size:1em;font-weight:bold;border:0;}
+.paginazione .dx .vai input.vaiInputHover, .paginazione .dx .vai input:hover {font-size:1em;font-weight:bold;color:#000;background:#999;padding:0;border:0;cursor:pointer!important;cursor:hand;}
+.paginazione .dx .vai input.vaiInputHover, .paginazione .dx .vai input:hover {color:#fff;background-color:#999;}
+/* precedente/successiva */
+.paginazione .dx a,.paginazione .dx a:link,.paginazione .dx a:visited, .paginazione .dx a:hover, .paginazione .dx a:active { padding: 0 5px; text-align:center; font-weight:bold; color:#000; text-decoration:none; margin: 0;}
+/*.paginazione .dx a,
+.paginazione .dx a:link, 
+.paginazione .dx a:visited,
+.paginazione .dx a:hover,
+.paginazione .dx a:active  {width: 24px!important;}
+/*per IE 5.0
+.paginazione .dx .numeri a,
+.paginazione .dx .numeri a:link, 
+.paginazione .dx .numeri a:visited,
+.paginazione .dx .numeri a:hover,
+.paginazione .dx .numeri a:active  {width: 15px!important;}*/
+.paginazione .dx a:hover {background-color:#999;color: #fff;}
+/* Fine paginazione */
+
+/* Inizio paginazione Input */
+.paginazione {background:#E9E9E9;color:#000;font-weight:bold;font-size:0.95em;height:1.45em;}/*clear:both;border:1px solid red;*position:relative;margin:0 0 3px 0;padding:0 1px 0 0;/
+
+/*.paginazione .sx {float:left;color:#000;padding-left:6px;display:block;height:100%;height:1.45em;}
+.paginazione .sx {padding:1px 0 0 6px;}*/
+/*.paginazione .dx .vai input, .paginazione .dx .vai input.vaiInput {margin: 0 30px 0 0; width:30px;}
+.paginazione .dx .vai input.vaiInput, .paginazione .dx .vai input.vaiInputHover, .paginazione .dx .vai input:hover {color:#000;background:transparent;padding:0;text-decoration:none;border:0 #fff solid;cursor:pointer!important;cursor:hand;}
+.paginazione .dx .vai input.vaiInputHover, .paginazione .dx .vai input:hover {color:#fff;background:#000;}*/
+/* precedente/successiva */
+.paginazione .dx {/*position:relative;*/float:right;color:#000;}
+.paginazione .dx span.evidenza {color:#fff;background-color:#B48C09;padding: 0 5px 0 5px;}
+.paginazione .dx input, .paginazione .dx span.evidenza {font-weight:bold;}
+.paginazione .dx span.inputPag input, .paginazione .dx span.inputPag input.numInput {
+border:0px solid #fff;color:#000;background-color:#E9E9E9;text-decoration:none;cursor:pointer!important;cursor:hand; font-size:.9em!important; text-align:center;padding:0 0 1px 0;margin:0 0 1px 0 ;_padding:1px 0 0 0;_margin:0;}
+*:first-child+html .paginazione .dx span.inputPag input, *:first-child+html .paginazione .dx span.inputPag input.numInput {padding:1px 0;margin:0 0 1px 0;font-size:.8em!important; line-height:1.50em!important;} 
+
+.paginazione .dx span.inputScritta input, .paginazione .dx span.inputScritta input.numInput {
+border:0px solid #fff;width:45px;color:#000;background-color:#E9E9E9;padding:0;text-decoration:none;cursor:pointer!important;cursor:hand;font-size:1em!important;}
+.paginazione .dx span.inputPag input.numInputHover, .paginazione .dx span.inputPag input:hover {color:#fff;background-color:#999;}
+.paginazione .dx span.inputScritta input.numInputHover, .paginazione .dx span.inputScritta input:hover {color:#fff;background-color:#999;}
+/* Fine paginazione Input */
+
+/* fine paginazione */
+select.multiple {border:1px solid #999;margin:0; padding:0; line-height:.7em; font-size:.8em;height:32px!important;_height:auto;}
+
+
+*:first-child+html select.multiple {height:auto!important;}
+@media all and (min-width: 0px){
+select.multiple {height:30px;}
+}
+
+input.tasto {color:#000;background:#E9E9E9;padding:0;text-decoration:none;cursor:pointer!important;cursor:hand;font-size:1em;font-weight:bold;border:0 ; margin-bottom:1px;}
+
+input.tasto:hover, input.tastoHover {font-size:1em; font-weight:bold;color:#000;background:none;padding:0;text-decoration:none;border:0;cursor:pointer!important;cursor:hand;margin-bottom:1px;color:#fff;background-color:#999;}
+
+/* -------------- FORMATTAZIONE TABELLE-------------- */
+div.sin {
+	float: left;
+}
+div.des {
+	float: right;
+}
+#contenuto table, #corpo table{
+	font-size:0.95em;
+	margin: 0 0 6px 0;
+	width:100%;
+	border:1px solid #ccc;
+	padding:0;
+}
+#contenutopop table /**/{
+ font-size:0.95em;
+	/*margin:6px 0 0 0;*/
+	margin: 0 0 6px 0;
+	width:100%;
+	border:1px solid #ccc;
+	padding:0;
+}
+
+#contenuto table caption, #corpo table caption{
+	margin:0 0 0 0;
+	color:#660000;
+	padding:0 0 0 6px;
+	line-height: 16px;
+	height:16px;
+	text-align: left;
+	font-weight:bold;
+	border:1px solid #ccc;
+	border-bottom:0;
+	background-color:#ccc;
+}
+
+#contenutopop table caption {
+	margin:0 0 0 0;
+	color:#660000;
+	padding:0 0 0 6px;
+	line-height: 16px;
+	height:16px;
+	text-align: left;
+	font-weight:bold;
+	border:1px solid #ccc;
+	border-bottom:0;
+	background-color:#ccc;
+}
+
+#contenuto table td, #corpo table td{
+	padding:3px;
+	background:#CCCCCA;
+}
+#contenuto table td.presente{
+font-weight:bold;
+}
+#contenuto table td.piccola{
+width:150px;
+}
+#contenuto table td.media{
+width:250px;
+}
+#contenuto table td.grande{
+width:350px;
+}
+#contenuto table td.chiara,
+#contenuto table tr.chiara,
+#corpo table td.chiara,
+#corpo table tr.chiara{
+	padding:3px;
+	background-color:#DDDDDB;
+}
+#contenuto table td.chiara2,
+#contenuto table tr.chiara2,
+#corpo table td.chiara2,
+#corpo table tr.chiara2{
+	padding:3px;
+	text-align:center;
+	background:#E6E6E6;
+	font-weight:bold;
+}
+#contenuto table td.rossoDx {
+	padding:3px;
+	background:#CCCCCA;
+	color:#FF0000;
+}
+
+col.cinque {width: 5%;}
+col.dieci {width: 10%;}
+col.quindici {width: 15%;}
+col.diciotto {width: 18%;}
+col.venti {width: 20%;}
+col.venticinque {width: 25%;}
+col.trenta {width: 30%;}
+col.quaranta {width:40%;}
+col.quarantacinque {width: 45%;}
+col.cinquanta {width: 50%;}
+col.cinquantacinque {width: 55%;}
+col.sessanta {width: 60%;}
+col.settanta {width: 70%;}
+
+#contenutopop table td {
+	padding:3px;
+	background:#CCCCCA;
+	text-align:left;
+}
+
+/*dimensioni larghezza input tipo testo*/
+.mini {width: 30%;}
+.medio{width: 50%;}
+.esteso {width: 95%;}
+
+/*aggiunto x popup da skin_organismo_pagatore_fluido.css (x riga totali)*/
+#contenutopop table td.tot{
+	padding:3px;
+	background:#E6E6E6;
+	text-align:right;
+	font-weight:bold;
+}
+
+/*aggiunto per "stampa statistica domande"*/
+#contenutopop table tr.tot_livello1 td {background:#B4B4B1;}
+#contenutopop table tr td.no_dati {background:#fff;}
+
+#contenutopop table td.data {
+	padding:3px;
+	background:#CCCCCA;
+	text-align:center;
+}
+#contenutopop table td.numeridx {
+	padding:3px;
+	background:#CCCCCA;
+	text-align:right;
+}
+#contenutopop table td.totale {
+	padding:3px;
+	background:#E6E6E6;
+	text-align:right;
+	font-weight:bold;
+}
+#contenuto table td.red, #contenutopop table td.red {
+	padding:3px;
+	background:#CCCCCA;
+	color:#CC0000;
+}
+
+/*#####################################################################*/
+/* formatta icona "PRATICHE" */
+#contenuto table td.ico_pratica, #contenutopop table td.ico_pratica {
+text-align:center;width:30px;padding:2px 6px 2px 6px;}
+#contenuto a.pratica, #contenutopop a.pratica {
+	height:28px;
+	width:24px;
+	background: url(/staticresources/ris/resources/application/agricoltura/css/im/pratiche.gif) 50% 50% no-repeat;
+	display:block;
+}
+
+/* formatta icona "PIANO GRAFICO" */
+#contenuto table td.ico_pianoGrafico, #contenutopop table td.pianoGrafico {
+text-align:center;width:30px;padding:2px 6px 2px 6px;}
+#contenuto a.pianoGrafico, #contenutopop a.pianoGrafico {
+	height:28px;
+	width:28px;
+	background: url(/ris/resources/application/agricoltura/css/im/pianoGrafico.png) 50% 50% no-repeat;
+  background-size: 28px 28px;
+	display:block;
+}
+
+/*#####################################################################*/
+/* formatta con le icone bloccato, eseguito, warning,ko */
+#contenuto a.ko, #contenutopop a.ko {
+	height:17px;
+	width:17px;
+	background: url(/staticresources/ris/resources/application/agricoltura/css/im/ko.gif) 50% 50% no-repeat;
+	display:block;
+}
+
+#contenuto a.bloccante, #contenutopop a.bloccante {
+	height:17px;
+	width:17px;
+	background: url(/staticresources/ris/resources/application/agricoltura/css/im/Bloccante.gif) 50% 50% no-repeat;
+	display:block;
+}
+
+#contenuto a.refresch, #contenutopop a.refresch {
+	height:18px;
+	width:18px;
+	background: url(/staticresources/ris/resources/application/agricoltura/css/im/view_refresh.gif) 50% 50% no-repeat;
+	display:block;
+}
+
+#contenuto a.eseguito, #contenutopop a.eseguito {
+	height:17px;
+	width:17px;
+	background: url(/staticresources/ris/resources/application/agricoltura/css/im/ok.gif) 50% 50% no-repeat;
+	display:block;
+}
+#contenuto a.anomalia, #contenutopop a.anomalia {
+	height:17px;
+	width:17px;
+	background: url(/staticresources/ris/resources/application/agricoltura/css/im/Warning.gif) 50% 50% no-repeat;
+	display:block;
+}
+#contenuto table td span.ko, #contenutopop table td span.ko {
+	height:17px;
+	width:17px;
+	background: url(/staticresources/ris/resources/application/agricoltura/css/im/ko.gif) 50% 50% no-repeat;
+	display:block;
+}
+#contenuto table th span.ko, #contenutopop table th span.ko {
+	height:17px;
+	width:17px;
+	background: url(/staticresources/ris/resources/application/agricoltura/css/im/ko.gif) 50% 50% no-repeat;
+	display:block;
+}
+#contenuto table td span.eseguito, #contenutopop table td span.eseguito {
+	height:17px;
+	width:17px;
+	background: url(/staticresources/ris/resources/application/agricoltura/css/im/ok.gif) 50% 50% no-repeat;
+	display:block;
+}
+#contenuto table td span.anomalia, #contenutopop table td span.anomalia {
+	height:17px;
+	width:17px;
+	background: url(/staticresources/ris/resources/application/agricoltura/css/im/Warning.gif) 50% 50% no-repeat;
+	display:block;
+}
+#contenuto table td span.bloccante, #contenutopop table td span.bloccante {
+	height:17px;
+	width:17px;
+	background: url(/staticresources/ris/resources/application/agricoltura/css/im/Bloccante.gif) 50% 50% no-repeat;
+	display:block;
+}
+
+
+#contenuto table td a.xml {height:16px;width:38px;margin:0 25% 0 25% ;
+background: url(im/ico_xml.gif) 50% 50% no-repeat;display:block;}
+
+/*#########################################################################################################################################*/
+/* formatta con le icone per documentale: storicizzato, scaduto, annullato, ok, mancante, schedario, albero, proposta, validata, biologico*/
+#contenuto a.docMancante, #contenutopop a.docMancante{
+	height:30px;
+	width:25px;
+	background: url(/staticresources/ris/resources/application/agricoltura/css/im/doc_mancante.gif) 50% 50% no-repeat;
+	display:block;
+}
+#contenuto table td.docMancante, #contenutopop table td.docMancante{
+	padding:3px;
+	background:#000;
+	text-align:center;
+}
+
+
+#contenuto a.docAnnullato, #contenutopop a.docAnnullato {
+	height:30px;
+	width:25px;
+	background: url(/staticresources/ris/resources/application/agricoltura/css/im/doc_annullato.gif) 50% 50% no-repeat;
+	display:block;
+}
+#contenuto table td.docAnnullato, #contenutopop table td.docAnnullato  {
+	padding:3px;
+	background:#F2CC39;
+	text-align:center;
+}
+#contenuto a.docScaduto, #contenutopop a.docScaduto{
+	height:30px;
+	width:25px;
+	background: url(/staticresources/ris/resources/application/agricoltura/css/im/doc_scaduto.gif) 50% 50% no-repeat;
+	display:block;
+}
+#contenuto table td.docScaduto, #contenutopop table td.docScaduto {
+	padding:3px;
+	background:#C91B14;
+	text-align:center;
+}
+#contenuto a.docStoricizzato, #contenutopop a.docStoricizzato{
+	height:30px;
+	width:25px;
+	background: url(/staticresources/ris/resources/application/agricoltura/css/im/doc_storicizzato.gif) 50% 50% no-repeat;
+	display:block;
+}
+#contenuto table td.docStoricizzato, #contenutopop table td.docStoricizzato {
+	padding:3px;
+	background:#666666;
+	text-align:center;
+}
+#contenuto a.docOk, #contenutopop a.docOk {
+	height:30px;
+	width:25px;
+	background: url(/staticresources/ris/resources/application/agricoltura/css/im/doc_ok.gif) 50% 50% no-repeat;
+	display:block;
+	
+}
+#contenuto table td.docOk, #contenutopop table td.docOk{
+	padding:3px;
+	background:#86BE03;
+	text-align:center;
+}
+#contenuto a.telefono, #contenutopop a.telefono {
+	height:30px;
+	width:25px;
+	background: url(/staticresources/ris/resources/application/agricoltura/css/im/ico_sms.gif) 50% 50% no-repeat;
+	display:block;
+	
+}
+#contenuto table td.telefono, #contenutopop table td.telefono{
+	padding:3px;
+	text-align:center;
+}
+#contenuto a.albero, #contenutopop a.albero{
+	height:30px;
+	width:25px;
+	background: url(/staticresources/ris/resources/application/agricoltura/css/im/ico_albero.gif) 50% 50% no-repeat;
+	display:block;
+	
+}
+
+#contenuto a.schedario, #contenutopop a.schedario{
+	height:30px;
+	width:25px;
+	background: url(/staticresources/ris/resources/application/agricoltura/css/im/ico_uva_blu.gif) 50% 50% no-repeat;	
+	/*background: url(/staticresources/ris/resources/application/agricoltura/css/im/schedario_vitivinicolo2.gif) 50% 50% no-repeat;	*/
+	display:block;	
+}
+
+#contenuto a.schedarioRosso, #contenutopop a.schedarioRosso{
+	height:30px;
+	width:25px;
+	background: url(/staticresources/ris/resources/application/agricoltura/css/im/ico_uva_rossa.gif) 50% 50% no-repeat;	
+	/*background: url(/staticresources/ris/resources/application/agricoltura/css/im/schedario_vitivinicolo2.gif) 50% 50% no-repeat;*/	
+	display:block;	
+}
+#contenuto a.proposta, #contenutopop a.proposta{
+	height:30px;
+	width:25px;
+	background: url(/staticresources/ris/resources/application/agricoltura/css/im/proposta.gif) 50% 50% no-repeat;	
+	display:block;	
+}
+#contenuto a.validata, #contenutopop a.validata{
+	height:30px;
+	width:25px;
+	background: url(/staticresources/ris/resources/application/agricoltura/css/im/validata.gif) 50% 50% no-repeat;	
+	display:block;	
+}
+
+#contenuto a.biologico, #contenutopop a.biologico {
+ height:30px;
+ width:25px;
+ background: url(/staticresources/ris/resources/application/agricoltura/css/im/ico_biologico.gif) 50% 50% no-repeat;
+ display:block;
+}
+
+/*################################################################################################################################*/
+/* formatta con le icone per documentale: visualizza dettaglio, modifica, gis, gis anomalia bloccante, gis anomalia warning */
+#contenuto a.gis, #contenutopop a.gis {
+	height:30px;
+	width:20px;
+	background: url(/staticresources/ris/resources/application/agricoltura/css/im/gis.gif) 50% 50% no-repeat;
+	display:block;
+}
+#contenuto a.gis_stabilizzato, #contenutopop a.gis_stabilizzato {
+	height:30px;
+	width:20px;
+	background: url(/staticresources/ris/resources/application/agricoltura/css/im/verde_stab.gif) 50% 50% no-repeat;
+	display:block;
+}
+#contenuto a.gis_stabInCorso, #contenutopop a.gis_stabInCorso {
+	height:30px;
+	width:20px;
+	background: url(/staticresources/ris/resources/application/agricoltura/css/im/verde_in_stab.gif) 50% 50% no-repeat;
+	display:block;
+}
+#contenuto a.p30, #contenutopop a.p30 {
+	height:30px;
+	width:20px;
+	background: url(/staticresources/ris/resources/application/agricoltura/css/im/rosso.gif) 50% 50% no-repeat;
+	display:block;
+}
+#contenuto a.p30_stabilizzato, #contenutopop a.p30_stabilizzato {
+	height:30px;
+	width:20px;
+	background: url(/staticresources/ris/resources/application/agricoltura/css/im/rosso_stab.gif) 50% 50% no-repeat;
+	display:block;
+}
+#contenuto a.p30_stabInCorso, #contenutopop a.p30_stabInCorso {
+	height:30px;
+	width:20px;
+	background: url(/staticresources/ris/resources/application/agricoltura/css/im/rosso_in_stab.gif) 50% 50% no-repeat;
+	display:block;
+}
+#contenuto a.p25, #contenutopop a.p25 {
+	height:30px;
+	width:20px;
+	background: url(/staticresources/ris/resources/application/agricoltura/css/im/arancio.gif) 50% 50% no-repeat;
+	display:block;
+}
+#contenuto a.p25_stabilizzato, #contenutopop a.p25_stabilizzato {
+	height:30px;
+	width:20px;
+	background: url(/staticresources/ris/resources/application/agricoltura/css/im/arancio_stab.gif) 50% 50% no-repeat;
+	display:block;
+}
+#contenuto a.p25_stabInCorso, #contenutopop a.p25_stabInCorso {
+	height:30px;
+	width:20px;
+	background: url(/staticresources/ris/resources/application/agricoltura/css/im/arancio_in_stab.gif) 50% 50% no-repeat;
+	display:block;
+}
+#contenuto a.p26, #contenutopop a.p26 {
+	height:30px;
+	width:20px;
+	background: url(/staticresources/ris/resources/application/agricoltura/css/im/giallo.gif) 50% 50% no-repeat;
+	display:block;
+}
+#contenuto a.p26_stabilizzato, #contenutopop a.p26_stabilizzato {
+	height:30px;
+	width:20px;
+	background: url(/staticresources/ris/resources/application/agricoltura/css/im/giallo_stab.gif) 50% 50% no-repeat;
+	display:block;
+}
+#contenuto a.p26_stabInCorso, #contenutopop a.p26_stabInCorso {
+	height:30px;
+	width:20px;
+	background: url(/staticresources/ris/resources/application/agricoltura/css/im/giallo_in_stab.gif) 50% 50% no-repeat;
+	display:block;
+}
+#contenuto a.grigioGis, #contenutopop a.grigioGis,
+#contenuto a.lavSosp, #contenutopop a.lavSosp {
+	height:30px;
+	width:20px;
+	background: url(/staticresources/ris/resources/application/agricoltura/css/im/grigio.gif) 50% 50% no-repeat;
+	display:block;
+}
+#contenuto a.grigioGis_stabilizzato, #contenutopop a.grigioGis_stabilizzato,
+#contenuto a.lavSosp_stabilizzato, #contenutopop a.lavSosp_stabilizzato {
+	height:30px;
+	width:20px;
+	background: url(/staticresources/ris/resources/application/agricoltura/css/im/grigio_stab.gif) 50% 50% no-repeat;
+	display:block;
+}
+#contenuto a.grigioGis_stabInCorso, #contenutopop a.grigioGis_stabInCorso,
+#contenuto a.lavSosp_stabInCorso, #contenutopop a.lavSosp_stabInCorso {
+	height:30px;
+	width:20px;
+	background: url(/staticresources/ris/resources/application/agricoltura/css/im/grigio_in_stab.gif) 50% 50% no-repeat;
+	display:block;
+}
+#contenuto a.gisAnomaliaBloccante, #contenutopop a.gisAnomaliaBloccante {
+	height:30px;
+	width:20px;
+	background: url(/staticresources/ris/resources/application/agricoltura/css/im/gis_anomalia_bloccante.gif) 50% 50% no-repeat;
+	display:block;
+}
+#contenuto a.gisAnomaliaWarning, #contenutopop a.gisAnomaliaWarning {
+	height:30px;
+	width:20px;
+	background: url(/staticresources/ris/resources/application/agricoltura/css/im/gis_anomalia_warning.gif) 50% 50% no-repeat;
+	display:block;
+}
+#contenuto a.gisNessunaAnomalia, #contenutopop a.gisNessunaAnomalia {
+	height:30px;
+	width:20px;
+	background: url(/staticresources/ris/resources/application/agricoltura/css/im/gis_nessuna_anomalia.gif) 50% 50% no-repeat;
+	display:block;
+}
+
+#contenuto a.dettaglio, #contenutopop a.dettaglio {
+	height:25px;
+	width:20px;
+	background: url(/staticresources/ris/resources/application/agricoltura/css/im/approfon.gif) 50% 50% no-repeat;
+	display:block;
+}
+
+#contenuto a.lente, #contenutopop a.lente {
+	height:25px;
+	width:20px;
+	background: url(/staticresources/ris/resources/application/agricoltura/css/im/dettaglio.gif) 50% 50% no-repeat;
+	display:block;
+}
+
+#contenuto a.modifica, #contenutopop a.modifica {
+	height:25px;
+	width:20px;
+	background: url(/staticresources/ris/resources/application/agricoltura/css/im/modifica.gif) 50% 50% no-repeat;
+	display:block;
+}
+#contenuto a.cancella, #contenutopop a.cancella {
+	height:25px;
+	width:20px;
+	background: url(/staticresources/ris/resources/application/agricoltura/css/im/pulisci.gif) 50% 50% no-repeat;
+	display:block;
+}
+#contenuto a.aggiungi, #contenutopop a.aggiungi {
+	height:25px;
+	width:20px;
+	background: url(/staticresources/ris/resources/application/agricoltura/css/im/plus.gif) 50% 50% no-repeat;
+	display:block;
+}
+
+#contenuto a.dividiPart, #contenutopop a.dividiPart {
+	height:25px;
+	width:20px;
+	background: url(/staticresources/ris/resources/application/agricoltura/css/im/arrow_divide.gif) 50% 50% no-repeat;
+	display:block;
+}
+
+#contenuto a.cestino, #contenutopop a.cestino {
+	height:25px;
+	width:20px;
+	background: url(/staticresources/ris/resources/application/agricoltura/css/im/cestino.gif) 50% 50% no-repeat;
+	display:block;
+}
+
+#contenuto a.istanza_inizio, #contenutopop a.istanza_inizio {
+	height:25px;
+	width:20px;
+	background: url(/staticresources/ris/resources/application/agricoltura/css/im/istanza_inizio.gif) 50% 50% no-repeat;
+	display:block;
+}
+
+#contenuto a.istanza_fine, #contenutopop a.istanza_fine {
+	height:25px;
+	width:20px;
+	background: url(/staticresources/ris/resources/application/agricoltura/css/im/istanza_fine.gif) 50% 50% no-repeat;
+	display:block;
+}
+
+#contenuto a.notificheparticellari, #contenutopop a.notificheparticellari {
+	height:25px;
+	width:20px;
+	background: url(/staticresources/ris/resources/application/agricoltura/css/im/notifiche_particellari.gif) 50% 50% no-repeat;
+	display:block;
+}
+
+#contenuto a.bloccoprocedimenti, #contenutopop a.bloccoprocedimenti {
+	height:25px;
+	width:20px;
+	background: url(/staticresources/ris/resources/application/agricoltura/css/im/procstop.gif) 50% 50% no-repeat;
+	display:block;
+}
+
+#contenuto a.aggInCorso, #contenutopop a.aggInCorso {
+	height:32px;
+	width:32px;
+	background: url(/staticresources/ris/resources/application/agricoltura/css/im/agg_in_corso.png) 50% 50% no-repeat;
+	display:block;
+}
+
+
+#contenuto table td.red2 {
+	padding:3px;
+	background:#CCCCCA;
+	color:#CC0000;
+	text-align:right;
+}
+#contenuto table td.intestazione2, #contenutopop table td.intestazione2 {
+	padding:3px;
+	text-align:left;
+	background:#E6E6E6;
+	font-weight:bold;
+}
+
+#contenuto table th.allineaSx, #contenutopop table th.allineaSx, #content table th.allineaSx {
+	padding:3px;
+	text-align:left;
+	background:#E6E6E6;
+	font-weight:bold;
+}
+
+#contenuto table td.intestazione2 span{
+color:#FF0000;
+}
+#contenuto table td.radio {
+	width:10px!important;
+}
+#contenuto table td.totale{
+	padding:3px;
+	background:#E6E6E6;
+	text-align:right;
+	/*width: 30%;*/
+	font-weight:bold;
+}
+#contenuto table td.tot{
+	padding:3px;
+	background:#E6E6E6;
+	text-align:right;
+	font-weight:bold;
+}
+#contenuto table td.totale2{
+	padding:3px;
+	background:#E6E6E6;
+	text-align:center;
+	width: 30%;
+	font-weight:bold;
+}
+.rosso {
+	color: #FF0000;
+}
+#contenuto table td.rossoDx {
+	padding:3px;
+	background:#CCCCCA;
+	color:#FF0000;
+	text-align:right;
+}
+#contenuto table td.rossoCn {
+	padding:3px;
+	background:#CCCCCA;
+	color:#FF0000;
+	text-align:center;
+}
+
+#corpo table td.giallo {
+background-color:#FFEC9D;}
+
+#corpo table td.grigio {
+background-color:#999;}
+
+/*per comune, stato estero, città, email*/
+#contenuto table td input.text, #contenuto table td select.text {
+	vertical-align:middle;
+	 
+	color:#000;
+	/*background:#fff;font-size:0.8em;*/
+	margin:0;
+	width:270px;
+}
+
+#contenuto table td select.textMed {
+	vertical-align:middle;
+	color:#000;
+	margin:0;
+	width:170px;
+}
+
+#contenuto table td input.longText, #contenuto table td select.longText {
+	vertical-align:middle;
+	
+	color:#000;
+	/*background:#fff;font-size:0.8em; */
+	margin:0;
+	width:390px;
+}
+/*per codicefiscale:*/
+#contenuto table td input.textmediolungo {
+	vertical-align:middle;
+	
+	color:#000;
+	/*background:#fff;font-size:0.8em;*/
+	margin:0;
+	width:125px;
+}
+/*per date:*/
+#contenuto table td input.textmedio, #contenutopop input.textmedio {
+	vertical-align:middle;
+	color:#000;
+	/*background:#fff;	font-size:0.8em;
+*/
+	margin:0;
+	width: 65px;
+}
+
+/*per cognome, nome, ragione sociale, comune:*/
+#contenuto table td input.trenta {
+	vertical-align:middle;
+
+	color:#000;
+	/*background:#fff;	font-size:0.8em;*/
+	margin:0;
+	width: 190px;
+}
+/*per sigla provincia:*/
+#contenuto table td input.due {
+	vertical-align:middle;
+	/*
+	color:#000;
+	background:#fff;font-size:0.8em;*/
+	margin:0;
+	width: 30px;
+}
+/*per telefono, fax */
+#contenuto table td input.quindici {
+	vertical-align:middle;
+	
+	/*color:#000;
+	background:#fff;font-size:0.8em;*/
+	margin:0;
+	width: 100px;
+}
+/*per cap */
+#contenuto table td input.textbreve {
+	vertical-align:middle;
+	margin:0;
+	width: 40px;
+}
+#contenuto table td textarea {
+	font-family:Arial, Helvetica, Geneva, Swiss, SunSans-Regular;
+	vertical-align:middle;
+	font-size:1em;
+	color:#000;
+	/*background:#fff;*/
+	border:1px solid #000;
+	margin:0;
+}
+#contenuto table td select {
+	vertical-align:middle;
+	font-size:0.95em;
+	color:#000;
+	/*background:#fff;*/
+	border:1px solid #000;
+	padding: 1px 2px 1px 2px;
+	line-height:0.9em;
+}
+
+#contenuto table td input {
+	font-size:0.95em;
+}
+#contenuto table td selectBloccata {
+	font-size:0.9em;
+	color:#FF0000;
+	background:#fff;
+	border:1px solid #FF0000;
+	padding: 1px 2px 1px 2px;
+	line-height:0.9em;
+	width:10px;
+}
+#contenuto table select.lunga {
+	font-size:0.9em;
+	color:#000;
+	/*background:#fff;*/
+	border:1px solid #000;
+	padding: 1px 2px 1px 2px;
+	line-height:0.9em;
+	width:400px;
+}
+
+#contenuto table input disabled {
+	background:#ccc;
+}
+#contenuto table td input.textbreve disabled{
+background:#ccc;}
+
+
+
+
+#contenuto table td #azione {
+	position:static;
+}
+#contenuto table th,
+#corpo table th {
+	padding:3px;
+	background:#E6E6E6;
+	text-align:right;
+	width: 30%; 
+}
+
+
+#contenuto table th.radio, #corpo table th.radio {
+text-align:center;
+	width:10px!important;
+	padding:0;
+	margin:0;
+}
+#contenuto table th.misura {
+	width:200px;
+}
+#contenuto table th.misuraG {
+	width:300px;
+}
+#contenuto table th.misura400 {
+	width:400px;
+}
+#contenuto table th.center, #content table th.center, #contenuto table th.ordine, #contenuto table.center th{
+	text-align:center;
+	width: auto;
+}
+#contenuto table th.auto{
+	width: auto;
+}
+
+#contenuto table td.center {
+	text-align:center;
+	width: auto;
+}
+
+#contenuto table th.ottanta {
+	width: 100px;
+}
+
+#contenutopop table th {
+	padding:3px;
+	background:#E6E6E6;
+	text-align:right;
+	width: 30%;
+}
+tr.ordine th {vertical-align:top;}
+th span.TitOrd {width:75%;float:left;display:block;min-height:16px;} 
+th a.giu {display:block;text-decoration:none;width:13px;height:16px;float:right;}
+th a.giu:link, th a.giu:visited, th a.giu:active{color:#444;background:transparent url(/staticresources/ris/resources/application/agricoltura/css/im/giu.gif) 100% 50% no-repeat;}
+th a.giu:hover {color:#999;background:transparent url(/staticresources/ris/resources/application/agricoltura/css/im/giu_roll.gif) 100% 50% no-repeat;}
+
+th a.su {width:13px;height:16px;display:block;text-decoration:none;float:right;}
+th a.su:link, th a.su:visited, th a.su:active{color:#444;background: transparent url(/staticresources/ris/resources/application/agricoltura/css/im/su.gif) 100% 50% no-repeat;}
+th a.su:hover {color:#999;background: transparent url(/staticresources/ris/resources/application/agricoltura/css/im/su_roll.gif) 100% 50% no-repeat;}
+
+th a.dis {width:13px;height:16px;display:block;text-decoration:none;float:right;}
+th a.dis:link, th a.dis:visited, th a.dis:active, th a.dis:hover{color:#444; background: transparent url(/staticresources/ris/resources/application/agricoltura/css/im/giu_roll.gif) 100% 50% no-repeat;}
+#contenutopop table th.center {
+	text-align:center;
+	width: auto;
+}
+
+#contenutopop table th.radio {
+text-align:center;
+	width: 20px;
+	padding:0;
+	margin:0;
+}
+.data{
+	text-align:center;
+}
+
+#contenuto table.tabellaColonne th {
+	width: 5%;  /* se a più colonne, annulla la larghezza standard del th  */
+}
+
+/* usato nei textarea */
+#descrizione {
+	width :462px;
+	color :#000;
+	float :left; 
+}
+/* fine formattazione delle tabelle */
+
+/* PAGINE DI ERRORE */
+.errore {
+	display:block;
+	font-weight: bold;
+	text-transform: uppercase;
+	color: #CC0000;
+	text-decoration: none;
+	text-align: center;
+	padding:6px 0 6px 0;
+}
+
+#boxError, .boxError, .messaggioKo{color:#FF0000;font-weight:bold;background:#DEDEDE;border-bottom:1px solid #9C9C9C;border-top:1px solid #9C9C9C;padding:12px;text-align:center;margin:0 0 8px 0;/*clear:both;*/}
+#boxError ul {margin:0;padding:0;list-style-type:square;}
+#boxError img {vertical-align:middle;}
+#corpo #boxError p {background:transparent;font-style:normal;font-size:1em;}
+#boxError .msgError, .boxError .msgError, #corpo #boxError p.msgError {font-weight:normal;color:#000;padding-top:20px;}
+/*msg errore x record non selezionato (blocca azione)*/
+ .messaggio{color:#000;font-weight:bold;background:#DEDEDE;border-bottom:1px solid #9C9C9C;border-top:1px solid #9C9C9C;padding:12px;text-align:center;margin:0 0 8px 0;clear:both;}
+#boxPositivo {border:1px dotted #000;padding:6px; margin-bottom:8px;font-weight:bold;text-align:center;}
+#boxAvviso {display: block;background-color:#fff;border-bottom:1px dashed #9C9C9C;border-top:1px dashed #9C9C9C;border-left:1px dashed #9C9C9C;border-right:1px dashed #9C9C9C;padding: 6px;margin:0 0 8px 0;font-weight:bold;font-size:1.2em;color:#000;text-align:center;}
+#boxAvviso p.boxMessaggio {display:block;text-align:center;background-color:#fff;margin: 0px;border: 0px;padding: 50px 0 50px 0;font-style:normal;}
+.tratteggio {border:1px dashed #9C9C9C;padding:3px;margin:0 0 10px 0;}
+
+
+.errore_inline {
+
+	font-weight: bold;
+	text-transform: uppercase;
+	color: #CC0000;
+	text-decoration: none;
+	text-align: center;
+	padding:6px 0 6px 0;
+}
+
+.errore_left_noup {
+	display:block;
+	font-weight: bold;
+	color: #CC0000;
+	text-decoration: none;
+	padding:6px 0 6px 0;
+}
+
+
+#contenutopop p.errore {
+	display:block;
+	font-weight: bold;
+	text-transform: uppercase;
+	color: #CC0000;
+	text-decoration: none;
+	text-align: center;
+	padding:6px 0 6px 0;
+	background:#fff;
+}
+#pulsantiError {
+	margin:0px;
+	width:100%; 
+	display:block;
+	text-align:center;
+}
+#annullaError {
+	font-size:0.95em;
+	width:100px;
+	text-align:center;
+	color:#B38900;
+	background-color: #EFE7BD; 
+	line-height:14px;
+	margin:0 auto 0 auto;
+	border-top: 1px solid #fff; 
+	border-bottom: 1px solid #000; 
+	border-left: 1px solid #fff; 
+	border-right: 1px solid #000;
+}
+#annullaError a:link,
+#annullaError a:visited{
+	color:#000;
+	background-color: #EFE7BD;
+	width:100px;
+}
+#annullaError a:hover,
+#annullaError a:active {
+	display:block;
+	width:100px;
+	color:#fff;
+	background-color:#b38900;
+}
+/* fine pagine errore */
+/* -------formattazioni varie---------- */
+/* sfondo ocra */
+#chiaro{
+	background:#dbba4f;
+	margin-bottom:3px;
+	color:#b48c09;
+}
+#nota,
+.nota {
+	font-size:0.95em;
+}
+#istruzioni,
+.istruzioni {
+	font-weight: bold;
+  color: black;
+}
+.legenda {
+	font-size:0.95em;
+}
+
+.feedback {
+	display:block;
+	font-weight: bold;
+	color: #00CC00;
+	text-decoration: none;
+	padding:6px 0 6px 0;
+}
+
+
+/*Usato da produzione per rendere i campi di testo non editabili:*/
+.grigetto{
+	background:#eaeaea;
+	color:#666666;
+}
+.puntoEscla {
+	font-weight:bold;
+	font-size:1em;
+	color:#FF0000;
+}
+.numeridx {
+	text-align:right;
+}
+.numeridxRed {
+	text-align:right;
+	color:#CC0000;
+}
+
+#indice {/**/
+	font-size:.95em;
+	border-bottom:1px solid #ccc;
+	padding: 3px 0;
+	margin: 3px 0;
+}
+#lista{
+	width: 210px;
+}
+
+.numeri {
+/*	position:relative;
+	padding-left:11px;
+	padding-right:6px;
+	color:#000;
+	display:block;
+	font-size:11px;
+	text-align:left;*/
+	text-align:right;
+}
+.pulsantiHelp {
+	float:left;
+	width:698px;
+}
+
+/* inizio stile per pulsanti input dati utente*/
+/* TEST PER FUNZIONAMENTO PULSANTI 
+input {
+	background: Lime !important;
+	margin: 0 !important;
+}
+*/
+
+input.inputPulsante {
+	font-size: 0.95em;
+	height:18px; 
+	margin: 3px 0 0 0;
+	font-weight:bold; 
+	text-decoration:none; 
+	text-align:center;
+	color:#000;
+	background: #EFE7BD;
+	border-top: 1px solid #fff; 
+	border-bottom: 1px solid #000; 
+	border-left: 1px solid #fff; 
+	border-right: 1px solid #000;
+	cursor: hand;
+	padding: 0 0 2px 0;
+}
+input.inputPulsante:hover, input.inputPulsanteHover {
+		font-size: 0.95em;
+	height:18px; 
+	margin: 3px 0 0 0;
+	font-weight:bold; 
+	text-decoration:none; 
+	text-align:center;
+	border-top: 1px solid #fff; 
+	border-bottom: 1px solid #000; 
+	border-left: 1px solid #fff; 
+	border-right: 1px solid #000;
+	cursor: hand;
+	padding: 0 0 2px 0;
+color: #fff;
+	background-color:#b38900;
+}
+
+
+input.inputLente {
+	height:19px;
+	width:19px; 
+	margin:0;
+	text-decoration:none; 
+	text-align:center;
+	background:#fff url(/ris/resources/application/agricoltura/css/im/ico_lente.jpg) 100% 50% no-repeat;
+	border: 0; 
+	cursor: hand;
+	padding: 0;
+}
+input.inputLente:hover {
+	background:#fff url(/ris/resources/application/agricoltura/css/im/ico_lente.jpg) 100% 50% no-repeat;
+}
+input.inputMatita {
+	height:19px;
+	width:19px; 
+	margin:0;
+	text-decoration:none; 
+	text-align:center;
+	background:#fff url(/ris/resources/application/agricoltura/css/im/ico_matita.jpg) 100% 50% no-repeat;
+	border: 0; 
+	cursor: hand;
+	padding: 0;
+}
+input.inputMatita:hover {
+	background:#fff url(/ris/resources/application/agricoltura/css/im/ico_matita.jpg) 100% 50% no-repeat;
+}
+
+/* ---------------------------------------------------------- */
+/* TEMPORANEAMENTE ACCANTONATI O DA ELIMINARE SUCCESSIVAMENTE */
+/* ---------------------------------------------------------- */
+/* accantonati: da togliere colonna dx e colonna -2 quando saranno modificate le home,
+ togliere anche righe e sfondo home, freccine */
+
+#colonna-dx {
+ float:left;
+	width:460px;
+	margin: 0 3px 0 0;
+ background:#fff;
+}
+#colonna-2 p{
+	margin: 3px 0 3px 0;
+	padding:3px 6px 3px 6px;
+}
+#colonna-dx p{
+	margin: 3px 0 3px 0;
+	background-color:#ece2bf;
+	padding:3px 6px 3px 6px;
+	position:relative;
+}
+#colonna-dx ul{
+	margin: -4px 0 3px 0;
+	background-color:#E6E6E6;
+	padding:3px 6px 3px 2em;
+	position:relative;
+}
+#colonna-dx p.bianco{
+	margin: 0;
+	background-color:#fff;
+	padding:0 6px 3px 6px;
+}
+#colonna-dx img{
+float :left;
+}
+#colonna-dx h4 {
+	line-height:1.2em; /*vitivinicolo*/
+	height: 15px; /* standardizzato*/
+	line-height: 15px; /* standardizzato*/
+ margin-top: 0;
+ background	: #cecece;
+ color:#333;
+ padding:0 0 0 6px;
+ clear :both;
+}
+#colonna-dx h4 a, 
+#colonna-dx h4 a:link, 
+#colonna-dx h4 a:visited {
+ display:block;
+ position:relative;
+ background:#cecece url(/staticresources/ris/resources/application/agricoltura/css/im/pulsvai_bio.gif) 100% 50% no-repeat;
+ color:#333;
+ text-decoration:none;
+}
+#colonna-dx h4 a:hover, 
+#colonna-dx h4 a:active {
+ display:block;
+ background:#cecece url(/staticresources/ris/resources/application/agricoltura/css/im/pulsvai_roll_bio.gif) 100% 50% no-repeat;
+ color:#333;
+ text-decoration:none;
+}
+#colonna-2 ul{
+ font-size:0.95em;
+ margin:0 0 8px 15px;
+}
+#colonna-2 li{
+ color:#b38900;
+ list-style:square;
+}
+#colonna-2 li a{
+ color:#b38900;
+ list-style:square;
+}
+#colonna-2 li a:hover{
+ color:#fff;
+ background:#b38900;
+ list-style:square;
+}
+.righe {
+	margin-left:10px;
+	display:block;
+	position:relative;
+	background-repeat:repeat-y;
+	background-position:right;
+	background-image: url(/css_rupar/im/righe.gif);
+	margin: 0px;
+	padding: 0px;
+	height: 14em;
+}
+
+#pagina #corpo a.freccine,
+#pagina #corpo a.freccine:link,
+#pagina #corpo a.freccine:visited {
+	display		: block;
+	font-size	: 1px;
+	background	: #b38900 url(/staticresources/ris/resources/application/agricoltura/css/im/freccine_home.gif) 100% 0 no-repeat;
+	color		: #b38900;
+	height		: 11px;
+	margin		: 5px 0 0 0;
+	overflow	: hidden;
+}
+#pagina #corpo a.freccine:hover,
+#pagina #corpo a.freccine:active {
+	background	: #b38900 url(/staticresources/ris/resources/application/agricoltura/css/im/freccine_home.gif) 100% -11px no-repeat;
+	color		: #b38900;
+}
+
+/*regole per pop up dell'help*/
+#colonna-1 p.spiegazioneHelp {
+margin:3px 6px 12px 3px;
+display:block;
+padding:3px 6px 3px 0;
+}
+#colonna-1 p.spiegazioneHelp img{
+float:none;
+padding:0;
+vertical-align:bottom;
+vertical-align:text-bottom;
+}
+/*#linkContestuali{
+	padding:8px 0;
+	font-size:0.95em;
+}
+#linkContestuali ul{
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+#linkContestuali li{
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+#linkContestuali .vvai{
+	padding:0;
+	list-style:none;
+}
+#linkContestuali .vvai2{
+	padding:0;
+	list-style:none;
+}
+#linkContestuali .vvai2 {
+position	: relative;
+width: 100%;
+padding: 0;
+}
+#linkContestuali .vvai2 a {
+position:relative;
+display	: block;
+text-decoration	: none;
+padding		: 1px 0 1px 6px;
+margin:0;
+font-weight:bold;
+}
+#linkContestuali .vvai2 a:link, 
+#linkContestuali .vvai2 a:visited{
+position	: relative;
+background:  #E1D099 url(/staticresources/css/dw_pac/im/pulsfreccia.gif) 100% 50% no-repeat;
+display		: block;
+color		: #444;
+padding: 1px 0 1px 6px;
+}
+#linkContestuali .vvai2 a:hover, 
+#linkContestuali .vvai2 a:active{
+position	: relative;
+background:  #E1D099 url(/staticresources/css/dw_pac/im/pulsfreccia_roll.gif) 100% 50% no-repeat;
+display		: block;
+color		: #333 ;
+}
+#linkContestuali .vvai {
+	position: relative;
+	margin: 0 0 0 0;
+	padding: 0;
+	width: 100%;
+}
+#linkContestuali .vvai a {
+position:relative;
+display	: block;
+text-decoration	: none;
+padding: 1px 0 1px 6px;
+margin:0;
+color: #333;
+}
+#linkContestuali .vvai a:link,
+#linkContestuali .vvai a:visited{
+position	: relative;
+background:  #E1D099 url(/staticresources/css/dw_pac/im/pulsfreccia.gif) 100% 50% no-repeat;
+display		: block;
+color		: #444;
+padding: 1px 0 1px 6px;
+}
+#linkContestuali .vvai a:hover,
+#linkContestuali .vvai a:active{
+position	: relative;
+background:  #E1D099 url(/staticresources/css/dw_pac/im/pulsfreccia_roll.gif) 100% 50% no-repeat;
+display		: block;
+color		: #333 ;
+}*/
+/*fluido*/
+#Utente{
+	border-bottom:3px solid #fff;
+	width:100%;
+}
+#datiUtente {
+	line-height:16px;
+	margin:0;
+	border-right: 3px solid #FFFFFF;  
+	float:left;
+	color:#000;
+	font-weight: bold;
+	padding-left:6px;
+	background-color:#CFCFCF;
+	width:80%; 
+	display:block;
+	/* Questo  il trucco per ingannare Explorer 5 
+	voice-family: "\"}\"";
+	voice-family:inherit;*/
+}
+#chiudisessione{
+	text-align:center;
+	margin:0;
+	padding:0; 
+	font-size: 0.95em; 
+	margin-left: 2px; 
+	background-color:#CFCFCF;
+	border-bottom:1px solid #9C9E91;
+	border-right:1px solid #9C9E91;
+	border-top:1px solid #C7D4DB;
+	border-left:1px solid #C7D4DB;
+	display:block;
+	line-height: 14px; 
+}
+#chiudisessione a{
+	background-color:#CFCFCF;
+	display:block;
+}
+#chiudisessione a:link,
+#chiudisessione a:visited{
+	color:#000;
+}
+#chiudisessione a:hover,
+#chiudisessione a:active{
+	color: #fff;
+}
+
+/* consente l'inserimento della scrollbar*/
+
+/*.scroll {
+	width : 100%;
+position: relative;
+overflow:auto;
+visibility: visible;
+z-index: 1000;
+margin:0 0 3px 0;
+border:0;
+padding:0;
+}*/
+
+.scroll {width:100%; position: relative; overflow:auto;z-index: 1000; 
+margin:0 0 3px 0; border:0; padding:0 ; }
+
+
+#contenuto .scroll table{
+	font-size:0.95em;
+	margin: 0;
+	width:100%;
+	border:1px solid #ccc;
+	padding:0; 
+}
+
+h3 {
+	position:relative;
+ 	color :#fff;
+ 	background: #b48c09;
+	margin:0;
+}
+#piedipagina {
+ 	background: #fff;
+}
+
+/*classi per l'help nell'h3*/
+
+/*inizio barra help*/
+.rigaHelp {margin:0 0 4px 0;padding:0;border:0;height:16px!important;}
+
+.rigaHelp .text{margin:0;
+border:0;float:left;padding:0 0 0 6px; /*color :#fff;  background	:#D5452D;display:block;line-height:16px;width:679px;*/
+voice-family: "\"}\"";
+voice-family: inherit;
+/*width:673px;*/
+} .finto{}
+
+span.icoHelp a:link, span.icoHelp a:active, span.icoHelp a:visited {
+float:right;display:block;background:#fff url(im/puntointerrogativo.gif) no-repeat;margin:0;
+padding:0;width:28px;height:16px;line-height:16px;}
+
+span.icoHelp a:hover {
+background:#fff url(im/puntointerrogativo_roll.gif) no-repeat;}
+
+/*fine barra help*/
+
+
+/* incrementa il font */
+.perc110 { font-size: 105%; }
+
+
+#content .barraPdf { 
+	clear :both;
+	background:#ccc;
+	color:#000;
+	padding:0 0 0 .3em;
+	line-height:19px;
+	font-weight:bold;
+	position:relative;
+	display:block;
+	margin-bottom:3px;
+	margin-top:6px;
+}
+#content .barraPdf a:link, #content .barraPdf a:visited { 
+	padding:0 0 0 .3em;
+	position:relative;
+	display:block;
+	background:#ccc url(/staticresources/css_rupar/im/ico_pdf.gif) 100% 50% no-repeat;
+	color:#333;
+	text-decoration:none;
+	margin-bottom:3px;
+	margin-top:6px;
+  }
+#content .barraPdf a:hover, #content .barraPdf a:active{ 
+	padding:0 0 0 .3em;
+	display:block;
+	background:#ccc url(/staticresources/css_rupar/im/ico_pdf_roll.gif) 100% 50% no-repeat;
+	color:#666;
+	text-decoration:none;
+	margin-bottom:3px;
+	margin-top:6px;
+ }
+
+#contenuto table .trpari td{ background-color:#B1B1AF; }
+ 
+.altstampa{ display:none;}
+
+
+.titoloapri {margin-bottom:9px; background:#D7D8DC; color:#fff;}
+.espandi {background:#D7D8DC url(im/espandi.gif) 100% 50% no-repeat; color:#000; cursor:pointer!important; cursor:hand; margin-bottom:9px;}
+.comprimi {background:#D7D8DC url(im/comprimi.gif) 100% 50%  no-repeat; color:#000; cursor:pointer!important; cursor:hand; margin-bottom:9px;}
+.notifica{color:#FF0000;
+	font-style:italic;
+	font-weight: bold;
+	/*border:1px dashed #000;*/
+	width:60%;
+	padding-left:3px;
+	margin-left:5px;
+	margin-bottom:6px;
+}
+#contenuto h3, #corpo h3  {font-size:0.9em;font-weight:bold;margin:0;border:0;margin:3px 0 6px 0;clear:none;}
+
+
+#contenuto table td span.tool { font-weight:bold; 	color:#660000;
+}
+
+/* tabelle espandbili */
+span.tableExpLabel {display:none;}
+
+#contenuto table tr.tableExpColTh td{background: #CCCCCA;}
+#contenuto table tr.tableExpCol td{background: #efe7bd;}
+#contenuto table tr.tableExpColTh td.tot{	padding:3px; background:#E6E6E6;text-align:right; font-weight:bold;}
+
+#contenuto tr.tableExpColTh td a.tableExpander, #contenuto tr.tableColColTh td a.tableExpander{font-size: 0.95em;width: 10px;height: 10px;float: left;margin-top: 1px;margin-right: 0;margin-bottom:0;margin-left: 4px;}
+
+#contenuto tr.tableExpColTh td.radio a.tableExpander, #contenuto tr.tableColColTh td.radio a.tableExpander{width: 10px;height: 10px;margin: 0; padding:0;}
+#contenuto tr.tableExpColTh a.tableExpander {background:#CCCCCA url(im/tableExpanded.gif) 50% 50% no-repeat;}
+#contenuto tr.tableColColTh a.tableExpander {background:#CCCCCA url(im/tableCollapsed.gif) 50% 50% no-repeat;}
+
+
+.attendere{color:#000;font-weight:bold;background:#fff;/*border:1px dashed #9C9C9C;*/padding:12px;text-align:center;margin:0 0 8px 0;clear:both;}
+#contenuto .attendere{/*border:1px dashed #000;*/padding:12px 8px;margin:0 0 8px 0;font-weight:bold;background-color:#fff;color:#000;text-align:center;}
+#contenuto .attendere span{font-weight:normal;color:#000;}
+
+
+#contenuto table.maron th.domanda {background:#ece2bf!important;text-align:left!important;width:50%!important;}
+
+
+#contenuto table.maron td.answer {background:#fcf9e8 url(im/puntoint_small.jpg) 100% 0 no-repeat!important;
+width:50%!important;height:87px; padding-right:90px;}
+
+#contenuto table.maron p{/*padding:10px!important;margin-top:5px!important;*/ font-weight:normal; padding-left:10px; padding-bottom:0px;}
+#contenuto table.maron th.domanda p.bordeaux{color:#660000; font-weight:bold;}
+#contenuto table.maron th.domanda label{font-weight:bold;}
+
+
+#contenuto table th.w15,
+#corpo table th.w15{width:15%;}

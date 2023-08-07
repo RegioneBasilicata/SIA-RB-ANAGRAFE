@@ -1,0 +1,54 @@
+$$head
+  <script src="../js/checktext.js" type="text/javascript"></script>
+  <script type="text/javascript" src="../js/messaggistica.js"></script>
+</head>
+<body id="homeIndice" onLoad="javascript: $$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+  <form id="form1" name="form1" action="../layout/cessazioneCausaleAttivita.htm" method="post">
+    <div id="pagina" class="colonnaUnica">
+      <input type="hidden" id="pageFrom" name="pageFrom" value="$$pageFrom"/>
+      <input type="hidden" id="idElemento" name="idElemento" value="$$idElemento"/>
+      <input type="hidden" id="operazione" name="operazione" value="$$operazione"/>
+      <input type="hidden" id="idAnno" name="idAnno" value="$$idAnno"/>
+      <!-- INTESTAZIONE -->
+      <div id="intestazione##pathProvincia">
+        $$header
+        <!-- menu di navigazione-->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+        </div>
+      </div>
+      <hr/>
+      <div style="clear:left">  </div>
+      <!-- CORPO -->
+      <div id="corpo">
+        <hr/>
+        <!-- PRIMA COLONNA -->
+        <div id="content">
+          <p class="errore">Attenzione</p>
+          <p>Con questa funzionalit&agrave; sar&agrave; cessata l'attivit&agrave; in data odierna e non potranno pi&ugrave; esserne modificati i dati. Sei sicuro di voler proseguire?</p>
+          <p>
+            <label for="causaleCessazione">Causale cessazione</label>
+            :
+            <br/>
+            <textarea id="causaleCessazione" name="causaleCessazione" cols="50" rows="4">$$causaleCessazione</textarea>
+            <br/>
+            $$err_causaleCessazione
+          </p>
+          
+          <div class="pulsanti">
+          <div class="sin">
+            <input type="submit" value="conferma" name="conferma" class="inputPulsante highlighted"/>
+          </div>
+          <div class="des">
+            <input type="submit" value="annulla" name="annulla" class="inputPulsante annulla"/>
+          </div>
+          </div>
+        </div>
+        <!-- SECONDA COLONNA -->
+      </div>
+      <hr/>
+    </form>
+    <!-- PIE' DI PAGINA -->
+    $$footer

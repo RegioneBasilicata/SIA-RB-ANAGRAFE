@@ -1,0 +1,138 @@
+$$head
+  <script type="text/javascript" src="../js/checktext.js"></script>
+  <script type="text/javascript" src="../js/messaggistica.js"></script>
+</head>
+<body id="homeIndice" onload="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+  <form name="form1" method="post" action="../layout/nuovaAziendaAnagrafica.htm">
+    <div id="pagina" class="colonnaUnica">
+      <input type="hidden" name="CUAA" value="$$CUAA"/>
+      <input type="hidden" name="CUAASubentro" value="$$CUAASubentro"/>
+      <input type="hidden" name="radiobuttonAzienda" value="$$radiobuttonAzienda"/>
+      <input type="hidden" name="cuaaProvenienza" value="$$cuaaProvenienza"/>
+      <!-- INTESTAZIONE -->
+      <div id="intestazione##pathProvincia">
+        $$header
+        <!-- menu di navigazione-->
+        <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+          <div id="menuDiNavigazione" title="Menu di navigazione">
+            <ul class="menuTendina" id="menu-2">
+              <li>
+                <a href="../layout/index.htm" title="Torna alla pagina principale">home</a>
+              </li>
+              <li class="attivo">gestione anagrafe aziende</li>
+              <li>
+                <a href="#" title="contatti">contatti</a>
+              </li>
+              <li>
+                <a href="#" title="help">help</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <hr/>
+      <div style="clear:left"></div>
+      <!-- CORPO -->
+      <div id="corpo">
+        <div id="Utente">
+          <div id="datiUtente">
+            <strong>utente:</strong>$$utente&nbsp;&nbsp;
+            <strong>ente:</strong>$$ente
+          </div>
+          <div id="chiudisessione">
+            <a href="javascript: logout();">chiudi sessione</a>
+          </div>
+        </div>
+        <hr/>
+        <!--PRIMA COLONNA -->
+        <h3>Inserimento azienda
+          <span class="helpFuori">
+            <a href="#">
+              <span class="alt">[help]</span>
+            </a>
+          </span>
+        </h3>
+        <hr/>
+        <div class="box">
+          <div class="menuSX1">
+            <ul>
+              <!-- @@blkElencoAziendeRapLegale -->
+                <li><a href="../layout/elencoAziendeRapLegale.htm">Elenco Aziende</a></li>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <!-- @@blkRicercaAzienda-->
+                <li><a href="../layout/ricerca.htm">Ricerche</a></li>
+              <!-- @@blkRicercaAzienda-->
+              <!-- @@blkNuova -->
+                <li>
+                  <a href="../layout/nuovaAziendaAnagrafica.htm" class="on">Nuova Azienda</a>
+                </li>
+              <!-- @@blkNuova -->
+              <!-- @@blkNuovaIscrizione -->
+              <li>
+                <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+              </li>
+              <!-- @@blkNuovaIscrizione -->
+            </ul>
+          </div>
+        </div>
+        <hr/>
+        <!-- SECONDA COLONNA -->
+        <div id="contenuto">
+          <div id="intesta"></div>
+          <p class="errore">&Egrave; stato trovato più di un CUAA per il subentro; selezionare quello effettivo.</p>
+          <table cellspacing="3" summary="Questa tabella è costituita da righe">
+            <col width="4%"/>
+            <col width="16%"/>
+            <col width="16%"/>
+            <col width="16%"/>
+            <col width="16%"/>
+            <col width="16%"/>
+            <col width="16%"/>
+            <tr>
+              <th class="radio" scope="col"></th>
+              <th class="center" scope="col">Denominazione</th>
+              <th class="center" scope="col">CUAA
+                <br/>
+                (cod.fisc.)
+              </th>
+              <th class="center" scope="col">Partita IVA</th>
+              <th class="center" scope="col">Sede Legale</th>
+              <th class="center" scope="col">Inizio validit&agrave;</th>
+              <th class="center" scope="col">Fine validit&agrave;</th>
+            </tr>
+            <!--@@rigaAnagrafica-->
+              <tr>
+                <th class="radio" scope="row">
+                  <input type="radio" id="idAziendaSubentro" name="idAziendaSubentro" value="$$idAzienda"/>
+                </th>
+                <td>
+                  <label for="idAziendaSubentro">$$denominazione</label>
+                </td>
+                <td>$$cuaa</td>
+                <td>$$partitaIVA</td>
+                <td>$$comune
+                    <br/>
+                    $$prov
+                    <br/>
+                    $$indirizzo
+                </td>
+                <td>$$inizioVal</td>
+                <td>$$fineVal</td>
+              </tr>
+            <!--@@rigaAnagrafica-->
+          </table>
+          <div class="pulsanti"><div class="sin">
+            <input name="indietro" id="indietro" class="inputPulsante" type="submit" value="indietro"/>
+          </div>
+          <div class="des">
+            <label class="alt" for="avanti">avanti</label>
+            <input name="multiploCUAA" id="avanti" class="inputPulsante" type="submit" value="avanti"/>
+          </div></div>  
+        </div>
+      </div>
+      <hr/>
+      <!-- PIE' DI PAGINA -->
+      $$footer

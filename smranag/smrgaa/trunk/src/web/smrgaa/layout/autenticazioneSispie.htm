@@ -1,0 +1,187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="it" xml:lang="it">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<title>Anagrafe Agricola della Regione TOBECONFIG</title>
+<meta name="author" content="Regione TOBECONFIG" />
+<meta name="description" content="Regione TOBECONFIG il portale per cittadini ed imprese" />
+<meta name="keywords" content="TOBECONFIG servizi, cittadini, imprese, sistema, amministrazione" />
+<link href="/ris/css/autenticazione/autenticazione.css" rel="stylesheet" type="text/css" media="screen" />
+<script type="text/javascript" src="/ris/js/funzioni.js"></script>
+<!-- <script type="text/javascript" src="http://www.sistemapiemonte.it/ris/js/nascondiInfo.js"></script>
+<script type="text/javascript">
+caricaTutto = function(){
+	nascondiInfo();
+}
+</script>
+ -->
+</head>
+<body>
+<div id="pagina" class="colonnaUnica">
+<!--header-->
+<div id="intestazione">
+<!--#include virtual="/ris/include/headerSisp.html" -->
+<!--/header-->
+<!-- corpo -->
+<!--filo d'arianna--><hr />
+<div id="contPath"> 
+<div id="path">
+  sei in: <a href="http://www.sistemapiemonte.it/index.shtml">sistema piemonte</a><span class="connessionePath">,&nbsp;</span><span class="selezione">autenticazione</span>
+ </div>
+</div>
+<!--fine filo arianna--> 
+<div id="contTitoloEmenu">
+	<div id="titoloEmenuAuth"></div>
+</div>
+</div>
+<hr />
+<!-- FINE TESTATA -->
+<div id="contenitore">
+<div id="corpo">
+<div id="sfondo">
+<h2 class="alt">Menu di navigazione</h2>
+<!-- COLONNA SX -->
+<div id="colonnaSinistra"> 
+<ul class="menuCavalieri">
+<li class="attivo">registrazione</li>
+</ul>
+<div id="boxSinistra">
+<div class="infoSX">
+<h3>Per i cittadini</h3>
+<p>Sei un nuovo utente?<br />
+Registrati &egrave; facile!</p>
+<p>Tutti i privati cittadini, italiani o stranieri, se in possesso di codice fiscale, possono registrasi gratuitamente accedendo all'area di registrazione di Sistema Piemonte.</p>
+<a href="http://www.sistemapiemonte.it/registrazione/">registrati &raquo;</a>
+</div>
+<div class="infoSX">
+<h3>Per le imprese</h3>
+<p>Le imprese che desiderano accreditarsi per usare i servizi di Sistema Piemonte possono seguire le istruzioni indicate nella homepage di ciascun servizio loro dedicato.</p>
+</div>
+</div> 
+</div>
+<!-- FINE COLONNA SX -->
+<div id="colonnaDestra">
+<h3>Accesso ai servizi</h3> 
+@@MsgErrore
+	<div class="messaggio">$$messaggioErrore</div>
+@@MsgErrore
+<h4>Accesso con nome utente e password</h4>
+<div class="contenuti">
+	<form action="$$ACTION_POINT" method="post" autocomplete="Off">
+	<div class="alt">
+	<input type="hidden" name="activ_site" value="$$ACTIV_SITE" />
+	<input type="hidden" name="portal_name" value="$$PORTAL_NAME" />
+	<input type="hidden" name="page_logout" value="$$PAGE_LOGOUT" />
+	</div>
+@@accessUP
+	<div class="boxAuth" id="up">
+			<fieldset>
+			<div>
+			<span><label for="id">Nome utente :</label></span>
+			<input type="text" id="id" name="j_username" class="media" />
+			</div>
+			<div>
+			<span><label for="pass">Password :</label></span>
+			<input type="password" id="pass" name="j_password" class="media" />
+			</div>
+			<!-- <div class="comunity">
+			<span><label for="comunity">Community :</label></span>
+			<select id="comunity" name="realm" class="media">
+			<option value="sistemapiemonte">Sistema Piemonte</option>
+			<option value="torinofacile">Torino Facile</option>
+			</select>
+			</div> -->
+			</fieldset>
+			<div class="forgetPassword"><a href="https://webgate.sistemapiemonte.it/recupero_password.html" onclick="MM_openBrWindow('https://webgate.sistemapiemonte.it/recupero_password.html','nuovaFinestra','resizable=yes,width=500,height=200'); return false"
+	onkeypress="MM_openBrWindow('https://webgate.sistemapiemonte.it/recupero_password.html','nuovaFinestra','resizable=yes,width=500,height=200'); return false"
+	title="Recupera la tua password [Attenzione: questo link si apre in una nuova finestra]">Hai dimenticato la password?</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://www.sistemapiemonte.it/registrazione/">Non sei ancora registrato?</a>
+	</div>
+<div class="pulsNav">
+<div class="pulsNavDx"><input class="p95" onmouseover="javascript:this.className='p95Hover';" onmouseout="javascript:this.className='p95';" name="login_livello1" type="submit" value="accedi"  />			
+			</div></div>
+	</div>
+	@@accessUP	
+	</form>
+	</div>
+	
+@@accessUPP
+<h4>Accesso con nome utente e password</h4>
+<div class="contenuti">
+	<form action="$$ACTION_POINT" method="post" autocomplete="Off">
+	<div class="alt">
+	<input type="hidden" name="activ_site" value="$$ACTIV_SITE" />
+	<input type="hidden" name="portal_name" value="$$PORTAL_NAME" />
+	<input type="hidden" name="page_logout" value="$$PAGE_LOGOUT" />
+	</div>
+	
+	<div class="boxAuth" id="upp">
+			<fieldset>
+			<div>
+			<span><label for="id">Nome utente :</label></span>
+			<input type="text" id="id" name="j_username" class="media" />
+			</div>
+			<div>
+			<span><label for="pass">Password :</label></span>
+			<input type="password" id="pass" name="j_password" class="media" />
+			</div>
+			<div>
+			<span><label for="cip">PIN :</label></span>
+			<input type="password" id="cip" name="cip" class="media" />
+			</div>
+			<!-- <div class="comunity">
+			<span><label for="comunity">Community :</label></span>
+			<select size="1" id="comunity" name="realm" class="media">
+			<option value="sistemapiemonte">Sistema Piemonte</option>
+			<option value="torinofacile">Torino Facile</option>
+			</select>
+			</div> -->
+			</fieldset>
+			<div class="forgetPassword"><a href="https://webgate.sistemapiemonte.it/recupero_password.html" onclick="MM_openBrWindow('https://webgate.sistemapiemonte.it/recupero_password.html','nuovaFinestra','resizable=yes,width=500,height=200'); return false"
+onkeypress="MM_openBrWindow('https://webgate.sistemapiemonte.it/recupero_password.html','nuovaFinestra','resizable=yes,width=500,height=200'); return false"
+title="Recupera la tua password [Attenzione: questo link si apre in una nuova finestra]">Hai dimenticato la password?</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://www.sistemapiemonte.it/registrazione/">Non sei ancora registrato?</a>
+</div>
+<div class="pulsNav">
+<div class="pulsNavDx"><input class="p95" onmouseover="javascript:this.className='p95Hover';" onmouseout="javascript:this.className='p95';" name="login_livello1" type="submit" value="accedi"  />
+</div>
+</div>
+	</div>
+	</form>
+</div>
+@@accessUPP
+@@accessCD
+<h4>Accesso con certificato digitale</h4>
+<div class="contenuti">
+	
+	<div class="boxAuth" id="cd">
+		<div class="spazio">
+			<p>Accesso per utenti che possiedono:</p>
+			<ul>
+				<li><a href="http://www.sistemapiemonte.it/informazioni/tecnologie/smartcard.shtml">certificato digitale <acronym title="Certification Authority">CA</acronym> Sistema Piemonte</a></li>
+				<li>carta Sistema Piemonte - Bonus Fiscale Benzine</li>
+				<li><a href="http://www.sistemapiemonte.it/informazioni/tecnologie/smartcard.shtml">smartcard accettate da Sistema Piemonte</a></li>
+			</ul>
+			<p class="corsivo">Per autenticarsi &egrave; sufficiente inserire la smartcard nell'apposito lettore oppure, all'aperura della finestra con l'elenco dei certificati, selezionare quello da utilizzare.</p>
+		</div>
+<div class="pulsNav">
+<div class="pulsNavDx"><a href="$$CERT_AUTHENTICATION_TARGET" class="p95">accedi</a></div></div>
+	</div>
+</div>
+@@accessCD
+<!-- FINE COLONNA DX -->
+</div>
+<!-- FINE CORPO -->
+<div id="info">
+<div id="uno">Problemi durante l'autenticazione?</div>
+<div id="due"><span class="alt">Numero verde assistenza 800 450 900</span>
+</div>
+<div id="tre">
+oppure: <a href="mailto:info@sistemapiemonte.it">info@sistemapiemonte.it</a>
+</div>
+</div>
+<span class="barraAzzurra">&nbsp;</span>
+</div>
+<hr />
+</div>
+</div>
+<!-- PIE' DI PAGINA -->

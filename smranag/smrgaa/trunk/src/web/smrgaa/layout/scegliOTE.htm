@@ -1,0 +1,62 @@
+$$head
+  <script type="text/javascript" src="../js/checktext.js"></script>
+</head>
+<body id="popup">
+  <form id="sceltaOTE" name="sceltaOTE" method="post" action="">
+    <!-- CORPO -->
+    <div id="contenutopop">
+      <div class="pulsanti">
+        <!-- @@conferma -->
+          <div class="des">
+            <a href="javascript:window.close();">chiudi</a>
+            <span class="alt">&nbsp;/&nbsp;</span>
+        </div>
+        <div class="sin">
+          <a href="javascript:confermaAttivitaOTE()">conferma</a>
+        </div>
+        <!-- @@conferma -->
+      </div>
+      <table cellspacing="3" summary="Questa tabella contiene i dati del rapporto">
+        <col width="5%"/>
+        <col width="45%"/>
+        <col width="50%"/>
+        <tr>
+          <th class="radio" scope="col"></th>
+          <th class="center" scope="col">Codice</th>
+          <th class="center" scope="col">Descrizione</th>
+        </tr>
+        <!-- @@tipiAttivitaOTE -->
+          <tr>
+            <th class="radio" scope="row">
+              <input type="radio" id="idAttivitaOTE" name="idAttivitaOTE" value="$$idAttivitaOTE"/>
+              <label for="idAttivitaOTE" class="alt">idAttivitaOTE</label>
+              <input type="hidden" id="codiceOTE" name="codiceOTE" value="$$codiceOTE"/>
+              <input type="hidden" id="descrizioneOTE" name="descrizioneOTE" value="$$descrizioneOTE"/>
+            </th>
+            <td>$$codiceOTE</td>
+            <td>$$descrizioneOTE</td>
+          </tr>
+        <!-- @@tipiAttivitaOTE -->
+      </table>
+      <p>$$exception</p>
+      <!-- @@conferma -->
+        <div class="pulsanti">
+          <div class="des">
+            <a href="javascript:window.close();">chiudi</a>
+            <span class="alt">&nbsp;/&nbsp;</span>
+          </div>
+          <div class="sin">
+            <a href="javascript:confermaAttivitaOTE()">conferma</a>
+            <span class="alt">&nbsp;/&nbsp;</span>
+          </div>
+        </div>
+      <!-- @@conferma -->
+      <!-- @@chiudi -->
+        <div class="pulsanti"><div class="des">
+          <a href="javascript:window.close();">chiudi</a>
+        </div></div>
+      <!-- @@chiudi -->
+    </div>
+    </div></form>
+    </body>
+    </html>

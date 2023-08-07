@@ -1,0 +1,76 @@
+$$head
+  <script src="../js/checktext.js" type="text/javascript"></script>
+  <script type="text/javascript">
+
+    function modifica(url, form, motivoModifica) {
+      form.action = url;
+      window.opener.name = 'conferma';
+      form.target = window.opener.name;
+      window.opener.form1.operazione.value = 'M';
+      if(motivoModifica != null && motivoModifica != '') {
+        alert('Attenzione: trattandosi di una correzione dei dati il motivo modifica non verrà salvato!');
+      }
+      window.opener.form1.submit();
+      window.close();
+      return false;
+    }
+
+    function storicizza(url,form, motivoModifica) {
+      if(motivoModifica.length > 200) {
+        alert('Il motivo modifica non può contenere più di duecento caratteri!');
+      }
+      else {
+        form.action = url;
+        window.opener.name = 'storicizza';
+        form.target = window.opener.name;
+        window.opener.form1.operazione.value = 'S';
+        window.opener.form1.motivoModifica.value = motivoModifica;
+        window.opener.form1.submit();
+        window.close();
+        return false;
+      }
+    }
+
+  </script>
+</head>
+<body id="popup">
+  <div id="contenutopop">
+    <form method="post" id="modificaStoricizza" name="modificaStoricizza" action="">
+      <input type="hidden" id="opVal" name="opVal" value="" />
+      <h3>Attenzione</h3>
+	 <table cellspacing="3" summary="Questa tabella contiene i dati del rapporto">
+          <tr>
+            <td class="intestazione2"> Se la modifica &egrave; dovuta alla <strong>correzione</strong> di errori di digitazione premere:</td>
+          </tr>
+          <tr>
+            <td><div class="azioni">
+              <input class="inputPulsante" type="button" value="modifica" onclick="javascript: modifica('../layout/anagrafica_mod.htm',modificaStoricizza,document.modificaStoricizza.motivoModifica.value);" />
+           </div> </td>
+          </tr>
+          <tr>
+            <td class="intestazione2">Se la modifica corrisponde ad una <strong>modifica strutturale</strong> dell'azienda e si vuole aggiungere un commento alla variazione inserire le note sottostanti:
+            </td>
+          </tr>
+          <tr>
+            <td><textarea id="motivoModifica" name="motivoModifica" cols="50" rows="4">$$motivoModifica</textarea></td>
+          </tr>
+          <tr>
+            <td class="intestazione2"> e premere</td>
+          </tr>
+	  <tr>
+            <td>
+            
+            <div class="pulsanti">
+              <div class="sin">
+                <input class="inputPulsante" type="button" value="storicizza" onclick="javascript: storicizza('../layout/anagraficaSede_mod.htm',modificaStoricizza,document.modificaStoricizza.motivoModifica.value);" />
+              </div>
+              <div class="des">
+                <input type="button" id="chiudi" name="chiudi" value="chiudi" class="inputPulsante" onclick="javascript:window.close();" />
+              </div></div>  
+            </td>
+          </tr>
+        </table>
+      </form>
+    </div>
+  </body>
+</html>

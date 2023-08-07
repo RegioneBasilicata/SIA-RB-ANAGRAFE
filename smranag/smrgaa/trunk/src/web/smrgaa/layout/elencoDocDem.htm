@@ -1,0 +1,191 @@
+
+    <!-- @@blkElenco -->
+    <div class="paginazione">
+      <span class="sx">$$totaleRighe risultati trovati</span>
+      <div class="dx">
+        <label for="paginaCorrente">
+          pagina
+        </label>
+        <input type="text" name="paginaCorrente"
+          value="$$paginaCorrente" maxlength="4"
+          id="paginaCorrente"
+          onkeyup="document.form1.paginaCorrente2.value=this.value" />
+           di $$totalePagine
+        <span class="vai"> <a href="javascript:vaiAPaginaNumero('$$idFolder', '$$totalePagine', 'false')"
+          title="$$tooltip">vai</a> </span>
+        <!-- @@blkGruppoPrecedente -->
+        <span class="bugFix">&nbsp;|&nbsp;</span>
+        <a href="#" onclick="vaiAPagina('$$idFolder', '$$value', 'false')"
+          class="$$class" title="$$tooltip"> $$text </a>
+        <!-- @@blkGruppoPrecedente -->
+        <!-- @@blkGruppoCorrente -->
+        <span class="evidenziato"> $$paginaCorrente </span>
+        <!-- @@blkGruppoCorrente -->
+        <!-- @@blkGruppoSuccessivo -->
+        <span class="bugFix">&nbsp;|&nbsp;</span>
+        <a href="#" onclick="vaiAPagina('$$idFolder', '$$value', 'false')"
+          class="$$class" title="$$tooltip"> $$text </a>
+        <!-- @@blkGruppoSuccessivo -->
+        <!-- @@blkPaginaPrecedente -->
+        <span class="bugFix">&nbsp;|&nbsp;</span>
+        <a href="#" onclick="vaiAPagina('$$idFolder', '$$pagina', 'false')"
+          title="vai alla pagina precedente">&lt;&lt; prec</a>
+        <span class="bugFix">&nbsp;|&nbsp;</span>
+        <!-- @@blkPaginaPrecedente -->
+        <!-- @@blkPaginaSuccessiva -->
+        <span class="bugFix">&nbsp;|&nbsp;</span>
+        <a href="#" onclick="vaiAPagina('$$idFolder', '$$pagina', 'false')"
+          title="vai alla pagina successiva">succ &gt;&gt;</a>
+        <span class="bugFix">&nbsp;|&nbsp;</span>
+        <!-- @@blkPaginaSuccessiva -->
+      </div>
+
+    </div>
+
+
+
+    <div class="scrollInt">
+
+      <table cellspacing="3" id="gradient-style"
+        summary="Questa tabella contiene i dati del rapporto">
+        <thead>
+	        <tr>
+	          <td id="tdColDisp" colspan="12" ></td>
+	        </tr>
+	        <tr>
+	          <!-- th class="radio" scope="col">
+	            Sel
+	          </th -->
+	          <th class="center nascondibile_8" scope="col">
+              <a href="javascript:hideColumn('nascondibile_8','Procedimento di origine');">Procedimento di origine</a>
+            </th>
+            <th class="center nascondibile_7" scope="col">
+              <a href="javascript:hideColumn('nascondibile_7','Tipologia documento');">Tipologia documento</a>
+            </th>
+            <th class="center nascondibile_6" scope="col">
+              <a href="javascript:hideColumn('nascondibile_6','Categoria documento');">Categoria documento</a>
+            </th>
+	          <th class="center" scope="col">
+	            Descrizione
+	          </th>
+	          <th class="center nascondibile_0" scope="col">
+	            <a href="javascript:hideColumn('nascondibile_0','Documento attivo');">Documento attivo</a>
+	          </th>
+	          <th class="center nascondibile_1" scope="col">
+	            <a href="javascript:hideColumn('nascondibile_1','Nome file');">Nome file</a>
+	          </th>
+	          <th class="center" scope="col">
+	            Allegato
+	          </th>
+	          <th class="center nascondibile_2" scope="col">
+	            <a href="javascript:hideColumn('nascondibile_2','Data inserimento');">Data inserimento</a>
+	          </th>
+	          <th class="center nascondibile_3" scope="col">
+	            <a href="javascript:hideColumn('nascondibile_3','Anno');">Anno</a>
+	          </th>
+	          <th class="center nascondibile_4" scope="col">
+	            <a href="javascript:hideColumn('nascondibile_4','Numero repertorio');">Numero repertorio</a>
+	          </th>
+	          <th class="center nascondibile_5" scope="col">
+	            <a href="javascript:hideColumn('nascondibile_5','Data repertorio');">Data repertorio</a>
+	          </th>
+	        </tr>
+        </thead>
+        <!-- @@blkRiga -->
+        <tbody>
+	        <tr>
+	          <td class="nascondibile_8">
+              $$descProcedimento
+            </td>
+            <td class="nascondibile_7"> 
+              $$descTipologiaDocumento
+            </td>
+            <td class="nascondibile_6">
+              $$descCategoriaDocumento
+            </td>
+	          <td>
+	            $$descTipoDocumento
+	          </td>
+	          <td align="center" class="nascondibile_0">
+	            <a title="$$titleStatoDocumento"
+	              class="$$classStatoDocumento"></a>
+	          </td>
+	          <td class="nascondibile_1">
+	            $$nomeFile
+	          </td>
+	          <td>                
+	            <a href="javascript:visualizzaFile('$$idDocumentoIndex')" class="$$immagineStampa" title="$$titleAllegato"></a>
+	          </td>
+	          <td class="nascondibile_2">
+	            $$dataInserimento
+	          </td>
+	          <td class="nascondibile_3">
+	            $$anno
+	          </td>
+	          <td class="nascondibile_4">
+	            $$numeroProtocollo
+	          </td>
+	          <td class="nascondibile_5">
+	            $$dataProtocollo
+	          </td>
+	        </tr>
+	      </tbody>
+        <!-- @@blkRiga -->
+        
+      </table>
+
+    </div>
+
+    <div class="paginazione">
+      <span class="sx">$$totaleRighe risultati trovati</span>
+
+
+      <div class="dx">
+        <label for="paginaCorrente">
+          pagina
+        </label>
+        <input type="text" name="paginaCorrente2"
+          value="$$paginaCorrente" maxlength="4"
+          id="paginaCorrente2"
+          onkeyup="document.form1.paginaCorrente.value=this.value" />
+        ##err_paginaCorrente di $$totalePagine
+        <span class="vai"> <a href="javascript:vaiAPaginaNumero('$$idFolder', '$$totalePagine', 'false')"
+          title="$$tooltip">vai</a> </span>
+        <!-- @@blkGruppoPrecedente -->
+        <span class="bugFix">&nbsp;|&nbsp;</span>
+        <a href="#" onclick="vaiAPagina('$$idFolder','$$value', 'false')"
+          class="$$class" title="$$tooltip"> $$text </a>
+        <!-- @@blkGruppoPrecedente -->
+        <!-- @@blkGruppoCorrente -->
+        <span class="evidenziato"> $$paginaCorrente </span>
+        <!-- @@blkGruppoCorrente -->
+        <!-- @@blkGruppoSuccessivo -->
+        <span class="bugFix">&nbsp;|&nbsp;</span>
+        <a href="#" onclick="vaiAPagina('$$idFolder', '$$value', 'false')"
+          class="$$class" title="$$tooltip"> $$text </a>
+        <!-- @@blkGruppoSuccessivo -->
+        <!-- @@blkPaginaPrecedente -->
+        <span class="bugFix">&nbsp;|&nbsp;</span>
+        <a href="#" onclick="vaiAPagina('$$idFolder', '$$pagina', 'false')"
+          title="vai alla pagina precedente">&lt;&lt; prec</a>
+        <span class="bugFix">&nbsp;|&nbsp;</span>
+        <!-- @@blkPaginaPrecedente -->
+        <!-- @@blkPaginaSuccessiva -->
+        <span class="bugFix">&nbsp;|&nbsp;</span>
+        <a href="#" onclick="vaiAPagina('$$idFolder', '$$pagina', 'false')"
+          title="vai alla pagina successiva">succ &gt;&gt;</a>
+        <span class="bugFix">&nbsp;|&nbsp;</span>
+        <!-- @@blkPaginaSuccessiva -->
+      </div>
+    </div>
+
+    <!-- @@blkElenco -->
+    
+    <!-- @@blkNoElenco -->
+    <p class="errore">
+      $$messaggioErrore
+    </p>
+    <!-- @@blkNoElenco -->
+       
+          
+          

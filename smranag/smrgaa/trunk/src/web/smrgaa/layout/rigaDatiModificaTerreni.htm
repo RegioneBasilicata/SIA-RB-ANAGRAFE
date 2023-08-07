@@ -1,0 +1,626 @@
+    <tr>
+      <td class="radio" rowspan="$$rowspan">
+        <a
+          href="javascript: newWindowDoForm('$$urlRSDI?idConduzione=$$idConduzione&idAzienda=$$idAzienda', 'abaco', '1000','700','yes', 'GIS');"
+          title="$$controlliP" class="$$immaginiControlliP">
+        </a>
+      </td>                
+      <td class="radio" rowspan="$$rowspan">
+        <a
+          href="javascript: newWindowSubmitModifica('../layout/popModificaTerritorialeCondUso.htm', '$$idConduzione', '$$numero', 'modificaTerritoriale', '1000','700','yes');"
+          title="[Attenzione: questo link si apre in una nuova finestra]"
+          class="dettaglio"></a>
+      </td>
+      <td rowspan="$$rowspan">
+        $$descComuneParticella $$siglaProvinciaParticella
+      </td>
+      <td rowspan="$$rowspan">
+        $$sezione
+      </td>
+      <td class="numeridx" rowspan="$$rowspan">
+        $$foglio
+      </td>
+      <td class="numeridx" rowspan="$$rowspan">
+        $$particella
+      </td>
+      <td rowspan="$$rowspan">
+        $$subalterno
+      </td>
+      <td class="numeridx" rowspan="$$rowspan">
+        <input name="supCatastale" type="hidden" value="$$supCatastale" />
+        $$supCatastale
+      </td>
+      <td class="numeridx" rowspan="$$rowspan" title="$$tooltipDescElegFit">
+        $$superficieGrafica
+      </td>
+      <td class="numeridx" rowspan="$$rowspan" >
+        $$classiEleggibilita
+      </td>
+      <td rowspan="$$rowspan">
+        <select name="idTitoloPossesso" id="idTitoloPossesso">
+          <option></option>
+          <!-- @@blkTitoliPossesso -->
+          <option value="$$idTitoloPossesso" title="$$descTitoloPossesso" $$selected>
+            $$descrizione
+          </option>
+          <!-- @@blkTitoliPossesso -->
+        </select>
+        $$err_idTitoloPossesso
+      </td>
+      <td rowspan="$$rowspan">
+        <input name="supCondotta" type="text" id="supCondotta$$numero"
+          class="textmedio" value="$$supCondotta"
+          maxlength="10" onKeyUp="javascript:calcolaPercentualePossesso('$$numero','$$superficieGrafica','$$supCatastale', '$$stabilizzato');" />
+        $$err_supCondotta
+      </td>
+      <td rowspan="$$rowspan">
+        <input name="percentualePossesso" type="text" id="percentualePossesso$$numero"
+          class="textmedio" value="$$percentualePossesso" maxlength="5" />
+        $$err_percentualePossesso
+      </td>
+      <td rowspan="$$rowspan">
+        <input name="superficieAgronomica" type="text"
+          class="textmedio" value="$$superficieAgronomica"
+          maxlength="10" />
+        $$err_superficieAgronomica
+      </td>
+      <td>
+        <input type="hidden" name="idParticellaCertificata" id="idParticellaCertificata$$numTotaleUtilizzo" value="$$idParticellaCertificata" />
+        <select name="idTipoUtilizzo" id="idTipoUtilizzo$$numTotaleUtilizzo" class="clsIdTipoUtilizzo"
+          onchange="javascript: modificaComboDestinazione('$$numTotaleUtilizzo')" $$disabledUt >
+          <option value=""></option>
+          <!-- @@blkTipiUsoSuolo -->
+          <option value="$$idTipoUtilizzo" title="$$descCompleta" $$selected>
+            $$descrizione
+          </option>
+          <!-- @@blkTipiUsoSuolo -->
+        </select>
+        $$err_idTipoUtilizzo
+        <div id="idTipoDestinazioneDiv$$numTotaleUtilizzo">
+          <select name="idTipoDestinazione" id="idTipoDestinazione$$numTotaleUtilizzo" 
+            onchange="javascript: modificaComboDettaglioUso('$$numTotaleUtilizzo');" $$disabledUt>
+            <!-- @@blkTipiDestinazione -->
+            <option value="$$idTipoDestinazione" title="$$descCompleta" $$selected>
+              $$descrizione
+            </option>
+            <!-- @@blkTipiDestinazione -->
+            <!-- @@blkNoTipiDestinazione -->
+            <option value="" ></option>
+            <!-- @@blkNoTipiDestinazione -->
+          </select>
+          $$err_idTipoDestinazione
+        </div>
+        <div id="idTipoDettaglioUsoDiv$$numTotaleUtilizzo">
+          <select name="idTipoDettaglioUso" id="idTipoDettaglioUso$$numTotaleUtilizzo" 
+            onchange="javascript: modificaComboQualitaUso('$$numTotaleUtilizzo');" $$disabledUt>
+            <!-- @@blkTipiDettaglioUso -->
+            <option value="$$idTipoDettaglioUso" title="$$descCompleta" $$selected>
+              $$descrizione
+            </option>
+            <!-- @@blkTipiDettaglioUso -->
+            <!-- @@blkNoTipiDettaglioUso -->
+            <option value="" ></option>
+            <!-- @@blkNoTipiDettaglioUso -->
+          </select>                    
+        </div>
+        <div id="idTipoQualitaUsoDiv$$numTotaleUtilizzo">
+          <select name="idTipoQualitaUso" id="idTipoQualitaUso$$numTotaleUtilizzo" 
+            onchange="javascript: modificaComboVarieta('$$numTotaleUtilizzo');" $$disabledUt>
+            <!-- @@blkTipiQualitaUso -->
+            <option value="$$idTipoQualitaUso" title="$$descCompleta" $$selected>
+              $$descrizione
+            </option>
+            <!-- @@blkTipiQualitaUso -->
+            <!-- @@blkNoTipiQualitaUso -->
+            <option value="" ></option>
+            <!-- @@blkNoTipiQualitaUso -->
+          </select>
+          $$err_idTipoQualitaUso
+        </div>
+        <div id="idVarietaDiv$$numTotaleUtilizzo">
+          <select name="idVarieta" id="idVarieta$$numTotaleUtilizzo" 
+            onchange="javascript: modificaSezioneSemina('$$numTotaleUtilizzo');modificaSezioneMantenimento('$$numTotaleUtilizzo');" $$disabledUt>
+            <!-- @@blkTipiVarieta -->
+            <option value="$$idVarieta" title="$$descCompleta" $$selected>
+              $$descrizione
+            </option>
+            <!-- @@blkTipiVarieta -->
+            <!-- @@blkNoTipiVarieta -->
+            <option value="" ></option>
+            <!-- @@blkNoTipiVarieta -->
+          </select>
+          $$err_idVarieta
+        </div>
+      </td>
+      <td>
+        <!--  @@blkNoDisabled -->
+        <a
+          href="javascript: newWindowSubmit('../layout/popAggiungiUso.htm', 'aggiungiUso', 600, 300, 'yes', 'Primario', '$$numeroUtilizzi', '$$numTotaleUtilizzo', 'modificaTerreni');"
+          title="[Attenzione: questo link si apre in una nuova finestra]"
+          class="modifica" id="associaIdUtilizzo"></a>
+        <!--  @@blkNoDisabled -->
+      </td>
+      <td>
+        <div id="idSezioneSeminaDiv$$numTotaleUtilizzo" >
+          <input name="supEleggibileTmp" id="supEleggibileTmp$$numTotaleUtilizzo" type="hidden" value="$$supEleggibile" />
+          <input name="supEleggibileNettaTmp" id="supEleggibileNettaTmp$$numTotaleUtilizzo" type="hidden" value="$$supEleggibileNetta" />
+          <input name="coefficienteRiduzione" id="coefficienteRiduzione$$numTotaleUtilizzo" type="hidden"  value="$$coefficienteRiduzione" />
+          <select name="idTipoPeriodoSemina" id="idTipoPeriodoSemina$$numTotaleUtilizzo" 
+              onchange="javascript: modificaSezioneDateSemina($$numTotaleUtilizzo);" $$disabledUt >
+            <!-- @@blkTipoPeriodoSemina -->
+            <option value="$$idTipoPeriodoSemina" $$selected>
+              $$descrizione
+            </option>
+            <!-- @@blkTipoPeriodoSemina -->
+            <!-- @@blkNoTipoPeriodoSemina -->
+            <option value="" ></option>
+            <!-- @@blkNoTipoPeriodoSemina -->
+          </select>
+          $$err_idTipoPeriodoSemina
+          <br>
+          <select name="idTipoSemina" $$disabledUt>
+            <!-- @@blkTipoSemina -->
+            <option value="$$idTipoSemina" $$selected>
+              $$descrizione
+            </option>
+            <!-- @@blkTipoSemina -->
+            <!-- @@blkNoTipoSemina -->
+            <option value="" ></option>
+            <!-- @@blkNoTipoSemina -->
+          </select>
+          $$err_idTipoSemina
+          <br>
+        </div>
+        <div id="idSezioneDateSeminaDiv$$numTotaleUtilizzo" >
+          <input type="text" name="dataInizioDestinazione" class="textmedio"
+            value="$$dataInizioDestinazione" $$disabledUt />&nbsp;inizio
+          $$err_dataInizioDestinazione
+          <br>
+          <input type="text" name="dataFineDestinazione" class="textmedio"
+            value="$$dataFineDestinazione" $$disabledUt />&nbsp;fine
+          $$err_dataFineDestinazione
+        </div>
+      </td>
+      <td>
+        <input name="supUtilizzata" type="text" id="supUtilizzata$$numTotaleUtilizzo"
+          class="textmedio" value="$$supUtilizzata" 
+          onkeyup="javascript:calcolaSupNetta($$numTotaleUtilizzo);" $$disabledUt />
+        $$err_supUtilizzata
+        <br>
+      </td>
+      <td id="supNetta_$$numTotaleUtilizzo">
+        $$supNetta
+      </td>
+      <td id="supEleggibile_$$numTotaleUtilizzo">
+        $$supEleggibile
+      </td>
+      <td id="supEleggibileNetta_$$numTotaleUtilizzo" >
+        $$supEleggibileNetta
+      </td>
+      <td>
+        <div id="idSezioneMantenimentoDiv$$numTotaleUtilizzo" >
+          <select name="idPraticaMantenimento" $$disabledUt>
+            <!-- @@blkTipoPraticaMantenimento -->
+            <option value="$$idPraticaMantenimento" $$selected>
+              $$descrizione
+            </option>
+            <!-- @@blkTipoPraticaMantenimento -->
+            <!-- @@blkNoTipoPraticaMantenimento -->
+            <option value="" ></option>
+            <!-- @@blkNoTipoPraticaMantenimento -->
+          </select>
+          $$err_idPraticaMantenimento
+        </div>
+      </td>
+      <td>
+        <select name="idTipoUtilizzoSecondario" id="idTipoUtilizzoSecondario$$numTotaleUtilizzo" class="clsIdTipoUtilizzoSecondario"
+          onchange="javascript: modificaComboDestinazioneSecondario('$$numTotaleUtilizzo');" $$disabledUt >
+          <option value=""></option>
+          <!-- @@blkTipiUsoSuoloSecondario -->
+          <option value="$$idTipoUtilizzoSecondario" title="$$descCompleta" $$selected>
+            $$descrizione
+          </option>
+          <!-- @@blkTipiUsoSuoloSecondario -->
+        </select>
+        $$err_idTipoUtilizzoSecondario                  
+        <div id="idTipoDestinazioneSecondarioDiv$$numTotaleUtilizzo">
+          <select name="idTipoDestinazioneSecondario" id="idTipoDestinazioneSecondario$$numTotaleUtilizzo" 
+            onchange="javascript: modificaComboDettaglioUsoSecondario('$$numTotaleUtilizzo');" $$disabledUt>
+            <!-- @@blkTipiDestinazioneSecondario -->
+            <option value="$$idTipoDestinazioneSecondario" title="$$descCompleta" $$selected>
+              $$descrizione
+            </option>
+            <!-- @@blkTipiDestinazioneSecondario -->
+            <!-- @@blkNoTipiDestinazioneSecondario -->
+            <option value="" ></option>
+            <!-- @@blkNoTipiDestinazioneSecondario -->
+          </select>
+          $$err_idTipoDestinazioneSecondario
+        </div> 
+        <div id="idTipoDettaglioUsoSecondarioDiv$$numTotaleUtilizzo">
+          <select name="idTipoDettaglioUsoSecondario" id="idTipoDettaglioUsoSecondario$$numTotaleUtilizzo" 
+            onchange="javascript: modificaComboQualitaUsoSecondario('$$numTotaleUtilizzo');" $$disabledUt>
+            <!-- @@blkTipiDettaglioUsoSecondario -->
+            <option value="$$idTipoDettaglioUsoSecondario" title="$$descCompleta" $$selected>
+              $$descrizione
+            </option>
+            <!-- @@blkTipiDettaglioUsoSecondario -->
+            <!-- @@blkNoTipiDettaglioUsoSecondario -->
+            <option value="" ></option>
+            <!-- @@blkNoTipiDettaglioUsoSecondario -->
+          </select>               
+          $$err_idTipoDettaglioUsoSecondario
+       </div>
+       <div id="idTipoQualitaUsoSecondarioDiv$$numTotaleUtilizzo">
+          <select name="idTipoQualitaUsoSecondario" id="idTipoQualitaUsoSecondario$$numTotaleUtilizzo" 
+            onchange="javascript: modificaComboVarietaSecondaria('$$numTotaleUtilizzo');" $$disabledUt>
+            <!-- @@blkTipiQualitaUsoSecondario -->
+            <option value="$$idTipoQualitaUsoSecondario" title="$$descCompleta" $$selected>
+              $$descrizione
+            </option>
+            <!-- @@blkTipiQualitaUsoSecondario -->
+            <!-- @@blkNoTipiQualitaUsoSecondario -->
+            <option value="" ></option>
+            <!-- @@blkNoTipiQualitaUsoSecondario -->
+          </select>
+          $$err_idTipoQualitaUsoSecondario
+        </div>       
+        <div id="idVarietaSecondariaDiv$$numTotaleUtilizzo">
+          <select name="idVarietaSecondaria" id="idVarietaSecondaria$$numTotaleUtilizzo" 
+            onchange="javascript: modificaSezioneSeminaSecondario('$$numTotaleUtilizzo');" $$disabledUt>
+            <!-- @@blkTipiVarietaSecondaria -->
+            <option value="$$idVarietaSecondaria" title="$$descCompleta" $$selected>
+              $$descrizione
+            </option>
+            <!-- @@blkTipiVarietaSecondaria -->
+            <!-- @@blkNoTipiVarietaSecondaria -->
+            <option value="" ></option>
+            <!-- @@blkNoTipiVarietaSecondaria -->
+          </select>
+          $$err_idVarietaSecondaria
+        </div>        
+      </td>
+      <td>
+        <!--  @@blkNoDisabled -->
+        <a
+          href="javascript: newWindowSubmit('../layout/popAggiungiUso.htm', 'aggiungiUso', 600, 300, 'yes', 'Secondario', '$$numeroUtilizzi', '$$numTotaleUtilizzo', 'modificaTerreni');"
+          title="[Attenzione: questo link si apre in una nuova finestra]"
+          class="modifica" id="associaIdUtilizzoSecondario"></a>
+        <!--  @@blkNoDisabled -->
+      </td>
+      <td>
+        <div id="idSezioneSeminaSecondarioDiv$$numTotaleUtilizzo" >
+          <select name="idTipoPeriodoSeminaSecondario" id="idTipoPeriodoSeminaSecondario$$numTotaleUtilizzo" 
+            onchange="javascript: modificaSezioneDateSeminaSecondario('$$numTotaleUtilizzo');" $$disabledUt>
+            <!-- @@blkTipoPeriodoSeminaSecondario -->
+            <option value="$$idTipoPeriodoSeminaSecondario" $$selected>
+              $$descrizione
+            </option>
+            <!-- @@blkTipoPeriodoSeminaSecondario -->
+            <!-- @@blkNoTipoPeriodoSeminaSecondario -->
+            <option value="" ></option>
+            <!-- @@blkNoTipoPeriodoSeminaSecondario -->
+          </select>
+          $$err_idTipoPeriodoSeminaSecondario
+          <br>
+          <select name="idTipoSeminaSecondario" $$disabledUt>
+            <!-- @@blkTipoSeminaSecondario -->
+            <option value="$$idTipoSeminaSecondario" $$selected>
+              $$descrizione
+            </option>
+            <!-- @@blkTipoSeminaSecondario -->
+            <!-- @@blkNoTipoSeminaSecondario -->
+            <option value="" ></option>
+            <!-- @@blkNoTipoSeminaSecondario -->
+          </select>
+          $$err_idTipoSeminaSecondario
+          <br>
+        </div>
+        <div id="idSezioneDateSeminaSecondarioDiv$$numTotaleUtilizzo" >
+          <input type="text" name="dataInizioDestinazioneSec" class="textmedio"
+            value="$$dataInizioDestinazioneSec" $$disabledUt />&nbsp;inizio
+          $$err_dataInizioDestinazioneSec
+          <br>
+          <input type="text" name="dataFineDestinazioneSec" class="textmedio"
+            value="$$dataFineDestinazioneSec" $$disabledUt />&nbsp;fine
+          $$err_dataFineDestinazioneSec
+        </div>
+      </td>
+      <td>
+        <input name="supUtilizzataSecondaria" type="text"
+          class="textmedio" value="$$supUtilizzataSecondaria" $$disabledUt />
+        $$err_supUtilizzataSecondaria
+      </td>
+      <td rowspan="$$rowspan">
+        <select name="idCasoParticolare" id="idCasoParticolare">
+          <option></option>
+          <!-- @@blkTipiCasoParticolare -->
+          <option value="$$idCasoParticolare" title="$$descCasiParticolari" $$selected>
+            $$descrizione
+          </option>
+          <!-- @@blkTipiCasoParticolare -->
+        </select>
+        $$err_idCasoParticolare
+      </td>
+    </tr>
+    <!-- righe da aggiungere nel caso in cui rowspan sia diverso da uno  -->
+    <!-- @@blkElencoUtilizzi -->
+    <tr>
+      <td>
+        <select name="idTipoUtilizzo" id="idTipoUtilizzo$$numTotaleUtilizzo" class="clsIdTipoUtilizzo"
+          onchange="javascript: modificaComboDestinazione('$$numTotaleUtilizzo');" $$disabledUt >
+          <option value=""></option>
+          <!-- @@blkTipiUsoSuolo -->
+          <option value="$$idTipoUtilizzo" title="$$descCompleta" $$selected>
+            $$descrizione
+          </option>
+          <!-- @@blkTipiUsoSuolo -->
+        </select>
+        $$err_idTipoUtilizzo
+        <div id="idTipoDestinazioneDiv$$numTotaleUtilizzo">
+          <select name="idTipoDestinazione" id="idTipoDestinazione$$numTotaleUtilizzo" 
+            onchange="javascript: modificaComboDettaglioUso('$$numTotaleUtilizzo');" $$disabledUt>
+            <!-- @@blkTipiDestinazione -->
+            <option value="$$idTipoDestinazione" title="$$descCompleta" $$selected>
+              $$descrizione
+            </option>
+            <!-- @@blkTipiDestinazione -->
+            <!-- @@blkNoTipiDestinazione -->
+            <option value="" ></option>
+            <!-- @@blkNoTipiDestinazione -->
+            blkNoTipoSeminaSecondario
+          </select>
+          $$err_idTipoDestinazione
+        </div>
+        <div id="idTipoDettaglioUsoDiv$$numTotaleUtilizzo">
+          <select name="idTipoDettaglioUso" id="idTipoDettaglioUso$$numTotaleUtilizzo" 
+            onchange="javascript: modificaComboQualitaUso('$$numTotaleUtilizzo');" $$disabledUt>
+            <!-- @@blkTipiDettaglioUso -->
+            <option value="$$idTipoDettaglioUso" title="$$descCompleta" $$selected>
+              $$descrizione
+            </option>
+            <!-- @@blkTipiDettaglioUso -->
+            <!-- @@blkNoTipiDettaglioUso -->
+            <option value="" ></option>
+            <!-- @@blkNoTipiDettaglioUso -->
+          </select>                    
+        </div>
+        <div id="idTipoQualitaUsoDiv$$numTotaleUtilizzo">
+          <select name="idTipoQualitaUso" id="idTipoQualitaUso$$numTotaleUtilizzo" 
+            onchange="javascript: modificaComboVarieta('$$numTotaleUtilizzo');" $$disabledUt>
+            <!-- @@blkTipiQualitaUso -->
+            <option value="$$idTipoQualitaUso" title="$$descCompleta" $$selected>
+              $$descrizione
+            </option>
+            <!-- @@blkTipiQualitaUso -->
+            <!-- @@blkNoTipiQualitaUso -->
+            <option value="" ></option>
+            <!-- @@blkNoTipiQualitaUso -->
+          </select>
+          $$err_idTipoQualitaUso
+        </div>
+        <div id="idVarietaDiv$$numTotaleUtilizzo">
+          <select name="idVarieta" id="idVarieta$$numTotaleUtilizzo" 
+            onchange="javascript: modificaSezioneSemina('$$numTotaleUtilizzo');modificaSezioneMantenimento('$$numTotaleUtilizzo');" $$disabledUt>
+            <!-- @@blkTipiVarieta -->
+            <option value="$$idVarieta" title="$$descCompleta" $$selected>
+              $$descrizione
+            </option>
+            <!-- @@blkTipiVarieta -->
+            <!-- @@blkNoTipiVarieta -->
+            <option value="" ></option>
+            <!-- @@blkNoTipiVarieta -->
+          </select>
+          $$err_idVarieta
+        </div>
+      </td>
+      <td>
+        <!--  @@blkNoDisabled -->
+        <a
+          href="javascript: newWindowSubmit('../layout/popAggiungiUso.htm', 'aggiungiUso', 600, 300, 'yes', 'Primario', '$$numeroUtilizzi', '$$numTotaleUtilizzo', 'modificaTerreni');"
+          title="[Attenzione: questo link si apre in una nuova finestra]"
+          class="modifica" id="associaIdUtilizzo"></a>
+        <!--  @@blkNoDisabled -->
+      </td>
+      <td>
+        <div id="idSezioneSeminaDiv$$numTotaleUtilizzo" >
+          <input name="supEleggibileTmp" id="supEleggibileTmp$$numTotaleUtilizzo" type="hidden" value="$$supEleggibile" />
+          <input name="supEleggibileNettaTmp" id="supEleggibileNettaTmp$$numTotaleUtilizzo" type="hidden" value="$$supEleggibileNetta" />
+          <input name="coefficienteRiduzione" id="coefficienteRiduzione$$numTotaleUtilizzo" type="hidden"  value="$$coefficienteRiduzione" />
+          <select name="idTipoPeriodoSemina" id="idTipoPeriodoSemina$$numTotaleUtilizzo" 
+              onchange="javascript: modificaSezioneDateSemina($$numTotaleUtilizzo);" $$disabledUt >
+            <!-- @@blkTipoPeriodoSemina -->
+            <option value="$$idTipoPeriodoSemina" $$selected>
+              $$descrizione
+            </option>
+            <!-- @@blkTipoPeriodoSemina -->
+            <!-- @@blkNoTipoPeriodoSemina -->
+            <option value="" ></option>
+            <!-- @@blkNoTipoPeriodoSemina -->
+          </select>
+          $$err_idTipoPeriodoSemina
+          <br>
+          <select name="idTipoSemina" $$disabledUt>
+            <!-- @@blkTipoSemina -->
+            <option value="$$idTipoSemina" $$selected>
+              $$descrizione
+            </option>
+            <!-- @@blkTipoSemina -->
+            <!-- @@blkNoTipoSemina -->
+            <option value="" ></option>
+            <!-- @@blkNoTipoSemina -->
+          </select>
+          $$err_idTipoSemina
+          <br>
+        </div>
+        <div id="idSezioneDateSeminaDiv$$numTotaleUtilizzo" >
+          <input type="text" name="dataInizioDestinazione" class="textmedio"
+            value="$$dataInizioDestinazione" $$disabledUt />&nbsp;inizio
+          $$err_dataInizioDestinazione
+          <br>
+          <input type="text" name="dataFineDestinazione" class="textmedio"
+            value="$$dataFineDestinazione" $$disabledUt />&nbsp;fine
+          $$err_dataFineDestinazione
+        </div>
+      </td>
+      <td>
+        <input name="supUtilizzata" type="text" id="supUtilizzata$$numTotaleUtilizzo"
+          class="textmedio" value="$$supUtilizzata" 
+          onkeyup="javascript:calcolaSupNetta($$numTotaleUtilizzo);" $$disabledUt />
+        $$err_supUtilizzata
+        <br>
+      </td>
+      <td id="supNetta_$$numTotaleUtilizzo">
+        $$supNetta
+      </td>
+      <td id="supEleggibile_$$numTotaleUtilizzo">
+        $$supEleggibile
+      </td>
+      <td id="supEleggibileNetta_$$numTotaleUtilizzo" >
+        $$supEleggibileNetta
+      </td>
+      <td>
+        <div id="idSezioneMantenimentoDiv$$numTotaleUtilizzo" >
+          <select name="idPraticaMantenimento" $$disabledUt>
+            <!-- @@blkTipoPraticaMantenimento -->
+            <option value="$$idPraticaMantenimento" $$selected>
+              $$descrizione
+            </option>
+            <!-- @@blkTipoPraticaMantenimento -->
+            <!-- @@blkNoTipoPraticaMantenimento -->
+            <option value="" ></option>
+            <!-- @@blkNoTipoPraticaMantenimento -->
+          </select>
+          $$err_idPraticaMantenimento
+        </div>
+      </td>
+      <td>
+        <select name="idTipoUtilizzoSecondario" id="idTipoUtilizzoSecondario$$numTotaleUtilizzo" class="clsIdTipoUtilizzoSecondario"
+          onchange="javascript: modificaComboDestinazioneSecondario('$$numTotaleUtilizzo');" $$disabledUt >
+          <option></option>
+          <!-- @@blkTipiUsoSuoloSecondario -->
+          <option value="$$idTipoUtilizzoSecondario" title="$$descCompleta" $$selected>
+            $$descrizione
+          </option>
+          <!-- @@blkTipiUsoSuoloSecondario -->
+        </select>
+        $$err_idTipoUtilizzoSecondario
+        <div id="idTipoDestinazioneSecondarioDiv$$numTotaleUtilizzo">
+          <select name="idTipoDestinazioneSecondario" id="idTipoDestinazioneSecondario$$numTotaleUtilizzo" 
+            onchange="javascript: modificaComboDettaglioUsoSecondario('$$numTotaleUtilizzo');" $$disabledUt>
+            <!-- @@blkTipiDestinazioneSecondario -->
+            <option value="$$idTipoDestinazioneSecondario" title="$$descCompleta" $$selected>
+              $$descrizione
+            </option>
+            <!-- @@blkTipiDestinazioneSecondario -->
+            <!-- @@blkNoTipiDestinazioneSecondario -->
+            <option value="" ></option>
+            <!-- @@blkNoTipiDestinazioneSecondario -->
+          </select>
+          $$err_idTipoDestinazioneSecondario
+        </div> 
+        <div id="idTipoDettaglioUsoSecondarioDiv$$numTotaleUtilizzo">
+          <select name="idTipoDettaglioUsoSecondario" id="idTipoDettaglioUsoSecondario$$numTotaleUtilizzo" 
+            onchange="javascript: modificaComboQualitaUsoSecondario('$$numTotaleUtilizzo');" $$disabledUt>
+            <!-- @@blkTipiDettaglioUsoSecondario -->
+            <option value="$$idTipoDettaglioUsoSecondario" title="$$descCompleta" $$selected>
+              $$descrizione
+            </option>
+            <!-- @@blkTipiDettaglioUsoSecondario -->
+            <!-- @@blkNoTipiDettaglioUsoSecondario -->
+            <option value="" ></option>
+            <!-- @@blkNoTipiDettaglioUsoSecondario -->
+          </select>               
+          $$err_idTipoDettaglioUsoSecondario
+       </div>
+       <div id="idTipoQualitaUsoSecondarioDiv$$numTotaleUtilizzo">
+          <select name="idTipoQualitaUsoSecondario" id="idTipoQualitaUsoSecondario$$numTotaleUtilizzo" 
+            onchange="javascript: modificaComboVarietaSecondaria('$$numTotaleUtilizzo');" $$disabledUt>
+            <!-- @@blkTipiQualitaUsoSecondario -->
+            <option value="$$idTipoQualitaUsoSecondario" title="$$descCompleta" $$selected>
+              $$descrizione
+            </option>
+            <!-- @@blkTipiQualitaUsoSecondario -->
+            <!-- @@blkNoTipiQualitaUsoSecondario -->
+            <option value="" ></option>
+            <!-- @@blkNoTipiQualitaUsoSecondario -->
+          </select>
+          $$err_idTipoQualitaUsoSecondario
+        </div>       
+        <div id="idVarietaSecondariaDiv$$numTotaleUtilizzo">
+          <select name="idVarietaSecondaria" id="idVarietaSecondaria$$numTotaleUtilizzo" 
+            onchange="javascript: modificaSezioneSeminaSecondario('$$numTotaleUtilizzo');" $$disabledUt>
+            <!-- @@blkTipiVarietaSecondaria -->
+            <option value="$$idVarietaSecondaria" title="$$descCompleta" $$selected>
+              $$descrizione
+            </option>
+            <!-- @@blkTipiVarietaSecondaria -->
+            <!-- @@blkNoTipiVarietaSecondaria -->
+            <option value="" ></option>
+            <!-- @@blkNoTipiVarietaSecondaria -->
+          </select>
+          $$err_idVarietaSecondaria
+        </div>              
+      </td>
+      <td>
+        <!--  @@blkNoDisabled -->
+        <a
+          href="javascript: newWindowSubmit('../layout/popAggiungiUso.htm', 'aggiungiUso', 600, 300, 'yes', 'Secondario', '$$numeroUtilizzi', '$$numTotaleUtilizzo', 'modificaTerreni');"
+          title="[Attenzione: questo link si apre in una nuova finestra]"
+          class="modifica" id="associaIdUtilizzoSecondario"></a>
+        <!--  @@blkNoDisabled -->
+      </td>
+      <td>
+        <div id="idSezioneSeminaSecondarioDiv$$numTotaleUtilizzo" >
+          <select name="idTipoPeriodoSeminaSecondario" id="idTipoPeriodoSeminaSecondario$$numTotaleUtilizzo" 
+            onchange="javascript: modificaSezioneDateSeminaSecondario('$$numTotaleUtilizzo');" $$disabledUt >
+            <!-- @@blkTipoPeriodoSeminaSecondario -->
+            <option value="$$idTipoPeriodoSeminaSecondario" $$selected>
+              $$descrizione
+            </option>
+            <!-- @@blkTipoPeriodoSeminaSecondario -->
+            <!-- @@blkNoTipoPeriodoSeminaSecondario -->
+            <option value="" ></option>
+            <!-- @@blkNoTipoPeriodoSeminaSecondario -->
+          </select>
+          $$err_idTipoPeriodoSeminaSecondario
+          <br>
+          <select name="idTipoSeminaSecondario" $$disabledUt>
+            <!-- @@blkTipoSeminaSecondario -->
+            <option value="$$idTipoSeminaSecondario" $$selected>
+              $$descrizione
+            </option>
+            <!-- @@blkTipoSeminaSecondario -->
+            <!-- @@blkNoTipoSeminaSecondario -->
+            <option value="" ></option>
+            <!-- @@blkNoTipoSeminaSecondario -->
+          </select>
+          $$err_idTipoSeminaSecondario
+          <br>
+        </div>
+        <div id="idSezioneDateSeminaSecondarioDiv$$numTotaleUtilizzo" >
+          <input type="text" name="dataInizioDestinazioneSec" class="textmedio"
+            value="$$dataInizioDestinazioneSec" $$disabledUt />&nbsp;inizio
+          $$err_dataInizioDestinazioneSec
+          <br>
+          <input type="text" name="dataFineDestinazioneSec" class="textmedio"
+            value="$$dataFineDestinazioneSec" $$disabledUt />&nbsp;fine
+          $$err_dataFineDestinazioneSec
+        </div>
+      </td>
+      <td>
+        <input name="supUtilizzataSecondaria" type="text"
+          class="textmedio" value="$$supUtilizzataSecondaria" $$disabledUt />
+        $$err_supUtilizzataSecondaria
+      </td>
+    </tr>
+    <!-- @@blkElencoUtilizzi -->
+    
+    <!-- @@blkNoElenco -->
+    <p class="errore">
+      $$messaggioErrore
+    </p>
+    <!-- @@blkNoElenco -->
+       
+          
+          

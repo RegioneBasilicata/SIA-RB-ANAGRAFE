@@ -1,0 +1,200 @@
+$$head
+  <script type="text/javascript" src="../js/checktext.js"></script>
+  <script language="JavaScript" type="text/javascript" src="../js/util.js" ></script>
+  <script type="text/javascript" src="../js/messaggistica.js"></script>
+
+<script type="text/javascript">
+
+  function logoutNew() 
+  {
+	  if(confirm('Si desidera abbandonare il servizio?')) 
+	  {
+	    if(window.opener) 
+	    {
+	      if(!window.opener.closed) 
+	      {
+	        window.opener.opener = self;
+	        window.opener.close();
+	      }
+	    }
+	    window.opener = self;
+	    window.close();
+	  }
+	}
+
+  function customDoForm(page)
+  {
+    var oldAction = document.form1.action;
+    document.form1.action=page;
+    document.form1.submit();
+    document.form1.action=oldAction;
+  }
+
+  function esegui()
+  {
+    var radio=document.form1.tipoStampa;
+    //alert('radio: '+radio);
+    if (!radio)
+    {
+      alert("Nessuna macro categoria di report!");
+      return;
+    }
+    if (!radio.length)
+    {
+			//alert('if (!radio.length)');
+      if (radio.checked)
+      {
+				//alert('if (radio.checked)');
+        currentSelection=radio.value;
+        customDoForm(currentSelection);
+        return;
+      }
+    }
+    else
+    {
+		 //alert('else (!radio.length): '+radio.length);
+     for(i=0;i<radio.length;i++)
+     {
+       if (radio[i].checked)
+       {
+         currentSelection=radio[i].value;
+         customDoForm(currentSelection);
+         return;
+       }
+    }
+    alert("Selezionare una macro categoria di report!");
+   }
+ }
+</script>
+
+</head>
+<body id="homeIndice" onLoad="$$err_error;systemMessages('$$txtMessaggioTestataUtente', '$$txtNumMessaggiDaLeggere');">
+  <form action="" method="post" name="form1">
+    <div id="pagina" class="colonnaUnica">
+      <!-- INTESTAZIONE -->
+      <div id="intestazione##pathProvincia">
+        $$header
+          <!-- menu di navigazione-->
+          <div id="titoloEmenu">
+          <h2>
+            <span class="alt">Anagrafe agricola della Regione TOBECONFIG</span>
+          </h2>
+            <div id="menuDiNavigazione" title="Menu di navigazione">
+              <ul class="menuTendina" id="menu-2">
+                <li><a href="../layout/index.htm" title="Torna alla pagina principale">home</a></li>
+                <li class="attivo">gestione anagrafe aziende</li>
+                <li><a href="#" title="contatti">contatti</a></li>
+                <li><a href="#" title="help">help</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <hr/>
+        <div style="clear:left">  </div>
+        <!-- CORPO -->
+        <div id="corpo">
+          <div id="Utente">
+            <div id="datiUtente">
+              <strong>utente:</strong>
+              $$utente
+              &nbsp;
+              &nbsp;
+              <strong>ente:</strong>
+              $$ente
+            </div>
+            <div id="chiudisessione">
+              <a href="javascript: logoutNew();">chiudi sessione</a>
+            </div>
+          </div>
+          <hr/>
+          <!--PRIMA COLONNA -->
+          <h3>Reportistica
+            <span class="helpFuori">
+              <a href="#">
+                <span class="alt">[help]</span>
+              </a>
+            </span>
+          </h3>
+          <hr/>
+          <div class="box">
+            <div class="menuSX1">
+              <ul>
+                <!-- @@blkElencoAziendeRapLegale -->
+                <li><a href="../layout/elencoAziendeRapLegale.htm">Elenco Aziende</a></li>
+              <!-- @@blkElencoAziendeRapLegale -->
+              <!-- @@blkRicercaAzienda-->
+                  <li><a href="../layout/ricerca.htm">Ricerca Azienda</a></li>
+                <!-- @@blkRicercaAzienda-->
+                <!--@@blkRicercaTerreno-->
+                  <li><a href="../layout/ricercaTerreno.htm">Ricerca Terreno</a></li>
+                <!--@@blkRicercaTerreno-->
+                <!--@@blkRicercaPersona-->
+                  <li><a href="../layout/ricercaPersona.htm">Ricerca Persona</a></li>
+                <!--@@blkRicercaPersona-->
+                <!--@@blkRicercaNotifica-->
+                  <li><a href="../layout/ricercaNotifica.htm">Ricerca Notifiche</a></li>
+                <!--@@blkRicercaNotifica-->
+                <!--@@blkVariazioniAzienda-->
+                  <li><a href="../layout/ricercaVariazioni.htm" >Ricerca Variazioni</a></li>
+                <!--@@blkVariazioniAzienda-->
+                <!--@@blkRicercaRichiesta-->
+                  <li><a href="../layout/ricercaRichiesta.htm">Ricerca richiesta azienda</a></li>
+                <!--@@blkRicercaRichiesta-->
+                <!--@@blkNuova-->
+                  <li><a href="../layout/nuovaAziendaAnagrafica.htm">Nuova Azienda</a></li>
+                <!--@@blkNuova-->
+                <!-- @@blkNuovaIscrizione -->
+	              <li>
+	                <a href="../layout/newInserimentoAzienda.htm">Nuova Iscrizione</a>
+	              </li>
+	              <!-- @@blkNuovaIscrizione -->
+                <!--@@blkNuovaParticella-->
+                <li>
+                  <a href="../layout/inserisciTerreno.htm">Nuova Particella</a>
+                </li>
+                <!--@@blkNuovaParticella-->
+                <!--@@blkServizi-->
+                  <li><a href="../layout/servizi.htm" >Servizi</a></li>
+                <!--@@blkServizi--> 
+                <!--@@blkReportistica-->
+                <li><a href="../layout/elencoRicerche.htm">Reportistica</a></li>
+                <!--@@blkReportistica-->
+                <!--@@blkEstrazioneDati-->
+                <li><a href="../layout/macroCategoriaReport.htm" class="on">Estrazione dati</a></li>
+                <!--@@blkEstrazioneDati-->
+                <li><a href="../layout/elencoManuali.htm">Scarico Documentazione Tecnica</a></li>     				
+              </ul>
+            </div>
+          </div>
+          <hr/>
+          <!-- SECONDA COLONNA -->
+          <div id="contenuto">
+          <!--@@nessunaMacroCategoriaPresente-->
+		<p class="errore">Non sono presenti al momento report di estrazione dei dati</p>
+	  <!--@@nessunaMacroCategoriaPresente-->
+
+            <table border="0" cellspacing="3">
+		@@blkMacroCategoria
+		<tr>
+		<th scope="row" class="radio"><input id="elenco" name="tipoStampa" type="radio" value="elencoTipologieReport.htm?idMacroCategoria=$$idMacroCategoria" /></th>
+		<td><label for="elenco">$$descrizioneMacroCategoria</label></td>
+		</tr>
+		@@blkMacroCategoria
+	    </table>
+	     <!--@@macroCategoriaPresente-->
+	        <div class="pulsanti"><div class="sin">
+	              <label for="conferma" class="alt">conferma</label>
+	              <input type="submit" name="conferma" value="conferma" alt="conferma" onClick="esegui();return false;" class="inputPulsante highlighted"/>
+	        </div>
+       		</div>
+	     <!--@@macroCategoriaPresente-->
+          </div>
+         </div>
+        <hr/>
+    </form>
+    <hr />
+    <hr />
+    <!-- PIE' DI PAGINA -->
+    $$footer
+
+
