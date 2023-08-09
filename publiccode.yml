@@ -1,0 +1,155 @@
+# This repository adheres to the publiccode.yml standard by including this 
+# metadata file that makes public software easily discoverable.
+# More info at https://github.com/italia/publiccode.yml
+
+publiccodeYmlVersion: '0.2'
+categories:
+  - office
+  - data-collection
+  - data-visualization
+description:
+  it:
+    features:
+      - Accesso al fascicolo azienda agricola
+      - Sincronizzazione del fascicolo da fonte SIAN
+      - Gestione Anagrafica
+      - Gestione Terreni
+      - Gestione Fabbricati e Strutture
+      - Gestione Allevamenti
+      - Gestione Macchine Agricole
+      - Gestione dei mandati
+    genericName: SIA-RB Anagrafe Agricola
+    longDescription: |
+      ## Sistema Informativo Agricolo della Regione Basilicata (SIA-RB)
+
+
+
+      ## Modulo Anagrafe Agricola 
+
+
+
+      L'Anagrafe agricola della Basilicata è il servizio che consente di gestire
+
+      in modo integrato tutte le informazioni relative alle imprese che
+
+      intendono avviare procedimenti amministrativi in materia di agricoltura. È
+
+      un archivio trasversale a tutti i procedimenti amministrativi, che opera
+
+      quale motore di servizi a supporto sia della predisposizione delle domande
+
+      di aiuto, da parte delle imprese e dei loro intermediari professionali
+
+      autorizzati, sia delle successive fasi d'istruttoria, controllo e collaudo
+
+      da parte della PA lucane di competenza. I dati contenuti nell'Anagrafe
+
+      sono di due tipologie:
+
+
+
+      - dati certificati provenienti sia da banche dati di competenza del
+
+      sistema informativo inter-ente (es. registro UMA delle macchine agricole)
+
+      sia esterne (ad es. registro imprese della CCIAA)
+
+
+      - dati garantiti da documentazione probante raccolta nel fascicolo
+
+      aziendale. Il fascicolo aziendale è depositato presso un ufficio gestore,
+
+      appositamente costituito presso la PA di competenza, o presso i CAA.
+
+
+
+      Ogni beneficiario, al fine di potere accedere ai procedimenti
+
+      amministrativi in materia di agricoltura e sviluppo rurale, dovrà
+
+      costituire il fascicolo aziendale presso un ufficio gestore e iscriversi
+
+      all'Anagrafe.
+
+
+
+      ​
+
+
+
+      **Gli utenti del servizio**
+
+
+
+      - Funzionari della Regione Basilicata 
+
+
+      - Operatori dei Centri autorizzati di assistenza in agricoltura (CAA),
+
+      limitatamente ai soggetti che hanno conferito loro mandato di assistenza.
+
+
+      - Altri enti pubblici o le pubbliche amministrazioni che hanno funzioni di
+
+      sorveglianza e controllo in materia di agricoltura.
+
+
+      - Imprese i cui soggetti sono iscritti nell’Anagrafe agricola della
+
+      Basilicata.
+    shortDescription: |-
+      Sistema integrato per la gestione delle informazioni relative alle imprese che intendono avviare procedimenti amministrativi in materia di agricoltura
+developmentStatus: stable
+intendedAudience:
+  countries:
+    - it
+  scope:
+    - agriculture
+    - government
+it:
+  conforme:
+    gdpr: true
+    lineeGuidaDesign: false
+    misureMinimeSicurezza: true
+    modelloInteroperabilita: true
+  countryExtensionVersion: '0.2'
+  piattaforme:
+    anpr: false
+    cie: false
+    pagopa: false
+    spid: true
+  riuso:
+    codiceIPA: r_basili
+legal:
+  license: EUPL-1.2
+  mainCopyrightOwner: Regione Basilicata
+  repoOwner: Regione Basilicata
+localisation:
+  availableLanguages:
+    - it
+  localisationReady: false
+logo: |-
+  https://raw.githubusercontent.com/RegioneBasilicata/SIA-RB-ANAGRAFE/master/SIA-RB_logo.png
+maintenance:
+  contacts:
+    - email: luca.ottone@aizoongroup.com
+      name: Luca Ottone
+      phone: ' '
+  contractors:
+    - name: AizoOn
+      until: '2023-11-30'
+  type: contract
+name: |-
+  Sistema Informativo Agricolo della Regione Basilicata (SIA-RB) -
+  ModuloAnagrafe Agricola
+platforms:
+  - web
+  - windows
+  - mac
+  - linux
+releaseDate: '2023-08-07'
+softwareType: standalone/web
+softwareVersion: '1.0'
+url: 'https://github.com/RegioneBasilicata/SIA-RB-ANAGRAFE'
+usedBy:
+  - Regione Basilicata
